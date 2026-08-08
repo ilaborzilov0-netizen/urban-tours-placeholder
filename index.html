@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0e3b3f" />
+  <title>Dubai Urban Tours — онлайн-туры для девелоперов</title>
+  <meta name="description" content="Онлайн-туры по Дубаю для девелоперов: районы, архитектура, инфраструктура и реальные кейсы городской среды." />
+  <style>
+    :root{
+      --ink:#15363a;
+      --muted:#657b7d;
+      --paper:#f7f1e8;
+      --paper-2:#fffaf4;
+      --teal:#0e6d69;
+      --teal-dark:#0e3b3f;
+      --coral:#ef765d;
+      --sand:#e8d2b1;
+      --line:rgba(21,54,58,.14);
+      --white:#fff;
+      --radius:26px;
+      --shadow:0 18px 55px rgba(19,61,65,.10);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+    a{color:inherit;text-decoration:none}
+    button,input,textarea{font:inherit}
+    .wrap{width:min(1180px,calc(100% - 36px));margin:0 auto}
+    .header{position:sticky;top:0;z-index:20;background:rgba(247,241,232,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.03em}
+    .mark{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,var(--coral),#f6b55e);display:grid;place-items:center;color:white;font-weight:900}
+    .links{display:flex;gap:28px;font-size:15px;color:#35595d}
+    .nav-cta{padding:11px 17px;border-radius:999px;background:var(--teal-dark);color:#fff;font-weight:700}
+    .hero{padding:76px 0 54px}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:stretch}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.45);font-size:14px;font-weight:700;color:var(--teal)}
+    h1{font-size:clamp(48px,7vw,92px);line-height:.95;letter-spacing:-.065em;margin:22px 0 24px;max-width:820px}
+    .lead{font-size:clamp(18px,2vw,24px);max-width:720px;color:#48676a;margin:0 0 30px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:15px 22px;border-radius:999px;font-weight:800;border:1px solid transparent}
+    .btn-primary{background:var(--coral);color:white}
+    .btn-secondary{border-color:var(--line);background:rgba(255,255,255,.45)}
+    .skycard{position:relative;min-height:520px;border-radius:34px;background:linear-gradient(180deg,#d9eee8 0 52%,#eccb9a 52% 100%);overflow:hidden;box-shadow:var(--shadow)}
+    .sun{position:absolute;right:38px;top:36px;width:88px;height:88px;border-radius:50%;background:#f4a866;opacity:.95}
+    .sea{position:absolute;left:0;right:0;bottom:0;height:30%;background:linear-gradient(180deg,#4da8a2,#247f7b)}
+    .skyline{position:absolute;left:9%;right:8%;bottom:26%;height:58%;display:flex;align-items:flex-end;gap:8px}
+    .b{background:var(--teal-dark);border-radius:8px 8px 0 0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
+    .b1{width:12%;height:42%}.b2{width:14%;height:62%}.b3{width:9%;height:82%}.b4{width:8%;height:48%}.b5{width:12%;height:55%}.b6{width:8%;height:100%;clip-path:polygon(42% 0,58% 0,66% 31%,82% 100%,18% 100%,34% 31%)}.b7{width:14%;height:66%}.b8{width:13%;height:46%}
+    .statbar{position:absolute;left:26px;right:26px;bottom:22px;display:grid;grid-template-columns:repeat(3,1fr);background:rgba(255,250,244,.9);backdrop-filter:blur(12px);border-radius:22px;padding:18px;border:1px solid rgba(255,255,255,.6)}
+    .stat strong{display:block;font-size:23px}.stat span{font-size:13px;color:#5e7779}
+    section{padding:86px 0}
+    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:34px}
+    .section-head h2{font-size:clamp(34px,5vw,60px);line-height:1;letter-spacing:-.05em;margin:0}
+    .section-head p{max-width:520px;margin:0;color:var(--muted);font-size:18px}
+    .cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:0 8px 30px rgba(23,57,60,.04)}
+    .num{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:#d8eee8;color:var(--teal-dark);font-weight:900;margin-bottom:42px}
+    .card h3{font-size:26px;line-height:1.1;letter-spacing:-.03em;margin:0 0 12px}.card p{margin:0;color:var(--muted)}
+    .tour-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .tour{min-height:330px;border-radius:30px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative}
+    .tour:nth-child(1){background:#0e3b3f;color:white}.tour:nth-child(2){background:#ef765d;color:white}.tour:nth-child(3){background:#d9eae3}.tour:nth-child(4){background:#ead0aa}
+    .tour small{font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.72}.tour h3{font-size:38px;line-height:1.02;letter-spacing:-.04em;max-width:430px;margin:12px 0 0}.tour p{max-width:520px;margin:18px 0 0;opacity:.82}
+    .route{margin-top:28px;display:flex;gap:8px;flex-wrap:wrap}.pill{padding:8px 11px;border-radius:999px;border:1px solid currentColor;font-size:13px;opacity:.82}
+    .speakers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .speaker{background:var(--paper-2);border-radius:26px;padding:22px;border:1px solid var(--line)}
+    .portrait{aspect-ratio:1/.78;border-radius:20px;margin-bottom:20px;overflow:hidden;position:relative;background:linear-gradient(145deg,#cddfda,#f3c9a7)}
+    .portrait:before{content:"";position:absolute;width:34%;aspect-ratio:1;border-radius:50%;left:33%;top:15%;background:#f2c6a1}
+    .portrait:after{content:"";position:absolute;width:66%;height:48%;border-radius:48% 48% 12% 12%;left:17%;bottom:0;background:var(--teal-dark)}
+    .speaker:nth-child(2) .portrait{background:linear-gradient(145deg,#eed0b1,#df9b78)}.speaker:nth-child(2) .portrait:after{background:#8c4a3b}
+    .speaker:nth-child(3) .portrait{background:linear-gradient(145deg,#d7e8df,#a7cac8)}.speaker:nth-child(3) .portrait:after{background:#305c5d}
+    .speaker h3{margin:0 0 6px;font-size:24px}.speaker p{margin:0;color:var(--muted)}
+    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .price-card{background:var(--paper-2);border:1px solid var(--line);border-radius:28px;padding:28px;display:flex;flex-direction:column;min-height:470px}
+    .price-card.featured{background:var(--teal-dark);color:white;transform:translateY(-8px)}
+    .price-card .label{font-weight:800;font-size:15px}.price{font-size:50px;letter-spacing:-.05em;margin:18px 0 6px;font-weight:900}.price small{font-size:17px;font-weight:600;opacity:.72}.features{display:grid;gap:10px;margin:24px 0 30px;padding:0;list-style:none;color:inherit}.features li:before{content:"✓";margin-right:9px;color:var(--coral);font-weight:900}.price-card.featured .features li:before{color:#ffb9a8}.price-card .btn{margin-top:auto;background:var(--teal-dark);color:white}.price-card.featured .btn{background:var(--coral)}
+    .quotes{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}.quote{border-radius:30px;padding:34px;background:#d9eae3}.quote.alt{background:#ead0aa}.quote p{font-size:28px;line-height:1.25;letter-spacing:-.03em;margin:0 0 28px}.quote strong{display:block}.quote span{color:#5b6f70;font-size:14px}
+    .contact{background:var(--teal-dark);color:white;border-radius:36px;padding:46px;display:grid;grid-template-columns:1fr .9fr;gap:36px}.contact h2{font-size:clamp(38px,5vw,64px);line-height:1;letter-spacing:-.05em;margin:0 0 18px}.contact p{max-width:560px;color:#c8dddd}.fake{display:grid;gap:12px}.fake-field{padding:16px 18px;border:1px solid rgba(255,255,255,.18);border-radius:16px;background:rgba(255,255,255,.06);color:#b9d0d2}.fake .btn{background:var(--coral);color:white;border:0}
+    footer{padding:30px 0 42px;color:#667c7e;font-size:14px}.foot{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:24px}
+    @media(max-width:900px){.links{display:none}.hero-grid,.contact{grid-template-columns:1fr}.skycard{min-height:430px}.cards-3,.speakers,.pricing{grid-template-columns:1fr}.tour-grid,.quotes{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:16px}.price-card.featured{transform:none}}
+    @media(max-width:600px){.wrap{width:min(100% - 24px,1180px)}.hero{padding-top:46px}.nav{height:66px}.nav-cta{display:none}section{padding:62px 0}.tour{min-height:280px}.statbar{grid-template-columns:1fr;gap:10px}.skycard{min-height:470px}.contact{padding:28px}.foot{flex-direction:column}}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="wrap nav">
+      <a class="brand" href="#top"><span class="mark">D</span><span>Dubai Urban Tours</span></a>
+      <nav class="links"><a href="#program">Программа</a><a href="#speakers">Ведущие</a><a href="#pricing">Тарифы</a><a href="#reviews">Отзывы</a></nav>
+      <a class="nav-cta" href="#pricing">Выбрать тур</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Онлайн · Дубай · для девелоперов</div>
+          <h1>Смотрите на Дубай как на городскую систему.</h1>
+          <p class="lead">Виртуальные урбан-туры для девелоперов, архитекторов и продуктовых команд. Районы, набережные, mixed-use проекты, инфраструктура и логика городской среды — без перелёта.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#program">Смотреть программу</a><a class="btn btn-secondary" href="#pricing">Тарифы</a></div>
+        </div>
+        <div class="skycard" aria-label="Стилизованный силуэт Дубая">
+          <div class="sun"></div><div class="sea"></div>
+          <div class="skyline"><div class="b b1"></div><div class="b b2"></div><div class="b b3"></div><div class="b b4"></div><div class="b b5"></div><div class="b b6"></div><div class="b b7"></div><div class="b b8"></div></div>
+          <div class="statbar"><div class="stat"><strong>4</strong><span>маршрута</span></div><div class="stat"><strong>6 ч</strong><span>общей программы</span></div><div class="stat"><strong>100%</strong><span>онлайн</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head"><h2>Не экскурсия.<br>Разбор города.</h2><p>Туры собраны вокруг вопросов, которые интересуют девелопера: почему район работает, как устроен поток людей, где появляется ценность и что можно перенести в собственный проект.</p></div>
+        <div class="cards-3">
+          <article class="card"><div class="num">01</div><h3>Городская логика</h3><p>Связность районов, транспорт, тень, первые этажи, прогулочные маршруты и сценарии использования пространства.</p></article>
+          <article class="card"><div class="num">02</div><h3>Девелоперский продукт</h3><p>Как архитектура, сервис, retail и благоустройство работают вместе и формируют воспринимаемую стоимость.</p></article>
+          <article class="card"><div class="num">03</div><h3>Разбор кейсов</h3><p>Конкретные проекты и решения: что получилось, что спорно и на какие детали стоит смотреть профессиональным взглядом.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="program">
+      <div class="wrap">
+        <div class="section-head"><h2>Маршруты</h2><p>Четыре самостоятельных тура — можно пройти один или собрать полный цикл.</p></div>
+        <div class="tour-grid">
+          <article class="tour"><div><small>Маршрут 01</small><h3>Downtown: плотность, иконы и городской поток</h3><p>Как работает территория вокруг Burj Khalifa и Dubai Mall: масштаб, пешеходность, туристический трафик и публичные пространства.</p></div><div class="route"><span class="pill">Downtown</span><span class="pill">Boulevard</span><span class="pill">Public realm</span></div></article>
+          <article class="tour"><div><small>Маршрут 02</small><h3>Dubai Marina: набережная как продукт</h3><p>Жильё, вода, retail, вечерняя жизнь и сценарии прогулки. Разбираем, почему waterfront удерживает пользователя.</p></div><div class="route"><span class="pill">Marina</span><span class="pill">Waterfront</span><span class="pill">Mixed-use</span></div></article>
+          <article class="tour"><div><small>Маршрут 03</small><h3>City Walk: человек вместо магистрали</h3><p>Невысокая этажность, фасады, тень, террасы и работа первых этажей в жарком климате.</p></div><div class="route"><span class="pill">City Walk</span><span class="pill">Retail</span><span class="pill">Human scale</span></div></article>
+          <article class="tour"><div><small>Маршрут 04</small><h3>Новые районы: что строит следующий Дубай</h3><p>Сравниваем свежие мастер-планы, новые форматы жилья и попытки сделать город менее зависимым от автомобиля.</p></div><div class="route"><span class="pill">Masterplan</span><span class="pill">New districts</span><span class="pill">Future city</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="speakers">
+      <div class="wrap">
+        <div class="section-head"><h2>Ведущие</h2><p>Бутафорские профили для демо-версии сайта. Имена и биографии можно заменить перед публикацией.</p></div>
+        <div class="speakers">
+          <article class="speaker"><div class="portrait"></div><h3>Анна Миронова</h3><p>Архитектор, исследователь городской среды</p></article>
+          <article class="speaker"><div class="portrait"></div><h3>Максим Волков</h3><p>Консультант по девелоперскому продукту</p></article>
+          <article class="speaker"><div class="portrait"></div><h3>Лейла Саид</h3><p>Урбанист, специалист по публичным пространствам</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="wrap">
+        <div class="section-head"><h2>Тарифы</h2><p>Цены демонстрационные — для постоянной заглушки их можно оставить или заменить в любой момент.</p></div>
+        <div class="pricing">
+          <article class="price-card"><div class="label">Один маршрут</div><div class="price">4 900 ₽</div><ul class="features"><li>1 онлайн-тур</li><li>Запись на 30 дней</li><li>Карта маршрута</li><li>Материалы ведущего</li></ul><a class="btn" href="#contact">Выбрать</a></article>
+          <article class="price-card featured"><div class="label">Полный цикл</div><div class="price">14 900 ₽</div><ul class="features"><li>Все 4 маршрута</li><li>Записи на 90 дней</li><li>Дополнительные кейсы</li><li>Закрытая онлайн-встреча</li></ul><a class="btn" href="#contact">Выбрать</a></article>
+          <article class="price-card"><div class="label">Команда</div><div class="price">39 000 ₽ <small>/ до 10 человек</small></div><ul class="features"><li>Все маршруты</li><li>Командный доступ</li><li>Q&A для команды</li><li>Разбор вашего кейса</li></ul><a class="btn" href="#contact">Выбрать</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <div class="wrap">
+        <div class="section-head"><h2>Отзывы</h2><p>Демонстрационный контент для визуального наполнения заглушки.</p></div>
+        <div class="quotes">
+          <article class="quote"><p>«После тура начинаешь смотреть не на отдельные здания, а на связку: улица, первый этаж, тень, вода, маршрут и коммерция. Для команды это оказалось полезнее обычной подборки референсов».</p><strong>Алексей, девелопмент</strong><span>участник полного цикла</span></article>
+          <article class="quote alt"><p>«Хороший формат, чтобы за один вечер разобрать район и потом предметно обсуждать решения внутри проекта».</p><strong>Мария, продукт</strong><span>корпоративный участник</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact">
+          <div><h2>Хотите узнать о ближайшем туре?</h2><p>Контактный блок оставлен как часть демонстрационного интерфейса. Форма ничего не отправляет и не содержит реальных контактных данных.</p></div>
+          <div class="fake"><div class="fake-field">Ваше имя</div><div class="fake-field">Email или мессенджер</div><div class="fake-field">Комментарий</div><button class="btn" type="button">Оставить заявку</button></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap foot"><span>© 2026 Dubai Urban Tours</span><span>Онлайн-туры для девелоперов</span></div></footer>
+</body>
+</html>
