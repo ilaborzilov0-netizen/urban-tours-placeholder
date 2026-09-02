@@ -1,0 +1,30 @@
+/* owner:pass-light-gallery-0370
+   LOCKED light preset: 00 / no light.
+   No tuner UI. Keeps depth/material/geometry untouched. */
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__register::before{
+  background:
+    linear-gradient(90deg,
+      rgba(85,91,96,0) calc(100% - 3px),
+      rgba(85,91,96,.038) 100%),
+    var(--bz-gallery-register-glint-2,linear-gradient(0deg,rgba(255,255,255,0),rgba(255,255,255,0))),
+    var(--bz-gallery-register-glint-1,linear-gradient(0deg,rgba(255,255,255,0),rgba(255,255,255,0))),
+    linear-gradient(180deg,
+      rgba(255,255,255,var(--bz-gallery-register-top-a,.030)) 0%,
+      rgba(255,255,255,var(--bz-gallery-register-top-fade-a,.008)) 5%,
+      rgba(255,255,255,0) 11% 82%,
+      rgba(61,68,73,var(--bz-gallery-register-bottom-a,.036)) 100%),
+    repeating-linear-gradient(90deg,
+      rgba(255,255,255,.022) 0 2px,
+      rgba(94,99,104,.020) 2px 4px)!important;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__action::before{
+  background:
+    var(--bz-gallery-action-glint-2,linear-gradient(0deg,rgba(255,255,255,0),rgba(255,255,255,0))),
+    var(--bz-gallery-action-glint-1,linear-gradient(0deg,rgba(255,255,255,0),rgba(255,255,255,0))),
+    linear-gradient(180deg,
+      rgba(255,255,255,var(--bz-gallery-action-top-a,.020)) 0%,
+      rgba(255,255,255,0) 10% 76%,
+      rgba(68,31,17,var(--bz-gallery-action-bottom-a,.030)) 100%)!important;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__active{background:rgba(255,253,248,.965)!important}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__calculator{background:rgba(248,245,240,.97)!important}

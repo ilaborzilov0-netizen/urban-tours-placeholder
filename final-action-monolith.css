@@ -1,0 +1,157 @@
+/* owner:final-action-monolith — structural final action-floor under “ВАШ ХОД.”
+   CTA is a direct final child of the island object, not nested inside the legacy light footer. */
+html body[data-architecture-pack] #borzilov-lp #bz1092-product-commercial-late>article.bz1092-object[data-variant]{
+  --bz-final-action-floor-height:clamp(132px,10vw,156px);
+  position:relative!important;
+  overflow:hidden!important;
+  border:0!important;
+}
+/* Preserve the island contour only around the light route.
+   The final action floor itself has no side or bottom outline. */
+html body[data-architecture-pack] #borzilov-lp #bz1092-product-commercial-late>article.bz1092-object[data-variant]::before{
+  content:"";
+  position:absolute;
+  z-index:30;
+  inset:0 0 var(--bz-final-action-floor-height) 0;
+  border:1px solid var(--arch-object-border-color,rgba(8,26,32,.12));
+  border-bottom:0;
+  border-radius:var(--r-object,6px) var(--r-object,6px) 0 0;
+  pointer-events:none;
+}
+#borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap{
+  box-sizing:border-box;
+  grid-column:1/-1;
+  grid-row:-1 / span 1;
+  order:0;
+  align-self:stretch;
+  width:100%;
+  min-width:0;
+  margin:0;
+  padding:0;
+  border:0;
+  border-radius:0 0 var(--r-object,6px) var(--r-object,6px);
+  overflow:hidden;
+  background:#0B242A;
+}
+#borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap>.bz-final-action-monolith{
+  appearance:none;
+  -webkit-appearance:none;
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  grid-template-areas:"main sign" "meta sign";
+  align-content:center;
+  align-items:center;
+  column-gap:24px;
+  row-gap:8px;
+  width:100%;
+  min-height:var(--bz-final-action-floor-height);
+  margin:0;
+  padding:clamp(26px,2.6vw,36px) var(--air-pad-x);
+  overflow:hidden;
+  border:0;
+  border-top:1px solid rgba(255,255,255,.075);
+  border-radius:0 0 var(--r-object,6px) var(--r-object,6px);
+  background:#0B242A;
+  color:#fffdf8;
+  box-shadow:none;
+  text-align:left;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  transition:transform 180ms cubic-bezier(.2,.7,.2,1),background-color 180ms ease;
+}
+#borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap .bz-final-action-monolith__main{
+  grid-area:main;
+  display:block;
+  min-width:0;
+  font:900 clamp(42px,4.2vw,64px)/.94 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  letter-spacing:-.045em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  transition:transform 180ms cubic-bezier(.2,.7,.2,1);
+}
+#borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap .bz-final-action-monolith__meta{
+  grid-area:meta;
+  display:block;
+  color:rgba(255,253,248,.78);
+  font:600 clamp(15px,1.2vw,19px)/1.15 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  letter-spacing:-.01em;
+  transition:color 180ms ease,transform 180ms cubic-bezier(.2,.7,.2,1);
+}
+#borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap .bz-final-action-monolith__sign{
+  grid-area:sign;
+  align-self:center;
+  display:block;
+  margin-right:12px;
+  color:#fffdf8;
+  font-size:clamp(36px,3.2vw,46px);
+  line-height:1;
+  transition:transform 180ms cubic-bezier(.2,.7,.2,1);
+}
+#borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap .bz-final-action-monolith__sign b{
+  display:block;
+  font:500 inherit;
+}
+#borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap>.bz-final-action-monolith:focus-visible{
+  outline:3px solid rgba(169,106,74,.78);
+  outline-offset:-5px;
+}
+#borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap>.bz-final-action-monolith:active{transform:scale(.992);}
+@media(hover:hover) and (pointer:fine){
+  #borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap>.bz-final-action-monolith:hover{background:#0D282F;}
+  #borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap>.bz-final-action-monolith:hover .bz-final-action-monolith__main{transform:translateX(4px);}
+  #borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap>.bz-final-action-monolith:hover .bz-final-action-monolith__meta{color:rgba(255,253,248,.84);transform:translateX(4px);}
+  #borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap>.bz-final-action-monolith:hover .bz-final-action-monolith__sign{transform:translateX(7px);}
+}
+
+@media(max-width:760px){
+  html body[data-architecture-pack] #borzilov-lp #bz1092-product-commercial-late>article.bz1092-object[data-variant]{
+    --bz-final-action-floor-height:116px;
+  }
+  #borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap{
+    grid-row:auto;
+    order:99;
+  }
+  #borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap>.bz-final-action-monolith{
+    min-height:116px;
+    padding:20px var(--air-pad-x);
+    column-gap:14px;
+    row-gap:7px;
+  }
+  #borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap .bz-final-action-monolith__main{
+    font-size:clamp(28px,7.9vw,34px);
+    line-height:.96;
+    letter-spacing:-.04em;
+  }
+  #borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap .bz-final-action-monolith__meta{
+    font-size:clamp(14px,3.6vw,16px);
+  }
+  #borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap .bz-final-action-monolith__sign{
+    margin-right:12px;
+    font-size:clamp(38px,10.4vw,46px);
+  }
+}
+@media(max-width:360px){
+  html body[data-architecture-pack] #borzilov-lp #bz1092-product-commercial-late>article.bz1092-object[data-variant]{
+    --bz-final-action-floor-height:112px;
+  }
+  #borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap>.bz-final-action-monolith{
+    min-height:112px;
+    padding:20px 18px;
+    column-gap:8px;
+  }
+  #borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap .bz-final-action-monolith__main{
+    font-size:clamp(27px,7.8vw,28px);
+  }
+  #borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap .bz-final-action-monolith__sign{
+    margin-right:10px;
+    font-size:36px;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap>.bz-final-action-monolith,
+  #borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap>.bz-final-action-monolith *{
+    transition:none!important;
+    animation:none!important;
+  }
+}

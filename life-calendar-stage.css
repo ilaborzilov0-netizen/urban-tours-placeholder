@@ -1,0 +1,115 @@
+/* The 80-year proof remains the final act of the dark diagnostic chapter. */
+#borzilov-lp .bz-life-calendar-stage{
+  position:relative;
+  width:100%;
+  margin:0;
+  padding:clamp(50px,5.5vw,78px) 0 clamp(58px,6vw,84px);
+  overflow:hidden;
+  background:#06171d;
+  color:#fffdf8;
+}
+#borzilov-lp .bz-life-calendar-stage__chapter{
+  width:min(1360px,100%);
+  margin:0 auto;
+}
+#borzilov-lp .bz-life-calendar-stage__heading{
+  width:min(1160px,calc(100% - 48px));
+  margin:0 auto;
+  padding-inline:clamp(24px,5vw,68px);
+}
+#borzilov-lp .bz-life-calendar-stage__heading{
+  padding-bottom:clamp(32px,4vw,56px);
+}
+#borzilov-lp .bz-life-calendar-stage__heading h2{
+  max-width:12ch;
+  margin:0;
+  color:#fffdf8;
+  font-size:clamp(46px,6.6vw,94px);
+  font-weight:850;
+  line-height:.84;
+  letter-spacing:-.067em;
+}
+#borzilov-lp .bz-life-calendar-stage__heading h2 span,
+#borzilov-lp .bz-life-calendar-stage__heading h2 strong{
+  display:block;
+}
+#borzilov-lp .bz-life-calendar-stage__heading h2 span{white-space:nowrap}
+#borzilov-lp .bz-life-calendar-stage__heading h2 strong{
+  margin-top:.08em;
+  color:#b94f35;
+  font-size:.86em;
+  font-weight:inherit;
+}
+#borzilov-lp .bz-life-calendar-stage__shell{
+  width:min(1240px,calc(100% - 32px));
+  margin:0 auto;
+}
+
+@media(max-width:700px){
+  #borzilov-lp .bz-life-calendar-stage{
+    padding:40px 0 54px;
+  }
+  #borzilov-lp .bz-life-calendar-stage__heading{
+    width:100%;
+    padding-inline:20px;
+  }
+  #borzilov-lp .bz-life-calendar-stage__heading{
+    padding-bottom:34px;
+  }
+  #borzilov-lp .bz-life-calendar-stage__heading h2{
+    width:100%;
+    max-width:none;
+    font-size:clamp(46px,13.4vw,60px);
+    line-height:.87;
+  }
+  #borzilov-lp .bz-life-calendar-stage__shell{
+    width:calc(100% - 12px);
+  }
+}
+
+/* 0445 · contextual isolation for the exact 0157 donor stage.
+   The calendar is intentionally nested inside #bz1092-product-lab in the current master.
+   That older product owner has a two-ID generic h2 rule; without this contextual owner
+   it recolors/resizes the donor title. Values below are the donor values, not a redesign. */
+#borzilov-lp #bz1092-product-lab .bz-life-calendar-stage__heading h2{
+  max-width:12ch;
+  margin:0;
+  color:#fffdf8;
+  font-size:clamp(46px,6.6vw,94px);
+  font-weight:850;
+  line-height:.84;
+  letter-spacing:-.067em;
+  text-wrap:wrap;
+}
+#borzilov-lp #bz1092-product-lab .bz-life-calendar-stage__heading h2 span,
+#borzilov-lp #bz1092-product-lab .bz-life-calendar-stage__heading h2 strong{display:block}
+#borzilov-lp #bz1092-product-lab .bz-life-calendar-stage__heading h2 span{white-space:nowrap;color:#fffdf8}
+#borzilov-lp #bz1092-product-lab .bz-life-calendar-stage__heading h2 strong{
+  margin-top:.08em;
+  color:#b94f35;
+  font-size:.86em;
+  font-weight:inherit;
+}
+@media(max-width:700px){
+  #borzilov-lp #bz1092-product-lab .bz-life-calendar-stage__heading h2{
+    width:100%;
+    max-width:none;
+    font-size:clamp(46px,13.4vw,60px);
+    line-height:.87;
+  }
+}
+
+
+/* owner:0687-life-calendar-accent-lock
+   Restore the accepted copper-red title accent exactly. */
+#borzilov-lp .bz-life-calendar-stage__heading h2 strong,
+#borzilov-lp #bz1092-product-lab .bz-life-calendar-stage__heading h2 strong{
+  color:#B94F35!important;
+}
+
+
+/* owner:0690-life-calendar-title-accent-lock */
+#borzilov-lp .bz-life-calendar-stage__heading h2 strong,
+#borzilov-lp #bz1092-product-lab .bz-life-calendar-stage__heading h2 strong{
+  color:#B94F35!important;
+}

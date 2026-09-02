@@ -1,0 +1,38 @@
+/* owner:0708-mobile-nav-visibility-fix
+   Fixes two regressions:
+   1) direct-contact dock must stay readable on dark menu surfaces;
+   2) opening the mobile menu must not punch a transparent hole in the sticky header.
+*/
+@media (max-width:980px){
+  html body #borzilov-lp#borzilov-lp#borzilov-lp#borzilov-lp#borzilov-lp.bz-mobile-nav-open .bz-nav-wrap{
+    background:linear-gradient(180deg,var(--bz-mobile-nav-theme-top, rgb(255,253,248)) 0%, var(--bz-mobile-nav-theme-bottom, rgb(250,247,240)) 100%)!important;
+    background-image:linear-gradient(180deg,var(--bz-mobile-nav-theme-top, rgb(255,253,248)) 0%, var(--bz-mobile-nav-theme-bottom, rgb(250,247,240)) 100%)!important;
+    background-color:var(--bz-mobile-nav-theme-top, rgb(255,253,248))!important;
+    border-bottom:1px solid var(--bz-mobile-nav-theme-border, rgba(11,32,39,.11))!important;
+    box-shadow:0 8px 24px var(--bz-mobile-nav-theme-shadow, rgba(8,26,32,.12))!important;
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    visibility:visible!important;
+    opacity:1!important;
+    filter:none!important;
+  }
+
+  html body #borzilov-lp#borzilov-lp#borzilov-lp#borzilov-lp#borzilov-lp.bz-mobile-nav-open :is(.bz-logo,.bz-logo-text,.bz-logo-line,.bz-logo-progress-base,.bz-mobile-nav-trigger,.bz-mobile-start-link){
+    color:var(--bz-mobile-nav-panel-ink, rgb(7,22,28))!important;
+    -webkit-text-fill-color:var(--bz-mobile-nav-panel-ink, rgb(7,22,28))!important;
+    opacity:1!important;
+    visibility:visible!important;
+    filter:none!important;
+  }
+
+  html body #borzilov-lp#borzilov-lp#borzilov-lp#borzilov-lp#borzilov-lp.bz-mobile-nav-open .bz-mobile-nav-overlay{
+    visibility:visible!important;
+    opacity:1!important;
+    pointer-events:auto!important;
+  }
+
+  html body #borzilov-lp#borzilov-lp#borzilov-lp#borzilov-lp#borzilov-lp.bz-mobile-nav-open .bz-mobile-nav-shell{
+    transform:translate3d(0,0,0)!important;
+    opacity:1!important;
+  }
+}

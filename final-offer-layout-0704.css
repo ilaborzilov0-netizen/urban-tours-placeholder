@@ -1,0 +1,120 @@
+/* owner:0704-final-offer-act-break
+   FINAL authority for the commercial climax only.
+   Supersedes obsolete chapter-04/05 and pass-spacing assumptions without touching their other responsibilities.
+   Composition: FAQ island -> dark pause -> unboxed price bridge -> narrower standalone tariff -> quiet question.
+*/
+
+/* Real inter-island pause after FAQ. This must beat chapter-architecture's old margin:0 lock. */
+html body #borzilov-lp#borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island{
+  box-sizing:border-box!important;
+  width:var(--bz-master-island-width,calc(100vw - 8px))!important;
+  max-width:var(--bz-master-island-width,calc(100vw - 8px))!important;
+  margin:clamp(192px,18vw,240px) auto 0!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+html body #borzilov-lp#borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island > .bz1092-object,
+html body #borzilov-lp#borzilov-lp#borzilov-lp #bz1092-product-commercial-late{
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+
+/* Last author line floats directly on the dark field, never as another card. */
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge{
+  width:100%!important;
+  margin:0!important;
+  padding:0 clamp(28px,5vw,64px) clamp(30px,3.2vw,38px)!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge p{
+  width:min(720px,100%)!important;
+  margin:0 auto!important;
+}
+
+/* The tariff is the one concrete object: deliberately narrower than the FAQ island. */
+html body #borzilov-lp#borzilov-lp#borzilov-lp #bz1092-product-commercial-late .bz-pass-after-island,
+html body #borzilov-lp#borzilov-lp#borzilov-lp #bz1092-product-commercial-late .bz-pass-reveal-stage.bz-pass-spacing-lock-active{
+  width:100%!important;
+  max-width:none!important;
+  min-height:0!important;
+  height:auto!important;
+  margin:0!important;
+  padding:0!important;
+  background:transparent!important;
+  overflow:visible!important;
+  display:block!important;
+}
+html body #borzilov-lp#borzilov-lp#borzilov-lp #bz1092-product-commercial-late .bz-pass-reveal-stage.bz-pass-spacing-lock-active > .pricing-register{
+  box-sizing:border-box!important;
+  width:calc(100% - clamp(28px,3.4vw,44px))!important;
+  max-width:none!important;
+  min-height:0!important;
+  height:auto!important;
+  margin:0 auto!important;
+  padding:0!important;
+  background:transparent!important;
+  align-self:auto!important;
+  justify-self:auto!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-commercial-late .pricing-register__register{
+  width:100%!important;
+  margin:0 auto!important;
+  overflow:hidden!important;
+  border-radius:10px!important;
+  box-shadow:
+    0 18px 50px rgba(0,0,0,.13),
+    0 2px 6px rgba(8,26,32,.05),
+    0 1px 0 rgba(255,255,255,.46) inset,
+    0 -1px 0 rgba(108,110,114,.09) inset!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-commercial-late .pricing-register__action[data-analytics-cta-role="final-payment"]{
+  border-radius:0 0 10px 10px!important;
+}
+
+/* Secondary route belongs to the page field, not the tariff card. */
+html body #borzilov-lp#borzilov-lp #bz1092-product-commercial-late .pricing-register__post-question{
+  width:calc(100% - clamp(28px,3.4vw,44px))!important;
+  margin:clamp(24px,2.7vw,32px) auto 0!important;
+  padding:0!important;
+  background:transparent!important;
+}
+
+@media(max-width:760px){
+  html body #borzilov-lp#borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island{
+    margin-top:184px!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge{
+    padding:0 18px 32px!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge p{
+    width:100%!important;
+  }
+  html body #borzilov-lp#borzilov-lp#borzilov-lp #bz1092-product-commercial-late .bz-pass-reveal-stage.bz-pass-spacing-lock-active > .pricing-register{
+    width:calc(100% - 28px)!important; /* 14px dark field each side */
+  }
+  html body #borzilov-lp#borzilov-lp #bz1092-product-commercial-late .pricing-register__register{
+    border-radius:8px!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz1092-product-commercial-late .pricing-register__action[data-analytics-cta-role="final-payment"]{
+    border-radius:0 0 8px 8px!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz1092-product-commercial-late .pricing-register__post-question{
+    width:calc(100% - 28px)!important;
+    margin:26px auto 0!important;
+    padding:0 2px!important;
+  }
+}

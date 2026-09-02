@@ -1,0 +1,217 @@
+/*
+  AUTHOR PRESENCE — final quiet entry.
+  Fixed production owner after removing the seam laboratory.
+  Contract: author photo is the background threshold; Island 1 overlays it and carries the argument.
+*/
+
+/* Minimal responsibility signature inside the first Bento.
+   One compact metadata row inside the same light header plane. */
+#borzilov-lp #bz1092-product-lab .bz1092-head .bz-author-credit{
+  box-sizing:border-box;
+  grid-column:1 / -1;
+  width:100%;
+  min-width:0;
+  min-height:44px;
+  margin-top:0;
+  padding:0;
+  border:0;
+  border-top:1px solid rgba(15,35,42,.12);
+  background:transparent;
+  color:#0B252D;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+#borzilov-lp #bz1092-product-lab .bz-author-credit__role{
+  display:inline-flex;
+  align-items:baseline;
+  gap:8px;
+  min-width:0;
+  color:#0B252D;
+  white-space:nowrap;
+}
+#borzilov-lp #bz1092-product-lab .bz-author-credit__label{
+  color:rgba(8,26,32,.50);
+  font:850 9.5px/1 Inter,system-ui,sans-serif;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+#borzilov-lp #bz1092-product-lab .bz-author-credit__role strong{
+  color:#0B252D;
+  font:820 12px/1 Inter,system-ui,sans-serif;
+  letter-spacing:-.015em;
+  text-transform:none;
+}
+#borzilov-lp #bz1092-product-lab .bz-author-credit .bz-author-credit__open{
+  flex:none;
+  appearance:none;
+  align-self:center;
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:4px;
+  border:0;
+  margin:0;
+  padding:0;
+  background:transparent;
+  color:#A96A4A;
+  font:800 9.5px/1 Inter,system-ui,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  text-decoration:none;
+  cursor:pointer;
+}
+#borzilov-lp #bz1092-product-lab .bz-author-credit .bz-author-credit__open i{
+  display:inline-block;
+  font-style:normal;
+  transition:transform .18s cubic-bezier(.2,.8,.2,1);
+}
+#borzilov-lp #bz1092-product-lab .bz-author-credit .bz-author-credit__open:focus-visible{outline:2px solid #A96A4A;outline-offset:3px}
+@media(hover:hover) and (pointer:fine){
+  #borzilov-lp #bz1092-product-lab .bz-author-credit .bz-author-credit__open:hover{border-bottom:0;text-decoration:none}
+  #borzilov-lp #bz1092-product-lab .bz-author-credit .bz-author-credit__open:hover i{transform:translate(2px,-2px)}
+}
+
+/* Author threshold before Chapter I. No headline and no speech chip. */
+#borzilov-lp .bz-author-chapter-intro{
+  position:relative;
+  z-index:2;
+  width:min(1140px,calc(var(--method-width) - 20px));
+  max-width:calc(100% - 20px);
+  margin:0 auto -10px;
+  color:#FFFDF8;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  overflow:visible;
+}
+#borzilov-lp .bz-author-chapter-intro__variant{display:block!important}
+#borzilov-lp .bz-author-scene--cinematic{
+  position:relative;
+  min-height:clamp(430px,50vw,600px);
+  overflow:hidden;
+  isolation:isolate;
+  border:1px solid rgba(255,253,248,.10);
+  border-radius:10px;
+  background:#071A20;
+  box-shadow:0 26px 62px rgba(0,0,0,.20);
+}
+#borzilov-lp .bz-author-scene--cinematic figure{
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  margin:0;
+  overflow:hidden;
+  border-radius:inherit;
+}
+#borzilov-lp .bz-author-scene--cinematic img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:56% 18%;
+  filter:saturate(.72) contrast(1.04) brightness(.92);
+}
+#borzilov-lp .bz-author-scene--cinematic:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  border-radius:inherit;
+  background:
+    linear-gradient(90deg,rgba(4,20,26,.80) 0%,rgba(4,20,26,.48) 37%,rgba(4,20,26,.18) 61%,rgba(4,20,26,.03) 86%),
+    linear-gradient(0deg,rgba(4,20,26,.38) 0%,rgba(4,20,26,.10) 39%,transparent 72%);
+  pointer-events:none;
+}
+#borzilov-lp .bz-author-scene--cinematic .bz-author-scene__copy{
+  box-sizing:border-box;
+  position:relative;
+  z-index:1;
+  min-height:inherit;
+  max-width:52%;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:flex-start;
+  padding:clamp(30px,4.5vw,54px) clamp(30px,4.5vw,54px) 82px;
+}
+#borzilov-lp .bz-author-scene--cinematic blockquote{display:none!important}
+#borzilov-lp .bz-author-scene--cinematic .bz-author-scene__eyebrow{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  margin-bottom:7px;
+  color:#C78969;
+  font-size:10px;
+  line-height:1;
+  font-weight:850;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+#borzilov-lp .bz-author-scene--cinematic .bz-author-scene__eyebrow:before{
+  content:"";
+  width:28px;
+  height:1px;
+  background:currentColor;
+}
+#borzilov-lp .bz-author-scene--cinematic .bz-author-scene__speaker{display:block}
+#borzilov-lp .bz-author-scene--cinematic .bz-author-chapter-intro__name{
+  color:#FFFDF8;
+  font-size:17px;
+  line-height:1.05;
+  font-weight:850;
+  letter-spacing:-.025em;
+}
+
+/* The first island is 20px wider than the centered photo and overlaps it by 10px.
+   This hides both lower photo corners and creates one symmetric light step. */
+#borzilov-lp .bz-author-chapter-intro + .method-chapter-1.method-impact-island{
+  position:relative;
+  z-index:7;
+  margin-top:0;
+}
+#borzilov-lp .bz-author-chapter-intro + .method-chapter-1.method-impact-island .fi-family-stage,
+#borzilov-lp .bz-author-chapter-intro + .method-chapter-1.method-impact-island .fi-scene{
+  position:relative;
+  z-index:1;
+}
+
+@media(max-width:760px){
+  #borzilov-lp #bz1092-product-lab .bz1092-head .bz-author-credit{min-height:44px;gap:10px}
+  #borzilov-lp #bz1092-product-lab .bz-author-credit__role{gap:6px}
+  #borzilov-lp #bz1092-product-lab .bz-author-credit__label{font-size:8.2px;letter-spacing:.105em}
+  #borzilov-lp #bz1092-product-lab .bz-author-credit__role strong{font-size:10.5px}
+  #borzilov-lp #bz1092-product-lab .bz-author-credit .bz-author-credit__open{min-height:44px;font-size:8.2px;letter-spacing:.045em}
+
+  #borzilov-lp .bz-author-chapter-intro{
+    width:calc(var(--method-width) - 20px);
+    max-width:calc(100% - 20px);
+    margin:0 auto -10px;
+  }
+  #borzilov-lp .bz-author-scene--cinematic{
+    min-height:400px;
+    border-radius:7px;
+  }
+  #borzilov-lp .bz-author-scene--cinematic img{
+    object-position:56% 14%;
+    filter:saturate(.72) contrast(1.04) brightness(.94);
+  }
+  #borzilov-lp .bz-author-scene--cinematic:after{
+    background:
+      linear-gradient(90deg,rgba(4,20,26,.74) 0%,rgba(4,20,26,.42) 38%,rgba(4,20,26,.13) 64%,rgba(4,20,26,.02) 88%),
+      linear-gradient(0deg,rgba(4,20,26,.34) 0%,rgba(4,20,26,.08) 40%,transparent 72%);
+  }
+  #borzilov-lp .bz-author-scene--cinematic .bz-author-scene__copy{
+    max-width:none;
+    min-height:inherit;
+    padding:20px 18px 58px;
+  }
+  #borzilov-lp .bz-author-scene--cinematic .bz-author-scene__eyebrow{
+    gap:8px;
+    margin-bottom:5px;
+    font-size:7px;
+  }
+  #borzilov-lp .bz-author-scene--cinematic .bz-author-scene__eyebrow:before{width:18px}
+  #borzilov-lp .bz-author-scene--cinematic .bz-author-chapter-intro__name{font-size:11px}
+}

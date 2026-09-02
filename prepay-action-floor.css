@@ -1,0 +1,137 @@
+/* owner:prepay-action-floor-0367
+   One decision object with two material floors: payment -> discuss participation. */
+
+/* The pass keeps its existing breathing / utility geometry. Only one extra row is added
+   for the full-surface human bridge. */
+#borzilov-lp .bz-pass-reveal-stage[data-vertical-rhythm="03"] .pricing-register__register{
+  grid-template-rows:auto minmax(clamp(130px,30svh,300px),1fr) auto auto auto!important;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__action{
+  grid-row:4!important;
+  border-radius:0!important;
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  align-content:end;
+  justify-content:stretch!important;
+  justify-items:stretch;
+  padding-inline:var(--pass-inner-x,var(--pricing-pad-inline))!important;
+  gap:6px;
+}
+#borzilov-lp .pricing-register__action-kicker{
+  position:static;
+  display:block;
+  justify-self:start;
+  margin:0;
+  color:rgba(255,253,248,.72);
+  font-size:10px;
+  line-height:1;
+  font-weight:860;
+  letter-spacing:.145em;
+  text-transform:uppercase;
+}
+
+/* SECOND FLOOR — intentionally part of the same island, not a button inside a form. */
+#borzilov-lp .pricing-register__talk-floor{
+  box-sizing:border-box;
+  appearance:none;
+  -webkit-appearance:none;
+  position:relative;
+  z-index:1;
+  grid-row:5;
+  width:100%!important;
+  min-height:0;
+  margin:0!important;
+  padding:17px var(--pass-inner-x,var(--pricing-pad-inline));
+  display:grid;
+  align-content:center;
+  gap:6px;
+  border:0;
+  border-top:1px solid rgba(109,86,70,.14);
+  border-radius:0 0 var(--r-object,6px) var(--r-object,6px);
+  background:#f7f3ec;
+  color:#081a20;
+  text-align:left;
+  font:inherit;
+  cursor:pointer;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.58);
+  transition:background-color .16s ease;
+}
+#borzilov-lp .pricing-register__talk-kicker{
+  display:block;
+  color:#a56749;
+  font-size:10px;
+  line-height:1;
+  font-weight:860;
+  letter-spacing:.145em;
+  text-transform:uppercase;
+}
+#borzilov-lp .pricing-register__talk-main{
+  min-width:0;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:22px;
+}
+#borzilov-lp .pricing-register__talk-main strong{
+  min-width:0;
+  max-width:18ch;
+  color:#081a20;
+  font-size:clamp(22px,2.2vw,31px);
+  line-height:.98;
+  font-weight:820;
+  letter-spacing:-.045em;
+  text-wrap:balance;
+}
+#borzilov-lp .pricing-register__talk-main i{
+  flex:none;
+  color:#a56749;
+  font-style:normal;
+  font-size:clamp(19px,1.7vw,24px);
+  line-height:1;
+  font-weight:520;
+  transition:transform .16s ease;
+}
+#borzilov-lp .pricing-register__talk-floor:hover{
+  background:#faf5ed;
+}
+#borzilov-lp .pricing-register__talk-floor:hover .pricing-register__talk-main i{
+  transform:translate(2px,-2px);
+}
+#borzilov-lp .pricing-register__talk-floor:active{
+  background:#f7f1e8;
+}
+#borzilov-lp .pricing-register__talk-floor:focus-visible{
+  outline:2px solid rgba(169,106,74,.55);
+  outline-offset:-4px;
+}
+
+@media(max-width:760px){
+  #borzilov-lp .pricing-register__talk-floor{
+    width:100%!important;
+    min-height:0;
+    margin:0!important;
+    padding:17px var(--pass-inner-x,var(--pricing-pad-inline));
+    gap:5px;
+  }
+  #borzilov-lp .pricing-register__talk-kicker,
+  #borzilov-lp .pricing-register__action-kicker{
+    font-size:9px;
+  }
+  #borzilov-lp .pricing-register__talk-main{
+    gap:16px;
+    align-items:center;
+  }
+  #borzilov-lp .pricing-register__talk-main strong{
+    max-width:14ch;
+    font-size:clamp(20px,6.6vw,26px);
+    line-height:.96;
+  }
+  #borzilov-lp .pricing-register__talk-main i{
+    font-size:20px;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp .pricing-register__talk-floor,
+  #borzilov-lp .pricing-register__talk-main i{transition:none!important}
+}

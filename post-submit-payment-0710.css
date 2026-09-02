@@ -1,0 +1,247 @@
+/* owner:0710-post-submit-payment-success
+   Application success is a finished action first, then an optional direct-payment shortcut.
+*/
+#borzilov-lp .bz-post-submit-success{
+  display:grid;
+  gap:20px;
+  width:100%;
+  box-sizing:border-box;
+}
+#borzilov-lp .bz-post-submit-success[hidden],
+#borzilov-lp .bz-post-submit-success__error[hidden]{display:none!important}
+#borzilov-lp .bz-post-submit-success__confirm{
+  display:grid;
+  gap:7px;
+  min-width:0;
+}
+#borzilov-lp .bz-post-submit-success__confirm>strong{
+  margin:0;
+  color:#FFFDF8;
+  font-size:clamp(24px,2.6vw,34px);
+  line-height:.96;
+  font-weight:860;
+  letter-spacing:-.05em;
+}
+#borzilov-lp .bz-post-submit-success__confirm>p{
+  margin:0;
+  color:rgba(255,253,248,.74);
+  font-size:14px;
+  line-height:1.42;
+  font-weight:570;
+}
+#borzilov-lp .bz-post-submit-success__confirm>small{
+  display:block;
+  margin-top:2px;
+  color:rgba(255,253,248,.48);
+  font-size:11px;
+  line-height:1.38;
+  font-weight:620;
+}
+#borzilov-lp .bz-post-submit-success__payment{
+  display:grid;
+  gap:10px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,253,248,.14);
+}
+#borzilov-lp .bz-post-submit-success__payment>span{
+  color:rgba(255,253,248,.74);
+  font-size:13px;
+  line-height:1.35;
+  font-weight:650;
+}
+#borzilov-lp .bz-post-submit-success__price{
+  display:grid;
+  gap:1px;
+}
+#borzilov-lp .bz-post-submit-success__price>strong{
+  margin:0;
+  color:#FFFDF8;
+  font-size:clamp(37px,4vw,54px);
+  line-height:.9;
+  font-weight:900;
+  letter-spacing:-.065em;
+}
+#borzilov-lp .bz-post-submit-success__price>small{
+  color:#D29371;
+  font-size:11px;
+  line-height:1.2;
+  font-weight:790;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+}
+#borzilov-lp .bz-post-submit-success__payment>p:not(.bz-post-submit-success__error){
+  margin:0;
+  color:rgba(255,253,248,.50);
+  font-size:11px;
+  line-height:1.35;
+  font-weight:620;
+}
+#borzilov-lp .bz-post-submit-success__pay{
+  appearance:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  width:100%;
+  min-height:104px;
+  margin-top:5px;
+  padding:20px 22px;
+  border:1px solid rgba(255,253,248,.10);
+  border-radius:6px;
+  background:#B97958;
+  color:#FFFDF8;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
+  font-family:inherit;
+  cursor:pointer;
+  text-align:left;
+  transition:transform .16s ease,background-color .16s ease,opacity .16s ease;
+}
+#borzilov-lp .bz-post-submit-success__pay>span{
+  font-size:clamp(24px,2.7vw,34px);
+  line-height:.94;
+  font-weight:880;
+  letter-spacing:-.055em;
+}
+#borzilov-lp .bz-post-submit-success__pay>i{
+  color:#FFFDF8;
+  font-size:22px;
+  line-height:1;
+  font-style:normal;
+  transition:transform .16s ease;
+}
+#borzilov-lp .bz-post-submit-success__pay:hover>i{transform:translate(3px,-2px)}
+#borzilov-lp .bz-post-submit-success__pay:active{transform:translateY(1px)}
+#borzilov-lp .bz-post-submit-success__pay[disabled]{opacity:.66;cursor:wait}
+#borzilov-lp .bz-post-submit-success__error{
+  margin:0!important;
+  padding:0!important;
+  color:#F0A88B!important;
+  font-size:11px!important;
+  line-height:1.4!important;
+  font-weight:650!important;
+}
+
+/* Meaning inline owner: success now has a real second act, so give it enough height. */
+html body #borzilov-lp#borzilov-lp #bz-meaning-bento .bz-inline-application.is-success .bz-inline-application__panel{
+  max-height:680px!important;
+}
+/* Author inline owner: same state, same route. */
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application.is-success .bz-inline-application__panel{
+  max-height:680px!important;
+  padding-top:26px!important;
+  padding-bottom:24px!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-post-submit-success__confirm>strong,
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-post-submit-success__price>strong{
+  color:#FFFDF8!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-post-submit-success__confirm>p,
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-post-submit-success__payment>span{
+  color:rgba(255,253,248,.74)!important;
+}
+
+/* Mobile action sheet uses the same post-submit route on its light surface. */
+#borzilov-lp .bz-mobile-application-success .bz-post-submit-success--sheet{
+  display:grid;
+  gap:18px;
+  width:100%;
+  text-align:left;
+}
+#borzilov-lp .bz-mobile-application-success .bz-post-submit-success__confirm>strong{
+  color:#0B2027;
+  font-size:28px;
+}
+#borzilov-lp .bz-mobile-application-success .bz-post-submit-success__confirm>p{
+  color:rgba(11,32,39,.72);
+  font-size:14px;
+}
+#borzilov-lp .bz-mobile-application-success .bz-post-submit-success__confirm>small{
+  color:rgba(11,32,39,.48);
+}
+#borzilov-lp .bz-mobile-application-success .bz-post-submit-success__payment{
+  border-top-color:rgba(11,32,39,.12);
+}
+#borzilov-lp .bz-mobile-application-success .bz-post-submit-success__payment>span{
+  color:rgba(11,32,39,.72);
+}
+#borzilov-lp .bz-mobile-application-success .bz-post-submit-success__price>strong{color:#0B2027}
+#borzilov-lp .bz-mobile-application-success .bz-post-submit-success__payment>p:not(.bz-post-submit-success__error){color:rgba(11,32,39,.52)}
+#borzilov-lp .bz-mobile-application-success .bz-post-submit-success__error{color:#A34132!important}
+#borzilov-lp .bz-mobile-application-success .bz-post-submit-success__secondary{margin-top:4px!important}
+
+@media(max-width:760px){
+  #borzilov-lp .bz-post-submit-success{gap:18px}
+  #borzilov-lp .bz-post-submit-success__confirm>strong{font-size:28px}
+  #borzilov-lp .bz-post-submit-success__price>strong{font-size:42px}
+  #borzilov-lp .bz-post-submit-success__pay{min-height:96px;padding:18px 18px}
+  #borzilov-lp .bz-post-submit-success__pay>span{font-size:29px}
+  html body #borzilov-lp#borzilov-lp #bz-meaning-bento .bz-inline-application.is-success .bz-inline-application__panel{max-height:650px!important}
+  html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application.is-success .bz-inline-application__panel{max-height:650px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp .bz-post-submit-success__pay{transition:none!important}
+}
+
+/* Late specificity locks: historical success rules targeted every strong/p inside the old compact state. */
+html body #borzilov-lp#borzilov-lp #bz-meaning-bento .bz-inline-application__success.bz-post-submit-success{
+  gap:20px!important;
+  padding-top:4px!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-meaning-bento .bz-inline-application__success.bz-post-submit-success .bz-post-submit-success__price>strong{
+  color:#FFFDF8!important;
+  font-size:clamp(37px,4vw,54px)!important;
+  line-height:.9!important;
+  font-weight:900!important;
+  letter-spacing:-.065em!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-meaning-bento .bz-inline-application__success.bz-post-submit-success .bz-post-submit-success__payment>p:not(.bz-post-submit-success__error){
+  color:rgba(255,253,248,.50)!important;
+  font-size:11px!important;
+  line-height:1.35!important;
+  font-weight:620!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__success.bz-post-submit-success{
+  gap:20px!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__success.bz-post-submit-success .bz-post-submit-success__price>strong{
+  color:#FFFDF8!important;
+  font-size:clamp(37px,4vw,54px)!important;
+  line-height:.9!important;
+  font-weight:900!important;
+  letter-spacing:-.065em!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__success.bz-post-submit-success .bz-post-submit-success__payment>p:not(.bz-post-submit-success__error){
+  color:rgba(255,253,248,.50)!important;
+  font-size:11px!important;
+  line-height:1.35!important;
+  font-weight:620!important;
+}
+@media(max-width:760px){
+  html body #borzilov-lp#borzilov-lp #bz-meaning-bento .bz-inline-application__success.bz-post-submit-success .bz-post-submit-success__price>strong,
+  html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__success.bz-post-submit-success .bz-post-submit-success__price>strong{
+    font-size:42px!important;
+  }
+}
+
+/* Mobile sheet's historical success owner uses !important on every paragraph. */
+html body #borzilov-lp#borzilov-lp .bz-mobile-application-success .bz-post-submit-success__confirm>p{
+  margin:0!important;
+  color:rgba(11,32,39,.72)!important;
+  font-size:14px!important;
+  line-height:1.42!important;
+  font-weight:570!important;
+}
+html body #borzilov-lp#borzilov-lp .bz-mobile-application-success .bz-post-submit-success__payment>p:not(.bz-post-submit-success__error){
+  margin:0!important;
+  color:rgba(11,32,39,.52)!important;
+  font-size:11px!important;
+  line-height:1.35!important;
+  font-weight:620!important;
+}
+html body #borzilov-lp#borzilov-lp .bz-mobile-application-success .bz-post-submit-success__error{
+  margin:0!important;
+  color:#A34132!important;
+  font-size:11px!important;
+  line-height:1.4!important;
+  font-weight:650!important;
+}

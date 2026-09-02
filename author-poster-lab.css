@@ -1,0 +1,397 @@
+/* owner:bz-author-poster-static-03-v15-final-rhythm
+   Canonical owner for the selected author manifesto.
+   The island geometry owner exposes --bz-primary-island-pad-x; this scene deliberately bleeds through
+   that padding to the island's inner border. The first hero frame remains padded. No pult, no variants. */
+#borzilov-lp #bz-hero > .bz-container.bz-hero-secondary-island > #bz-author-poster-second-screen{
+  position:relative!important;display:block!important;
+  width:calc(100% + (2 * var(--bz-primary-island-pad-x,0px)))!important;max-width:none!important;min-width:0!important;
+  margin-left:calc(-1 * var(--bz-primary-island-pad-x,0px))!important;
+  margin-right:calc(-1 * var(--bz-primary-island-pad-x,0px))!important;
+  margin-top:0!important;margin-bottom:0!important;padding:0!important;
+  background:#F4EFE6!important;overflow:visible!important;isolation:isolate!important;
+}
+#borzilov-lp #bz-author-poster-second-screen,#borzilov-lp #bz-author-poster-second-screen *{box-sizing:border-box}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab{
+  --paper:#F4EFE6;--ink:#081A20;--copper:#A96A4A;
+  width:100%!important;max-width:none!important;min-width:0!important;margin:0!important;padding:0!important;
+  background:var(--paper);color:var(--ink);border:0!important;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact{
+  width:100%!important;max-width:none!important;margin:0!important;padding:clamp(17px,2.5vw,32px) clamp(18px,4vw,46px) clamp(22px,3vw,34px)!important;
+  background:var(--bg, #FAF7F0);
+}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact-controls{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 18px}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact-controls-label{display:block;color:var(--copper);font-size:clamp(8px,.7vw,10px);line-height:1;font-weight:850;letter-spacing:.16em;text-transform:uppercase}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact-buttons{display:flex;align-items:center;gap:4px}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact-button{display:grid;place-items:center;min-width:38px;height:30px;padding:0 10px;border:1px solid rgba(8,26,32,.16);border-radius:3px;background:rgba(255,253,248,.66);color:rgba(8,26,32,.72);font:850 9px/1 Inter,system-ui,sans-serif;letter-spacing:.06em;cursor:pointer;transition:background .14s ease,color .14s ease,border-color .14s ease}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact-button[aria-pressed="true"]{background:#071A22;border-color:#071A22;color:#FFFDF8}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact-button:focus-visible{outline:2px solid rgba(169,106,74,.82);outline-offset:2px}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact-copy{display:block}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact-lead{display:block;margin:0 0 10px;color:var(--copper);font-size:clamp(12px,1vw,14px);line-height:1;font-weight:850;letter-spacing:.08em;text-transform:uppercase}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact-copy[data-bz-impact-variant="2"] .bz-author-poster-lab__impact-lead{display:none}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact-copy[data-bz-impact-variant="1"] .bz-impact-line--v2026-large{display:none}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact-copy[data-bz-impact-variant="2"] .bz-impact-line--v2026-large{display:block}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact-copy[data-bz-impact-variant="2"] .bz-impact-line--allen{margin-top:.02em}
+#borzilov-lp #bz-author-poster-second-screen .bz-impact-line--v2026-large{display:none}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact h2{
+  margin:0;color:var(--ink);font-size:clamp(35px,5.15vw,58px);line-height:.92;font-weight:900;letter-spacing:-.065em;text-transform:uppercase;
+}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact h2 span{display:block}
+@media(min-width:900px){#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact h2{white-space:normal}}
+
+/* Selected variant 03 — dark chapter. The scene surface owns the full available island content width. */
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster{
+  --poster-ink:#F8F2E8;--poster-muted:rgba(248,242,232,.72);--poster-copper:#C47A54;
+  --poster-pad-x:clamp(18px,4vw,52px);--poster-pad-y:clamp(28px,4vw,52px);
+  position:relative;display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"mast" "photo" "body" "verdict" "bridge" "footer";
+  width:100%!important;max-width:none!important;min-width:0!important;margin:0!important;padding:var(--poster-pad-y, clamp(28px,4vw,52px)) var(--poster-pad-x, clamp(18px,4vw,52px));
+  background:#071A22;color:var(--poster-ink);overflow:hidden;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__mast{grid-area:mast;position:relative;z-index:2;width:min(100%,760px);margin:0 auto}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__kicker{display:block;margin:0 0 13px;color:var(--poster-copper);font-size:clamp(8px,.7vw,10px);line-height:1;font-weight:850;letter-spacing:.15em;text-transform:uppercase}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__title{margin:0;color:var(--poster-ink);font-size:clamp(58px,8.6vw,108px);line-height:.84;font-weight:900;letter-spacing:-.072em;text-transform:uppercase}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__title span{display:block}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__photo{grid-area:photo;position:relative;width:calc(100% + (2 * var(--poster-pad-x)));max-width:none!important;aspect-ratio:4/5;margin:clamp(24px,3.2vw,38px) calc(-1 * var(--poster-pad-x)) 0;overflow:hidden;border:1px solid rgba(255,255,255,.13);background:#CBC6BD}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%;filter:grayscale(.28) saturate(.52) contrast(1.18) brightness(.8)}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__photo figcaption{position:absolute;right:0;bottom:0;left:0;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:12px;padding:11px 14px 12px;background:rgba(7,22,28,.93);color:#FFFDF8;border-top:1px solid rgba(255,255,255,.12)}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__identity{display:flex;min-width:0;flex-direction:column;align-items:flex-start;gap:2px}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__identity em{display:block;margin-top:3px;color:#C47A54;font-size:clamp(7px,.63vw,9px);line-height:1.15;font-style:normal;font-weight:760;letter-spacing:.025em}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__photo .bz-author-poster__dossier-trigger{align-self:end;margin:0!important;color:#D58B67!important;font-size:clamp(7.4px,.68vw,9px)!important;line-height:1.1!important;font-weight:820!important;letter-spacing:.06em!important;text-transform:uppercase!important;text-decoration:none!important;white-space:nowrap!important}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__photo .bz-author-poster__dossier-trigger span{color:#D58B67!important;font:inherit!important}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__photo figcaption strong{font-size:clamp(12px,1.1vw,15px);line-height:1.05;font-weight:850;letter-spacing:-.015em}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__photo figcaption span{color:rgba(255,255,255,.64);font-size:clamp(8px,.72vw,10px);line-height:1.2;font-weight:650;letter-spacing:.035em}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body{grid-area:body;width:min(100%,640px);margin:clamp(24px,3vw,34px) auto 0;color:var(--poster-muted);font-size:clamp(14px,1.23vw,18px);line-height:1.44;font-weight:590;letter-spacing:-.022em}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-post-methods-chunk{margin:0}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-post-methods-chunk + .bz-post-methods-chunk{margin-top:clamp(28px,3.2vw,40px)}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body p{margin:0}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-post-methods-chunk p+p{margin-top:.78em}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body strong{color:var(--poster-ink);font:inherit;font-weight:790}
+#borzilov-lp #bz-author-poster-second-screen.bz-post-methods-reveal-ready [data-post-methods-reveal]{
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity 380ms ease,transform 400ms cubic-bezier(.2,.72,.2,1);
+}
+#borzilov-lp #bz-author-poster-second-screen.bz-post-methods-reveal-ready [data-post-methods-reveal].is-revealed{
+  opacity:1;
+  transform:none;
+}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__verdict{grid-area:verdict;width:min(100%,640px);margin:clamp(52px,6vw,76px) auto 0;padding-top:0;border-top:0;color:var(--poster-ink);font-size:clamp(25px,3vw,39px);line-height:.96;font-weight:880;letter-spacing:-.052em;text-transform:uppercase}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__verdict span,#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__verdict strong{display:block;font:inherit}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__verdict strong{color:var(--poster-copper)}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__verdict-break{margin-top:clamp(14px,1.7vw,22px)}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__bridge{grid-area:bridge;width:min(100%,640px);margin:clamp(72px,8vw,88px) auto 0;color:var(--poster-muted);font-size:clamp(15px,1.25vw,18px);line-height:1.4;font-weight:610;letter-spacing:-.026em}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__bridge p{margin:0}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__bridge p+p{margin-top:0}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__bridge strong{color:var(--poster-ink);font:inherit;font-weight:780}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__footer{grid-area:footer;width:min(100%,640px);margin:clamp(20px,2.2vw,28px) auto 0;padding-top:clamp(16px,1.8vw,22px);border-top:1px solid rgba(255,255,255,.15);display:flex;align-items:center}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-dossier-trigger{margin:0;padding:0;border:0;background:transparent;color:#D58B67;font:850 clamp(8px,.72vw,10px)/1.1 Inter,system-ui,sans-serif;letter-spacing:.09em;text-transform:uppercase;text-align:left;cursor:pointer}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-dossier-trigger:focus-visible{outline:2px solid var(--poster-copper);outline-offset:4px}
+
+@media(max-width:760px){
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact{padding:14px 18px 16px!important}
+    #borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact h2{font-size:clamp(34px,10.2vw,43px);line-height:.91;letter-spacing:-.065em}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster{--poster-pad-x:18px;--poster-pad-y:28px;padding:var(--poster-pad-y) var(--poster-pad-x) 30px}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__kicker{margin-bottom:11px;font-size:7.8px;letter-spacing:.13em}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__title{font-size:clamp(56px,17vw,74px);line-height:.8}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__photo{margin-top:23px}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__photo figcaption{gap:8px;padding:10px 12px 11px}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__identity em{font-size:7.2px}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__photo .bz-author-poster__dossier-trigger{font-size:7.2px!important;letter-spacing:.045em!important}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body{width:100%;margin-top:22px;font-size:13px;line-height:1.4}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__verdict{width:100%;margin-top:46px;padding-top:0;font-size:clamp(22px,6.6vw,27px)}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__bridge{width:100%;margin-top:73px;font-size:13.5px}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__footer{width:100%;margin-top:18px;padding-top:15px}
+}
+@media(max-width:360px){
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact{padding-left:17px!important;padding-right:17px!important}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact h2{font-size:32px}
+}
+
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact-controls{display:none!important}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab__impact-lead{display:none!important}
+
+/* island-only pass: first island ends on the author screen, no attached next-strip */
+#borzilov-lp #bz-hero > .bz-container.bz-hero-secondary-island > #bz-author-poster-second-screen{margin-bottom:0!important}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster{padding-bottom:clamp(34px,4vw,52px)!important}
+
+/* bottom seam owner: island ends directly on the dark author subsection; the 1px inset is the island border, not extra white padding. */
+
+/* owner:0341-receiver-bleed-contract
+   Exposes the receiver's existing horizontal padding only for the new tail.
+   It does not alter the locked first frame. */
+@media(min-width:981px){
+  #borzilov-lp #bz-hero > .bz-container.bz-hero-secondary-island{--bz-primary-island-pad-x:clamp(64px,6vw,104px);}
+}
+@media(max-width:980px){
+  #borzilov-lp #bz-hero > .bz-container.bz-hero-secondary-island{--bz-primary-island-pad-x:28px;}
+}
+@media(max-width:430px){
+  #borzilov-lp #bz-hero > .bz-container.bz-hero-secondary-island{--bz-primary-island-pad-x:20px;}
+}
+/* Visual 1px island edge for the new terminal tail only; no layout change to the locked first frame. */
+#borzilov-lp #bz-hero > .bz-container.bz-hero-secondary-island > #bz-author-poster-second-screen{
+  box-shadow:inset 1px 0 rgba(8,26,32,.118),inset -1px 0 rgba(8,26,32,.118),inset 0 -1px rgba(8,26,32,.118)!important;
+}
+
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp #bz-author-poster-second-screen.bz-post-methods-reveal-ready [data-post-methods-reveal]{
+    opacity:1;
+    transform:none;
+    transition:none;
+  }
+}
+
+/* owner:bz-inline-bottleneck-in-author-body-0582 */
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline{width:100%;max-width:100%;margin:clamp(18px,2.4vw,26px) 0 0;padding:0}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-frame{width:100%;margin:0;padding:0}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-shell{padding:0;background:transparent;border:0;box-shadow:none}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-stage{min-height:300px;background:transparent;border:0;overflow:hidden}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-stage::before{display:none}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-gridfx{opacity:.26;background-position:26px 26px}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-aura{top:41%;opacity:.16}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-ring{top:41%;opacity:.32}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-core{top:41%;width:min(314px,70%);min-height:128px;padding:18px 18px 16px}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-core::before{display:none}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-decision{display:none}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-chip{z-index:7}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-chip:nth-of-type(5),
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-chip:nth-of-type(6){top:54%!important}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-chip:nth-of-type(7),
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-chip:nth-of-type(8){top:61%!important}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline + .bz-post-methods-chunk{margin-top:clamp(16px,2vw,22px)}
+@media(max-width:760px){
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline{margin:12px 0 0}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-stage{min-height:252px}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-ring{width:272px;height:272px;top:40%}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-aura{width:392px;height:392px;top:40%}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-core{top:40%;width:min(224px,74%);min-height:96px;padding:13px 12px 11px}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-core strong{font-size:clamp(28px,8.2vw,39px)}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-chip{max-width:124px;font-size:8.8px}
+}
+@media(max-width:390px){
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-stage{min-height:236px}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-ring{width:246px;height:246px}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-aura{width:352px;height:352px}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-core{width:min(206px,76%);min-height:90px;padding:12px 11px 10px}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-bv10--inline .bz-bv10-chip{padding:5px 7px;font-size:8.4px}
+}
+
+/* owner:second-screen-island-split-0628
+   The bento island must end cleanly before the manifesto chapter begins.
+   This chapter now sits as its own rounded island on the dark root field,
+   with an explicit dark gap between the two islands. */
+#borzilov-lp #bz-author-poster-second-screen{
+  position:relative!important;
+  display:block!important;
+  width:var(--bz-master-island-width,calc(100vw - 8px))!important;
+  max-width:var(--bz-master-island-width,calc(100vw - 8px))!important;
+  min-width:0!important;
+  margin:clamp(22px,3.6vw,32px) auto 0!important;
+  padding:0!important;
+  background:transparent!important;
+  isolation:isolate!important;
+}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab{
+  position:relative!important;
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  margin:0!important;
+  border-radius:var(--bz-island-radius, clamp(28px,5vw,44px))!important;
+  overflow:hidden!important;
+  border:1px solid rgba(8,26,32,.11)!important;
+  box-shadow:0 38px 96px rgba(8,26,32,.078),0 12px 32px rgba(8,26,32,.038),inset 0 1px 0 rgba(255,255,255,.78)!important;
+}
+
+
+/* owner:0631-separate-second-island
+   2026 starts in its own island shell. The first product island ends before it; the dark site field must be visible between them. */
+#borzilov-lp #bz-hero > .bz-container.bz-hero-secondary-island{
+  box-sizing:border-box!important;
+  position:relative!important;
+  z-index:1!important;
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  margin:var(--bz-island-gap, clamp(30px, 7vw, 48px)) auto 0!important;
+  padding:0 var(--bz-primary-island-pad-x, 28px)!important;
+  border-radius:var(--bz-island-radius, clamp(32px, 4.8vw, 64px))!important;
+  border:1px solid var(--bz-panel-border, rgba(8,26,32,.102))!important;
+  box-shadow:var(--bz-panel-shadow, 0 38px 96px rgba(8,26,32,.078), 0 12px 32px rgba(8,26,32,.038), inset 0 1px 0 rgba(255,255,255,.78))!important;
+  background:linear-gradient(180deg, rgba(255,255,255,.58), rgba(255,255,255,0) 38%), #FFFDF8!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+}
+#borzilov-lp #bz-hero > .bz-container.bz-hero-secondary-island::before{
+  content:""!important;position:absolute!important;inset:0!important;z-index:-1!important;pointer-events:none!important;
+  background:radial-gradient(circle at 8% 7%, rgba(169,106,74,.036), transparent 34%), radial-gradient(circle at 92% 12%, rgba(35,57,93,.031), transparent 36%)!important;
+}
+@media (max-width:980px){
+  #borzilov-lp #bz-hero > .bz-container.bz-hero-secondary-island{
+    width:100%!important;max-width:none!important;margin-top:26px!important;padding-left:28px!important;padding-right:28px!important;
+    border-radius:28px!important;
+  }
+}
+@media (max-width:430px){
+  #borzilov-lp #bz-hero > .bz-container.bz-hero-secondary-island{padding-left:20px!important;padding-right:20px!important;}
+}
+
+
+/* owner:0632-second-island-corners-match-first
+   The 2026 island should use the same corner language as the first bento island, not a pill / capsule shell.
+   The visible shell is the outer secondary island; the inner manifesto surface should not draw its own rounded shell. */
+#borzilov-lp #bz-hero > .bz-container.bz-hero-secondary-island{
+  border-radius:10px!important;
+}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster-lab{
+  border-radius:0!important;
+  border:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+@media (max-width:980px){
+  #borzilov-lp #bz-hero > .bz-container.bz-hero-secondary-island{
+    border-radius:10px!important;
+  }
+}
+@media (max-width:430px){
+  #borzilov-lp #bz-hero > .bz-container.bz-hero-secondary-island{
+    border-radius:10px!important;
+  }
+}
+
+
+/* owner:0636-second-island-gap-x2
+   Restore the 2026 block as a true second island: keep the shell, remove the full-bleed stretch,
+   and double the dark gap between islands without moving the island's semantic order. */
+#borzilov-lp #bz-hero > .bz-container.bz-hero-secondary-island{
+  margin-top:104px!important;
+}
+#borzilov-lp #bz-hero > .bz-container.bz-hero-secondary-island > #bz-author-poster-second-screen{
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+@media (max-width:980px){
+  #borzilov-lp #bz-hero > .bz-container.bz-hero-secondary-island{
+    margin-top:104px!important;
+    width:calc(100% - 2px)!important;
+    max-width:calc(100% - 2px)!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+    padding-left:0!important;
+    padding-right:0!important;
+    border-radius:10px!important;
+  }
+  #borzilov-lp #bz-hero > .bz-container.bz-hero-secondary-island > #bz-author-poster-second-screen{
+    width:100%!important;
+    max-width:100%!important;
+    margin-left:0!important;
+    margin-right:0!important;
+    border-radius:inherit!important;
+    overflow:hidden!important;
+  }
+}
+
+
+/* owner:0662-scroll-bottleneck-relocation */
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene{grid-area:photo;position:relative;width:calc(100% + (2 * var(--poster-pad-x)));max-width:none!important;margin:clamp(24px,3.2vw,38px) calc(-1 * var(--poster-pad-x)) 0;padding:0;background:transparent}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-frame{width:100%;margin:0;padding:0}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-shell{padding:0;background:transparent;border:0;box-shadow:none}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-stage{min-height:440px;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);background:radial-gradient(circle at 50% 42%, rgba(23,81,97,.24) 0%, rgba(13,39,48,.14) 22%, rgba(7,26,34,0) 64%),linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.008))}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-stage::before{inset:16px}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-gridfx{opacity:.22;background-position:26px 26px}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-aura{top:42%;opacity:.18}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-ring{top:42%;opacity:.34}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-core{top:42%;width:min(334px,72%);min-height:136px;padding:20px 18px 16px}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-core strong{font-size:clamp(34px,4.9vw,58px)}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-chip{z-index:7}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-chip:nth-of-type(5),#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-chip:nth-of-type(6){top:54%!important}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-chip:nth-of-type(7),#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-chip:nth-of-type(8){top:61%!important}
+@media(max-width:760px){#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene{margin-top:23px}#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-stage{min-height:292px}#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-stage::before{inset:12px}#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-ring{width:286px;height:286px;top:40%}#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-aura{width:406px;height:406px;top:40%}#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-core{top:40%;width:min(232px,76%);min-height:98px;padding:13px 12px 11px}#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-core strong{font-size:clamp(28px,8.4vw,40px)}#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-chip{max-width:126px;padding:5px 7px;font-size:8.8px}}
+@media(max-width:380px){#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-stage{min-height:272px}#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-ring{width:256px;height:256px}#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-aura{width:360px;height:360px}#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-core{width:min(212px,78%);min-height:90px;padding:12px 11px 10px}#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__head-scene .bz-bv10-chip{font-size:8.3px}}
+
+
+/* owner:0664-head-scene-floating-body
+   Move the bottleneck scene into the explanatory body and let it float without outer square frames. */
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-post-methods-chunk--head-scene{
+  margin-top:clamp(18px,2.2vw,28px);
+}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene{
+  width:calc(100% + clamp(18px,3vw,28px));
+  max-width:none!important;
+  margin:0 calc(clamp(18px,3vw,28px) / -2);
+  padding:0;
+  background:transparent;
+}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-frame{
+  width:100%;margin:0;padding:0;
+}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-shell{
+  padding:0;
+  background:transparent;
+  border:0;
+  box-shadow:none;
+}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-stage{
+  min-height:372px;
+  background:transparent;
+  border:0;
+  overflow:hidden;
+}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-stage::before{
+  display:none;
+}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-gridfx{
+  opacity:.16;
+  background-position:26px 26px;
+}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-aura{
+  top:44%;
+  opacity:.17;
+}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-ring{
+  top:44%;
+  opacity:.28;
+}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-core{
+  top:44%;
+  width:min(308px,68%);
+  min-height:128px;
+  padding:18px 16px 15px;
+  background:linear-gradient(180deg,rgba(10,43,52,.88),rgba(7,27,34,.82));
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 18px 40px rgba(3,12,15,.18), inset 0 1px 0 rgba(255,255,255,.04);
+}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-core::before{
+  display:none;
+}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-core strong{
+  font-size:clamp(34px,4.8vw,54px);
+}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-chip{z-index:7}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-chip:nth-of-type(5),
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-chip:nth-of-type(6){top:55%!important}
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-chip:nth-of-type(7),
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-chip:nth-of-type(8){top:63%!important}
+
+@media(max-width:760px){
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-post-methods-chunk--head-scene{margin-top:14px}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene{width:calc(100% + 12px);margin:0 -6px}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-stage{min-height:286px}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-ring{width:278px;height:278px;top:41%}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-aura{width:396px;height:396px;top:41%}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-core{top:41%;width:min(226px,76%);min-height:96px;padding:13px 12px 11px}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-core strong{font-size:clamp(28px,8.2vw,40px)}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-chip{max-width:122px;padding:5px 7px;font-size:8.6px}
+}
+@media(max-width:380px){
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-stage{min-height:266px}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-ring{width:248px;height:248px}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-aura{width:352px;height:352px}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-core{width:min(208px,78%);min-height:88px;padding:12px 11px 10px}
+  #borzilov-lp #bz-author-poster-second-screen .bz-author-poster__body .bz-author-poster__head-scene .bz-bv10-chip{font-size:8.2px}
+}

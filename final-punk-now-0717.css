@@ -1,0 +1,133 @@
+/* owner:0717-final-punk-now-gradient-entry
+   Real local time is an artifact of the user's actual moment, not a countdown.
+   This is the last editorial act before the tariff; it contains no CTA. */
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-now-punk{
+  box-sizing:border-box!important;
+  width:100%!important;
+  margin:0!important;
+  padding:clamp(62px,7vw,92px) 0 clamp(70px,8vw,106px)!important;
+  background:linear-gradient(180deg,#071B21 0px,#05171D 72px,#020D11 168px,#020D11 100%)!important;
+  color:#FFFDF8!important;
+  border:0!important;
+  border-bottom:1px solid rgba(255,253,248,.08)!important;
+  overflow:hidden!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__inner{
+  box-sizing:border-box!important;
+  width:min(760px,calc(100% - 52px))!important;
+  margin:0 auto!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__kicker{
+  margin:0 0 clamp(14px,1.7vw,20px)!important;
+  color:rgba(255,253,248,.34)!important;
+  font:850 clamp(10px,.82vw,12px)/1 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  letter-spacing:.18em!important;
+  text-transform:uppercase!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__clock{
+  display:block!important;
+  margin:0!important;
+  color:#C65032!important;
+  -webkit-text-fill-color:#C65032!important;
+  font:900 clamp(110px,14.5vw,196px)/.76 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  letter-spacing:-.085em!important;
+  font-variant-numeric:tabular-nums!important;
+  white-space:nowrap!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__beat{
+  margin:clamp(66px,7.5vw,96px) 0 0!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__beat p{
+  margin:0!important;
+  color:#FFFDF8!important;
+  -webkit-text-fill-color:#FFFDF8!important;
+  font:900 clamp(46px,5.9vw,78px)/.88 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  letter-spacing:-.07em!important;
+  text-transform:uppercase!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__beat--confidence{
+  margin-top:clamp(80px,9vw,122px)!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__statement{
+  display:grid!important;
+  gap:clamp(9px,1.15vw,14px)!important;
+  width:min(100%,650px)!important;
+  margin:clamp(68px,7.5vw,100px) 0 0!important;
+  color:rgba(255,253,248,.72)!important;
+  font:560 clamp(17px,1.55vw,22px)/1.36 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  letter-spacing:-.026em!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__statement p{
+  margin:0!important;
+  max-width:34em!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__statement strong{
+  color:#FFFDF8!important;
+  -webkit-text-fill-color:#FFFDF8!important;
+  font-weight:790!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__beat--final{
+  margin-top:clamp(90px,10vw,138px)!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__beat--final p{
+  font-size:clamp(48px,6.25vw,84px)!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__beat--final .bz-now-punk__enter{
+  margin-top:clamp(34px,3.8vw,50px)!important;
+  color:#C65032!important;
+  -webkit-text-fill-color:#C65032!important;
+  font-size:clamp(62px,8.2vw,112px)!important;
+  line-height:.82!important;
+}
+/* Tariff is the next object, with no monetary bridge or secondary CTA in between. */
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk + #bz1092-product-commercial-late{
+  margin-top:0!important;
+}
+@media(max-width:760px){
+  html body #borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-now-punk{
+    padding:54px 0 72px!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__inner{
+    width:calc(100% - 44px)!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__kicker{
+    margin-bottom:14px!important;
+    font-size:9px!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__clock{
+    font-size:clamp(94px,30vw,136px)!important;
+    line-height:.78!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__beat{
+    margin-top:62px!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__beat p{
+    font-size:clamp(40px,11.1vw,53px)!important;
+    line-height:.89!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__beat--confidence{
+    margin-top:76px!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__statement{
+    margin-top:64px!important;
+    gap:9px!important;
+    font-size:16px!important;
+    line-height:1.38!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__beat--final{
+    margin-top:82px!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__beat--final p{
+    font-size:clamp(40px,11.2vw,54px)!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk__beat--final .bz-now-punk__enter{
+    margin-top:30px!important;
+    font-size:clamp(58px,16vw,78px)!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  html body #borzilov-lp#borzilov-lp #bz1092-product-lab .bz-now-punk *{
+    animation:none!important;
+    transition:none!important;
+  }
+}

@@ -1,0 +1,144 @@
+/* owner:0699-faq-human-final
+   Final human tail of the existing FAQ island.
+   Typical questions end first; this is the one personal exception route.
+   It is not a new island and not another commercial CTA slab. */
+#borzilov-lp .bz-guarantee-human-final{
+  position:relative;
+  width:calc(100% + (clamp(24px,5vw,42px) * 2));
+  margin:clamp(28px,3.2vw,38px) calc(clamp(24px,5vw,42px) * -1) 0;
+  background:#F4F1EA;
+  border-top:1px solid rgba(8,26,32,.11);
+  overflow:hidden;
+}
+#borzilov-lp .bz-guarantee-human-final__media{
+  position:relative;
+  width:100%;
+  height:clamp(390px,56svh,560px);
+  overflow:hidden;
+  background:#A7A59F;
+}
+#borzilov-lp .bz-guarantee-human-final__media::after{
+  content:"";
+  position:absolute;
+  inset:auto 0 0;
+  height:22%;
+  pointer-events:none;
+  background:linear-gradient(to bottom,rgba(8,26,32,0),rgba(8,26,32,.08));
+}
+#borzilov-lp .bz-guarantee-human-final__media img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:54% 38%;
+}
+#borzilov-lp .bz-guarantee-human-final__copy{
+  padding:clamp(28px,3.6vw,42px) clamp(24px,5vw,42px) clamp(30px,3.8vw,44px);
+  background:#F4F1EA;
+}
+#borzilov-lp .bz-guarantee-human-final__copy h3{
+  margin:0;
+  max-width:16ch;
+  color:#081A20;
+  font-size:clamp(30px,3.4vw,46px);
+  line-height:.96;
+  letter-spacing:-.052em;
+  font-weight:880;
+}
+#borzilov-lp .bz-guarantee-human-final__copy p{
+  margin:clamp(14px,1.5vw,18px) 0 0;
+  max-width:48ch;
+  color:#59656A;
+  font-size:clamp(13px,1.15vw,15px);
+  line-height:1.42;
+  font-weight:570;
+  letter-spacing:-.012em;
+}
+#borzilov-lp .bz-guarantee-human-final__action{
+  appearance:none;
+  -webkit-appearance:none;
+  width:100%;
+  min-height:76px;
+  margin:clamp(24px,2.8vw,32px) 0 0;
+  padding:18px 0 0;
+  border:0;
+  border-top:1px solid rgba(8,26,32,.14);
+  background:transparent;
+  color:#081A20;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  cursor:pointer;
+  text-align:left;
+}
+#borzilov-lp .bz-guarantee-human-final__action strong{
+  font-size:clamp(22px,2.3vw,30px);
+  line-height:1;
+  font-weight:850;
+  letter-spacing:-.045em;
+}
+#borzilov-lp .bz-guarantee-human-final__action i{
+  flex:none;
+  color:#A96A4A;
+  font-style:normal;
+  font-size:22px;
+  line-height:1;
+  transition:transform .18s ease,color .18s ease;
+}
+#borzilov-lp .bz-guarantee-human-final__action:hover i{
+  transform:translate(3px,-3px);
+  color:#081A20;
+}
+#borzilov-lp .bz-guarantee-human-final__action:focus-visible{
+  outline:1px solid #A96A4A;
+  outline-offset:-3px;
+}
+
+@media(max-width:980px){
+  #borzilov-lp .bz-guarantee-human-final{
+    width:calc(100% + 44px);
+    margin:30px -22px 0;
+  }
+  #borzilov-lp .bz-guarantee-human-final__media{
+    height:clamp(390px,58svh,540px);
+  }
+  #borzilov-lp .bz-guarantee-human-final__media img{
+    object-position:54% 36%;
+  }
+  #borzilov-lp .bz-guarantee-human-final__copy{
+    padding:28px 22px 32px;
+  }
+  #borzilov-lp .bz-guarantee-human-final__copy h3{
+    max-width:15ch;
+    font-size:clamp(31px,8.7vw,40px);
+    line-height:.94;
+  }
+  #borzilov-lp .bz-guarantee-human-final__copy p{
+    max-width:34ch;
+    margin-top:14px;
+    font-size:12px;
+    line-height:1.4;
+  }
+  #borzilov-lp .bz-guarantee-human-final__action{
+    min-height:72px;
+    margin-top:24px;
+    padding-top:17px;
+  }
+  #borzilov-lp .bz-guarantee-human-final__action strong{
+    font-size:26px;
+  }
+}
+
+@media(max-width:430px){
+  #borzilov-lp .bz-guarantee-human-final__media{
+    height:clamp(410px,61svh,535px);
+  }
+  #borzilov-lp .bz-guarantee-human-final__media img{
+    object-position:52% 36%;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp .bz-guarantee-human-final__action i{transition:none!important}
+}

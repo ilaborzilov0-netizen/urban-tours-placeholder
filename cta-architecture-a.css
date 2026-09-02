@@ -1,0 +1,1023 @@
+/* owner:0665-cta-architecture-a
+   Variant A: one primary action grammar, one secondary question grammar,
+   one personal "Написать мне" touchpoint, and only two truly large CTA moments. */
+
+/* CHECKPOINT 1 — after the meaning island. Large, but deliberately below the final tariff monument. */
+#borzilov-lp .bz-cta-checkpoint{
+  box-sizing:border-box;
+  width:min(1160px,calc(100vw - 8px));
+  margin:10px auto 0;
+  padding:clamp(24px,3.6vw,42px);
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(320px,.86fr);
+  gap:clamp(24px,4vw,54px);
+  align-items:end;
+  background:#F4F1EA;
+  color:#081A20;
+  border:1px solid rgba(8,26,32,.10);
+  border-radius:var(--r-island,8px);
+  box-shadow:0 18px 42px rgba(5,18,23,.08),inset 0 1px 0 rgba(255,255,255,.72);
+}
+#borzilov-lp .bz-cta-checkpoint__copy{min-width:0}
+#borzilov-lp .bz-cta-checkpoint__kicker{
+  display:block;
+  margin:0 0 10px;
+  color:#A96A4A;
+  font-size:10px;
+  line-height:1;
+  font-weight:860;
+  letter-spacing:.145em;
+  text-transform:uppercase;
+}
+#borzilov-lp .bz-cta-checkpoint__copy h3{
+  margin:0;
+  max-width:12ch;
+  color:#081A20;
+  font-size:clamp(34px,4.2vw,52px);
+  line-height:.91;
+  font-weight:870;
+  letter-spacing:-.058em;
+}
+#borzilov-lp .bz-cta-checkpoint__copy p{
+  margin:14px 0 0;
+  max-width:43ch;
+  color:#647075;
+  font-size:clamp(13px,1.15vw,16px);
+  line-height:1.42;
+  font-weight:590;
+  letter-spacing:-.018em;
+}
+#borzilov-lp .bz-cta-checkpoint__actions{display:grid;gap:12px;min-width:0}
+#borzilov-lp .bz-cta-checkpoint__primary{
+  box-sizing:border-box;
+  min-height:92px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:20px;
+  padding:18px 20px 19px;
+  background:#081A20;
+  color:#FFFDF8;
+  border:1px solid rgba(255,253,248,.12);
+  border-radius:5px;
+  text-decoration:none;
+  box-shadow:0 14px 30px rgba(5,18,23,.16),inset 0 1px 0 rgba(255,255,255,.04);
+  transition:background-color .16s ease,transform .16s ease;
+}
+#borzilov-lp .bz-cta-checkpoint__primary strong{
+  min-width:0;
+  color:inherit;
+  font-size:clamp(27px,3.2vw,42px);
+  line-height:.93;
+  font-weight:850;
+  letter-spacing:-.052em;
+}
+#borzilov-lp .bz-cta-checkpoint__primary i{
+  flex:none;
+  color:#D29371;
+  font-style:normal;
+  font-size:clamp(22px,2.4vw,31px);
+  line-height:1;
+  transition:transform .16s ease;
+}
+#borzilov-lp .bz-cta-checkpoint__primary:hover{background:#0D252D}
+#borzilov-lp .bz-cta-checkpoint__primary:hover i{transform:translate(3px,-2px)}
+#borzilov-lp .bz-cta-checkpoint__primary:active{transform:scale(.994)}
+#borzilov-lp .bz-cta-checkpoint__primary:focus-visible{outline:2px solid #D29371;outline-offset:3px}
+
+#borzilov-lp .bz-cta-checkpoint__secondary{
+  appearance:none;
+  -webkit-appearance:none;
+  width:max-content;
+  max-width:100%;
+  margin:0;
+  padding:2px 0;
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  border:0;
+  background:transparent;
+  color:#657075;
+  font:inherit;
+  text-align:left;
+  cursor:pointer;
+}
+#borzilov-lp .bz-cta-checkpoint__secondary span{font-size:12px;line-height:1.2;font-weight:600}
+#borzilov-lp .bz-cta-checkpoint__secondary strong{color:#081A20;font-size:12.5px;line-height:1.2;font-weight:790}
+#borzilov-lp .bz-cta-checkpoint__secondary i{color:#A96A4A;font-style:normal;font-size:14px;line-height:1;transition:transform .16s ease}
+#borzilov-lp .bz-cta-checkpoint__secondary:hover strong{color:#A96A4A}
+#borzilov-lp .bz-cta-checkpoint__secondary:hover i{transform:translate(2px,-1px)}
+#borzilov-lp .bz-cta-checkpoint__secondary:focus-visible{outline:1px solid #A96A4A;outline-offset:4px}
+
+/* CHECKPOINT 2 — after proof. Same primary verb, intentionally medium visual weight. */
+html body #borzilov-lp#borzilov-lp .bz-path-cta--proof-footer .bz-path-cta__talk-floor--primary{
+  min-height:96px!important;
+  padding:16px clamp(20px,4vw,28px) 18px!important;
+  gap:7px!important;
+  align-content:center!important;
+  border-radius:0 0 var(--r-object,6px) var(--r-object,6px)!important;
+}
+html body #borzilov-lp#borzilov-lp .bz-path-cta--proof-footer .bz-path-cta__talk-main{align-items:center!important}
+html body #borzilov-lp#borzilov-lp .bz-path-cta--proof-footer .bz-path-cta__talk-main strong{
+  max-width:none!important;
+  font-size:clamp(27px,3vw,38px)!important;
+  line-height:.94!important;
+  letter-spacing:-.052em!important;
+}
+html body #borzilov-lp#borzilov-lp .bz-path-cta--proof-footer .bz-path-cta__talk-main i{font-size:clamp(22px,2.4vw,30px)!important}
+
+/* FAQ stays a service exit, not a CTA scene. */
+#borzilov-lp .bz-guarantee-service__action span{font-weight:790}
+
+/* FINAL — keep the primary tariff action untouched; reduce the question route to a quiet insurance row. */
+html body #borzilov-lp#borzilov-lp .pricing-register__talk-floor{
+  min-height:62px!important;
+  padding:13px var(--pass-inner-x,var(--pricing-pad-inline)) 14px!important;
+  gap:4px!important;
+  background:#F7F3EC!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55)!important;
+}
+html body #borzilov-lp#borzilov-lp .pricing-register__talk-kicker{
+  color:#7A7772!important;
+  font-size:9px!important;
+  letter-spacing:.105em!important;
+}
+html body #borzilov-lp#borzilov-lp .pricing-register__talk-main{align-items:center!important}
+html body #borzilov-lp#borzilov-lp .pricing-register__talk-main strong{
+  max-width:none!important;
+  font-size:clamp(17px,1.7vw,22px)!important;
+  line-height:1!important;
+  font-weight:780!important;
+  letter-spacing:-.025em!important;
+}
+html body #borzilov-lp#borzilov-lp .pricing-register__talk-main i{font-size:18px!important}
+
+@media(max-width:760px){
+  #borzilov-lp .bz-cta-checkpoint{
+    width:calc(100vw - 8px);
+    margin-top:7px;
+    padding:22px 18px 20px;
+    grid-template-columns:minmax(0,1fr);
+    gap:22px;
+  }
+  #borzilov-lp .bz-cta-checkpoint__copy h3{font-size:clamp(34px,10vw,43px);max-width:10ch}
+  #borzilov-lp .bz-cta-checkpoint__copy p{margin-top:11px;font-size:12.5px;line-height:1.4}
+  #borzilov-lp .bz-cta-checkpoint__primary{min-height:82px;padding:15px 16px 16px;align-items:center}
+  #borzilov-lp .bz-cta-checkpoint__primary strong{font-size:clamp(29px,8.8vw,37px)}
+  #borzilov-lp .bz-cta-checkpoint__primary i{font-size:24px}
+  #borzilov-lp .bz-cta-checkpoint__secondary{padding-top:1px}
+  html body #borzilov-lp#borzilov-lp .bz-path-cta--proof-footer .bz-path-cta__talk-floor--primary{
+    min-height:88px!important;
+    padding:15px 18px 16px!important;
+  }
+  html body #borzilov-lp#borzilov-lp .bz-path-cta--proof-footer .bz-path-cta__talk-main strong{
+    max-width:none!important;
+    font-size:clamp(29px,8.3vw,36px)!important;
+  }
+  html body #borzilov-lp#borzilov-lp .pricing-register__talk-floor{
+    min-height:58px!important;
+    padding:12px var(--pass-inner-x,var(--pricing-pad-inline)) 13px!important;
+  }
+  html body #borzilov-lp#borzilov-lp .pricing-register__talk-main strong{font-size:17px!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp .bz-cta-checkpoint__primary,
+  #borzilov-lp .bz-cta-checkpoint__primary i,
+  #borzilov-lp .bz-cta-checkpoint__secondary i{transition:none!important}
+}
+
+/* owner:0666-unified-primary-application
+   One large application-button form reused under the author photo and inside the blue meaning finale.
+   No explanatory CTA cards: only the action itself. */
+#borzilov-lp .bz-primary-application-frame{
+  box-sizing:border-box;
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  width:100%;
+  margin:0;
+  border:1px solid rgba(255,253,248,.48);
+  border-radius:6px;
+  overflow:hidden;
+  background:#081A20;
+  box-shadow:none;
+}
+#borzilov-lp .bz-primary-application-cta{
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  width:100%;
+  max-width:none;
+  min-height:clamp(84px,8vw,112px);
+  margin:0;
+  padding:clamp(22px,2.8vw,34px);
+  border:0;
+  border-radius:5px;
+  background:transparent;
+  color:#FFFDF8;
+  text-decoration:none;
+  box-shadow:none;
+  transition:background-color .16s ease,transform .16s ease;
+}
+#borzilov-lp .bz-primary-application-cta span{
+  min-width:0;
+  color:inherit;
+  font-size:clamp(24px,3.1vw,42px);
+  line-height:.94;
+  font-weight:850;
+  letter-spacing:-.055em;
+}
+#borzilov-lp .bz-primary-application-cta i{
+  flex:none;
+  color:#D29371;
+  font-style:normal;
+  font-size:clamp(20px,2vw,28px);
+  line-height:1;
+  transition:transform .16s ease;
+}
+#borzilov-lp .bz-primary-application-cta:hover{background:rgba(255,253,248,.035)}
+#borzilov-lp .bz-primary-application-cta:hover i{transform:translate(3px,-2px)}
+#borzilov-lp .bz-primary-application-cta:active{transform:scale(.995)}
+#borzilov-lp .bz-primary-application-cta:focus-visible{outline:2px solid #D29371;outline-offset:3px}
+
+/* Author: remove the explanatory layer and let the application action finish the photo section. */
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only{
+  gap:0!important;
+  padding:0 clamp(24px,3vw,38px) clamp(24px,3vw,36px)!important;
+  background:linear-gradient(180deg,rgba(7,22,28,0) 0%,rgba(7,22,28,.36) 34%,rgba(7,22,28,.78) 100%)!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-primary-application-frame{
+  display:grid!important;
+  width:100%!important;
+  margin:0!important;
+  border:1px solid rgba(255,253,248,.48)!important;
+  border-radius:6px!important;
+  background:#081A20!important;
+  overflow:hidden!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-primary-application-cta{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:20px!important;
+  width:100%!important;
+  max-width:none!important;
+  min-height:clamp(84px,8vw,112px)!important;
+  margin:0!important;
+  padding:clamp(22px,2.8vw,34px)!important;
+  border:0!important;
+  border-radius:5px!important;
+  background:transparent!important;
+  color:#FFFDF8!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-primary-application-cta span{
+  font-size:clamp(24px,3.1vw,42px)!important;
+  line-height:.94!important;
+  font-weight:850!important;
+  letter-spacing:-.055em!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-primary-application-cta i{
+  color:#D29371!important;
+  font-size:clamp(20px,2vw,28px)!important;
+}
+
+/* Meaning finale: same action, embedded directly into the blue chapter rather than a new card/section. */
+#borzilov-lp #bz-meaning-bento .bz-support-bento__final-actions{
+  margin-top:clamp(26px,3vw,38px);
+}
+#borzilov-lp #bz-meaning-bento .bz-support-bento__final .bz-primary-application-frame{
+  border-color:rgba(255,253,248,.48);
+  background:#081A20;
+}
+
+@media(max-width:760px){
+  #borzilov-lp .bz-primary-application-cta{
+    min-height:112px;
+    padding:25px 27px;
+  }
+  #borzilov-lp .bz-primary-application-cta span{font-size:clamp(30px,9.3vw,40px)}
+  #borzilov-lp .bz-primary-application-cta i{font-size:23px}
+
+  html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only{
+    padding:0!important;
+    background:#081A20!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-primary-application-frame{
+    width:100%!important;
+    margin:0!important;
+    border-radius:0 0 5px 5px!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-primary-application-cta{
+    min-height:112px!important;
+    padding:25px 27px!important;
+    border-radius:0 0 5px 5px!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-primary-application-cta span{
+    font-size:clamp(30px,9.3vw,40px)!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-primary-application-cta i{
+    font-size:23px!important;
+  }
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__final-actions{margin-top:26px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp .bz-primary-application-cta,
+  #borzilov-lp .bz-primary-application-cta i{transition:none!important}
+}
+
+/* owner:0668-commercial-escalation-final
+   Final route escalation:
+   - the author has one quiet personal contact;
+   - FAQ contains answers only;
+   - the tariff card ends on direct checkout;
+   - the last question route lives outside the tariff card on the dark field. */
+
+/* AUTHOR — one human, quiet personal gesture; no large application slab here. */
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--personal-only{
+  padding:0!important;
+  background:#071A22!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__actions--personal{
+  box-sizing:border-box!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  width:100%!important;
+  margin:0!important;
+  padding:14px clamp(20px,3.2vw,34px) 15px!important;
+  border:0!important;
+  border-top:1px solid rgba(255,253,248,.12)!important;
+  border-radius:0!important;
+  overflow:visible!important;
+  background:#071A22!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__cta--personal{
+  box-sizing:border-box!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:7px!important;
+  width:max-content!important;
+  max-width:100%!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:3px 0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#FFFDF8!important;
+  box-shadow:none!important;
+  text-decoration:none!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__cta--personal span{
+  color:#FFFDF8!important;
+  font-size:12.5px!important;
+  line-height:1.2!important;
+  font-weight:800!important;
+  letter-spacing:-.018em!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__cta--personal i{
+  color:#D29371!important;
+  font-style:normal!important;
+  font-size:14px!important;
+  line-height:1!important;
+  transition:transform .16s ease!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__cta--personal:hover{
+  background:transparent!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__cta--personal:hover i{
+  transform:translate(2px,-1px)!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__cta--personal:focus-visible{
+  outline:1px solid #D29371!important;
+  outline-offset:4px!important;
+}
+
+/* FINAL — the copper action is the literal bottom edge of the tariff object. */
+html body #borzilov-lp#borzilov-lp .pricing-register__action[data-analytics-cta-role="final-payment"]{
+  border-bottom-left-radius:var(--r-object,6px)!important;
+  border-bottom-right-radius:var(--r-object,6px)!important;
+}
+
+/* QUESTION — outside the tariff object; deliberately text-like, never a second action floor. */
+#borzilov-lp .pricing-register__post-question{
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:6px 8px;
+  width:100%;
+  margin:clamp(17px,2.2svh,24px) auto 0;
+  padding:0 6px;
+  color:rgba(248,242,232,.48);
+  font:650 clamp(11px,.95vw,13px)/1.25 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  letter-spacing:-.015em;
+  text-align:center;
+}
+#borzilov-lp .pricing-register__post-question>span{color:rgba(248,242,232,.48)}
+#borzilov-lp .pricing-register__post-question button{
+  appearance:none;
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  margin:0;
+  padding:2px 0;
+  border:0;
+  background:transparent;
+  color:rgba(255,253,248,.78);
+  font:inherit;
+  cursor:pointer;
+}
+#borzilov-lp .pricing-register__post-question button strong{
+  color:inherit;
+  font:inherit;
+  font-weight:800;
+}
+#borzilov-lp .pricing-register__post-question button i{
+  color:#C78969;
+  font-style:normal;
+  font-size:13px;
+  line-height:1;
+  transition:transform .16s ease,color .16s ease;
+}
+#borzilov-lp .pricing-register__post-question button:hover{color:#FFFDF8}
+#borzilov-lp .pricing-register__post-question button:hover i{transform:translate(2px,-1px);color:#D79A79}
+#borzilov-lp .pricing-register__post-question button:focus-visible{outline:1px solid #C78969;outline-offset:4px}
+
+@media(max-width:760px){
+  html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__actions--personal{
+    width:calc(100% + 34px)!important;
+    margin:0 -17px -17px!important;
+    padding:13px 18px 14px!important;
+    border-radius:0!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__cta--personal span{
+    font-size:12.2px!important;
+  }
+  #borzilov-lp .pricing-register__post-question{
+    gap:5px 7px;
+    margin-top:15px;
+    padding:0 3px;
+    font-size:11.5px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp .pricing-register__post-question button i,
+  html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__cta--personal i{
+    transition:none!important;
+  }
+}
+
+
+/* owner:0669-inline-application-form
+   The first strong application point becomes an inline expanding editorial form inside the blue meaning island. */
+#borzilov-lp #bz-meaning-bento .bz-inline-application{position:relative;transition:background-color .22s ease,border-color .22s ease;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application.is-expanded{background:#081A20;border-color:rgba(255,253,248,.32);}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__toggle{appearance:none;text-align:left;cursor:pointer;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application.is-expanded .bz-inline-application__toggle{min-height:66px;padding:18px 22px 10px;background:transparent;border-bottom:1px solid rgba(255,253,248,.1);}
+#borzilov-lp #bz-meaning-bento .bz-inline-application.is-expanded .bz-inline-application__toggle span{font-size:clamp(18px,1.8vw,24px);line-height:1;font-weight:800;letter-spacing:-.045em;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application.is-expanded .bz-inline-application__toggle i{font-size:18px;transform:none;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__panel{display:grid;gap:18px;padding:0 22px 22px;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__heading{display:none;color:#FFFDF8;font-size:19px;line-height:1;font-weight:800;letter-spacing:-.04em;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__form{display:grid;gap:18px;margin:0;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__field{display:grid;gap:9px;padding-bottom:12px;border-bottom:1px solid rgba(255,253,248,.16);}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__field label,
+#borzilov-lp #bz-meaning-bento .bz-inline-application__legend{color:rgba(255,253,248,.74);font-size:12px;line-height:1.1;font-weight:750;letter-spacing:.12em;text-transform:uppercase;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__field input{appearance:none;width:100%;margin:0;padding:0;border:0;background:transparent;box-shadow:none;color:#FFFDF8;font-size:clamp(22px,2.2vw,28px);line-height:1.05;font-weight:760;letter-spacing:-.045em;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__field input::placeholder{color:rgba(255,253,248,.34);}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__field input:focus{outline:none;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__field.is-invalid{border-bottom-color:#D29371;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__channels{display:flex;flex-wrap:wrap;gap:8px;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__channel{position:relative;display:inline-flex;align-items:center;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__channel input{position:absolute;inset:0;opacity:0;pointer-events:none;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__channel span{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:0 13px;border-radius:999px;border:1px solid rgba(255,253,248,.18);background:rgba(255,253,248,.05);color:rgba(255,253,248,.72);font-size:12px;line-height:1;font-weight:760;letter-spacing:-.02em;transition:background-color .18s ease,border-color .18s ease,color .18s ease,transform .18s ease;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__channel input:checked+span{background:rgba(210,147,113,.15);border-color:rgba(210,147,113,.42);color:#FFFDF8;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__submit{appearance:none;display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%;min-height:74px;padding:20px 0 4px;border:0;background:transparent;border-top:1px solid rgba(255,253,248,.14);color:#FFFDF8;cursor:pointer;text-align:left;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__submit span{font-size:clamp(24px,2.4vw,30px);line-height:.96;font-weight:850;letter-spacing:-.05em;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__submit i{color:#D29371;font-style:normal;font-size:21px;line-height:1;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__submit:hover i{transform:translate(3px,-2px);}
+#borzilov-lp #bz-meaning-bento .bz-inline-application [data-bz-lead-error]{margin:0!important;color:#D29371!important;font-size:12px!important;line-height:1.45!important;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__success{display:grid;gap:8px;padding-top:4px;color:#FFFDF8;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__success strong{font-size:clamp(22px,2.2vw,28px);line-height:.98;font-weight:850;letter-spacing:-.045em;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__success p{margin:0;color:rgba(255,253,248,.72);font-size:15px;line-height:1.42;font-weight:550;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__success-reset{appearance:none;justify-self:start;margin-top:2px;padding:0;border:0;background:transparent;color:#D29371;font-size:13px;line-height:1.2;font-weight:760;letter-spacing:-.02em;cursor:pointer;}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__success-reset:hover{color:#FFFDF8;}
+@media(max-width:760px){
+  #borzilov-lp #bz-meaning-bento .bz-inline-application.is-expanded .bz-inline-application__toggle{min-height:60px;padding:16px 18px 8px;}
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__panel{gap:16px;padding:0 18px 18px;}
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__field input{font-size:28px;}
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__channels{gap:7px;}
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__channel span{min-height:33px;padding:0 12px;font-size:11.5px;}
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__submit{min-height:68px;padding:18px 0 2px;}
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__submit span{font-size:29px;}
+}
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp #bz-meaning-bento .bz-inline-application,
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__toggle,
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__submit,
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__channel span{transition:none!important;}
+}
+
+
+/* owner:0671-inline-application-state-machine
+   Hard state separation: closed CTA -> expanding form -> success.
+   Explicit [hidden] wins over component display declarations. */
+#borzilov-lp #bz-meaning-bento .bz-inline-application__panel[hidden],
+#borzilov-lp #bz-meaning-bento .bz-inline-application__form[hidden],
+#borzilov-lp #bz-meaning-bento .bz-inline-application__success[hidden]{
+  display:none!important;
+}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__panel{
+  display:grid;
+  gap:18px;
+  overflow:hidden;
+  max-height:0;
+  opacity:0;
+  transform:translateY(-8px);
+  padding:0 22px;
+  visibility:hidden;
+  pointer-events:none;
+  transition:max-height .46s cubic-bezier(.2,.76,.2,1),opacity .24s ease,transform .38s cubic-bezier(.2,.76,.2,1),padding-bottom .38s cubic-bezier(.2,.76,.2,1),visibility 0s linear .46s;
+}
+#borzilov-lp #bz-meaning-bento .bz-inline-application.is-expanded .bz-inline-application__panel{
+  max-height:760px;
+  opacity:1;
+  transform:none;
+  padding-bottom:22px;
+  visibility:visible;
+  pointer-events:auto;
+  transition:max-height .52s cubic-bezier(.2,.76,.2,1),opacity .26s ease .05s,transform .42s cubic-bezier(.2,.76,.2,1),padding-bottom .42s cubic-bezier(.2,.76,.2,1),visibility 0s;
+}
+#borzilov-lp #bz-meaning-bento .bz-inline-application.is-success .bz-inline-application__panel{
+  max-height:320px;
+}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__form,
+#borzilov-lp #bz-meaning-bento .bz-inline-application__success{
+  animation:bzInlineApplicationContentIn .28s cubic-bezier(.2,.76,.2,1) both;
+}
+@keyframes bzInlineApplicationContentIn{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+@media(max-width:760px){
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__panel{gap:16px;padding-left:18px;padding-right:18px;padding-bottom:0}
+  #borzilov-lp #bz-meaning-bento .bz-inline-application.is-expanded .bz-inline-application__panel{padding-bottom:18px;max-height:720px}
+  #borzilov-lp #bz-meaning-bento .bz-inline-application.is-success .bz-inline-application__panel{max-height:300px}
+}
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__panel{transition:none!important;transform:none!important}
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__form,
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__success{animation:none!important}
+}
+
+/* owner:0673-author-primary-application
+   Restore the large first application CTA under the author photo.
+   It routes to the single inline application owner in the meaning island. */
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only{
+  gap:0!important;
+  padding:0!important;
+  background:#081A20!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-primary-application-frame{
+  display:grid!important;
+  width:100%!important;
+  margin:0!important;
+  border:1px solid rgba(255,253,248,.48)!important;
+  border-radius:0 0 6px 6px!important;
+  overflow:hidden!important;
+  background:#081A20!important;
+  box-shadow:none!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-primary-application-cta{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:20px!important;
+  width:100%!important;
+  max-width:none!important;
+  min-height:clamp(96px,9vw,124px)!important;
+  margin:0!important;
+  padding:clamp(24px,3vw,36px)!important;
+  border:0!important;
+  border-radius:0 0 5px 5px!important;
+  background:#081A20!important;
+  color:#FFFDF8!important;
+  box-shadow:none!important;
+  text-decoration:none!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-primary-application-cta span{
+  color:#FFFDF8!important;
+  font-size:clamp(28px,3.5vw,46px)!important;
+  line-height:.92!important;
+  font-weight:850!important;
+  letter-spacing:-.06em!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-primary-application-cta i{
+  flex:none!important;
+  color:#D29371!important;
+  font-style:normal!important;
+  font-size:clamp(22px,2.2vw,30px)!important;
+  line-height:1!important;
+}
+@media(max-width:760px){
+  html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-primary-application-cta{
+    min-height:116px!important;
+    padding:26px 28px!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-primary-application-cta span{
+    font-size:clamp(32px,9.8vw,42px)!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-primary-application-cta i{
+    font-size:24px!important;
+  }
+}
+
+
+/* owner:0674-meaning-final-full-width-cta
+   Make the final CTA in the blue meaning island span the island width and sit on the island's lower shape.
+   Keep only a 1px white contour on the sides and bottom. */
+#borzilov-lp #bz-meaning-bento .bz-support-bento__final-actions{
+  margin-top:clamp(26px,3vw,38px);
+  margin-left:calc(clamp(40px,4.4vw,60px) * -1 + 1px);
+  margin-right:calc(clamp(40px,4.4vw,60px) * -1 + 1px);
+  margin-bottom:calc(clamp(38px,4.1vw,54px) * -1 + 1px);
+}
+#borzilov-lp #bz-meaning-bento .bz-support-bento__final .bz-inline-application{
+  border:1px solid rgba(255,253,248,.58);
+  border-radius:7px 7px 9px 9px;
+  background:#081A20;
+  overflow:hidden;
+}
+#borzilov-lp #bz-meaning-bento .bz-support-bento__final .bz-inline-application__toggle{
+  min-height:clamp(92px,8.2vw,118px);
+  padding:clamp(24px,2.8vw,34px) clamp(28px,3vw,36px);
+  border-radius:0 0 9px 9px;
+}
+#borzilov-lp #bz-meaning-bento .bz-support-bento__final .bz-inline-application.is-expanded .bz-inline-application__toggle{
+  min-height:66px;
+  padding:18px 22px 10px;
+  border-radius:0;
+}
+#borzilov-lp #bz-meaning-bento .bz-support-bento__final .bz-inline-application__toggle span{
+  font-size:clamp(26px,3.1vw,42px);
+  line-height:.94;
+  font-weight:850;
+  letter-spacing:-.055em;
+}
+#borzilov-lp #bz-meaning-bento .bz-support-bento__final .bz-inline-application__toggle i{
+  font-size:clamp(20px,2vw,28px);
+}
+@media(max-width:760px){
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__final-actions{
+    margin-top:26px;
+    margin-left:-23px;
+    margin-right:-23px;
+    margin-bottom:-41px;
+  }
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__final .bz-inline-application{border-radius:7px 7px 9px 9px}
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__final .bz-inline-application__toggle{
+    min-height:112px;
+    padding:25px 27px;
+    border-radius:0 0 9px 9px;
+  }
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__final .bz-inline-application__toggle span{font-size:clamp(30px,9.3vw,40px)}
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__final .bz-inline-application__toggle i{font-size:23px}
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__final .bz-inline-application.is-expanded .bz-inline-application__toggle{
+    min-height:60px;
+    padding:16px 18px 8px;
+    border-radius:0;
+  }
+}
+
+
+/* owner:0675-final-tariff-out-of-island
+   Break the island grammar once at the climax:
+   - price bridge lives on the dark inter-island field;
+   - tariff card becomes the only concrete object;
+   - question route lives outside the card.
+*/
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island{
+  background:transparent!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island > .bz1092-object,
+html body #borzilov-lp#borzilov-lp #bz1092-product-commercial-late{
+  overflow:visible!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge{
+  width:100%;
+  margin:0;
+  padding:clamp(10px,1.2vw,16px) clamp(24px,5vw,64px) clamp(18px,2.2vw,28px);
+  background:transparent!important;
+  border:0!important;
+  color:#fffaf3;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge p{
+  width:min(720px,100%);
+  margin:0 auto;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register{
+  padding-top:0!important;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__register{
+  border-radius:var(--r-object,6px)!important;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__action[data-analytics-cta-role="final-payment"]{
+  border-bottom-left-radius:var(--r-object,6px)!important;
+  border-bottom-right-radius:var(--r-object,6px)!important;
+}
+#borzilov-lp .pricing-register__post-question{
+  margin:clamp(16px,2vw,22px) auto 0;
+  padding:0;
+}
+@media(max-width:760px){
+  html body #borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island{
+    margin-top:var(--bz-island-gap,clamp(52px,15vw,88px))!important;
+  }
+  #borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge{
+    padding:8px 22px 16px;
+  }
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register{
+    padding:0 18px!important;
+  }
+  #borzilov-lp .pricing-register__post-question{
+    margin-top:14px;
+    padding:0 4px;
+  }
+}
+
+
+/* owner:0678-cta-volume-hierarchy
+   One CTA family, three loudness levels + one terminal purchase climax.
+   Mobile target curve: author ~125 -> meaning ~150 -> proof ~100 -> payment ~180. */
+
+/* 1 — EARLY AUTHOR EXIT: medium, available but not climactic. */
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-primary-application-cta{
+  min-height:112px!important;
+  padding:24px 28px!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-primary-application-cta span{
+  font-size:clamp(27px,3.25vw,42px)!important;
+}
+
+/* 2 — MEANING CHECKPOINT: strongest application CTA, with more air than type escalation. */
+#borzilov-lp #bz-meaning-bento .bz-support-bento__final .bz-inline-application:not(.is-expanded) .bz-inline-application__toggle{
+  min-height:142px!important;
+  padding:34px clamp(30px,3.4vw,42px)!important;
+}
+#borzilov-lp #bz-meaning-bento .bz-support-bento__final .bz-inline-application:not(.is-expanded) .bz-inline-application__toggle span{
+  font-size:clamp(31px,3.45vw,45px)!important;
+}
+#borzilov-lp #bz-meaning-bento .bz-support-bento__final .bz-inline-application:not(.is-expanded) .bz-inline-application__toggle i{
+  font-size:clamp(22px,2.2vw,30px)!important;
+}
+
+/* 3 — PROOF EXIT: compact checkpoint after social proof. */
+html body #borzilov-lp#borzilov-lp .bz-path-cta--proof-footer .bz-path-cta__talk-floor--primary{
+  min-height:98px!important;
+  padding:16px clamp(20px,4vw,28px) 18px!important;
+}
+html body #borzilov-lp#borzilov-lp .bz-path-cta--proof-footer .bz-path-cta__talk-main strong{
+  font-size:clamp(27px,2.85vw,36px)!important;
+}
+
+@media(max-width:760px){
+  /* medium */
+  html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-primary-application-cta{
+    min-height:126px!important;
+    padding:27px 27px!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-primary-application-cta span{
+    font-size:clamp(31px,9.2vw,39px)!important;
+  }
+
+  /* large checkpoint */
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__final .bz-inline-application:not(.is-expanded) .bz-inline-application__toggle{
+    min-height:150px!important;
+    padding:34px 27px 36px!important;
+  }
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__final .bz-inline-application:not(.is-expanded) .bz-inline-application__toggle span{
+    font-size:clamp(34px,10.1vw,42px)!important;
+    line-height:.92!important;
+  }
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__final .bz-inline-application:not(.is-expanded) .bz-inline-application__toggle i{
+    font-size:25px!important;
+  }
+
+  /* compact proof checkpoint */
+  html body #borzilov-lp#borzilov-lp .bz-path-cta--proof-footer .bz-path-cta__talk-floor--primary{
+    min-height:100px!important;
+    padding:16px 18px 17px!important;
+  }
+  html body #borzilov-lp#borzilov-lp .bz-path-cta--proof-footer .bz-path-cta__talk-main strong{
+    font-size:clamp(28px,8vw,34px)!important;
+  }
+}
+
+
+/* owner:0680-meaning-cta-true-full-bleed
+   Negative margins alone only shift the block; explicit width expansion makes the CTA truly span the island width. */
+#borzilov-lp #bz-meaning-bento .bz-support-bento__final-actions{
+  box-sizing:border-box;
+  width:calc(100% + ((clamp(40px,4.4vw,60px) - 1px) * 2));
+  margin-left:calc((clamp(40px,4.4vw,60px) - 1px) * -1);
+  margin-right:0;
+}
+@media(max-width:760px){
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__final-actions{
+    width:calc(100% + 46px);
+    margin-left:-23px;
+    margin-right:0;
+  }
+}
+
+
+/* owner:0681-final-offer-artifact
+   Final production composition:
+   FAQ ends the explanatory island language; then dark pause -> price argument -> standalone tariff artifact -> quiet question.
+*/
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island{
+  margin-top:clamp(72px,8vw,96px)!important;
+  background:transparent!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island > .bz1092-object,
+html body #borzilov-lp#borzilov-lp #bz1092-product-commercial-late{
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+
+/* Last author line: no card, no border, only typography on the dark field. */
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge{
+  width:100%!important;
+  margin:0!important;
+  padding:0 clamp(28px,5vw,64px) clamp(30px,3.2vw,38px)!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge p{
+  width:min(720px,100%)!important;
+  margin:0 auto!important;
+}
+
+/* The pricing component owns no page-width surface. The register itself is the object. */
+#borzilov-lp #bz1092-product-commercial-late .pricing-register{
+  width:100%!important;
+  margin:0!important;
+  padding:0 clamp(14px,1.7vw,22px)!important;
+  background:transparent!important;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__register{
+  width:100%!important;
+  margin:0 auto!important;
+  overflow:hidden!important;
+  border-radius:10px!important;
+  box-shadow:
+    0 18px 50px rgba(0,0,0,.13),
+    0 2px 6px rgba(8,26,32,.05),
+    0 1px 0 rgba(255,255,255,.46) inset,
+    0 -1px 0 rgba(108,110,114,.09) inset!important;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__action[data-analytics-cta-role="final-payment"]{
+  border-radius:0 0 10px 10px!important;
+}
+
+/* Secondary route belongs to the dark page field, never to the tariff artifact. */
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__post-question{
+  width:calc(100% - clamp(28px,3.4vw,44px))!important;
+  margin:clamp(24px,2.7vw,32px) auto 0!important;
+  padding:0!important;
+  background:transparent!important;
+}
+
+@media(max-width:760px){
+  html body #borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island{
+    margin-top:64px!important;
+  }
+  #borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge{
+    padding:0 18px 32px!important;
+  }
+  #borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge p{
+    width:100%!important;
+  }
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register{
+    padding:0 14px!important;
+  }
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register__register{
+    border-radius:8px!important;
+  }
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register__action[data-analytics-cta-role="final-payment"]{
+    border-radius:0 0 8px 8px!important;
+  }
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register__post-question{
+    width:calc(100% - 28px)!important;
+    margin:26px auto 0!important;
+    padding:0 2px!important;
+  }
+}
+
+
+/* owner:0693-inline-application-morph-light-fields
+   Closed CTA -> the same slab morphs into the form.
+   In expanded/success states the original CTA header fully disappears;
+   the data-entry zones become light while the surrounding object stays dark. */
+#borzilov-lp #bz-meaning-bento .bz-inline-application__toggle{
+  overflow:hidden;
+  transition:min-height .34s cubic-bezier(.2,.76,.2,1),
+             max-height .34s cubic-bezier(.2,.76,.2,1),
+             padding .34s cubic-bezier(.2,.76,.2,1),
+             opacity .2s ease,
+             border-color .2s ease,
+             transform .2s ease;
+}
+#borzilov-lp #bz-meaning-bento .bz-inline-application.is-expanded .bz-inline-application__toggle,
+#borzilov-lp #bz-meaning-bento .bz-inline-application.is-success .bz-inline-application__toggle{
+  min-height:0!important;
+  max-height:0!important;
+  height:0!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+#borzilov-lp #bz-meaning-bento .bz-inline-application.is-expanded .bz-inline-application__panel,
+#borzilov-lp #bz-meaning-bento .bz-inline-application.is-success .bz-inline-application__panel{
+  padding-top:clamp(22px,2.4vw,30px)!important;
+}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__field:not(.bz-inline-application__field--channel){
+  gap:7px;
+  padding:13px 15px 14px;
+  border:1px solid rgba(8,26,32,.10);
+  border-radius:6px;
+  background:#F3EEE4;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.58);
+}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__field:not(.bz-inline-application__field--channel) label{
+  color:rgba(8,26,32,.58)!important;
+  font-size:10.5px;
+  letter-spacing:.11em;
+}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__field:not(.bz-inline-application__field--channel) input{
+  color:#081A20!important;
+  caret-color:#B94F35;
+}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__field:not(.bz-inline-application__field--channel) input::placeholder{
+  color:rgba(8,26,32,.38)!important;
+}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__field:not(.bz-inline-application__field--channel):focus-within{
+  border-color:rgba(185,79,53,.52);
+  box-shadow:0 0 0 1px rgba(185,79,53,.10),inset 0 1px 0 rgba(255,255,255,.62);
+}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__field:not(.bz-inline-application__field--channel).is-invalid{
+  border-color:#B94F35!important;
+}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__field--channel{
+  padding-bottom:16px;
+  border-bottom:1px solid rgba(255,253,248,.14);
+}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__submit{
+  margin-top:2px;
+  padding-top:22px;
+}
+@media(max-width:760px){
+  #borzilov-lp #bz-meaning-bento .bz-inline-application.is-expanded .bz-inline-application__panel,
+  #borzilov-lp #bz-meaning-bento .bz-inline-application.is-success .bz-inline-application__panel{
+    padding-top:20px!important;
+  }
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__field:not(.bz-inline-application__field--channel){
+    padding:12px 14px 13px;
+  }
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__field:not(.bz-inline-application__field--channel) input{
+    font-size:27px!important;
+  }
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__submit{
+    padding-top:20px;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__toggle{transition:none!important}
+}
+
+
+/* owner:0696-author-cta-sheet-trigger
+   The author CTA is a button again because it owns its application sheet instead of navigating to the inline form. */
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only button.bz-primary-application-cta{
+  appearance:none!important;
+  -webkit-appearance:none!important;
+  font:inherit!important;
+  text-align:left!important;
+  cursor:pointer!important;
+}

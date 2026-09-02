@@ -1,0 +1,60 @@
+/* owner:0716-pricing-cost-context
+   Final tariff contains the smoking-cost comparison as a quiet internal price context.
+   Calculator / utility detour is removed from the decision object. */
+html body #borzilov-lp#borzilov-lp #bz1092-product-commercial-late .pricing-register__cost-context{
+  position:relative!important;
+  z-index:1!important;
+  display:grid!important;
+  gap:6px!important;
+  margin:0!important;
+  padding:clamp(17px,2vw,22px) clamp(20px,3vw,34px) clamp(16px,1.8vw,20px)!important;
+  border-bottom:1px solid rgba(108,110,114,.16)!important;
+  background:rgba(248,246,242,.88)!important;
+  color:#081A20!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-commercial-late .pricing-register__cost-context p{
+  margin:0!important;
+  max-width:34ch!important;
+  color:#081A20!important;
+  font-size:clamp(15px,1.45vw,18px)!important;
+  line-height:1.08!important;
+  font-weight:800!important;
+  letter-spacing:-.034em!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-commercial-late .pricing-register__cost-context p strong{
+  color:#B85C3D!important;
+  -webkit-text-fill-color:#B85C3D!important;
+  font:inherit!important;
+  font-weight:900!important;
+  white-space:nowrap!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-commercial-late .pricing-register__cost-context>span{
+  color:rgba(8,26,32,.56)!important;
+  font-size:clamp(11px,1vw,12.5px)!important;
+  line-height:1.25!important;
+  font-weight:650!important;
+  letter-spacing:-.012em!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-commercial-late .pricing-register__cost-context>span b{
+  color:rgba(8,26,32,.74)!important;
+  font:inherit!important;
+  font-weight:780!important;
+}
+@media(max-width:760px){
+  html body #borzilov-lp#borzilov-lp #bz1092-product-commercial-late .pricing-register__cost-context{
+    gap:5px!important;
+    padding:16px 18px 15px!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz1092-product-commercial-late .pricing-register__cost-context p{
+    max-width:27ch!important;
+    font-size:15px!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz1092-product-commercial-late .pricing-register__cost-context>span{
+    font-size:11px!important;
+  }
+}
+
+/* The final tariff is now a straight decision object: price context -> tariff -> payment. */
+html body #borzilov-lp#borzilov-lp #bz1092-product-commercial-late .pricing-register__active{
+  border-bottom:1px solid rgba(108,110,114,.16)!important;
+}

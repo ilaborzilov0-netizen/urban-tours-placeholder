@@ -1,0 +1,37 @@
+/* owner:0711-global-external-chapter-placement
+   One authoritative placement for every chapter badge that lives OUTSIDE an island.
+   Reference geometry = 04 / ЧЕСТНЫЕ ВОПРОСЫ -> guarantee island:
+   158px act break before badge, 6px badge-to-island attachment, target island starts at margin-top:0.
+*/
+
+html body #borzilov-lp#borzilov-lp#borzilov-lp .bz-global-chapter-label[data-bz-island-chapter-for]{
+  margin-top:158px!important;
+  margin-bottom:6px!important;
+}
+
+/* Kill any historical island-side gap so the badge actually lands 6px from its island. */
+html body #borzilov-lp#borzilov-lp#borzilov-lp .bz-global-chapter-label[data-bz-island-chapter-for="bz-second-method-island"] + #bz-second-method-island,
+html body #borzilov-lp#borzilov-lp#borzilov-lp .bz-global-chapter-label[data-bz-island-chapter-for="bz-d10"] + #bz-d10,
+html body #borzilov-lp#borzilov-lp#borzilov-lp .bz-global-chapter-label[data-bz-island-chapter-for="bz-chapter-03"] + #bz-chapter-03,
+html body #borzilov-lp#borzilov-lp#borzilov-lp .bz-global-chapter-label[data-bz-island-chapter-for="bz-guarantee-island"] + #bz-guarantee-island{
+  margin-top:0!important;
+}
+
+@media(max-width:760px){
+  html body #borzilov-lp#borzilov-lp#borzilov-lp .bz-global-chapter-label[data-bz-island-chapter-for]{
+    margin-top:158px!important;
+    margin-bottom:6px!important;
+  }
+}
+
+/* owner:0736-author-to-method-gap-half
+   After removing the former blue meaning island, halve only the transition
+   from the author/photo island to chapter 01: 158px -> 79px. */
+html body #borzilov-lp#borzilov-lp#borzilov-lp .bz-global-chapter-label[data-bz-island-chapter-for="bz-second-method-island"]{
+  margin-top:79px!important;
+}
+@media(max-width:760px){
+  html body #borzilov-lp#borzilov-lp#borzilov-lp .bz-global-chapter-label[data-bz-island-chapter-for="bz-second-method-island"]{
+    margin-top:79px!important;
+  }
+}

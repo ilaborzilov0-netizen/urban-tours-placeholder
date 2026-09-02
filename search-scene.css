@@ -1,0 +1,119 @@
+/* owner:search-scene-0548
+   Existing search illustration + natural-scroll scrub motion.
+   Static HTML is the final fallback; motion only changes opacity/transform and query text. */
+#borzilov-lp #bz-author-poster-second-screen .bz-author-poster{
+  grid-template-areas:"mast" "photo" "search" "methods" "body" "author" "verdict" "bridge" "footer";
+}
+#borzilov-lp #bz-author-poster-second-screen .search-scene{
+  grid-area:search;
+  width:100%;
+  max-width:none;
+  margin:clamp(44px,5.2vw,66px) auto 0;
+  color:var(--poster-ink);
+}
+#borzilov-lp #bz-author-poster-second-screen .search-scene__header,
+#borzilov-lp #bz-author-poster-second-screen .search-scene__bridge{
+  width:min(100%,640px);
+  margin-inline:auto;
+}
+#borzilov-lp #bz-author-poster-second-screen .search-scene__header{margin-bottom:clamp(32px,4vw,46px)}
+#borzilov-lp #bz-author-poster-second-screen .search-scene__title{
+  margin:0;max-width:36ch;color:var(--poster-ink);font-size:clamp(16px,1.45vw,20px);line-height:1.35;font-weight:620;letter-spacing:-.026em;text-transform:none;
+}
+#borzilov-lp #bz-author-poster-second-screen .search-scene__title p{margin:0}
+#borzilov-lp #bz-author-poster-second-screen .search-scene__title p + p{margin-top:1.18em}
+
+/* The old production version deliberately bled to the island edges.
+   This scene now sits inside the author-poster rail, leaving real island air. */
+#borzilov-lp #bz-author-poster-second-screen .search-scene__stage{
+  position:relative;
+  width:min(100%,820px);
+  min-height:360px;
+  margin-inline:auto;
+}
+#borzilov-lp #bz-author-poster-second-screen .search-scene__bridge{
+  margin-top:clamp(20px,2.4vw,30px);padding-top:clamp(16px,1.8vw,22px);border-top:1px solid rgba(255,255,255,.13);color:var(--poster-muted);font-size:clamp(14px,1.23vw,18px);line-height:1.42;font-weight:620;letter-spacing:-.022em;
+}
+#borzilov-lp #bz-author-poster-second-screen .search-scene__bridge strong,
+#borzilov-lp #bz-author-poster-second-screen .search-scene__bridge span{display:block}
+#borzilov-lp #bz-author-poster-second-screen .search-scene__bridge strong{color:var(--poster-ink);font:inherit;font-weight:760}
+#borzilov-lp #bz-author-poster-second-screen .search-scene__bridge span{margin-top:.16em}
+#borzilov-lp #bz-author-poster-second-screen .search-real{
+  width:100%;
+  max-width:none;
+  margin:0;
+  border:1px solid rgba(41,45,48,.12);
+  border-radius:var(--r-scene,10px);
+  background:#e7e7ea;
+  box-shadow:0 20px 48px rgba(0,0,0,.14);
+  overflow:hidden;
+  transform-origin:50% 50%;
+}
+#borzilov-lp #bz-author-poster-second-screen .search-real__top{background:#e7e7ea}
+#borzilov-lp #bz-author-poster-second-screen .search-real__bar{
+  display:grid;grid-template-columns:32px minmax(0,1fr) 32px auto;align-items:center;gap:10px;
+  min-height:70px;padding:0 6px 0 14px;background:#ffffff;border-bottom:1px solid rgba(40,40,44,.06);
+}
+#borzilov-lp #bz-author-poster-second-screen .search-real__back{position:relative;display:block;width:24px;height:24px}
+#borzilov-lp #bz-author-poster-second-screen .search-real__back i{position:absolute;left:3px;top:10px;display:block;width:18px;height:2.2px;background:#2b2b2b;border-radius:2px}
+#borzilov-lp #bz-author-poster-second-screen .search-real__back i::before,
+#borzilov-lp #bz-author-poster-second-screen .search-real__back i::after{content:"";position:absolute;left:-1px;width:11px;height:2.2px;background:#2b2b2b;border-radius:2px;transform-origin:left center}
+#borzilov-lp #bz-author-poster-second-screen .search-real__back i::before{top:0;transform:rotate(-45deg)}
+#borzilov-lp #bz-author-poster-second-screen .search-real__back i::after{top:0;transform:rotate(45deg)}
+#borzilov-lp #bz-author-poster-second-screen .search-real__query{min-width:0;color:#111;font-size:19px;font-weight:500;line-height:1.1;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#borzilov-lp #bz-author-poster-second-screen .search-real__clear{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;background:#b6b6b9;color:#fff;font-size:22px;line-height:1}
+#borzilov-lp #bz-author-poster-second-screen .search-real__clear i{display:block;transform:translateY(-1px);font-style:normal}
+#borzilov-lp #bz-author-poster-second-screen .search-real__submit{display:inline-flex;align-items:center;justify-content:center;min-width:85px;height:50px;padding:0 18px;border-radius:14px;background:#ffd100;color:#171717;font-size:18px;font-weight:560;box-shadow:inset 0 1px 0 rgba(255,255,255,.4);transition:opacity .16s ease,box-shadow .16s ease,transform .16s ease}
+
+#borzilov-lp #bz-author-poster-second-screen .search-real__results{
+  padding:12px 0 8px;background:#e7e7ea;
+}
+#borzilov-lp #bz-author-poster-second-screen .search-real__result{
+  margin:0 10px; padding:12px 14px; background:#f9f9fa; border:1px solid rgba(52,55,59,.08);
+  border-radius:14px; color:#111; font-size:17px; font-weight:430; line-height:1.32; letter-spacing:-.018em;
+  box-shadow:0 1px 0 rgba(255,255,255,.8);
+}
+#borzilov-lp #bz-author-poster-second-screen .search-real__result + .search-real__result{margin-top:8px}
+#borzilov-lp #bz-author-poster-second-screen .search-real__result-text{display:block;max-width:31ch}
+
+/* Motion is opt-in only after JS has initialized. Without JS, the complete card above remains visible. */
+#borzilov-lp #bz-author-poster-second-screen .search-scene.is-search-scrub-enabled .search-real{
+  opacity:var(--search-shell-opacity,.18);
+  transform:translate3d(0,var(--search-shell-y,8px),0);
+}
+#borzilov-lp #bz-author-poster-second-screen .search-scene.is-search-scrub-enabled .search-real__result{
+  opacity:var(--search-result-opacity,0);
+  transform:translate3d(0,var(--search-result-y,14px),0);
+}
+#borzilov-lp #bz-author-poster-second-screen .search-scene.is-search-scrub-enabled.is-search-scrub-active .search-real,
+#borzilov-lp #bz-author-poster-second-screen .search-scene.is-search-scrub-enabled.is-search-scrub-active .search-real__result{
+  will-change:opacity,transform;
+}
+#borzilov-lp #bz-author-poster-second-screen .search-scene.is-search-scrub-enabled .search-real__submit:not(.is-ready){
+  opacity:.72;
+}
+#borzilov-lp #bz-author-poster-second-screen .search-scene.is-search-scrub-enabled .search-real__submit.is-ready{
+  opacity:1;
+  transform:translate3d(0,-1px,0);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 0 0 3px rgba(255,209,0,.16);
+}
+
+@media(max-width:760px){
+  #borzilov-lp #bz-author-poster-second-screen .search-scene{width:100%;margin-top:42px}
+  #borzilov-lp #bz-author-poster-second-screen .search-scene__header,
+  #borzilov-lp #bz-author-poster-second-screen .search-scene__bridge{width:100%}
+  #borzilov-lp #bz-author-poster-second-screen .search-scene__header{margin-bottom:34px}
+  #borzilov-lp #bz-author-poster-second-screen .search-scene__title{max-width:31ch;font-size:clamp(15px,4.15vw,17.5px);line-height:1.38}
+  #borzilov-lp #bz-author-poster-second-screen .search-scene__stage{width:100%;min-height:332px}
+  #borzilov-lp #bz-author-poster-second-screen .search-real{width:100%}
+  #borzilov-lp #bz-author-poster-second-screen .search-real__bar{grid-template-columns:28px minmax(0,1fr) 28px auto;gap:8px;min-height:64px;padding:0 4px 0 10px}
+  #borzilov-lp #bz-author-poster-second-screen .search-real__query{font-size:17px}
+  #borzilov-lp #bz-author-poster-second-screen .search-real__submit{min-width:76px;height:46px;padding:0 14px;font-size:17px}
+  #borzilov-lp #bz-author-poster-second-screen .search-real__result{margin:0 8px;padding:11px 13px;font-size:16px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp #bz-author-poster-second-screen .search-real,
+  #borzilov-lp #bz-author-poster-second-screen .search-real__result,
+  #borzilov-lp #bz-author-poster-second-screen .search-real__submit{opacity:1!important;transform:none!important;transition:none!important;will-change:auto!important}
+}

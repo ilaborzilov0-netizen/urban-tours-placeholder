@@ -1,0 +1,35 @@
+/* 0140 — production bridge mechanism. Former lab V4: large numerals. */
+#borzilov-lp .bz-bridge-mechanism{--bm-ink:#081A20;--bm-copper:#B9704D;--bm-paper:#FFFDF8;--bm-soft:#F3EFE8;--bm-line:rgba(8,26,32,.14);padding:0 20px 26px;background:#FFFDF8;color:var(--bm-ink)}
+#borzilov-lp .bz-mech-layout,#borzilov-lp .bz-mech-layout *{box-sizing:border-box}
+#borzilov-lp .bz-mech-layout{padding-top:22px}
+#borzilov-lp .bz-mech-intro{margin-bottom:18px}
+#borzilov-lp .bz-mech-intro>span{display:block;margin-bottom:10px;color:var(--bm-copper);font-size:9.5px;line-height:1;font-weight:850;letter-spacing:.14em;text-transform:uppercase}
+#borzilov-lp .bz-mech-intro h3{margin:0;max-width:25ch;font-size:24px;line-height:1.04;letter-spacing:-.042em;font-weight:820}
+#borzilov-lp .bz-mech-intro h3 em{color:var(--bm-copper);font-style:normal}
+#borzilov-lp .bz-mech-stack{display:grid;gap:8px}
+#borzilov-lp .bz-mech-step{position:relative;display:grid;grid-template-columns:76px minmax(0,1fr);gap:12px;padding:18px 0;border-top:1px solid var(--bm-line)}
+#borzilov-lp .bz-mech-step:last-child{border-bottom:1px solid var(--bm-line)}
+#borzilov-lp .bz-mech-num{color:rgba(185,112,77,.75);font-size:48px;line-height:.8;font-weight:850;letter-spacing:-.06em}
+#borzilov-lp .bz-mech-copy small{display:block;margin:0 0 6px;color:var(--bm-copper);font-size:9px;line-height:1.05;font-weight:850;letter-spacing:.105em;text-transform:uppercase}
+#borzilov-lp .bz-mech-copy h4{margin:0 0 9px;color:var(--bm-ink);font-size:18px;line-height:1.03;letter-spacing:-.035em;font-weight:850;max-width:30ch}
+#borzilov-lp .bz-mech-copy p{margin:0;color:rgba(8,26,32,.70);font-size:13.5px;line-height:1.39;font-weight:520;letter-spacing:-.012em}
+#borzilov-lp .bz-mech-copy p+p{margin-top:8px}
+#borzilov-lp .bz-mech-copy>strong{display:block;margin-top:10px;color:var(--bm-ink);font-size:13.5px;line-height:1.31;font-weight:760;letter-spacing:-.016em}
+#borzilov-lp .bz-mech-copy blockquote{margin:12px 0 0;padding:12px 13px;border-left:3px solid var(--bm-copper);background:var(--bm-soft);color:var(--bm-ink);font-size:16px;line-height:1.14;font-weight:720;letter-spacing:-.025em}
+#borzilov-lp .bz-mech-copy blockquote b{color:var(--bm-copper)}
+#borzilov-lp .bz-mech-route{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-top:11px;padding:10px 11px;background:#071A20;color:#FFFDF8;font-size:10px;line-height:1.15;font-weight:720}
+#borzilov-lp .bz-mech-route i{color:var(--bm-copper);font-style:normal;font-weight:900}
+#borzilov-lp .bz-mech-final{display:block;margin-top:18px;padding-top:15px;border-top:1px solid var(--bm-line);color:var(--bm-ink);font-size:15px;line-height:1.24;font-weight:760;letter-spacing:-.023em}
+#borzilov-lp .bz-mech-final em{color:var(--bm-copper);font-style:normal;font-weight:850}
+@media(min-width:761px){#borzilov-lp .bz-bridge-mechanism{padding-left:clamp(34px,4vw,54px);padding-right:clamp(34px,4vw,54px)}}
+@media(max-width:760px){
+  #borzilov-lp .bz-bridge-mechanism{padding:0 20px 24px}
+  #borzilov-lp .bz-mech-layout{padding-top:18px}
+  #borzilov-lp .bz-mech-intro h3{font-size:20px;max-width:23ch}
+  #borzilov-lp .bz-mech-step{grid-template-columns:52px minmax(0,1fr);gap:10px;padding:14px 0}
+  #borzilov-lp .bz-mech-num{font-size:34px}
+  #borzilov-lp .bz-mech-copy h4{font-size:15.5px}
+  #borzilov-lp .bz-mech-copy p,#borzilov-lp .bz-mech-copy>strong{font-size:12.5px}
+  #borzilov-lp .bz-mech-copy blockquote{font-size:14px;padding:10px 11px}
+  #borzilov-lp .bz-mech-final{font-size:13.5px}
+}

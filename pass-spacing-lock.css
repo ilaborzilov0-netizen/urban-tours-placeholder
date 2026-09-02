@@ -1,0 +1,52 @@
+/* owner:pass-spacing-lock-0649
+   LOCKED: accepted breathing-zone height = 190px. Tuning UI removed.
+   The final tariff owns the whole island: no exterior inset on either axis.
+   Its two upper corners mirror the late island; the lower edge stays square. */
+html body #borzilov-lp#borzilov-lp .bz-pass-after-island .bz-pass-reveal-stage.bz-pass-spacing-lock-active{
+  --bz-final-tariff-top-radius:10px;
+  place-items:start stretch!important;
+  min-height:0!important;
+  height:auto!important;
+  padding:0!important;
+}
+html body #borzilov-lp#borzilov-lp .bz-pass-after-island .bz-pass-reveal-stage.bz-pass-spacing-lock-active .pricing-register__register{
+  border-radius:var(--bz-final-tariff-top-radius) var(--bz-final-tariff-top-radius) 0 0!important;
+}
+html body #borzilov-lp#borzilov-lp .bz-pass-after-island .bz-pass-reveal-stage.bz-pass-spacing-lock-active .pricing-register__talk-floor{
+  border-radius:0!important;
+}
+html body #borzilov-lp#borzilov-lp .bz-pass-after-island .bz-pass-reveal-stage.bz-pass-spacing-lock-active > .pricing-register{
+  align-self:stretch!important;
+  justify-self:stretch!important;
+  width:100%!important;
+  max-width:none!important;
+  min-height:0!important;
+  height:auto!important;
+  margin:0!important;
+  padding:0!important;
+}
+#borzilov-lp .bz-pass-reveal-stage.bz-pass-spacing-lock-active[data-vertical-rhythm="03"] .pricing-register__register{
+  min-height:0!important;
+  align-content:start!important;
+  grid-template-rows:auto 190px auto auto auto!important;
+}
+#borzilov-lp .bz-pass-reveal-stage.bz-pass-spacing-lock-active .bz-pass-breathing-zone{
+  min-height:0!important;
+  height:auto!important;
+}
+@media(max-width:760px){
+  html body #borzilov-lp#borzilov-lp .bz-pass-after-island .bz-pass-reveal-stage.bz-pass-spacing-lock-active{
+    --bz-final-tariff-top-radius:7px;
+    --pass-stage-x:0px;
+    --pass-stage-y:0px;
+    min-height:0!important;
+    padding:0!important;
+  }
+  html body #borzilov-lp#borzilov-lp .bz-pass-after-island .bz-pass-reveal-stage.bz-pass-spacing-lock-active > .pricing-register{
+    width:100%!important;
+    max-width:none!important;
+    min-height:0!important;
+    height:auto!important;
+    margin:0!important;
+  }
+}
