@@ -285,7 +285,7 @@
             </div>
 
             <div class="cta-wrap">
-              <a class="cta" id="mainCta" data-max-cta href="https://max.ru/id312334031550_biz/AaBg7LuSNe0" target="_blank" rel="noopener noreferrer">
+              <a class="cta" id="mainCta" data-max-cta data-max-entry href="https://max.ru/id312334031550_biz/AZ_nYsNhVvc" target="_blank" rel="noopener noreferrer">
                 <span class="cta__copy">
                   <span class="cta__title">Разобрать этот механизм в MAX</span>
                 </span>
@@ -313,6 +313,47 @@
   </div>
 
 
+
+  <script id="max-entry-clientid-bridge">
+    (function () {
+      const MAX_ENTRY =
+        'https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/max/entry';
+
+      const METRIKA_ID = 110906734;
+
+      function makeMaxUrl(clientID) {
+        const target = new URL(MAX_ENTRY);
+        const incoming = new URLSearchParams(window.location.search);
+
+        incoming.forEach(function (value, key) {
+          target.searchParams.append(key, value);
+        });
+
+        target.searchParams.set('cid', clientID);
+        return target.toString();
+      }
+
+      function prepareMaxLinks() {
+        if (typeof window.ym !== 'function') return;
+
+        ym(METRIKA_ID, 'getClientID', function (clientID) {
+          if (!clientID) return;
+
+          document
+            .querySelectorAll('[data-max-entry]')
+            .forEach(function (link) {
+              link.href = makeMaxUrl(clientID);
+            });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', prepareMaxLinks);
+      } else {
+        prepareMaxLinks();
+      }
+    })();
+  </script>
 
   <noscript><div><img src="https://mc.yandex.ru/watch/110906734" style="position:absolute;left:-9999px" alt=""></div></noscript>
   <script>
