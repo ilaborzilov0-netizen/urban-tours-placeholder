@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <title>Переход в MAX</title>
+  <script src="https://st.max.ru/js/max-web-app.js"></script>
+  <script>
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=110906734','ym');
+    ym(110906734,'init',{ssr:true,webvisor:false,clickmap:false,accurateTrackBounce:true,trackLinks:false});
+  </script>
+  <style>html,body{margin:0;width:100%;height:100%;background:#fff;overflow:hidden}</style>
+</head>
+<body>
+<script>
+(function(){
+  'use strict';
+
+  var COUNTER_ID = 110906734;
+  var EXACT_ENTRY = 'https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/max/exact-entry';
+  var EXACT_BIND = 'https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/max/exact-bind';
+  var JOIN_URL = 'https://max.ru/join/oXI8UBJo7dAux-4zLl67XE8h3YNC7LHDcbTSJidgtqU';
+  var finished = false;
+
+  function hashInitData(){
+    try { return new URLSearchParams(location.hash.slice(1)).get('WebAppData') || ''; }
+    catch(e){ return ''; }
+  }
+
+  function initData(){
+    try {
+      if(window.WebApp && typeof window.WebApp.initData === 'string' && window.WebApp.initData) return window.WebApp.initData;
+    } catch(e) {}
+    return hashInitData();
+  }
+
+  function startParam(raw){
+    try { return new URLSearchParams(raw).get('start_param') || ''; }
+    catch(e){ return ''; }
+  }
+
+  function openJoin(){
+    if(finished) return;
+    finished = true;
+    try {
+      if(window.WebApp && typeof window.WebApp.ready === 'function') window.WebApp.ready();
+      if(window.WebApp && typeof window.WebApp.openMaxLink === 'function'){
+        var r = window.WebApp.openMaxLink(JOIN_URL);
+        if(r && typeof r.catch === 'function') r.catch(function(){ location.replace(JOIN_URL); });
+        setTimeout(function(){ try { location.replace(JOIN_URL); } catch(e) {} },700);
+        return;
+      }
+    } catch(e) {}
+    location.replace(JOIN_URL);
+  }
+
+  function bindExact(raw){
+    fetch(EXACT_BIND,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({initData:raw}),
+      cache:'no-store'
+    })
+    .then(function(r){ if(!r.ok) throw new Error('bind '+r.status); return r.json(); })
+    .then(function(data){ if(!data || !data.bound) throw new Error('not bound'); openJoin(); })
+    .catch(function(){ openJoin(); });
+    setTimeout(openJoin,1400);
+  }
+
+  var raw = initData();
+  var sp = startParam(raw);
+  if(raw && /^ex_[A-Za-z0-9_-]{8,120}$/.test(sp)){
+    bindExact(raw);
+    return;
+  }
+
+  function cookieClientId(){
+    var m = document.cookie.match(/(?:^|;\s*)_ym_uid=(\d+)/);
+    return m && m[1] ? m[1] : '';
+  }
+
+  function goExact(clientId){
+    if(finished || !/^\d+$/.test(String(clientId || ''))) return;
+    finished = true;
+    var target = new URL(EXACT_ENTRY);
+    var incoming = new URLSearchParams(location.search);
+    incoming.forEach(function(value,key){ target.searchParams.append(key,value); });
+    target.searchParams.set('cid',String(clientId));
+    target.searchParams.set('source_page','marafon-metod.ru/max-exact');
+    location.replace(target.toString());
+  }
+
+  var existing = cookieClientId();
+  if(existing){ goExact(existing); return; }
+
+  try { ym(COUNTER_ID,'getClientID',function(clientId){ goExact(clientId); }); } catch(e) {}
+
+  var tries=0;
+  var poll=setInterval(function(){
+    if(finished){ clearInterval(poll); return; }
+    var cid=cookieClientId();
+    if(cid){ clearInterval(poll); goExact(cid); return; }
+    tries+=1;
+    if(tries>=30) clearInterval(poll);
+  },50);
+
+  setTimeout(function(){ if(!finished) location.replace(JOIN_URL); },2200);
+})();
+</script>
+</body>
+</html>
