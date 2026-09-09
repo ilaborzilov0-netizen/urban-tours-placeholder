@@ -18,6 +18,7 @@
     .desc{max-width:520px;margin:34px auto 0;text-align:center;font-size:20px;line-height:1.45;color:#171a1f;white-space:pre-line}
     .spacer{flex:1;min-height:42px}
     .subscribe{appearance:none;border:0;width:100%;max-width:620px;height:72px;border-radius:24px;background:#0d86f7;color:#fff;font-size:22px;font-weight:760;cursor:pointer;box-shadow:none}
+    .subscribe:disabled{opacity:.72}
     .subscribe:active{transform:scale(.995)}
     .status{min-height:22px;margin-top:12px;font-size:13px;color:#7b8189;text-align:center}
     @media (max-width:520px){
@@ -47,7 +48,10 @@
   (function(){
     'use strict';
 
-    var CHANNEL_URL = 'https://max.ru/id312334031550_biz';
+    var FALLBACK_CHANNEL_URL = 'https://max.ru/id312334031550_biz';
+    var CHANNEL_LINK_API = 'https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/max/channel-link';
+    var channelUrl = FALLBACK_CHANNEL_URL;
+    var channelLinkSource = 'fallback';
     var button = document.getElementById('subscribe');
     var status = document.getElementById('status');
 
@@ -56,19 +60,31 @@
       if(window.WebApp && typeof window.WebApp.expand === 'function') window.WebApp.expand();
     } catch(e) {}
 
+    // VARIANT 3: ask our backend for the canonical Chat.link returned by MAX.
+    // For some channel types this can be an invite/join deeplink rather than the
+    // public nickname URL. We preload it before the user taps Subscribe so the
+    // actual openMaxLink call is still performed directly from a real gesture.
+    fetch(CHANNEL_LINK_API, { cache:'no-store' })
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        if(data && typeof data.link === 'string' && /^https:\/\/max\.ru\//i.test(data.link)){
+          channelUrl = data.link;
+          channelLinkSource = data.source || 'api';
+        }
+      })
+      .catch(function(){ /* fallback stays active */ });
+
     function openChannel(){
       button.disabled = true;
       status.textContent = '';
 
-      // VARIANT 2: the channel handoff happens only from a real user gesture.
-      // This tests whether MAX treats a click-initiated handoff differently from
-      // the automatic openMaxLink used in variant 1.
       try {
         if(window.WebApp && typeof window.WebApp.openMaxLink === 'function'){
-          var r = window.WebApp.openMaxLink(CHANNEL_URL);
+          var r = window.WebApp.openMaxLink(channelUrl);
           if(r && typeof r.then === 'function'){
             r.catch(function(){
-              window.location.href = CHANNEL_URL;
+              try { window.location.href = channelUrl; }
+              catch(e) { status.textContent = 'Не удалось открыть канал'; }
             });
           }
           setTimeout(function(){ button.disabled = false; }, 1200);
@@ -76,15 +92,17 @@
         }
       } catch(e) {}
 
-      try {
-        window.location.href = CHANNEL_URL;
-      } catch(e) {
+      try { window.location.href = channelUrl; }
+      catch(e) {
         status.textContent = 'Не удалось открыть канал';
         button.disabled = false;
       }
     }
 
     button.addEventListener('click', openChannel);
+
+    // Tiny hidden diagnostic hook for manual console checks without affecting UX.
+    window.__MAX_VARIANT3__ = function(){ return { channelUrl: channelUrl, source: channelLinkSource }; };
   })();
   </script>
 </body>
