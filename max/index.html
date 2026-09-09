@@ -48,10 +48,9 @@
   (function(){
     'use strict';
 
-    var FALLBACK_CHANNEL_URL = 'https://max.ru/id312334031550_biz';
-    var CHANNEL_LINK_API = 'https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/max/channel-link';
-    var channelUrl = FALLBACK_CHANNEL_URL;
-    var channelLinkSource = 'fallback';
+    // VARIANT 5: private-channel invite deeplink. This is the decisive test:
+    // unlike a public channel URL, /join/ represents an actual join flow.
+    var JOIN_URL = 'https://max.ru/join/oXI8UBJo7dAux-4zLl67XE8h3YNC7LHDcbTSJidgtqU';
     var button = document.getElementById('subscribe');
     var status = document.getElementById('status');
 
@@ -60,31 +59,17 @@
       if(window.WebApp && typeof window.WebApp.expand === 'function') window.WebApp.expand();
     } catch(e) {}
 
-    // VARIANT 3: ask our backend for the canonical Chat.link returned by MAX.
-    // For some channel types this can be an invite/join deeplink rather than the
-    // public nickname URL. We preload it before the user taps Subscribe so the
-    // actual openMaxLink call is still performed directly from a real gesture.
-    fetch(CHANNEL_LINK_API, { cache:'no-store' })
-      .then(function(r){ return r.json(); })
-      .then(function(data){
-        if(data && typeof data.link === 'string' && /^https:\/\/max\.ru\//i.test(data.link)){
-          channelUrl = data.link;
-          channelLinkSource = data.source || 'api';
-        }
-      })
-      .catch(function(){ /* fallback stays active */ });
-
-    function openChannel(){
+    function joinChannel(){
       button.disabled = true;
       status.textContent = '';
 
       try {
         if(window.WebApp && typeof window.WebApp.openMaxLink === 'function'){
-          var r = window.WebApp.openMaxLink(channelUrl);
+          var r = window.WebApp.openMaxLink(JOIN_URL);
           if(r && typeof r.then === 'function'){
             r.catch(function(){
-              try { window.location.href = channelUrl; }
-              catch(e) { status.textContent = 'Не удалось открыть канал'; }
+              try { window.location.href = JOIN_URL; }
+              catch(e) { status.textContent = 'Не удалось открыть приглашение'; }
             });
           }
           setTimeout(function(){ button.disabled = false; }, 1200);
@@ -92,17 +77,15 @@
         }
       } catch(e) {}
 
-      try { window.location.href = channelUrl; }
+      try { window.location.href = JOIN_URL; }
       catch(e) {
-        status.textContent = 'Не удалось открыть канал';
+        status.textContent = 'Не удалось открыть приглашение';
         button.disabled = false;
       }
     }
 
-    button.addEventListener('click', openChannel);
-
-    // Tiny hidden diagnostic hook for manual console checks without affecting UX.
-    window.__MAX_VARIANT3__ = function(){ return { channelUrl: channelUrl, source: channelLinkSource }; };
+    button.addEventListener('click', joinChannel);
+    window.__MAX_VARIANT5__ = { joinUrl: JOIN_URL };
   })();
   </script>
 </body>
