@@ -2,91 +2,98 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow">
   <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
-  <title>Метод Борзилова</title>
-  <script src="https://st.max.ru/js/max-web-app.js"></script>
+  <title>Переход в MAX</title>
+
+  <script>
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=110906734','ym');
+
+    ym(110906734,'init',{
+      ssr:true,
+      webvisor:false,
+      clickmap:false,
+      accurateTrackBounce:true,
+      trackLinks:false
+    });
+  </script>
+
   <style>
-    *{box-sizing:border-box}
-    html,body{margin:0;width:100%;min-height:100%;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:#101318}
-    body{display:flex;align-items:flex-start;justify-content:center}
-    .sheet{width:100%;min-height:100svh;padding:10px 24px 28px;display:flex;flex-direction:column;align-items:center;background:#fff}
-    .handle{width:44px;height:5px;border-radius:99px;background:#c9cdd2;margin:0 auto 34px}
-    .avatar{width:112px;height:112px;border-radius:50%;object-fit:cover;display:block;border:1px solid rgba(0,0,0,.08);margin-bottom:24px}
-    h1{margin:0;text-align:center;font-size:30px;line-height:1.15;font-weight:780;letter-spacing:-.03em}
-    .desc{max-width:520px;margin:34px auto 0;text-align:center;font-size:20px;line-height:1.45;color:#171a1f;white-space:pre-line}
-    .spacer{flex:1;min-height:42px}
-    .subscribe{appearance:none;border:0;width:100%;max-width:620px;height:72px;border-radius:24px;background:#0d86f7;color:#fff;font-size:22px;font-weight:760;cursor:pointer;box-shadow:none}
-    .subscribe:disabled{opacity:.72}
-    .subscribe:active{transform:scale(.995)}
-    .status{min-height:22px;margin-top:12px;font-size:13px;color:#7b8189;text-align:center}
-    @media (max-width:520px){
-      .sheet{padding-left:20px;padding-right:20px}
-      .handle{margin-bottom:28px}
-      .avatar{width:96px;height:96px;margin-bottom:20px}
-      h1{font-size:26px}
-      .desc{font-size:18px;margin-top:28px}
-      .subscribe{height:66px;border-radius:22px;font-size:20px}
-    }
+    html,body{margin:0;width:100%;height:100%;background:#fff;overflow:hidden}
+    #tracker{position:absolute;width:1px;height:1px;border:0;opacity:0;pointer-events:none}
   </style>
 </head>
 <body>
-  <main class="sheet">
-    <div class="handle" aria-hidden="true"></div>
-    <img class="avatar" src="../author-method-photo-480.webp" alt="Метод Борзилова">
-    <h1>Как бросить курить — Метод Борзилова</h1>
-    <div class="desc">Как перестать всё время откладывать отказ от курения — и что именно удерживает вас на месте.
-
-Короткие разборы. Внутренний торг. Практический метод.</div>
-    <div class="spacer"></div>
-    <button class="subscribe" id="subscribe" type="button">Подписаться</button>
-    <div class="status" id="status"></div>
-  </main>
+  <iframe id="tracker" title="" aria-hidden="true"></iframe>
 
   <script>
   (function(){
     'use strict';
 
-    // VARIANT 5: private-channel invite deeplink. This is the decisive test:
-    // unlike a public channel URL, /join/ represents an actual join flow.
+    var COUNTER_ID = 110906734;
     var JOIN_URL = 'https://max.ru/join/oXI8UBJo7dAux-4zLl67XE8h3YNC7LHDcbTSJidgtqU';
-    var button = document.getElementById('subscribe');
-    var status = document.getElementById('status');
+    var TRACK_URL = 'https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/max/direct-entry';
+    var done = false;
 
-    try {
-      if(window.WebApp && typeof window.WebApp.ready === 'function') window.WebApp.ready();
-      if(window.WebApp && typeof window.WebApp.expand === 'function') window.WebApp.expand();
-    } catch(e) {}
-
-    function joinChannel(){
-      button.disabled = true;
-      status.textContent = '';
-
-      try {
-        if(window.WebApp && typeof window.WebApp.openMaxLink === 'function'){
-          var r = window.WebApp.openMaxLink(JOIN_URL);
-          if(r && typeof r.then === 'function'){
-            r.catch(function(){
-              try { window.location.href = JOIN_URL; }
-              catch(e) { status.textContent = 'Не удалось открыть приглашение'; }
-            });
-          }
-          setTimeout(function(){ button.disabled = false; }, 1200);
-          return;
-        }
-      } catch(e) {}
-
-      try { window.location.href = JOIN_URL; }
-      catch(e) {
-        status.textContent = 'Не удалось открыть приглашение';
-        button.disabled = false;
-      }
+    function cookieClientId(){
+      var m = document.cookie.match(/(?:^|;\s*)_ym_uid=(\d+)/);
+      return m && m[1] ? m[1] : '';
     }
 
-    button.addEventListener('click', joinChannel);
-    window.__MAX_VARIANT5__ = { joinUrl: JOIN_URL };
+    function goJoin(){
+      if(done) return;
+      done = true;
+      location.replace(JOIN_URL);
+    }
+
+    function trackThenJoin(clientId){
+      if(done || !/^\d+$/.test(String(clientId || ''))) return;
+
+      var target = new URL(TRACK_URL);
+      var incoming = new URLSearchParams(location.search);
+      incoming.forEach(function(value,key){ target.searchParams.append(key,value); });
+      target.searchParams.set('cid', String(clientId));
+      target.searchParams.set('source_page','marafon-metod.ru/max');
+      target.searchParams.set('destination','private_join');
+
+      var frame = document.getElementById('tracker');
+      var timer = setTimeout(goJoin,350);
+      frame.addEventListener('load',function(){
+        clearTimeout(timer);
+        setTimeout(goJoin,20);
+      },{once:true});
+      frame.src = target.toString();
+    }
+
+    var existing = cookieClientId();
+    if(existing){
+      trackThenJoin(existing);
+      return;
+    }
+
+    try {
+      ym(COUNTER_ID,'getClientID',function(clientId){ trackThenJoin(clientId); });
+    } catch(e) {}
+
+    var tries = 0;
+    var poll = setInterval(function(){
+      if(done){ clearInterval(poll); return; }
+      var cid = cookieClientId();
+      if(cid){ clearInterval(poll); trackThenJoin(cid); return; }
+      tries += 1;
+      if(tries >= 16) clearInterval(poll);
+    },50);
+
+    setTimeout(goJoin,900);
   })();
   </script>
+
+  <noscript><meta http-equiv="refresh" content="0;url=https://max.ru/join/oXI8UBJo7dAux-4zLl67XE8h3YNC7LHDcbTSJidgtqU"></noscript>
 </body>
 </html>
