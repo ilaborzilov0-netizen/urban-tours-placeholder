@@ -9,16 +9,92 @@
   <meta http-equiv="Expires" content="0">
   <title>Переход в MAX</title>
   <script>
-    location.replace('https://max.ru/id312334031550_biz/AaBg7LuSNe0');
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=110906734','ym');
+    ym(110906734,'init',{
+      defer:true,
+      ssr:true,
+      webvisor:false,
+      clickmap:false,
+      accurateTrackBounce:true,
+      trackLinks:false
+    });
   </script>
-  <noscript>
-    <meta http-equiv="refresh" content="0;url=https://max.ru/id312334031550_biz/AaBg7LuSNe0">
-  </noscript>
-  <style>
-    html,body{margin:0;width:100%;height:100%;background:#fff}
-  </style>
+  <style>html,body{margin:0;width:100%;height:100%;background:#fff;overflow:hidden}</style>
 </head>
 <body>
-  <a href="https://max.ru/id312334031550_biz/AaBg7LuSNe0" style="position:absolute;left:-9999px">Открыть пост в MAX</a>
+<script>
+(function(){
+  'use strict';
+
+  var COUNTER_ID = 110906734;
+  var EXACT_ENTRY = 'https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/max/exact-entry';
+  var JOIN_URL = 'https://max.ru/join/7YDeO_2igyr1_C4i4hX9VHWTsduHXOQXe9pz-w3bhiQ';
+  var METRIKA_HARD_TIMEOUT_MS = 700;
+  var finished = false;
+  var visitCommitStarted = false;
+
+  function cookieClientId(){
+    var m = document.cookie.match(/(?:^|;\s*)_ym_uid=(\d+)/);
+    return m && m[1] ? m[1] : '';
+  }
+
+  function goExact(clientId){
+    if(finished || !/^\d+$/.test(String(clientId || ''))) return;
+    finished = true;
+    var target = new URL(EXACT_ENTRY);
+    var incoming = new URLSearchParams(location.search);
+    incoming.forEach(function(value,key){ target.searchParams.append(key,value); });
+    target.searchParams.set('cid',String(clientId));
+    target.searchParams.set('source_page','marafon-metod.ru/');
+    location.replace(target.toString());
+  }
+
+  function commitVisitThenGo(clientId){
+    if(finished || visitCommitStarted || !/^\d+$/.test(String(clientId || ''))) return;
+    visitCommitStarted = true;
+
+    var released = false;
+    var hardTimer = null;
+    function release(){
+      if(released) return;
+      released = true;
+      if(hardTimer) clearTimeout(hardTimer);
+      goExact(clientId);
+    }
+
+    hardTimer = setTimeout(release,METRIKA_HARD_TIMEOUT_MS);
+
+    try {
+      ym(COUNTER_ID,'hit',location.href,{callback:function(){ release(); }});
+    } catch(e) {
+      release();
+    }
+  }
+
+  var existing = cookieClientId();
+  if(existing){
+    commitVisitThenGo(existing);
+  } else {
+    try { ym(COUNTER_ID,'getClientID',function(clientId){ commitVisitThenGo(clientId); }); } catch(e) {}
+  }
+
+  var tries=0;
+  var poll=setInterval(function(){
+    if(finished || visitCommitStarted){ clearInterval(poll); return; }
+    var cid=cookieClientId();
+    if(cid){ clearInterval(poll); commitVisitThenGo(cid); return; }
+    tries+=1;
+    if(tries>=30) clearInterval(poll);
+  },50);
+
+  setTimeout(function(){ if(!finished && !visitCommitStarted) location.replace(JOIN_URL); },2200);
+})();
+</script>
+<noscript><meta http-equiv="refresh" content="0;url=https://max.ru/join/7YDeO_2igyr1_C4i4hX9VHWTsduHXOQXe9pz-w3bhiQ"></noscript>
 </body>
 </html>
