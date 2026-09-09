@@ -8,6 +8,10 @@
   <title>MAX — Метод Борзилова</title>
   <meta name="description" content="Переход в MAX-канал «Метод Борзилова».">
 
+  <!-- Official MAX Mini App bridge -->
+  <script src="https://st.max.ru/js/max-web-app.js"></script>
+
+  <!-- Existing Yandex Metrika counter: retained for browser/direct fallback -->
   <script>
     (function(m,e,t,r,i,k,a){
       m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -25,9 +29,16 @@
     });
   </script>
 
-  <style>html,body{margin:0;width:100%;height:100%;background:#fff;overflow:hidden}</style>
+  <style>
+    html,body{margin:0;width:100%;height:100%;background:#fff;overflow:hidden}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+    #fallback{display:none;position:fixed;inset:0;align-items:center;justify-content:center;padding:24px;background:#fff}
+    #fallback a{display:block;width:min(420px,100%);padding:16px 22px;border-radius:14px;background:#1688f8;color:#fff;text-align:center;text-decoration:none;font-weight:700;font-size:18px}
+  </style>
 </head>
 <body>
+  <div id="fallback"><a href="https://max.ru/id312334031550_biz">Открыть канал</a></div>
+
   <script>
   (function(){
     'use strict';
@@ -35,6 +46,37 @@
     var COUNTER_ID = 110906734;
     var DIRECT_ENTRY = 'https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/max/direct-entry';
     var CHANNEL_URL = 'https://max.ru/id312334031550_biz';
+
+    // VARIANT 1 TEST:
+    // startapp -> our Mini App -> MAX native deeplink to the public channel.
+    // This is deliberately the closest reproducible hypothesis to the
+    // «Откуда Подписки» behaviour: no custom landing, no second web page.
+    if(window.WebApp && window.WebApp.initData){
+      try { if(typeof window.WebApp.ready === 'function') window.WebApp.ready(); } catch(e) {}
+
+      try {
+        var r = window.WebApp.openMaxLink(CHANNEL_URL);
+        if(r && typeof r.catch === 'function'){
+          r.catch(function(){
+            try { location.replace(CHANNEL_URL); }
+            catch(e) { document.getElementById('fallback').style.display='flex'; }
+          });
+        }
+      } catch(e) {
+        try { location.replace(CHANNEL_URL); }
+        catch(err) { document.getElementById('fallback').style.display='flex'; }
+      }
+
+      // Some clients may ignore a programmatic deeplink. Keep a last-resort
+      // manual control out of sight unless the native handoff did not happen.
+      setTimeout(function(){
+        document.getElementById('fallback').style.display='flex';
+      },1200);
+      return;
+    }
+
+    // Normal browser/direct fallback: preserve the existing click-attribution
+    // route and then redirect straight to the channel.
     var finished = false;
 
     function cookieClientId(){
@@ -45,7 +87,6 @@
     function goTracked(clientID){
       if(finished || !/^\d+$/.test(String(clientID || ''))) return;
       finished = true;
-
       var target = new URL(DIRECT_ENTRY);
       var incoming = new URLSearchParams(window.location.search);
       incoming.forEach(function(value,key){ target.searchParams.append(key,value); });
@@ -61,14 +102,9 @@
     }
 
     var existing = cookieClientId();
-    if(existing){
-      goTracked(existing);
-      return;
-    }
+    if(existing){ goTracked(existing); return; }
 
-    try {
-      ym(COUNTER_ID,'getClientID',function(clientID){ goTracked(clientID); });
-    } catch(e) {}
+    try { ym(COUNTER_ID,'getClientID',function(clientID){ goTracked(clientID); }); } catch(e) {}
 
     var attempts = 0;
     var poll = setInterval(function(){
