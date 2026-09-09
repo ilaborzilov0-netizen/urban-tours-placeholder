@@ -8,6 +8,22 @@
   <title>Переход в MAX</title>
 
   <script>
+  (function(){
+    // The bot's configured Mini App URL is /max/. Exact-attribution startapp
+    // sessions are silently handed to /max-exact/; ordinary /max/ visits keep
+    // the existing direct private-join behaviour below.
+    try {
+      var outer = new URLSearchParams(location.hash.slice(1));
+      var raw = outer.get('WebAppData') || '';
+      var sp = raw ? (new URLSearchParams(raw).get('start_param') || '') : '';
+      if(/^ex_[A-Za-z0-9_-]{8,120}$/.test(sp)){
+        location.replace('/max-exact/' + location.hash);
+      }
+    } catch(e) {}
+  })();
+  </script>
+
+  <script>
     (function(m,e,t,r,i,k,a){
       m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
       m[i].l=1*new Date();
