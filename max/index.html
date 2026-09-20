@@ -53,7 +53,7 @@
     'use strict';
 
     var COUNTER_ID = 110906734;
-    var JOIN_URL = 'https://max.ru/channel_metodborzilova';
+    var JOIN_URL = 'https://max.ru/join/7YDeO_2igyr1_C4i4hX9VHWTsduHXOQXe9pz-w3bhiQ';
     var TRACK_URL = 'https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/max/direct-entry';
     var done = false;
 
@@ -76,7 +76,7 @@
       incoming.forEach(function(value,key){ target.searchParams.append(key,value); });
       target.searchParams.set('cid', String(clientId));
       target.searchParams.set('source_page','marafon-metod.ru/max');
-      target.searchParams.set('destination','public_channel');
+      target.searchParams.set('destination','private_join');
 
       var frame = document.getElementById('tracker');
       var timer = setTimeout(goJoin,350);
@@ -110,6 +110,6 @@
   })();
   </script>
 
-  <noscript><meta http-equiv="refresh" content="0;url=https://max.ru/channel_metodborzilova"></noscript>
+  <noscript><meta http-equiv="refresh" content="0;url=https://max.ru/join/7YDeO_2igyr1_C4i4hX9VHWTsduHXOQXe9pz-w3bhiQ"></noscript>
 </body>
 </html>
