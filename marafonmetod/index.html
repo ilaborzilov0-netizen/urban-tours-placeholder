@@ -574,24 +574,30 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
     var o={};parts.forEach(function(p){if(p.type!=='literal')o[p.type]=Number(p.value)});return o;
   }
   function slotDates(){
-    var now=new Date(),mp=moscowParts(now),base=Date.UTC(mp.year,mp.month-1,mp.day),startOffset=mp.hour>=18?1:0,out=[];
-    for(var i=0;i<2;i++){
-      var d=new Date(base+(startOffset+i)*86400000);
-      var iso=d.toISOString().slice(0,10);
-      var day=new Intl.DateTimeFormat('ru-RU',{timeZone:'UTC',weekday:'short',day:'numeric',month:'short'}).format(d).replace('.','');
-      out.push({
-        id:iso+'T20:00:00+03:00',
-        label:day,
+    return [
+      {
+        id:'2026-10-01T20:00:00+03:00',
+        label:'чт, 1 окт',
         detail:'20:00 МСК',
-        date:iso,
-        plan:i===0?'tabletka':'tabletka_next',
-        amount:i===0?390000:590000,
-        priceText:i===0?'3 900 ₽':'5 900 ₽',
-        tier:i===0?'Ближайший сеанс':'Следующий сеанс',
-        note:i===0?'Цена на ближайшую группу':'Стандартная стоимость'
-      });
-    }
-    return out;
+        date:'2026-10-01',
+        plan:'tabletka',
+        amount:390000,
+        priceText:'3 900 ₽',
+        tier:'Ближайший поток',
+        note:'Цена на ближайшую группу'
+      },
+      {
+        id:'2026-10-08T20:00:00+03:00',
+        label:'чт, 8 окт',
+        detail:'20:00 МСК',
+        date:'2026-10-08',
+        plan:'tabletka_next',
+        amount:590000,
+        priceText:'5 900 ₽',
+        tier:'Следующий поток',
+        note:'Стандартная стоимость'
+      }
+    ];
   }
   var slots=slotDates();
   function selectSlotObject(s){
