@@ -40,12 +40,55 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
 .hero-copy{font-size:20px;line-height:1.58;color:#4e5b54;max-width:690px;margin:28px 0 0}
 .hero-copy strong{color:var(--ink);font-weight:650}
 
-.slot-preview{margin-top:26px}
-.slot-preview-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#758079;margin-bottom:10px}
-.slot-preview-list{display:flex;flex-wrap:wrap;gap:8px}
-.slot-chip{border:1px solid #c8d1cb;background:rgba(255,255,255,.45);color:var(--green);border-radius:999px;padding:10px 13px;font-size:13px;font-weight:700;cursor:pointer}
-.slot-chip:hover,.slot-chip.is-selected{background:var(--green);color:#fff;border-color:var(--green)}
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.slot-preview{margin-top:28px}
+.slot-preview-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#758079;margin-bottom:11px}
+.slot-preview-list{display:grid;grid-template-columns:1fr;gap:10px}
+.session-choice{width:100%;border:1px solid #cdd5cf;background:rgba(255,255,255,.52);border-radius:18px;padding:18px 20px;display:grid;grid-template-columns:1fr auto;gap:14px 22px;align-items:center;text-align:left;cursor:pointer;color:var(--ink);transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease,background .16s ease}
+.session-choice:hover{transform:translateY(-1px);border-color:#9fb1a7;box-shadow:0 10px 26px rgba(25,63,52,.08)}
+.session-choice.is-primary{background:#f0f5f1;border-color:#9db3a7}
+.session-choice.is-selected{border-color:var(--green);box-shadow:0 0 0 1px var(--green)}
+.session-choice-main{min-width:0}
+.session-choice-kicker{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#6f7d75;font-weight:750;margin-bottom:6px}
+.session-choice-date{display:block;font-size:18px;line-height:1.2;letter-spacing:-.02em;font-weight:760;color:#173e35}
+.session-choice-note{display:block;margin-top:6px;font-size:12px;line-height:1.45;color:#748078}
+.session-choice-seats{display:flex;align-items:center;gap:10px;margin-top:10px}
+.seat-segments{display:grid;grid-template-columns:repeat(10,8px);gap:4px}
+.seat-segment{width:8px;height:8px;border-radius:2px;background:#d7ded9;border:1px solid #c6d0c9}
+.seat-segment.is-taken{background:#5f7f70;border-color:#5f7f70}
+.seat-copy{font-size:12px;line-height:1;color:#6c7972;white-space:nowrap}
+.session-choice-price{text-align:right;white-space:nowrap}
+.session-choice-price strong{display:block;font-size:28px;line-height:1;letter-spacing:-.04em;color:#173e35}
+.session-choice-price span{display:block;margin-top:8px;font-size:12px;font-weight:750;color:var(--green)}
+.session-choice.is-primary .session-choice-price span:after{content:" →"}
+.session-choice:not(.is-primary) .session-choice-price span{color:#5f6d65}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+.hero-book-btn{width:100%;padding:17px 20px;font-size:16px}
+.hero-actions .contact-choice{width:100%}
+.hero-actions .contact-choice>.btn{width:100%}
+.selected-session{margin:18px 0 22px;padding:16px 18px;border:1px solid #d6ddd8;border-radius:14px;background:#f7f8f5}
+.selected-session-top{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}
+.selected-session-kicker{display:block;font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:#758079;margin-bottom:5px}
+.selected-session-date{display:block;font-size:17px;line-height:1.25;color:#173e35}
+.selected-session-price{font-size:23px;font-weight:760;letter-spacing:-.03em;white-space:nowrap;color:#173e35}
+.selected-session-note{margin-top:9px;font-size:12px;line-height:1.45;color:#758079}
+@media(max-width:640px){
+  .session-choice{padding:16px 16px;grid-template-columns:1fr auto;gap:10px 14px}
+  .session-choice-date{font-size:16px}
+  .session-choice-price strong{font-size:24px}
+  .session-choice-price span{font-size:11px}
+  .selected-session-top{gap:10px}
+  .selected-session-date{font-size:15px}
+  .selected-session-price{font-size:21px}
+}
+.contact-choice{position:relative;display:inline-flex}
+.contact-menu{position:absolute;left:0;top:calc(100% + 10px);z-index:30;min-width:282px;padding:9px;background:#fff;border:1px solid #d9ded9;border-radius:16px;box-shadow:0 18px 48px rgba(24,45,37,.16);display:grid;gap:7px;opacity:0;visibility:hidden;transform:translateY(-5px);transition:opacity .16s ease,transform .16s ease,visibility .16s ease}
+.contact-choice.is-open .contact-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.contact-option{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:11px;text-decoration:none;color:var(--ink);background:#f7f7f3;transition:background .15s ease,transform .15s ease}
+.contact-option:hover{background:#eef3ef;transform:translateY(-1px)}
+.contact-icon{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:var(--green);color:#fff;font-size:12px;font-weight:800;flex:0 0 auto}
+.contact-option strong{display:block;font-size:14px;line-height:1.15}
+.contact-option small{display:block;margin-top:3px;color:#77817b;font-size:11px;line-height:1.2}
+@media(max-width:640px){.contact-choice{width:100%}.contact-choice>.btn{width:100%}.contact-menu{left:0;right:0;min-width:0;width:100%}}
 .hero-note{display:flex;gap:18px;flex-wrap:wrap;margin-top:18px;color:#6a746e;font-size:13px}
 .hero-note span{display:flex;align-items:center;gap:7px}
 .hero-note span:before{content:"";width:6px;height:6px;border-radius:50%;background:#6f8e7e}
@@ -178,6 +221,47 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
   .offer-card{padding:26px}.faq summary{font-size:16px}.final{padding:70px 0 92px}.final h2{font-size:47px}
   .footer{padding-bottom:40px}.footer-in{display:block}.modal{padding:10px;align-items:flex-end}.modal-card{border-radius:22px 22px 12px 12px;padding:25px 20px;max-height:92vh}.modal h3{font-size:31px}
 }
+
+/* testimonials */
+.reviews-top{padding:54px 0 58px;background:#fff;border-bottom:1px solid var(--line)}
+.reviews-top-head{display:grid;grid-template-columns:1.18fr .82fr;align-items:end;gap:54px;margin-bottom:28px}
+.reviews-top-head h2{margin:0;font-size:clamp(34px,4.5vw,54px);line-height:1.02;letter-spacing:-.045em;max-width:780px}
+.reviews-top-head h2 em{display:block;font-family:Georgia,"Times New Roman",serif;font-weight:400}
+.reviews-top-head p{margin:0 0 5px;max-width:500px;color:#6d7771;font-size:14px;line-height:1.65}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.review-card{background:#f7f6f1;border:1px solid #e2e4de;border-radius:18px;padding:25px 24px 22px;min-height:228px;display:flex;flex-direction:column}
+.review-card .review-label{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#66756d;font-weight:700}
+.review-card blockquote{margin:26px 0 22px;font-size:20px;line-height:1.4;letter-spacing:-.025em;color:#173e35}
+.review-card footer{margin-top:auto;padding-top:17px;border-top:1px solid #dfe3de;font-size:12px;line-height:1.55;color:#758078}
+.review-proof{padding:84px 0;background:#eef3ef}
+.review-proof-head{display:grid;grid-template-columns:.38fr 1.62fr;gap:48px;margin-bottom:36px}
+.review-proof-head h2{margin:0;font-size:clamp(38px,5vw,64px);line-height:1;letter-spacing:-.048em;max-width:920px}
+.review-proof-head p{margin:12px 0 0;color:#657269;font-size:15px;line-height:1.7;max-width:760px}
+.review-stories{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.review-story{background:#fff;border:1px solid #dfe5df;border-radius:22px;padding:30px 29px 27px;min-height:610px;display:flex;flex-direction:column}
+.review-story .eyebrow{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#68786f;font-weight:700}
+.review-story h3{font-size:25px;line-height:1.2;letter-spacing:-.03em;margin:20px 0 20px;color:#173e35}
+.review-story .story-copy{margin:0;color:#69736e;font-size:15px;line-height:1.72}
+.review-story .review-meta{margin-top:auto;padding-top:22px;border-top:1px solid #e2e7e2;font-size:12px;line-height:1.55;color:#65736c}
+.review-story .review-meta strong{color:#19483c}
+@media(max-width:1050px){
+  .review-stories{grid-template-columns:1fr}
+  .review-story{min-height:0}
+}
+@media(max-width:900px){
+  .reviews-top-head{grid-template-columns:1fr;gap:14px}
+  .review-grid{grid-template-columns:1fr}
+  .review-card{min-height:0}
+  .review-proof-head{grid-template-columns:1fr;gap:12px}
+}
+@media(max-width:640px){
+  .reviews-top{padding:38px 0 42px}
+  .review-card{padding:21px 20px}
+  .review-card blockquote{font-size:19px;margin:20px 0}
+  .review-proof{padding:58px 0}
+  .review-story{padding:24px 22px}
+  .review-story h3{font-size:23px}
+}
 </style>
 </head>
 <body>
@@ -186,7 +270,7 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
     <a class="brand" href="#top">НЕ СИЛА ВОЛИ</a>
     <nav class="nav" aria-label="Навигация">
       <a href="#how">Как проходит</a><a href="#method">Почему иначе</a><a href="#author">Автор</a><a href="#faq">Вопросы</a>
-      <button class="btn sm" data-buy>Записаться</button>
+      <button class="btn sm" data-scroll-choice>Выбрать вечер</button>
     </nav>
   </div>
 </header>
@@ -198,17 +282,29 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
       <div class="kicker">Живой онлайн-сеанс · 18+</div>
       <h1>Бросить курить за один вечер.</h1>
       <p class="hero-copy"><strong>Живой онлайн-сеанс 2,5–3 часа.</strong> Ничего не нужно менять заранее. Основная работа заканчивается в тот же вечер — после я остаюсь на связи ещё 7 дней.</p>
-      <div class="slot-preview">
-        <div class="slot-preview-label">Выберите предпочтительный вечер · МСК</div>
+      <div class="slot-preview" id="choose-evening">
+        <div class="slot-preview-label">Выберите вечер · цена зависит от даты · МСК</div>
         <div class="slot-preview-list" data-slot-preview></div>
       </div>
       <div class="hero-actions">
-        <button class="btn" data-buy>Выбрать вечер и оплатить 3 900 ₽ →</button>
+        <button class="btn hero-book-btn" id="heroBookBtn" type="button">Занять место и оплатить 3 900 ₽ →</button>
+        <div class="contact-choice" data-contact-choice>
+          <button class="btn secondary" type="button" data-contact-toggle aria-expanded="false" aria-haspopup="true">Сначала задать вопрос</button>
+          <div class="contact-menu" data-contact-menu>
+            <a class="contact-option" href="https://max.ru/u/f9LHodD0cOLpevOEzdPM7DBn_9wNoZiKdBMryxkSM2b4SpNmf4xagvVkl8g" target="_blank" rel="noopener">
+              <span class="contact-icon">M</span>
+              <span><strong>MAX</strong><small>написать Илье лично</small></span>
+            </a>
+            <a class="contact-option" href="https://t.me/metodborzilova" target="_blank" rel="noopener">
+              <span class="contact-icon">TG</span>
+              <span><strong>Telegram</strong><small>@metodborzilova</small></span>
+            </a>
+          </div>
+        </div>
       </div>
       <div class="hero-note">
         <span>Небольшая онлайн-группа</span><span>7 дней поддержки после</span><span>До начала сеанса — полный возврат</span>
       </div>
-      <p style="margin:14px 0 0;font-size:13px;color:#6d7771">Есть вопрос до оплаты? <a href="https://max.ru/u/f9LHodD0cOLpevOEzdPM7DBn_9wNoZiKdBMryxkSM2b4SpNmf4xagvVkl8g" target="_blank" rel="noopener" style="color:var(--green);font-weight:700">Написать Илье в MAX ↗</a></p>
     </div>
 
     <aside class="session-card" aria-label="Информация о сеансе">
@@ -219,7 +315,6 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
       <div class="session-meta">
         <div class="session-top">
           <div><span>Ближайший формат</span><strong>Вечерний онлайн-сеанс</strong></div>
-          <span class="price">3 900 ₽</span>
         </div>
         <div class="fact-row">
           <div><strong>2,5–3 часа</strong><small>основная работа</small></div>
@@ -230,6 +325,33 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
     </aside>
   </div>
 </section>
+
+<section class="reviews-top" id="reviews">
+  <div class="wrap">
+    <div class="reviews-top-head">
+      <h2>Разные ситуации.<em>Одна и та же ловушка.</em></h2>
+      <p>Кофе утром, тяжёлый созвон, пятница с друзьями — контексты разные. Но возврат часто начинается не с «невыносимой тяги», а с автоматизма или очень убедительной мысли.</p>
+    </div>
+    <div class="review-grid">
+      <article class="review-card">
+        <div class="review-label">Утро · кофе · автоматизм</div>
+        <blockquote>«Я думала, что без сигареты у меня просто исчезнет утро».</blockquote>
+        <footer>Курила почти 15 лет. Впервые заметила момент, когда уже вставала идти курить — хотя самой тяги прямо сейчас не было.</footer>
+      </article>
+      <article class="review-card">
+        <div class="review-label">Стресс · работа · «одну можно»</div>
+        <blockquote>«Самая опасная тяга у меня вообще не ощущалась как тяга».</blockquote>
+        <footer>После тяжёлого дня увидел не сигарету, а мысль, которая её разрешает: «сегодня исключение».</footer>
+      </article>
+      <article class="review-card">
+        <div class="review-label">Компания · алкоголь · поздний триггер</div>
+        <blockquote>«Я не боялась обычного дня. Я боялась пятницы с друзьями».</blockquote>
+        <footer>Когда сценарий разобрали заранее, вечер перестал ощущаться как проверка силы воли.</footer>
+      </article>
+    </div>
+  </div>
+</section>
+
 
 <section class="trust-strip">
   <div class="wrap trust-grid">
@@ -292,6 +414,39 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
   </div>
 </section>
 
+
+<section class="review-proof">
+  <div class="wrap">
+    <div class="review-proof-head">
+      <div class="section-no">Опыт участников</div>
+      <div>
+        <h2>Что именно люди начали замечать иначе.</h2>
+        <p>Не общие слова «стало легче», а конкретные моменты, в которых раньше автоматически появлялась следующая сигарета.</p>
+      </div>
+    </div>
+    <div class="review-stories">
+      <article class="review-story">
+        <div class="eyebrow">Утро · кофе · автоматизм</div>
+        <h3>«Я думала, что без сигареты у меня просто исчезнет утро».</h3>
+        <p class="story-copy">Курила почти пятнадцать лет. Первая сигарета — ещё до завтрака, вторая обязательно с кофе. Самое странное было не в тяге, а в ощущении: кофе как будто «не закончен». В первый рабочий понедельник поймала себя на том, что уже встаю идти курить, хотя прямо сейчас сигареты не хотелось. Раньше в такой момент я бы решила: значит, всё-таки хочется. Здесь впервые разделила сам импульс и решение закурить.</p>
+        <div class="review-meta"><strong>Было:</strong> кофе автоматически запускал маршрут к сигарете.<br><strong>Стало:</strong> автоматический импульс и решение закурить перестали быть одним и тем же.</div>
+      </article>
+      <article class="review-story">
+        <div class="eyebrow">Стресс · работа · «одну можно»</div>
+        <h3>«Самая опасная тяга у меня вообще не ощущалась как тяга».</h3>
+        <p class="story-copy">После тяжёлого созвона я обычно выходил курить. Когда бросал раньше, первые дни ещё держался, а потом появлялась очень разумная мысль: сегодня реально тяжёлый день, одна сигарета ничего не изменит. Я считал это своим решением. Когда начал отслеживать момент до сигареты, увидел: сначала появляется напряжение, потом мозг предлагает знакомое решение и уже после этого начинается торг. Для меня это было самым полезным — заметить не сигарету, а фразу, которая её разрешает.</p>
+        <div class="review-meta"><strong>Было:</strong> «сегодня исключение, завтра продолжу».<br><strong>Стало:</strong> «исключение» стало узнаваемым сценарием внутреннего торга.</div>
+      </article>
+      <article class="review-story">
+        <div class="eyebrow">Компания · алкоголь · поздний триггер</div>
+        <h3>«Я не боялась обычного дня. Я боялась пятницы с друзьями».</h3>
+        <p class="story-copy">В будни я могла не курить и даже не особенно страдать. Срывы всегда случались позже: бар, вино, кто-то вышел покурить, и мысль «ну одну за компанию» казалась совершенно безобидной. Из-за этого я каждый раз делала вывод, что всё зря и я просто не умею бросать. Когда этот сценарий заранее разобрала, стало спокойнее: я уже знала, в какой момент начну себя уговаривать и что именно обычно себе говорю. Вечер перестал быть проверкой силы воли.</p>
+        <div class="review-meta"><strong>Было:</strong> один вечер превращался в возврат к пачке.<br><strong>Стало:</strong> сложная ситуация стала знакомым сценарием, к которому можно подготовиться заранее.</div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section class="section white">
   <div class="wrap includes">
     <div>
@@ -305,12 +460,11 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
       </div>
     </div>
     <aside class="offer-card">
-      <div class="label">Участие в ближайшем вечернем сеансе</div>
+      <div class="label">Выберите подходящий вечер</div>
       <h3>Один вечер вместо очередной долгой попытки.</h3>
-      <p>Вы выбираете предпочтительный ближайший вечер, затем оплачиваете участие.</p>
-      <div class="offer-price">3 900 ₽</div>
+      <p>Наверху страницы есть два ближайших варианта с разной стоимостью. Выберите подходящую дату — и уже после этого перейдите к оплате.</p>
       <p>Сеанс + 7 дней поддержки.</p>
-      <button class="btn" data-buy>Записаться и оплатить →</button>
+      <button class="btn" data-scroll-choice>Выбрать вечер →</button>
       <p class="safe">Оплата через защищённую страницу Т‑Банка. До начала сеанса участие можно отменить с полным возвратом.</p>
     </aside>
   </div>
@@ -337,7 +491,7 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
 <section class="final">
   <div class="wrap final-in">
     <div><div class="kicker">Ближайший вечерний сеанс</div><h2>Не готовиться неделями. Выделить один вечер.</h2><p>Если вам нужен не ещё один материал о курении, а конкретная точка старта — выберите удобный ближайший вечер и оплатите участие.</p></div>
-    <div class="final-box"><strong>3 900 ₽</strong><span>живой сеанс + 7 дней поддержки</span><button class="btn" data-buy>Записаться и оплатить →</button></div>
+    <div class="final-box"><strong>Выберите вечер</strong><span>два ближайших варианта · живой сеанс + 7 дней поддержки</span><button class="btn" data-scroll-choice>К выбору даты →</button></div>
   </div>
 </section>
 </main>
@@ -353,19 +507,25 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
   <div class="modal-card">
     <button class="modal-close" type="button" data-close aria-label="Закрыть">×</button>
     <div class="modal-kicker">Запись на онлайн-сеанс</div>
-    <h3 id="checkoutTitle">Выберите предпочтительный вечер и оплатите участие.</h3>
-    <p class="modal-sub">Вы выбираете предпочтительный ближайший вечер. После оплаты я подтверждаю участие и точное время встречи.</p>
+    <h3 id="checkoutTitle">Забронируйте место на выбранный вечер.</h3>
+    <p class="modal-sub">Дата и стоимость уже выбраны. После оплаты я подтверждаю участие и присылаю детали встречи.</p>
     <form id="checkoutForm">
-      <div class="slot-picker">
-        <div class="slot-picker-label">Предпочтительный вечер · время московское</div>
-        <div class="slot-picker-grid" data-slot-picker></div>
+      <div class="selected-session">
+        <div class="selected-session-top">
+          <div>
+            <span class="selected-session-kicker" id="selectedTier">Ближайший сеанс</span>
+            <strong class="selected-session-date" id="selectedDate">—</strong>
+          </div>
+          <strong class="selected-session-price" id="selectedPrice">3 900 ₽</strong>
+        </div>
+        <div class="selected-session-note" id="selectedNote">Цена на ближайшую группу</div>
       </div>
       <input type="hidden" name="slot" id="buySlot" value="">
       <div class="field"><label for="buyName">Имя</label><input id="buyName" name="name" autocomplete="name" required minlength="2" placeholder="Как к вам обращаться?"></div>
       <div class="field"><label for="buyPhone">Телефон</label><input id="buyPhone" name="phone" autocomplete="tel" inputmode="tel" required placeholder="+7 999 123-45-67"></div>
       <div class="field"><label for="buyEmail">Email</label><input id="buyEmail" name="email" type="email" autocomplete="email" required placeholder="name@example.com"></div>
       <input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
-      <div class="checkout-total"><span>Онлайн-сеанс + 7 дней поддержки</span><strong>3 900 ₽</strong></div>
+      <div class="checkout-total"><span>Онлайн-сеанс + 7 дней поддержки</span><strong id="checkoutTotalPrice">3 900 ₽</strong></div>
       <button class="btn" id="payBtn" type="submit">Перейти к оплате 3 900 ₽ →</button>
       <div class="form-status" id="formStatus" aria-live="polite"></div>
       <p class="consent">Нажимая кнопку, вы передаёте контактные данные для записи и переходите на защищённую страницу платёжного сервиса. Автосписаний нет. Предпочтительный вечер подтверждается после оплаты.</p>
@@ -377,56 +537,148 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
 <script>
 (function(){
   'use strict';
+  var contactChoice=document.querySelector('[data-contact-choice]');
+  var contactToggle=document.querySelector('[data-contact-toggle]');
+  function closeContactMenu(){
+    if(!contactChoice||!contactToggle)return;
+    contactChoice.classList.remove('is-open');
+    contactToggle.setAttribute('aria-expanded','false');
+  }
+  if(contactChoice&&contactToggle){
+    contactToggle.addEventListener('click',function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      var openNow=!contactChoice.classList.contains('is-open');
+      closeContactMenu();
+      if(openNow){
+        contactChoice.classList.add('is-open');
+        contactToggle.setAttribute('aria-expanded','true');
+      }
+    });
+    document.addEventListener('click',function(e){
+      if(!contactChoice.contains(e.target))closeContactMenu();
+    });
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape')closeContactMenu();
+    });
+  }
   var modal=document.getElementById('checkoutModal');
   var form=document.getElementById('checkoutForm');
   var status=document.getElementById('formStatus');
   var payBtn=document.getElementById('payBtn');
   var PAYMENT='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/api/payment/create';
   var LEADS='https://api.marafon-metod.ru/api/leads';
-  var EXPECTED=390000;
   var selectedSlot='';
+  var selectedPlan='tabletka';
+  var selectedAmount=390000;
+  var selectedPriceText='3 900 ₽';
+  var selectedTier='Ближайший сеанс';
+  var selectedNote='Цена на ближайшую группу';
   function moscowParts(date){
     var parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Moscow',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',hour12:false}).formatToParts(date||new Date());
     var o={};parts.forEach(function(p){if(p.type!=='literal')o[p.type]=Number(p.value)});return o;
   }
   function slotDates(){
-    var now=new Date(),mp=moscowParts(now),base=Date.UTC(mp.year,mp.month-1,mp.day),startOffset=mp.hour>=18?1:0,out=[];
-    for(var i=0;i<3;i++){
-      var d=new Date(base+(startOffset+i)*86400000);
-      var iso=d.toISOString().slice(0,10);
-      var day=new Intl.DateTimeFormat('ru-RU',{timeZone:'UTC',weekday:'short',day:'numeric',month:'short'}).format(d).replace('.','');
-      var rel=day;
-      out.push({id:iso+'T20:00:00+03:00',label:rel,detail:'20:00 МСК',date:iso});
-    }
-    return out;
+    return [
+      {
+        id:'2026-10-01T20:00:00+03:00',
+        label:'чт, 1 окт',
+        detail:'20:00 МСК',
+        date:'2026-10-01',
+        plan:'tabletka',
+        amount:390000,
+        priceText:'3 900 ₽',
+        tier:'Ближайший поток',
+        note:'Цена на ближайшую группу',
+        capacity:10,
+        freeSeats:4
+      },
+      {
+        id:'2026-10-08T20:00:00+03:00',
+        label:'чт, 8 окт',
+        detail:'20:00 МСК',
+        date:'2026-10-08',
+        plan:'tabletka_next',
+        amount:590000,
+        priceText:'5 900 ₽',
+        tier:'Следующий поток',
+        note:'Стандартная стоимость',
+        capacity:10,
+        freeSeats:9
+      }
+    ];
   }
   var slots=slotDates();
-  selectedSlot=slots[0].id;
+  function selectSlotObject(s){
+    if(!s)return;
+    selectedSlot=s.id;
+    selectedPlan=s.plan;
+    selectedAmount=s.amount;
+    selectedPriceText=s.priceText;
+    selectedTier=s.tier;
+    selectedNote=s.note;
+  }
+  selectSlotObject(slots[0]);
   function renderSlots(){
     var preview=document.querySelector('[data-slot-preview]');
-    var picker=document.querySelector('[data-slot-picker]');
-    function chip(s,i,cls){
-      return '<button type="button" class="'+cls+(s.id===selectedSlot?' is-selected':'')+'" data-slot-id="'+s.id+'"><strong>'+s.label+'</strong>'+(cls==='slot-option'?'<span>'+s.detail+'</span>':' · '+s.detail)+'</button>';
+    if(preview){
+      preview.innerHTML=slots.map(function(s,i){
+        return '<button type="button" class="session-choice'+(i===0?' is-primary':'')+(s.id===selectedSlot?' is-selected':'')+'" data-session-id="'+s.id+'">'+
+          '<span class="session-choice-main">'+
+            '<span class="session-choice-kicker">'+s.tier+'</span>'+
+            '<strong class="session-choice-date">'+s.label+' · '+s.detail+'</strong>'+
+            '<span class="session-choice-seats">'+
+              '<span class="seat-segments" aria-hidden="true">'+Array.from({length:s.capacity},function(_,n){return '<span class="seat-segment'+(n<(s.capacity-s.freeSeats)?' is-taken':'')+'"></span>';}).join('')+'</span>'+
+              '<span class="seat-copy">Свободно '+s.freeSeats+' из '+s.capacity+'</span>'+
+            '</span>'+
+          '</span>'+
+          '<span class="session-choice-price"><strong>'+s.priceText+'</strong><span>'+(s.id===selectedSlot?'✓ Выбрано':'Выбрать')+'</span></span>'+
+        '</button>';
+      }).join('');
     }
-    if(preview)preview.innerHTML=slots.map(function(s,i){return chip(s,i,'slot-chip')}).join('');
-    if(picker)picker.innerHTML=slots.map(function(s,i){return chip(s,i,'slot-option')}).join('');
     var hidden=document.getElementById('buySlot');if(hidden)hidden.value=selectedSlot;
+    var tier=document.getElementById('selectedTier');if(tier)tier.textContent=selectedTier;
+    var date=document.getElementById('selectedDate');
+    var selected=slots.find(function(s){return s.id===selectedSlot});
+    if(date&&selected)date.textContent=selected.label+' · '+selected.detail;
+    var price=document.getElementById('selectedPrice');if(price)price.textContent=selectedPriceText;
+    var note=document.getElementById('selectedNote');if(note)note.textContent=selectedNote;
+    var total=document.getElementById('checkoutTotalPrice');if(total)total.textContent=selectedPriceText;
+    if(payBtn&&!payBtn.disabled)payBtn.textContent='Перейти к оплате '+selectedPriceText+' →';
+    var heroBookBtn=document.getElementById('heroBookBtn');
+    if(heroBookBtn)heroBookBtn.textContent='Занять место и оплатить '+selectedPriceText+' →';
   }
   function chooseSlot(id,openAfter){
-    if(!slots.some(function(s){return s.id===id}))return;
-    selectedSlot=id;renderSlots();if(openAfter)open();
+    var s=slots.find(function(x){return x.id===id});
+    if(!s)return;
+    selectSlotObject(s);
+    renderSlots();
+    if(openAfter)open();
   }
   document.addEventListener('click',function(e){
-    var el=e.target&&e.target.closest?e.target.closest('[data-slot-id]'):null;
+    var el=e.target&&e.target.closest?e.target.closest('[data-session-id]'):null;
     if(!el)return;
     e.preventDefault();
-    chooseSlot(el.getAttribute('data-slot-id'),el.classList.contains('slot-chip'));
+    chooseSlot(el.getAttribute('data-session-id'),false);
   });
   renderSlots();
+  var heroBookBtn=document.getElementById('heroBookBtn');
+  if(heroBookBtn){
+    heroBookBtn.addEventListener('click',function(e){
+      e.preventDefault();
+      open();
+    });
+  }
   function goal(name){try{if(window.ym)window.ym(110906734,'reachGoal',name)}catch(e){}}
   function open(){renderSlots();modal.classList.add('open');document.body.classList.add('modal-open');goal('tabletka_checkout_open');if(!window.matchMedia('(max-width:640px)').matches){setTimeout(function(){var el=document.getElementById('buyName');if(el)el.focus()},100)}}
   function close(){modal.classList.remove('open');document.body.classList.remove('modal-open')}
-  document.querySelectorAll('[data-buy]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();open()})});
+  document.querySelectorAll('[data-scroll-choice]').forEach(function(b){
+    b.addEventListener('click',function(e){
+      e.preventDefault();
+      var target=document.getElementById('choose-evening');
+      if(target)target.scrollIntoView({behavior:'smooth',block:'center'});
+    });
+  });
   document.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',close)});
   modal.addEventListener('click',function(e){if(e.target===modal)close()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
@@ -435,8 +687,8 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
     try{
       await fetch(LEADS,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({
         formType:'commercial_application',name:name,contactType:'phone',contact:phone,
-        message:'Таблетка · /tabletka · онлайн-сеанс за 3 900 ₽\nПредпочтительный вечер: '+selectedSlot+'\nEmail: '+email,
-        price:'3900',source:'tabletka_smoking',sourceUrl:location.href,referrer:document.referrer||'',utm:utm(),website:website||''
+        message:'Марафон Метод · /marafonmetod · онлайн-сеанс за '+selectedPriceText+'\nВыбранный вечер: '+selectedSlot+'\nEmail: '+email,
+        price:String(selectedAmount/100),source:'marafonmetod_smoking',sourceUrl:location.href,referrer:document.referrer||'',utm:utm(),website:website||''
       })});
     }catch(e){}
   }
@@ -454,11 +706,11 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
     await saveLead(name,phone,email,website);
     try{
       var response=await fetch(PAYMENT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({
-        plan:'tabletka',name:name,email:email,phone:phone,flowId:selectedSlot||'tabletka-evening',source:'tabletka'
+        plan:selectedPlan,name:name,email:email,phone:phone,flowId:selectedSlot||'tabletka-evening',source:'marafonmetod'
       })});
       var data={};try{data=await response.json()}catch(_e){}
       if(!response.ok||!data.ok||!data.paymentUrl)throw new Error(data.error||'Не удалось открыть оплату.');
-      if(Number(data.amount)!==EXPECTED)throw new Error('Не удалось подтвердить стоимость 3 900 ₽.');
+      if(Number(data.amount)!==selectedAmount)throw new Error('Не удалось подтвердить стоимость '+selectedPriceText+'.');
       try{sessionStorage.setItem('tabletkaPayment',JSON.stringify({orderId:data.orderId,paymentId:data.paymentId,amount:data.amount,slot:selectedSlot,createdAt:new Date().toISOString()}))}catch(_s){}
       goal('tabletka_payment_redirect');
       location.assign(data.paymentUrl);
