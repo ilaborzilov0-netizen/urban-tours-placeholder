@@ -555,7 +555,7 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
     function chip(s,i,cls){
       return '<button type="button" class="'+cls+(s.id===selectedSlot?' is-selected':'')+'" data-slot-id="'+s.id+'"><strong>'+s.label+'</strong>'+(cls==='slot-option'?'<span>'+s.detail+'</span>':' · '+s.detail)+'</button>';
     }
-    if(preview)preview.innerHTML=slots.map(function(s,i){return chip(s,i,'slot-chip')}).join('');
+    if(preview)preview.innerHTML=slots.slice(0,2).map(function(s,i){return chip(s,i,'slot-chip')}).join('');
     if(picker)picker.innerHTML=slots.map(function(s,i){return chip(s,i,'slot-option')}).join('');
     var hidden=document.getElementById('buySlot');if(hidden)hidden.value=selectedSlot;
   }
