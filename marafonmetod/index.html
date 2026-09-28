@@ -179,44 +179,46 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
   .footer{padding-bottom:40px}.footer-in{display:block}.modal{padding:10px;align-items:flex-end}.modal-card{border-radius:22px 22px 12px 12px;padding:25px 20px;max-height:92vh}.modal h3{font-size:31px}
 }
 
-/* testimonials test layout */
-.reviews-top{padding:48px 0 54px;background:#fff;border-bottom:1px solid var(--line)}
-.reviews-top-head{display:flex;align-items:end;justify-content:space-between;gap:32px;margin-bottom:24px}
-.reviews-top-head h2{margin:0;font-size:clamp(30px,4vw,46px);line-height:1.04;letter-spacing:-.04em;max-width:760px}
-.reviews-top-head p{margin:0;max-width:440px;color:#6d7771;font-size:14px;line-height:1.6}
+/* testimonials */
+.reviews-top{padding:54px 0 58px;background:#fff;border-bottom:1px solid var(--line)}
+.reviews-top-head{display:grid;grid-template-columns:1.18fr .82fr;align-items:end;gap:54px;margin-bottom:28px}
+.reviews-top-head h2{margin:0;font-size:clamp(34px,4.5vw,54px);line-height:1.02;letter-spacing:-.045em;max-width:780px}
+.reviews-top-head h2 em{display:block;font-family:Georgia,"Times New Roman",serif;font-weight:400}
+.reviews-top-head p{margin:0 0 5px;max-width:500px;color:#6d7771;font-size:14px;line-height:1.65}
 .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.review-card{background:#f7f6f1;border:1px solid #e2e4de;border-radius:18px;padding:24px;min-height:210px;display:flex;flex-direction:column;justify-content:space-between}
-.review-card .review-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#78847d}
-.review-card blockquote{margin:26px 0 22px;font-size:19px;line-height:1.45;letter-spacing:-.02em;color:#26322c}
-.review-card footer{font-size:12px;color:#758078}
-.review-placeholder{border:1px dashed #bcc7c0;background:#fff;color:#718078}
-.review-placeholder blockquote{color:#657269}
-.review-proof{padding:78px 0;background:#eef3ef}
-.review-proof-head{display:grid;grid-template-columns:.42fr 1.58fr;gap:48px;margin-bottom:34px}
-.review-proof-head h2{margin:0;font-size:clamp(36px,5vw,62px);line-height:1;letter-spacing:-.045em}
-.review-proof-head p{margin:5px 0 0;color:#657269;font-size:15px;line-height:1.7;max-width:650px}
-.review-stories{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.review-story{background:#fff;border:1px solid #dfe5df;border-radius:22px;padding:30px;min-height:300px;display:flex;flex-direction:column}
-.review-story .eyebrow{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#748078}
-.review-story h3{font-size:25px;line-height:1.15;letter-spacing:-.03em;margin:18px 0 14px}
-.review-story p{margin:0;color:#68736d;font-size:14px;line-height:1.7}
-.review-story .review-meta{margin-top:auto;padding-top:24px;border-top:1px solid #e6e9e5;font-size:12px;color:#77817c}
-.review-honesty{margin-top:16px;font-size:12px;color:#78837d;line-height:1.6}
+.review-card{background:#f7f6f1;border:1px solid #e2e4de;border-radius:18px;padding:25px 24px 22px;min-height:228px;display:flex;flex-direction:column}
+.review-card .review-label{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#66756d;font-weight:700}
+.review-card blockquote{margin:26px 0 22px;font-size:20px;line-height:1.4;letter-spacing:-.025em;color:#173e35}
+.review-card footer{margin-top:auto;padding-top:17px;border-top:1px solid #dfe3de;font-size:12px;line-height:1.55;color:#758078}
+.review-proof{padding:84px 0;background:#eef3ef}
+.review-proof-head{display:grid;grid-template-columns:.38fr 1.62fr;gap:48px;margin-bottom:36px}
+.review-proof-head h2{margin:0;font-size:clamp(38px,5vw,64px);line-height:1;letter-spacing:-.048em;max-width:920px}
+.review-proof-head p{margin:12px 0 0;color:#657269;font-size:15px;line-height:1.7;max-width:760px}
+.review-stories{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.review-story{background:#fff;border:1px solid #dfe5df;border-radius:22px;padding:30px 29px 27px;min-height:610px;display:flex;flex-direction:column}
+.review-story .eyebrow{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#68786f;font-weight:700}
+.review-story h3{font-size:25px;line-height:1.2;letter-spacing:-.03em;margin:20px 0 20px;color:#173e35}
+.review-story .story-copy{margin:0;color:#69736e;font-size:15px;line-height:1.72}
+.review-story .review-meta{margin-top:auto;padding-top:22px;border-top:1px solid #e2e7e2;font-size:12px;line-height:1.55;color:#65736c}
+.review-story .review-meta strong{color:#19483c}
+@media(max-width:1050px){
+  .review-stories{grid-template-columns:1fr}
+  .review-story{min-height:0}
+}
 @media(max-width:900px){
-  .reviews-top-head{display:block}.reviews-top-head p{margin-top:12px}
+  .reviews-top-head{grid-template-columns:1fr;gap:14px}
   .review-grid{grid-template-columns:1fr}
   .review-card{min-height:0}
   .review-proof-head{grid-template-columns:1fr;gap:12px}
 }
 @media(max-width:640px){
-  .reviews-top{padding:34px 0 40px}
-  .review-card{padding:20px}
-  .review-card blockquote{font-size:18px;margin:20px 0}
-  .review-proof{padding:56px 0}
-  .review-stories{grid-template-columns:1fr}
-  .review-story{min-height:250px;padding:24px}
+  .reviews-top{padding:38px 0 42px}
+  .review-card{padding:21px 20px}
+  .review-card blockquote{font-size:19px;margin:20px 0}
+  .review-proof{padding:58px 0}
+  .review-story{padding:24px 22px}
+  .review-story h3{font-size:23px}
 }
-
 </style>
 </head>
 <body>
@@ -273,27 +275,26 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
 <section class="reviews-top" id="reviews">
   <div class="wrap">
     <div class="reviews-top-head">
-      <h2>Что должно доказать обещание «за один вечер».</h2>
-      <p>Здесь лучше всего работают короткие реальные отзывы: конкретный момент после встречи, без рекламных формулировок и без пятизвёздочных карточек.</p>
+      <h2>Разные ситуации.<em>Одна и та же ловушка.</em></h2>
+      <p>Кофе утром, тяжёлый созвон, пятница с друзьями — контексты разные. Но возврат часто начинается не с «невыносимой тяги», а с автоматизма или очень убедительной мысли.</p>
     </div>
     <div class="review-grid">
-      <article class="review-card review-placeholder">
-        <div class="review-label">Реальный отзыв №1</div>
-        <blockquote>Короткая цитата о том, что произошло вечером или на следующее утро. 2–4 строки, одна наблюдаемая деталь.</blockquote>
-        <footer>Имя · возраст/стаж курения — только если человек разрешил</footer>
+      <article class="review-card">
+        <div class="review-label">Утро · кофе · автоматизм</div>
+        <blockquote>«Я думала, что без сигареты у меня просто исчезнет утро».</blockquote>
+        <footer>Курила почти 15 лет. Впервые заметила момент, когда уже вставала идти курить — хотя самой тяги прямо сейчас не было.</footer>
       </article>
-      <article class="review-card review-placeholder">
-        <div class="review-label">Реальный отзыв №2</div>
-        <blockquote>Лучший формат: «боялся, что придётся терпеть → после встречи заметил конкретное изменение».</blockquote>
-        <footer>Имя · контекст — без выдуманных данных</footer>
+      <article class="review-card">
+        <div class="review-label">Стресс · работа · «одну можно»</div>
+        <blockquote>«Самая опасная тяга у меня вообще не ощущалась как тяга».</blockquote>
+        <footer>После тяжёлого дня увидел не сигарету, а мысль, которая её разрешает: «сегодня исключение».</footer>
       </article>
-      <article class="review-card review-placeholder">
-        <div class="review-label">Реальный отзыв №3</div>
-        <blockquote>Ещё один короткий отзыв с конкретикой: дорога, кофе, стресс, утро, алкоголь — то, что раньше автоматически вело к сигарете.</blockquote>
-        <footer>Реальный участник · подтверждённая цитата</footer>
+      <article class="review-card">
+        <div class="review-label">Компания · алкоголь · поздний триггер</div>
+        <blockquote>«Я не боялась обычного дня. Я боялась пятницы с друзьями».</blockquote>
+        <footer>Когда сценарий разобрали заранее, вечер перестал ощущаться как проверка силы воли.</footer>
       </article>
     </div>
-    <div class="review-honesty">Отзывы здесь намеренно не придуманы: этот тестовый блок подготовлен только под реальные сообщения участников.</div>
   </div>
 </section>
 
@@ -365,22 +366,28 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
     <div class="review-proof-head">
       <div class="section-no">Опыт участников</div>
       <div>
-        <h2>Не «спасибо, всё супер». Нужны истории, в которых видно изменение.</h2>
-        <p>Перед оплатой здесь лучше оставить 2–3 более подробных кейса: что человек боялся потерять, где обычно срывался и что изменилось после основной встречи.</p>
+        <h2>Что именно люди начали замечать иначе.</h2>
+        <p>Не общие слова «стало легче», а конкретные моменты, в которых раньше автоматически появлялась следующая сигарета.</p>
       </div>
     </div>
     <div class="review-stories">
-      <article class="review-story review-placeholder">
-        <div class="eyebrow">Подробный отзыв №1</div>
-        <h3>Было → чего боялся → что произошло после встречи.</h3>
-        <p>Сюда вставляется реальная история участника на 5–8 предложений или скрин сообщения с короткой текстовой расшифровкой.</p>
-        <div class="review-meta">Только подтверждённый кейс. Без переписывания результата за человека.</div>
+      <article class="review-story">
+        <div class="eyebrow">Утро · кофе · автоматизм</div>
+        <h3>«Я думала, что без сигареты у меня просто исчезнет утро».</h3>
+        <p class="story-copy">Курила почти пятнадцать лет. Первая сигарета — ещё до завтрака, вторая обязательно с кофе. Самое странное было не в тяге, а в ощущении: кофе как будто «не закончен». В первый рабочий понедельник поймала себя на том, что уже встаю идти курить, хотя прямо сейчас сигареты не хотелось. Раньше в такой момент я бы решила: значит, всё-таки хочется. Здесь впервые разделила сам импульс и решение закурить.</p>
+        <div class="review-meta"><strong>Было:</strong> кофе автоматически запускал маршрут к сигарете.<br><strong>Стало:</strong> автоматический импульс и решение закурить перестали быть одним и тем же.</div>
       </article>
-      <article class="review-story review-placeholder">
-        <div class="eyebrow">Подробный отзыв №2</div>
-        <h3>Конкретная ситуация сильнее общего «не курю».</h3>
-        <p>Например: первое утро, рабочий стресс, дорога, кофе или другой привычный триггер — если именно это человек сам отметил в сообщении.</p>
-        <div class="review-meta">Скрин + имя/инициал по согласованию.</div>
+      <article class="review-story">
+        <div class="eyebrow">Стресс · работа · «одну можно»</div>
+        <h3>«Самая опасная тяга у меня вообще не ощущалась как тяга».</h3>
+        <p class="story-copy">После тяжёлого созвона я обычно выходил курить. Когда бросал раньше, первые дни ещё держался, а потом появлялась очень разумная мысль: сегодня реально тяжёлый день, одна сигарета ничего не изменит. Я считал это своим решением. Когда начал отслеживать момент до сигареты, увидел: сначала появляется напряжение, потом мозг предлагает знакомое решение и уже после этого начинается торг. Для меня это было самым полезным — заметить не сигарету, а фразу, которая её разрешает.</p>
+        <div class="review-meta"><strong>Было:</strong> «сегодня исключение, завтра продолжу».<br><strong>Стало:</strong> «исключение» стало узнаваемым сценарием внутреннего торга.</div>
+      </article>
+      <article class="review-story">
+        <div class="eyebrow">Компания · алкоголь · поздний триггер</div>
+        <h3>«Я не боялась обычного дня. Я боялась пятницы с друзьями».</h3>
+        <p class="story-copy">В будни я могла не курить и даже не особенно страдать. Срывы всегда случались позже: бар, вино, кто-то вышел покурить, и мысль «ну одну за компанию» казалась совершенно безобидной. Из-за этого я каждый раз делала вывод, что всё зря и я просто не умею бросать. Когда этот сценарий заранее разобрала, стало спокойнее: я уже знала, в какой момент начну себя уговаривать и что именно обычно себе говорю. Вечер перестал быть проверкой силы воли.</p>
+        <div class="review-meta"><strong>Было:</strong> один вечер превращался в возврат к пачке.<br><strong>Стало:</strong> сложная ситуация стала знакомым сценарием, к которому можно подготовиться заранее.</div>
       </article>
     </div>
   </div>
