@@ -264,7 +264,7 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
     <a class="brand" href="#top">НЕ СИЛА ВОЛИ</a>
     <nav class="nav" aria-label="Навигация">
       <a href="#how">Как проходит</a><a href="#method">Почему иначе</a><a href="#author">Автор</a><a href="#faq">Вопросы</a>
-      <button class="btn sm" data-buy>Записаться</button>
+      <button class="btn sm" data-scroll-choice>Выбрать вечер</button>
     </nav>
   </div>
 </header>
@@ -276,7 +276,7 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
       <div class="kicker">Живой онлайн-сеанс · 18+</div>
       <h1>Бросить курить за один вечер.</h1>
       <p class="hero-copy"><strong>Живой онлайн-сеанс 2,5–3 часа.</strong> Ничего не нужно менять заранее. Основная работа заканчивается в тот же вечер — после я остаюсь на связи ещё 7 дней.</p>
-      <div class="slot-preview">
+      <div class="slot-preview" id="choose-evening">
         <div class="slot-preview-label">Выберите вечер · цена зависит от даты · МСК</div>
         <div class="slot-preview-list" data-slot-preview></div>
       </div>
@@ -308,7 +308,6 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
       <div class="session-meta">
         <div class="session-top">
           <div><span>Ближайший формат</span><strong>Вечерний онлайн-сеанс</strong></div>
-          <span class="price">3 900 ₽</span>
         </div>
         <div class="fact-row">
           <div><strong>2,5–3 часа</strong><small>основная работа</small></div>
@@ -454,12 +453,11 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
       </div>
     </div>
     <aside class="offer-card">
-      <div class="label">Участие в ближайшем вечернем сеансе</div>
+      <div class="label">Выберите подходящий вечер</div>
       <h3>Один вечер вместо очередной долгой попытки.</h3>
-      <p>Вы выбираете предпочтительный ближайший вечер, затем оплачиваете участие.</p>
-      <div class="offer-price">3 900 ₽</div>
+      <p>Наверху страницы есть два ближайших варианта с разной стоимостью. Выберите подходящую дату — и уже после этого перейдите к оплате.</p>
       <p>Сеанс + 7 дней поддержки.</p>
-      <button class="btn" data-buy>Записаться и оплатить →</button>
+      <button class="btn" data-scroll-choice>Выбрать вечер →</button>
       <p class="safe">Оплата через защищённую страницу Т‑Банка. До начала сеанса участие можно отменить с полным возвратом.</p>
     </aside>
   </div>
@@ -486,7 +484,7 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
 <section class="final">
   <div class="wrap final-in">
     <div><div class="kicker">Ближайший вечерний сеанс</div><h2>Не готовиться неделями. Выделить один вечер.</h2><p>Если вам нужен не ещё один материал о курении, а конкретная точка старта — выберите удобный ближайший вечер и оплатите участие.</p></div>
-    <div class="final-box"><strong>3 900 ₽</strong><span>живой сеанс + 7 дней поддержки</span><button class="btn" data-buy>Записаться и оплатить →</button></div>
+    <div class="final-box"><strong>Выберите вечер</strong><span>два ближайших варианта · живой сеанс + 7 дней поддержки</span><button class="btn" data-scroll-choice>К выбору даты →</button></div>
   </div>
 </section>
 </main>
@@ -645,7 +643,13 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
   function goal(name){try{if(window.ym)window.ym(110906734,'reachGoal',name)}catch(e){}}
   function open(){renderSlots();modal.classList.add('open');document.body.classList.add('modal-open');goal('tabletka_checkout_open');if(!window.matchMedia('(max-width:640px)').matches){setTimeout(function(){var el=document.getElementById('buyName');if(el)el.focus()},100)}}
   function close(){modal.classList.remove('open');document.body.classList.remove('modal-open')}
-  document.querySelectorAll('[data-buy]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();selectSlotObject(slots[0]);renderSlots();open()})});
+  document.querySelectorAll('[data-scroll-choice]').forEach(function(b){
+    b.addEventListener('click',function(e){
+      e.preventDefault();
+      var target=document.getElementById('choose-evening');
+      if(target)target.scrollIntoView({behavior:'smooth',block:'center'});
+    });
+  });
   document.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',close)});
   modal.addEventListener('click',function(e){if(e.target===modal)close()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
