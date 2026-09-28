@@ -178,6 +178,45 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
   .offer-card{padding:26px}.faq summary{font-size:16px}.final{padding:70px 0 92px}.final h2{font-size:47px}
   .footer{padding-bottom:40px}.footer-in{display:block}.modal{padding:10px;align-items:flex-end}.modal-card{border-radius:22px 22px 12px 12px;padding:25px 20px;max-height:92vh}.modal h3{font-size:31px}
 }
+
+/* testimonials test layout */
+.reviews-top{padding:48px 0 54px;background:#fff;border-bottom:1px solid var(--line)}
+.reviews-top-head{display:flex;align-items:end;justify-content:space-between;gap:32px;margin-bottom:24px}
+.reviews-top-head h2{margin:0;font-size:clamp(30px,4vw,46px);line-height:1.04;letter-spacing:-.04em;max-width:760px}
+.reviews-top-head p{margin:0;max-width:440px;color:#6d7771;font-size:14px;line-height:1.6}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.review-card{background:#f7f6f1;border:1px solid #e2e4de;border-radius:18px;padding:24px;min-height:210px;display:flex;flex-direction:column;justify-content:space-between}
+.review-card .review-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#78847d}
+.review-card blockquote{margin:26px 0 22px;font-size:19px;line-height:1.45;letter-spacing:-.02em;color:#26322c}
+.review-card footer{font-size:12px;color:#758078}
+.review-placeholder{border:1px dashed #bcc7c0;background:#fff;color:#718078}
+.review-placeholder blockquote{color:#657269}
+.review-proof{padding:78px 0;background:#eef3ef}
+.review-proof-head{display:grid;grid-template-columns:.42fr 1.58fr;gap:48px;margin-bottom:34px}
+.review-proof-head h2{margin:0;font-size:clamp(36px,5vw,62px);line-height:1;letter-spacing:-.045em}
+.review-proof-head p{margin:5px 0 0;color:#657269;font-size:15px;line-height:1.7;max-width:650px}
+.review-stories{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.review-story{background:#fff;border:1px solid #dfe5df;border-radius:22px;padding:30px;min-height:300px;display:flex;flex-direction:column}
+.review-story .eyebrow{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#748078}
+.review-story h3{font-size:25px;line-height:1.15;letter-spacing:-.03em;margin:18px 0 14px}
+.review-story p{margin:0;color:#68736d;font-size:14px;line-height:1.7}
+.review-story .review-meta{margin-top:auto;padding-top:24px;border-top:1px solid #e6e9e5;font-size:12px;color:#77817c}
+.review-honesty{margin-top:16px;font-size:12px;color:#78837d;line-height:1.6}
+@media(max-width:900px){
+  .reviews-top-head{display:block}.reviews-top-head p{margin-top:12px}
+  .review-grid{grid-template-columns:1fr}
+  .review-card{min-height:0}
+  .review-proof-head{grid-template-columns:1fr;gap:12px}
+}
+@media(max-width:640px){
+  .reviews-top{padding:34px 0 40px}
+  .review-card{padding:20px}
+  .review-card blockquote{font-size:18px;margin:20px 0}
+  .review-proof{padding:56px 0}
+  .review-stories{grid-template-columns:1fr}
+  .review-story{min-height:250px;padding:24px}
+}
+
 </style>
 </head>
 <body>
@@ -230,6 +269,34 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
     </aside>
   </div>
 </section>
+
+<section class="reviews-top" id="reviews">
+  <div class="wrap">
+    <div class="reviews-top-head">
+      <h2>Что должно доказать обещание «за один вечер».</h2>
+      <p>Здесь лучше всего работают короткие реальные отзывы: конкретный момент после встречи, без рекламных формулировок и без пятизвёздочных карточек.</p>
+    </div>
+    <div class="review-grid">
+      <article class="review-card review-placeholder">
+        <div class="review-label">Реальный отзыв №1</div>
+        <blockquote>Короткая цитата о том, что произошло вечером или на следующее утро. 2–4 строки, одна наблюдаемая деталь.</blockquote>
+        <footer>Имя · возраст/стаж курения — только если человек разрешил</footer>
+      </article>
+      <article class="review-card review-placeholder">
+        <div class="review-label">Реальный отзыв №2</div>
+        <blockquote>Лучший формат: «боялся, что придётся терпеть → после встречи заметил конкретное изменение».</blockquote>
+        <footer>Имя · контекст — без выдуманных данных</footer>
+      </article>
+      <article class="review-card review-placeholder">
+        <div class="review-label">Реальный отзыв №3</div>
+        <blockquote>Ещё один короткий отзыв с конкретикой: дорога, кофе, стресс, утро, алкоголь — то, что раньше автоматически вело к сигарете.</blockquote>
+        <footer>Реальный участник · подтверждённая цитата</footer>
+      </article>
+    </div>
+    <div class="review-honesty">Отзывы здесь намеренно не придуманы: этот тестовый блок подготовлен только под реальные сообщения участников.</div>
+  </div>
+</section>
+
 
 <section class="trust-strip">
   <div class="wrap trust-grid">
@@ -288,6 +355,33 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
         <div class="flow"><b>тяга</b><i>+</i><b>«мне это сейчас нужно»</b><i>+</i><b>внутренний торг</b><i>→</i><b>разбор</b></div>
         <p>Задача — не научить вас сильнее запрещать себе курить, а изменить саму конструкцию, из-за которой сигарета снова становится предметом переговоров.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="review-proof">
+  <div class="wrap">
+    <div class="review-proof-head">
+      <div class="section-no">Опыт участников</div>
+      <div>
+        <h2>Не «спасибо, всё супер». Нужны истории, в которых видно изменение.</h2>
+        <p>Перед оплатой здесь лучше оставить 2–3 более подробных кейса: что человек боялся потерять, где обычно срывался и что изменилось после основной встречи.</p>
+      </div>
+    </div>
+    <div class="review-stories">
+      <article class="review-story review-placeholder">
+        <div class="eyebrow">Подробный отзыв №1</div>
+        <h3>Было → чего боялся → что произошло после встречи.</h3>
+        <p>Сюда вставляется реальная история участника на 5–8 предложений или скрин сообщения с короткой текстовой расшифровкой.</p>
+        <div class="review-meta">Только подтверждённый кейс. Без переписывания результата за человека.</div>
+      </article>
+      <article class="review-story review-placeholder">
+        <div class="eyebrow">Подробный отзыв №2</div>
+        <h3>Конкретная ситуация сильнее общего «не курю».</h3>
+        <p>Например: первое утро, рабочий стресс, дорога, кофе или другой привычный триггер — если именно это человек сам отметил в сообщении.</p>
+        <div class="review-meta">Скрин + имя/инициал по согласованию.</div>
+      </article>
     </div>
   </div>
 </section>
