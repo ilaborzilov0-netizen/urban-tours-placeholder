@@ -40,12 +40,40 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
 .hero-copy{font-size:20px;line-height:1.58;color:#4e5b54;max-width:690px;margin:28px 0 0}
 .hero-copy strong{color:var(--ink);font-weight:650}
 
-.slot-preview{margin-top:26px}
-.slot-preview-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#758079;margin-bottom:10px}
-.slot-preview-list{display:flex;flex-wrap:wrap;gap:8px}
-.slot-chip{border:1px solid #c8d1cb;background:rgba(255,255,255,.45);color:var(--green);border-radius:999px;padding:10px 13px;font-size:13px;font-weight:700;cursor:pointer}
-.slot-chip:hover,.slot-chip.is-selected{background:var(--green);color:#fff;border-color:var(--green)}
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.slot-preview{margin-top:28px}
+.slot-preview-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#758079;margin-bottom:11px}
+.slot-preview-list{display:grid;grid-template-columns:1fr;gap:10px}
+.session-choice{width:100%;border:1px solid #cdd5cf;background:rgba(255,255,255,.52);border-radius:18px;padding:18px 20px;display:grid;grid-template-columns:1fr auto;gap:14px 22px;align-items:center;text-align:left;cursor:pointer;color:var(--ink);transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease,background .16s ease}
+.session-choice:hover{transform:translateY(-1px);border-color:#9fb1a7;box-shadow:0 10px 26px rgba(25,63,52,.08)}
+.session-choice.is-primary{background:#f0f5f1;border-color:#9db3a7}
+.session-choice.is-selected{border-color:var(--green);box-shadow:0 0 0 1px var(--green)}
+.session-choice-main{min-width:0}
+.session-choice-kicker{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#6f7d75;font-weight:750;margin-bottom:6px}
+.session-choice-date{display:block;font-size:18px;line-height:1.2;letter-spacing:-.02em;font-weight:760;color:#173e35}
+.session-choice-note{display:block;margin-top:6px;font-size:12px;line-height:1.45;color:#748078}
+.session-choice-price{text-align:right;white-space:nowrap}
+.session-choice-price strong{display:block;font-size:28px;line-height:1;letter-spacing:-.04em;color:#173e35}
+.session-choice-price span{display:block;margin-top:8px;font-size:12px;font-weight:750;color:var(--green)}
+.session-choice.is-primary .session-choice-price span:after{content:" →"}
+.session-choice:not(.is-primary) .session-choice-price span{color:#5f6d65}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+.hero-actions .contact-choice{width:100%}
+.hero-actions .contact-choice>.btn{width:100%}
+.selected-session{margin:18px 0 22px;padding:16px 18px;border:1px solid #d6ddd8;border-radius:14px;background:#f7f8f5}
+.selected-session-top{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}
+.selected-session-kicker{display:block;font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:#758079;margin-bottom:5px}
+.selected-session-date{display:block;font-size:17px;line-height:1.25;color:#173e35}
+.selected-session-price{font-size:23px;font-weight:760;letter-spacing:-.03em;white-space:nowrap;color:#173e35}
+.selected-session-note{margin-top:9px;font-size:12px;line-height:1.45;color:#758079}
+@media(max-width:640px){
+  .session-choice{padding:16px 16px;grid-template-columns:1fr auto;gap:10px 14px}
+  .session-choice-date{font-size:16px}
+  .session-choice-price strong{font-size:24px}
+  .session-choice-price span{font-size:11px}
+  .selected-session-top{gap:10px}
+  .selected-session-date{font-size:15px}
+  .selected-session-price{font-size:21px}
+}
 .contact-choice{position:relative;display:inline-flex}
 .contact-menu{position:absolute;left:0;top:calc(100% + 10px);z-index:30;min-width:282px;padding:9px;background:#fff;border:1px solid #d9ded9;border-radius:16px;box-shadow:0 18px 48px rgba(24,45,37,.16);display:grid;gap:7px;opacity:0;visibility:hidden;transform:translateY(-5px);transition:opacity .16s ease,transform .16s ease,visibility .16s ease}
 .contact-choice.is-open .contact-menu{opacity:1;visibility:visible;transform:translateY(0)}
@@ -249,11 +277,10 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
       <h1>Бросить курить за один вечер.</h1>
       <p class="hero-copy"><strong>Живой онлайн-сеанс 2,5–3 часа.</strong> Ничего не нужно менять заранее. Основная работа заканчивается в тот же вечер — после я остаюсь на связи ещё 7 дней.</p>
       <div class="slot-preview">
-        <div class="slot-preview-label">Выберите предпочтительный вечер · МСК</div>
+        <div class="slot-preview-label">Выберите вечер · цена зависит от даты · МСК</div>
         <div class="slot-preview-list" data-slot-preview></div>
       </div>
       <div class="hero-actions">
-        <button class="btn" data-buy>Выбрать вечер и оплатить 3 900 ₽ →</button>
         <div class="contact-choice" data-contact-choice>
           <button class="btn secondary" type="button" data-contact-toggle aria-expanded="false" aria-haspopup="true">Сначала задать вопрос</button>
           <div class="contact-menu" data-contact-menu>
@@ -475,19 +502,25 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
   <div class="modal-card">
     <button class="modal-close" type="button" data-close aria-label="Закрыть">×</button>
     <div class="modal-kicker">Запись на онлайн-сеанс</div>
-    <h3 id="checkoutTitle">Выберите предпочтительный вечер и оплатите участие.</h3>
-    <p class="modal-sub">Вы выбираете предпочтительный ближайший вечер. После оплаты я подтверждаю участие и точное время встречи.</p>
+    <h3 id="checkoutTitle">Забронируйте место на выбранный вечер.</h3>
+    <p class="modal-sub">Дата и стоимость уже выбраны. После оплаты я подтверждаю участие и присылаю детали встречи.</p>
     <form id="checkoutForm">
-      <div class="slot-picker">
-        <div class="slot-picker-label">Предпочтительный вечер · время московское</div>
-        <div class="slot-picker-grid" data-slot-picker></div>
+      <div class="selected-session">
+        <div class="selected-session-top">
+          <div>
+            <span class="selected-session-kicker" id="selectedTier">Ближайший сеанс</span>
+            <strong class="selected-session-date" id="selectedDate">—</strong>
+          </div>
+          <strong class="selected-session-price" id="selectedPrice">3 900 ₽</strong>
+        </div>
+        <div class="selected-session-note" id="selectedNote">Цена на ближайшую группу</div>
       </div>
       <input type="hidden" name="slot" id="buySlot" value="">
       <div class="field"><label for="buyName">Имя</label><input id="buyName" name="name" autocomplete="name" required minlength="2" placeholder="Как к вам обращаться?"></div>
       <div class="field"><label for="buyPhone">Телефон</label><input id="buyPhone" name="phone" autocomplete="tel" inputmode="tel" required placeholder="+7 999 123-45-67"></div>
       <div class="field"><label for="buyEmail">Email</label><input id="buyEmail" name="email" type="email" autocomplete="email" required placeholder="name@example.com"></div>
       <input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
-      <div class="checkout-total"><span>Онлайн-сеанс + 7 дней поддержки</span><strong>3 900 ₽</strong></div>
+      <div class="checkout-total"><span>Онлайн-сеанс + 7 дней поддержки</span><strong id="checkoutTotalPrice">3 900 ₽</strong></div>
       <button class="btn" id="payBtn" type="submit">Перейти к оплате 3 900 ₽ →</button>
       <div class="form-status" id="formStatus" aria-live="polite"></div>
       <p class="consent">Нажимая кнопку, вы передаёте контактные данные для записи и переходите на защищённую страницу платёжного сервиса. Автосписаний нет. Предпочтительный вечер подтверждается после оплаты.</p>
@@ -530,50 +563,89 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
   var payBtn=document.getElementById('payBtn');
   var PAYMENT='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/api/payment/create';
   var LEADS='https://api.marafon-metod.ru/api/leads';
-  var EXPECTED=390000;
   var selectedSlot='';
+  var selectedPlan='tabletka';
+  var selectedAmount=390000;
+  var selectedPriceText='3 900 ₽';
+  var selectedTier='Ближайший сеанс';
+  var selectedNote='Цена на ближайшую группу';
   function moscowParts(date){
     var parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Moscow',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',hour12:false}).formatToParts(date||new Date());
     var o={};parts.forEach(function(p){if(p.type!=='literal')o[p.type]=Number(p.value)});return o;
   }
   function slotDates(){
     var now=new Date(),mp=moscowParts(now),base=Date.UTC(mp.year,mp.month-1,mp.day),startOffset=mp.hour>=18?1:0,out=[];
-    for(var i=0;i<3;i++){
+    for(var i=0;i<2;i++){
       var d=new Date(base+(startOffset+i)*86400000);
       var iso=d.toISOString().slice(0,10);
       var day=new Intl.DateTimeFormat('ru-RU',{timeZone:'UTC',weekday:'short',day:'numeric',month:'short'}).format(d).replace('.','');
-      var rel=day;
-      out.push({id:iso+'T20:00:00+03:00',label:rel,detail:'20:00 МСК',date:iso});
+      out.push({
+        id:iso+'T20:00:00+03:00',
+        label:day,
+        detail:'20:00 МСК',
+        date:iso,
+        plan:i===0?'tabletka':'tabletka_next',
+        amount:i===0?390000:590000,
+        priceText:i===0?'3 900 ₽':'5 900 ₽',
+        tier:i===0?'Ближайший сеанс':'Следующий сеанс',
+        note:i===0?'Цена на ближайшую группу':'Стандартная стоимость'
+      });
     }
     return out;
   }
   var slots=slotDates();
-  selectedSlot=slots[0].id;
+  function selectSlotObject(s){
+    if(!s)return;
+    selectedSlot=s.id;
+    selectedPlan=s.plan;
+    selectedAmount=s.amount;
+    selectedPriceText=s.priceText;
+    selectedTier=s.tier;
+    selectedNote=s.note;
+  }
+  selectSlotObject(slots[0]);
   function renderSlots(){
     var preview=document.querySelector('[data-slot-preview]');
-    var picker=document.querySelector('[data-slot-picker]');
-    function chip(s,i,cls){
-      return '<button type="button" class="'+cls+(s.id===selectedSlot?' is-selected':'')+'" data-slot-id="'+s.id+'"><strong>'+s.label+'</strong>'+(cls==='slot-option'?'<span>'+s.detail+'</span>':' · '+s.detail)+'</button>';
+    if(preview){
+      preview.innerHTML=slots.map(function(s,i){
+        return '<button type="button" class="session-choice'+(i===0?' is-primary':'')+(s.id===selectedSlot?' is-selected':'')+'" data-session-id="'+s.id+'">'+
+          '<span class="session-choice-main">'+
+            '<span class="session-choice-kicker">'+s.tier+'</span>'+
+            '<strong class="session-choice-date">'+s.label+' · '+s.detail+'</strong>'+
+            '<span class="session-choice-note">'+s.note+'</span>'+
+          '</span>'+
+          '<span class="session-choice-price"><strong>'+s.priceText+'</strong><span>'+(i===0?'Забронировать место':'Выбрать следующий вечер')+'</span></span>'+
+        '</button>';
+      }).join('');
     }
-    if(preview)preview.innerHTML=slots.slice(0,2).map(function(s,i){return chip(s,i,'slot-chip')}).join('');
-    if(picker)picker.innerHTML=slots.map(function(s,i){return chip(s,i,'slot-option')}).join('');
     var hidden=document.getElementById('buySlot');if(hidden)hidden.value=selectedSlot;
+    var tier=document.getElementById('selectedTier');if(tier)tier.textContent=selectedTier;
+    var date=document.getElementById('selectedDate');
+    var selected=slots.find(function(s){return s.id===selectedSlot});
+    if(date&&selected)date.textContent=selected.label+' · '+selected.detail;
+    var price=document.getElementById('selectedPrice');if(price)price.textContent=selectedPriceText;
+    var note=document.getElementById('selectedNote');if(note)note.textContent=selectedNote;
+    var total=document.getElementById('checkoutTotalPrice');if(total)total.textContent=selectedPriceText;
+    if(payBtn&&!payBtn.disabled)payBtn.textContent='Перейти к оплате '+selectedPriceText+' →';
   }
   function chooseSlot(id,openAfter){
-    if(!slots.some(function(s){return s.id===id}))return;
-    selectedSlot=id;renderSlots();if(openAfter)open();
+    var s=slots.find(function(x){return x.id===id});
+    if(!s)return;
+    selectSlotObject(s);
+    renderSlots();
+    if(openAfter)open();
   }
   document.addEventListener('click',function(e){
-    var el=e.target&&e.target.closest?e.target.closest('[data-slot-id]'):null;
+    var el=e.target&&e.target.closest?e.target.closest('[data-session-id]'):null;
     if(!el)return;
     e.preventDefault();
-    chooseSlot(el.getAttribute('data-slot-id'),el.classList.contains('slot-chip'));
+    chooseSlot(el.getAttribute('data-session-id'),true);
   });
   renderSlots();
   function goal(name){try{if(window.ym)window.ym(110906734,'reachGoal',name)}catch(e){}}
   function open(){renderSlots();modal.classList.add('open');document.body.classList.add('modal-open');goal('tabletka_checkout_open');if(!window.matchMedia('(max-width:640px)').matches){setTimeout(function(){var el=document.getElementById('buyName');if(el)el.focus()},100)}}
   function close(){modal.classList.remove('open');document.body.classList.remove('modal-open')}
-  document.querySelectorAll('[data-buy]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();open()})});
+  document.querySelectorAll('[data-buy]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();selectSlotObject(slots[0]);renderSlots();open()})});
   document.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',close)});
   modal.addEventListener('click',function(e){if(e.target===modal)close()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
@@ -582,8 +654,8 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
     try{
       await fetch(LEADS,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({
         formType:'commercial_application',name:name,contactType:'phone',contact:phone,
-        message:'Таблетка · /tabletka · онлайн-сеанс за 3 900 ₽\nПредпочтительный вечер: '+selectedSlot+'\nEmail: '+email,
-        price:'3900',source:'tabletka_smoking',sourceUrl:location.href,referrer:document.referrer||'',utm:utm(),website:website||''
+        message:'Марафон Метод · /marafonmetod · онлайн-сеанс за '+selectedPriceText+'\nВыбранный вечер: '+selectedSlot+'\nEmail: '+email,
+        price:String(selectedAmount/100),source:'marafonmetod_smoking',sourceUrl:location.href,referrer:document.referrer||'',utm:utm(),website:website||''
       })});
     }catch(e){}
   }
@@ -601,11 +673,11 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
     await saveLead(name,phone,email,website);
     try{
       var response=await fetch(PAYMENT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({
-        plan:'tabletka',name:name,email:email,phone:phone,flowId:selectedSlot||'tabletka-evening',source:'tabletka'
+        plan:selectedPlan,name:name,email:email,phone:phone,flowId:selectedSlot||'tabletka-evening',source:'marafonmetod'
       })});
       var data={};try{data=await response.json()}catch(_e){}
       if(!response.ok||!data.ok||!data.paymentUrl)throw new Error(data.error||'Не удалось открыть оплату.');
-      if(Number(data.amount)!==EXPECTED)throw new Error('Не удалось подтвердить стоимость 3 900 ₽.');
+      if(Number(data.amount)!==selectedAmount)throw new Error('Не удалось подтвердить стоимость '+selectedPriceText+'.');
       try{sessionStorage.setItem('tabletkaPayment',JSON.stringify({orderId:data.orderId,paymentId:data.paymentId,amount:data.amount,slot:selectedSlot,createdAt:new Date().toISOString()}))}catch(_s){}
       goal('tabletka_payment_redirect');
       location.assign(data.paymentUrl);
