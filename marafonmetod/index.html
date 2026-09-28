@@ -46,6 +46,15 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
 .slot-chip{border:1px solid #c8d1cb;background:rgba(255,255,255,.45);color:var(--green);border-radius:999px;padding:10px 13px;font-size:13px;font-weight:700;cursor:pointer}
 .slot-chip:hover,.slot-chip.is-selected{background:var(--green);color:#fff;border-color:var(--green)}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.contact-choice{position:relative;display:inline-flex}
+.contact-menu{position:absolute;left:0;top:calc(100% + 10px);z-index:30;min-width:282px;padding:9px;background:#fff;border:1px solid #d9ded9;border-radius:16px;box-shadow:0 18px 48px rgba(24,45,37,.16);display:grid;gap:7px;opacity:0;visibility:hidden;transform:translateY(-5px);transition:opacity .16s ease,transform .16s ease,visibility .16s ease}
+.contact-choice.is-open .contact-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.contact-option{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:11px;text-decoration:none;color:var(--ink);background:#f7f7f3;transition:background .15s ease,transform .15s ease}
+.contact-option:hover{background:#eef3ef;transform:translateY(-1px)}
+.contact-icon{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:var(--green);color:#fff;font-size:12px;font-weight:800;flex:0 0 auto}
+.contact-option strong{display:block;font-size:14px;line-height:1.15}
+.contact-option small{display:block;margin-top:3px;color:#77817b;font-size:11px;line-height:1.2}
+@media(max-width:640px){.contact-choice{width:100%}.contact-choice>.btn{width:100%}.contact-menu{left:0;right:0;min-width:0;width:100%}}
 .hero-note{display:flex;gap:18px;flex-wrap:wrap;margin-top:18px;color:#6a746e;font-size:13px}
 .hero-note span{display:flex;align-items:center;gap:7px}
 .hero-note span:before{content:"";width:6px;height:6px;border-radius:50%;background:#6f8e7e}
@@ -245,11 +254,23 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
       </div>
       <div class="hero-actions">
         <button class="btn" data-buy>Выбрать вечер и оплатить 3 900 ₽ →</button>
+        <div class="contact-choice" data-contact-choice>
+          <button class="btn secondary" type="button" data-contact-toggle aria-expanded="false" aria-haspopup="true">Сначала задать вопрос</button>
+          <div class="contact-menu" data-contact-menu>
+            <a class="contact-option" href="https://max.ru/u/f9LHodD0cOLpevOEzdPM7DBn_9wNoZiKdBMryxkSM2b4SpNmf4xagvVkl8g" target="_blank" rel="noopener">
+              <span class="contact-icon">M</span>
+              <span><strong>MAX</strong><small>написать Илье лично</small></span>
+            </a>
+            <a class="contact-option" href="https://t.me/metodborzilova" target="_blank" rel="noopener">
+              <span class="contact-icon">TG</span>
+              <span><strong>Telegram</strong><small>@metodborzilova</small></span>
+            </a>
+          </div>
+        </div>
       </div>
       <div class="hero-note">
         <span>Небольшая онлайн-группа</span><span>7 дней поддержки после</span><span>До начала сеанса — полный возврат</span>
       </div>
-      <p style="margin:14px 0 0;font-size:13px;color:#6d7771">Есть вопрос до оплаты? <a href="https://max.ru/u/f9LHodD0cOLpevOEzdPM7DBn_9wNoZiKdBMryxkSM2b4SpNmf4xagvVkl8g" target="_blank" rel="noopener" style="color:var(--green);font-weight:700">Написать Илье в MAX ↗</a></p>
     </div>
 
     <aside class="session-card" aria-label="Информация о сеансе">
@@ -478,6 +499,31 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
 <script>
 (function(){
   'use strict';
+  var contactChoice=document.querySelector('[data-contact-choice]');
+  var contactToggle=document.querySelector('[data-contact-toggle]');
+  function closeContactMenu(){
+    if(!contactChoice||!contactToggle)return;
+    contactChoice.classList.remove('is-open');
+    contactToggle.setAttribute('aria-expanded','false');
+  }
+  if(contactChoice&&contactToggle){
+    contactToggle.addEventListener('click',function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      var openNow=!contactChoice.classList.contains('is-open');
+      closeContactMenu();
+      if(openNow){
+        contactChoice.classList.add('is-open');
+        contactToggle.setAttribute('aria-expanded','true');
+      }
+    });
+    document.addEventListener('click',function(e){
+      if(!contactChoice.contains(e.target))closeContactMenu();
+    });
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape')closeContactMenu();
+    });
+  }
   var modal=document.getElementById('checkoutModal');
   var form=document.getElementById('checkoutForm');
   var status=document.getElementById('formStatus');
