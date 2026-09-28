@@ -57,6 +57,7 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
 .session-choice.is-primary .session-choice-price span:after{content:" →"}
 .session-choice:not(.is-primary) .session-choice-price span{color:#5f6d65}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+.hero-book-btn{width:100%;padding:17px 20px;font-size:16px}
 .hero-actions .contact-choice{width:100%}
 .hero-actions .contact-choice>.btn{width:100%}
 .selected-session{margin:18px 0 22px;padding:16px 18px;border:1px solid #d6ddd8;border-radius:14px;background:#f7f8f5}
@@ -281,6 +282,7 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
         <div class="slot-preview-list" data-slot-preview></div>
       </div>
       <div class="hero-actions">
+        <button class="btn hero-book-btn" id="heroBookBtn" type="button">Занять место и оплатить 3 900 ₽ →</button>
         <div class="contact-choice" data-contact-choice>
           <button class="btn secondary" type="button" data-contact-toggle aria-expanded="false" aria-haspopup="true">Сначала задать вопрос</button>
           <div class="contact-menu" data-contact-menu>
@@ -612,7 +614,7 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
             '<strong class="session-choice-date">'+s.label+' · '+s.detail+'</strong>'+
             '<span class="session-choice-note">'+s.note+'</span>'+
           '</span>'+
-          '<span class="session-choice-price"><strong>'+s.priceText+'</strong><span>'+(i===0?'Забронировать место':'Выбрать следующий вечер')+'</span></span>'+
+          '<span class="session-choice-price"><strong>'+s.priceText+'</strong><span>'+(s.id===selectedSlot?'✓ Выбрано':'Выбрать')+'</span></span>'+
         '</button>';
       }).join('');
     }
@@ -625,6 +627,8 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
     var note=document.getElementById('selectedNote');if(note)note.textContent=selectedNote;
     var total=document.getElementById('checkoutTotalPrice');if(total)total.textContent=selectedPriceText;
     if(payBtn&&!payBtn.disabled)payBtn.textContent='Перейти к оплате '+selectedPriceText+' →';
+    var heroBookBtn=document.getElementById('heroBookBtn');
+    if(heroBookBtn)heroBookBtn.textContent='Занять место и оплатить '+selectedPriceText+' →';
   }
   function chooseSlot(id,openAfter){
     var s=slots.find(function(x){return x.id===id});
@@ -637,9 +641,16 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
     var el=e.target&&e.target.closest?e.target.closest('[data-session-id]'):null;
     if(!el)return;
     e.preventDefault();
-    chooseSlot(el.getAttribute('data-session-id'),true);
+    chooseSlot(el.getAttribute('data-session-id'),false);
   });
   renderSlots();
+  var heroBookBtn=document.getElementById('heroBookBtn');
+  if(heroBookBtn){
+    heroBookBtn.addEventListener('click',function(e){
+      e.preventDefault();
+      open();
+    });
+  }
   function goal(name){try{if(window.ym)window.ym(110906734,'reachGoal',name)}catch(e){}}
   function open(){renderSlots();modal.classList.add('open');document.body.classList.add('modal-open');goal('tabletka_checkout_open');if(!window.matchMedia('(max-width:640px)').matches){setTimeout(function(){var el=document.getElementById('buyName');if(el)el.focus()},100)}}
   function close(){modal.classList.remove('open');document.body.classList.remove('modal-open')}
