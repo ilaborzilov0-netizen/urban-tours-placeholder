@@ -51,6 +51,11 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
 .session-choice-kicker{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#6f7d75;font-weight:750;margin-bottom:6px}
 .session-choice-date{display:block;font-size:18px;line-height:1.2;letter-spacing:-.02em;font-weight:760;color:#173e35}
 .session-choice-note{display:block;margin-top:6px;font-size:12px;line-height:1.45;color:#748078}
+.session-choice-seats{display:flex;align-items:center;gap:10px;margin-top:10px}
+.seat-segments{display:grid;grid-template-columns:repeat(10,8px);gap:4px}
+.seat-segment{width:8px;height:8px;border-radius:2px;background:#d7ded9;border:1px solid #c6d0c9}
+.seat-segment.is-taken{background:#5f7f70;border-color:#5f7f70}
+.seat-copy{font-size:12px;line-height:1;color:#6c7972;white-space:nowrap}
 .session-choice-price{text-align:right;white-space:nowrap}
 .session-choice-price strong{display:block;font-size:28px;line-height:1;letter-spacing:-.04em;color:#173e35}
 .session-choice-price span{display:block;margin-top:8px;font-size:12px;font-weight:750;color:var(--green)}
@@ -584,7 +589,9 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
         amount:390000,
         priceText:'3 900 ₽',
         tier:'Ближайший поток',
-        note:'Цена на ближайшую группу'
+        note:'Цена на ближайшую группу',
+        capacity:10,
+        freeSeats:4
       },
       {
         id:'2026-10-08T20:00:00+03:00',
@@ -595,7 +602,9 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
         amount:590000,
         priceText:'5 900 ₽',
         tier:'Следующий поток',
-        note:'Стандартная стоимость'
+        note:'Стандартная стоимость',
+        capacity:10,
+        freeSeats:9
       }
     ];
   }
@@ -618,7 +627,10 @@ h1{font-size:clamp(52px,6.8vw,91px);line-height:.96;letter-spacing:-.055em;margi
           '<span class="session-choice-main">'+
             '<span class="session-choice-kicker">'+s.tier+'</span>'+
             '<strong class="session-choice-date">'+s.label+' · '+s.detail+'</strong>'+
-            '<span class="session-choice-note">'+s.note+'</span>'+
+            '<span class="session-choice-seats">'+
+              '<span class="seat-segments" aria-hidden="true">'+Array.from({length:s.capacity},function(_,n){return '<span class="seat-segment'+(n<(s.capacity-s.freeSeats)?' is-taken':'')+'"></span>';}).join('')+'</span>'+
+              '<span class="seat-copy">Свободно '+s.freeSeats+' из '+s.capacity+'</span>'+
+            '</span>'+
           '</span>'+
           '<span class="session-choice-price"><strong>'+s.priceText+'</strong><span>'+(s.id===selectedSlot?'✓ Выбрано':'Выбрать')+'</span></span>'+
         '</button>';
