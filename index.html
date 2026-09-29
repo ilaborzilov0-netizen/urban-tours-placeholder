@@ -164,7 +164,7 @@
 </main>
 <div class="modal" id="modal"><div class="modalCard"><button class="close" id="close" type="button">×</button>
     <div class="eyebrow"><span class="liveDot"></span>БРОНИРОВАНИЕ МЕСТА</div>
-    <h3 id="bookingTitle">ЗАБРОНИРОВАТЬ<br>СРЕДУ.</h3><p class="modalHint">Имя и один контакт — сюда пришлю ссылку на онлайн-встречу и напоминание перед началом.</p>
+    <h3 id="bookingTitle">ЗАБРОНИРОВАТЬ<br>СРЕДУ.</h3><p class="modalHint">Имя, контакт и email — все поля обязательны. Ссылку и напоминание пришлю перед встречей.</p>
     <div class="modalSlot"><div><small>ВАША ВСТРЕЧА</small><strong id="selectedSlotLabel">Среда</strong></div><b id="selectedSlotTime">19:30–22:30 МСК</b></div>
     <div class="slotSwitch">Не тот вечер? <button type="button" id="switchSlot">Переключить на субботу</button></div>
     <form id="leadForm">
@@ -178,10 +178,11 @@
         <button class="contactMethod" type="button" data-contact-type="max">MAX</button>
       </div>
       <label><span id="contactLabel">Телефон</span><input required name="contact" id="contactInput" autocomplete="tel" inputmode="tel" placeholder="+7 999 123-45-67"></label>
+      <label>Email<input required name="email" id="emailInput" type="email" autocomplete="email" inputmode="email" placeholder="name@example.com"></label>
       <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="primary" id="leadSubmit" type="submit">Забронировать место</button>
       <div class="formStatus" id="leadStatus" aria-live="polite"></div>
-      <small>Ссылку на онлайн-встречу и напоминание пришлю выбранным способом. Участие в основном вечере бесплатно.</small>
+      <small>Все поля обязательны. Ссылку на онлайн-встречу и напоминание пришлю выбранным способом. Email нужен как резервный канал связи.</small>
     </form>
   </div></div>
 <div class="stickyCta"><div><small>Среда или суббота</small><strong>Выберите вечер</strong></div><button class="js-open" type="button">Выбрать вечер</button></div>
@@ -275,26 +276,29 @@
     const x=slotData[selected];
     const name=String(form.elements.name.value||'').trim();
     const contactValue=String(form.elements.contact.value||'').trim();
+    const email=String(form.elements.email.value||'').trim().toLowerCase();
     const type=String(contactType.value||'phone');
     const website=String(form.elements.website.value||'').trim();
     const digits=contactValue.replace(/\D/g,'');
     if(name.length<2){status.textContent='Укажите имя.';status.className='formStatus err';return}
     if(type==='phone'&&digits.length<10){status.textContent='Укажите корректный номер телефона.';status.className='formStatus err';return}
     if(type!=='phone'&&contactValue.length<3){status.textContent='Укажите контакт, по которому прислать ссылку.';status.className='formStatus err';return}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(email)){status.textContent='Укажите корректный email.';status.className='formStatus err';return}
     const old=submit.textContent;submit.disabled=true;submit.textContent='Бронируем…';status.textContent='';status.className='formStatus';
     try{
       const r=await fetch('https://api.marafon-metod.ru/api/leads',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({
         formType:'commercial_application',name,contactType:type,contact:contactValue,
-        message:'Марафон Метод · / · бесплатная живая встреча\\nВыбранный вечер: '+x.date+' · '+x.time+'\\nСсылка после регистрации',
+        email:email,
+        message:'Марафон Метод · / · бесплатная живая встреча\\nВыбранный вечер: '+x.date+' · '+x.time+'\\nEmail: '+email+'\\nСсылка после регистрации',
         price:'0',source:'marafon_free_evening',sourceUrl:location.href,referrer:document.referrer||'',utm:utm(),website
       })});
       let result={};try{result=await r.json()}catch(_){}
       if(!r.ok||!result.ok) throw new Error(result.error||('HTTP '+r.status));
       if(!result.channels||result.channels.email!==true) throw new Error('EMAIL_NOTIFICATION_FAILED');
       form.reset();setContactType('phone');renderSelected();
-      status.innerHTML='<div class="successBox"><strong>Место забронировано.</strong><br>'+x.date+' · '+x.time+'<br><br>До встречи ничего не меняйте: курите как обычно. Ссылку пришлю выбранным способом.</div>';
+      status.innerHTML='<div class="successBox"><strong>Место забронировано.</strong><br>'+x.date+' · '+x.time+'<br><br>До встречи ничего не меняйте: курите как обычно. Ссылку пришлю выбранным способом; email сохранён как резервный контакт.</div>';
       status.className='formStatus ok';
-      try{if(window.ym)window.ym(110906734,'reachGoal','marafon_free_lead_submit',{slot:selected,contact_type:type})}catch(_){}
+      try{if(window.ym)window.ym(110906734,'reachGoal','marafon_free_lead_submit',{slot:selected,contact_type:type,email_provided:true})}catch(_){}
     }catch(err){
       console.error('[vecher:lead:error]',err);
       status.textContent='Не удалось отправить заявку. Попробуйте ещё раз чуть позже.';
