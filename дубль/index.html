@@ -110,6 +110,15 @@
   .successActions{display:grid}
   .successActions .primary,.successSecondary{width:100%}
 }
+
+.successChannelPrompt{font-size:clamp(22px,2.8vw,34px);line-height:1.22;letter-spacing:-.03em;margin:0 0 22px;max-width:760px}
+.successChannels{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;max-width:760px}
+.successChannel{display:flex;align-items:center;justify-content:space-between;gap:16px;text-decoration:none;border-radius:12px;padding:22px 24px;font-size:20px;font-weight:950}
+.successChannel.max{background:#fff;color:#111}
+.successChannel.telegram{background:var(--accent);color:#fff}
+.successChannel span:last-child{font-size:26px}
+.successSkip{border:0;background:none;color:#aaa;padding:4px 0;text-align:left;font-size:13px;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:720px){.successChannels{grid-template-columns:1fr}.successChannel{padding:20px}}
 </style>
 </head>
 <body>
@@ -210,17 +219,13 @@
     <div class="kicker">ЗАЯВКА ПРИНЯТА</div>
     <h2 id="successTitle">ГОТОВО.<br>ВЫ ЗАПИСАНЫ.</h2>
     <div class="successWhen"><strong id="successDate">Среда</strong><span id="successTime">19:30–22:30 МСК</span></div>
-    <p class="successLead"><strong>До встречи ничего специально не меняйте.</strong> Курите как обычно — начнём вместе уже на самой встрече.</p>
-    <div class="successSteps">
-      <div class="successStep"><b>01</b><strong>Сохраните вечер</strong><p>Выделите три часа без дороги, работы и параллельных дел.</p></div>
-      <div class="successStep"><b>02</b><strong>Я свяжусь с вами</strong><p>По указанному номеру придут детали и ссылка на онлайн-встречу.</p></div>
-      <div class="successStep"><b>03</b><strong>Перед встречей</strong><p>Напомню и уточню, всё ли в силе. Никакой подготовки заранее не требуется.</p></div>
+    <p class="successChannelPrompt">Получите ссылку и напоминания там, где вам удобно:</p>
+    <div class="successChannels">
+      <a class="successChannel max" id="successMax" href="https://max.ru/u/f9LHodD0cOLpevOEzdPM7DBn_9wNoZiKdBMryxkSM2b4SpNmf4xagvVkl8g" target="_blank" rel="noopener"><span>Получать в MAX</span><span>→</span></a>
+      <a class="successChannel telegram" id="successTelegram" href="https://t.me/metodborzilova" target="_blank" rel="noopener"><span>Получать в Telegram</span><span>→</span></a>
     </div>
-    <div class="successActions">
-      <button class="primary" id="addCalendar" type="button">Добавить в календарь</button>
-      <button class="successSecondary" id="closeSuccess" type="button">Вернуться на сайт</button>
-    </div>
-    <div class="successFine">Если планы изменятся — просто сообщите об этом, когда получите напоминание. Место не нужно «отрабатывать».</div>
+    <button class="successSkip" id="closeSuccess" type="button">Не сейчас — вернуться на сайт</button>
+    <div class="successFine">До встречи ничего специально не меняйте. Курите как обычно — начнём вместе уже на самой встрече.</div>
   </div>
 </div>
 <div class="stickyCta"><div><small>Среда или суббота</small><strong>Выберите вечер</strong></div><button class="js-open" type="button">Выбрать вечер</button></div>
@@ -265,7 +270,6 @@
   const successCurtain=document.getElementById('successCurtain');
   const successDate=document.getElementById('successDate');
   const successTime=document.getElementById('successTime');
-  const addCalendar=document.getElementById('addCalendar');
   const closeSuccess=document.getElementById('closeSuccess');
   let selected=slotData.wed.next.actualMs<=slotData.sat.next.actualMs?'wed':'sat';
 
@@ -313,37 +317,10 @@
     document.body.style.overflow='';
   }
   closeSuccess.addEventListener('click',closeSuccessCurtain);
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&successCurtain.classList.contains('show'))closeSuccessCurtain()});
+  document.getElementById('successMax').addEventListener('click',()=>{try{if(window.ym)window.ym(110906734,'reachGoal','marafon_free_success_max',{slot:selected})}catch(_){}});
+  document.getElementById('successTelegram').addEventListener('click',()=>{try{if(window.ym)window.ym(110906734,'reachGoal','marafon_free_success_telegram',{slot:selected})}catch(_){}});
 
-  function icsUtc(ms){
-    const d=new Date(ms);
-    const p=n=>String(n).padStart(2,'0');
-    return d.getUTCFullYear()+p(d.getUTCMonth()+1)+p(d.getUTCDate())+'T'+p(d.getUTCHours())+p(d.getUTCMinutes())+p(d.getUTCSeconds())+'Z';
-  }
-  addCalendar.addEventListener('click',()=>{
-    const x=slotData[selected];
-    const start=x.next.actualMs;
-    const duration=selected==='wed'?3*60*60*1000:3*60*60*1000;
-    const end=start+duration;
-    const body=[
-      'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Marafon Metod//Last Cigarette//RU','CALSCALE:GREGORIAN',
-      'BEGIN:VEVENT',
-      'UID:marafon-'+selected+'-'+start+'@marafon-metod.ru',
-      'DTSTAMP:'+icsUtc(Date.now()),
-      'DTSTART:'+icsUtc(start),
-      'DTEND:'+icsUtc(end),
-      'SUMMARY:Последняя сигарета — живая онлайн-встреча',
-      'DESCRIPTION:Ничего не меняйте заранее. Курите как обычно. Ссылка на встречу придёт отдельно.',
-      'LOCATION:Онлайн',
-      'END:VEVENT','END:VCALENDAR'
-    ].join('\r\n');
-    const blob=new Blob([body],{type:'text/calendar;charset=utf-8'});
-    const url=URL.createObjectURL(blob);
-    const a=document.createElement('a');
-    a.href=url;a.download='poslednyaya-sigareta.ics';document.body.appendChild(a);a.click();a.remove();
-    setTimeout(()=>URL.revokeObjectURL(url),1000);
-    try{if(window.ym)window.ym(110906734,'reachGoal','marafon_free_calendar_add',{slot:selected})}catch(_){}
-  });
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&successCurtain.classList.contains('show'))closeSuccessCurtain()});
 
   function utm(){const p=new URLSearchParams(location.search);return{source:p.get('utm_source')||'',medium:p.get('utm_medium')||'',campaign:p.get('utm_campaign')||'',content:p.get('utm_content')||'',term:p.get('utm_term')||''}}
 
