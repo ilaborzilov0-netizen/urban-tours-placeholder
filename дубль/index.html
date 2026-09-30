@@ -224,7 +224,7 @@
       <a class="successChannel max" id="successMax" href="https://max.ru/u/f9LHodD0cOLpevOEzdPM7DBn_9wNoZiKdBMryxkSM2b4SpNmf4xagvVkl8g" target="_blank" rel="noopener"><span>Получить ссылку в MAX-боте</span><span>→</span></a>
       <a class="successChannel telegram" id="successTelegram" href="https://t.me/metodborzilova" target="_blank" rel="noopener"><span>Получить ссылку в Telegram-боте</span><span>→</span></a>
     </div>
-    <button class="successSkip" id="closeSuccess" type="button">Не сейчас — вернуться на сайт</button>
+    <button class="successSkip" id="changeEvening" type="button">Не подходит время? Сменить вечер →</button>
     <div class="successFine">До встречи ничего специально не меняйте. Курите как обычно — начнём вместе уже на самой встрече.</div>
   </div>
 </div>
@@ -270,7 +270,11 @@
   const successCurtain=document.getElementById('successCurtain');
   const successDate=document.getElementById('successDate');
   const successTime=document.getElementById('successTime');
-  const closeSuccess=document.getElementById('closeSuccess');
+  const changeEvening=document.getElementById('changeEvening');
+  let lastContact='';
+  let bookedSlot=null;
+  let changingEvening=false;
+  let previousBookedSlot=null;
   let selected=slotData.wed.next.actualMs<=slotData.sat.next.actualMs?'wed':'sat';
 
   function renderSelected(){
@@ -284,13 +288,17 @@
   }
   function openModal(slot){
     if(slot&&slotData[slot]) selected=slot;
+    if(!changingEvening){
+      previousBookedSlot=null;
+      submit.textContent='Забронировать место';
+    }
     renderSelected();
     status.textContent='';status.className='formStatus';
     modal.classList.add('show');
     document.body.style.overflow='hidden';
     try{if(window.ym){window.ym(110906734,'reachGoal','marafon_free_modal_open');window.ym(110906734,'reachGoal','marafon_free_slot_'+selected)}}catch(_){}
   }
-  function closeModal(){modal.classList.remove('show');document.body.style.overflow=''}
+  function closeModal(){modal.classList.remove('show');document.body.style.overflow='';changingEvening=false;previousBookedSlot=null;submit.textContent='Забронировать место'}
   document.querySelectorAll('.js-slot').forEach(b=>b.addEventListener('click',()=>openModal(b.dataset.slot)));
   document.querySelectorAll('.js-open').forEach(b=>b.addEventListener('click',()=>openModal(selected)));
   document.getElementById('close').addEventListener('click',closeModal);
@@ -316,7 +324,16 @@
     successCurtain.classList.remove('show');
     document.body.style.overflow='';
   }
-  closeSuccess.addEventListener('click',closeSuccessCurtain);
+  changeEvening.addEventListener('click',()=>{
+    previousBookedSlot=bookedSlot||selected;
+    selected=previousBookedSlot==='wed'?'sat':'wed';
+    changingEvening=true;
+    closeSuccessCurtain();
+    openModal(selected);
+    contactInput.value=lastContact;
+    submit.textContent='Сменить вечер';
+    try{if(window.ym)window.ym(110906734,'reachGoal','marafon_free_change_evening_open',{from:previousBookedSlot,to:selected})}catch(_){}
+  });
   document.getElementById('successMax').addEventListener('click',()=>{try{if(window.ym)window.ym(110906734,'reachGoal','marafon_free_success_max',{slot:selected})}catch(_){}});
   document.getElementById('successTelegram').addEventListener('click',()=>{try{if(window.ym)window.ym(110906734,'reachGoal','marafon_free_success_telegram',{slot:selected})}catch(_){}});
 
@@ -336,21 +353,28 @@
     try{
       const r=await fetch('https://api.marafon-metod.ru/api/leads',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({
         formType:'commercial_application',contactType:'phone',contact:contactValue,
-        message:'Марафон Метод · / · бесплатная живая встреча\\nВыбранный вечер: '+x.date+' · '+x.time+'\\nТелефон: '+contactValue+'\\nСсылка после регистрации',
+        message:(changingEvening
+          ? 'Марафон Метод · /дубль/ · СМЕНА ВЕЧЕРА\\nБыло: '+slotData[previousBookedSlot].date+' · '+slotData[previousBookedSlot].time+'\\nСтало: '+x.date+' · '+x.time+'\\nТелефон: '+contactValue
+          : 'Марафон Метод · /дубль/ · бесплатная живая встреча\\nВыбранный вечер: '+x.date+' · '+x.time+'\\nТелефон: '+contactValue+'\\nСсылка после регистрации'),
         price:'0',source:'marafon_free_evening',sourceUrl:location.href,referrer:document.referrer||'',utm:utm(),website
       })});
       let result={};try{result=await r.json()}catch(_){}
       if(!r.ok||!result.ok) throw new Error(result.error||('HTTP '+r.status));
       if(!result.channels||result.channels.email!==true) throw new Error('EMAIL_NOTIFICATION_FAILED');
+      lastContact=contactValue;
+      bookedSlot=selected;
+      const wasChange=changingEvening;
+      changingEvening=false;
+      previousBookedSlot=null;
       form.reset();renderSelected();
       status.textContent='';status.className='formStatus ok';
       openSuccess(x);
-      try{if(window.ym)window.ym(110906734,'reachGoal','marafon_free_lead_submit',{slot:selected,contact_type:'phone'})}catch(_){}
+      try{if(window.ym)window.ym(110906734,'reachGoal',wasChange?'marafon_free_change_evening_submit':'marafon_free_lead_submit',{slot:selected,contact_type:'phone'})}catch(_){}
     }catch(err){
       console.error('[vecher:lead:error]',err);
       status.textContent='Не удалось отправить заявку. Попробуйте ещё раз чуть позже.';
       status.className='formStatus err';
-    }finally{submit.disabled=false;submit.textContent=old}
+    }finally{submit.disabled=false;submit.textContent=changingEvening?'Сменить вечер':'Забронировать место'}
   });
   renderSelected();
 })();
