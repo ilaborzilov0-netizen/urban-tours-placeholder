@@ -66,24 +66,24 @@
 .reviewCardNew p{font-size:15px;line-height:1.55;color:var(--muted);margin:0 0 18px}
 .reviewCardNew footer{margin-top:auto;padding-top:16px;border-top:1px solid var(--line);font-size:12px;line-height:1.5;color:#565149}
 .modalHint{font-size:14px;line-height:1.5;color:var(--muted);margin:10px 0 4px;max-width:520px}
-.inlineBooking{width:min(900px,100%);margin:18px 0 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:28px 0 30px}
-.inlineBookingHead{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:end;margin-bottom:18px}
-.inlineBooking .eyebrow{margin-bottom:10px}
-.inlineBooking h3{font-size:clamp(38px,5.6vw,72px);line-height:.88;letter-spacing:-.06em;margin:0;font-weight:950}
-.inlineBooking .modalHint{margin:0 0 18px;max-width:620px}
-.inlineBooking .modalSlot{margin:0 0 14px}
-.inlineBooking form{display:grid;gap:14px}
+.inlineBooking{width:min(900px,100%);margin:14px 0 0;border-top:1px solid var(--ink);padding:18px 0 0}
+.inlineSelected{display:flex;align-items:end;justify-content:space-between;gap:20px;border:1px solid var(--ink);border-radius:10px;padding:14px 16px;margin-bottom:14px}
+.inlineSelected small{display:block;color:var(--muted);font-size:10px;font-weight:900;letter-spacing:.1em;margin-bottom:5px}
+.inlineSelected strong{font-size:20px;text-transform:capitalize}
+.inlineSelected b{font-size:18px;white-space:nowrap}
+.inlineBooking form{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:10px;align-items:end}
 .inlineBooking label{font-size:13px;font-weight:800;display:grid;gap:7px}
-.inlineBooking input{width:100%;padding:16px 14px;background:white;border:1px solid var(--line);border-radius:4px;font-size:17px}
-.inlineBooking small{color:var(--muted);line-height:1.4}
-.inlineBooking .primary{width:100%}
+.inlineBooking input{width:100%;height:56px;padding:0 15px;background:white;border:1px solid var(--line);border-radius:7px;font-size:18px}
+.inlineBooking .primary{height:56px;width:100%;padding:0 20px}
+.inlineBookingMeta{grid-column:1/-1;font-size:12px;color:var(--muted);line-height:1.4;margin-top:2px}
 .slotCard.is-selected{background:var(--ink);color:var(--bg);transform:none}
 .slotCard.is-selected .slotWhy{color:#c9c4bb}
-.finalCta .slotCard.is-selected{background:#f3f0e9;color:#121212}
+.slotCard.is-selected .slotAction{border-bottom-color:transparent}
 @media(max-width:720px){
-  .inlineBooking{margin-top:14px;padding:24px 0 26px}
-  .inlineBookingHead{grid-template-columns:1fr}
-  .inlineBooking h3{font-size:42px}
+  .inlineBooking{margin-top:10px;padding-top:14px}
+  .inlineSelected{align-items:flex-start;flex-direction:column;gap:6px}
+  .inlineBooking form{grid-template-columns:1fr}
+  .inlineBookingMeta{grid-column:1}
 }
 @media(max-width:900px){.reviewGridNew{grid-template-columns:1fr}.reviewCardNew{min-height:0}}
 @media(max-width:760px){
@@ -113,42 +113,31 @@
   <p class="heroLead">Приходите курящим.<br><strong>В конце встречи — последняя сигарета.</strong></p>
   <p class="heroText">Не курс и не неделя подготовки. Одна живая встреча примерно на три часа. Выберите тот вечер, который реально можете освободить.</p>
   <div class="slotGrid" aria-label="Выберите вечер">
-    <button class="slotCard js-slot" data-slot="wed" type="button">
-      <div><span class="slotDay">СРЕДА · ПОСЛЕ РАБОТЫ</span><span class="slotDate" data-wed-date>Среда</span><span class="slotWhy">Заканчиваем вечером — утром уже не нужно заново «начинать бросать».</span><span class="slotAction">Выбрать среду →</span></div>
+    <button class="slotCard js-slot heroSlot" data-slot="wed" type="button" aria-pressed="false">
+      <div><span class="slotDay">СРЕДА · ПОСЛЕ РАБОТЫ</span><span class="slotDate" data-wed-date>Среда</span><span class="slotWhy">Заканчиваем вечером — утром уже не нужно заново «начинать бросать».</span><span class="slotAction" data-slot-action>Выбрать среду →</span></div>
       <div class="slotTime">19:30<small>ДО 22:30 · МСК</small></div>
     </button>
-    <button class="slotCard js-slot" data-slot="sat" type="button">
-      <div><span class="slotDay">СУББОТА · СПОКОЙНЫЙ ВЕЧЕР</span><span class="slotDate" data-sat-date>Суббота</span><span class="slotWhy">Заканчиваем вечером — первый полный день без сигарет приходится на воскресенье.</span><span class="slotAction">Выбрать субботу →</span></div>
+    <button class="slotCard js-slot heroSlot" data-slot="sat" type="button" aria-pressed="false">
+      <div><span class="slotDay">СУББОТА · СПОКОЙНЫЙ ВЕЧЕР</span><span class="slotDate" data-sat-date>Суббота</span><span class="slotWhy">Заканчиваем вечером — первый полный день без сигарет приходится на воскресенье.</span><span class="slotAction" data-slot-action>Выбрать субботу →</span></div>
       <div class="slotTime">18:00<small>ДО 21:00 · МСК</small></div>
     </button>
   </div>
   <div class="inlineBooking" id="booking">
-    <div class="inlineBookingHead">
-      <div>
-        <div class="eyebrow"><span class="liveDot"></span>БРОНИРОВАНИЕ МЕСТА</div>
-        <h3>ЗАБРОНИРОВАТЬ МЕСТО.</h3>
-      </div>
+    <div class="inlineSelected">
+      <div><small>ВАШ ВЕЧЕР</small><strong id="selectedSlotLabel">Среда</strong></div>
+      <b id="selectedSlotTime">19:30–22:30 МСК</b>
     </div>
-    <p class="modalHint">Один контакт — сюда пришлю ссылку на онлайн-встречу и напоминание перед началом.</p>
-    <div class="modalSlot"><div><small>ВАША ВСТРЕЧА</small><strong id="selectedSlotLabel">Среда</strong></div><b id="selectedSlotTime">19:30–22:30 МСК</b></div>
-    <div class="slotSwitch">Не тот вечер? <button type="button" id="switchSlot">Переключить на субботу</button></div>
     <form id="leadForm">
       <input type="hidden" name="slot" id="slotInput" value="wed">
       <input type="hidden" name="contactType" id="contactType" value="phone">
-      <label>Куда прислать ссылку?</label>
-      <div class="contactMethods" role="group" aria-label="Способ связи">
-        <button class="contactMethod active" type="button" data-contact-type="phone">Телефон</button>
-        <button class="contactMethod" type="button" data-contact-type="telegram">Telegram</button>
-        <button class="contactMethod" type="button" data-contact-type="max">MAX</button>
-      </div>
-      <label><span id="contactLabel">Телефон</span><input required name="contact" id="contactInput" autocomplete="tel" inputmode="tel" placeholder="+7 999 123-45-67"></label>
+      <label>Телефон для брони<input required name="contact" id="contactInput" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 999 123-45-67"></label>
       <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button class="primary" id="leadSubmit" type="submit">Забронировать место</button>
+      <button class="primary" id="leadSubmit" type="submit">Забронировать место →</button>
       <div class="formStatus" id="leadStatus" aria-live="polite"></div>
-      <small>Ссылку на онлайн-встречу и напоминание пришлю выбранным способом. Участие в основном вечере бесплатно.</small>
+      <div class="inlineBookingMeta">Бесплатно · одна бронь на человека</div>
     </form>
   </div>
-  <div class="heroTrust">
+  <div class="heroTrust">Участие бесплатно · онлайн · ссылка после регистрации · ничего не меняйте заранее</div>
   <div class="heroDisclosure">Основной вечер бесплатный. В конце будет необязательное предложение сопровождения первых дней.</div>
 </section>
 <section class="section noPrep"><div class="kicker">ДО ВСТРЕЧИ</div><h2>НИЧЕГО НЕ МЕНЯЙТЕ<br>ЗАРАНЕЕ.</h2><div class="dontGrid"><p>Не сокращайте сигареты.</p><p>Не выбрасывайте пачку.</p><p>Не устраивайте себе «репетицию отказа».</p><p>До выбранного вечера курите как обычно.</p></div></section>
@@ -243,7 +232,6 @@
   const slotInput=document.getElementById('slotInput');
   const selectedSlotLabel=document.getElementById('selectedSlotLabel');
   const selectedSlotTime=document.getElementById('selectedSlotTime');
-  const switchSlot=document.getElementById('switchSlot');
   let selected=slotData.wed.next.actualMs<=slotData.sat.next.actualMs?'wed':'sat';
 
   function renderSelected(){
@@ -251,9 +239,13 @@
     slotInput.value=selected;
     selectedSlotLabel.textContent=x.date;
     selectedSlotTime.textContent=x.time;
-    const other=selected==='wed'?'sat':'wed';
-    switchSlot.textContent='Переключить на '+slotData[other].day.toLowerCase();
-    document.querySelectorAll('.js-slot').forEach(b=>b.classList.toggle('is-selected',b.dataset.slot===selected));
+    document.querySelectorAll('.heroSlot').forEach(b=>{
+      const active=b.dataset.slot===selected;
+      b.classList.toggle('is-selected',active);
+      b.setAttribute('aria-pressed',active?'true':'false');
+      const action=b.querySelector('[data-slot-action]');
+      if(action) action.textContent=active?'✓ ВЫБРАНО':('Выбрать '+slotData[b.dataset.slot].day.toLowerCase()+' →');
+    });
   }
   function selectSlot(slot,focusForm){
     if(slot&&slotData[slot]) selected=slot;
@@ -267,25 +259,10 @@
   }
   document.querySelectorAll('.js-slot').forEach(b=>b.addEventListener('click',()=>selectSlot(b.dataset.slot,true)));
   document.querySelectorAll('.js-open').forEach(b=>b.addEventListener('click',()=>selectSlot(selected,true)));
-  switchSlot.addEventListener('click',()=>{selected=selected==='wed'?'sat':'wed';renderSelected();});
-
   document.querySelectorAll('.faqItem').forEach(b=>b.addEventListener('click',()=>{b.classList.toggle('open');b.querySelector('i').textContent=b.classList.contains('open')?'−':'+'}));
 
   const contactInput=document.getElementById('contactInput');
   const contactType=document.getElementById('contactType');
-  const contactLabel=document.getElementById('contactLabel');
-  const presets={
-    phone:{label:'Телефон',placeholder:'+7 999 123-45-67',inputmode:'tel',autocomplete:'tel'},
-    telegram:{label:'Telegram',placeholder:'@username',inputmode:'text',autocomplete:'off'},
-    max:{label:'MAX',placeholder:'Телефон, @username или ссылка MAX',inputmode:'text',autocomplete:'off'}
-  };
-  function setContactType(type){
-    const p=presets[type]||presets.phone;
-    contactType.value=type;contactLabel.textContent=p.label;contactInput.placeholder=p.placeholder;contactInput.inputMode=p.inputmode;contactInput.autocomplete=p.autocomplete;contactInput.type=type==='phone'?'tel':'text';
-    document.querySelectorAll('.contactMethod').forEach(b=>b.classList.toggle('active',b.dataset.contactType===type));
-  }
-  document.querySelectorAll('.contactMethod').forEach(b=>b.addEventListener('click',()=>setContactType(b.dataset.contactType)));
-  setContactType('phone');
 
   function utm(){const p=new URLSearchParams(location.search);return{source:p.get('utm_source')||'',medium:p.get('utm_medium')||'',campaign:p.get('utm_campaign')||'',content:p.get('utm_content')||'',term:p.get('utm_term')||''}}
 
@@ -293,11 +270,10 @@
     e.preventDefault();
     const x=slotData[selected];
     const contactValue=String(form.elements.contact.value||'').trim();
-    const type=String(contactType.value||'phone');
+    const type='phone';
     const website=String(form.elements.website.value||'').trim();
     const digits=contactValue.replace(/\D/g,'');
     if(type==='phone'&&digits.length<10){status.textContent='Укажите корректный номер телефона.';status.className='formStatus err';return}
-    if(type!=='phone'&&contactValue.length<3){status.textContent='Укажите контакт, по которому прислать ссылку.';status.className='formStatus err';return}
     const old=submit.textContent;submit.disabled=true;submit.textContent='Бронируем…';status.textContent='';status.className='formStatus';
     try{
       const r=await fetch('https://api.marafon-metod.ru/api/leads',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({
@@ -308,7 +284,7 @@
       let result={};try{result=await r.json()}catch(_){}
       if(!r.ok||!result.ok) throw new Error(result.error||('HTTP '+r.status));
       if(!result.channels||result.channels.email!==true) throw new Error('EMAIL_NOTIFICATION_FAILED');
-      form.reset();setContactType('phone');renderSelected();
+      form.reset();renderSelected();
       status.innerHTML='<div class="successBox"><strong>Место забронировано.</strong><br>'+x.date+' · '+x.time+'<br><br>До встречи ничего не меняйте: курите как обычно. Ссылку пришлю выбранным способом.</div>';
       status.className='formStatus ok';
       try{if(window.ym)window.ym(110906734,'reachGoal','marafon_free_lead_submit',{slot:selected,contact_type:type})}catch(_){}
