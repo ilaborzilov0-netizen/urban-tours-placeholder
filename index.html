@@ -10,9 +10,13 @@
 .portraitPlaceholder img{width:100%;height:100%;object-fit:cover;object-position:center top}.formStatus{min-height:20px;font-size:13px;line-height:1.4}.formStatus.ok{color:#237a42}.formStatus.err{color:#b12e1f}.hp{position:absolute!important;left:-9999px!important;opacity:0!important;pointer-events:none!important}
 /* Two-slot event flow */
 .slotGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;width:min(900px,100%);margin:38px 0 0}
-.slotCard{appearance:none;border:1px solid var(--ink);background:transparent;color:var(--ink);text-align:left;padding:24px;border-radius:14px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:end;transition:.18s ease}
+.slotCard{appearance:none;border:1px solid var(--ink);background:transparent;color:var(--ink);text-align:left;padding:24px;border-radius:14px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:stretch;transition:.18s ease}
 .slotCard:hover{background:var(--ink);color:var(--bg);transform:translateY(-2px)}
 .slotCard .slotDay{display:block;font-size:12px;font-weight:950;letter-spacing:.12em;margin-bottom:10px}
+.slotCard>div:first-child{align-self:start}
+.slotCard .slotTime{align-self:end}
+.slotCard .slotDate{white-space:nowrap}
+@media(min-width:761px){.slotCard .slotDay{white-space:nowrap;font-size:11px;letter-spacing:.1em}}
 .slotCard .slotDate{display:block;font-size:clamp(26px,3vw,42px);font-weight:950;letter-spacing:-.045em;text-transform:capitalize}
 .slotCard .slotWhy{display:block;font-size:13px;line-height:1.45;color:var(--muted);margin-top:11px;max-width:300px}
 .slotCard:hover .slotWhy{color:#c9c4bb}
@@ -142,11 +146,11 @@
   <p class="heroText">Не курс и не неделя подготовки. Одна живая встреча примерно на три часа. Выберите тот вечер, который реально можете освободить.</p>
   <div class="slotGrid" aria-label="Выберите вечер">
     <button class="slotCard js-slot" data-slot="wed" type="button">
-      <div><span class="slotDay">ЧЕТВЕРГ · ПОСЛЕ РАБОТЫ</span><span class="slotDate" data-wed-date>Четверг</span><span class="slotWhy">Заканчиваем вечером — утром уже не нужно заново «начинать бросать».</span><span class="slotAction">Выбрать четверг →</span></div>
+      <div><span class="slotDay">ЧЕТВЕРГ · ПОСЛЕ РАБОТЫ</span><span class="slotDate" data-wed-date>1 октября</span><span class="slotWhy">Заканчиваем вечером — утром уже не нужно заново «начинать бросать».</span><span class="slotAction">Выбрать четверг →</span></div>
       <div class="slotTime">19:30<small>ДО 22:30 · МСК</small></div>
     </button>
     <button class="slotCard js-slot" data-slot="sat" type="button">
-      <div><span class="slotDay">СУББОТА · СПОКОЙНЫЙ ВЕЧЕР</span><span class="slotDate" data-sat-date>Суббота</span><span class="slotWhy">Заканчиваем вечером — первый полный день без сигарет приходится на воскресенье.</span><span class="slotAction">Выбрать субботу →</span></div>
+      <div><span class="slotDay">СУББОТА · СПОКОЙНЫЙ ВЕЧЕР</span><span class="slotDate" data-sat-date>3 октября</span><span class="slotWhy">Заканчиваем вечером — первый полный день без сигарет приходится на воскресенье.</span><span class="slotAction">Выбрать субботу →</span></div>
       <div class="slotTime">18:00<small>ДО 21:00 · МСК</small></div>
     </button>
   </div>
@@ -205,8 +209,8 @@
   </div></section>
 <section class="finalCta"><div class="kicker light">ДВА БЛИЖАЙШИХ ВЕЧЕРА · ОНЛАЙН · БЕСПЛАТНО</div><h2>НЕ НУЖНО ВЫБИРАТЬ<br>«КОГДА-НИБУДЬ».</h2><p>Нужно выбрать один вечер.</p>
   <div class="slotGrid">
-    <button class="slotCard inverseSlot js-slot" data-slot="wed" type="button"><div><span class="slotDay">ЧЕТВЕРГ</span><span class="slotDate" data-wed-date>Четверг</span><span class="slotAction">Выбрать четверг →</span></div><div class="slotTime">19:30<small>ДО 22:30 · МСК</small></div></button>
-    <button class="slotCard inverseSlot js-slot" data-slot="sat" type="button"><div><span class="slotDay">СУББОТА</span><span class="slotDate" data-sat-date>Суббота</span><span class="slotAction">Выбрать субботу →</span></div><div class="slotTime">18:00<small>ДО 21:00 · МСК</small></div></button>
+    <button class="slotCard inverseSlot js-slot" data-slot="wed" type="button"><div><span class="slotDay">ЧЕТВЕРГ</span><span class="slotDate" data-wed-date>1 октября</span><span class="slotAction">Выбрать четверг →</span></div><div class="slotTime">19:30<small>ДО 22:30 · МСК</small></div></button>
+    <button class="slotCard inverseSlot js-slot" data-slot="sat" type="button"><div><span class="slotDay">СУББОТА</span><span class="slotDate" data-sat-date>3 октября</span><span class="slotAction">Выбрать субботу →</span></div><div class="slotTime">18:00<small>ДО 21:00 · МСК</small></div></button>
   </div></section>
 </main>
 <div class="modal" id="modal"><div class="modalCard"><button class="close" id="close" type="button">×</button>
@@ -268,13 +272,16 @@
   function fmtDate(wall){
     return new Intl.DateTimeFormat('ru-RU',{weekday:'long',day:'numeric',month:'long',timeZone:'UTC'}).format(wall);
   }
+  function fmtCardDate(wall){
+    return new Intl.DateTimeFormat('ru-RU',{day:'numeric',month:'long',timeZone:'UTC'}).format(wall);
+  }
   const slotData={
     wed:{id:'wed',day:'Четверг',start:'19:30',end:'22:30',time:'19:30–22:30 МСК',next:nextSlot(4,19,30)},
     sat:{id:'sat',day:'Суббота',start:'18:00',end:'21:00',time:'18:00–21:00 МСК',next:nextSlot(6,18,0)}
   };
-  Object.values(slotData).forEach(x=>x.date=fmtDate(x.next.wall));
-  document.querySelectorAll('[data-wed-date]').forEach(x=>x.textContent=slotData.wed.date);
-  document.querySelectorAll('[data-sat-date]').forEach(x=>x.textContent=slotData.sat.date);
+  Object.values(slotData).forEach(x=>{x.date=fmtDate(x.next.wall);x.cardDate=fmtCardDate(x.next.wall)});
+  document.querySelectorAll('[data-wed-date]').forEach(x=>x.textContent=slotData.wed.cardDate);
+  document.querySelectorAll('[data-sat-date]').forEach(x=>x.textContent=slotData.sat.cardDate);
 
   const modal=document.getElementById('modal');
   const form=document.getElementById('leadForm');
