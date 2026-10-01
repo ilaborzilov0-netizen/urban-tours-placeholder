@@ -273,7 +273,6 @@
     .hero-inline-input{box-sizing:border-box;width:100%;min-width:0;border:1px solid #5b5850;border-radius:8px;background:#fff;color:var(--ink);padding:15px 14px;font:inherit;font-size:18px;line-height:1.2;outline:none}
     .hero-inline-input::placeholder{color:#8f8b82}
     .hero-inline-input:focus{border-color:var(--orange);box-shadow:0 0 0 2px rgba(244,72,35,.18)}
-    .hero-inline-help{margin:0;font-size:12px;line-height:1.4;color:#bdb8ad}
     .hero-inline-submit{margin-top:2px}
     .hero-inline-status{font-size:13px;line-height:1.4;color:#d8d4ca;min-height:0}
     .hero-inline-status:empty{display:none}
@@ -313,9 +312,8 @@
           <p class="event-time">18:00–21:00 МСК</p>
           <p class="event-meta">Онлайн · с телефона или компьютера</p>
           <form class="hero-inline-form" id="heroInlineForm" novalidate>
-            <label class="hero-inline-label" for="heroPhone">Телефон</label>
+            <label class="hero-inline-label" for="heroPhone">Телефон нужен для подтверждения записи и получения ссылки на встречу.</label>
             <input class="hero-inline-input" id="heroPhone" name="heroPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 999 123-45-67" required>
-            <p class="hero-inline-help">Телефон нужен для подтверждения записи и получения ссылки на встречу.</p>
             <button class="cta hero-inline-submit" id="heroInlineSubmit" type="submit"><span>Записаться бесплатно</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             <div class="hero-inline-status" id="heroInlineStatus" aria-live="polite"></div>
           </form>
