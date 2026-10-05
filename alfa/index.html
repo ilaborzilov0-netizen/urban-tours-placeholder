@@ -1317,6 +1317,117 @@
     }
   }
 </style>
+
+<style id="alpha-hero-caption-refine-v14">
+  .hero-person figcaption,
+  .hero-person-caption{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:20px !important;
+    left:24px !important;
+    right:24px !important;
+    bottom:22px !important;
+    padding:14px 18px !important;
+    border-radius:16px !important;
+    background:rgba(17,17,17,.76) !important;
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    box-shadow:0 8px 24px rgba(0,0,0,.16);
+  }
+  .hero-person-name{
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+  .hero-person-name strong{
+    display:block;
+    font-size:18px !important;
+    line-height:1.1 !important;
+    font-weight:800;
+    letter-spacing:-.02em;
+    color:#fff;
+  }
+  .hero-person-name>span{
+    display:block;
+    margin:0 !important;
+    font-size:12px !important;
+    line-height:1.25 !important;
+    color:rgba(255,255,255,.68) !important;
+    text-align:left !important;
+  }
+  .hero-person-facts{
+    display:flex !important;
+    align-items:center;
+    justify-content:flex-end !important;
+    flex-wrap:wrap;
+    gap:8px 14px !important;
+    max-width:480px;
+  }
+  .hero-person-facts span{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    padding:0 !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    font-size:12px !important;
+    line-height:1.3 !important;
+    color:rgba(255,255,255,.82) !important;
+    white-space:nowrap;
+  }
+  .hero-person-facts span + span::before{
+    content:"•";
+    margin-right:12px;
+    color:rgba(255,255,255,.30);
+    font-size:11px;
+  }
+
+  @media(max-width:980px){
+    .hero-person figcaption,
+    .hero-person-caption{
+      left:18px !important;
+      right:18px !important;
+      bottom:18px !important;
+      padding:13px 16px !important;
+      gap:14px !important;
+    }
+    .hero-person-name strong{font-size:17px !important}
+    .hero-person-name>span,
+    .hero-person-facts span{font-size:11px !important}
+  }
+
+  @media(max-width:720px){
+    .hero-person figcaption,
+    .hero-person-caption{
+      flex-direction:column;
+      align-items:flex-start !important;
+      gap:8px !important;
+      left:14px !important;
+      right:14px !important;
+      bottom:14px !important;
+      padding:12px 14px !important;
+      border-radius:14px !important;
+      background:rgba(17,17,17,.72) !important;
+    }
+    .hero-person-name strong{font-size:16px !important}
+    .hero-person-name>span{font-size:10px !important}
+    .hero-person-facts{
+      justify-content:flex-start !important;
+      gap:6px 12px !important;
+      max-width:none;
+    }
+    .hero-person-facts span{
+      font-size:10px !important;
+      white-space:normal;
+    }
+    .hero-person-facts span + span::before{
+      margin-right:9px;
+    }
+  }
+</style>
 </head>
 <body class="alpha-page">
 <header class="topbar">
