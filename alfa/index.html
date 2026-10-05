@@ -396,6 +396,232 @@
     .alpha-success-links{grid-template-columns:1fr}
   }
 </style>
+
+<style id="alpha-mobile-fix-v2">
+  /* Mobile: one viewport wide, no horizontal panning. */
+  html,body{max-width:100%;overflow-x:hidden}
+  .alpha-page{width:100%;max-width:100%;overflow-x:clip}
+  .alpha-page main,
+  .alpha-page section,
+  .alpha-page .wrap,
+  .alpha-page .hero-grid,
+  .alpha-page .hero-copy,
+  .alpha-page .alpha-results,
+  .alpha-page .alpha-model,
+  .alpha-page .alpha-author,
+  .alpha-page .alpha-free .wrap,
+  .alpha-page .final-grid{max-width:100%;min-width:0}
+
+  @media(max-width:720px){
+    .alpha-page .wrap{padding-inline:20px}
+    .alpha-hero{padding-block:28px 38px}
+    .alpha-hero .hero-grid{gap:22px}
+
+    .alpha-kicker{
+      font-size:11px;
+      line-height:1.35;
+      letter-spacing:.075em;
+      margin-bottom:15px;
+    }
+
+    .alpha-hero h1{
+      width:100%;
+      max-width:100%;
+      font-size:clamp(40px,11.2vw,54px);
+      line-height:.94;
+      letter-spacing:-.058em;
+      overflow-wrap:normal;
+      word-break:normal;
+    }
+    .alpha-hero h1 span{
+      display:block;
+      white-space:normal;
+      max-width:100%;
+    }
+
+    .alpha-hero .hero-line{
+      max-width:100%;
+      margin:20px 0 14px;
+      font-size:18px;
+      line-height:1.38;
+      letter-spacing:-.018em;
+    }
+
+    .alpha-meta{
+      max-width:100%;
+      gap:6px 11px;
+      margin-top:14px;
+      font-size:13px;
+      line-height:1.35;
+    }
+
+    .alpha-hero-cta{
+      display:block;
+      margin-top:22px;
+    }
+    .alpha-hero-cta .cta{
+      width:100%;
+      min-width:0;
+      min-height:56px;
+      padding:15px 16px;
+      font-size:18px;
+    }
+    .alpha-hero-note{
+      max-width:100%;
+      margin:10px 0 0;
+      font-size:12px;
+      line-height:1.4;
+    }
+
+    .hero-reveal{
+      width:100%;
+      max-width:100%;
+      margin-top:12px;
+      padding:16px;
+      border-radius:12px;
+    }
+
+    .hero-person{
+      width:100%;
+      max-width:100%;
+      min-height:0;
+      aspect-ratio:4/5;
+      border-radius:14px;
+    }
+    .hero-person img{
+      object-position:43% 29%;
+      transform:scale(1.10);
+      transform-origin:43% 29%;
+    }
+    .hero-person figcaption{
+      left:12px;
+      right:12px;
+      bottom:12px;
+      padding:11px 12px;
+      gap:8px;
+    }
+    .hero-person figcaption strong{font-size:14px}
+    .hero-person figcaption span{font-size:10px;line-height:1.25}
+
+    .alpha-section{
+      padding-block:50px;
+      overflow:hidden;
+    }
+    .alpha-section h2{
+      max-width:100%;
+      margin-bottom:28px;
+      font-size:clamp(33px,9.4vw,42px);
+      line-height:1.01;
+      letter-spacing:-.05em;
+      overflow-wrap:break-word;
+    }
+
+    .alpha-results,
+    .alpha-model,
+    .alpha-days,
+    .alpha-author,
+    .alpha-free .wrap{
+      width:100%;
+      max-width:100%;
+      min-width:0;
+    }
+
+    .alpha-result{
+      min-width:0;
+      min-height:0;
+      padding:22px;
+    }
+    .alpha-result h3{
+      font-size:25px;
+      margin:16px 0 12px;
+    }
+    .alpha-result p{font-size:16px}
+
+    .alpha-model>div{
+      min-width:0;
+      padding:22px 0;
+      border-right:0;
+    }
+    .alpha-model .lead{
+      font-size:23px;
+      line-height:1.18;
+    }
+
+    .alpha-author-photo{
+      width:100%;
+      max-width:100%;
+      aspect-ratio:4/3;
+    }
+    .alpha-author-info h3{
+      font-size:36px;
+      overflow-wrap:break-word;
+    }
+    .alpha-author-facts li{font-size:16px}
+    .alpha-author-quote{
+      font-size:21px;
+      line-height:1.38;
+    }
+
+    .alpha-free p{
+      max-width:100%;
+      font-size:18px;
+    }
+    .alpha-free-card{
+      width:100%;
+      max-width:100%;
+      padding:22px;
+    }
+    .alpha-free-card .event-date{
+      font-size:34px;
+      overflow-wrap:break-word;
+    }
+
+    .alpha-faq summary{
+      gap:14px;
+      padding:20px 0;
+      font-size:18px;
+      line-height:1.3;
+      overflow-wrap:break-word;
+    }
+    .alpha-faq p{
+      max-width:100%;
+      font-size:16px;
+    }
+
+    .final,
+    footer.site-footer{
+      max-width:100%;
+      overflow:hidden;
+    }
+    .final .event{
+      width:100%;
+      max-width:100%;
+      min-width:0;
+    }
+    .final .event-date{
+      max-width:100%;
+      font-size:31px;
+      overflow-wrap:break-word;
+    }
+    .event-time{white-space:normal}
+
+    .cta,
+    button,
+    input,
+    summary,
+    p,
+    h1,h2,h3,
+    li{max-width:100%}
+  }
+
+  @media(max-width:360px){
+    .alpha-page .wrap{padding-inline:16px}
+    .alpha-hero h1{font-size:38px}
+    .alpha-section h2{font-size:32px}
+    .alpha-result{padding:19px}
+    .hero-person figcaption span{display:none}
+  }
+</style>
 </head>
 <body class="alpha-page">
 <header class="topbar">
