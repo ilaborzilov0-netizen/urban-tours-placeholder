@@ -1633,6 +1633,64 @@
     }
   }
 </style>
+
+<style id="alpha-hero-event-stack-v19">
+  .alpha-hero-event{
+    margin-top:18px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+    max-width:760px;
+  }
+  .alpha-hero-event-date-main,
+  .alpha-hero-event-time-main{
+    display:block;
+    color:var(--ink);
+    letter-spacing:-.035em;
+  }
+  .alpha-hero-event-date-main{
+    font-size:clamp(24px,1.8vw,32px);
+    line-height:1.05;
+  }
+  .alpha-hero-event-time-main{
+    margin-top:7px;
+    font-size:clamp(23px,1.7vw,30px);
+    line-height:1.05;
+  }
+  .alpha-hero-event-time-main small{
+    font-size:.58em;
+    font-weight:800;
+    letter-spacing:-.01em;
+  }
+  .alpha-hero-event-meta{
+    margin-top:9px;
+    font-size:13px;
+    line-height:1.35;
+    color:var(--muted);
+  }
+
+  .alpha-hero-event-main,
+  .alpha-hero-event-label{
+    display:none !important;
+  }
+
+  @media(max-width:720px){
+    .alpha-hero-event{
+      margin-top:16px;
+      padding-top:16px;
+    }
+    .alpha-hero-event-date-main{
+      font-size:22px;
+    }
+    .alpha-hero-event-time-main{
+      margin-top:6px;
+      font-size:21px;
+    }
+    .alpha-hero-event-meta{
+      margin-top:8px;
+      font-size:12px;
+    }
+  }
+</style>
 </head>
 <body class="alpha-page">
 <header class="topbar">
@@ -1650,16 +1708,10 @@
         <div class="alpha-hero-bottom">
           <p class="hero-line">Приходите курящим.<br>Закончим прямо на встрече.</p>
           <div class="alpha-hero-event" aria-label="Дата и время встречи">
-            <div class="alpha-hero-event-main">
-              <div class="alpha-hero-event-date">
-                <span class="alpha-hero-event-label">Ближайшая встреча</span>
-                <strong>Среда · 7 октября</strong>
-              </div>
-              <div class="alpha-hero-event-time">
-                <span class="alpha-hero-event-label">Время</span>
-                <strong>18:00–21:00 <small>МСК</small></strong>
-              </div>
-            </div>
+            <strong class="alpha-hero-event-date-main">Среда · 7 октября</strong>
+            <strong class="alpha-hero-event-time-main">18:00–21:00 <small>МСК</small></strong>
+            <div class="alpha-hero-event-meta">Яндекс Телемост</div>
+          </div>
             <div class="alpha-hero-event-meta">Яндекс Телемост · около 3 часов</div>
           </div>
           <div class="alpha-hero-cta">
