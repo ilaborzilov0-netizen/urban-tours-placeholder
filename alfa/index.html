@@ -943,6 +943,58 @@
     }
   }
 </style>
+
+<style id="alpha-final-black-v5">
+  .alpha-free-final{
+    padding-block:clamp(84px,7vw,132px);
+  }
+  .alpha-free-final .wrap{
+    grid-template-columns:minmax(0,1.18fr) minmax(420px,.82fr);
+  }
+  .alpha-free-final h2{
+    max-width:980px;
+    font-size:clamp(56px,5vw,92px);
+    line-height:.92;
+    letter-spacing:-.065em;
+  }
+  .alpha-free-final .alpha-free-card{
+    align-self:stretch;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:clamp(28px,2.7vw,42px);
+  }
+  .alpha-free-final .event-date{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    margin-top:10px;
+    font-size:clamp(42px,3.8vw,66px);
+    line-height:.95;
+    letter-spacing:-.055em;
+  }
+  .alpha-free-final .event-time{
+    margin-top:18px;
+    font-size:clamp(26px,2vw,34px);
+  }
+  .alpha-free-final .cta{
+    margin-top:22px;
+    width:100%;
+  }
+  @media(max-width:980px){
+    .alpha-free-final .wrap{grid-template-columns:1fr}
+  }
+  @media(max-width:720px){
+    .alpha-free-final{padding-block:54px}
+    .alpha-free-final h2{
+      font-size:clamp(38px,10.5vw,49px);
+      line-height:.96;
+    }
+    .alpha-free-final .alpha-free-card{padding:22px}
+    .alpha-free-final .event-date{font-size:38px}
+    .alpha-free-final .event-time{font-size:24px}
+  }
+</style>
 </head>
 <body class="alpha-page">
 <header class="topbar">
@@ -1066,22 +1118,6 @@
     </div>
   </section>
 
-  <section class="alpha-section alpha-free">
-    <div class="wrap">
-      <div>
-        <p class="section-label" style="color:#bdb8ad">Почему бесплатно</p>
-        <h2>ОСНОВНАЯ ВСТРЕЧА<br>ПОЛНОСТЬЮ БЕСПЛАТНА.</h2>
-        <p>Разбор подхода, ваши вопросы, работа над отказом и подготовка первого дня входят полностью. В конце я предложу отдельное платное сопровождение первых дней тем, кому нужна дополнительная поддержка. Покупать его не обязательно.</p>
-      </div>
-      <div class="alpha-free-card">
-        <div class="event-top"><span class="eyebrow">Среда, 7 октября</span><span class="free-label">БЕСПЛАТНО</span></div>
-        <div class="event-date">18:00–21:00</div>
-        <p class="event-meta">Живая онлайн-встреча · около 3 часов</p>
-        <button class="cta js-focus-form" type="button"><span>Записаться бесплатно</span><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      </div>
-    </div>
-  </section>
-
   <section class="alpha-section">
     <div class="wrap">
       <p class="section-label">Перед записью</p>
@@ -1096,22 +1132,29 @@
     </div>
   </section>
 
-  <section class="final">
-    <div class="wrap final-grid">
+  <section class="alpha-section alpha-free alpha-free-final">
+    <div class="wrap">
       <div>
-        <p class="section-label">Ближайшая встреча</p>
-        <h2>ОДИН ВЕЧЕР.<br>БЕСПЛАТНО.</h2>
-        <p class="final-copy">Если можете выделить около трёх часов — оставьте телефон. Ссылка на подключение придёт после регистрации.</p>
+        <p class="section-label" style="color:#bdb8ad">Почему бесплатно</p>
+        <h2>ОСНОВНАЯ ВСТРЕЧА<br>ПОЛНОСТЬЮ БЕСПЛАТНА.</h2>
+        <p>Разбор подхода, ваши вопросы, работа над отказом и подготовка первого дня входят полностью. В конце я предложу отдельное платное сопровождение первых дней тем, кому нужна дополнительная поддержка. Покупать его не обязательно.</p>
       </div>
-      <div class="event event-light">
-        <div class="event-top"><span class="eyebrow">Среда, 7 октября</span><span class="free-label">БЕСПЛАТНО</span></div>
-        <div class="event-date">18:00–21:00 МСК</div>
-        <p class="event-meta">Яндекс Телемост · живая онлайн-встреча</p>
-        <button class="cta js-focus-form" type="button"><span>Записаться бесплатно</span><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+      <div class="alpha-free-card">
+        <div class="event-top">
+          <span class="eyebrow">Ближайшая встреча</span>
+          <span class="free-label">БЕСПЛАТНО</span>
+        </div>
+        <div class="event-date"><span class="date-weekday">Среда,</span><span class="date-full">7 октября</span></div>
+        <p class="event-time">18:00–21:00 МСК</p>
+        <p class="event-meta">Яндекс Телемост · живая онлайн-встреча · около 3 часов</p>
+        <button class="cta js-focus-form" type="button"><span>Записаться бесплатно</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <p class="event-note">Ссылка на подключение придёт после регистрации.</p>
       </div>
     </div>
   </section>
-</main>
+
+  </main>
 
 <footer class="site-footer"><div class="wrap footer-row"><span>Метод Борзилова · Илья Борзилов</span><span>Живая образовательная встреча для взрослых · 18+</span></div></footer>
 
