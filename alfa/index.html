@@ -1576,6 +1576,63 @@
     }
   }
 </style>
+
+<style id="alpha-mobile-title-max-v18">
+  @media(max-width:720px){
+    .alpha-hero.wrap{
+      padding-left:10px !important;
+      padding-right:10px !important;
+    }
+    .alpha-hero .hero-copy{
+      width:100%;
+      min-width:0;
+    }
+    .alpha-hero-title{
+      width:100%;
+      max-width:100%;
+      overflow:hidden;
+      font-family:Arial,Helvetica,sans-serif !important;
+    }
+    .alpha-hero-title .hero-word{
+      display:block;
+      width:max-content;
+      max-width:none;
+      white-space:nowrap !important;
+      font-family:Arial,Helvetica,sans-serif !important;
+      font-weight:900 !important;
+      line-height:.80 !important;
+      letter-spacing:-.082em !important;
+      -webkit-text-stroke:.45px currentColor;
+      text-rendering:geometricPrecision;
+      transform-origin:left center;
+    }
+    .alpha-hero-title .hero-word:nth-child(1){
+      font-size:19.6vw !important;
+      transform:scaleX(1.02);
+    }
+    .alpha-hero-title .hero-word:nth-child(2){
+      font-size:21.7vw !important;
+      transform:scaleX(1.02);
+    }
+    .alpha-hero-title .hero-word + .hero-word{
+      margin-top:.10em !important;
+    }
+    .alpha-hero-title .hero-promise{
+      font-family:Arial,Helvetica,sans-serif !important;
+      font-weight:900 !important;
+      -webkit-text-stroke:.2px currentColor;
+    }
+  }
+
+  @media(max-width:390px){
+    .alpha-hero-title .hero-word:nth-child(1){
+      font-size:19.2vw !important;
+    }
+    .alpha-hero-title .hero-word:nth-child(2){
+      font-size:21.2vw !important;
+    }
+  }
+</style>
 </head>
 <body class="alpha-page">
 <header class="topbar">
