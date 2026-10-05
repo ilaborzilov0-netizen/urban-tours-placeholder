@@ -1414,6 +1414,46 @@
     }
   }
 </style>
+
+<style id="alpha-hero-caption-bottom-v15">
+  .hero-person figcaption,
+  .hero-person-caption{
+    left:0 !important;
+    right:0 !important;
+    bottom:0 !important;
+    border-radius:0 0 18px 18px !important;
+    padding:12px 18px 13px !important;
+    background:rgba(17,17,17,.48) !important;
+    box-shadow:none !important;
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+  }
+
+  .hero-person-name strong{
+    color:rgba(255,255,255,.96) !important;
+  }
+  .hero-person-name>span{
+    color:rgba(255,255,255,.66) !important;
+  }
+  .hero-person-facts span{
+    color:rgba(255,255,255,.78) !important;
+  }
+  .hero-person-facts span + span::before{
+    color:rgba(255,255,255,.24) !important;
+  }
+
+  @media(max-width:720px){
+    .hero-person figcaption,
+    .hero-person-caption{
+      left:0 !important;
+      right:0 !important;
+      bottom:0 !important;
+      border-radius:0 0 14px 14px !important;
+      padding:10px 14px 11px !important;
+      background:rgba(17,17,17,.50) !important;
+    }
+  }
+</style>
 </head>
 <body class="alpha-page">
 <header class="topbar">
