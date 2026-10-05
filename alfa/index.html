@@ -1484,6 +1484,98 @@
     }
   }
 </style>
+
+<style id="alpha-hero-event-v17">
+  .alpha-hero-event{
+    margin-top:18px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+    max-width:760px;
+  }
+  .alpha-hero-event-main{
+    display:grid;
+    grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+    gap:22px;
+    align-items:end;
+  }
+  .alpha-hero-event-date,
+  .alpha-hero-event-time{
+    min-width:0;
+  }
+  .alpha-hero-event-label{
+    display:block;
+    margin-bottom:6px;
+    font-size:10px;
+    line-height:1.2;
+    font-weight:900;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .alpha-hero-event strong{
+    display:block;
+    font-size:clamp(22px,1.65vw,30px);
+    line-height:1.05;
+    letter-spacing:-.035em;
+    color:var(--ink);
+  }
+  .alpha-hero-event-time strong{
+    white-space:nowrap;
+  }
+  .alpha-hero-event strong small{
+    font-size:.58em;
+    letter-spacing:-.01em;
+    font-weight:800;
+  }
+  .alpha-hero-event-meta{
+    margin-top:10px;
+    font-size:13px;
+    line-height:1.35;
+    color:var(--muted);
+  }
+
+  @media(min-width:981px){
+    .alpha-hero-bottom{
+      display:flex;
+      flex-direction:column;
+    }
+    .alpha-hero-event{
+      margin-top:18px;
+    }
+  }
+
+  @media(max-width:720px){
+    .alpha-hero-event{
+      margin-top:16px;
+      padding-top:16px;
+    }
+    .alpha-hero-event-main{
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+    .alpha-hero-event-label{
+      margin-bottom:5px;
+      font-size:9px;
+    }
+    .alpha-hero-event strong{
+      font-size:20px;
+    }
+    .alpha-hero-event-time strong{
+      white-space:normal;
+    }
+    .alpha-hero-event-meta{
+      margin-top:9px;
+      font-size:12px;
+    }
+  }
+
+  @media(max-width:380px){
+    .alpha-hero-event-main{
+      grid-template-columns:1fr;
+      gap:12px;
+    }
+  }
+</style>
 </head>
 <body class="alpha-page">
 <header class="topbar">
@@ -1500,10 +1592,18 @@
         <h1 class="alpha-hero-title"><span class="hero-word">БРОСИТЬ</span><span class="hero-word">КУРИТЬ</span><span class="accent hero-promise">ЗА ОДИН ВЕЧЕР</span></h1>
         <div class="alpha-hero-bottom">
           <p class="hero-line">Приходите курящим.<br>Закончим прямо на встрече.</p>
-          <div class="alpha-meta">
-            <strong>Среда, 7 октября</strong>
-            <span>18:00–21:00 МСК</span>
-            <span>Яндекс Телемост</span>
+          <div class="alpha-hero-event" aria-label="Дата и время встречи">
+            <div class="alpha-hero-event-main">
+              <div class="alpha-hero-event-date">
+                <span class="alpha-hero-event-label">Ближайшая встреча</span>
+                <strong>Среда · 7 октября</strong>
+              </div>
+              <div class="alpha-hero-event-time">
+                <span class="alpha-hero-event-label">Время</span>
+                <strong>18:00–21:00 <small>МСК</small></strong>
+              </div>
+            </div>
+            <div class="alpha-hero-event-meta">Яндекс Телемост · около 3 часов</div>
           </div>
           <div class="alpha-hero-cta">
             <button class="cta" id="heroOpenForm" type="button"><span>Записаться бесплатно</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
