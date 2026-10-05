@@ -306,6 +306,20 @@
   .modalPrice b{font-size:30px;letter-spacing:-.04em}
   .successSimple{display:none;margin-top:16px;padding:16px;border:1px solid var(--line);font-size:14px;line-height:1.45}
   .successSimple.show{display:block}
+  .brand-lockup{display:flex;align-items:baseline;gap:12px;text-decoration:none;white-space:nowrap}
+  .brand-lockup>span{font-size:14px;letter-spacing:.06em;font-weight:900}
+  .brand-lockup>small{font-size:10px;letter-spacing:.12em;color:var(--muted);font-weight:800}
+  .hero-copy h1{font-size:clamp(52px,4.25vw,70px);line-height:.97;letter-spacing:-.06em;max-width:100%}
+  .hero-copy h1 span{max-width:100%}
+  @media(max-width:1000px){
+    .hero-copy h1{font-size:clamp(46px,5vw,58px)}
+  }
+  @media(max-width:850px){
+    .hero-copy h1{font-size:clamp(44px,8.6vw,76px)}
+  }
+  @media(max-width:540px){
+    .hero-copy h1{font-size:10.4vw}
+  }
   @media(max-width:760px){
     .weekend-day{grid-template-columns:1fr;gap:5px}
     .weekend-price{align-items:flex-start;flex-direction:column}
@@ -316,7 +330,7 @@
 <body>
   <header class="topbar">
     <div class="wrap">
-      <a class="brand" href="#top">МЕТОД БОРЗИЛОВА</a>
+      <a class="brand brand-lockup" href="#top"><span>МЕТОД БОРЗИЛОВА</span><small>ОТКАЗ ОТ КУРЕНИЯ</small></a>
       <div class="header-note"><span class="dot" aria-hidden="true"></span>Стартовые выходные · 18+</div>
     </div>
   </header>
@@ -325,7 +339,6 @@
     <section class="hero wrap" id="top" aria-labelledby="heroTitle">
       <div class="hero-grid">
         <div class="hero-copy">
-          <p class="hero-method">МЕТОД БОРЗИЛОВА</p>
           <h1 id="heroTitle"><span>БРОСИТЬ КУРИТЬ</span><span class="accent">ЗА ВЫХОДНЫЕ</span></h1>
           <p class="hero-line">Суббота — разбираем механизм. Воскресенье — собираем решение и точку отказа.</p>
           <p class="hero-format"><strong>7 900 ₽</strong><span>Две живые онлайн-встречи</span><span>Суббота + воскресенье</span></p>
