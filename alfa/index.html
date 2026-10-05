@@ -1454,6 +1454,36 @@
     }
   }
 </style>
+
+<style id="alpha-hero-cta-bottom-v16">
+  @media(min-width:981px){
+    .alpha-hero .hero-copy{
+      display:flex !important;
+      flex-direction:column !important;
+      min-height:100% !important;
+    }
+    .alpha-hero-bottom{
+      flex:1 1 auto;
+      display:flex;
+      flex-direction:column;
+      min-height:0;
+    }
+    .alpha-hero-cta{
+      margin-top:auto !important;
+      padding-top:24px;
+      display:block !important;
+      width:min(100%,400px);
+    }
+    .alpha-hero-cta .cta{
+      width:100% !important;
+    }
+  }
+  @media(max-width:980px){
+    .alpha-hero-cta{
+      width:100%;
+    }
+  }
+</style>
 </head>
 <body class="alpha-page">
 <header class="topbar">
@@ -1477,7 +1507,6 @@
           </div>
           <div class="alpha-hero-cta">
             <button class="cta" id="heroOpenForm" type="button"><span>Записаться бесплатно</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            <p class="alpha-hero-note">Телефон понадобится только для подтверждения места, ссылки и напоминания.</p>
           </div>
         </div>
         <div class="hero-reveal" id="heroReveal">
