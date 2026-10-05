@@ -995,6 +995,63 @@
     .alpha-free-final .event-time{font-size:24px}
   }
 </style>
+
+<style id="alpha-single-author-v6">
+  .hero-person-caption{
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) auto;
+    align-items:end !important;
+    gap:14px 24px !important;
+  }
+  .hero-person-name{
+    min-width:0;
+  }
+  .hero-person-name strong{
+    display:block;
+    font-size:18px;
+    line-height:1.15;
+  }
+  .hero-person-name>span{
+    display:block;
+    margin-top:4px;
+    font-size:11px;
+    color:#d8d3c9;
+    text-align:left;
+  }
+  .hero-person-facts{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+    gap:7px;
+    max-width:360px;
+  }
+  .hero-person-facts span{
+    padding:7px 9px;
+    border:1px solid rgba(255,255,255,.28);
+    border-radius:999px;
+    font-size:11px;
+    line-height:1.15;
+    color:#fff;
+    white-space:nowrap;
+    text-align:left;
+  }
+  @media(max-width:720px){
+    .hero-person-caption{
+      grid-template-columns:1fr !important;
+      gap:9px !important;
+    }
+    .hero-person-facts{
+      justify-content:flex-start;
+      max-width:none;
+      gap:6px;
+    }
+    .hero-person-facts span{
+      font-size:10px;
+      padding:6px 8px;
+      white-space:normal;
+    }
+  }
+</style>
 </head>
 <body class="alpha-page">
 <header class="topbar">
@@ -1043,7 +1100,13 @@
 
       <figure class="hero-person">
         <img src="assets/hero-wave.webp" alt="Илья Борзилов приветствует участников" loading="eager" fetchpriority="high">
-        <figcaption><strong>Илья Борзилов</strong><span>ведёт встречу лично</span></figcaption>
+        <figcaption class="hero-person-caption">
+          <div class="hero-person-name"><strong>Илья Борзилов</strong><span>ведёт встречу лично</span></div>
+          <div class="hero-person-facts">
+            <span>10+ лет не курит</span>
+            <span>Работал в клинике Аллена Карра</span>
+          </div>
+        </figcaption>
       </figure>
     </div>
   </section>
@@ -1099,24 +1162,7 @@
     </div>
   </section>
 
-  <section class="alpha-section">
-    <div class="wrap alpha-author">
-      <figure class="alpha-author-photo">
-        <img src="assets/author-expert.webp" alt="Илья Борзилов" loading="lazy">
-      </figure>
-      <div class="alpha-author-info">
-        <p class="section-label">Кто ведёт</p>
-        <h3>ИЛЬЯ БОРЗИЛОВ</h3>
-        <ul class="alpha-author-facts">
-          <li>Курил более 10 лет.</li>
-          <li>Более 10 лет не курит.</li>
-          <li>Работал в клинике Аллена Карра.</li>
-          <li>Встречу ведёт лично, с вопросами и разборами.</li>
-        </ul>
-        <p class="alpha-author-quote">«Меня интересует не то, как заставить человека не курить. А почему в какой-то момент следующая сигарета снова начинает казаться разумной».</p>
-      </div>
-    </div>
-  </section>
+  
 
   <section class="alpha-section">
     <div class="wrap">
