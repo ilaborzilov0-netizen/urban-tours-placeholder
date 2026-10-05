@@ -1071,6 +1071,46 @@
     }
   }
 </style>
+
+<style id="alpha-mobile-huge-title-v8">
+  @media(max-width:720px){
+    .alpha-hero-title{
+      width:100%;
+      max-width:100%;
+      overflow:visible;
+    }
+    .alpha-hero-title .hero-word{
+      display:block;
+      width:100%;
+      max-width:100%;
+      white-space:nowrap;
+      font-size:clamp(58px,17.2vw,82px);
+      line-height:.82;
+      letter-spacing:-.075em;
+      font-weight:900;
+    }
+    .alpha-hero-title .hero-word + .hero-word{
+      margin-top:.10em;
+    }
+    .alpha-hero-title .hero-promise{
+      display:block;
+      margin-top:.28em;
+      font-size:clamp(34px,9.7vw,46px);
+      line-height:.94;
+      letter-spacing:-.06em;
+      white-space:normal;
+    }
+  }
+  @media(max-width:380px){
+    .alpha-hero-title .hero-word{
+      font-size:15.8vw;
+      letter-spacing:-.072em;
+    }
+    .alpha-hero-title .hero-promise{
+      font-size:9.1vw;
+    }
+  }
+</style>
 </head>
 <body class="alpha-page">
 <header class="topbar">
