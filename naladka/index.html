@@ -2356,6 +2356,156 @@
     }
   }
 </style>
+
+<style id="alpha-self-quit-v1">
+  .alpha-self-quit{
+    border-top:1px solid var(--line);
+    background:var(--paper);
+    padding-top:88px;
+  }
+  .alpha-self-quit-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1.05fr) minmax(360px,.75fr);
+    gap:clamp(54px,7vw,110px);
+    align-items:start;
+  }
+  .alpha-self-quit-copy h2{
+    margin:0 0 24px;
+    font-size:clamp(54px,5.7vw,96px);
+    line-height:.88;
+    letter-spacing:-.065em;
+  }
+  .alpha-self-quit-copy>p{
+    max-width:760px;
+    font-size:18px;
+    line-height:1.55;
+    color:var(--muted);
+  }
+  .alpha-self-quit-copy .alpha-self-quit-lead{
+    font-size:clamp(23px,2vw,31px);
+    line-height:1.28;
+    letter-spacing:-.025em;
+    color:var(--ink);
+    margin-bottom:18px;
+  }
+  .alpha-self-quit-stat{
+    background:var(--ink);
+    color:var(--paper);
+    padding:34px 34px 30px;
+    border-radius:16px;
+  }
+  .alpha-self-quit-eyebrow{
+    display:block;
+    margin-bottom:20px;
+    color:#bdb8ad;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+  }
+  .alpha-self-quit-stat>strong{
+    display:block;
+    margin-bottom:16px;
+    color:var(--paper);
+    font-size:clamp(78px,8vw,132px);
+    line-height:.78;
+    letter-spacing:-.08em;
+  }
+  .alpha-self-quit-stat p{
+    margin:0 0 22px;
+    color:#d8d3c9;
+    font-size:17px;
+    line-height:1.45;
+  }
+  .alpha-self-quit-stat p b{color:var(--paper)}
+  .alpha-self-quit-stat a{
+    display:inline-block;
+    color:#aaa59a;
+    font-size:12px;
+    line-height:1.4;
+    text-decoration:none;
+    border-bottom:1px solid #5c5952;
+  }
+  .alpha-self-quit-stat a:hover{
+    color:var(--orange);
+    border-color:var(--orange);
+  }
+  .alpha-self-quit-path{
+    margin-top:84px;
+    padding-top:42px;
+    padding-bottom:56px;
+    border-top:1px solid var(--ink);
+    display:grid;
+    grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);
+    gap:clamp(46px,6vw,96px);
+  }
+  .alpha-self-quit-path-copy h3{
+    margin:0;
+    font-size:clamp(42px,4.5vw,76px);
+    line-height:.91;
+    letter-spacing:-.058em;
+  }
+  .alpha-self-quit-path-copy h3 span{color:var(--orange)}
+  .alpha-self-quit-path-text{
+    padding-top:26px;
+  }
+  .alpha-self-quit-path-text p{
+    margin:0 0 20px;
+    max-width:740px;
+    font-size:18px;
+    line-height:1.55;
+    color:var(--muted);
+  }
+  .alpha-self-quit-path-text p:first-child{
+    color:var(--ink);
+    font-size:22px;
+  }
+  .alpha-self-quit-punch{
+    padding-block:50px 54px;
+    background:#ebe6dc;
+    border-top:1px solid var(--line);
+  }
+  .alpha-self-quit-punch .wrap{
+    display:grid;
+    grid-template-columns:1fr 1.3fr;
+    gap:42px;
+    align-items:start;
+  }
+  .alpha-self-quit-punch p{
+    margin:0;
+    font-size:clamp(22px,2.1vw,34px);
+    line-height:1.2;
+    letter-spacing:-.025em;
+  }
+  .alpha-self-quit-punch p:last-child{color:var(--muted)}
+  @media(max-width:900px){
+    .alpha-self-quit{padding-top:64px}
+    .alpha-self-quit-grid,
+    .alpha-self-quit-path,
+    .alpha-self-quit-punch .wrap{
+      grid-template-columns:1fr;
+    }
+    .alpha-self-quit-stat{max-width:620px}
+    .alpha-self-quit-path{margin-top:58px;gap:26px}
+    .alpha-self-quit-path-text{padding-top:0}
+  }
+  @media(max-width:560px){
+    .alpha-self-quit{padding-top:50px}
+    .alpha-self-quit-copy h2{font-size:clamp(46px,13vw,62px)}
+    .alpha-self-quit-copy>p{font-size:16px}
+    .alpha-self-quit-copy .alpha-self-quit-lead{font-size:21px}
+    .alpha-self-quit-stat{padding:27px 23px 24px;border-radius:12px}
+    .alpha-self-quit-stat>strong{font-size:82px}
+    .alpha-self-quit-stat p{font-size:15px}
+    .alpha-self-quit-path{margin-top:44px;padding-top:32px;padding-bottom:42px}
+    .alpha-self-quit-path-copy h3{font-size:clamp(38px,11vw,54px)}
+    .alpha-self-quit-path-text p{font-size:16px}
+    .alpha-self-quit-path-text p:first-child{font-size:19px}
+    .alpha-self-quit-punch{padding-block:36px 40px}
+    .alpha-self-quit-punch .wrap{gap:14px}
+    .alpha-self-quit-punch p{font-size:22px}
+  }
+</style>
 </head>
 <body class="alpha-page">
 <header class="topbar">
@@ -2549,6 +2699,45 @@
   </section>
 
   
+
+  <section class="alpha-self-quit" aria-labelledby="selfQuitTitle">
+    <div class="wrap alpha-self-quit-grid">
+      <div class="alpha-self-quit-copy">
+        <p class="section-label">Самостоятельная попытка</p>
+        <h2 id="selfQuitTitle">САМОСТОЯТЕЛЬНО<br>МОЖНО.</h2>
+        <p class="alpha-self-quit-lead">Люди действительно бросают сами. Иногда — с первой попытки.</p>
+        <p>Вопрос не в том, возможно ли это без метода. Вопрос — в шансах конкретной попытки и в том, сколько попыток понадобится именно вам.</p>
+      </div>
+
+      <aside class="alpha-self-quit-stat" aria-label="Исследование самостоятельных попыток">
+        <span class="alpha-self-quit-eyebrow">Систематический обзор</span>
+        <strong>3–5%</strong>
+        <p>самостоятельных попыток приводили к длительному воздержанию от курения в течение <b>6–12 месяцев</b> после конкретной попытки.</p>
+        <a href="https://doi.org/10.1111/j.1360-0443.2004.00540.x" target="_blank" rel="noopener">
+          Hughes, Keely &amp; Naud · Addiction · 2004
+        </a>
+      </aside>
+    </div>
+
+    <div class="wrap alpha-self-quit-path">
+      <div class="alpha-self-quit-path-copy">
+        <p class="section-label">Чужой успех</p>
+        <h3>ВЫ ВИДИТЕ<br>ФИНАЛЬНЫЙ ЩЕЛЧОК.<br><span>НО НЕ ВИДИТЕ ПУТЬ К НЕМУ.</span></h3>
+      </div>
+      <div class="alpha-self-quit-path-text">
+        <p>Человек может сказать: <strong>«Я просто решил — и бросил».</strong></p>
+        <p>Но до этого решения могли быть годы попыток, ошибок, накопленного опыта и постепенного изменения отношения к сигарете.</p>
+        <p>То, к чему кто-то приходит самостоятельно — фрагментами, случайно и за годы — здесь мы разбираем намеренно и последовательно.</p>
+      </div>
+    </div>
+
+    <div class="alpha-self-quit-punch">
+      <div class="wrap">
+        <p><strong>Не потому, что самостоятельно невозможно.</strong></p>
+        <p>А чтобы не ждать, пока необходимые изменения случайно сложатся сами.</p>
+      </div>
+    </div>
+  </section>
 
   <section class="alpha-section">
     <div class="wrap">
