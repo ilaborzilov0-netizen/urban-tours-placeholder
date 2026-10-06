@@ -2169,20 +2169,54 @@
   }
 </style>
 
-<style id="alpha-hero-negatives-v1">
-  .alpha-hero-negatives{
-    margin:-4px 0 20px;
-    font-size:14px;
-    line-height:1.25;
-    font-weight:900;
-    letter-spacing:-.01em;
-    color:var(--ink);
+
+<style id="alpha-format-strip-v1">
+  .alpha-format-strip{
+    border-top:1px solid var(--ink);
+    border-bottom:1px solid var(--line);
+    background:var(--paper);
   }
-  @media(max-width:720px){
-    .alpha-hero-negatives{
-      margin:-2px 0 17px;
-      font-size:13px;
+  .alpha-format-strip-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    padding-block:0!important;
+  }
+  .alpha-format-strip-grid>div{
+    min-height:66px;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:0 24px;
+    border-right:1px solid var(--line);
+  }
+  .alpha-format-strip-grid>div:first-child{padding-left:0}
+  .alpha-format-strip-grid>div:last-child{
+    border-right:0;
+    padding-right:0;
+  }
+  .alpha-format-strip-grid span{
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.08em;
+    color:var(--orange);
+  }
+  .alpha-format-strip-grid strong{
+    font-size:14px;
+    line-height:1;
+    letter-spacing:.015em;
+  }
+  @media(max-width:620px){
+    .alpha-format-strip-grid{
+      grid-template-columns:1fr;
     }
+    .alpha-format-strip-grid>div{
+      min-height:46px;
+      padding:0!important;
+      border-right:0;
+      border-bottom:1px solid var(--line);
+    }
+    .alpha-format-strip-grid>div:last-child{border-bottom:0}
+    .alpha-format-strip-grid strong{font-size:13px}
   }
 </style>
 </head>
@@ -2203,9 +2237,7 @@
 
         <div class="alpha-hero-bottom">
           <p class="hero-line">Приходите курящим.<br>Закончим прямо на встрече.</p>
-          <div class="alpha-hero-negatives" aria-label="Формат встречи">Не книга · Не таблетки · Не гипноз</div>
-
-          <div class="alpha-hero-event" aria-label="Дата и время встречи">
+<div class="alpha-hero-event" aria-label="Дата и время встречи">
             <strong class="alpha-hero-event-date-main">Воскресенье · 11 октября</strong>
             <strong class="alpha-hero-event-time-main">18:00–21:00 <small>МСК</small></strong>
             <div class="alpha-hero-event-meta">Яндекс Телемост</div><div class="alpha-hero-price">
@@ -2238,6 +2270,14 @@
           </div>
         </figcaption>
       </figure>
+    </div>
+  </section>
+
+  <section class="alpha-format-strip" aria-label="Что это не">
+    <div class="wrap alpha-format-strip-grid">
+      <div><span>01</span><strong>НЕ КНИГА</strong></div>
+      <div><span>02</span><strong>НЕ ТАБЛЕТКИ</strong></div>
+      <div><span>03</span><strong>НЕ ГИПНОЗ</strong></div>
     </div>
   </section>
 
