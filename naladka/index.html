@@ -1980,6 +1980,32 @@
     .alfaLeadPrice{margin-bottom:15px!important}
   }
 </style>
+
+<style id="naladka-prepay-question-v1">
+  .prepayQuestion{
+    margin-top:12px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    flex-wrap:wrap;
+    gap:4px 7px;
+    font-size:13px;
+    line-height:1.35;
+    color:var(--muted);
+  }
+  .prepayQuestion>a{
+    color:var(--ink);
+    font-weight:800;
+    text-decoration:none;
+    border-bottom:1px solid currentColor;
+  }
+  .prepayQuestion>a:hover{color:var(--orange)}
+  .prepayQuestionSep{color:#aaa59a}
+  .alpha-free-card .prepayQuestion{margin-top:11px}
+  @media(max-width:540px){
+    .prepayQuestion{font-size:12px;margin-top:10px}
+  }
+</style>
 </head>
 <body class="alpha-page">
 <header class="topbar">
@@ -2010,6 +2036,12 @@
 
           <div class="alpha-hero-cta">
             <button class="cta" id="heroOpenForm" type="button"><span>Занять место</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="prepayQuestion" aria-label="Связаться перед оплатой">
+              <span>Есть вопрос перед оплатой?</span>
+              <a href="https://t.me/metodborzilovabot" target="_blank" rel="noopener" data-question-channel="telegram">Telegram</a>
+              <span class="prepayQuestionSep">·</span>
+              <a href="https://max.ru/u/f9LHodD0cOLpevOEzdPM7DBn_9wNoZiKdBMryxkSM2b4SpNmf4xagvVkl8g" target="_blank" rel="noopener" data-question-channel="max">MAX</a>
+            </div>
           </div>
         </div>
       </div>
@@ -2117,6 +2149,12 @@
         <p class="event-time">18:00–21:00 МСК</p>
         <p class="event-meta">Яндекс Телемост · живая онлайн-встреча · около 3 часов</p>
         <button class="cta js-focus-form" type="button"><span>Занять место</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="prepayQuestion" aria-label="Связаться перед оплатой">
+          <span>Есть вопрос перед оплатой?</span>
+              <a href="https://t.me/metodborzilovabot" target="_blank" rel="noopener" data-question-channel="telegram">Telegram</a>
+              <span class="prepayQuestionSep">·</span>
+              <a href="https://max.ru/u/f9LHodD0cOLpevOEzdPM7DBn_9wNoZiKdBMryxkSM2b4SpNmf4xagvVkl8g" target="_blank" rel="noopener" data-question-channel="max">MAX</a>
+            </div>
       </div>
     </div>
   </section>
@@ -2333,6 +2371,11 @@
       submit.textContent=old;
     }
   });
+
+  document.querySelectorAll('[data-question-channel]').forEach(link=>link.addEventListener('click',()=>{
+    const channel=link.getAttribute('data-question-channel')||'contact';
+    try{if(window.ym)window.ym(110906734,'reachGoal','marafon_naladka_1990_question_'+channel)}catch(_){}
+  }));
 
   const max=document.getElementById('successMax');
   const telegram=document.getElementById('successTelegram');
