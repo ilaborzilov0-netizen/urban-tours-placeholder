@@ -2195,6 +2195,95 @@
 </style>
 
 </head>
+
+<style id="codex-scan-pass">
+  .codex-page .cx-section{padding-block:64px}
+  .codex-page .cx-section h2{font-size:clamp(34px,3.5vw,46px);line-height:1.12;letter-spacing:-.035em;text-transform:none;max-width:850px;margin:0 0 30px}
+  .codex-page .cx-section p{font-size:19px;line-height:1.55}
+  .codex-page .cx-label{font-size:13px!important;line-height:1.4!important;margin:0 0 15px!important;letter-spacing:.08em}
+  .codex-page .cx-lead{max-width:600px;font-size:22px!important;line-height:1.5!important;margin:0}
+  .codex-page .hero-line{font-size:22px!important;line-height:1.45!important;max-width:470px!important}
+  .codex-page .cx-under{font-size:15px}
+  .codex-page .cx-pain-section{border-top:1px solid var(--line)}
+  .codex-page .cx-pain{border:0;gap:28px}
+  .codex-page .cx-pain article{padding:0 22px 0 0;border-right:1px solid var(--line)}
+  .codex-page .cx-pain article:last-child{border:0;padding-right:0}
+  .codex-page .cx-pain h3{font-size:25px;line-height:1.22;margin:0 0 14px;letter-spacing:-.025em}
+  .codex-page .cx-pain p{font-size:18px;line-height:1.5}
+  .codex-page .cx-dark-grid{gap:48px;align-items:start}
+  .cx-model{margin:28px 0 0;display:grid;gap:15px}
+  .cx-model>div{display:grid;grid-template-columns:115px 1fr;gap:14px;align-items:baseline}
+  .cx-model dt{font-size:23px;font-weight:750;color:var(--paper);letter-spacing:-.025em}
+  .cx-model dd{font-size:19px;line-height:1.45;margin:0;color:#d5d0c6}
+  .codex-page .cx-example{padding:26px;align-self:start;background:#ffffff05}
+  .codex-page .cx-example .cx-thought{font-size:32px;line-height:1.2;letter-spacing:-.025em;font-weight:700;margin:0 0 22px}
+  .codex-page .cx-example p{font-size:18px;line-height:1.55}
+  .codex-page .cx-method-route{font-size:17px;line-height:1.5;border-top:1px solid #57534a;padding-top:24px;margin:30px 0 0;color:#d5d0c6}
+  .codex-page .cx-author{grid-template-columns:260px 1fr;gap:48px}
+  .codex-page .cx-author img{height:310px}
+  .codex-page .cx-author h2{margin-bottom:23px}
+  .cx-author-facts{list-style:none;padding:0;margin:0 0 23px;display:grid;gap:11px;font-size:20px;line-height:1.4}
+  .codex-page .cx-author p{max-width:570px;font-size:19px}
+  .codex-page .cx-included-section{background:#e9e4da;border-block:1px solid var(--line)}
+  .cx-offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 48px}
+  .cx-includes-list{list-style:none;padding:0;margin:0;display:grid;gap:22px}
+  .cx-includes-list li{border-bottom:1px solid #c8c1b5;padding:0 0 20px}
+  .cx-includes-list strong{display:block;font-size:22px;line-height:1.35;letter-spacing:-.025em;margin-bottom:6px}
+  .cx-includes-list span{display:block;font-size:18px;line-height:1.5;color:var(--muted)}
+  .codex-page .cx-optional{font-size:17px;line-height:1.5;color:var(--muted);margin:20px 0 0}
+  .cx-offer-grid>.cx-inline-cta{grid-column:1/-1;margin:0}
+  .codex-page .cx-inline-cta p{font-size:16px}
+  .codex-page .cx-faq-wrap{max-width:960px}
+  .codex-page .cx-faq summary{font-size:21px;line-height:1.4}
+  .codex-page .cx-faq details p{font-size:18px;line-height:1.6}
+  .cx-more-faq>summary{color:var(--muted)}
+  .cx-more-answers{padding:4px 0 0 22px;margin-top:18px;border-left:2px solid var(--orange)}
+  .cx-more-answers>details:last-child{border-bottom:0}
+  .codex-page .cx-buy-grid{gap:48px}
+  .codex-page .cx-buy-card h3{font-size:34px}
+  @media(max-width:980px){
+    .codex-page .hero-line{font-size:20px!important}
+    .codex-page .cx-section h2{font-size:38px}
+    .codex-page .cx-dark-grid,.codex-page .cx-author,.cx-offer-grid,.codex-page .cx-buy-grid{gap:30px}
+    .codex-page .cx-author{grid-template-columns:220px 1fr}
+    .cx-model>div{grid-template-columns:105px 1fr;gap:10px}
+    .codex-page .cx-pain{gap:20px}
+    .codex-page .cx-pain h3{font-size:22px}
+  }
+  @media(max-width:720px){
+    .codex-page .hero-line{font-size:19px!important}
+    .codex-page .cx-section{padding-block:40px}
+    .codex-page .cx-section h2{font-size:32px;line-height:1.14;margin-bottom:25px}
+    .codex-page .cx-section p{font-size:18px}
+    .codex-page .cx-lead{font-size:20px!important}
+    .codex-page .cx-pain{grid-template-columns:1fr;gap:0}
+    .codex-page .cx-pain article{padding:21px 0;border-right:0;border-bottom:1px solid var(--line)}
+    .codex-page .cx-pain article:first-child{padding-top:0}
+    .codex-page .cx-pain article:last-child{padding-bottom:0}
+    .codex-page .cx-pain h3{font-size:24px;margin-bottom:10px}
+    .codex-page .cx-pain h3 br{display:none}
+    .codex-page .cx-dark-grid,.codex-page .cx-author,.cx-offer-grid,.codex-page .cx-buy-grid{grid-template-columns:1fr;gap:26px}
+    .cx-model{gap:14px;margin-top:23px}
+    .cx-model>div{grid-template-columns:100px 1fr;gap:12px}
+    .cx-model dt{font-size:22px}
+    .cx-model dd{font-size:18px}
+    .codex-page .cx-example{padding:22px}
+    .codex-page .cx-example .cx-thought{font-size:29px}
+    .codex-page .cx-method-route{font-size:16px;line-height:1.65;margin-top:26px}
+    .codex-page .cx-author img{height:240px;width:220px;max-width:100%;object-position:center 28%}
+    .cx-author-facts{font-size:19px;gap:12px}
+    .codex-page .cx-author p{font-size:18px}
+    .cx-includes-list strong{font-size:21px}
+    .cx-includes-list span{font-size:18px}
+    .codex-page .cx-optional{font-size:17px}
+    .cx-offer-grid>.cx-inline-cta{grid-column:auto}
+    .codex-page .cx-faq summary{font-size:19px;line-height:1.4}
+    .codex-page .cx-faq details{padding-block:18px}
+    .codex-page .cx-faq details p{font-size:17px}
+    .cx-more-answers{padding-left:15px}
+    .codex-page .cx-buy-card h3{font-size:31px}
+  }
+</style>
 <body class="alpha-page codex-page">
 <header class="topbar"><div class="wrap"><a class="brand" href="#top">МЕТОД БОРЗИЛОВА</a><div class="header-note">Живая онлайн-встреча · 18+</div></div></header>
 <main id="main">
@@ -2204,15 +2293,15 @@
         <h1 class="alpha-hero-title"><span class="hero-word">БРОСИТЬ</span><span class="hero-word">КУРИТЬ</span><span class="accent hero-promise">ЗА ОДИН ВЕЧЕР</span></h1>
         <div class="alpha-hero-devices">СИГАРЕТЫ · СТИКИ · ЭЛЕКТРОНКИ</div>
         <div class="alpha-hero-bottom">
-          <p class="hero-line">Приходите курящим.<br>За три часа разберём, что держит вас в курении. Цель — последняя сигарета на встрече.</p>
+          <p class="hero-line">Приходите курящим.<br>Цель — последняя сигарета в этот вечер.</p>
           <div class="alpha-hero-event" aria-label="Дата, время и стоимость">
             <strong class="alpha-hero-event-date-main">Воскресенье · 11 октября</strong>
             <strong class="alpha-hero-event-time-main">18:00–21:00 <small>МСК</small></strong>
-            <div class="alpha-hero-event-meta">Яндекс Телемост · встречу ведёт Илья Борзилов</div>
-            <div class="alpha-hero-price"><strong>1 990 ₽</strong><span class="alpha-hero-price-anchor">≈ 7 пачек сигарет</span></div>
+            <div class="alpha-hero-event-meta">Онлайн · Яндекс Телемост</div>
+            <div class="alpha-hero-price"><strong>1 990 ₽</strong></div>
           </div>
           <div class="alpha-hero-cta"><button class="cta js-pay" id="heroOpenForm" type="button">Занять место</button></div>
-          <p class="cx-under">Вся встреча включена. Оплата через Т-Банк.</p>
+          <p class="cx-under">Полная встреча · Оплата через Т-Банк</p>
           <button class="cx-text-button cx-question js-question" type="button">Есть сомнение? Задать вопрос Илье</button>
         </div>
       </div>
@@ -2220,72 +2309,59 @@
     </div>
   </section>
 
-  <section class="cx-facts" aria-label="Условия участия"><div class="wrap">
-    <div><strong>3 часа</strong><p>Живая работа с ведущим.<br>Можно задавать вопросы.</p></div>
-    <div><strong>1 990 ₽</strong><p>Полная стоимость встречи.<br>Обязательных доплат нет.</p></div>
-    <div><strong>Понедельник</strong><p>Заранее разберём первый день:<br>кофе, работу и привычные паузы.</p></div>
-  </div></section>
-
-  <section class="cx-section"><div class="wrap">
-    <p class="cx-label">Узнаёте себя?</p><h2>ХОТИТЕ БРОСИТЬ.<br>НО ОЧЕРЕДНАЯ СИГАРЕТА<br>СНОВА КАЖЕТСЯ НУЖНОЙ.</h2>
+  <section class="cx-section cx-pain-section"><div class="wrap">
+    <h2>Каждый раз находится<br>причина ещё покурить.</h2>
     <div class="cx-pain">
-      <article><h3>«Сейчас тяжёлый период»</h3><p>Сначала нужно разобраться с работой, стрессом и недосыпом. Отказ снова переносится на более подходящий момент.</p></article>
-      <article><h3>«Я же уже бросал»</h3><p>Несколько дней или месяцев без курения. Потом одна сигарета — и приходится начинать заново.</p></article>
-      <article><h3>«Чем я заменю эту паузу?»</h3><p>Сигарета стала отдыхом, наградой или способом переключиться. Без неё будто придётся чего-то лишиться.</p></article>
+      <article><h3>«Брошу, когда<br>станет спокойнее»</h3><p>Работа, стресс и недосып снова отодвигают отказ.</p></article>
+      <article><h3>«Одна сигарета<br>не считается»</h3><p>Уже бросали. Потом сделали исключение — и вернулись.</p></article>
+      <article><h3>«Как я буду<br>отдыхать без неё?»</h3><p>Сигарета стала паузой, наградой и способом переключиться.</p></article>
     </div>
-    <p class="cx-lead" style="margin-top:25px;margin-bottom:0">На встрече работаем с этими конкретными ситуациями: что вы чувствуете, чего ждёте от сигареты и как появляется разрешение снова закурить.</p>
   </div></section>
 
-  <section class="cx-section" style="padding-top:0" id="included"><div class="wrap">
-    <p class="cx-label">Что входит в 1 990 ₽</p><h2>ОДИН ВЕЧЕР.<br>ЧЕТЫРЕ ШАГА К ОТКАЗУ.</h2>
-    <div class="cx-program">
-      <article><span>01 · МЕХАНИЗМ</span><h3>Разобраться, что держит.</h3><p>Отделим тягу от привычки и ожиданий: отдых, облегчение, общение, завершение дела.</p></article>
-      <article><span>02 · ВОЗВРАТЫ</span><h3>Увидеть свой внутренний торг.</h3><p>Разберём мысли, которые уже возвращали вас к курению: «одна не считается», «сейчас можно», «потом снова брошу».</p></article>
-      <article><span>03 · ПЕРВЫЙ ДЕНЬ</span><h3>Подготовить понедельник.</h3><p>Пройдём привычные ситуации: утренний кофе, рабочие паузы, стресс и курящая компания. Обсудим, как замечать момент возврата.</p></article>
-      <article><span>04 · РЕШЕНИЕ</span><h3>Последняя сигарета.</h3><p>Цель — закончить курить в этот вечер. К этому шагу идём через разбор того, что делает сигарету необходимой именно для вас.</p></article>
+  <section class="cx-section cx-dark" id="method"><div class="wrap">
+    <p class="cx-label">Метод Борзилова</p><h2>Разберём, почему сигарета<br>всё ещё кажется нужной.</h2>
+    <div class="cx-dark-grid">
+      <div><p class="cx-lead">Пока сигарета выглядит как помощь, отказ ощущается как потеря.</p>
+        <dl class="cx-model"><div><dt>Тяга</dt><dd>Что вы чувствуете.</dd></div><div><dt>Ценность</dt><dd>Чего ждёте от сигареты.</dd></div><div><dt>Торг</dt><dd>Как разрешаете себе закурить.</dd></div></dl>
+      </div>
+      <article class="cx-example"><p class="cx-label">Например</p><blockquote class="cx-thought">«Не выспался.<br>Брошу завтра».</blockquote><p>Усталость → сигарета кажется помощником → отказ переносится.</p><p><strong>На встрече разбираем эту связку на ваших примерах.</strong> Цель — перестать воспринимать сигарету как необходимую помощь.</p></article>
     </div>
-    <div class="cx-included">
-      <p><strong>Полная встреча, вопросы и разборы</strong>С 18:00 до 21:00 вы работаете с ведущим. Можно задать вопрос о своей ситуации и прошлых попытках.</p>
-      <p><strong>Сопровождение — по желанию</strong>Вечер можно пройти как самостоятельный формат. Поддержка следующих дней оплачивается отдельно и не является условием участия.</p>
-    </div>
-    <div class="cx-inline-cta"><button class="cta js-pay" type="button">Занять место</button><p>11 октября · 18:00–21:00 МСК · 1 990 ₽</p></div>
-  </div></section>
-
-  <section class="cx-section cx-dark" id="method"><div class="wrap cx-dark-grid">
-    <div><p class="cx-label">Как работает подход</p><h2>СИГАРЕТА ДЕРЖИТСЯ<br>НЕ ТОЛЬКО НА ТЯГЕ.</h2><p class="cx-lead">Пока сигарета выглядит как помощь, отказ ощущается как потеря. Мы разбираем всю конструкцию.</p><p class="cx-equation">ТЯГА <span>+</span> ЦЕННОСТЬ <span>+</span> ТОРГ</p><ul><li><strong>Тяга:</strong> какое ощущение вы называете «мне нужно покурить».</li><li><strong>Ценность:</strong> что сигарета обещает дать в этот момент.</li><li><strong>Торг:</strong> какая мысль разрешает следующую сигарету.</li></ul></div>
-    <article class="cx-example"><p class="cx-label">Пример разбора</p><p class="cx-thought">«Я не выспался. Сегодня тяжёлый день. Брошу завтра».</p><p><strong>Что здесь происходит?</strong><br>Вы решили бросить, но сигарета снова стала помощником в трудный день. Отказ воспринимается как дополнительная нагрузка.</p><p><strong>Что разбираем на встрече?</strong><br>Какую именно помощь вы ожидаете? Что происходило в прошлые разы после переноса? В какой момент «сегодня сложно» стало разрешением курить?</p><p><strong>Задача работы:</strong> увидеть эту связку до следующей сигареты и разобраться в её убедительности. Такой же разбор делаем для кофе, стресса, скуки и компании.</p></article>
+    <p class="cx-method-route">Понять, что держит → разобрать свой торг → подойти к последней сигарете.</p>
   </div></section>
 
   <section class="cx-section"><div class="wrap cx-author">
     <img src="/alfa/assets/author-expert.webp" alt="Илья Борзилов" width="600" height="720" loading="lazy">
-    <div><p class="cx-label">Кто ведёт встречу</p><h2>ИЛЬЯ БОРЗИЛОВ.</h2><p>Курил больше десяти лет. Не курю больше десяти лет. Работал в клинике Аллена Карра и начал вести группы в 24 года.</p><p>Я знаю, как звучит внутренний торг: человек хочет бросить и одновременно находит убедительную причину ещё покурить. На встрече разбираем именно эти моменты — на ваших примерах.</p><p class="cx-bio">Подход: тяга, ценность сигареты и логика возврата. Встречу веду лично.</p><button class="cx-text-button cx-question js-question" type="button">Задать Илье свой вопрос</button></div>
+    <div><p class="cx-label">Встречу веду лично</p><h2>Илья Борзилов</h2><ul class="cx-author-facts"><li>Курил больше 10 лет. Не курю больше 10 лет.</li><li>Работал в клинике Аллена Карра.</li><li>Начал вести группы в 24 года.</li></ul><p>Разбираем ваши ситуации и прошлые попытки. Можно задавать вопросы.</p><button class="cx-text-button cx-question js-question" type="button">Задать Илье свой вопрос</button></div>
   </div></section>
 
-  <section class="cx-section cx-monday"><div class="wrap cx-monday-grid">
-    <div><p class="cx-label">Что будет после вечера</p><h2>В ПОНЕДЕЛЬНИК<br>НАЧНЁТСЯ ОБЫЧНАЯ ЖИЗНЬ.</h2><p>Кофе, работа и стресс останутся. Поэтому ещё на встрече разбираем, где привычное «надо покурить» может снова показаться разумным.</p><p>Вы можете продолжить самостоятельно. Если захотите дополнительную поддержку — отдельно обсудим её формат и стоимость до покупки.</p></div>
-    <ol class="cx-monday-list"><li><b>Утро и первая пауза</b>Что вы ожидаете от сигареты и как распознать знакомую мысль о ней.</li><li><b>Стресс и усталость</b>Где желание передохнуть превращается в разрешение закурить.</li><li><b>Компания и «только одна»</b>Как появляется исключение, после которого возвращается привычное курение.</li></ol>
+  <section class="cx-section cx-included-section" id="included"><div class="wrap cx-offer-grid">
+    <div><p class="cx-label">Что входит в 1 990 ₽</p><h2>Полная встреча.<br>Без обязательных доплат.</h2><p class="cx-lead">Три часа живой работы с Ильёй: от разбора курения до подготовки первого дня без сигарет.</p></div>
+    <div><ul class="cx-includes-list"><li><strong>Ваша привычка и причины возврата</strong><span>Тяга, ожидания от сигареты и внутренний торг.</span></li><li><strong>Вопросы и личные разборы</strong><span>Ваш опыт, прошлые попытки и конкретные ситуации.</span></li><li><strong>Подготовка первого дня</strong><span>Кофе, работа, стресс и мысль «только одну».</span></li></ul><p class="cx-optional">Поддержка следующих дней — отдельно, только по желанию.</p></div>
+    <div class="cx-inline-cta"><button class="cta js-pay" type="button">Занять место</button><p>11 октября · 18:00–21:00 МСК</p></div>
   </div></section>
 
-  <section class="cx-section" id="faq"><div class="wrap"><p class="cx-label">Перед оплатой</p><h2>ВОПРОСЫ, КОТОРЫЕ<br>СТОИТ ЗАДАТЬ.</h2>
+  <section class="cx-section" id="faq"><div class="wrap cx-faq-wrap"><h2>Перед оплатой</h2>
     <div class="cx-faq">
-      <details><summary>Нужно ли бросать или сокращать заранее?</summary><p>Предварительный отказ не требуется. Можно прийти курящим. Выделите три часа, проверьте связь и подготовьте вопросы о своих попытках бросить.</p></details>
-      <details><summary>Читал Карра и уже много раз бросал. Что даст встреча?</summary><p>Знание подхода и конкретный момент возврата — разные вещи. На встрече разбираем вашу ситуацию: что случилось перед следующей сигаретой, чем она показалась полезной и какая мысль разрешила её. Предыдущие попытки дают материал для этой работы.</p></details>
-      <details><summary>Подходит для стиков и электронных сигарет?</summary><p>Да. Встреча посвящена тяге, ценности курения и логике возврата, включая ситуации со стиками и электронными сигаретами.</p></details>
-      <details><summary>Это гипноз, кодирование или лекция о вреде?</summary><p>Это живая образовательная и поведенческая работа: объяснения, вопросы и разбор знакомых ситуаций. Гипноз и кодирование не используются.</p></details>
-      <details><summary>Вы гарантируете, что я перестану курить за три часа?</summary><p>Цель встречи — последняя сигарета в этот вечер. Индивидуальный результат нельзя гарантировать каждому участнику. До оплаты вы можете задать Илье вопрос о своём опыте и ожиданиях.</p></details>
-      <details><summary>Что именно я покупаю за 1 990 ₽?</summary><p>Участие в полной живой встрече 11 октября с 18:00 до 21:00 МСК: разбор механизма курения, внутренних возвратов, подготовка первого дня и вопросы ведущему. Для прохождения вечера дополнительная покупка не требуется.</p></details>
-      <details><summary>Придётся ли покупать поддержку после встречи?</summary><p>Нет. Сопровождение — отдельная возможность по вашему желанию. Его формат, срок и стоимость обсуждаются до оплаты сопровождения. Участие в вечерней встрече не создаёт подписку и не предполагает автоматических списаний.</p></details>
-      <details><summary>Как подключиться? Можно с телефона?</summary><p>Встреча проходит в Яндекс Телемосте. Можно использовать телефон или компьютер с интернетом. Заранее проверьте доступ к Телемосту, выберите спокойное место и выделите время с 18:00 до 21:00 МСК. Если важны запись встречи или особые условия участия, уточните их у Ильи до оплаты.</p></details>
-      <details><summary>Что произойдёт после оплаты?</summary><p>Т-Банк вернёт вас на страницу подтверждения. Мы проверим оплату и предложим выбрать Telegram или MAX для ссылки и напоминаний. Сохраните номер заказа. Если не получается открыть бот или получить ссылку, напишите на <a href="mailto:ilaborzilov0@gmail.com">ilaborzilov0@gmail.com</a>.</p></details>
-      <details><summary>Что делать, если планы изменились или нужен возврат?</summary><p>Свяжитесь с организатором по адресу <a href="mailto:ilaborzilov0@gmail.com?subject=Участие%20и%20возврат%20—%2011%20октября">ilaborzilov0@gmail.com</a>. Укажите номер заказа и что требуется: отмена, перенос или возврат. Если возможность переноса или конкретные условия возврата важны для решения, уточните их до оплаты.</p></details>
-      <details><summary>Воскресенье не подходит. Как узнать другую дату?</summary><p>Оставьте телефон в форме следующей встречи. Эта заявка не требует оплаты и не бронирует участие в текущем вечере.</p><button class="cx-text-button js-next" type="button" style="margin-top:14px">Сообщить о следующей встрече</button></details>
+<details><summary>Читал Карра и уже много раз бросал. Что даст встреча?</summary><p>Знание подхода и конкретный момент возврата — разные вещи. На встрече разбираем вашу ситуацию: что случилось перед следующей сигаретой, чем она показалась полезной и какая мысль разрешила её. Предыдущие попытки дают материал для этой работы.</p></details>
+<details><summary>Вы гарантируете, что я перестану курить за три часа?</summary><p>Цель встречи — последняя сигарета в этот вечер. Индивидуальный результат нельзя гарантировать каждому участнику. До оплаты вы можете задать Илье вопрос о своём опыте и ожиданиях.</p></details>
+<details><summary>Что произойдёт после оплаты?</summary><p>Т-Банк вернёт вас на страницу подтверждения. Мы проверим оплату и предложим выбрать Telegram или MAX для ссылки и напоминаний. Сохраните номер заказа. Если не получается открыть бот или получить ссылку, напишите на <a href="mailto:ilaborzilov0@gmail.com">ilaborzilov0@gmail.com</a>.</p></details>
+<details><summary>Что делать, если планы изменились или нужен возврат?</summary><p>Свяжитесь с организатором по адресу <a href="mailto:ilaborzilov0@gmail.com?subject=Участие%20и%20возврат%20—%2011%20октября">ilaborzilov0@gmail.com</a>. Укажите номер заказа и что требуется: отмена, перенос или возврат. Если возможность переноса или конкретные условия возврата важны для решения, уточните их до оплаты.</p></details>
+<details><summary>Воскресенье не подходит. Как узнать другую дату?</summary><p>Оставьте телефон в форме следующей встречи. Эта заявка не требует оплаты и не бронирует участие в текущем вечере.</p><button class="cx-text-button js-next" type="button" style="margin-top:14px">Сообщить о следующей встрече</button></details>
+      <details class="cx-more-faq"><summary>Ещё 6 вопросов: подготовка, формат и стоимость</summary><div class="cx-more-answers">
+<details><summary>Нужно ли бросать или сокращать заранее?</summary><p>Предварительный отказ не требуется. Можно прийти курящим. Выделите три часа, проверьте связь и подготовьте вопросы о своих попытках бросить.</p></details>
+<details><summary>Подходит для стиков и электронных сигарет?</summary><p>Да. Встреча посвящена тяге, ценности курения и логике возврата, включая ситуации со стиками и электронными сигаретами.</p></details>
+<details><summary>Это гипноз, кодирование или лекция о вреде?</summary><p>Это живая образовательная и поведенческая работа: объяснения, вопросы и разбор знакомых ситуаций. Гипноз и кодирование не используются.</p></details>
+<details><summary>Что именно я покупаю за 1 990 ₽?</summary><p>Участие в полной живой встрече 11 октября с 18:00 до 21:00 МСК: разбор механизма курения, внутренних возвратов, подготовка первого дня и вопросы ведущему. Для прохождения вечера дополнительная покупка не требуется.</p></details>
+<details><summary>Придётся ли покупать поддержку после встречи?</summary><p>Нет. Сопровождение — отдельная возможность по вашему желанию. Его формат, срок и стоимость обсуждаются до оплаты сопровождения. Участие в вечерней встрече не создаёт подписку и не предполагает автоматических списаний.</p></details>
+<details><summary>Как подключиться? Можно с телефона?</summary><p>Встреча проходит в Яндекс Телемосте. Можно использовать телефон или компьютер с интернетом. Заранее проверьте доступ к Телемосту, выберите спокойное место и выделите время с 18:00 до 21:00 МСК. Если важны запись встречи или особые условия участия, уточните их у Ильи до оплаты.</p></details>
+      </div></details>
     </div>
     <div class="cx-inline-cta"><button class="cx-text-button cx-question js-question" type="button">Остался вопрос? Написать Илье</button></div>
   </div></section>
 
   <section class="cx-section cx-dark" id="participate"><div class="wrap cx-buy-grid">
-    <div><p class="cx-label">Выберите конкретный вечер</p><h2>В ЭТО ВОСКРЕСЕНЬЕ<br>МОЖНО СДЕЛАТЬ ШАГ.</h2><ul class="cx-buy-list"><li>Выделить три часа и прийти с тем опытом, который уже есть.</li><li>Разобрать то, что делает следующую сигарету убедительной.</li><li>Подойти к отказу и заранее подготовить первый день.</li></ul><p style="font-size:16px;color:#c6c0b6">Участие подтверждается оплатой. Время встречи фиксировано: 11 октября, 18:00–21:00 МСК.</p></div>
-    <div class="cx-buy-card"><p class="cx-label">Живая онлайн-встреча</p><h3>Воскресенье,<br>11 октября</h3><p class="cx-time">18:00–21:00 МСК</p><p class="cx-note">Яндекс Телемост · Илья Борзилов лично</p><p class="cx-price">1 990 ₽</p><button class="cta js-pay" type="button">Занять место</button><p class="cx-note">Полная встреча. Обязательных доплат нет.<br>Защищённая оплата через Т-Банк.</p><button class="cx-text-button js-next" type="button">Не подходит дата? Узнать следующую</button></div>
+    <div><p class="cx-label">Ближайшая встреча</p><h2>Приходите курящим.<br>Начнём с вашей ситуации.</h2><p class="cx-lead">Заранее бросать не нужно. Выделите этот вечер — разберём, что держит именно вас.</p></div>
+    <div class="cx-buy-card"><h3>Воскресенье,<br>11 октября</h3><p class="cx-time">18:00–21:00 МСК</p><p class="cx-note">Онлайн · Яндекс Телемост</p><p class="cx-price">1 990 ₽</p><button class="cta js-pay" type="button">Занять место</button><p class="cx-note">Полная встреча · Оплата через Т-Банк</p><button class="cx-text-button js-next" type="button">Не подходит дата? Узнать следующую</button></div>
   </div></section>
 </main>
 <footer class="cx-footer"><div class="wrap"><div class="cx-footer-grid"><div><strong>Илья Борзилов · Метод Борзилова</strong><p>Вопросы об участии, доступе, переносе и возврате:</p><a href="mailto:ilaborzilov0@gmail.com">ilaborzilov0@gmail.com</a></div><div><p>11 октября · 18:00–21:00 МСК</p><p>Живая онлайн-встреча · 18+</p><button class="cx-text-button js-question" type="button">Задать вопрос Илье</button></div></div><div class="cx-footer-actions"><button class="cx-text-button" data-document="terms" type="button">Условия участия</button><button class="cx-text-button" data-document="privacy" type="button">Как используются данные</button></div></div></footer>
