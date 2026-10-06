@@ -25,9 +25,9 @@ html,body{margin:0;min-height:100%;background:#06181e;color:#fff;font-family:Ari
   }
   try{
     const [html,analytics,pricing]=await Promise.all([
-      ungzip('./payload/index.html.gz'),
-      ungzip('./payload/analytics-events.js.gz'),
-      ungzip('./payload/pricing-register.js.gz')
+      ungzip('./payload/index.bin'),
+      ungzip('./payload/analytics-events.bin'),
+      ungzip('./payload/pricing-register.bin')
     ]);
     const analyticsUrl=URL.createObjectURL(new Blob([analytics],{type:'text/javascript'}));
     const pricingUrl=URL.createObjectURL(new Blob([pricing],{type:'text/javascript'}));
