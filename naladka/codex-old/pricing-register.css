@@ -1,0 +1,1122 @@
+/* owner:pricing-editorial-register-v03
+   Selected production-candidate: one calm editorial decision register.
+*/
+#borzilov-lp .pricing-register{
+  --pricing-line:rgba(8,26,32,.17);
+  --pricing-line-soft:rgba(8,26,32,.095);
+  --pricing-active-line:#a96a4a;
+  --pricing-surface:#fffdf8;
+  --pricing-action:#b8734f;
+  --pricing-action-hover:#ad6848;
+  --pricing-row-height:86px;
+  --pricing-transition:220ms;
+  --pricing-content-min-height:304px;
+  --pricing-slot-kicker:0px;
+  --pricing-slot-name:0px;
+  --pricing-slot-difference:0px;
+  --pricing-slot-note:0px;
+  --pricing-slot-action:0px;
+  --pricing-active-stable-height:var(--pricing-content-min-height);
+  --pricing-pad-inline:clamp(26px,4.4vw,58px);
+  width:100%;
+  min-width:0;
+  padding:clamp(44px,5vw,72px) var(--pricing-pad-inline) 0;
+  color:#081a20;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+#borzilov-lp .pricing-register *,
+#borzilov-lp .pricing-register *::before,
+#borzilov-lp .pricing-register *::after{box-sizing:border-box}
+#borzilov-lp .pricing-register__register{
+  position:relative;
+  width:100%;
+  min-width:0;
+  border-top:1px solid rgba(8,26,32,.3);
+  background:transparent;
+}
+#borzilov-lp .pricing-register__service{
+  min-height:52px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:24px;
+  padding:0 4px;
+  border-bottom:1px solid var(--pricing-line);
+  color:rgba(8,26,32,.62);
+  font-size:10px;
+  line-height:1;
+  font-weight:860;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+#borzilov-lp .pricing-register__service span:last-child{color:rgba(8,26,32,.82)}
+#borzilov-lp .pricing-register__active{
+  min-height:max(var(--pricing-content-min-height),var(--pricing-active-stable-height));
+  display:grid;
+  grid-template-columns:minmax(0,63%) minmax(300px,37%);
+  border-bottom:1px solid var(--pricing-line);
+  outline:none;
+  background:rgba(255,253,248,.2);
+}
+#borzilov-lp .pricing-register[data-desktop-layout="stacked"] .pricing-register__active{grid-template-columns:1fr}
+#borzilov-lp .pricing-register__active:focus-visible{outline:2px solid #23395d;outline-offset:-4px}
+#borzilov-lp .pricing-register__content{
+  min-width:0;
+  padding:clamp(38px,3.8vw,54px) clamp(34px,5vw,70px) clamp(36px,3.8vw,52px) 4px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+}
+#borzilov-lp .pricing-register__kicker{
+  min-block-size:var(--pricing-slot-kicker);
+  margin:0 0 14px;
+  color:#a56749;
+  font-size:10px;
+  line-height:1;
+  font-weight:880;
+  letter-spacing:.145em;
+  text-transform:uppercase;
+}
+#borzilov-lp .pricing-register__content h4{
+  min-block-size:var(--pricing-slot-name);
+  margin:0;
+  max-width:14ch;
+  color:#081a20;
+  font-size:clamp(50px,5.4vw,82px);
+  line-height:.88;
+  letter-spacing:-.066em;
+  font-weight:880;
+  text-wrap:balance;
+}
+#borzilov-lp .pricing-register__difference{
+  min-block-size:var(--pricing-slot-difference);
+  margin:18px 0 0;
+  max-width:48ch;
+  color:rgba(8,26,32,.65);
+  font-size:clamp(16px,1.4vw,20px);
+  line-height:1.36;
+  font-weight:630;
+  letter-spacing:-.018em;
+}
+
+
+#borzilov-lp .pricing-register__price{
+  min-width:0;
+  padding:clamp(38px,3.8vw,54px) 4px clamp(36px,3.8vw,52px) clamp(34px,4vw,56px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  border-left:1px solid var(--pricing-line);
+}
+#borzilov-lp .pricing-register[data-desktop-layout="stacked"] .pricing-register__price{border-left:0;border-top:1px solid var(--pricing-line);padding-left:4px}
+#borzilov-lp .pricing-register__price>span{
+  margin:0 0 14px;
+  color:rgba(8,26,32,.5);
+  font-size:10px;
+  line-height:1;
+  font-weight:860;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+#borzilov-lp .pricing-register__price>strong{
+  display:block;
+  color:#081a20;
+  font-size:clamp(54px,5.8vw,88px);
+  line-height:.88;
+  font-weight:890;
+  letter-spacing:-.066em;
+  white-space:nowrap;
+}
+#borzilov-lp .pricing-register[data-price-scale="dominant"] .pricing-register__price>strong{font-size:clamp(66px,7vw,108px)}
+#borzilov-lp .pricing-register__price small{
+  display:block;
+  min-block-size:var(--pricing-slot-note);
+  margin:16px 0 0;
+  max-width:30ch;
+  color:rgba(8,26,32,.58);
+  font-size:12px;
+  line-height:1.4;
+  font-weight:680;
+}
+#borzilov-lp .pricing-register__start{
+  position:relative;
+  margin-top:12px;
+  padding-left:0;
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  align-items:baseline;
+  gap:0;
+  color:rgba(8,26,32,.54);
+  font-size:12px;
+  line-height:1.35;
+  font-weight:650;
+}
+#borzilov-lp .pricing-register__start::before{display:none!important;content:none!important}
+#borzilov-lp .pricing-register__start strong{
+  color:#081a20;
+  font:780 1em/1.35 Inter,system-ui,sans-serif;
+}
+#borzilov-lp .pricing-register__start em{
+  grid-column:1/-1;
+  margin-top:1px;
+  color:#a56749;
+  font:720 .91em/1.35 Inter,system-ui,sans-serif;
+  font-style:normal;
+}
+#borzilov-lp .pricing-register__start em[hidden]{display:none!important}
+#borzilov-lp .pricing-register__start[hidden]{display:none!important}
+#borzilov-lp .pricing-register__tabs{border-bottom:1px solid var(--pricing-line)}
+#borzilov-lp .pricing-register__tab{
+  position:relative;
+  width:100%;
+  min-height:var(--pricing-row-height);
+  padding:18px 4px 18px 20px;
+  display:grid;
+  grid-template-columns:58px minmax(0,1fr) auto;
+  gap:18px;
+  align-items:center;
+  border:0;
+  border-bottom:1px solid var(--pricing-line-soft);
+  background:transparent;
+  color:#081a20;
+  text-align:left;
+  cursor:pointer;
+  transition:background var(--pricing-transition) ease,color var(--pricing-transition) ease,padding var(--pricing-transition) ease;
+}
+#borzilov-lp .pricing-register__tab:last-child{border-bottom:0}
+#borzilov-lp .pricing-register__tab::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:14px;
+  bottom:14px;
+  width:3px;
+  background:var(--pricing-active-line);
+  opacity:0;
+  transform:scaleY(.36);
+  transform-origin:center;
+  transition:opacity var(--pricing-transition) ease,transform var(--pricing-transition) cubic-bezier(.22,.78,.2,1);
+}
+#borzilov-lp .pricing-register[data-marker="dark"] .pricing-register__tab::before{background:#081a20}
+#borzilov-lp .pricing-register__tab:hover{background:rgba(8,26,32,.025)}
+#borzilov-lp .pricing-register__tab.is-active{padding-left:20px;background:rgba(169,106,74,.045)}
+#borzilov-lp .pricing-register__tab.is-active::before{opacity:1;transform:scaleY(1)}
+#borzilov-lp .pricing-register__tab:focus-visible{z-index:2;outline:2px solid #23395d;outline-offset:-3px}
+#borzilov-lp .pricing-register__tab-index{
+  color:rgba(8,26,32,.48);
+  font-size:11px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.14em;
+}
+#borzilov-lp .pricing-register__tab.is-active .pricing-register__tab-index{color:#a56749}
+#borzilov-lp .pricing-register[data-marker="dark"] .pricing-register__tab.is-active .pricing-register__tab-index{color:#081a20}
+#borzilov-lp .pricing-register__tab-copy{min-width:0;display:grid;gap:6px}
+#borzilov-lp .pricing-register__tab-copy strong{
+  font-size:clamp(20px,2vw,30px);
+  line-height:1;
+  font-weight:790;
+  letter-spacing:-.04em;
+  text-wrap:balance;
+}
+#borzilov-lp .pricing-register__tab.is-active .pricing-register__tab-copy strong{font-weight:860}
+#borzilov-lp .pricing-register__tab-copy small{
+  color:rgba(8,26,32,.54);
+  font-size:11px;
+  line-height:1.3;
+  font-weight:620;
+}
+#borzilov-lp .pricing-register__tab-price{
+  padding-left:24px;
+  color:#081a20;
+  font-size:clamp(20px,2.1vw,31px);
+  line-height:1;
+  font-weight:860;
+  letter-spacing:-.045em;
+  white-space:nowrap;
+}
+#borzilov-lp .pricing-register[data-row-height="compact"]{--pricing-row-height:76px}
+#borzilov-lp .pricing-register[data-density="compact"]{--pricing-content-min-height:300px}
+#borzilov-lp .pricing-register[data-density="airy"]{--pricing-content-min-height:390px}
+#borzilov-lp .pricing-register__calculator{
+  width:100%;
+  border-bottom:1px solid var(--pricing-line);
+  background:rgba(255,253,248,.18);
+}
+#borzilov-lp .pricing-register__calculator-toggle{
+  appearance:none;
+  width:100%;
+  min-height:62px;
+  padding:0 4px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  border:0;
+  background:transparent;
+  color:#081a20;
+  font:780 13px/1.2 Inter,system-ui,sans-serif;
+  text-align:left;
+  cursor:pointer;
+}
+#borzilov-lp .pricing-register__calculator-toggle i{
+  flex:0 0 auto;
+  color:#a56749;
+  font-style:normal;
+  font-size:21px;
+  line-height:1;
+  transform:rotate(0deg);
+  transition:transform var(--pricing-transition) ease;
+}
+#borzilov-lp .pricing-register__calculator-toggle[aria-expanded="true"] i{transform:rotate(180deg)}
+#borzilov-lp .pricing-register__calculator-toggle:focus-visible{outline:2px solid #23395d;outline-offset:-3px}
+#borzilov-lp .pricing-register__calculator-panel{
+  min-width:0;
+  padding:28px 4px 30px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(300px,.72fr);
+  gap:clamp(30px,5vw,72px);
+  border-top:1px solid var(--pricing-line-soft);
+}
+#borzilov-lp .pricing-register__calculator-panel[hidden]{display:none!important}
+#borzilov-lp .pricing-register__calculator-panel.is-entering{animation:pricingCalculatorEnter 220ms cubic-bezier(.22,.78,.2,1) both}
+@keyframes pricingCalculatorEnter{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+#borzilov-lp .pricing-register__calculator-fields{
+  min-width:0;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+#borzilov-lp .pricing-register__calculator-field{min-width:0;display:grid;align-content:start;gap:8px}
+#borzilov-lp .pricing-register__calculator-field label{
+  color:rgba(8,26,32,.6);
+  font-size:10px;
+  line-height:1;
+  font-weight:850;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+#borzilov-lp .pricing-register__calculator-field input{
+  appearance:textfield;
+  width:100%;
+  min-width:0;
+  height:54px;
+  padding:0 14px;
+  border:1px solid rgba(8,26,32,.22);
+  border-radius:2px;
+  background:#fffdf8;
+  color:#081a20;
+  font:760 20px/1 Inter,system-ui,sans-serif;
+  outline:none;
+}
+#borzilov-lp .pricing-register__calculator-field input::-webkit-outer-spin-button,
+#borzilov-lp .pricing-register__calculator-field input::-webkit-inner-spin-button{appearance:none;margin:0}
+#borzilov-lp .pricing-register__calculator-field input:focus{border-color:#23395d;box-shadow:0 0 0 2px rgba(35,57,93,.12)}
+#borzilov-lp .pricing-register__calculator-field.is-invalid input{border-color:#a94e3f}
+#borzilov-lp .pricing-register__calculator-field>small{
+  color:#a23e31;
+  font-size:10.5px;
+  line-height:1.3;
+  font-weight:650;
+}
+#borzilov-lp .pricing-register__calculator-field>small[hidden]{display:none!important}
+#borzilov-lp .pricing-register__calculator-input-wrap{position:relative;min-width:0}
+#borzilov-lp .pricing-register__calculator-input-wrap input{padding-right:42px}
+#borzilov-lp .pricing-register__calculator-input-wrap>span{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:rgba(8,26,32,.52);font-size:15px;font-weight:760;pointer-events:none}
+#borzilov-lp .pricing-register__calculator-result{
+  min-width:0;
+  min-height:122px;
+  padding-left:clamp(24px,4vw,48px);
+  border-left:1px solid var(--pricing-line);
+  display:grid;
+  align-content:start;
+  gap:13px;
+}
+#borzilov-lp .pricing-register__calculator-result[hidden]{display:none!important}
+#borzilov-lp .pricing-register__calculator-result>span{
+  color:#a56749;
+  font-size:9.5px;
+  line-height:1;
+  font-weight:880;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+#borzilov-lp .pricing-register__calculator-secondary{display:grid;gap:4px}
+#borzilov-lp .pricing-register__calculator-secondary strong{
+  color:rgba(8,26,32,.64);
+  font-size:13px;
+  line-height:1.3;
+  font-weight:680;
+}
+#borzilov-lp .pricing-register__calculator-result p{
+  min-height:46px;
+  margin:0;
+  max-width:30ch;
+  color:rgba(8,26,32,.62);
+  font-size:13px;
+  line-height:1.35;
+  font-weight:650;
+}
+#borzilov-lp .pricing-register__calculator-result p strong{
+  display:block;
+  margin-top:3px;
+  color:#081a20;
+  font-size:18px;
+  line-height:1.15;
+  font-weight:850;
+  letter-spacing:-.025em;
+}
+#borzilov-lp .pricing-register__action{
+  width:calc(100% + var(--pricing-pad-inline) + var(--pricing-pad-inline));
+  min-height:120px;
+  margin-inline:calc(0px - var(--pricing-pad-inline));
+  padding:20px var(--pricing-pad-inline) 19px;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  justify-content:center;
+  gap:0;
+  overflow:hidden;
+  border:1px solid rgba(255,253,248,.68);
+  border-top:0;
+  border-radius:0 0 var(--r-object,6px) var(--r-object,6px);
+  background:#A96A4A;
+  color:#FFFDF8;
+  text-decoration:none;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  transition:filter .16s ease,transform .16s ease;
+}
+#borzilov-lp .pricing-register[data-cta-height="compact"] .pricing-register__action{min-height:120px}
+#borzilov-lp .pricing-register__action-main{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+#borzilov-lp .pricing-register__action-main strong{
+  min-width:0;
+  color:inherit;
+  font-size:clamp(35px,4vw,48px);
+  line-height:.93;
+  font-weight:850;
+  letter-spacing:-.055em;
+  text-transform:none;
+}
+#borzilov-lp .pricing-register__action-main i{
+  flex:none;
+  color:inherit;
+  font-style:normal;
+  font-size:clamp(24px,2.7vw,38px);
+  line-height:1;
+  font-weight:500;
+  transition:transform .16s ease;
+}
+#borzilov-lp .pricing-register__action:hover{filter:brightness(1.045)}
+#borzilov-lp .pricing-register__action:hover i{transform:translate(3px,-3px)}
+#borzilov-lp .pricing-register__action:active{transform:scale(.992)}
+#borzilov-lp .pricing-register__action:focus-visible{outline:2px solid #D8A184;outline-offset:-4px}
+#borzilov-lp .pricing-register.is-switching .pricing-register__content>*,
+#borzilov-lp .pricing-register.is-switching .pricing-register__price>*{animation:pricingRegisterSettle var(--pricing-transition) cubic-bezier(.22,.78,.2,1) both}
+@keyframes pricingRegisterSettle{from{opacity:.58}to{opacity:1}}
+#borzilov-lp .pricing-register__noscript{margin-top:16px;padding:18px 0;border-top:1px solid var(--pricing-line);color:#081a20}
+#borzilov-lp .pricing-register__noscript p{margin:0 0 10px}
+#borzilov-lp .pricing-register__noscript a{color:#23395d;text-decoration:underline;text-underline-offset:4px}
+
+/* Internal zero-paint measuring stage. It reserves the tallest text slots for every tariff state, so the register does not reflow when a one-line title becomes two lines. */
+#borzilov-lp .pricing-register__measure{
+  position:absolute!important;
+  inset:0 auto auto 0!important;
+  z-index:-1!important;
+  width:100%!important;
+  height:auto!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  overflow:visible!important;
+  contain:layout style paint!important;
+}
+#borzilov-lp .pricing-register__measure .pricing-register__active,
+#borzilov-lp .pricing-register__measure .pricing-register__action{width:100%}
+
+/* Development-only panel. It is mounted only by ?pricingEditorialLab=1. */
+.pricing-register-lab{
+  position:fixed;
+  right:12px;
+  bottom:12px;
+  z-index:2147482000;
+  width:min(350px,calc(100vw - 24px));
+  max-height:calc(100vh - 24px);
+  overflow:auto;
+  padding:14px;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:14px;
+  background:rgba(7,22,28,.96);
+  box-shadow:0 22px 70px rgba(0,0,0,.34);
+  color:#fffaf2;
+  font:680 11px/1.25 Inter,system-ui,sans-serif;
+  backdrop-filter:blur(14px);
+}
+.pricing-register-lab__head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.pricing-register-lab__head strong{font-size:10px;letter-spacing:.12em}
+.pricing-register-lab__head button{width:30px;height:30px;border:1px solid rgba(255,255,255,.16);border-radius:50%;background:transparent;color:#fff;font-size:18px;cursor:pointer}
+.pricing-register-lab label{display:grid;grid-template-columns:minmax(0,1fr) minmax(130px,.85fr);align-items:center;gap:10px;padding:9px 0;border-top:1px solid rgba(255,255,255,.08)}
+.pricing-register-lab select{width:100%;min-width:0}
+
+@media(max-width:760px){
+  #borzilov-lp .pricing-register{
+    --pricing-content-min-height:0px;
+    --pricing-row-height:78px;
+    --pricing-slot-kicker:10px;
+    --pricing-slot-name:74px;
+    --pricing-slot-difference:40px;
+    --pricing-slot-note:31px;
+    --pricing-slot-action:32px;
+    --pricing-pad-inline:18px;
+    padding:24px var(--pricing-pad-inline) 0;
+  }
+  #borzilov-lp .pricing-register__service{
+    min-height:44px;
+    padding:0;
+    font-size:8.25px;
+    letter-spacing:.11em;
+  }
+  #borzilov-lp .pricing-register__active{
+    min-height:var(--pricing-active-stable-height);
+    grid-template-columns:1fr;
+  }
+  #borzilov-lp .pricing-register__content{
+    min-height:0;
+    padding:27px 0 23px;
+    justify-content:flex-start;
+  }
+  #borzilov-lp .pricing-register__kicker{margin-bottom:9px;font-size:9.5px}
+  #borzilov-lp .pricing-register__content h4{
+    max-width:12.5ch;
+    font-size:clamp(38px,9.6vw,50px);
+    line-height:.915;
+  }
+  #borzilov-lp .pricing-register__difference{
+    margin-top:11px;
+    font-size:14.5px;
+    line-height:1.34;
+  }
+    #borzilov-lp .pricing-register__price{
+    padding:20px 0 22px;
+    justify-content:flex-start;
+    border-left:0;
+    border-top:1px solid var(--pricing-line);
+  }
+  #borzilov-lp .pricing-register__price>span{margin-bottom:10px;font-size:9.5px}
+  #borzilov-lp .pricing-register__price>strong{
+    font-size:clamp(46px,11.5vw,60px);
+    line-height:.9;
+  }
+  #borzilov-lp .pricing-register[data-price-scale="dominant"] .pricing-register__price>strong{font-size:clamp(52px,12.8vw,66px)}
+  #borzilov-lp .pricing-register__price small{margin-top:10px;font-size:11.5px;line-height:1.32}
+  #borzilov-lp .pricing-register__tab{
+    min-height:var(--pricing-row-height);
+    padding:13px 0 13px 9px;
+    grid-template-columns:32px minmax(0,1fr) max-content;
+    column-gap:10px;
+  }
+  #borzilov-lp .pricing-register__tab.is-active{
+    padding-left:9px;
+    background:transparent;
+  }
+  #borzilov-lp .pricing-register__tab::before{top:12px;bottom:12px;width:2px}
+  #borzilov-lp .pricing-register__tab-copy{gap:3px}
+  #borzilov-lp .pricing-register__tab-copy strong{
+    font-size:clamp(17.5px,4.6vw,19.5px);
+    line-height:1.04;
+  }
+  #borzilov-lp .pricing-register__tab-copy small{display:none}
+  #borzilov-lp .pricing-register__tab-price{
+    padding-left:0;
+    font-size:clamp(16.5px,4.15vw,18.5px);
+  }
+  #borzilov-lp .pricing-register__start{margin-top:9px;gap:0;font-size:11.5px;padding-left:0;grid-template-columns:minmax(0,1fr)}
+  #borzilov-lp .pricing-register__calculator-toggle{min-height:56px;padding:0;font-size:12px}
+  #borzilov-lp .pricing-register__calculator-panel{
+    padding:20px 0 22px;
+    grid-template-columns:1fr;
+    gap:22px;
+  }
+  #borzilov-lp .pricing-register__calculator-fields{grid-template-columns:1fr;gap:14px}
+  #borzilov-lp .pricing-register__calculator-field input{height:52px;font-size:18px}
+  #borzilov-lp .pricing-register__calculator-result{
+    min-height:0;
+    padding:20px 0 0;
+    border-left:0;
+    border-top:1px solid var(--pricing-line-soft);
+    gap:11px;
+  }
+  #borzilov-lp .pricing-register__calculator-result p{min-height:46px;font-size:12.5px}
+  #borzilov-lp .pricing-register__calculator-result p strong{font-size:16px}
+  #borzilov-lp .pricing-register__action{
+    width:calc(100% + var(--pricing-pad-inline) + var(--pricing-pad-inline));
+    min-height:126px;
+    margin-inline:calc(0px - var(--pricing-pad-inline));
+    padding:19px 20px 18px;
+  }
+  #borzilov-lp .pricing-register[data-cta-height="compact"] .pricing-register__action{min-height:126px}
+  #borzilov-lp .pricing-register__action-main{gap:14px}
+  #borzilov-lp .pricing-register__action-main strong{font-size:35px;line-height:.92;max-width:8.8ch}
+  #borzilov-lp .pricing-register__action-main i{font-size:24px}
+  .pricing-register-lab{right:8px;bottom:8px;width:calc(100vw - 16px);padding:12px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp .pricing-register *,
+  #borzilov-lp .pricing-register *::before,
+  #borzilov-lp .pricing-register *::after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+
+
+/* final-sequence shell — neutral block owner for the questions → decision-turn tail. */
+html body #borzilov-lp#borzilov-lp #bz1092-product-commercial-late > .bz1092-salvage-shell{
+  display:block!important;
+  grid-template-columns:none!important;
+  width:100%!important;
+  min-width:0!important;
+  margin:clamp(24px,3vw,32px) 0 0!important;
+  padding:0!important;
+  overflow:visible!important;
+  isolation:isolate!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+@media(max-width:760px){
+  html body #borzilov-lp#borzilov-lp #bz1092-product-commercial-late > .bz1092-salvage-shell{margin-top:clamp(18px,5vw,24px)!important}
+}
+
+/* 0227 — same editorial register, one tariff only. No new card system. */
+#borzilov-lp .pricing-register__standard-price{
+  display:block;
+  margin:0 0 8px;
+  color:rgba(8,26,32,.46);
+  font-size:clamp(18px,1.7vw,24px);
+  line-height:1;
+  font-weight:720;
+  letter-spacing:-.03em;
+  text-decoration-thickness:1.5px;
+  text-decoration-color:rgba(8,26,32,.38);
+}
+#borzilov-lp .pricing-register__standard-price[hidden],
+#borzilov-lp .pricing-register__offer[hidden]{display:none!important}
+#borzilov-lp .pricing-register__offer{
+  margin-top:13px!important;
+  color:#a56749!important;
+  font-weight:760!important;
+}
+
+/* owner:pricing-personal-decision-window-0245
+   L2 commercial proof: fixed decision timestamp + quiet live progress. */
+#borzilov-lp .pricing-register__decision-window{
+  --pricing-decision-progress:0%;
+  width:min(100%,360px);
+  margin:20px 0 0;
+  padding:18px 0 0;
+  border-top:1px solid rgba(8,26,32,.14);
+}
+#borzilov-lp .pricing-register__decision-window[hidden]{display:none!important}
+#borzilov-lp .pricing-register__decision-window-row{
+  display:grid;
+  grid-template-columns:auto minmax(92px,1fr) auto;
+  align-items:start;
+  gap:11px;
+}
+#borzilov-lp .pricing-register__decision-window-time{
+  color:#081a20;
+  font-variant-numeric:tabular-nums;
+  font-size:13px;
+  line-height:1;
+  font-weight:820;
+  letter-spacing:-.02em;
+}
+#borzilov-lp .pricing-register__decision-window-track{
+  position:relative;
+  display:block;
+  height:1px;
+  margin-top:6px;
+  background:rgba(8,26,32,.21);
+}
+#borzilov-lp .pricing-register__decision-window-fill{
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:var(--pricing-decision-progress);
+  background:rgba(169,103,73,.62);
+  transition:width 15s linear;
+}
+#borzilov-lp .pricing-register__decision-window-dot{
+  position:absolute;
+  left:var(--pricing-decision-progress);
+  top:50%;
+  width:7px;height:7px;
+  border-radius:50%;
+  background:#a56749;
+  box-shadow:0 0 0 3px rgba(169,103,73,.09);
+  transform:translate(-50%,-50%);
+  transition:left 15s linear;
+  animation:pricingDecisionDotBreath 5.4s ease-in-out infinite;
+}
+#borzilov-lp .pricing-register__decision-window-now{
+  position:absolute;
+  left:var(--pricing-decision-progress);
+  top:11px;
+  color:rgba(8,26,32,.45);
+  font-size:9px;
+  line-height:1;
+  font-style:normal;
+  font-weight:720;
+  transform:translateX(-50%);
+  transition:left 15s linear;
+}
+#borzilov-lp .pricing-register__decision-window-meta{
+  display:block;
+  min-block-size:0!important;
+  margin:0 0 12px!important;
+  max-width:none!important;
+  color:rgba(8,26,32,.48)!important;
+  font-size:9.5px!important;
+  line-height:1!important;
+  font-weight:860!important;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+
+#borzilov-lp .pricing-register__decision-window-note{
+  display:block;
+  min-block-size:0!important;
+  margin:16px 0 0!important;
+  max-width:290px!important;
+  color:rgba(8,26,32,.42)!important;
+  font-size:10px!important;
+  line-height:1.32!important;
+  font-weight:580!important;
+  letter-spacing:-.004em;
+}
+#borzilov-lp .pricing-register__decision-window-reason{
+  display:block;
+  min-block-size:0!important;
+  margin:20px 0 0!important;
+  max-width:300px!important;
+  color:rgba(8,26,32,.78)!important;
+  font-size:10px!important;
+  line-height:1.32!important;
+  font-weight:760!important;
+  letter-spacing:-.006em;
+}
+#borzilov-lp .pricing-register__decision-window.is-expired .pricing-register__decision-window-fill{background:rgba(8,26,32,.22)}
+#borzilov-lp .pricing-register__decision-window.is-expired .pricing-register__decision-window-dot{animation:none;background:rgba(8,26,32,.58);box-shadow:none}
+#borzilov-lp .pricing-register__decision-window.is-expired .pricing-register__decision-window-now{opacity:0}
+@keyframes pricingDecisionDotBreath{0%,100%{transform:translate(-50%,-50%) scale(1);box-shadow:0 0 0 3px rgba(169,103,73,.08)}50%{transform:translate(-50%,-50%) scale(1.14);box-shadow:0 0 0 5px rgba(169,103,73,.045)}}
+@media(max-width:760px){
+  #borzilov-lp .pricing-register__decision-window{width:100%;margin-bottom:22px;padding-bottom:20px}
+  #borzilov-lp .pricing-register__decision-window-row{grid-template-columns:auto minmax(76px,1fr) auto;gap:9px}
+  #borzilov-lp .pricing-register__decision-window-time{font-size:12px}
+  #borzilov-lp .pricing-register__decision-window-meta{margin-bottom:3px!important;font-size:8.8px!important;line-height:1!important;letter-spacing:.095em}
+  #borzilov-lp .pricing-register__decision-window-note{margin-top:0!important;margin-bottom:6px!important;max-width:240px!important;font-size:9.5px!important;line-height:1.3!important}
+  #borzilov-lp .pricing-register__decision-window-reason{margin-top:19px!important;max-width:250px!important;font-size:9.5px!important;line-height:1.3!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp .pricing-register__decision-window-fill,
+  #borzilov-lp .pricing-register__decision-window-dot,
+  #borzilov-lp .pricing-register__decision-window-now{animation:none!important;transition:none!important}
+}
+
+
+#borzilov-lp .pricing-register__start [data-pricing-register-start-label][hidden]{display:none!important}
+
+
+/* owner:pricing-clean-hide-0262 — hide marked helper labels/lines while preserving the original frame geometry from 0258. */
+#borzilov-lp .pricing-register__service{border-bottom:0}
+#borzilov-lp .pricing-register__service span,
+#borzilov-lp .pricing-register__kicker,
+#borzilov-lp .pricing-register__difference,
+#borzilov-lp .pricing-register__price>span{
+  visibility:hidden;
+}
+
+/* owner:pricing-mobile-density-0269 — collapse obsolete hidden slots and tighten the mobile participation/price handoff. */
+@media(max-width:760px){
+  #borzilov-lp .pricing-register{
+    --pricing-slot-kicker:0px;
+    --pricing-slot-name:0px;
+    --pricing-slot-difference:0px;
+    padding-top:14px;
+  }
+  #borzilov-lp .pricing-register__service{
+    min-height:12px;
+    height:12px;
+    padding:0;
+  }
+  #borzilov-lp .pricing-register__service span,
+  #borzilov-lp .pricing-register__kicker,
+  #borzilov-lp .pricing-register__difference,
+  #borzilov-lp .pricing-register__price>span{
+    display:none!important;
+  }
+  #borzilov-lp .pricing-register__content{
+    padding:15px 0 13px;
+  }
+  #borzilov-lp .pricing-register__content h4{
+    min-block-size:0;
+  }
+  #borzilov-lp .pricing-register__price{
+    padding:14px 0 18px;
+  }
+}
+
+
+/* owner:pricing-headline-start-0270 — date moved next to title; window helper line moved under the window heading. */
+#borzilov-lp .pricing-register__headline-row{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  align-self:stretch;
+  width:100%;
+  min-width:0;
+  gap:18px;
+}
+#borzilov-lp .pricing-register__headline-row .pricing-register__start{
+  min-width:auto;
+  margin:0 0 6px auto;
+  padding:0;
+  display:grid;
+  justify-items:end;
+  align-content:start;
+  gap:6px;
+  color:#081a20;
+  font-size:14px;
+  line-height:1;
+  font-weight:760;
+  text-align:right;
+}
+#borzilov-lp .pricing-register__headline-row .pricing-register__start span{display:none!important}
+#borzilov-lp .pricing-register__headline-row .pricing-register__start strong{
+  color:#081a20;
+  font:760 1em/1 Inter,system-ui,sans-serif;
+  white-space:nowrap;
+}
+#borzilov-lp .pricing-register__headline-row .pricing-register__start em{
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  margin:0;
+  padding:4px 8px;
+  border-radius:6px;
+  background:rgba(8,26,32,.06);
+  color:rgba(8,26,32,.74);
+  font:720 10px/1 Inter,system-ui,sans-serif;
+  letter-spacing:.015em;
+  white-space:nowrap;
+}
+#borzilov-lp .pricing-register__decision-window-row{margin-top:0}
+@media(max-width:760px){
+  #borzilov-lp .pricing-register__headline-row{
+    gap:10px;
+    align-items:center;
+  }
+  #borzilov-lp .pricing-register__headline-row .pricing-register__start{
+    margin:0 0 0 auto;
+    font-size:10px;
+    letter-spacing:.01em;
+    gap:5px;
+  }
+  #borzilov-lp .pricing-register__headline-row .pricing-register__start strong{
+    font-weight:780;
+  }
+  #borzilov-lp .pricing-register__headline-row .pricing-register__start em{
+    padding:3px 7px;
+    border-radius:5px;
+    font-size:9px;
+  }
+}
+
+
+/* owner:pricing-entry-object-09-production-0275
+   Production lock from lab variant 09.
+   Intent: document + slab reworked into a dense matte access object.
+*/
+#borzilov-lp #bz1092-product-commercial-late .pricing-register{
+  padding-inline:clamp(18px,3.6vw,46px);
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__register{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(109,86,70,.18);
+  border-top-color:rgba(109,86,70,.20);
+  border-radius:var(--r-object,6px);
+  background:linear-gradient(180deg,rgba(255,253,248,.995) 0%,rgba(252,247,240,.995) 100%);
+  box-shadow:
+    0 2px 6px rgba(8,26,32,.045),
+    0 1px 0 rgba(255,253,248,.56) inset,
+    0 -1px 0 rgba(109,86,70,.06) inset;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__register::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.20) 0%,rgba(255,255,255,0) 18%,rgba(0,0,0,0) 76%,rgba(109,86,70,.03) 100%);
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__register::after{
+  content:"";
+  position:absolute;
+  left:1px;
+  right:1px;
+  bottom:-1px;
+  height:2px;
+  border-radius:0 0 calc(var(--r-object,6px) - 1px) calc(var(--r-object,6px) - 1px);
+  background:rgba(109,86,70,.11);
+  pointer-events:none;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__active{
+  background:#fffdf8;
+  border-bottom-color:rgba(109,86,70,.11);
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__price{
+  border-left-color:rgba(109,86,70,.11);
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__calculator{
+  background:#f7f1e8;
+  border-bottom:0;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__action{
+  position:relative;
+  overflow:hidden;
+  border:0;
+  border-radius:0 0 var(--r-object,6px) var(--r-object,6px);
+  background:linear-gradient(180deg,#b17350 0%,#a96a4a 100%);
+  color:#fffdf8;
+  box-shadow:inset 0 1px 0 rgba(255,253,248,.10);
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__action::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.10) 0%,rgba(255,255,255,0) 24%,rgba(0,0,0,.02) 100%);
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__action:hover{filter:none}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__action:active{transform:scale(.995)}
+@media(max-width:760px){
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register{padding-inline:18px}
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register__price{border-left:0}
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register__register{
+    box-shadow:
+      0 1px 3px rgba(8,26,32,.04),
+      0 1px 0 rgba(255,253,248,.52) inset,
+      0 -1px 0 rgba(109,86,70,.05) inset;
+  }
+}
+
+
+/* owner:pricing-checkin-window-production-0277
+   Selected decision-window direction: CHECK-IN WINDOW.
+   Also closes the dead lower shelf: decision window -> utility strip -> CTA slab.
+*/
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__decision-window{
+  position:relative;
+  width:min(100%,360px);
+  margin:16px 0 0;
+  padding:14px 14px 12px;
+  border:1px solid rgba(109,86,70,.14);
+  border-radius:8px;
+  background:rgba(247,241,232,.72);
+  box-shadow:0 1px 0 rgba(255,253,248,.5) inset;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__decision-window::before{
+  content:attr(data-pricing-decision-discount);
+  position:absolute;
+  top:12px;
+  right:12px;
+  padding:4px 7px 3px;
+  border:1px solid rgba(169,103,73,.16);
+  border-radius:999px;
+  background:rgba(255,253,248,.72);
+  color:#a56749;
+  font-size:8px;
+  line-height:1;
+  font-weight:860;
+  letter-spacing:.12em;
+  white-space:nowrap;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__decision-window.is-expired::before{
+  content:"ОКНО ЗАКРЫТО";
+  border-color:rgba(8,26,32,.10);
+  color:rgba(8,26,32,.46);
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__decision-window-meta{
+  margin-bottom:7px!important;
+  max-width:calc(100% - 74px)!important;
+  white-space:nowrap;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__decision-window-row{
+  margin-top:7px;
+  align-items:center;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__decision-window-track{
+  height:8px;
+  margin-top:0;
+  border-radius:999px;
+  background:rgba(8,26,32,.08);
+  box-shadow:inset 0 0 0 1px rgba(8,26,32,.07);
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__decision-window-fill{
+  border-radius:999px;
+  background:#a56749;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__decision-window-dot{
+  width:9px;
+  height:9px;
+  box-shadow:0 0 0 4px rgba(169,103,73,.08);
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__decision-window-now{
+  left:clamp(18px,var(--pricing-decision-progress),calc(100% - 18px));
+  top:14px;
+  padding:0;
+  border:0;
+  background:none;
+  color:rgba(8,26,32,.46);
+}
+/* Utility row is the final white belt of the object, not a separate content floor. */
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__calculator{
+  background:#fffdf8;
+  border-top:1px solid rgba(109,86,70,.10);
+  border-bottom:0;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__calculator-toggle{
+  min-height:54px;
+  padding:0 4px;
+  font-weight:820;
+  letter-spacing:-.012em;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__calculator-toggle span{
+  min-width:0;
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__calculator-panel{
+  background:#f7f1e8;
+}
+@media(max-width:760px){
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register__price{
+    padding-bottom:12px;
+  }
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register__decision-window{
+    width:100%;
+    margin:14px 0 0;
+    padding:12px 10px 10px;
+  }
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register__decision-window::before{
+    top:10px;
+    right:10px;
+    font-size:7px;
+  }
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register__decision-window-meta{
+    max-width:calc(100% - 66px)!important;
+    font-size:8.5px!important;
+    letter-spacing:.085em;
+  }
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register__calculator-toggle{
+    min-height:48px;
+    padding:0;
+    gap:12px;
+    font-size:clamp(11px,3.1vw,12.5px);
+  }
+}
+
+
+/* owner:pricing-pass-satin-metal-grain-02-production-0282
+   LOCKED selection from material lab: Material 04 Satin Anodized Metal + Grain 02 Dense Horizontal.
+   Geometry/content/CTA remain unchanged; only the selected surface is promoted to production.
+*/
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__register{
+  border-color:rgba(108,110,114,.24);
+  border-top-color:rgba(108,110,114,.28);
+  background:linear-gradient(180deg,#f6f4f0 0%,#ece9e4 100%);
+  box-shadow:0 2px 6px rgba(8,26,32,.05),0 1px 0 rgba(255,255,255,.46) inset,0 -1px 0 rgba(108,110,114,.09) inset;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__register::before{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.17) 0%,rgba(255,255,255,0) 14%,rgba(255,255,255,.03) 30%,rgba(85,89,95,.05) 100%),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.022) 0 2px,rgba(94,99,104,.02) 2px 4px);
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__register::after{background:rgba(101,104,109,.17)}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__active{background:#fcfcfb;border-bottom-color:rgba(108,110,114,.16)}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__price{border-left-color:rgba(108,110,114,.16)}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__calculator{background:#faf9f7;border-top-color:rgba(108,110,114,.16)}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__calculator-panel{background:#f3f1ed}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__decision-window{
+  background:rgba(240,237,231,.92);
+  border-color:rgba(108,110,114,.16);
+  box-shadow:0 1px 0 rgba(255,255,255,.66) inset;
+}
+
+/* owner:pricing-decision-window-lifecycle-0282
+   Active-only module. Expired state leaves no visual trace.
+*/
+#borzilov-lp .pricing-register__decision-window{
+  opacity:1;
+  overflow:hidden;
+  max-height:var(--pricing-decision-collapse-height,320px);
+  transform:translateY(0);
+  transition:opacity 220ms ease,transform 220ms ease,max-height 260ms cubic-bezier(.22,.78,.2,1),margin 260ms cubic-bezier(.22,.78,.2,1),padding 260ms cubic-bezier(.22,.78,.2,1),border-width 220ms ease;
+}
+#borzilov-lp .pricing-register__decision-window.is-closing{
+  max-height:0!important;
+  margin-top:0!important;
+  margin-bottom:0!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+  border-top-width:0!important;
+  border-bottom-width:0!important;
+  opacity:0;
+  transform:translateY(-4px);
+  pointer-events:none;
+}
+#borzilov-lp .pricing-register__decision-window[hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp .pricing-register__decision-window{transition:none!important}
+}
+
+
+/* owner:0678-final-payment-climax
+   Terminal CTA is the only maximum-volume action on the page. */
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__action[data-analytics-cta-role="final-payment"]{
+  min-height:158px!important;
+  padding:30px var(--pricing-pad-inline) 31px!important;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__action[data-analytics-cta-role="final-payment"] .pricing-register__action-kicker{
+  margin-bottom:12px!important;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__action[data-analytics-cta-role="final-payment"] .pricing-register__action-main strong{
+  font-size:clamp(42px,4.65vw,58px)!important;
+  line-height:.9!important;
+  letter-spacing:-.06em!important;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__action[data-analytics-cta-role="final-payment"] .pricing-register__action-main i{
+  font-size:clamp(28px,3vw,40px)!important;
+}
+@media(max-width:760px){
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register__action[data-analytics-cta-role="final-payment"]{
+    min-height:180px!important;
+    padding:31px 22px 32px!important;
+  }
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register__action[data-analytics-cta-role="final-payment"] .pricing-register__action-kicker{
+    margin-bottom:13px!important;
+    font-size:9px!important;
+    letter-spacing:.12em!important;
+  }
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register__action[data-analytics-cta-role="final-payment"] .pricing-register__action-main strong{
+    max-width:8.5ch!important;
+    font-size:clamp(42px,12vw,50px)!important;
+    line-height:.88!important;
+  }
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register__action[data-analytics-cta-role="final-payment"] .pricing-register__action-main i{
+    font-size:28px!important;
+  }
+}

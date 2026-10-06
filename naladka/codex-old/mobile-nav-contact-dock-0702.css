@@ -1,0 +1,110 @@
+/* owner:0702-mobile-nav-direct-contact
+   The menu is navigation first. Primary application stays in the header;
+   the footer is a quiet direct-contact dock, not a second sales CTA. */
+@media (max-width:980px){
+  html body #borzilov-lp .bz-mobile-nav-footer{
+    display:grid!important;
+    gap:4px!important;
+    width:100%!important;
+    margin-top:auto!important;
+    padding-top:clamp(12px,2.3vh,20px)!important;
+  }
+  html body #borzilov-lp .bz-mobile-nav-contact-dock{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto!important;
+    align-items:end!important;
+    gap:18px!important;
+    width:100%!important;
+    margin:0!important;
+    padding:14px 0 4px!important;
+    border-top:1px solid var(--bz-mobile-nav-theme-border, rgba(11,32,39,.10))!important;
+    background:transparent!important;
+    color:var(--bz-mobile-nav-panel-ink, #0B2027)!important;
+  }
+  html body #borzilov-lp .bz-mobile-nav-contact-dock__copy{
+    display:grid!important;
+    gap:4px!important;
+    min-width:0!important;
+  }
+  html body #borzilov-lp .bz-mobile-nav-contact-dock__copy strong{
+    margin:0!important;
+    color:var(--bz-mobile-nav-panel-ink, #0B2027)!important;
+    -webkit-text-fill-color:var(--bz-mobile-nav-panel-ink, #0B2027)!important;
+    font:820 clamp(15px,4vw,17px)/1 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+    letter-spacing:-.025em!important;
+  }
+  html body #borzilov-lp .bz-mobile-nav-contact-dock__copy span{
+    color:var(--bz-mobile-nav-panel-muted, rgba(11,32,39,.52))!important;
+    -webkit-text-fill-color:var(--bz-mobile-nav-panel-muted, rgba(11,32,39,.52))!important;
+    font:620 clamp(11px,3vw,12.5px)/1.15 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+    letter-spacing:-.012em!important;
+  }
+  html body #borzilov-lp .bz-mobile-nav-contact-dock__links{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    gap:7px!important;
+    min-width:0!important;
+  }
+  html body #borzilov-lp .bz-mobile-nav-contact-dock__links a{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:6px!important;
+    min-height:38px!important;
+    margin:0!important;
+    padding:0 12px!important;
+    border:1px solid var(--bz-mobile-nav-theme-border, rgba(11,32,39,.15))!important;
+    border-radius:5px!important;
+    background:var(--bz-mobile-nav-contact-chip-bg, rgba(255,255,252,.40))!important;
+    box-shadow:var(--bz-mobile-nav-contact-chip-shadow, none)!important;
+    color:var(--bz-mobile-nav-panel-ink, #0B2027)!important;
+    -webkit-text-fill-color:var(--bz-mobile-nav-panel-ink, #0B2027)!important;
+    font:750 clamp(11.5px,3.2vw,13px)/1 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+    letter-spacing:-.018em!important;
+    text-decoration:none!important;
+    white-space:nowrap!important;
+    -webkit-tap-highlight-color:transparent!important;
+    transition:background-color .16s ease,border-color .16s ease,transform .16s ease!important;
+  }
+  html body #borzilov-lp .bz-mobile-nav-contact-dock__links a i{
+    color:#B07152!important;
+    font:inherit!important;
+    font-style:normal!important;
+  }
+  html body #borzilov-lp .bz-mobile-nav-contact-dock__links a:active{
+    transform:translate3d(0,1px,0)!important;
+    background:var(--bz-mobile-nav-contact-chip-active-bg, rgba(176,113,82,.08))!important;
+    border-color:var(--bz-mobile-nav-contact-chip-active-border, rgba(176,113,82,.34))!important;
+  }
+  html body #borzilov-lp[data-bz-mobile-nav-theme="dark"]{
+    --bz-mobile-nav-contact-chip-bg:rgba(255,255,255,.045)!important;
+    --bz-mobile-nav-contact-chip-shadow:inset 0 1px 0 rgba(255,255,255,.04)!important;
+    --bz-mobile-nav-contact-chip-active-bg:rgba(176,113,82,.12)!important;
+    --bz-mobile-nav-contact-chip-active-border:rgba(176,113,82,.40)!important;
+  }
+  html body #borzilov-lp:not([data-bz-mobile-nav-theme="dark"]){
+    --bz-mobile-nav-contact-chip-bg:rgba(255,255,252,.40)!important;
+    --bz-mobile-nav-contact-chip-shadow:none!important;
+    --bz-mobile-nav-contact-chip-active-bg:rgba(176,113,82,.08)!important;
+    --bz-mobile-nav-contact-chip-active-border:rgba(176,113,82,.34)!important;
+  }
+  html body #borzilov-lp .bz-mobile-nav-grabber{
+    margin-top:2px!important;
+  }
+}
+@media (max-width:390px){
+  html body #borzilov-lp .bz-mobile-nav-contact-dock{
+    grid-template-columns:1fr!important;
+    align-items:start!important;
+    gap:10px!important;
+  }
+  html body #borzilov-lp .bz-mobile-nav-contact-dock__links{
+    justify-content:stretch!important;
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  html body #borzilov-lp .bz-mobile-nav-contact-dock__links a{
+    width:100%!important;
+  }
+}

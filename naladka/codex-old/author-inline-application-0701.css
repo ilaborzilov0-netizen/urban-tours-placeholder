@@ -1,0 +1,254 @@
+/* owner:0701-author-inline-morph
+   The early author CTA owns its own inline application state.
+   Closed = one medium action slab. Open = the same slab grows into a clear utility form.
+*/
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application [hidden]{
+  display:none!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application{
+  position:relative;
+  display:grid!important;
+  width:100%!important;
+  margin:0!important;
+  overflow:hidden!important;
+  border:1px solid rgba(255,253,248,.58)!important;
+  border-radius:0 0 6px 6px!important;
+  background:#081A20!important;
+  box-shadow:none!important;
+  transition:border-color .22s ease,background-color .22s ease;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__toggle{
+  overflow:hidden;
+  transition:min-height .34s cubic-bezier(.2,.76,.2,1),max-height .34s cubic-bezier(.2,.76,.2,1),padding .34s cubic-bezier(.2,.76,.2,1),opacity .18s ease;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application.is-expanded .bz-inline-application__toggle,
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application.is-success .bz-inline-application__toggle{
+  min-height:0!important;
+  max-height:0!important;
+  height:0!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__panel{
+  display:grid;
+  gap:18px;
+  max-height:0;
+  padding:0 22px;
+  overflow:hidden;
+  opacity:0;
+  transform:translateY(-5px);
+  background:#081A20;
+  transition:max-height .44s cubic-bezier(.2,.76,.2,1),padding .34s cubic-bezier(.2,.76,.2,1),opacity .2s ease,transform .28s cubic-bezier(.2,.76,.2,1);
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application.is-expanded .bz-inline-application__panel{
+  max-height:760px;
+  padding:24px 22px 22px;
+  opacity:1;
+  transform:none;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application.is-success .bz-inline-application__panel{
+  max-height:360px;
+  padding:26px 22px 24px;
+  opacity:1;
+  transform:none;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__form{
+  display:grid;
+  gap:18px;
+  margin:0;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__field{
+  display:grid;
+  gap:7px;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__field:not(.bz-inline-application__field--channel){
+  padding:13px 15px 14px;
+  border:1px solid rgba(8,26,32,.10);
+  border-radius:6px;
+  background:#F3EEE4;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.58);
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__field label,
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__legend{
+  color:rgba(255,253,248,.72);
+  font-size:11px;
+  line-height:1.1;
+  font-weight:780;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__field:not(.bz-inline-application__field--channel) label{
+  color:rgba(8,26,32,.58)!important;
+  font-size:10.5px;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__field input[type="text"],
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__field input[type="tel"]{
+  appearance:none;
+  width:100%;
+  min-width:0;
+  margin:0;
+  padding:0;
+  border:0;
+  outline:0;
+  background:transparent;
+  box-shadow:none;
+  color:#081A20!important;
+  caret-color:#B94F35;
+  font-family:inherit;
+  font-size:clamp(22px,2.2vw,28px);
+  line-height:1.05;
+  font-weight:760;
+  letter-spacing:-.045em;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__field input::placeholder{
+  color:rgba(8,26,32,.36)!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__field:not(.bz-inline-application__field--channel):focus-within{
+  border-color:rgba(185,79,53,.52);
+  box-shadow:0 0 0 1px rgba(185,79,53,.10),inset 0 1px 0 rgba(255,255,255,.62);
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__field.is-invalid{
+  border-color:#B94F35!important;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__field--channel{
+  gap:11px;
+  padding-bottom:16px;
+  border-bottom:1px solid rgba(255,253,248,.14);
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__channels{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__channel{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__channel input{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  pointer-events:none;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__channel span{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:36px;
+  padding:0 13px;
+  border:1px solid rgba(255,253,248,.18);
+  border-radius:999px;
+  background:rgba(255,253,248,.05);
+  color:rgba(255,253,248,.72);
+  font-size:12px;
+  line-height:1;
+  font-weight:760;
+  letter-spacing:-.02em;
+  transition:background-color .18s ease,border-color .18s ease,color .18s ease;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__channel input:checked+span{
+  border-color:rgba(210,147,113,.48);
+  background:rgba(210,147,113,.15);
+  color:#FFFDF8;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__submit{
+  appearance:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  width:100%;
+  min-height:76px;
+  margin:2px 0 0;
+  padding:22px 0 4px;
+  border:0;
+  border-top:1px solid rgba(255,253,248,.14);
+  background:transparent;
+  color:#FFFDF8;
+  cursor:pointer;
+  text-align:left;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__submit span{
+  color:#FFFDF8;
+  font-size:clamp(24px,2.4vw,30px);
+  line-height:.96;
+  font-weight:850;
+  letter-spacing:-.05em;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__submit i{
+  color:#D29371;
+  font-style:normal;
+  font-size:21px;
+  line-height:1;
+  transition:transform .16s ease;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__submit:hover i{transform:translate(3px,-2px)}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__success{
+  display:grid;
+  gap:9px;
+  color:#FFFDF8;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__success strong{
+  font-size:clamp(24px,2.5vw,32px);
+  line-height:.98;
+  font-weight:850;
+  letter-spacing:-.045em;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__success p{
+  margin:0;
+  color:rgba(255,253,248,.72);
+  font-size:13px;
+  line-height:1.4;
+}
+html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__success-reset{
+  justify-self:start;
+  margin-top:7px;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:#D29371;
+  font-family:inherit;
+  font-size:12px;
+  line-height:1.2;
+  font-weight:750;
+  cursor:pointer;
+}
+
+/* Desktop only: keep the existing photo crop fixed and grow the slab downward instead of upward over the portrait. */
+@media(min-width:981px){
+  #borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__frame.bz-author-inline-frame-expanding{
+    height:calc(var(--bz-author-collapsed-frame-height) + var(--bz-author-inline-extra));
+    min-height:0!important;
+    background:#081A20;
+    transition:height .42s cubic-bezier(.2,.76,.2,1);
+  }
+  #borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__frame.bz-author-inline-frame-expanding .bz-day-author__image{
+    height:var(--bz-author-collapsed-frame-height)!important;
+  }
+}
+@media(max-width:980px){
+  html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application.is-expanded .bz-inline-application__panel{
+    padding:22px 18px 18px;
+  }
+  html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__field:not(.bz-inline-application__field--channel){
+    padding:12px 14px 13px;
+  }
+  html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__field input[type="text"],
+  html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__field input[type="tel"]{
+    font-size:27px;
+  }
+  html body #borzilov-lp#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-day-author__caption--cta-only .bz-author-inline-application .bz-inline-application__submit{
+    padding-top:20px;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp .bz-author-inline-application *,
+  #borzilov-lp .bz-author-inline-application *::before,
+  #borzilov-lp .bz-author-inline-application *::after,
+  #borzilov-lp .bz-day-author__frame.bz-author-inline-frame-expanding{transition:none!important;animation:none!important}
+}

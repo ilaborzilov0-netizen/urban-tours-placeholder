@@ -1,0 +1,359 @@
+/*
+  FIRST ISLAND END 09/10/11 — isolated handoff owner.
+  Does not style or replace the Bento, Hero, motion, drawer, payment or global router.
+*/
+
+#bz-fi-end-inside-slot,
+#bz-fi-end-outside-slot { display:none!important; }
+
+/* Current-master superseded owner: retained in DOM for safe rollback, removed from layout for 09/10/11. */
+#borzilov-lp[data-bz-fi-end-variant="9"] #bz1092-product-lab .bz-product-router,
+#borzilov-lp[data-bz-fi-end-variant="10"] #bz1092-product-lab .bz-product-router,
+#borzilov-lp[data-bz-fi-end-variant="11"] #bz1092-product-lab .bz-product-router {
+  display:none!important;
+}
+
+
+/* The first island ends without surplus bottom space in all three variants. */
+#borzilov-lp[data-bz-fi-end-variant="9"] #bz1092-product-lab > .bz1092-object,
+#borzilov-lp[data-bz-fi-end-variant="10"] #bz1092-product-lab > .bz1092-object,
+#borzilov-lp[data-bz-fi-end-variant="11"] #bz1092-product-lab > .bz1092-object {
+  padding-bottom:0!important;
+}
+
+#borzilov-lp[data-bz-fi-end-variant="9"] #bz1092-product-lab > .bz1092-object > .bz1092-supports,
+#borzilov-lp[data-bz-fi-end-variant="10"] #bz1092-product-lab > .bz1092-object > .bz1092-supports,
+#borzilov-lp[data-bz-fi-end-variant="11"] #bz1092-product-lab > .bz1092-object > .bz1092-supports {
+  margin-bottom:0!important;
+}
+
+
+/* State contract: hidden slots must not reserve height even if late full CSS arrives. */
+#borzilov-lp[data-bz-fi-end-variant="9"] #bz-fi-end-outside-slot,
+#borzilov-lp[data-bz-fi-end-variant="10"] #bz-fi-end-inside-slot,
+#borzilov-lp[data-bz-fi-end-variant="11"] #bz-fi-end-inside-slot,
+#borzilov-lp[data-bz-fi-end-variant="11"] #bz-fi-end-outside-slot {
+  display:none!important;
+  height:0!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+}
+
+/* 09 — internal copper primary, direct child after supports. */
+#borzilov-lp[data-bz-fi-end-variant="9"] #bz-fi-end-inside-slot {
+  display:block!important;
+  grid-column:1 / -1;
+  width:100%;
+  min-width:0;
+  margin:0;
+  overflow:hidden;
+  position:relative;
+  z-index:4;
+}
+
+.bz-fi-end-primary-inside {
+  box-sizing:border-box;
+  width:100%;
+  min-height:120px;
+  margin:0;
+  padding:20px clamp(24px,4vw,48px) 19px;
+  border:0;
+  border-radius:0;
+  background:#A96A4A;
+  color:#FFFDF8;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  justify-content:center;
+  text-align:left;
+  cursor:pointer;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  transition:filter .16s ease,transform .16s ease;
+}
+
+.bz-fi-end-primary-inside__kicker {
+  margin-bottom:9px;
+  font-size:10px;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:.17em;
+  opacity:.72;
+}
+
+.bz-fi-end-primary-inside__main {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.bz-fi-end-primary-inside__main strong {
+  max-width:9ch;
+  color:inherit;
+  font-size:clamp(35px,4vw,48px);
+  line-height:.93;
+  font-weight:850;
+  letter-spacing:-.055em;
+}
+
+.bz-fi-end-primary-inside__main i {
+  flex:none;
+  color:inherit;
+  font-style:normal;
+  font-size:clamp(24px,2.7vw,38px);
+  font-weight:500;
+  transition:transform .16s ease;
+}
+
+.bz-fi-end-primary-inside__meta {
+  margin-top:8px;
+  font-size:clamp(14px,1.3vw,17px);
+  line-height:1.2;
+  font-weight:760;
+}
+
+@media (hover:hover) and (pointer:fine) {
+  .bz-fi-end-primary-inside:hover { filter:brightness(1.045); }
+  .bz-fi-end-primary-inside:hover .bz-fi-end-primary-inside__main i { transform:translate(3px,-3px); }
+}
+.bz-fi-end-primary-inside:active { transform:scale(.992); }
+.bz-fi-end-primary-inside:focus-visible { outline:2px solid #D8A184; outline-offset:-4px; }
+
+/* 10 — editorial primary is a sibling of the light first-island shell, on the true dark root field. */
+#borzilov-lp[data-bz-fi-end-variant="10"] #bz-fi-end-outside-slot {
+  display:block!important;
+  width:100%;
+  min-width:0;
+  grid-column:1 / -1;
+  position:relative;
+  z-index:4;
+}
+
+.bz-fi-end-primary-outside {
+  position:relative;
+  z-index:4;
+  width:min(884px,calc(100vw - 96px));
+  max-width:calc(100% - 32px);
+  min-width:0;
+  margin:clamp(24px,3vw,38px) auto clamp(50px,6vw,82px);
+  padding:0;
+  overflow:visible;
+  border-top:1px solid rgba(255,253,248,.17);
+  background:transparent;
+  color:#FFF8EF;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+.bz-fi-end-primary-outside__prompt {
+  display:block;
+  margin:0;
+  padding:19px 0 12px;
+  color:rgba(244,239,230,.60);
+  font-size:10px;
+  line-height:1;
+  font-weight:780;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+.bz-fi-end-primary-outside__lane {
+  box-sizing:border-box;
+  width:100%;
+  min-width:0;
+  min-height:88px;
+  margin:0;
+  padding:19px 0 20px;
+  border:0;
+  border-bottom:1px solid rgba(255,253,248,.14);
+  border-radius:0;
+  appearance:none;
+  background:transparent;
+  color:#FFF8EF;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:clamp(18px,3vw,42px);
+  text-align:left;
+  cursor:pointer;
+  font:inherit;
+  transition:color .16s ease,border-color .16s ease;
+}
+
+.bz-fi-end-primary-outside__copy { min-width:0; display:grid; gap:5px; }
+.bz-fi-end-primary-outside__title {
+  min-width:0;
+  color:inherit;
+  font-size:clamp(24px,2.35vw,34px);
+  line-height:.98;
+  font-weight:840;
+  letter-spacing:-.052em;
+  text-wrap:balance;
+}
+.bz-fi-end-primary-outside__note {
+  display:block;
+  max-width:52ch;
+  color:rgba(244,239,230,.60);
+  font-size:clamp(12px,1.05vw,14px);
+  line-height:1.25;
+  font-weight:560;
+  letter-spacing:-.012em;
+}
+.bz-fi-end-primary-outside__end {
+  min-width:0;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:10px;
+  white-space:nowrap;
+}
+.bz-fi-end-primary-outside__meta {
+  display:inline-block!important;
+  color:#C78969!important;
+  font-size:clamp(13px,1.2vw,16px);
+  line-height:1;
+  font-weight:800;
+  letter-spacing:-.02em;
+  white-space:nowrap;
+}
+.bz-fi-end-primary-outside__end i {
+  display:inline-block;
+  flex:none;
+  color:rgba(255,248,239,.78);
+  font-style:normal;
+  font-size:clamp(20px,1.8vw,26px);
+  line-height:1;
+  font-weight:480;
+  transition:transform .16s ease,color .16s ease;
+}
+
+@media (hover:hover) and (pointer:fine) {
+  .bz-fi-end-primary-outside__lane:hover { color:#D19A7E; border-bottom-color:rgba(209,154,126,.42); }
+  .bz-fi-end-primary-outside__lane:hover .bz-fi-end-primary-outside__note { color:rgba(255,248,239,.78); }
+  .bz-fi-end-primary-outside__lane:hover .bz-fi-end-primary-outside__end i { color:#D19A7E; transform:translateX(5px); }
+}
+.bz-fi-end-primary-outside__lane:focus-visible { outline:2px solid #D8A184; outline-offset:5px; }
+.bz-fi-end-primary-outside__lane:active .bz-fi-end-primary-outside__end i { transform:translateX(2px); }
+
+/* 11 — both slots remain hidden; the supports are the terminal element. */
+
+/* Lab-only panel. */
+.bz-fi-end-panel {
+  position:fixed;
+  z-index:2147483000;
+  right:14px;
+  bottom:14px;
+  width:min(400px,calc(100vw - 28px));
+  padding:10px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:16px;
+  background:rgba(8,26,32,.95);
+  color:#fff;
+  box-shadow:0 18px 54px rgba(0,0,0,.34);
+  backdrop-filter:blur(16px);
+  font-family:Inter,system-ui,sans-serif;
+}
+.bz-fi-end-panel__head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:2px 2px 9px; font-size:10px; letter-spacing:.1em; }
+.bz-fi-end-panel__head button { width:24px; height:24px; border:0; border-radius:8px; background:rgba(255,255,255,.12); color:#fff; font-size:17px; cursor:pointer; }
+.bz-fi-end-panel__buttons { display:grid; gap:5px; }
+.bz-fi-end-panel__buttons button {
+  display:grid;
+  grid-template-columns:28px 1fr;
+  align-items:center;
+  gap:8px;
+  width:100%;
+  min-height:48px;
+  padding:8px 10px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  text-align:left;
+  cursor:pointer;
+}
+.bz-fi-end-panel__buttons button[aria-pressed="true"] { background:#B07152; border-color:#D99A79; }
+.bz-fi-end-panel__buttons b { font-size:11px; color:rgba(255,255,255,.72); }
+.bz-fi-end-panel__buttons span { display:grid; gap:2px; font-size:11px; line-height:1.1; font-weight:760; }
+.bz-fi-end-panel__buttons small { color:rgba(255,255,255,.58); font-size:9px; font-weight:650; }
+.bz-fi-end-panel.is-collapsed .bz-fi-end-panel__buttons { display:none; }
+
+@media (max-width:760px) {
+  .bz-fi-end-primary-inside { min-height:126px; padding:19px 20px 18px; }
+  .bz-fi-end-primary-inside__main strong { max-width:8.8ch; font-size:35px; line-height:.92; }
+
+  .bz-fi-end-primary-outside { width:calc(100vw - 40px); max-width:calc(100% - 20px); margin:24px auto 42px; }
+  .bz-fi-end-primary-outside__prompt { padding:16px 0 11px; font-size:9px; }
+  .bz-fi-end-primary-outside__lane { min-height:82px; padding:17px 0 18px; gap:14px; }
+  .bz-fi-end-primary-outside__title { font-size:26px; }
+  .bz-fi-end-primary-outside__note { font-size:12px; }
+  .bz-fi-end-primary-outside__meta { font-size:13px; }
+  .bz-fi-end-primary-outside__end i { font-size:23px; }
+
+  /* Mobile lab control: compact segmented switch, always visible without covering the page. */
+  .bz-fi-end-panel {
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+    pointer-events:auto!important;
+    position:fixed!important;
+    z-index:2147483647!important;
+    top:max(8px,env(safe-area-inset-top))!important;
+    right:auto!important;
+    bottom:auto!important;
+    left:50%!important;
+    width:min(320px,calc(100vw - 16px))!important;
+    max-width:320px!important;
+    max-height:none!important;
+    overflow:visible!important;
+    padding:5px!important;
+    border:1px solid rgba(216,161,132,.78)!important;
+    border-radius:12px!important;
+    background:#081A20!important;
+    box-shadow:0 10px 28px rgba(0,0,0,.30),0 0 0 1px rgba(8,26,32,.55)!important;
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    transform:translate3d(-50%,0,0)!important;
+    isolation:isolate;
+  }
+  .bz-fi-end-panel__head { display:none!important; }
+  .bz-fi-end-panel__buttons,
+  .bz-fi-end-panel.is-collapsed .bz-fi-end-panel__buttons {
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:4px!important;
+  }
+  .bz-fi-end-panel__buttons button {
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:100%!important;
+    min-width:0!important;
+    min-height:40px!important;
+    padding:6px 4px!important;
+    border-radius:8px!important;
+    text-align:center!important;
+  }
+  .bz-fi-end-panel__buttons b {
+    color:rgba(255,255,255,.84)!important;
+    font-size:12px!important;
+    line-height:1!important;
+    letter-spacing:.04em!important;
+  }
+  .bz-fi-end-panel__buttons span,
+  .bz-fi-end-panel__buttons small { display:none!important; }
+}
+
+@media (max-width:360px) {
+  .bz-fi-end-primary-outside__lane { grid-template-columns:minmax(0,1fr) auto; }
+  .bz-fi-end-primary-outside__end { align-self:center; padding-top:0; }
+  .bz-fi-end-primary-outside__meta { display:inline-block!important; font-size:12px!important; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .bz-fi-end-primary-inside,
+  .bz-fi-end-primary-inside__main i,
+  .bz-fi-end-primary-outside__lane,
+  .bz-fi-end-primary-outside__end i,
+  .bz-fi-end-panel * { transition:none!important; }
+}

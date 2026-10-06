@@ -1,0 +1,159 @@
+/* 0127 — PRODUCT PASSPORT LAB: 10 first-screen compositions. Lab-only owner. */
+#borzilov-lp #bz-hero-solution-entry>.bz-solution-bento--hero-copy .bz-solution-bento__head[data-bz-hero-passport-variant]{
+  display:block!important;padding:0!important;background:#FFFDF8!important;border-bottom:0!important;
+}
+#borzilov-lp .bz-hero-passport{--hp-ink:#081A20;--hp-paper:#FFFDF8;--hp-soft:#F3EFE8;--hp-copper:#A96A4A;--hp-line:rgba(8,26,32,.13);position:relative;padding:32px 28px 24px;background:var(--hp-paper);color:var(--hp-ink);overflow:hidden}
+#borzilov-lp .bz-hero-passport *{box-sizing:border-box}
+#borzilov-lp .bz-hero-passport .bz-solution-bento__title-wrap{min-width:0}
+#borzilov-lp .bz-hero-passport .bz-solution-bento__kicker{display:block;margin:0 0 9px;color:var(--hp-copper);font-size:11px;line-height:1.1;font-weight:800;letter-spacing:.035em}
+#borzilov-lp .bz-hero-passport .bz-solution-bento__title-wrap h2{margin:0;color:var(--hp-ink);font-size:clamp(54px,6.4vw,88px);line-height:.84;letter-spacing:-.066em;font-weight:880;max-width:9.5ch}
+#borzilov-lp .bz-hero-passport .bz-solution-bento__title-wrap h2 span{display:block;white-space:nowrap}
+#borzilov-lp .bz-hero-passport .bz-solution-bento__title-wrap h2 .bz-solution-bento__title-weekend{font-size:.58em!important;line-height:.94!important;letter-spacing:-.052em!important;margin-top:.16em!important}
+#borzilov-lp .bz-hero-passport .bz-solution-bento__sub{display:block;margin-top:13px;color:var(--hp-copper);font-size:clamp(14px,1.35vw,19px);line-height:1.08;font-weight:720;letter-spacing:-.018em}
+#borzilov-lp .bz-hero-passport__commercial{display:grid;grid-template-columns:minmax(150px,.7fr) minmax(280px,1.3fr);gap:0;margin-top:22px;border:1px solid var(--hp-line);background:var(--hp-soft)}
+#borzilov-lp .bz-hero-passport__price{padding:13px 16px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--hp-line)}
+#borzilov-lp .bz-hero-passport__price span{color:rgba(8,26,32,.54);font-size:9px;line-height:1;font-weight:850;letter-spacing:.13em;text-transform:uppercase}
+#borzilov-lp .bz-hero-passport__price strong{margin-top:5px;color:var(--hp-ink);font-size:clamp(28px,3.1vw,40px);line-height:.92;font-weight:880;letter-spacing:-.055em;white-space:nowrap}
+#borzilov-lp .bz-hero-passport .bz-solution-bento__start{margin:0!important;padding:12px 16px!important;border:0!important;background:transparent!important;box-shadow:none!important;display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;column-gap:12px!important;row-gap:5px!important;align-items:baseline!important}
+#borzilov-lp .bz-hero-passport .bz-solution-bento__start>span{font-size:12px!important;white-space:normal!important;min-width:0}
+#borzilov-lp .bz-hero-passport .bz-solution-bento__start strong{font-size:11px!important;line-height:1.15!important;white-space:normal!important;text-align:right!important}
+#borzilov-lp .bz-hero-passport .bz-solution-bento__start-note{font-size:9px!important}
+#borzilov-lp .bz-hero-passport__route{margin-top:13px;padding:13px 16px 14px;border:1px solid var(--hp-line);background:#FFFDF8}
+#borzilov-lp .bz-hero-passport__route-stages{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center}
+#borzilov-lp .bz-hero-passport__stage{min-width:0;display:flex;flex-direction:column;gap:4px}
+#borzilov-lp .bz-hero-passport__stage b{color:var(--hp-ink);font-size:12px;line-height:1;font-weight:850;letter-spacing:.035em}
+#borzilov-lp .bz-hero-passport__stage small{color:rgba(8,26,32,.60);font-size:10.5px;line-height:1.22;font-weight:610;letter-spacing:-.01em}
+#borzilov-lp .bz-hero-passport__arrow{color:var(--hp-copper);font-size:16px;line-height:1;font-style:normal;font-weight:800}
+
+/* V1 — canonical editorial passport */
+#borzilov-lp [data-bz-hero-passport-variant="1"] .bz-hero-passport{padding-top:34px}
+
+/* V2 — split: offer left, commercial ticket right */
+#borzilov-lp [data-bz-hero-passport-variant="2"] .bz-hero-passport{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(300px,.82fr);gap:26px 28px;align-items:start}
+#borzilov-lp [data-bz-hero-passport-variant="2"] .bz-hero-passport__commercial{margin-top:0;grid-template-columns:1fr;align-self:stretch}
+#borzilov-lp [data-bz-hero-passport-variant="2"] .bz-hero-passport__price{border-right:0;border-bottom:1px solid var(--hp-line);padding:19px 20px}
+#borzilov-lp [data-bz-hero-passport-variant="2"] .bz-hero-passport__price strong{font-size:46px}
+#borzilov-lp [data-bz-hero-passport-variant="2"] .bz-hero-passport__route{grid-column:1/-1;margin-top:0}
+
+/* V3 — price monument */
+#borzilov-lp [data-bz-hero-passport-variant="3"] .bz-hero-passport{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px 26px;align-items:end}
+#borzilov-lp [data-bz-hero-passport-variant="3"] .bz-hero-passport__commercial{margin:0;display:contents}
+#borzilov-lp [data-bz-hero-passport-variant="3"] .bz-hero-passport__price{grid-column:2;grid-row:1;padding:0;border:0;background:none;align-self:end;text-align:right}
+#borzilov-lp [data-bz-hero-passport-variant="3"] .bz-hero-passport__price strong{font-size:clamp(48px,6vw,72px)}
+#borzilov-lp [data-bz-hero-passport-variant="3"] .bz-hero-passport .bz-solution-bento__start{grid-column:1/-1;grid-row:2;border:1px solid var(--hp-line)!important;background:var(--hp-soft)!important}
+#borzilov-lp [data-bz-hero-passport-variant="3"] .bz-hero-passport__route{grid-column:1/-1;margin-top:0;background:#071A20;border-color:#071A20}
+#borzilov-lp [data-bz-hero-passport-variant="3"] .bz-hero-passport__stage b{color:#FFFDF8}
+#borzilov-lp [data-bz-hero-passport-variant="3"] .bz-hero-passport__stage small{color:rgba(255,253,248,.66)}
+
+/* V4 — three route cards */
+#borzilov-lp [data-bz-hero-passport-variant="4"] .bz-hero-passport__commercial{border-radius:6px;overflow:hidden}
+#borzilov-lp [data-bz-hero-passport-variant="4"] .bz-hero-passport__route{padding:0;border:0;background:transparent}
+#borzilov-lp [data-bz-hero-passport-variant="4"] .bz-hero-passport__route-stages{grid-template-columns:repeat(3,1fr);gap:8px}
+#borzilov-lp [data-bz-hero-passport-variant="4"] .bz-hero-passport__arrow{display:none}
+#borzilov-lp [data-bz-hero-passport-variant="4"] .bz-hero-passport__stage{padding:12px 13px;min-height:62px;border:1px solid var(--hp-line);background:#F7F3EC}
+#borzilov-lp [data-bz-hero-passport-variant="4"] .bz-hero-passport__stage:last-child{background:#071A20}
+#borzilov-lp [data-bz-hero-passport-variant="4"] .bz-hero-passport__stage:last-child b{color:#FFFDF8}
+#borzilov-lp [data-bz-hero-passport-variant="4"] .bz-hero-passport__stage:last-child small{color:rgba(255,253,248,.64)}
+
+/* V5 — dark passport / light ticket */
+#borzilov-lp [data-bz-hero-passport-variant="5"] .bz-hero-passport{--hp-ink:#FFFDF8;--hp-paper:#071A20;--hp-soft:#FFFDF8;--hp-line:rgba(255,253,248,.14);background:#071A20}
+#borzilov-lp [data-bz-hero-passport-variant="5"] .bz-hero-passport .bz-solution-bento__title-wrap h2{color:#FFFDF8}
+#borzilov-lp [data-bz-hero-passport-variant="5"] .bz-hero-passport__commercial{color:#081A20;border-color:rgba(255,253,248,.22)}
+#borzilov-lp [data-bz-hero-passport-variant="5"] .bz-hero-passport__price{background:#FFFDF8;border-color:rgba(8,26,32,.12)}
+#borzilov-lp [data-bz-hero-passport-variant="5"] .bz-hero-passport__price span,#borzilov-lp [data-bz-hero-passport-variant="5"] .bz-hero-passport__price strong{color:#081A20}
+#borzilov-lp [data-bz-hero-passport-variant="5"] .bz-hero-passport .bz-solution-bento__start{background:#F3EFE8!important;color:#081A20!important}
+#borzilov-lp [data-bz-hero-passport-variant="5"] .bz-hero-passport__route{background:rgba(255,253,248,.04);border-color:rgba(255,253,248,.14)}
+#borzilov-lp [data-bz-hero-passport-variant="5"] .bz-hero-passport__stage b{color:#FFFDF8}
+#borzilov-lp [data-bz-hero-passport-variant="5"] .bz-hero-passport__stage small{color:rgba(255,253,248,.63)}
+
+/* V6 — minimal lines */
+#borzilov-lp [data-bz-hero-passport-variant="6"] .bz-hero-passport{padding-left:34px;padding-right:34px}
+#borzilov-lp [data-bz-hero-passport-variant="6"] .bz-hero-passport__commercial{border-width:1px 0;background:transparent}
+#borzilov-lp [data-bz-hero-passport-variant="6"] .bz-hero-passport__price{padding-left:0}
+#borzilov-lp [data-bz-hero-passport-variant="6"] .bz-hero-passport .bz-solution-bento__start{padding-right:0!important}
+#borzilov-lp [data-bz-hero-passport-variant="6"] .bz-hero-passport__route{padding-left:0;padding-right:0;border-width:0 0 1px;background:transparent}
+#borzilov-lp [data-bz-hero-passport-variant="6"] .bz-hero-passport__stage b{font-size:13px}
+
+/* V7 — numbered three-phase rail */
+#borzilov-lp [data-bz-hero-passport-variant="7"] .bz-hero-passport__route{padding:14px 0 0;border:0;border-top:1px solid var(--hp-line);background:transparent}
+#borzilov-lp [data-bz-hero-passport-variant="7"] .bz-hero-passport__route-stages{grid-template-columns:repeat(3,1fr);gap:0;counter-reset:phase}
+#borzilov-lp [data-bz-hero-passport-variant="7"] .bz-hero-passport__arrow{display:none}
+#borzilov-lp [data-bz-hero-passport-variant="7"] .bz-hero-passport__stage{position:relative;padding:7px 14px 7px 38px;border-right:1px solid var(--hp-line);counter-increment:phase}
+#borzilov-lp [data-bz-hero-passport-variant="7"] .bz-hero-passport__stage:last-child{border-right:0}
+#borzilov-lp [data-bz-hero-passport-variant="7"] .bz-hero-passport__stage:before{content:'0' counter(phase);position:absolute;left:0;top:5px;width:29px;height:29px;display:grid;place-items:center;border-radius:50%;background:#071A20;color:#B9704D;font-size:10px;font-weight:850}
+
+/* V8 — copper left rail */
+#borzilov-lp [data-bz-hero-passport-variant="8"] .bz-hero-passport{padding-left:52px}
+#borzilov-lp [data-bz-hero-passport-variant="8"] .bz-hero-passport:before{content:'';position:absolute;left:24px;top:34px;bottom:24px;width:5px;background:#A96A4A;border-radius:4px}
+#borzilov-lp [data-bz-hero-passport-variant="8"] .bz-hero-passport__commercial{grid-template-columns:.55fr 1.45fr;background:#FFFDF8;border-color:rgba(169,106,74,.28)}
+#borzilov-lp [data-bz-hero-passport-variant="8"] .bz-hero-passport__route{border-color:rgba(169,106,74,.28);background:#F7F3EC}
+
+/* V9 — centered monument */
+#borzilov-lp [data-bz-hero-passport-variant="9"] .bz-hero-passport{text-align:center;padding-top:38px}
+#borzilov-lp [data-bz-hero-passport-variant="9"] .bz-hero-passport .bz-solution-bento__title-wrap h2{margin-left:auto;margin-right:auto}
+#borzilov-lp [data-bz-hero-passport-variant="9"] .bz-hero-passport__commercial{max-width:720px;margin-left:auto;margin-right:auto;text-align:left}
+#borzilov-lp [data-bz-hero-passport-variant="9"] .bz-hero-passport__route{max-width:720px;margin-left:auto;margin-right:auto;text-align:left;border-radius:999px;padding-left:22px;padding-right:22px}
+#borzilov-lp [data-bz-hero-passport-variant="9"] .bz-hero-passport__stage small{font-size:9.5px}
+
+/* V10 — ticket / asymmetry */
+#borzilov-lp [data-bz-hero-passport-variant="10"] .bz-hero-passport{background:#F7F3EC;padding:28px}
+#borzilov-lp [data-bz-hero-passport-variant="10"] .bz-hero-passport__commercial{position:relative;background:#FFFDF8;border:1px dashed rgba(8,26,32,.22);box-shadow:5px 5px 0 rgba(169,106,74,.14)}
+#borzilov-lp [data-bz-hero-passport-variant="10"] .bz-hero-passport__price{background:#071A20}
+#borzilov-lp [data-bz-hero-passport-variant="10"] .bz-hero-passport__price span{color:rgba(255,253,248,.56)}
+#borzilov-lp [data-bz-hero-passport-variant="10"] .bz-hero-passport__price strong{color:#FFFDF8}
+#borzilov-lp [data-bz-hero-passport-variant="10"] .bz-hero-passport__route{background:#FFFDF8;border:1px dashed rgba(8,26,32,.22);box-shadow:-4px 4px 0 rgba(8,26,32,.055)}
+
+/* Lab pult */
+#bz-hero-passport-lab{position:fixed;z-index:2147482000;right:14px;top:86px;width:222px;padding:11px;background:rgba(7,26,32,.96);color:#FFFDF8;border:1px solid rgba(255,253,248,.18);border-radius:12px;box-shadow:0 18px 48px rgba(0,0,0,.3);backdrop-filter:blur(12px);font-family:Inter,system-ui,sans-serif}
+#bz-hero-passport-lab *{box-sizing:border-box}
+#bz-hero-passport-lab .bz-hplab__head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px}
+#bz-hero-passport-lab .bz-hplab__head strong{font-size:11px;letter-spacing:.09em;text-transform:uppercase}
+#bz-hero-passport-lab .bz-hplab__name{display:block;color:#D29371;font-size:10px;line-height:1.2;font-weight:700;text-align:right}
+#bz-hero-passport-lab .bz-hplab__grid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+#bz-hero-passport-lab button{appearance:none;border:1px solid rgba(255,253,248,.16);background:rgba(255,253,248,.06);color:#FFFDF8;border-radius:6px;height:30px;font:800 11px/1 Inter,system-ui,sans-serif;cursor:pointer}
+#bz-hero-passport-lab button:hover{background:rgba(255,253,248,.12)}
+#bz-hero-passport-lab button.is-active{background:#A96A4A;border-color:#A96A4A;color:#FFFDF8}
+#bz-hero-passport-lab .bz-hplab__hint{margin-top:8px;color:rgba(255,253,248,.55);font-size:9px;line-height:1.25}
+
+@media(max-width:760px){
+  #borzilov-lp .bz-hero-passport{padding:21px 20px 19px}
+  #borzilov-lp .bz-hero-passport .bz-solution-bento__kicker{font-size:10px;margin-bottom:8px}
+  #borzilov-lp .bz-hero-passport .bz-solution-bento__title-wrap h2{font-size:clamp(47px,14vw,64px);line-height:.84}
+  #borzilov-lp .bz-hero-passport .bz-solution-bento__sub{margin-top:11px;font-size:14px}
+  #borzilov-lp .bz-hero-passport__commercial{grid-template-columns:1fr 1.45fr;margin-top:17px}
+  #borzilov-lp .bz-hero-passport__price{padding:11px 12px}
+  #borzilov-lp .bz-hero-passport__price strong{font-size:26px}
+  #borzilov-lp .bz-hero-passport .bz-solution-bento__start{padding:10px 11px!important;grid-template-columns:1fr!important;gap:4px!important}
+  #borzilov-lp .bz-hero-passport .bz-solution-bento__start strong{text-align:left!important;font-size:10px!important}
+  #borzilov-lp .bz-hero-passport__route{margin-top:10px;padding:11px 12px 12px}
+  #borzilov-lp .bz-hero-passport__route-stages{grid-template-columns:1fr auto 1fr auto 1fr;gap:5px}
+  #borzilov-lp .bz-hero-passport__stage b{font-size:10px}
+  #borzilov-lp .bz-hero-passport__stage small{font-size:8.8px;line-height:1.15}
+  #borzilov-lp .bz-hero-passport__arrow{font-size:13px}
+  #borzilov-lp [data-bz-hero-passport-variant="2"] .bz-hero-passport{display:block}
+  #borzilov-lp [data-bz-hero-passport-variant="2"] .bz-hero-passport__commercial{display:grid;grid-template-columns:1fr 1.45fr;margin-top:17px}
+  #borzilov-lp [data-bz-hero-passport-variant="2"] .bz-hero-passport__price{border-bottom:0;border-right:1px solid var(--hp-line);padding:11px 12px}
+  #borzilov-lp [data-bz-hero-passport-variant="2"] .bz-hero-passport__price strong{font-size:26px}
+  #borzilov-lp [data-bz-hero-passport-variant="2"] .bz-hero-passport__route{margin-top:10px}
+  #borzilov-lp [data-bz-hero-passport-variant="3"] .bz-hero-passport{display:block}
+  #borzilov-lp [data-bz-hero-passport-variant="3"] .bz-hero-passport__commercial{display:grid;grid-template-columns:1fr 1.45fr;margin-top:17px}
+  #borzilov-lp [data-bz-hero-passport-variant="3"] .bz-hero-passport__price{grid-column:auto;grid-row:auto;padding:11px 12px;border-right:1px solid var(--hp-line);background:#FFFDF8;text-align:left}
+  #borzilov-lp [data-bz-hero-passport-variant="3"] .bz-hero-passport__price strong{font-size:26px}
+  #borzilov-lp [data-bz-hero-passport-variant="3"] .bz-hero-passport .bz-solution-bento__start{grid-column:auto;grid-row:auto}
+  #borzilov-lp [data-bz-hero-passport-variant="4"] .bz-hero-passport__route-stages,#borzilov-lp [data-bz-hero-passport-variant="7"] .bz-hero-passport__route-stages{grid-template-columns:1fr;gap:6px}
+  #borzilov-lp [data-bz-hero-passport-variant="4"] .bz-hero-passport__stage,#borzilov-lp [data-bz-hero-passport-variant="7"] .bz-hero-passport__stage{min-height:0}
+  #borzilov-lp [data-bz-hero-passport-variant="7"] .bz-hero-passport__stage{border-right:0;border-bottom:1px solid var(--hp-line);padding:9px 10px 9px 40px}
+  #borzilov-lp [data-bz-hero-passport-variant="7"] .bz-hero-passport__stage:last-child{border-bottom:0}
+  #borzilov-lp [data-bz-hero-passport-variant="8"] .bz-hero-passport{padding-left:33px;padding-right:17px}
+  #borzilov-lp [data-bz-hero-passport-variant="8"] .bz-hero-passport:before{left:17px;top:22px;bottom:20px;width:4px}
+  #borzilov-lp [data-bz-hero-passport-variant="9"] .bz-hero-passport{text-align:left;padding-top:23px}
+  #borzilov-lp [data-bz-hero-passport-variant="9"] .bz-hero-passport .bz-solution-bento__title-wrap h2{margin-left:0;margin-right:0}
+  #borzilov-lp [data-bz-hero-passport-variant="9"] .bz-hero-passport__commercial,#borzilov-lp [data-bz-hero-passport-variant="9"] .bz-hero-passport__route{max-width:none}
+  #borzilov-lp [data-bz-hero-passport-variant="9"] .bz-hero-passport__route{border-radius:10px}
+  #borzilov-lp [data-bz-hero-passport-variant="10"] .bz-hero-passport{padding:20px}
+  #bz-hero-passport-lab{top:auto;right:8px;bottom:8px;left:8px;width:auto;padding:8px;border-radius:10px}
+  #bz-hero-passport-lab .bz-hplab__head{margin-bottom:6px}
+  #bz-hero-passport-lab .bz-hplab__grid{grid-template-columns:repeat(10,1fr);gap:3px}
+  #bz-hero-passport-lab button{height:27px;font-size:10px}
+  #bz-hero-passport-lab .bz-hplab__hint{display:none}
+}

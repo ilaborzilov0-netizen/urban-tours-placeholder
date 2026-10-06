@@ -1,0 +1,288 @@
+/* owner:0720-proof-inline-application
+   The social-proof CTA is now a true inline application owner.
+   Closed and open states stay one warm editorial object: the inline form unfolds inside the exact CTA surface instead of switching to the dark utility treatment.
+*/
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application [hidden]{
+  display:none!important;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application{
+  position:relative;
+  display:grid;
+  width:100%;
+  margin:0;
+  overflow:hidden;
+  border:1px solid rgba(8,26,32,.08);
+  border-radius:0 var(--r-object,6px) var(--r-object,6px) var(--r-object,6px);
+  background:#f7f3ec;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.58);
+  transition:background-color .34s cubic-bezier(.2,.76,.2,1),border-color .28s ease,box-shadow .28s ease;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application.is-expanded,
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application.is-success{
+  background:#f7f3ec;
+  border-color:rgba(8,26,32,.08);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.58);
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__toggle{
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  overflow:hidden;
+  transition:min-height .36s cubic-bezier(.2,.76,.2,1),max-height .36s cubic-bezier(.2,.76,.2,1),padding .36s cubic-bezier(.2,.76,.2,1),opacity .20s ease,background-color .30s ease,color .24s ease;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application.is-expanded .bz-inline-application__toggle,
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application.is-success .bz-inline-application__toggle{
+  min-height:0!important;
+  max-height:0!important;
+  height:0!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+  margin:0!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  background:#f7f3ec!important;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__panel{
+  display:grid;
+  gap:18px;
+  max-height:0;
+  padding:0 clamp(20px,4vw,28px);
+  overflow:hidden;
+  opacity:0;
+  transform:translateY(-7px);
+  background:#f7f3ec;
+  transition:max-height .46s cubic-bezier(.2,.76,.2,1),padding .36s cubic-bezier(.2,.76,.2,1),opacity .22s ease .05s,transform .30s cubic-bezier(.2,.76,.2,1) .04s;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application.is-expanded .bz-inline-application__panel{
+  max-height:760px;
+  padding:24px clamp(20px,4vw,28px) 22px;
+  opacity:1;
+  transform:none;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application.is-success .bz-inline-application__panel{
+  max-height:680px;
+  padding:26px clamp(20px,4vw,28px) 24px;
+  opacity:1;
+  transform:none;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__form{
+  display:grid;
+  gap:18px;
+  margin:0;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__field{
+  display:grid;
+  gap:7px;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__field:not(.bz-inline-application__field--channel){
+  padding:13px 15px 14px;
+  border:1px solid rgba(8,26,32,.10);
+  border-radius:6px;
+  background:rgba(8,26,32,.035);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.58);
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__field label,
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__legend{
+  color:#a56749;
+  font-size:11px;
+  line-height:1.1;
+  font-weight:780;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__field:not(.bz-inline-application__field--channel) label{
+  color:rgba(8,26,32,.58)!important;
+  font-size:10.5px;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__field input[type="text"],
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__field input[type="tel"]{
+  appearance:none;
+  width:100%;
+  min-width:0;
+  margin:0;
+  padding:0;
+  border:0;
+  outline:0;
+  background:transparent;
+  box-shadow:none;
+  color:#081A20!important;
+  caret-color:#B94F35;
+  font-family:inherit;
+  font-size:clamp(22px,2.2vw,28px);
+  line-height:1.05;
+  font-weight:760;
+  letter-spacing:-.045em;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__field input::placeholder{
+  color:rgba(8,26,32,.36)!important;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__field:not(.bz-inline-application__field--channel):focus-within{
+  border-color:rgba(185,79,53,.52);
+  box-shadow:0 0 0 1px rgba(185,79,53,.10),inset 0 1px 0 rgba(255,255,255,.62);
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__field.is-invalid{
+  border-color:#B94F35!important;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__field--channel{
+  gap:11px;
+  padding-bottom:16px;
+  border-bottom:1px solid rgba(8,26,32,.12);
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__channels{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__channel{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__channel input{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  pointer-events:none;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__channel span{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:36px;
+  padding:0 13px;
+  border:1px solid rgba(8,26,32,.18);
+  border-radius:999px;
+  background:rgba(8,26,32,.025);
+  color:rgba(8,26,32,.72);
+  font-size:12px;
+  line-height:1;
+  font-weight:760;
+  letter-spacing:-.02em;
+  transition:background-color .18s ease,border-color .18s ease,color .18s ease;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__channel input:checked+span{
+  border-color:rgba(165,103,73,.46);
+  background:rgba(165,103,73,.10);
+  color:#081A20;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__submit{
+  appearance:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  width:100%;
+  min-height:76px;
+  margin:2px 0 0;
+  padding:22px 0 4px;
+  border:0;
+  border-top:1px solid rgba(8,26,32,.12);
+  background:transparent;
+  color:#081A20;
+  cursor:pointer;
+  text-align:left;
+  font-family:inherit;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__submit span{
+  color:#081A20;
+  font-size:clamp(24px,2.4vw,30px);
+  line-height:.96;
+  font-weight:850;
+  letter-spacing:-.05em;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__submit i{
+  color:#a56749;
+  font-style:normal;
+  font-size:21px;
+  line-height:1;
+  transition:transform .16s ease;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__submit:hover i{transform:translate(3px,-2px)}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__success{
+  display:grid;
+  gap:9px;
+  color:#081A20;
+}
+#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__success-reset{
+  justify-self:start;
+  margin-top:7px;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:#a56749;
+  font-family:inherit;
+  font-size:12px;
+  line-height:1.2;
+  font-weight:750;
+  cursor:pointer;
+}
+@media(max-width:760px){
+  #borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application.is-expanded .bz-inline-application__panel{
+    padding:22px 18px 18px;
+  }
+  #borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application.is-success .bz-inline-application__panel{
+    padding:24px 18px 20px;
+  }
+  #borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__field:not(.bz-inline-application__field--channel){
+    padding:12px 14px 13px;
+  }
+  #borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__field input[type="text"],
+  #borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__field input[type="tel"]{
+    font-size:27px;
+  }
+  #borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__submit{
+    padding-top:20px;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp .bz-proof-inline-application,
+  #borzilov-lp .bz-proof-inline-application *,
+  #borzilov-lp .bz-proof-inline-application *::before,
+  #borzilov-lp .bz-proof-inline-application *::after{
+    transition:none!important;
+    animation:none!important;
+  }
+}
+
+/* owner:0721-proof-inline-collapse-specificity
+   The proof checkpoint has older high-specificity !important min-height/padding rules.
+   In the expanded/success state the closed CTA must physically leave the grid, not just fade out. */
+html body #borzilov-lp#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application.is-expanded > .bz-inline-application__toggle.bz-path-cta__talk-floor--primary,
+html body #borzilov-lp#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application.is-success > .bz-inline-application__toggle.bz-path-cta__talk-floor--primary{
+  min-height:0!important;
+  max-height:0!important;
+  height:0!important;
+  margin:0!important;
+  padding:0!important;
+  gap:0!important;
+  border-width:0!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+
+/* owner:0722-proof-success-light-surface
+   Third inline application lives on a warm light surface. The shared post-submit
+   component defaults to white-on-dark, so lock every success text token to the
+   local light palette instead of inheriting the global dark-surface colors. */
+html body #borzilov-lp#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__success.bz-post-submit-success .bz-post-submit-success__confirm>strong,
+html body #borzilov-lp#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__success.bz-post-submit-success .bz-post-submit-success__price>strong{
+  color:#081A20!important;
+}
+html body #borzilov-lp#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__success.bz-post-submit-success .bz-post-submit-success__confirm>p,
+html body #borzilov-lp#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__success.bz-post-submit-success .bz-post-submit-success__payment>span{
+  color:rgba(8,26,32,.74)!important;
+}
+html body #borzilov-lp#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__success.bz-post-submit-success .bz-post-submit-success__confirm>small{
+  color:rgba(8,26,32,.50)!important;
+}
+html body #borzilov-lp#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__success.bz-post-submit-success .bz-post-submit-success__payment{
+  border-top-color:rgba(8,26,32,.12)!important;
+}
+html body #borzilov-lp#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__success.bz-post-submit-success .bz-post-submit-success__payment>p:not(.bz-post-submit-success__error){
+  color:rgba(8,26,32,.52)!important;
+}
+html body #borzilov-lp#borzilov-lp .bz-path-cta--proof-footer .bz-proof-inline-application .bz-inline-application__success.bz-post-submit-success .bz-post-submit-success__error{
+  color:#A34132!important;
+}
