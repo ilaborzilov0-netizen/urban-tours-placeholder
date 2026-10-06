@@ -1,42 +1,61 @@
 /* owner:bz-site-analytics-goals-0190
-   Yandex.Metrica counter: 110906734.
+   Yandex.Metrica counter: 109705214.
    Canonical goal contract for the stable master.
 
-   Goal identifiers for counter 110906734 are listed in GOALS below.
-   Numeric Metrica goal IDs are intentionally not hard-coded because the new
-   counter assigns them only after the JavaScript goals are created in the UI.
+   Numeric goal IDs in Metrica (documentation only; reachGoal uses identifiers):
+   594112358 engaged_visit
+   594112375 deep_read
+   594112478 full_read
+   594112497 ux_interaction
+   594113092 commercial_drawer_open
+   594113195 tariff_selected
+   594113231 checkout_started
+   594113246 payment_started
+   594113296 payment_redirected
+   594113369 payment_success
+   594113404 social_outbound_click
+   594113408 payment_error
+   594115490 active_15
+   594116434 active_30
+   594116447 active_60
+   594116488 active_120
+   594116620 scroll_25
+   594116692 scroll_50
+   594116779 scroll_75
+   594116873 scroll_90
+   594116907 site_end_reached
 
    Semantic funnel goals (their numeric Metrica IDs are assigned only after
    these JavaScript goals are created in the Metrica UI):
-   ur-f-contact
-   ur-f-core
-   ur-f-decision
-   ur-f-cta
-   ur-f-checkout
-   ur-f-purchase
-   ur-talk
+   funnel_contact_v1
+   funnel_core_v1
+   funnel_decision_v1
+   funnel_cta_v1
+   funnel_checkout_v1
+   funnel_purchase_v1
+   commercial_talk_v1
 
    Diagnostic New goals (created explicitly in Metrica):
-   ur-island-1
-   ur-island-2
-   ur-bento-50
-   ur-bento-full
-   ur-life-65
-   ur-life-age
-   ur-life-birth
-   ur-contact-author
-   ur-contact-team
-   ur-group-header
-   ur-guarantee
-   ur-app-header
-   ur-app-bento
-   ur-hero-join
-   ur-hero-question
-   ur-channel-sub
-   ur-channel-max
-   ur-channel-tg
-   ur-author-bento
-   ur-audio-play
+   new_first_island_consumed_v1
+   new_second_island_consumed_v1
+   new_bento_50_consumed_v1
+   new_bento_consumed_v1
+   new_life_calendar_65_toggle_v1
+   new_life_calendar_age_slider_v1
+   new_life_calendar_birthdate_v1
+   new_contact_author_click_v1
+   new_contact_team_click_v1
+   new_online_group_header_click_v1
+   new_guarantee_open_v1
+   new_application_header_click_v1
+   new_application_bento_click_v1
+   new_participate_firstscreen_click_v1
+   new_question_firstscreen_click_v1
+   new_channel_subscribe_click_v1
+   new_channel_max_click_v1
+   new_channel_telegram_click_v1
+   new_author_message_bento_click_v1
+   new_audio_anchor_play_click_v1
 */
 (function(){
   'use strict';
@@ -44,64 +63,64 @@
   if(window.__BZSiteAnalyticsGoals0579Owner)return;
   window.__BZSiteAnalyticsGoals0579Owner=true;
 
-  var METRIKA_ID=110906734;
+  var METRIKA_ID=109705214;
   var SITE_VERSION='0190';
   var sentGoals=Object.create(null);
   var rawSequence=0;
 
   var GOALS={
-    'ur-engaged':1,
-    'ur-deep-read':1,
-    'ur-full-read':1,
-    'ur-ux':1,
-    'ur-drawer-open':1,
-    'ur-tariff-select':1,
-    'ur-checkout-start':1,
-    'ur-pay-start':1,
-    'ur-pay-redirect':1,
-    'ur-pay-success':1,
-    'ur-social-click':1,
-    'ur-pay-error':1,
-    'ur-active-15':1,
-    'ur-active-30':1,
-    'ur-active-60':1,
-    'ur-active-120':1,
-    'ur-scroll-25':1,
-    'ur-scroll-50':1,
-    'ur-scroll-75':1,
-    'ur-scroll-90':1,
-    'ur-site-end':1,
+    engaged_visit:1,
+    deep_read:1,
+    full_read:1,
+    ux_interaction:1,
+    commercial_drawer_open:1,
+    tariff_selected:1,
+    checkout_started:1,
+    payment_started:1,
+    payment_redirected:1,
+    payment_success:1,
+    social_outbound_click:1,
+    payment_error:1,
+    active_15:1,
+    active_30:1,
+    active_60:1,
+    active_120:1,
+    scroll_25:1,
+    scroll_50:1,
+    scroll_75:1,
+    scroll_90:1,
+    site_end_reached:1,
 
     /* Semantic business funnel. */
-    'ur-f-contact':1,
-    'ur-f-core':1,
-    'ur-f-decision':1,
-    'ur-f-cta':1,
-    'ur-f-checkout':1,
-    'ur-f-purchase':1,
-    'ur-talk':1,
+    funnel_contact_v1:1,
+    funnel_core_v1:1,
+    funnel_decision_v1:1,
+    funnel_cta_v1:1,
+    funnel_checkout_v1:1,
+    funnel_purchase_v1:1,
+    commercial_talk_v1:1,
 
     /* Diagnostic New layer. */
-    'ur-island-1':1,
-    'ur-island-2':1,
-    'ur-bento-50':1,
-    'ur-bento-full':1,
-    'ur-life-65':1,
-    'ur-life-age':1,
-    'ur-life-birth':1,
-    'ur-contact-author':1,
-    'ur-contact-team':1,
-    'ur-group-header':1,
-    'ur-guarantee':1,
-    'ur-app-header':1,
-    'ur-app-bento':1,
-    'ur-hero-join':1,
-    'ur-hero-question':1,
-    'ur-channel-sub':1,
-    'ur-channel-max':1,
-    'ur-channel-tg':1,
-    'ur-author-bento':1,
-    'ur-audio-play':1
+    new_first_island_consumed_v1:1,
+    new_second_island_consumed_v1:1,
+    new_bento_50_consumed_v1:1,
+    new_bento_consumed_v1:1,
+    new_life_calendar_65_toggle_v1:1,
+    new_life_calendar_age_slider_v1:1,
+    new_life_calendar_birthdate_v1:1,
+    new_contact_author_click_v1:1,
+    new_contact_team_click_v1:1,
+    new_online_group_header_click_v1:1,
+    new_guarantee_open_v1:1,
+    new_application_header_click_v1:1,
+    new_application_bento_click_v1:1,
+    new_participate_firstscreen_click_v1:1,
+    new_question_firstscreen_click_v1:1,
+    new_channel_subscribe_click_v1:1,
+    new_channel_max_click_v1:1,
+    new_channel_telegram_click_v1:1,
+    new_author_message_bento_click_v1:1,
+    new_audio_anchor_play_click_v1:1
   };
 
   window.dataLayer=window.dataLayer||[];
@@ -151,7 +170,7 @@
 
   function ux(elementId,action,extra){
     if(!elementId||!action)return false;
-    return reach('ur-ux',Object.assign({element_id:String(elementId),action:String(action)},extra||{}),{once:false});
+    return reach('ux_interaction',Object.assign({element_id:String(elementId),action:String(action)},extra||{}),{once:false});
   }
 
   function normalizeElementId(node,fallback){
@@ -166,7 +185,7 @@
 
   /* Existing components may call __bzTrackEvent with raw event names.
      Only identifiers registered in the GOALS contract are sent as goals; other component
-     events stay as telemetry and may feed ur-ux below. */
+     events stay as telemetry and may feed ux_interaction below. */
   var UX_RAW_MAP={
     pricing_format_select:['pricing_register','format_select'],
     pricing_calculator_toggle:['pricing_calculator','toggle'],
@@ -215,11 +234,11 @@
 
   function maybeEngaged(){
     if(activity.hadTrustedInteraction&&activity.activeMs>=15000){
-      reach('ur-engaged',{interaction_confirmed:true});
+      reach('engaged_visit',{interaction_confirmed:true});
       /* BOR01 is a human-confirmed contact, not a bare foreground timer. */
-      reach('ur-f-contact',{
+      reach('funnel_contact_v1',{
         semantic_stage:'contact',
-        source_goal:'ur-engaged',
+        source_goal:'engaged_visit',
         foreground_seconds:Math.max(15,Math.round(activity.activeMs/1000)),
         interaction_confirmed:true
       });
@@ -235,7 +254,7 @@
     activity.thresholds.forEach(function(seconds){
       if(activity.fired[seconds]||activity.activeMs<seconds*1000||!activity.hadTrustedInteraction)return;
       activity.fired[seconds]=true;
-      reach('ur-active-'+seconds,{foreground_seconds:seconds,interaction_confirmed:true});
+      reach('active_'+seconds,{foreground_seconds:seconds,interaction_confirmed:true});
     });
     maybeEngaged();
     maybeDerivedGoals();
@@ -267,7 +286,7 @@
     scrollState.percent=Math.max(scrollState.percent,currentScrollPercent());
     [25,50,75,90].forEach(function(p){
       if(scrollState.percent+0.0001<p)return;
-      reach('ur-scroll-'+p,{
+      reach('scroll_'+p,{
         threshold_percent:p,
         document_height:document.documentElement.scrollHeight,
         viewport_height:Math.round((window.visualViewport&&window.visualViewport.height)||window.innerHeight||0)
@@ -289,7 +308,7 @@
     if(!scrollState.endSeenAt||document.visibilityState!=='visible')return;
     if(performance.now()-scrollState.endSeenAt<1000)return;
     scrollState.endReached=true;
-    reach('ur-site-end',{visible_ms:1000});
+    reach('site_end_reached',{visible_ms:1000});
     maybeDerivedGoals();
   }
 
@@ -327,10 +346,10 @@
 
   function maybeDerivedGoals(){
     if(activity.activeMs>=60000&&scrollState.reached75){
-      reach('ur-deep-read',{foreground_seconds:Math.round(activity.activeMs/1000),scroll_threshold:75});
+      reach('deep_read',{foreground_seconds:Math.round(activity.activeMs/1000),scroll_threshold:75});
     }
     if(activity.activeMs>=60000&&scrollState.reached90&&activity.hadTrustedInteraction){
-      reach('ur-full-read',{
+      reach('full_read',{
         foreground_seconds:Math.round(activity.activeMs/1000),
         scroll_threshold:90,
         interaction_confirmed:true,
@@ -344,8 +363,8 @@
      Semantic funnel stages.
      These markers belong to meaning/function, never to section order,
      scroll percentage or visual CSS classes:
-       core-complete      -> ur-f-core
-       decision           -> ur-f-decision
+       core-complete      -> funnel_core_v1
+       decision           -> funnel_decision_v1
 
      Product bento has its own guarded consumption gates below:
        50%      -> TOP -> MID -> >=8s total active bento time;
@@ -356,8 +375,8 @@
      AND the visit has produced at least one trusted human interaction.
   -------------------------------------------------------------- */
   var SEMANTIC_STAGES={
-    'core-complete':{goal:'ur-f-core',visibleMs:600,minRatio:0.5},
-    'decision':{goal:'ur-f-decision',visibleMs:600,minRatio:0.5}
+    'core-complete':{goal:'funnel_core_v1',visibleMs:600,minRatio:0.5},
+    'decision':{goal:'funnel_decision_v1',visibleMs:600,minRatio:0.5}
   };
   var semanticEvaluators=[];
 
@@ -467,9 +486,9 @@
      responsive blocks do not create false negatives. Time is counted from TOP,
      not only after MID, which preserves legitimate reading patterns.
 
-       first island  -> ur-island-1
+       first island  -> new_first_island_consumed_v1
                         TOP -> MID -> >=10s total island time -> END >=300ms
-       second island -> ur-island-2
+       second island -> new_second_island_consumed_v1
                         TOP -> MID -> >=8s total island time -> END >=300ms
   -------------------------------------------------------------- */
   var ISLAND_CONSUMPTION_DEFAULTS={
@@ -618,14 +637,14 @@
     window.__bzEditorialIslandConsumptionGates={
       first:installIslandConsumptionGate({
         key:'first',
-        goal:'ur-island-1',
+        goal:'new_first_island_consumed_v1',
         semanticStage:'first-island-consumed',
         definitionVersion:'top_mid_totalactive10_end300_v2',
         requiredActiveMs:10000
       }),
       second:installIslandConsumptionGate({
         key:'second',
-        goal:'ur-island-2',
+        goal:'new_second_island_consumed_v1',
         semanticStage:'second-island-consumed',
         definitionVersion:'top_mid_totalactive8_end300_v2',
         requiredActiveMs:8000
@@ -687,11 +706,11 @@
       if(!state.topSeen&&semanticIntersectsViewport(top)){
         state.topSeen=true;
         state.lastTick=performance.now();
-        publish('new_bento_checkpoint',{checkpoint:'top',goal_candidate:'ur-bento-full'});
+        publish('new_bento_checkpoint',{checkpoint:'top',goal_candidate:'new_bento_consumed_v1'});
       }
       if(state.topSeen&&!state.midSeen&&semanticIntersectsViewport(mid)){
         state.midSeen=true;
-        publish('new_bento_checkpoint',{checkpoint:'mid',goal_candidate:'ur-bento-full'});
+        publish('new_bento_checkpoint',{checkpoint:'mid',goal_candidate:'new_bento_consumed_v1'});
       }
     }
 
@@ -700,7 +719,7 @@
          document.visibilityState!=='visible'||!activity.hadTrustedInteraction)return;
       state.halfDone=true;
       var activeSeconds=Number((state.activeMs/1000).toFixed(1));
-      reach('ur-bento-50',{
+      reach('new_bento_50_consumed_v1',{
         semantic_stage:'new-bento-50-consumed',
         semantic_definition_version:'top_mid_totalactive8_v1',
         checkpoint_top:true,
@@ -710,7 +729,7 @@
         interaction_confirmed:true
       });
       publish('new_bento_50_consumption_gate_passed',{
-        goal:'ur-bento-50',
+        goal:'new_bento_50_consumed_v1',
         bento_active_seconds:activeSeconds
       });
     }
@@ -732,7 +751,7 @@
       maybeConfirmHalf();
       state.done=true;
       var activeSeconds=Number((state.activeMs/1000).toFixed(1));
-      reach('ur-bento-full',{
+      reach('new_bento_consumed_v1',{
         semantic_stage:'new-bento-consumed',
         semantic_definition_version:'top_mid_totalactive15_end300_v3',
         checkpoint_top:true,
@@ -744,7 +763,7 @@
         interaction_confirmed:true
       });
       publish('new_bento_consumption_gate_passed',{
-        goal:'ur-bento-full',
+        goal:'new_bento_consumed_v1',
         bento_active_seconds:activeSeconds,
         end_intersection:true
       });
@@ -819,25 +838,25 @@
     if(name==='drawer_open'){
       /* Opening the commercial drawer is useful telemetry, but is intentionally
          NOT BOR05. BOR05 starts only when the person actually begins entering
-         checkout data (see ur-checkout-start below). */
-      reach('ur-drawer-open',d);
+         checkout data (see checkout_started below). */
+      reach('commercial_drawer_open',d);
     }
-    else if(name==='tariff_selected'||name==='sticky_tariff_selected'||name==='decision_tariff_selected'||name==='tariff_floor_selected')reach('ur-tariff-select',Object.assign({source_event:name},d));
-    else if(name==='payment_start')reach('ur-pay-start',d);
-    else if(name==='payment_redirect')reach('ur-pay-redirect',d);
+    else if(name==='tariff_selected'||name==='sticky_tariff_selected'||name==='decision_tariff_selected'||name==='tariff_floor_selected')reach('tariff_selected',Object.assign({source_event:name},d));
+    else if(name==='payment_start')reach('payment_started',d);
+    else if(name==='payment_redirect')reach('payment_redirected',d);
     else if(name==='payment_success'){
-      reach('ur-pay-success',d);
+      reach('payment_success',d);
       /* commercial.js emits payment_success only after authoritative server status CONFIRMED. */
-      reach('ur-f-purchase',Object.assign({
+      reach('funnel_purchase_v1',Object.assign({
         semantic_stage:'purchase',
         source_event:name,
         confirmation:'server_confirmed'
       },d));
     }
-    else if(name==='payment_error')reach('ur-pay-error',d,{once:false});
+    else if(name==='payment_error')reach('payment_error',d,{once:false});
     else if(name==='prepay_talk_open')ux('pricing_prepay_talk','open',{source_event:name,source_cta:d.source_cta||'pricing-prepay-talk'});
-    else if(name==='header_personal_channel_selected')reach('ur-social-click',{platform:d.channel||'messenger',placement:'commercial_support',source_event:name},{once:false});
-    else if(name==='ilya_personal_click')reach('ur-social-click',{platform:'telegram',placement:'commercial_personal',source_event:name},{once:false});
+    else if(name==='header_personal_channel_selected')reach('social_outbound_click',{platform:d.channel||'messenger',placement:'commercial_support',source_event:name},{once:false});
+    else if(name==='ilya_personal_click')reach('social_outbound_click',{platform:'telegram',placement:'commercial_personal',source_event:name},{once:false});
   });
 
   /* One-format production CTA: clicking the explicit plan CTA is the user's
@@ -885,7 +904,7 @@
         lifeCalendarSliderInitialValue=Number.isFinite(defaultValue)?defaultValue:36;
       }
       if(current!==lifeCalendarSliderInitialValue){
-        reach('ur-life-age',{
+        reach('new_life_calendar_age_slider_v1',{
           component:'life_calendar',
           interaction:'age_slider',
           age_value:Math.round(current)
@@ -897,7 +916,7 @@
     if(event.target.id==='bzlc-birthdate-intro'){
       var parsed=validLifeCalendarBirthDate(event.target.value);
       if(parsed){
-        reach('ur-life-birth',{
+        reach('new_life_calendar_birthdate_v1',{
           component:'life_calendar',
           interaction:'birthdate_valid',
           age_years:parsed.age_years
@@ -912,7 +931,7 @@
     var life65Toggle=event.target.closest('#bzlc-cut-toggle-intro');
     if(life65Toggle){
       var life65WasActive=life65Toggle.getAttribute('aria-checked')==='true';
-      reach('ur-life-65',{
+      reach('new_life_calendar_65_toggle_v1',{
         component:'life_calendar',
         interaction:'65_year_scenario_toggle',
         previous_state:life65WasActive?'65':'80',
@@ -926,14 +945,14 @@
       var contactRoute=contactToggle.closest('[data-bz-contact-route]');
       var contactRouteName=contactRoute&&contactRoute.getAttribute('data-bz-contact-route')||'';
       if(contactRouteName==='author'){
-        reach('ur-contact-author',{
+        reach('new_contact_author_click_v1',{
           component:'footer_contact',
           interaction:'route_click',
           route:'author',
           placement:'footer_contact'
         });
       }else if(contactRouteName==='team'){
-        reach('ur-contact-team',{
+        reach('new_contact_team_click_v1',{
           component:'footer_contact',
           interaction:'route_click',
           route:'team',
@@ -945,7 +964,7 @@
     /* Header intent CTA. Kept distinct from generic commercial drawer telemetry. */
     var onlineGroupHeader=event.target.closest('[data-commercial-source="mobile-header-group"]');
     if(onlineGroupHeader){
-      reach('ur-group-header',{
+      reach('new_online_group_header_click_v1',{
         component:'header',
         interaction:'online_group_click',
         source_cta:'mobile-header-group',
@@ -963,12 +982,12 @@
       var newApplicationSource=newApplication.getAttribute('data-analytics-new-application')||'';
       var applicationPlacement=newApplication.getAttribute('data-bz-application-source')||'';
       if(newApplicationSource==='header'){
-        reach('ur-app-header',{source_cta:'header',placement:'header'});
+        reach('new_application_header_click_v1',{source_cta:'header',placement:'header'});
       }else if(newApplicationSource==='bento'||newApplicationSource==='bento-inline'){
-        reach('ur-app-bento',{source_cta:newApplicationSource,placement:applicationPlacement||'product_bento'});
+        reach('new_application_bento_click_v1',{source_cta:newApplicationSource,placement:applicationPlacement||'product_bento'});
       }
       if(applicationPlacement==='bento-inline-firstscreen'){
-        reach('ur-hero-join',{
+        reach('new_participate_firstscreen_click_v1',{
           component:'firstscreen_cta',
           interaction:'participate_click',
           source_cta:'bento-inline-firstscreen',
@@ -979,7 +998,7 @@
 
     var firstscreenQuestion=event.target.closest('[data-bzc-question-source="firstscreen-secondary-quiet"]');
     if(firstscreenQuestion){
-      reach('ur-hero-question',{
+      reach('new_question_firstscreen_click_v1',{
         component:'firstscreen_cta',
         interaction:'question_click',
         source_cta:'firstscreen-secondary-quiet',
@@ -989,7 +1008,7 @@
 
     var channelSubscribe=event.target.closest('[data-analytics-channel-subscribe]');
     if(channelSubscribe){
-      reach('ur-channel-sub',{
+      reach('new_channel_subscribe_click_v1',{
         component:'author_follow_step',
         interaction:'subscribe_channel_click',
         source_cta:channelSubscribe.getAttribute('data-analytics-channel-subscribe')||'follow-step',
@@ -1001,14 +1020,14 @@
     if(channelChoice){
       var channelName=channelChoice.getAttribute('data-analytics-channel-choice')||'';
       if(channelName==='max'){
-        reach('ur-channel-max',{
+        reach('new_channel_max_click_v1',{
           component:'author_follow_step',
           interaction:'channel_choice_click',
           channel:'max',
           placement:'product_bento_author'
         });
       }else if(channelName==='telegram'){
-        reach('ur-channel-tg',{
+        reach('new_channel_telegram_click_v1',{
           component:'author_follow_step',
           interaction:'channel_choice_click',
           channel:'telegram',
@@ -1019,7 +1038,7 @@
 
     var newAuthorMessage=event.target.closest('[data-analytics-new-author-message]');
     if(newAuthorMessage){
-      reach('ur-author-bento',{
+      reach('new_author_message_bento_click_v1',{
         source_cta:newAuthorMessage.getAttribute('data-analytics-new-author-message')||'bento',
         placement:'product_bento',
         intent:'author_situation_message'
@@ -1028,7 +1047,7 @@
 
     var newAudioAnchorPlay=event.target.closest('[data-analytics-new-audio-anchor-play]');
     if(newAudioAnchorPlay){
-      reach('ur-audio-play',{
+      reach('new_audio_anchor_play_click_v1',{
         source_cta:'audio-anchor-play',
         placement:'product_bento',
         audio_state:newAudioAnchorPlay.getAttribute('aria-disabled')==='true'?'placeholder':'live'
@@ -1037,7 +1056,7 @@
 
     var guaranteeOpen=event.target.closest('[data-bz-product-guarantee-open]');
     if(guaranteeOpen){
-      reach('ur-guarantee',{source_cta:'bento-guarantee',placement:'product_bento'});
+      reach('new_guarantee_open_v1',{source_cta:'bento-guarantee',placement:'product_bento'});
     }
 
     var commercialControl=event.target.closest('[data-bzc-plan-open],[data-commercial-entry],[data-bzc-open="checkout"]');
@@ -1060,13 +1079,13 @@
       if(funnelCta){
         /* If a user clicks faster than the 600ms visibility observer, record
            BOR03 first so the semantic funnel remains monotonic. */
-        reach('ur-f-decision',{
+        reach('funnel_decision_v1',{
           semantic_stage:'decision',
           source_event:'commercial_cta_click_fallback',
           source_cta:commercialSource,
           decision_version:'0579'
         });
-        reach('ur-f-cta',{
+        reach('funnel_cta_v1',{
           semantic_stage:'cta',
           source_cta:commercialSource,
           cta_role:commercialRole
@@ -1076,7 +1095,7 @@
 
     var commercialTalk=event.target.closest('[data-analytics-commercial-talk]');
     if(commercialTalk){
-      reach('ur-talk',{
+      reach('commercial_talk_v1',{
         semantic_stage:'cta',
         intent:'human_contact_before_payment',
         source_cta:commercialTalk.getAttribute('data-bzc-source')||'pricing-prepay-talk'
@@ -1102,7 +1121,7 @@
 
     var planOpen=event.target.closest('[data-bzc-plan-open]');
     if(planOpen){
-      reach('ur-tariff-select',{
+      reach('tariff_selected',{
         plan_id:planOpen.getAttribute('data-bzc-plan-open')||'group',
         source_cta:planOpen.getAttribute('data-bzc-source')||planOpen.getAttribute('data-commercial-source')||'page'
       });
@@ -1111,7 +1130,7 @@
     var messenger=event.target.closest('a[href*="t.me/"],a[href*="telegram.me/"],a[href*="max.ru/"]');
     if(messenger){
       var href=messenger.getAttribute('href')||'';
-      reach('ur-social-click',{
+      reach('social_outbound_click',{
         platform:/max\.ru/i.test(href)?'max':'telegram',
         placement:messenger.getAttribute('data-bzc-source')||messenger.getAttribute('data-commercial-source')||(messenger.closest('[data-bz-tariff-salvage]')?'tariff_salvage':messenger.closest('footer')?'footer':'site')
       },{once:false});
@@ -1135,7 +1154,7 @@
     }
   },true);
 
-  /* ur-checkout-start = the person actually begins entering checkout data,
+  /* checkout_started = the person actually begins entering checkout data,
      not merely opening the commercial drawer. */
   document.addEventListener('focusin',function(event){
     if(!event.isTrusted||!event.target||!event.target.closest)return;
@@ -1144,11 +1163,11 @@
       var layer=document.getElementById('bz-commercial-layer');
       var checkoutSource=layer&&layer.dataset&&layer.dataset.bzcOrigin||'checkout';
       var firstField=customer.getAttribute('data-bzc-customer')||customer.name||'field';
-      reach('ur-checkout-start',{first_field:firstField,source_cta:checkoutSource});
+      reach('checkout_started',{first_field:firstField,source_cta:checkoutSource});
       /* BOR05 = actual start of checkout, not merely opening the drawer. */
-      reach('ur-f-checkout',{
+      reach('funnel_checkout_v1',{
         semantic_stage:'checkout',
-        source_event:'ur-checkout-start',
+        source_event:'checkout_started',
         first_field:firstField,
         source_cta:checkoutSource
       });

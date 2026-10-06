@@ -158,7 +158,7 @@
     if(typeof window.__bzTrackEvent==='function')return window.__bzTrackEvent(name,payload,opts||{oncePerSession:false});
     window.dataLayer=window.dataLayer||[];
     window.dataLayer.push(Object.assign({event:name},payload));
-    if(typeof window.ym==='function'){try{window.ym(110906734,'reachGoal',name,payload);}catch(_ymErr){}}
+    if(typeof window.ym==='function'){try{window.ym(109705214,'reachGoal',name,payload);}catch(_ymErr){}}
     return true;
   }
   function setActive(root,key,opts){
