@@ -1929,6 +1929,57 @@
   .alpha-hero-price-anchor::before{display:none!important;content:none!important}
   .alpha-hero-price{column-gap:12px!important}
 </style>
+
+<style id="naladka-checkout-polish-v3">
+  .modalSlot strong{text-transform:none!important}
+  .alfaLeadCard{width:min(590px,100%)}
+  .alfaLeadPrice{
+    margin:-4px 0 18px!important;
+    padding:15px 0 16px!important;
+    grid-template-columns:auto 1fr!important;
+  }
+  .alfaLeadPrice>strong{font-size:31px!important}
+  .alfaLeadFields{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:12px;
+  }
+  .alfaLeadPhoneField{grid-column:1/-1}
+  .alfaLeadSecure,.alfaLeadAfter,.alfaLeadConsent{
+    margin:0;
+    line-height:1.4;
+  }
+  .alfaLeadSecure{
+    margin-top:2px;
+    padding-left:22px;
+    position:relative;
+    font-size:13px;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .alfaLeadSecure::before{
+    content:"✓";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--orange);
+    font-weight:900;
+  }
+  .alfaLeadAfter{font-size:13px;color:var(--muted)}
+  .alfaLeadConsent{
+    font-size:11px;
+    color:var(--muted);
+    opacity:.9;
+  }
+  @media(max-width:540px){
+    .alfaLeadFields{grid-template-columns:1fr;gap:10px}
+    .alfaLeadPhoneField{grid-column:auto}
+    .alfaLeadCard{padding-top:24px!important}
+    .alfaLeadCard h3{margin-bottom:12px!important}
+    .modalSlot{margin-bottom:17px!important;padding:13px 15px!important}
+    .alfaLeadPrice{margin-bottom:15px!important}
+  }
+</style>
 </head>
 <body class="alpha-page">
 <header class="topbar">
@@ -2084,12 +2135,18 @@
       <div class="alfaLeadPrice" aria-label="Стоимость участия">
         <span>Стоимость</span>
         <strong>1 990 ₽</strong>
-        <small>≈ 7 пачек сигарет</small>
       </div>
       <form id="alfaLeadForm" novalidate>
-        <label><span>Телефон</span><input required name="contact" id="alfaLeadPhone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 999 123-45-67"></label>
+        <div class="alfaLeadFields">
+          <label><span>Имя</span><input required name="name" id="alfaLeadName" type="text" autocomplete="name" placeholder="Илья" minlength="2"></label>
+          <label><span>Email</span><input required name="email" id="alfaLeadEmail" type="email" autocomplete="email" inputmode="email" placeholder="name@mail.ru"></label>
+          <label class="alfaLeadPhoneField"><span>Телефон</span><input required name="contact" id="alfaLeadPhone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 999 123-45-67"></label>
+        </div>
         <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button class="primary" id="alfaLeadSubmit" type="submit">Перейти к оплате</button>
+        <p class="alfaLeadSecure">Защищённая оплата откроется на странице Т-Банка.</p>
+        <p class="alfaLeadAfter">После оплаты — ссылка на встречу и напоминания в Telegram или MAX.</p>
+        <p class="alfaLeadConsent">Нажимая «Перейти к оплате», вы соглашаетесь с условиями участия и обработкой персональных данных.</p>
         <div class="formStatus" id="alfaLeadStatus" aria-live="polite"></div>
       </form>
     </div>
@@ -2118,12 +2175,16 @@
   const AMOUNT=199000;
   const modal=document.getElementById('alfaLeadModal');
   const form=document.getElementById('alfaLeadForm');
+  const nameInput=document.getElementById('alfaLeadName');
+  const emailInput=document.getElementById('alfaLeadEmail');
   const phone=document.getElementById('alfaLeadPhone');
   const submit=document.getElementById('alfaLeadSubmit');
   const status=document.getElementById('alfaLeadStatus');
   const curtain=document.getElementById('successCurtain');
 
-  function valid(v){return String(v||'').replace(/\D/g,'').length>=10}
+  function validPhone(v){return String(v||'').replace(/\D/g,'').length>=10}
+  function validName(v){return String(v||'').trim().length>=2}
+  function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v||'').trim())}
   function cleanPaymentParams(){
     try{
       const u=new URL(location.href);
@@ -2137,7 +2198,7 @@
     status.className='formStatus'+(message?' err':'');
     modal.classList.add('show');
     document.body.style.overflow='hidden';
-    setTimeout(()=>phone.focus(),80);
+    setTimeout(()=>nameInput.focus(),80);
     try{if(window.ym)window.ym(110906734,'reachGoal','marafon_naladka_1990_modal_open')}catch(_){}
   }
   function closeModal(){
@@ -2209,10 +2270,24 @@
 
   form.addEventListener('submit',async e=>{
     e.preventDefault();
+    const customerName=String(nameInput.value||'').trim();
+    const customerEmail=String(emailInput.value||'').trim();
     const contact=String(phone.value||'').trim();
     const website=String(form.elements.website.value||'').trim();
     if(website)return;
-    if(!valid(contact)){
+    if(!validName(customerName)){
+      status.textContent='Укажите имя.';
+      status.className='formStatus err';
+      nameInput.focus();
+      return;
+    }
+    if(!validEmail(customerEmail)){
+      status.textContent='Укажите корректный email.';
+      status.className='formStatus err';
+      emailInput.focus();
+      return;
+    }
+    if(!validPhone(contact)){
       status.textContent='Укажите корректный номер телефона.';
       status.className='formStatus err';
       phone.focus();
@@ -2220,7 +2295,7 @@
     }
     const old=submit.textContent;
     submit.disabled=true;
-    submit.textContent='Открываем оплату…';
+    submit.textContent='Переходим к оплате…';
     status.textContent='';
     status.className='formStatus';
     try{
@@ -2230,7 +2305,8 @@
         body:JSON.stringify({
           plan:PLAN,
           phone:contact,
-          name:'Участник',
+          name:customerName,
+          email:customerEmail,
           flowId:'2026-10-11-evening',
           startDate:'2026-10-11',
           startLabel:'Воскресенье, 11 октября · 18:00–21:00 МСК',
