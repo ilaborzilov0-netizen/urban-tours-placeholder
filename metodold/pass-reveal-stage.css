@@ -1,0 +1,1245 @@
+/* owner:pass-shell-active-state-0316
+   Canonical reveal shell and active-window composition for the single shared pricing pass.
+   This owner controls viewport framing, chrome release and the active commercial hierarchy. */
+#borzilov-lp .bz-pass-reveal-stage{
+  box-sizing:border-box;
+  position:relative;
+  z-index:4;
+  width:100vw;
+  min-height:100svh;
+  margin-left:calc(50% - 50vw);
+  display:grid;
+  place-items:center;
+  padding:clamp(22px,5svh,56px) clamp(24px,4.4vw,72px);
+  overflow:clip;
+  background:#06171d;
+  isolation:isolate;
+}
+#borzilov-lp .bz-pass-reveal-stage::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:none;
+}
+#borzilov-lp .bz-pass-reveal-stage > .pricing-register{
+  width:min(1240px,calc(100vw - 64px));
+  max-width:1240px;
+  margin:0 auto;
+  padding:0;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__register{
+  width:100%;
+}
+
+/* While the pass owns the viewport, the page chrome leaves the frame. */
+html body.bz-pass-reveal-active #borzilov-lp#borzilov-lp .bz-nav-wrap{
+  opacity:0!important;
+  transform:translate3d(0,-110%,0)!important;
+  pointer-events:none!important;
+  transition:opacity 180ms ease,transform 240ms cubic-bezier(.22,.78,.2,1)!important;
+}
+html body.bz-pass-reveal-active #borzilov-lp .bz-mobile-nav-overlay{
+  opacity:0!important;
+  pointer-events:none!important;
+}
+html body.bz-pass-reveal-active #borzilov-lp .bz244-start-floating{
+  opacity:0!important;
+  pointer-events:none!important;
+}
+
+/* The active-window chip states value, not service status. */
+#borzilov-lp #bz1092-product-commercial-late .pricing-register__decision-window::before{
+  min-width:auto;
+  text-align:center;
+  letter-spacing:.055em;
+}
+
+/* Mobile is a separate framing genre, not a scaled desktop composition. */
+@media(max-width:760px){
+  #borzilov-lp .bz-pass-reveal-stage{
+    align-items:center;
+  }
+
+}
+/* Tall phones: preserve generous object air. */
+@media(max-width:760px) and (min-height:780px){
+  #borzilov-lp .bz-pass-reveal-stage{padding-top:clamp(18px,4svh,34px);padding-bottom:clamp(18px,4svh,34px);}
+}
+/* Medium phones: denser frame, same pass geometry. */
+@media(max-width:760px) and (min-height:680px) and (max-height:779px){
+  #borzilov-lp .bz-pass-reveal-stage{padding-top:10px;padding-bottom:10px;}
+}
+/* Short phones: let the pass own more than one viewport rather than reveal the next block. */
+@media(max-width:760px) and (max-height:679px){
+  #borzilov-lp .bz-pass-reveal-stage{
+    min-height:100svh;
+    align-items:start;
+    padding-top:6px;
+    padding-bottom:12px;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  html body.bz-pass-reveal-active #borzilov-lp#borzilov-lp .bz-nav-wrap{transition:none!important;}
+}
+
+
+/* pass shell · mobile geometry
+   Mobile is a separate full-screen object framing, not a scaled desktop card. */
+@media(max-width:760px){
+  #borzilov-lp .bz-pass-reveal-stage{
+    box-sizing:border-box;
+    display:block;
+    min-height:100svh;
+    padding:var(--pass-stage-y) var(--pass-stage-x);
+    background:#06171d;
+    overflow:clip;
+  }
+  #borzilov-lp .bz-pass-reveal-stage::before{
+    display:none;
+  }
+  #borzilov-lp .bz-pass-reveal-stage > .pricing-register{
+    box-sizing:border-box;
+    width:calc(100vw - (var(--pass-stage-x) * 2));
+    max-width:none;
+    min-height:calc(100svh - (var(--pass-stage-y) * 2));
+    margin:0 auto;
+    padding:0!important;
+    display:flex;
+    flex-direction:column;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__register{
+    width:100%;
+    min-height:calc(100svh - (var(--pass-stage-y) * 2));
+    display:flex;
+    flex-direction:column;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__service{
+    min-height:0!important;
+    height:0!important;
+    padding:0!important;
+    border:0!important;
+    overflow:hidden;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__active{
+    flex:1 1 auto;
+    min-height:0;
+  }
+
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__headline-row{
+    align-items:center;
+    gap:12px;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__content h4{
+    line-height:.88;
+    letter-spacing:-.066em;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__headline-row .pricing-register__start{
+    margin:0 0 2px auto;
+    font-size:clamp(10.5px,2.9vw,12px);
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__price{
+    border-left:0;
+    border-top:1px solid rgba(108,110,114,.16);
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__price>strong{
+    line-height:.86;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__standard-price{
+    font-size:clamp(15px,4.1vw,18px);
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__price small{
+    font-size:clamp(11.5px,3.15vw,13px);
+  }
+
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator{
+    flex:0 0 auto;
+    background:#faf9f7;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-toggle{
+    padding:0 var(--pass-inner-x)!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel{
+    padding-inline:var(--pass-inner-x);
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__action{
+    flex:0 0 auto;
+    width:100%!important;
+    margin-inline:0!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__action-main{
+    width:100%;
+    align-items:flex-end;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__action-main strong{
+    max-width:8.5ch;
+    line-height:.9;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__action-main i{
+    font-size:clamp(25px,7vw,31px);
+  }
+}
+
+/* Tall phones: the pass can breathe internally, never externally. */
+@media(max-width:760px) and (min-height:800px){
+  #borzilov-lp .bz-pass-reveal-stage{
+    --pass-inner-x:clamp(20px,5.8vw,26px);
+  }
+
+  
+}
+
+/* Medium phones: keep the monumental scale with tighter internal cadence. */
+@media(max-width:760px) and (min-height:680px) and (max-height:799px){
+  #borzilov-lp .bz-pass-reveal-stage{--pass-stage-y:14px;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__content h4{font-size:clamp(47px,12.8vw,58px);}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__price>strong{font-size:clamp(54px,14.8vw,68px);}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__action{min-height:clamp(136px,18svh,150px)!important;}
+}
+
+/* Short phones: preserve the one-object frame; reduce inner scale before exposing the next section. */
+@media(max-width:760px) and (max-height:679px){
+  #borzilov-lp .bz-pass-reveal-stage{
+    --pass-stage-x:12px;
+    overflow:visible;
+  }
+  #borzilov-lp .bz-pass-reveal-stage > .pricing-register,
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__register{
+    min-height:calc(100svh - 16px);
+  }
+
+  
+
+  
+
+  
+
+  
+}
+
+/* pass shell · hierarchy and responsive geometry
+   Removes non-participating shelves from spatial budget and keeps price / CTA dominant. */
+html body.bz-pass-reveal-active #borzilov-lp#borzilov-lp#borzilov-lp .bz-nav-wrap{
+  opacity:0!important;
+  visibility:hidden!important;
+  transform:translate3d(0,-104%,0)!important;
+  pointer-events:none!important;
+}
+
+/* Remove hidden legacy content from the reveal's spatial budget. */
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__service,
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__kicker,
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__difference,
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__price>span{
+  display:none!important;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__register{
+  isolation:isolate;
+}
+
+/* Commercial hierarchy: price/CTA primary; window and compare are supporting layers. */
+
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__decision-window::before{
+  color:rgba(146,88,63,.88);
+  letter-spacing:.045em;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__decision-window-track{
+  height:4px;
+  background:rgba(8,26,32,.06);
+  box-shadow:inset 0 0 0 1px rgba(8,26,32,.045);
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__decision-window-fill{
+  background:rgba(165,103,73,.64);
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__decision-window-dot{
+  width:7px;
+  height:7px;
+  box-shadow:0 0 0 3px rgba(169,103,73,.055);
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__decision-window-time{
+  color:rgba(8,26,32,.68);
+  font-weight:760;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__decision-window-note{
+  color:rgba(8,26,32,.34)!important;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__decision-window-reason{
+  color:rgba(8,26,32,.64)!important;
+  font-weight:700!important;
+}
+
+
+/* Desktop/tablet: object remains immersive even on 1440-1920px displays. */
+@media(min-width:761px){
+  #borzilov-lp .bz-pass-reveal-stage{
+    min-height:100svh;
+    padding:var(--pass-stage-desktop-y) var(--pass-stage-desktop-x);
+    place-items:stretch center;
+    background:#06171d;
+  }
+  #borzilov-lp .bz-pass-reveal-stage::before{
+    opacity:0;
+    background:none;
+  }
+  #borzilov-lp .bz-pass-reveal-stage > .pricing-register{
+    min-height:calc(100svh - (var(--pass-stage-desktop-y) * 2));
+    display:flex;
+    flex-direction:column;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__register{
+    min-height:calc(100svh - (var(--pass-stage-desktop-y) * 2));
+    display:flex;
+    flex-direction:column;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__active{
+    flex:1 1 auto;
+    min-height:0;
+  }
+
+  
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__headline-row .pricing-register__start{
+    margin-bottom:9px;
+    font-size:clamp(13px,1.05vw,16px);
+  }
+
+  
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__standard-price{
+    margin-bottom:5px;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__decision-window{
+    width:min(100%,390px);
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-toggle{
+    padding-inline:clamp(18px,2.2vw,34px)!important;
+    font-size:clamp(12px,1vw,14px);
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__action{
+    min-height:clamp(162px,20svh,204px)!important;
+    padding:clamp(32px,4.2svh,48px) clamp(34px,4.2vw,64px)!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__action-main strong{
+    font-size:clamp(50px,4.8vw,72px);
+    line-height:.89;
+    max-width:8.6ch;
+  }
+}
+
+/* Mobile: minimal exterior air, internally balanced hierarchy. */
+@media(max-width:760px){
+  #borzilov-lp .bz-pass-reveal-stage{
+    --pass-inner-x:clamp(19px,5.5vw,25px);
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__register{
+    box-shadow:
+      0 2px 4px rgba(8,26,32,.032),
+      0 1px 0 rgba(255,255,255,.42) inset,
+      0 -1px 0 rgba(108,110,114,.075) inset;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__content{
+    padding-top:clamp(27px,3.7svh,35px);
+    padding-bottom:clamp(17px,2.3svh,22px);
+  }
+
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__headline-row .pricing-register__start{
+    margin-bottom:3px;
+    color:rgba(8,26,32,.74);
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__price{
+    padding-top:clamp(18px,2.5svh,24px);
+    padding-bottom:clamp(20px,2.8svh,28px);
+  }
+
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__decision-window{
+    padding:clamp(11px,1.5svh,14px) 10px clamp(10px,1.35svh,12px);
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__decision-window::before{
+    top:9px;
+    right:9px;
+    padding:3px 6px 2px;
+    font-size:6.8px;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__decision-window-time{
+    font-size:11px;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__decision-window-now{
+    top:11px;
+    font-size:8px;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-toggle{
+    padding-inline:var(--pass-inner-x)!important;
+    font-size:clamp(11px,3vw,12.5px);
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-toggle i{
+    font-size:18px;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__action{
+    padding:clamp(22px,3.1svh,29px) var(--pass-inner-x)!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__action-main strong{
+    font-size:clamp(39px,10.9vw,49px);
+    letter-spacing:-.057em;
+  }
+}
+
+@media(max-width:760px) and (min-height:800px){
+  #borzilov-lp .bz-pass-reveal-stage{--pass-stage-y:12px;}
+
+  
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__action{min-height:clamp(156px,19.5svh,178px)!important;}
+}
+
+@media(max-width:760px) and (max-height:679px){
+  #borzilov-lp .bz-pass-reveal-stage{--pass-stage-y:5px;}
+
+  
+
+  
+
+  
+
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__action-main strong{font-size:clamp(35px,10vw,42px);}
+}
+
+@media(prefers-reduced-motion:reduce){
+  html body.bz-pass-reveal-active #borzilov-lp .bz-nav-wrap{transition:none!important;}
+}
+
+
+/* pass shell · canonical four-zone rhythm
+   commercial core → breathing zone → utility → CTA. */
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__register{
+  display:grid!important;
+  grid-template-rows:auto minmax(clamp(48px,7svh,96px),1fr) auto auto;
+  align-content:stretch;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__active{
+  flex:none!important;
+  min-height:0!important;
+  border-bottom:0!important;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator{
+  margin:0!important;
+  align-self:end;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__action{
+  margin:0!important;
+  align-self:end;
+}
+
+/* Desktop/tablet: compact the upper information mass and spend all extra height in one central pause. */
+@media(min-width:761px){
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__active{
+    grid-template-columns:minmax(0,55%) minmax(360px,45%);
+    align-items:start;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__content{
+    padding:clamp(42px,5.2svh,66px) clamp(38px,4.7vw,72px) clamp(25px,3svh,38px) 4px;
+    justify-content:flex-start;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__content h4{
+    font-size:clamp(78px,8.15vw,126px);
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__price{
+    padding:clamp(42px,5.2svh,66px) 4px clamp(25px,3svh,38px) clamp(34px,4.1vw,64px);
+    justify-content:flex-start;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__price>strong{
+    font-size:clamp(84px,8.25vw,128px);
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__decision-window{
+    margin-top:clamp(13px,1.6svh,18px);
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-toggle{
+    min-height:clamp(54px,6.1svh,64px);
+  }
+}
+
+/* Mobile is explicitly stacked: title/date -> price/window -> one pause -> compare + CTA. */
+@media(max-width:760px){
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__register{
+    grid-template-rows:auto minmax(clamp(44px,6.5svh,82px),1fr) auto auto;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__active{
+    grid-template-columns:1fr!important;
+    grid-template-rows:auto auto!important;
+    align-content:start;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__content{
+    min-height:0!important;
+    padding:clamp(24px,3.25svh,31px) var(--pass-inner-x) clamp(7px,1svh,10px)!important;
+    justify-content:flex-start!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__content h4{
+    font-size:clamp(54px,14.6vw,68px);
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__price{
+    min-height:0!important;
+    padding:clamp(8px,1.2svh,12px) var(--pass-inner-x) clamp(12px,1.7svh,17px)!important;
+    justify-content:flex-start!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__price>strong{
+    font-size:clamp(61px,16.4vw,78px);
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__standard-price{
+    margin-bottom:3px!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__price small{
+    margin-top:8px;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__decision-window{
+    margin-top:clamp(10px,1.45svh,14px)!important;
+  }
+
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__action{
+    min-height:clamp(150px,19svh,174px)!important;
+  }
+}
+
+/* Tall screens: extra height belongs ONLY to the central breathing zone. */
+@media(max-width:760px) and (min-height:800px){
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__content{
+    padding-top:clamp(28px,3.6svh,36px)!important;
+    padding-bottom:9px!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__content h4{
+    font-size:clamp(56px,14.9vw,70px);
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__price{
+    padding-top:10px!important;
+    padding-bottom:15px!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__price>strong{
+    font-size:clamp(64px,16.8vw,80px);
+  }
+}
+
+/* Short phones: compress the upper cluster, not the central compositional logic. */
+@media(max-width:760px) and (max-height:679px){
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__register{
+    grid-template-rows:auto minmax(34px,1fr) auto auto;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__content{
+    padding-top:14px!important;
+    padding-bottom:5px!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__content h4{
+    font-size:clamp(45px,12.6vw,55px);
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__price{
+    padding-top:7px!important;
+    padding-bottom:9px!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__price>strong{
+    font-size:clamp(53px,14.6vw,64px);
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__decision-window{
+    margin-top:8px!important;
+    padding-top:8px!important;
+    padding-bottom:7px!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-toggle{
+    min-height:42px!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__action{
+    min-height:140px!important;
+    padding-top:18px!important;
+    padding-bottom:18px!important;
+  }
+}
+
+
+/* pass shell · canonical material and lower lock
+   Satin body remains continuous; utility stays secondary; CTA stays physically grounded. */
+#borzilov-lp .bz-pass-reveal-stage::before{
+  display:none!important;
+}
+
+/* The selected Satin Metal / Grain 02 remains unchanged; reveal surfaces become slightly translucent
+   so the locked material can read continuously through the object instead of splitting into white shelves. */
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__active{
+  background:rgba(252,252,251,.86)!important;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__price{
+  border-left-color:rgba(108,110,114,.11)!important;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator{
+  background:rgba(250,249,247,.93)!important;
+  border-top-color:rgba(108,110,114,.11)!important;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__decision-window{
+  background:rgba(240,237,231,.62)!important;
+  border-color:rgba(108,110,114,.09)!important;
+  box-shadow:0 1px 0 rgba(255,255,255,.34) inset!important;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__decision-window::before{
+  border-color:rgba(169,103,73,.095)!important;
+  background:rgba(252,250,246,.66)!important;
+}
+
+/* Lower lock: utility stays quiet, CTA copy is physically grounded in the slab. */
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-toggle{
+  font-weight:680!important;
+  color:rgba(8,26,32,.66)!important;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-toggle i{
+  color:rgba(165,103,73,.60)!important;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__action-main{
+  align-items:flex-end!important;
+}
+
+/* Desktop: less external room, more object. Ultra-wide cap is relaxed without going literal full-bleed. */
+@media(min-width:761px){
+  #borzilov-lp .bz-pass-reveal-stage{
+    --pass-stage-desktop-x:clamp(12px,1.25vw,22px);
+    --pass-stage-desktop-y:clamp(12px,2.1svh,24px);
+  }
+  #borzilov-lp .bz-pass-reveal-stage > .pricing-register{
+    width:min(1840px,calc(100vw - (var(--pass-stage-desktop-x) * 2)))!important;
+    max-width:1840px!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__content,
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__price{
+    padding-top:clamp(40px,4.8svh,60px)!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__action{
+    padding-bottom:clamp(30px,3.8svh,44px)!important;
+  }
+}
+
+/* Mobile: preserve the chosen four-zone rhythm, only tighten the object/frame relation. */
+@media(max-width:760px){
+  #borzilov-lp .bz-pass-reveal-stage{
+    --pass-stage-x:8px;
+    --pass-stage-y:8px;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__price{
+    border-top-color:rgba(108,110,114,.10)!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__action{
+    padding-bottom:clamp(20px,2.7svh,26px)!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-toggle{
+    min-height:clamp(44px,5.6svh,48px)!important;
+  }
+}
+
+/* On tall phones, do not let the one breathing zone look like a missing content floor:
+   let the lower slab absorb a small part of the extra height while keeping one single pause. */
+@media(max-width:760px) and (min-height:860px){
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__action{
+    min-height:clamp(164px,19.5svh,184px)!important;
+  }
+}
+
+
+/* owner:pass-active-interaction-0316
+   Canonical breathing-zone interaction for the active-window pass.
+   Opening the utility layer does not resize the pass or move the CTA. */
+#borzilov-lp .bz-pass-reveal-stage[data-vertical-rhythm="03"] .pricing-register__register{
+  grid-template-rows:auto minmax(clamp(130px,30svh,300px),1fr) auto auto!important;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__active{grid-row:1;}
+#borzilov-lp .bz-pass-reveal-stage .bz-pass-breathing-zone{
+  grid-row:2;
+  position:relative;
+  min-width:0;
+  min-height:0;
+  overflow:hidden;
+  pointer-events:none;
+  isolation:isolate;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator{grid-row:3;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__action{grid-row:4;}
+#borzilov-lp .bz-pass-reveal-stage[data-vertical-rhythm="03"] .pricing-register__content{
+  padding-top:clamp(28px,3.4svh,42px)!important;
+  padding-bottom:clamp(8px,1svh,14px)!important;
+}
+#borzilov-lp .bz-pass-reveal-stage[data-vertical-rhythm="03"] .pricing-register__price{
+  padding-top:clamp(10px,1.3svh,16px)!important;
+  padding-bottom:clamp(10px,1.3svh,16px)!important;
+}
+#borzilov-lp .bz-pass-reveal-stage[data-vertical-rhythm="03"] .pricing-register__decision-window{
+  margin-top:clamp(8px,1svh,12px)!important;
+}
+
+/* Calculator is an absolute layer inside the pause, anchored to the utility row below it. */
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing{
+  position:absolute!important;
+  z-index:2;
+  left:clamp(22px,3.2vw,52px);
+  right:clamp(22px,3.2vw,52px);
+  bottom:clamp(14px,1.8svh,22px);
+  width:auto!important;
+  max-height:calc(100% - clamp(20px,2.6svh,34px));
+  min-height:0!important;
+  margin:0!important;
+  padding:clamp(18px,2.2svh,26px)!important;
+  overflow:auto;
+  overscroll-behavior:contain;
+  border:1px solid rgba(108,110,114,.13)!important;
+  border-radius:4px;
+  background:rgba(247,246,242,.96)!important;
+  box-shadow:
+    0 10px 28px rgba(8,26,32,.065),
+    0 1px 0 rgba(255,255,255,.62) inset!important;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  pointer-events:auto;
+  transform-origin:50% 100%;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing[hidden]{display:none!important;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing.is-entering{
+  animation:passCalculatorRise 240ms cubic-bezier(.22,.78,.2,1) both!important;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing.is-leaving{
+  animation:passCalculatorLeave 170ms cubic-bezier(.4,0,.6,1) both!important;
+}
+@keyframes passCalculatorRise{
+  from{opacity:0;transform:translateY(16px);clip-path:inset(100% 0 0 0);}
+  to{opacity:1;transform:none;clip-path:inset(0 0 0 0);}
+}
+@keyframes passCalculatorLeave{
+  from{opacity:1;transform:none;clip-path:inset(0 0 0 0);}
+  to{opacity:0;transform:translateY(10px);clip-path:inset(100% 0 0 0);}
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-calculator-open .bz-pass-breathing-zone{
+  pointer-events:auto;
+}
+
+/* The trigger stays a quiet lower utility strip; it no longer owns the panel geometry. */
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator{
+  position:relative;
+  z-index:3;
+  overflow:visible!important;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-toggle[aria-expanded="true"]{
+  background:rgba(247,246,242,.56);
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-toggle[aria-expanded="true"] i{
+  transform:rotate(180deg);
+}
+
+@media(min-width:761px){
+  #borzilov-lp .bz-pass-reveal-stage[data-vertical-rhythm="03"] > .pricing-register{
+    min-height:min(calc(100svh - (var(--pass-stage-desktop-y,20px) * 2)),940px)!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage[data-vertical-rhythm="03"] .pricing-register__register{
+    min-height:min(calc(100svh - (var(--pass-stage-desktop-y,20px) * 2)),940px)!important;
+  }
+}
+
+@media(max-width:760px){
+  #borzilov-lp .bz-pass-reveal-stage[data-vertical-rhythm="03"] > .pricing-register,
+  #borzilov-lp .bz-pass-reveal-stage[data-vertical-rhythm="03"] .pricing-register__register{
+    min-height:min(calc(100svh - (var(--pass-stage-y,8px) * 2)),900px)!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage[data-vertical-rhythm="03"] .pricing-register__register{
+    grid-template-rows:auto minmax(clamp(116px,29svh,280px),1fr) auto auto!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage[data-vertical-rhythm="03"] .pricing-register__content{
+    padding-top:clamp(18px,2.35svh,24px)!important;
+    padding-bottom:5px!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage[data-vertical-rhythm="03"] .pricing-register__price{
+    padding-top:6px!important;
+    padding-bottom:8px!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing{
+    left:var(--pass-inner-x,20px);
+    right:var(--pass-inner-x,20px);
+    bottom:10px;
+    max-height:calc(100% - 18px);
+    padding:14px!important;
+    gap:12px!important;
+    border-radius:4px;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing .pricing-register__calculator-fields{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing .pricing-register__calculator-field{
+    gap:6px;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing .pricing-register__calculator-field label{
+    font-size:8px;
+    letter-spacing:.08em;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing .pricing-register__calculator-field input{
+    height:44px;
+    padding-inline:11px;
+    font-size:17px;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing .pricing-register__calculator-input-wrap input{padding-right:34px;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing .pricing-register__calculator-input-wrap>span{right:11px;font-size:13px;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing .pricing-register__calculator-result{
+    min-height:0!important;
+    padding:10px 0 0!important;
+    border-left:0!important;
+    border-top:1px solid rgba(108,110,114,.11);
+    gap:6px!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing .pricing-register__calculator-result>span{font-size:8px;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing .pricing-register__calculator-secondary{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing .pricing-register__calculator-secondary strong{font-size:10.5px;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing .pricing-register__calculator-result p{
+    min-height:0;
+    max-width:none;
+    font-size:10px;
+    line-height:1.25;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing .pricing-register__calculator-result p strong{
+    display:inline;
+    margin:0 0 0 3px;
+    font-size:13px;
+  }
+}
+
+@media(max-width:760px) and (max-height:679px){
+  #borzilov-lp .bz-pass-reveal-stage[data-vertical-rhythm="03"] .pricing-register__register{
+    grid-template-rows:auto minmax(150px,24svh) auto auto!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing{
+    bottom:6px;
+    max-height:calc(100% - 10px);
+    padding:10px!important;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing .pricing-register__calculator-field input{height:40px;}
+}
+
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing.is-entering,
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-panel--breathing.is-leaving{animation:none!important;}
+}
+
+/* owner:pass-anniversary-0316
+   Canonical delayed anniversary reveal in the reserved breathing zone.
+   It is active only while the personal decision window is active. */
+#borzilov-lp .bz-pass-reveal-stage .bz-pass-anniversary{
+  position:absolute;
+  z-index:1;
+  top:3%;
+  right:clamp(26px,4vw,70px);
+  bottom:0;
+  left:clamp(26px,4vw,70px);
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+  min-width:0;
+  padding:clamp(12px,1.8svh,22px) 0 clamp(28px,4.2svh,48px);
+  text-align:left;
+  pointer-events:none;
+  opacity:1;
+  transition:opacity 180ms cubic-bezier(.4,0,.6,1);
+}
+#borzilov-lp .bz-pass-reveal-stage .bz-pass-anniversary>strong,
+#borzilov-lp .bz-pass-reveal-stage .bz-pass-anniversary>p{
+  opacity:0;
+  transform:translateY(5px);
+  will-change:opacity,transform;
+}
+#borzilov-lp .bz-pass-reveal-stage .bz-pass-anniversary>strong{
+  display:block;
+  margin:0 0 clamp(10px,1.25svh,14px);
+  color:rgba(31,34,36,.48);
+  font-size:clamp(9px,.67vw,11px);
+  font-weight:700;
+  line-height:1.15;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+  transition:
+    opacity 380ms cubic-bezier(.22,.78,.2,1),
+    transform 380ms cubic-bezier(.22,.78,.2,1);
+}
+#borzilov-lp .bz-pass-reveal-stage .bz-pass-anniversary>p{
+  width:min(100%,540px);
+  max-width:540px;
+  margin:0;
+  color:rgba(31,34,36,.64);
+  font-size:clamp(14.5px,1vw,17px);
+  font-weight:430;
+  line-height:1.44;
+  letter-spacing:-.012em;
+  transition:
+    opacity 520ms cubic-bezier(.22,.78,.2,1) 680ms,
+    transform 520ms cubic-bezier(.22,.78,.2,1) 680ms;
+}
+#borzilov-lp .bz-pass-reveal-stage .bz-pass-anniversary>p b{
+  color:rgba(31,34,36,.91);
+  font-weight:650;
+}
+#borzilov-lp .bz-pass-reveal-stage.is-anniversary-revealed .bz-pass-anniversary>strong,
+#borzilov-lp .bz-pass-reveal-stage.is-anniversary-revealed .bz-pass-anniversary>p{
+  opacity:1;
+  transform:none;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-calculator-open .bz-pass-anniversary{
+  opacity:0;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-calculator-open .bz-pass-anniversary>strong,
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-calculator-open .bz-pass-anniversary>p{
+  transition-delay:0ms;
+  transition-duration:160ms;
+}
+
+@media(max-width:760px){
+  #borzilov-lp .bz-pass-reveal-stage .bz-pass-anniversary{
+    top:1%;
+    right:var(--pass-inner-x,20px);
+    left:var(--pass-inner-x,20px);
+    padding:8px 0 clamp(24px,3.6svh,34px);
+  }
+  #borzilov-lp .bz-pass-reveal-stage .bz-pass-anniversary>strong{
+    margin-bottom:8px;
+    font-size:clamp(8.5px,2.35vw,9.5px);
+    letter-spacing:.15em;
+  }
+  #borzilov-lp .bz-pass-reveal-stage .bz-pass-anniversary>p{
+    width:min(100%,315px);
+    max-width:315px;
+    font-size:clamp(12px,3.4vw,14px);
+    line-height:1.42;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp .bz-pass-reveal-stage .bz-pass-anniversary,
+  #borzilov-lp .bz-pass-reveal-stage .bz-pass-anniversary>strong,
+  #borzilov-lp .bz-pass-reveal-stage .bz-pass-anniversary>p{
+    transform:none!important;
+    transition:none!important;
+  }
+}
+/* owner:pass-expiry-equation-0316
+   Canonical expired state: urgency is replaced by an editorial personal price reframe.
+   Quiet controls produce one dominant equation result; no separate calculator card. */
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__decision-window,
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__standard-price,
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator{
+  display:none!important;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .bz-pass-breathing-zone{
+  pointer-events:auto;
+}
+#borzilov-lp .bz-pass-reveal-stage[data-vertical-rhythm="03"] .pricing-register.is-decision-expired .pricing-register__register{
+  grid-template-rows:auto clamp(316px,35svh,370px) auto auto!important;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .bz-pass-anniversary{display:none!important;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-panel--breathing{
+  top:clamp(18px,2.5svh,28px);
+  bottom:auto;
+  left:clamp(22px,3.2vw,52px);
+  right:clamp(22px,3.2vw,52px);
+  width:auto!important;
+  max-height:none!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:visible!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  align-content:start;
+  gap:clamp(14px,1.8svh,20px)!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  pointer-events:auto;
+  transform-origin:50% 0;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-panel--breathing.is-entering{animation:passExpiryEditorialIn 260ms cubic-bezier(.22,.78,.2,1) both!important;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-panel--breathing.is-leaving{animation:passExpiryEditorialOut 160ms cubic-bezier(.4,0,.6,1) both!important;}
+@keyframes passExpiryEditorialIn{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:none;}}
+@keyframes passExpiryEditorialOut{from{opacity:1;transform:none;}to{opacity:0;transform:translateY(4px);}}
+
+/* In expired state the old form inputs remain available to the active-window calculator owner,
+   but disappear here. The slider/stepper controls take over without creating a second card. */
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__calculator-expired-head{display:none;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-controls{display:none;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-fields{display:none!important;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__editorial-controls{
+  display:grid;
+  width:min(100%,700px);
+  gap:clamp(13px,1.6svh,18px);
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-expired-head{
+  display:block;
+  width:min(100%,760px);
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-expired-head>p{
+  margin:0;
+  color:rgba(31,34,36,.82);
+  font-size:clamp(21px,2.1vw,34px);
+  line-height:1.02;
+  font-weight:720;
+  letter-spacing:-.04em;
+  text-wrap:balance;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-expired-head>p strong{
+  color:#081a20;
+  font-weight:860;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-control{display:grid;gap:7px;min-width:0;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-control-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:18px;
+  min-width:0;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-control-head label{
+  color:rgba(31,34,36,.44);
+  font-size:clamp(8px,.62vw,10px);
+  line-height:1;
+  font-weight:820;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-control-head input{
+  appearance:textfield;
+  -moz-appearance:textfield;
+  width:72px;
+  min-width:0;
+  height:26px;
+  padding:0;
+  border:0;
+  border-bottom:1px solid transparent;
+  border-radius:0;
+  outline:0;
+  background:transparent;
+  color:rgba(31,34,36,.76);
+  font:760 clamp(14px,1.18vw,18px)/1 Inter,system-ui,sans-serif;
+  letter-spacing:-.025em;
+  text-align:right;
+  font-variant-numeric:tabular-nums;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-control-head input::-webkit-outer-spin-button,
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-control-head input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-control-head input::placeholder{color:rgba(31,34,36,.30);opacity:1;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-control-head input:focus{border-bottom-color:rgba(169,103,73,.40);color:#081a20;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-control-head input[aria-invalid="true"]{border-bottom-color:rgba(154,64,45,.55);}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-value-wrap{display:flex;align-items:baseline;justify-content:flex-end;gap:4px;min-width:86px;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-value-wrap input{width:62px;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-value-wrap>span{color:rgba(31,34,36,.42);font-size:13px;font-weight:700;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-rail{
+  display:grid;
+  grid-template-columns:28px minmax(0,1fr) 28px;
+  align-items:center;
+  gap:10px;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-rail button{
+  appearance:none;
+  width:28px;
+  height:28px;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:rgba(31,34,36,.34);
+  font:500 18px/1 Inter,system-ui,sans-serif;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-rail button:hover{color:rgba(31,34,36,.62);}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-rail button:focus-visible{outline:1px solid rgba(169,103,73,.55);outline-offset:2px;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-rail input[type="range"]{
+  width:100%;
+  height:24px;
+  margin:0;
+  padding:0;
+  appearance:none;
+  -webkit-appearance:none;
+  background:transparent;
+  cursor:pointer;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-rail input[type="range"]::-webkit-slider-runnable-track{height:2px;border-radius:0;background:rgba(31,34,36,.15);}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-rail input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:13px;height:13px;margin-top:-5.5px;border:1px solid rgba(8,26,32,.24);border-radius:50%;background:#f5f1ea;box-shadow:0 1px 2px rgba(8,26,32,.08);}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-rail input[type="range"]::-moz-range-track{height:2px;border:0;border-radius:0;background:rgba(31,34,36,.15);}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-rail input[type="range"]::-moz-range-thumb{width:13px;height:13px;border:1px solid rgba(8,26,32,.24);border-radius:50%;background:#f5f1ea;box-shadow:0 1px 2px rgba(8,26,32,.08);}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-rail input[type="range"]:focus-visible{outline:1px solid rgba(169,103,73,.42);outline-offset:3px;}
+
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-result{
+  width:min(100%,780px);
+  min-height:0;
+  padding:clamp(13px,1.55svh,17px) 0 0!important;
+  border-left:0!important;
+  border-top:1px solid rgba(108,110,114,.13);
+  gap:0;
+}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-result>span,
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-secondary,
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-result>p{display:none!important;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-verdict{display:grid;grid-template-columns:auto auto;justify-content:start;align-items:baseline;gap:5px 10px;width:100%;font-variant-numeric:tabular-nums;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-verdict>strong{color:rgba(31,34,36,.58);font-size:clamp(17px,1.45vw,24px);line-height:1;font-weight:700;letter-spacing:-.035em;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-verdict>i{color:rgba(31,34,36,.26);font:500 clamp(14px,1.05vw,18px)/1 Inter,system-ui,sans-serif;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-answer{grid-column:1/-1;display:grid;gap:3px;min-width:0;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-answer b{color:#081a20;font-size:clamp(49px,5.2vw,82px);line-height:.84;font-weight:900;letter-spacing:-.06em;text-transform:uppercase;}
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-answer small{color:rgba(31,34,36,.64);font-size:clamp(10px,.78vw,12px);line-height:1.05;font-weight:760;letter-spacing:.055em;text-transform:uppercase;}
+
+@media(max-width:760px){
+  #borzilov-lp .bz-pass-reveal-stage[data-vertical-rhythm="03"] .pricing-register.is-decision-expired .pricing-register__register{grid-template-rows:auto clamp(292px,36svh,330px) auto auto!important;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-panel--breathing{top:14px;left:var(--pass-inner-x,20px);right:var(--pass-inner-x,20px);gap:12px!important;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-expired-head>p{font-size:clamp(19px,5.9vw,25px);line-height:1.03;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__editorial-controls{gap:11px;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-control{gap:5px;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-control-head label{font-size:7.5px;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-control-head input{width:64px;height:24px;font-size:15px;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-value-wrap{min-width:78px;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-value-wrap input{width:54px;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-value-wrap>span{font-size:12px;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-rail{grid-template-columns:26px minmax(0,1fr) 26px;gap:7px;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-rail button{width:26px;height:26px;font-size:17px;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-result{padding-top:11px!important;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-answer b{font-size:clamp(45px,13.1vw,58px);}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-answer small{font-size:8px;}
+}
+@media(max-width:760px) and (max-height:679px){
+  #borzilov-lp .bz-pass-reveal-stage[data-vertical-rhythm="03"] .pricing-register.is-decision-expired .pricing-register__register{grid-template-rows:auto 270px auto auto!important;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-panel--breathing{top:10px;gap:8px!important;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-expired-head>p{font-size:18px;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-control-head input{height:22px;font-size:14px;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register__editorial-rail{gap:5px;}
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-answer b{font-size:42px;}
+}
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-panel--breathing.is-entering,
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register.is-decision-expired .pricing-register__calculator-panel--breathing.is-leaving{animation:none!important;}
+}
+
+#borzilov-lp .bz-pass-reveal-stage .pricing-register.is-expiry-morphing .pricing-register__price>strong{
+  animation:passExpiryPriceSettle 520ms cubic-bezier(.22,.78,.2,1) 120ms both;
+}
+@keyframes passExpiryPriceSettle{
+  0%{opacity:.18;transform:translateY(5px);}
+  38%{opacity:.42;transform:translateY(2px);}
+  100%{opacity:1;transform:none;}
+}
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp .bz-pass-reveal-stage .pricing-register.is-expiry-morphing .pricing-register__price>strong{animation:none!important;}
+}
+
+
+/* owner:mobile-shared-pass-preview-0316
+   Canonical L2 commercial overview inside the L4 mobile-navigation shell.
+   The SAME pass DOM is temporarily reparented; there is no duplicate pricing component. */
+@media(max-width:980px){
+  #borzilov-lp .bz-mobile-pass-preview{
+    box-sizing:border-box;
+    position:absolute;
+    inset:0;
+    z-index:6;
+    display:block;
+    overflow:hidden;
+    background:#071A20;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transform:translate3d(0,10px,0);
+    transition:opacity 320ms ease,transform 380ms cubic-bezier(.16,1,.3,1),visibility 0s linear 400ms;
+  }
+  #borzilov-lp .bz-mobile-pass-preview[aria-hidden="true"]{pointer-events:none!important;}
+  #borzilov-lp .bz-mobile-pass-preview__host{
+    position:absolute;
+    inset:0;
+    overflow:auto;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding:42px 0 max(10px,env(safe-area-inset-bottom));
+  }
+  #borzilov-lp .bz-mobile-pass-preview__host::-webkit-scrollbar{display:none;}
+  #borzilov-lp .bz-mobile-pass-preview__back{
+    appearance:none;
+    position:absolute;
+    left:max(10px,env(safe-area-inset-left));
+    top:max(8px,env(safe-area-inset-top));
+    z-index:9;
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    min-height:34px;
+    padding:0 10px;
+    border:0;
+    border-radius:var(--r-control,3px);
+    background:rgba(250,247,240,.82);
+    color:#081A20;
+    font:inherit;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:-.01em;
+    cursor:pointer;
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+  }
+  #borzilov-lp.bz-mobile-pass-preview .bz-mobile-pass-preview{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:translate3d(0,0,0);
+    transition:opacity 300ms ease,transform 420ms cubic-bezier(.16,1,.3,1),visibility 0s linear 0s;
+  }
+  #borzilov-lp.bz-mobile-pass-preview .bz-mobile-nav-shell{
+    opacity:0!important;
+    pointer-events:none!important;
+    transform:translate3d(0,-14px,0)!important;
+    transition:opacity 220ms ease,transform 320ms cubic-bezier(.16,1,.3,1)!important;
+  }
+  #borzilov-lp.bz-mobile-pass-preview .bz-logo,
+  #borzilov-lp.bz-mobile-pass-preview .bz-mobile-start-link{opacity:0!important;pointer-events:none!important;}
+  #borzilov-lp.bz-mobile-pass-preview .bz-nav-wrap,
+  #borzilov-lp.bz-mobile-pass-preview.bz-mobile-nav-open .bz-nav-wrap{
+    background:transparent!important;
+    border-color:transparent!important;
+    box-shadow:none!important;
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+    pointer-events:none!important;
+  }
+  #borzilov-lp.bz-mobile-pass-preview .bz-mobile-nav-trigger{pointer-events:auto!important;}
+  #borzilov-lp.bz-mobile-pass-preview .bz-mobile-nav-trigger-lines>span{background:#081A20!important;}
+
+  /* Keep the canonical product ancestor so all pricing-register owners keep
+     matching. Only the pass itself is exposed inside menu preview. */
+  #borzilov-lp .bz-mobile-pass-preview__host #bz1092-product-commercial-late{
+    box-sizing:border-box!important;
+    width:100%!important;
+    max-width:none!important;
+    margin:0!important;
+    padding:0!important;
+    background:transparent!important;
+  }
+  #borzilov-lp .bz-mobile-pass-preview__host #bz1092-product-commercial-late>:not(.bz-pass-reveal-stage){display:none!important;}
+
+  /* The shared pass keeps its own current pricing/window/calculator state,
+     but adopts overlay geometry instead of page-scene geometry. */
+  #borzilov-lp .bz-mobile-pass-preview__host .bz-pass-reveal-stage{
+    width:100%!important;
+    min-height:calc(100dvh - 42px)!important;
+    margin:0!important;
+    padding:8px 6px 12px!important;
+    overflow:visible!important;
+    background:#FAF7F0!important;
+    place-items:start center!important;
+  }
+  #borzilov-lp .bz-mobile-pass-preview__host .bz-pass-reveal-stage::before{display:none!important;}
+  #borzilov-lp .bz-mobile-pass-preview__host .bz-pass-reveal-stage>.pricing-register{
+    width:calc(100vw - 12px)!important;
+    max-width:540px!important;
+    margin:0 auto!important;
+  }
+}
+@media(max-width:760px){
+  #borzilov-lp .bz-mobile-pass-preview__host{padding-top:38px;}
+  #borzilov-lp .bz-mobile-pass-preview__host .bz-pass-reveal-stage{min-height:calc(100dvh - 38px)!important;}
+}
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp .bz-mobile-pass-preview,
+  #borzilov-lp.bz-mobile-pass-preview .bz-mobile-nav-shell{transition-duration:.01ms!important;}
+}

@@ -1,0 +1,89 @@
+/* owner:0677-chaos-order-director
+   Third long route motion score: chaos -> order.
+   No persistent new character. Motion amplitude, lateral drift and irregularity decay as the route becomes structured.
+   Local peaks (methods cascade, HEAD scene, life calendar) keep their own owners. Guarantee / FAQ stay static. */
+
+html.bz-chaos-order-motion #borzilov-lp .bz-co-item{
+  opacity:0;
+  transform:translate3d(var(--bz-co-x,0px),var(--bz-co-y,8px),0) scale(var(--bz-co-scale,.997));
+  filter:blur(var(--bz-co-blur,0px));
+  transition:
+    opacity var(--bz-co-duration,560ms) cubic-bezier(.18,.76,.22,1) var(--bz-co-delay,0ms),
+    transform var(--bz-co-duration,560ms) cubic-bezier(.18,.76,.22,1) var(--bz-co-delay,0ms),
+    filter var(--bz-co-duration,560ms) ease-out var(--bz-co-delay,0ms);
+  will-change:opacity,transform,filter;
+}
+html.bz-chaos-order-motion #borzilov-lp .bz-co-item.is-bz-co-visible{
+  opacity:1;
+  transform:none;
+  filter:none;
+  will-change:auto;
+}
+
+/* EARLY NOISE: the existing post-method chunks already own their reveal state.
+   We only change the character: slightly asymmetric first, then progressively straighter. */
+html.bz-chaos-order-motion #borzilov-lp #bz-author-poster-second-screen.bz-post-methods-reveal-ready .bz-post-methods-chunk--1:not(.is-revealed){
+  opacity:0;transform:translate3d(-11px,9px,0);filter:blur(.35px)
+}
+html.bz-chaos-order-motion #borzilov-lp #bz-author-poster-second-screen.bz-post-methods-reveal-ready .bz-post-methods-chunk--2:not(.is-revealed){
+  opacity:0;transform:translate3d(8px,8px,0);filter:blur(.25px)
+}
+html.bz-chaos-order-motion #borzilov-lp #bz-author-poster-second-screen.bz-post-methods-reveal-ready .bz-post-methods-chunk--3:not(.is-revealed){
+  opacity:0;transform:translate3d(-5px,7px,0);filter:blur(.18px)
+}
+html.bz-chaos-order-motion #borzilov-lp #bz-author-poster-second-screen.bz-post-methods-reveal-ready .bz-post-methods-chunk--head-scene:not(.is-revealed){
+  opacity:0;transform:translate3d(3px,7px,0);filter:blur(.12px)
+}
+html.bz-chaos-order-motion #borzilov-lp #bz-author-poster-second-screen.bz-post-methods-reveal-ready .bz-post-methods-chunk--4:not(.is-revealed){
+  opacity:0;transform:translate3d(0,5px,0);filter:none
+}
+html.bz-chaos-order-motion #borzilov-lp #bz-author-poster-second-screen.bz-post-methods-reveal-ready [data-post-methods-reveal]{
+  transition:opacity 560ms cubic-bezier(.18,.76,.22,1),transform 620ms cubic-bezier(.18,.76,.22,1),filter 420ms ease-out!important;
+}
+
+/* Life calendar = second local peak. It arrives as one object, then becomes fully static/interactive. */
+html.bz-chaos-order-motion #borzilov-lp .bz-life-calendar-stage.bz-co-item{
+  transform:translate3d(0,12px,0) scale(.991);
+  filter:blur(.28px);
+}
+html.bz-chaos-order-motion #borzilov-lp .bz-life-calendar-stage.bz-co-item.is-bz-co-visible{
+  transform:none;filter:none
+}
+
+/* Ordered product path: no lateral choreography at all. */
+html.bz-chaos-order-motion #borzilov-lp #bz-chapter-03 .bz-co-item{
+  --bz-co-x:0px!important;
+  --bz-co-blur:0px!important;
+  --bz-co-scale:1!important;
+  transition-timing-function:cubic-bezier(.2,.72,.25,1)!important;
+}
+
+/* Proof should feel almost static, not like another show. */
+html.bz-chaos-order-motion #borzilov-lp #bz-proof-transition.bz-co-item{
+  --bz-co-x:0px!important;
+  --bz-co-y:3px!important;
+  --bz-co-scale:1!important;
+  --bz-co-blur:0px!important;
+}
+
+@media(max-width:760px){
+  html.bz-chaos-order-motion #borzilov-lp .bz-co-item{
+    /* Mobile keeps the same score but cuts lateral travel further. */
+    transform:translate3d(var(--bz-co-x,0px),var(--bz-co-y,7px),0) scale(var(--bz-co-scale,.998));
+  }
+  html.bz-chaos-order-motion #borzilov-lp #bz-author-poster-second-screen.bz-post-methods-reveal-ready .bz-post-methods-chunk--1:not(.is-revealed){transform:translate3d(-6px,7px,0);filter:none}
+  html.bz-chaos-order-motion #borzilov-lp #bz-author-poster-second-screen.bz-post-methods-reveal-ready .bz-post-methods-chunk--2:not(.is-revealed){transform:translate3d(5px,6px,0);filter:none}
+  html.bz-chaos-order-motion #borzilov-lp #bz-author-poster-second-screen.bz-post-methods-reveal-ready .bz-post-methods-chunk--3:not(.is-revealed){transform:translate3d(-3px,5px,0);filter:none}
+  html.bz-chaos-order-motion #borzilov-lp #bz-author-poster-second-screen.bz-post-methods-reveal-ready .bz-post-methods-chunk--head-scene:not(.is-revealed){transform:translate3d(2px,5px,0);filter:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  html.bz-chaos-order-motion #borzilov-lp .bz-co-item,
+  html.bz-chaos-order-motion #borzilov-lp #bz-author-poster-second-screen.bz-post-methods-reveal-ready [data-post-methods-reveal]{
+    opacity:1!important;
+    transform:none!important;
+    filter:none!important;
+    transition:none!important;
+    will-change:auto!important;
+  }
+}

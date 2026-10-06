@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Метод Борзилова — архивная версия</title>
+<style>
+html,body{margin:0;min-height:100%;background:#06181e;color:#fff;font-family:Arial,sans-serif}
+#boot{min-height:100vh;display:grid;place-items:center;padding:24px;text-align:center}
+#boot strong{font-size:18px;letter-spacing:.04em}
+#boot small{display:block;margin-top:8px;opacity:.65}
+</style>
+</head>
+<body>
+<div id="boot"><div><strong>МЕТОД БОРЗИЛОВА</strong><small>Загрузка архивной версии…</small></div></div>
+<script>
+(async function(){
+  async function ungzip(url){
+    const r=await fetch(url,{cache:'no-store'});
+    if(!r.ok) throw new Error(url+' '+r.status);
+    if(typeof DecompressionStream!=='function') throw new Error('gzip decompression unsupported');
+    const stream=r.body.pipeThrough(new DecompressionStream('gzip'));
+    return await new Response(stream).text();
+  }
+  try{
+    const [html,analytics,pricing]=await Promise.all([
+      ungzip('./.payload/index.html.gz'),
+      ungzip('./.payload/analytics-events.js.gz'),
+      ungzip('./.payload/pricing-register.js.gz')
+    ]);
+    const analyticsUrl=URL.createObjectURL(new Blob([analytics],{type:'text/javascript'}));
+    const pricingUrl=URL.createObjectURL(new Blob([pricing],{type:'text/javascript'}));
+    const hydrated=html
+      .replace('./analytics-events.js?v=0183',analyticsUrl)
+      .replace('./pricing-register.js?v=0734',pricingUrl);
+    document.open();
+    document.write(hydrated);
+    document.close();
+  }catch(err){
+    console.error('[metodold:boot]',err);
+    const boot=document.getElementById('boot');
+    if(boot)boot.innerHTML='<div><strong>Не удалось загрузить архивную версию.</strong><small>Обновите страницу.</small></div>';
+  }
+})();
+</script>
+</body>
+</html>

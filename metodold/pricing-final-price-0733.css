@@ -1,0 +1,110 @@
+/* owner:pricing-final-price-0733
+   Final tariff hierarchy:
+   24 000 ₽ = old/base price, small and crossed out.
+   14 000 ₽ = actual price, same hero scale the base price previously had.
+   CTA contains no price.
+*/
+#borzilov-lp #bz1092-product-commercial-late .pricing-register[data-bz-final-price-fixed="0733"] .pricing-register__price--final-discount{
+  align-content:center;
+}
+
+#borzilov-lp #bz1092-product-commercial-late .pricing-register[data-bz-final-price-fixed="0733"] .pricing-register__price--final-discount > .pricing-register__standard-price--visible{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  width:max-content;
+  max-width:100%;
+  margin:4px 0 3px!important;
+  color:rgba(8,26,32,.42)!important;
+  font:720 15px/1 Inter,system-ui,sans-serif!important;
+  letter-spacing:-.025em!important;
+  text-decoration-line:line-through!important;
+  text-decoration-thickness:1.25px!important;
+  text-decoration-color:rgba(8,26,32,.42)!important;
+  text-decoration-skip-ink:auto!important;
+  white-space:nowrap!important;
+}
+
+#borzilov-lp #bz1092-product-commercial-late .pricing-register[data-bz-final-price-fixed="0733"] .pricing-register__price--final-discount > strong{
+  display:block!important;
+  color:#081A20!important;
+  font-size:clamp(54px,5.8vw,88px)!important;
+  line-height:.88!important;
+  font-weight:890!important;
+  letter-spacing:-.066em!important;
+  white-space:nowrap!important;
+}
+
+#borzilov-lp #bz1092-product-commercial-late .pricing-register[data-bz-final-price-fixed="0733"] .pricing-register__discount-deadline{
+  display:block;
+  margin-top:5px;
+  color:#A96A4A;
+  font-size:10px;
+  line-height:1.15;
+  font-weight:780;
+  letter-spacing:.01em;
+  white-space:nowrap;
+}
+
+/* Copper CTA: deadline + action only. No price layer. */
+#borzilov-lp #bz1092-product-commercial-late .pricing-register[data-bz-final-price-fixed="0733"] .pricing-register__bonus-action{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-end!important;
+  align-items:stretch!important;
+  gap:0!important;
+  min-height:158px!important;
+  padding:30px var(--pricing-pad-inline) 31px!important;
+  text-align:left!important;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register[data-bz-final-price-fixed="0733"] .pricing-register__bonus-action .pricing-register__action-kicker{
+  margin:0 0 12px!important;
+  color:rgba(255,253,248,.74)!important;
+  font-size:10px!important;
+  line-height:1.12!important;
+  font-weight:850!important;
+  letter-spacing:.13em!important;
+  text-transform:uppercase!important;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register[data-bz-final-price-fixed="0733"] .pricing-register__bonus-action .pricing-register__action-main{
+  width:100%!important;
+  display:flex!important;
+  align-items:flex-end!important;
+  justify-content:space-between!important;
+  gap:18px!important;
+}
+#borzilov-lp #bz1092-product-commercial-late .pricing-register[data-bz-final-price-fixed="0733"] .pricing-register__bonus-action .pricing-register__action-main strong{
+  max-width:9ch!important;
+  font-size:clamp(42px,4.65vw,58px)!important;
+  line-height:.9!important;
+  letter-spacing:-.06em!important;
+}
+
+@media(max-width:760px){
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register[data-bz-final-price-fixed="0733"] .pricing-register__price--final-discount > .pricing-register__standard-price--visible{
+    font-size:13px!important;
+    margin-top:3px!important;
+  }
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register[data-bz-final-price-fixed="0733"] .pricing-register__discount-deadline{
+    font-size:9px;
+    margin-top:4px;
+  }
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register[data-bz-final-price-fixed="0733"] .pricing-register__price--final-discount > strong{
+    font-size:clamp(46px,11.5vw,60px)!important;
+    line-height:.9!important;
+  }
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register[data-bz-final-price-fixed="0733"] .pricing-register__bonus-action{
+    min-height:180px!important;
+    padding:31px 22px 32px!important;
+  }
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register[data-bz-final-price-fixed="0733"] .pricing-register__bonus-action .pricing-register__action-kicker{
+    margin-bottom:13px!important;
+    font-size:9px!important;
+    letter-spacing:.11em!important;
+  }
+  #borzilov-lp #bz1092-product-commercial-late .pricing-register[data-bz-final-price-fixed="0733"] .pricing-register__bonus-action .pricing-register__action-main strong{
+    max-width:8.5ch!important;
+    font-size:clamp(42px,12vw,50px)!important;
+    line-height:.88!important;
+  }
+}

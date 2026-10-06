@@ -1,0 +1,634 @@
+/* owner:0661-compacted-meaning-bento — static-first semantic bento with one local scroll-linked unravel. */
+
+#borzilov-lp #bz-meaning-bento{
+  --bz-support-ink:#142433;
+  --bz-support-blue:#23395D;
+  --bz-support-thread:#5EB8E6;
+  --bz-support-paper:#F4F7FA;
+  --bz-support-card:#FFFFFF;
+  --bz-support-line:rgba(35,57,93,.12);
+  --bz-unravel:1;
+  box-sizing:border-box!important;
+  position:relative;
+  display:block;
+  width:var(--bz-master-island-width,calc(100vw - 72px))!important;
+  max-width:var(--bz-master-island-width,calc(100vw - 72px))!important;
+  min-width:0;
+  margin:104px auto 0!important;
+  padding:clamp(14px,1.3vw,18px)!important;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:10px;
+  background:var(--bz-support-paper);
+  box-shadow:0 34px 88px rgba(2,15,20,.16);
+  color:var(--bz-support-ink);
+  overflow:hidden;
+  isolation:isolate;
+}
+
+#borzilov-lp #bz-meaning-bento *,
+#borzilov-lp #bz-meaning-bento *::before,
+#borzilov-lp #bz-meaning-bento *::after{box-sizing:border-box}
+
+#borzilov-lp .bz-support-bento__thread{
+  position:absolute;
+  z-index:4;
+  inset:0;
+  width:100%;
+  height:100%;
+  overflow:visible;
+  pointer-events:none;
+}
+#borzilov-lp .bz-support-bento__thread--mobile{display:none}
+#borzilov-lp .bz-support-bento__thread path{
+  fill:none;
+  vector-effect:non-scaling-stroke;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+#borzilov-lp .bz-support-bento__thread-base{stroke:rgba(94,184,230,.18);stroke-width:1.5}
+#borzilov-lp .bz-support-bento__thread-draw{
+  stroke:var(--bz-support-thread);
+  stroke-width:1.8;
+  stroke-dasharray:1;
+  stroke-dashoffset:0;
+}
+
+#borzilov-lp .bz-support-bento__head,
+#borzilov-lp .bz-support-bento__card,
+#borzilov-lp .bz-support-bento__final{position:relative;z-index:2}
+
+#borzilov-lp .bz-support-bento__head{
+  display:grid;
+  grid-template-columns:minmax(0,1.34fr) minmax(300px,.66fr);
+  align-items:end;
+  gap:clamp(36px,5.4vw,82px);
+  padding:clamp(42px,4.7vw,64px) clamp(40px,4.4vw,62px);
+  border:1px solid var(--bz-support-line);
+  border-radius:7px;
+  background:#FFFFFF;
+}
+#borzilov-lp .bz-support-bento__head h2{
+  display:grid;
+  gap:0;
+  max-width:950px;
+  margin:0!important;
+  color:var(--bz-support-ink)!important;
+  font:900 clamp(56px,5.2vw,68px)/.91 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  letter-spacing:-.065em!important;
+}
+#borzilov-lp .bz-support-bento__head h2 span{display:block}
+#borzilov-lp .bz-support-bento__head h2 span:last-child{color:var(--bz-support-blue)}
+#borzilov-lp .bz-support-bento__head>p{
+  max-width:42ch!important;
+  margin:0!important;
+  color:rgba(20,36,51,.69)!important;
+  font:600 clamp(17px,1.3vw,19px)/1.46 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  letter-spacing:-.018em!important;
+}
+
+#borzilov-lp .bz-support-bento__matrix{display:grid;gap:clamp(14px,1.3vw,18px);margin-top:clamp(14px,1.3vw,18px)}
+#borzilov-lp .bz-support-bento__row{display:grid;gap:clamp(14px,1.3vw,18px);min-width:0}
+#borzilov-lp .bz-support-bento__row--12{grid-template-columns:minmax(0,4fr) minmax(0,8fr)}
+#borzilov-lp .bz-support-bento__row--34{grid-template-columns:minmax(0,8fr) minmax(0,4fr)}
+
+#borzilov-lp .bz-support-bento__card{
+  min-width:0;
+  margin:0!important;
+  padding:clamp(34px,3.4vw,46px);
+  border:1px solid var(--bz-support-line);
+  border-radius:7px;
+  background:var(--bz-support-card);
+  color:var(--bz-support-ink);
+  overflow:hidden;
+}
+#borzilov-lp .bz-support-bento__card--01,
+#borzilov-lp .bz-support-bento__card--04{background:#F7FAFC}
+#borzilov-lp .bz-support-bento__number{
+  display:block;
+  margin-bottom:clamp(20px,2.1vw,28px);
+  color:#4C91B4;
+  font:850 11px/1 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  letter-spacing:.16em;
+}
+#borzilov-lp .bz-support-bento__card h3{
+  max-width:17ch;
+  margin:0 0 clamp(23px,2.5vw,34px)!important;
+  color:inherit!important;
+  font:870 clamp(34px,3vw,48px)/.93 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  letter-spacing:-.058em!important;
+}
+#borzilov-lp .bz-support-bento__card>p{
+  max-width:65ch!important;
+  margin:0 0 14px!important;
+  color:inherit!important;
+  font:560 clamp(17px,1.25vw,19px)/1.46 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  letter-spacing:-.014em!important;
+}
+#borzilov-lp .bz-support-bento__card>p:last-child{margin-bottom:0!important}
+#borzilov-lp .bz-support-bento__card-thesis{
+  margin-top:clamp(20px,2.2vw,30px)!important;
+  padding-top:clamp(18px,1.8vw,24px);
+  border-top:1px solid var(--bz-support-line);
+  font-size:clamp(20px,1.7vw,26px)!important;
+  line-height:1.16!important;
+  font-weight:810!important;
+  letter-spacing:-.035em!important;
+}
+
+#borzilov-lp .bz-support-bento__cycle{
+  position:relative;
+  display:grid;
+  gap:12px;
+  margin:0 0 clamp(24px,2.6vw,34px);
+  padding:20px 0 18px;
+  border-top:1px solid var(--bz-support-line);
+  border-bottom:1px solid var(--bz-support-line);
+}
+#borzilov-lp .bz-support-bento__cycle-labels{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px 10px;
+}
+#borzilov-lp .bz-support-bento__cycle-labels span{
+  color:var(--bz-support-blue);
+  font:780 clamp(13px,1.05vw,16px)/1.15 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  letter-spacing:-.015em;
+}
+#borzilov-lp .bz-support-bento__cycle-labels i{color:#4C91B4;font:700 15px/1 Inter,system-ui,sans-serif;font-style:normal}
+#borzilov-lp .bz-support-bento__cycle svg{display:block;width:100%;height:8px;overflow:visible}
+#borzilov-lp .bz-support-bento__cycle path{
+  fill:none;
+  stroke:var(--bz-support-thread);
+  stroke-width:2;
+  vector-effect:non-scaling-stroke;
+  stroke-dasharray:1;
+  stroke-dashoffset:0;
+}
+#borzilov-lp .bz-support-bento__quote{
+  margin:12px 0 30px!important;
+  color:var(--bz-support-blue)!important;
+  font-size:clamp(23px,2vw,31px)!important;
+  line-height:1.08!important;
+  font-weight:850!important;
+  letter-spacing:-.042em!important;
+}
+#borzilov-lp .bz-support-bento__memories{
+  display:grid;
+  margin:18px 0 30px;
+  border-top:1px solid var(--bz-support-line);
+  border-bottom:1px solid var(--bz-support-line);
+}
+#borzilov-lp .bz-support-bento__memories article{
+  display:grid;
+  grid-template-columns:minmax(175px,.68fr) minmax(0,1.32fr);
+  gap:18px;
+  padding:17px 0;
+}
+#borzilov-lp .bz-support-bento__memories article+article{border-top:1px solid var(--bz-support-line)}
+#borzilov-lp .bz-support-bento__memories strong,
+#borzilov-lp .bz-support-bento__memories span{
+  font:650 clamp(15px,1.12vw,17px)/1.35 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  letter-spacing:-.014em;
+}
+#borzilov-lp .bz-support-bento__memories strong{color:var(--bz-support-blue);font-weight:800}
+#borzilov-lp .bz-support-bento__memories span{color:rgba(20,36,51,.70)}
+
+#borzilov-lp .bz-support-bento__card--03{
+  --bz-unravel:1;
+  border-color:rgba(255,255,255,.12);
+  background:var(--bz-support-blue);
+  color:#FFFFFF;
+}
+#borzilov-lp .bz-support-bento__card--03 .bz-support-bento__number{color:var(--bz-support-thread)}
+#borzilov-lp .bz-support-bento__card--03>p{color:rgba(255,255,255,.79)!important}
+#borzilov-lp .bz-support-bento__card--03>p strong{color:#FFFFFF}
+#borzilov-lp .bz-support-bento__card--03 .bz-support-bento__card-thesis{border-top-color:rgba(255,255,255,.16)}
+#borzilov-lp .bz-support-bento__old-route,
+#borzilov-lp .bz-support-bento__second-wave{
+  margin:16px 0 30px!important;
+  color:#FFFFFF!important;
+  font-size:clamp(24px,2.25vw,35px)!important;
+  line-height:1.03!important;
+  font-weight:850!important;
+  letter-spacing:-.045em!important;
+}
+#borzilov-lp .bz-support-bento__voice{
+  margin:4px 0 18px!important;
+  color:var(--bz-support-thread)!important;
+  font-size:clamp(19px,1.7vw,26px)!important;
+  line-height:1.1!important;
+  font-weight:820!important;
+  letter-spacing:-.035em!important;
+}
+#borzilov-lp .bz-support-bento__unravel{
+  position:relative;
+  display:grid;
+  align-content:center;
+  min-height:clamp(190px,21vw,252px);
+  margin:clamp(24px,2.8vw,38px) 0;
+  padding:36px 0;
+  border-top:1px solid rgba(255,255,255,.16);
+  border-bottom:1px solid rgba(255,255,255,.16);
+}
+#borzilov-lp .bz-support-bento__unravel>svg{
+  position:absolute;
+  z-index:0;
+  inset:14% 0;
+  width:100%;
+  height:72%;
+  overflow:visible;
+}
+#borzilov-lp .bz-support-bento__unravel path{
+  fill:none;
+  stroke:var(--bz-support-thread);
+  vector-effect:non-scaling-stroke;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+#borzilov-lp .bz-support-bento__knot-line{stroke-width:1.8;opacity:0;stroke-dasharray:1;stroke-dashoffset:1}
+#borzilov-lp .bz-support-bento__clear-line{stroke-width:2;opacity:1;stroke-dasharray:1;stroke-dashoffset:0}
+#borzilov-lp .bz-support-bento__unravel-items{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,.72fr) auto minmax(0,1.2fr) auto minmax(0,1.45fr) auto minmax(0,1.42fr);
+  align-items:center;
+  gap:8px;
+}
+#borzilov-lp .bz-support-bento__unravel-items span{
+  min-width:0;
+  padding:9px 7px;
+  border:1px solid rgba(255,255,255,.18);
+  background:#23395D;
+  color:#FFFFFF;
+  font:800 clamp(10px,.86vw,13px)/1.12 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  letter-spacing:.025em;
+  text-align:center;
+  overflow-wrap:anywhere;
+  transform:translate3d(0,0,0);
+}
+#borzilov-lp .bz-support-bento__unravel-items i{
+  color:var(--bz-support-thread);
+  font:820 clamp(16px,1.5vw,22px)/1 Inter,system-ui,sans-serif;
+  font-style:normal;
+  opacity:1;
+}
+#borzilov-lp .bz-support-bento__tools{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  margin:18px 0 24px;
+  border-top:1px solid rgba(255,255,255,.16);
+  border-bottom:1px solid rgba(255,255,255,.16);
+}
+#borzilov-lp .bz-support-bento__tools article{display:grid;align-content:start;gap:10px;min-width:0;padding:20px 18px;opacity:1}
+#borzilov-lp .bz-support-bento__tools article+article{border-left:1px solid rgba(255,255,255,.16)}
+#borzilov-lp .bz-support-bento__tools strong{color:var(--bz-support-thread);font:850 11px/1 Inter,system-ui,sans-serif;letter-spacing:.14em}
+#borzilov-lp .bz-support-bento__tools span{color:#FFFFFF;font:650 clamp(13px,1vw,16px)/1.3 Inter,system-ui,sans-serif;letter-spacing:-.014em}
+#borzilov-lp .bz-support-bento__core-thesis{
+  max-width:30ch!important;
+  margin-top:14px!important;
+  color:#FFFFFF!important;
+  font-size:clamp(31px,3.2vw,50px)!important;
+  line-height:.94!important;
+  font-weight:890!important;
+  letter-spacing:-.058em!important;
+  opacity:1;
+  transform:translate3d(0,0,0);
+}
+
+#borzilov-lp .bz-support-bento__repeat-route{
+  display:grid;
+  gap:0;
+  margin:22px 0 24px;
+  border-top:1px solid var(--bz-support-line);
+  border-bottom:1px solid var(--bz-support-line);
+}
+#borzilov-lp .bz-support-bento__repeat-route span{
+  padding:13px 0;
+  color:var(--bz-support-blue);
+  font:790 clamp(15px,1.16vw,18px)/1.2 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  letter-spacing:-.022em;
+}
+#borzilov-lp .bz-support-bento__repeat-route i{
+  height:11px;
+  color:var(--bz-support-thread);
+  font:750 15px/1 Inter,system-ui,sans-serif;
+  font-style:normal;
+}
+#borzilov-lp .bz-support-bento__proof-marks{display:flex;gap:8px;margin:0 0 22px}
+#borzilov-lp .bz-support-bento__proof-marks i{display:block;width:8px;height:8px;border-radius:50%;background:var(--bz-support-thread)}
+
+#borzilov-lp .bz-support-bento__final{
+  padding:clamp(38px,4.1vw,54px) clamp(40px,4.4vw,60px);
+  border:1px solid rgba(35,57,93,.12);
+  border-radius:7px;
+  background:var(--bz-support-thread);
+  color:var(--bz-support-ink);
+}
+#borzilov-lp .bz-support-bento__final h3{
+  max-width:18ch;
+  margin:0 0 clamp(23px,2.5vw,34px)!important;
+  color:var(--bz-support-ink)!important;
+  font:900 clamp(43px,4.4vw,64px)/.9 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  letter-spacing:-.064em!important;
+}
+#borzilov-lp .bz-support-bento__final>p{
+  max-width:65ch!important;
+  margin:0 0 14px!important;
+  color:rgba(20,36,51,.78)!important;
+  font:590 clamp(17px,1.25vw,19px)/1.46 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  letter-spacing:-.014em!important;
+}
+#borzilov-lp .bz-support-bento__final-contrast{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1px;
+  margin:clamp(24px,2.8vw,36px) 0;
+  border:1px solid rgba(35,57,93,.18);
+  background:rgba(35,57,93,.18);
+}
+#borzilov-lp .bz-support-bento__final-contrast>div{display:grid;align-content:start;gap:13px;padding:clamp(20px,2.3vw,30px);background:rgba(255,255,255,.28)}
+#borzilov-lp .bz-support-bento__final-contrast span{color:rgba(20,36,51,.58);font:850 10px/1 Inter,system-ui,sans-serif;letter-spacing:.15em}
+#borzilov-lp .bz-support-bento__final-contrast strong{color:rgba(20,36,51,.70);font:800 clamp(19px,1.75vw,27px)/1.12 Inter,system-ui,sans-serif;letter-spacing:-.037em}
+#borzilov-lp .bz-support-bento__final-contrast>div:first-child em{color:rgba(20,36,51,.48);font-style:normal}
+#borzilov-lp .bz-support-bento__final-contrast>div:nth-child(2) strong{color:rgba(20,36,51,.86)}
+#borzilov-lp .bz-support-bento__final-contrast>div:nth-child(2) em{color:var(--bz-support-blue);font-style:normal;font-weight:860}
+#borzilov-lp .bz-support-bento__final-contrast>div:last-child strong{color:var(--bz-support-ink)}
+#borzilov-lp .bz-support-bento__final-contrast>div:last-child em{color:var(--bz-support-blue);font-style:normal;font-weight:900}
+#borzilov-lp .bz-support-bento__final-thesis{
+  max-width:24ch!important;
+  margin-top:clamp(22px,2.4vw,34px)!important;
+  color:var(--bz-support-ink)!important;
+  font-size:clamp(31px,3.2vw,48px)!important;
+  line-height:.95!important;
+  font-weight:900!important;
+  letter-spacing:-.058em!important;
+}
+
+/* Motion is progressive enhancement: without this JS-owned class every word and line is already in its final state. */
+html.bz-support-bento-motion #borzilov-lp [data-bz-support-reveal="head"]:not(.is-visible){opacity:0;transform:translate3d(0,16px,0)}
+html.bz-support-bento-motion #borzilov-lp [data-bz-support-reveal="head"]{transition:opacity 520ms cubic-bezier(.22,1,.36,1),transform 520ms cubic-bezier(.22,1,.36,1)}
+html.bz-support-bento-motion #borzilov-lp [data-bz-support-reveal="row"] .bz-support-bento__card{transition:opacity 560ms cubic-bezier(.22,1,.36,1),transform 560ms cubic-bezier(.22,1,.36,1)}
+html.bz-support-bento-motion #borzilov-lp [data-bz-support-reveal="row"]:not(.is-visible) .bz-support-bento__card{opacity:0;transform:translate3d(0,18px,0)}
+html.bz-support-bento-motion #borzilov-lp [data-bz-support-reveal="row"] .bz-support-bento__card:nth-child(2){transition-delay:80ms}
+html.bz-support-bento-motion #borzilov-lp [data-bz-support-reveal="final"]{transition:opacity 560ms cubic-bezier(.22,1,.36,1),transform 560ms cubic-bezier(.22,1,.36,1)}
+html.bz-support-bento-motion #borzilov-lp [data-bz-support-reveal="final"]:not(.is-visible){opacity:0;transform:translate3d(0,18px,0)}
+html.bz-support-bento-motion #borzilov-lp #bz-meaning-bento:not(.is-thread-visible) .bz-support-bento__thread-draw{stroke-dashoffset:1}
+html.bz-support-bento-motion #borzilov-lp .bz-support-bento__thread-draw{transition:stroke-dashoffset 1300ms cubic-bezier(.22,1,.36,1)}
+
+html.bz-support-bento-motion #borzilov-lp [data-bz-support-reveal="row"]:not(.is-visible) .bz-support-bento__cycle path{stroke-dashoffset:1}
+html.bz-support-bento-motion #borzilov-lp .bz-support-bento__cycle path{transition:stroke-dashoffset 900ms 120ms cubic-bezier(.22,1,.36,1)}
+html.bz-support-bento-motion #borzilov-lp [data-bz-support-reveal="row"]:not(.is-visible) .bz-support-bento__memories article{opacity:0;transform:translate3d(0,8px,0)}
+html.bz-support-bento-motion #borzilov-lp .bz-support-bento__memories article{transition:opacity 460ms cubic-bezier(.22,1,.36,1),transform 460ms cubic-bezier(.22,1,.36,1)}
+html.bz-support-bento-motion #borzilov-lp .bz-support-bento__memories article:nth-child(1){transition-delay:260ms}
+html.bz-support-bento-motion #borzilov-lp .bz-support-bento__memories article:nth-child(2){transition-delay:360ms}
+html.bz-support-bento-motion #borzilov-lp .bz-support-bento__memories article:nth-child(3){transition-delay:460ms}
+
+html.bz-support-bento-motion #borzilov-lp [data-bz-support-reveal="row"]:not(.is-visible) .bz-support-bento__repeat-route span{opacity:.46}
+html.bz-support-bento-motion #borzilov-lp .bz-support-bento__repeat-route span{transition:opacity 320ms ease}
+html.bz-support-bento-motion #borzilov-lp .bz-support-bento__repeat-route span:nth-of-type(1){transition-delay:120ms}
+html.bz-support-bento-motion #borzilov-lp .bz-support-bento__repeat-route span:nth-of-type(2){transition-delay:210ms}
+html.bz-support-bento-motion #borzilov-lp .bz-support-bento__repeat-route span:nth-of-type(3){transition-delay:300ms}
+html.bz-support-bento-motion #borzilov-lp .bz-support-bento__repeat-route span:nth-of-type(4){transition-delay:390ms}
+html.bz-support-bento-motion #borzilov-lp .bz-support-bento__repeat-route span:nth-of-type(5){transition-delay:480ms}
+html.bz-support-bento-motion #borzilov-lp .bz-support-bento__repeat-route span:nth-of-type(6){transition-delay:570ms}
+html.bz-support-bento-motion #borzilov-lp [data-bz-support-reveal="row"]:not(.is-visible) .bz-support-bento__proof-marks i{opacity:0;transform:translate3d(0,7px,0)}
+html.bz-support-bento-motion #borzilov-lp .bz-support-bento__proof-marks i{transition:opacity 350ms ease,transform 350ms cubic-bezier(.22,1,.36,1)}
+html.bz-support-bento-motion #borzilov-lp .bz-support-bento__proof-marks i:nth-child(1){transition-delay:620ms}
+html.bz-support-bento-motion #borzilov-lp .bz-support-bento__proof-marks i:nth-child(2){transition-delay:700ms}
+html.bz-support-bento-motion #borzilov-lp .bz-support-bento__proof-marks i:nth-child(3){transition-delay:780ms}
+html.bz-support-bento-motion #borzilov-lp [data-bz-support-reveal="final"]:not(.is-visible) .bz-support-bento__final-contrast>div:last-child{opacity:.58}
+html.bz-support-bento-motion #borzilov-lp .bz-support-bento__final-contrast>div:last-child{transition:opacity 520ms 180ms ease}
+
+@media (max-width:900px){
+  #borzilov-lp .bz-support-bento__head{grid-template-columns:1fr;align-items:start}
+  #borzilov-lp .bz-support-bento__head>p{max-width:58ch!important}
+  #borzilov-lp .bz-support-bento__row--12,
+  #borzilov-lp .bz-support-bento__row--34{grid-template-columns:1fr}
+  #borzilov-lp .bz-support-bento__thread--desktop{display:none}
+  #borzilov-lp .bz-support-bento__thread--mobile{display:block}
+}
+
+@media (max-width:980px){
+  #borzilov-lp #bz-meaning-bento{
+    width:calc(100% - 2px)!important;
+    max-width:calc(100% - 2px)!important;
+    margin-top:104px!important;
+  }
+}
+
+@media (max-width:767px){
+  #borzilov-lp #bz-meaning-bento{padding:14px!important}
+  #borzilov-lp .bz-support-bento__head{gap:26px;padding:34px 24px 38px}
+  #borzilov-lp .bz-support-bento__head h2{font-size:clamp(34px,10.4vw,40px)!important;line-height:.93!important}
+  #borzilov-lp .bz-support-bento__head>p{font-size:16px!important;line-height:1.45!important}
+  #borzilov-lp .bz-support-bento__card{padding:clamp(22px,6.5vw,26px)}
+  #borzilov-lp .bz-support-bento__number{margin-bottom:22px}
+  #borzilov-lp .bz-support-bento__card h3{margin-bottom:25px!important;font-size:clamp(31px,9.1vw,39px)!important}
+  #borzilov-lp .bz-support-bento__card>p{font-size:16px!important;line-height:1.45!important}
+  #borzilov-lp .bz-support-bento__card-thesis{font-size:20px!important}
+  #borzilov-lp .bz-support-bento__cycle-labels{display:grid;grid-template-columns:minmax(0,1fr);gap:7px}
+  #borzilov-lp .bz-support-bento__cycle-labels i{height:12px}
+  #borzilov-lp .bz-support-bento__quote{font-size:23px!important}
+  #borzilov-lp .bz-support-bento__memories article{grid-template-columns:1fr;gap:7px;padding:16px 0}
+  #borzilov-lp .bz-support-bento__memories strong,
+  #borzilov-lp .bz-support-bento__memories span{font-size:16px}
+  #borzilov-lp .bz-support-bento__old-route,
+  #borzilov-lp .bz-support-bento__second-wave{font-size:25px!important}
+  #borzilov-lp .bz-support-bento__voice{font-size:21px!important}
+  #borzilov-lp .bz-support-bento__unravel{min-height:auto;padding:28px 0}
+  #borzilov-lp .bz-support-bento__unravel>svg{inset:4% 12px;width:calc(100% - 24px);height:92%}
+  #borzilov-lp .bz-support-bento__unravel-items{grid-template-columns:1fr;justify-items:stretch;gap:7px}
+  #borzilov-lp .bz-support-bento__unravel-items span{padding:10px;font-size:11px}
+  #borzilov-lp .bz-support-bento__unravel-items i{height:13px;text-align:center}
+  #borzilov-lp .bz-support-bento__tools{grid-template-columns:1fr}
+  #borzilov-lp .bz-support-bento__tools article{padding:17px 0}
+  #borzilov-lp .bz-support-bento__tools article+article{border-left:0;border-top:1px solid rgba(255,255,255,.16)}
+  #borzilov-lp .bz-support-bento__tools span{font-size:15px}
+  #borzilov-lp .bz-support-bento__core-thesis{font-size:32px!important}
+  #borzilov-lp .bz-support-bento__repeat-route span{font-size:16px}
+  #borzilov-lp .bz-support-bento__final{padding:38px 24px 42px}
+  #borzilov-lp .bz-support-bento__final h3{font-size:clamp(37px,10.8vw,46px)!important}
+  #borzilov-lp .bz-support-bento__final>p{font-size:16px!important;line-height:1.45!important}
+  #borzilov-lp .bz-support-bento__final-contrast{grid-template-columns:1fr}
+  #borzilov-lp .bz-support-bento__final-contrast>div{padding:22px}
+  #borzilov-lp .bz-support-bento__final-contrast strong{font-size:20px}
+  #borzilov-lp .bz-support-bento__final-thesis{font-size:34px!important}
+}
+
+@media (prefers-reduced-motion:reduce){
+  #borzilov-lp #bz-meaning-bento *,
+  #borzilov-lp #bz-meaning-bento *::before,
+  #borzilov-lp #bz-meaning-bento *::after{animation:none!important;transition:none!important}
+}
+
+/* owner:0663-full-width-meaning-chapters
+   One island = one outer frame. Major semantic sections are chapters, not nested cards.
+   Keep readable inner padding; remove duplicated side rails, gutters and card rounding. */
+#borzilov-lp #bz-meaning-bento{
+  padding:0!important;
+}
+
+#borzilov-lp #bz-meaning-bento .bz-support-bento__head{
+  width:100%;
+  margin:0!important;
+  border:0;
+  border-radius:0;
+}
+
+#borzilov-lp #bz-meaning-bento .bz-support-bento__matrix{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:0;
+  margin:0;
+}
+
+#borzilov-lp #bz-meaning-bento .bz-support-bento__row,
+#borzilov-lp #bz-meaning-bento .bz-support-bento__row--12,
+#borzilov-lp #bz-meaning-bento .bz-support-bento__row--34{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:0;
+  width:100%;
+  margin:0;
+}
+
+#borzilov-lp #bz-meaning-bento .bz-support-bento__card{
+  width:100%;
+  max-width:none;
+  margin:0!important;
+  border:0;
+  border-top:1px solid var(--bz-support-line);
+  border-radius:0;
+}
+
+#borzilov-lp #bz-meaning-bento .bz-support-bento__card--03{
+  border-top-color:rgba(255,255,255,.12);
+  border-bottom:0;
+}
+
+#borzilov-lp #bz-meaning-bento .bz-support-bento__final{
+  width:100%;
+  max-width:none;
+  margin:0!important;
+  border:0;
+  border-top:1px solid rgba(35,57,93,.14);
+  border-radius:0;
+}
+
+/* The thread is the only internal vertical spine; no section creates another side rail. */
+#borzilov-lp #bz-meaning-bento .bz-support-bento__thread{
+  z-index:5;
+}
+
+@media (max-width:767px){
+  #borzilov-lp #bz-meaning-bento{padding:0!important}
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__head{padding:34px 24px 38px}
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__card{padding:clamp(22px,6.5vw,26px)}
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__final{padding:38px 24px 42px}
+}
+
+/* owner:0723-meaning-thread-scroll-causal
+   The cyan line remains causal, but the currently-read segment is visibly scroll-driven.
+   Mobile/Chrome contract: geometry is stable, the rail sits inside the clip, and browser-toolbar height changes never rebuild it. */
+#borzilov-lp #bz-meaning-bento .bz-support-bento__thread--live{
+  display:block!important;position:absolute;inset:0;z-index:3;width:100%;height:100%;
+  overflow:visible;pointer-events:none;color:var(--bz-support-thread);
+}
+#borzilov-lp #bz-meaning-bento .bz-support-bento__thread--live path{
+  fill:none;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;
+}
+/* Geometry path is computational only. */
+#borzilov-lp #bz-meaning-bento .bz-support-bento__thread-base{stroke:transparent!important;stroke-width:1!important;opacity:0!important}
+/* Future guide: deliberately absent through the knot; JS draws only the calm side segments. */
+#borzilov-lp #bz-meaning-bento .bz-support-bento__thread-guide{
+  stroke:rgba(94,184,230,.105);stroke-width:1.05;opacity:1;
+}
+#borzilov-lp #bz-meaning-bento .bz-support-bento__thread-past{
+  stroke:rgba(94,184,230,.40);stroke-width:1.4;opacity:.88;
+}
+#borzilov-lp #bz-meaning-bento .bz-support-bento__thread-live{
+  display:block!important;stroke:#63BDE9;stroke-width:2.25;opacity:.98;
+  filter:drop-shadow(0 0 2.5px rgba(94,184,230,.22));transition:opacity .18s ease;
+}
+#borzilov-lp #bz-meaning-bento .bz-support-bento__thread-head{
+  display:block!important;fill:#70C8F3;stroke:rgba(255,255,255,.58);stroke-width:.72;
+  vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 3px rgba(94,184,230,.34));transition:opacity .18s ease;
+}
+#borzilov-lp #bz-meaning-bento.is-thread-at-end .bz-support-bento__thread-live,
+#borzilov-lp #bz-meaning-bento.is-thread-at-end .bz-support-bento__thread-head{opacity:.14}
+#borzilov-lp #bz-meaning-bento.is-thread-at-end .bz-support-bento__thread-past{opacity:.68}
+
+/* The same thread is behind the mini-cards. Their positioned surfaces cover it. */
+#borzilov-lp #bz-meaning-bento .bz-support-bento__card--03{z-index:auto}
+#borzilov-lp #bz-meaning-bento .bz-support-bento__unravel{min-height:clamp(330px,36vw,420px);overflow:visible}
+#borzilov-lp #bz-meaning-bento .bz-support-bento__unravel>svg{display:none!important}
+#borzilov-lp #bz-meaning-bento .bz-support-bento__unravel-items{
+  position:relative;z-index:6!important;grid-template-columns:minmax(0,1fr)!important;
+  justify-items:stretch;gap:7px!important;width:min(760px,100%);margin-inline:auto;
+}
+#borzilov-lp #bz-meaning-bento .bz-support-bento__unravel-items span{
+  position:relative;z-index:8;padding:11px 12px;background:#23395D;
+}
+#borzilov-lp #bz-meaning-bento .bz-support-bento__unravel-items i{
+  position:relative;z-index:10;display:grid;place-items:center;width:100%;height:17px;
+  color:#67BEEA;font:760 15px/1 Inter,system-ui,sans-serif;text-align:center;
+  text-shadow:0 0 8px rgba(94,184,230,.12);transform:translate3d(0,0,0);
+}
+
+/* Only three short excerpts ever come in front. The mask protects card interiors/text. */
+#borzilov-lp #bz-meaning-bento .bz-support-bento__thread-front{
+  display:block;position:absolute;inset:0;z-index:9;width:100%;height:100%;overflow:hidden;pointer-events:none;
+}
+#borzilov-lp #bz-meaning-bento .bz-support-bento__thread-front-path{
+  fill:none;stroke:#72C9F2;stroke-width:1.75;vector-effect:non-scaling-stroke;
+  stroke-linecap:round;stroke-linejoin:round;opacity:0;
+}
+
+/* CTA contour handoff: one event per page life; reverse scroll never re-arms it. */
+#borzilov-lp #bz-meaning-bento #bz-application-request{position:relative;transition:border-color .22s ease,background-color .22s ease}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__thread-contour{
+  position:absolute;inset:0;z-index:12;display:block;width:100%;height:100%;overflow:visible;pointer-events:none;opacity:0;
+}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__thread-contour path{
+  fill:none;stroke:#70C8F3;stroke-width:2.05;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:.13 .87;stroke-dashoffset:0;opacity:0;filter:drop-shadow(0 0 2px rgba(94,184,230,.20));
+}
+#borzilov-lp #bz-meaning-bento #bz-application-request.is-thread-handoff{animation:bzMeaningCtaActivate0697 900ms cubic-bezier(.2,.78,.2,1) both;box-shadow:none!important}
+#borzilov-lp #bz-meaning-bento #bz-application-request.is-thread-handoff .bz-inline-application__thread-contour{opacity:1}
+#borzilov-lp #bz-meaning-bento #bz-application-request.is-thread-handoff .bz-inline-application__thread-contour path{animation:bzMeaningContourRun0697 760ms cubic-bezier(.22,.72,.18,1) 20ms both}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__toggle.is-thread-handoff{animation:bzMeaningThreadHandoff0697 900ms cubic-bezier(.2,.78,.2,1) both}
+#borzilov-lp #bz-meaning-bento .bz-inline-application__toggle.is-thread-handoff i{animation:bzMeaningThreadArrow0697 900ms cubic-bezier(.2,.78,.2,1) both}
+#borzilov-lp #bz-meaning-bento #bz-application-request.is-expanded .bz-inline-application__thread-contour{display:none!important}
+@keyframes bzMeaningContourRun0697{0%{stroke-dashoffset:0;opacity:0}7%{opacity:.92}82%{opacity:.9}100%{stroke-dashoffset:-1;opacity:0}}
+@keyframes bzMeaningCtaActivate0697{0%,46%{border-color:rgba(255,253,248,.58);background-color:#081A20}69%{border-color:rgba(255,253,248,.82);background-color:#0A2027}84%{border-color:rgba(112,200,243,.62);background-color:#0A1E25}100%{border-color:rgba(255,253,248,.58);background-color:#081A20}}
+@keyframes bzMeaningThreadHandoff0697{0%,48%{background:transparent}70%{background:rgba(94,184,230,.05)}100%{background:transparent}}
+@keyframes bzMeaningThreadArrow0697{0%,52%{transform:translate3d(0,0,0);color:#D29371}70%{transform:translate3d(3px,-3px,0);color:#FFFDF8}100%{transform:translate3d(0,0,0);color:#D29371}}
+
+@media(max-width:760px){
+  /* Mobile Chrome: one animated back SVG; no masked foreground compositor layer. */
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__thread-front{display:none!important}
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__thread-guide{stroke-width:1;stroke:rgba(94,184,230,.10)}
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__thread-past{stroke-width:1.3;stroke:rgba(94,184,230,.46);opacity:.88}
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__thread-live{stroke-width:2.15;filter:drop-shadow(0 0 2px rgba(94,184,230,.18))}
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__thread-head{r:2.65}
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__unravel{min-height:auto;padding:30px 0 32px}
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__unravel-items{width:100%}
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__unravel-items span{padding:11px 10px;font-size:11px}
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__unravel-items i{height:16px;font-size:14px}
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__thread-front-path{stroke-width:1.8}
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__thread-contour path{stroke-width:1.85}
+}
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__thread-live,
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__thread-head{transition:none!important}
+  #borzilov-lp #bz-meaning-bento .bz-support-bento__thread-front-path{opacity:.22!important}
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__thread-contour{display:none!important}
+  #borzilov-lp #bz-meaning-bento #bz-application-request.is-thread-handoff,
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__toggle.is-thread-handoff,
+  #borzilov-lp #bz-meaning-bento .bz-inline-application__toggle.is-thread-handoff i{animation:none!important}
+}
+

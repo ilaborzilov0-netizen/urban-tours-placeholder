@@ -1,0 +1,327 @@
+/* scoped from life-calendar.css */
+/* 0150 · owner:bz-life-calendar · palette 05 fixed + past/future colors swapped */
+#bz-life-calendar-intro,#bz-life-calendar-intro *{box-sizing:border-box}
+#bz-life-calendar-intro{
+  --life-bg:transparent;
+  --life-surface:rgba(255,253,248,.028);
+  --life-text:#fffdf8;
+  --life-muted:rgba(255,253,248,.62);
+  --life-line:rgba(255,253,248,.14);
+  --life-line-soft:rgba(255,253,248,.095);
+  --life-accent:#b94f35;
+  --life-accent-strong:#d47b58;
+  --life-toggle-off:rgba(255,253,248,.14);
+  --life-knob:#fffdf8;
+  --life-input-bg:rgba(255,253,248,.045);
+  --life-input-border:rgba(255,253,248,.18);
+  --life-focus:rgba(185,79,53,.22);
+  --life-past:rgba(127,79,59,.48);
+  --life-future:rgba(255,253,248,.72);
+  --life-current:rgba(185,79,53,.98);
+  --life-current-stroke:rgba(255,253,248,.92);
+  --life-shadow:none;
+  width:100%;margin:0 auto;padding:0;overflow:hidden;border:0;border-radius:0;background:var(--life-bg);color:var(--life-text);box-shadow:none;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  transition:background-color .15s ease,border-color .15s ease,color .15s ease,box-shadow .15s ease;
+}
+#bz-life-calendar-intro[data-life-palette="1"]{
+  --life-accent:#b94f35; --life-accent-strong:#d47b58; --life-focus:rgba(185,79,53,.22); --life-past:rgba(127,79,59,.48); --life-future:rgba(255,253,248,.72); --life-current:rgba(185,79,53,.98); --life-current-stroke:rgba(255,253,248,.92);
+}
+#bz-life-calendar-intro[data-life-palette="2"]{
+  --life-accent:#c46f49; --life-accent-strong:#df8a66; --life-focus:rgba(196,111,73,.22); --life-past:rgba(136,88,65,.5); --life-future:rgba(255,250,244,.72); --life-current:rgba(223,138,102,.98); --life-current-stroke:rgba(255,253,248,.92);
+}
+#bz-life-calendar-intro[data-life-palette="3"]{
+  --life-accent:#b65d40; --life-accent-strong:#f0a27d; --life-focus:rgba(182,93,64,.24); --life-past:rgba(125,77,58,.46); --life-future:rgba(243,238,230,.7); --life-current:rgba(240,162,125,.96); --life-current-stroke:rgba(8,26,32,.82);
+}
+#bz-life-calendar-intro[data-life-palette="4"]{
+  --life-accent:#aa6b57; --life-accent-strong:#d7957e; --life-focus:rgba(170,107,87,.22); --life-past:rgba(120,84,72,.48); --life-future:rgba(250,244,240,.68); --life-current:rgba(215,149,126,.98); --life-current-stroke:rgba(255,253,248,.9);
+}
+#bz-life-calendar-intro[data-life-palette="5"]{
+  --life-accent:#cf7954; --life-accent-strong:#f1b08d; --life-focus:rgba(207,121,84,.24); --life-past:rgba(138,81,57,.52); --life-future:rgba(255,253,248,.78); --life-current:rgba(241,176,141,.98); --life-current-stroke:rgba(8,26,32,.86);
+}
+#bz-life-calendar-intro .bzlc-container{width:100%;margin:0 auto}
+#bz-life-calendar-intro .bzlc-shell{display:flex;flex-direction:column;gap:2px}
+#bz-life-calendar-intro .bzlc-mode{order:1;width:100%;margin:0}
+#bz-life-calendar-intro .bzlc-cut-row{width:100%}
+#bz-life-calendar-intro .bzlc-cut-toggle{
+  display:flex;width:100%;min-height:48px;margin:0;padding:0 0 16px;align-items:center;gap:12px;border:0;border-bottom:1px solid var(--life-line);border-radius:0;background:transparent;color:rgba(255,253,248,.82);
+  font:inherit;font-size:17px;font-weight:780;letter-spacing:-.025em;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent;
+}
+#bz-life-calendar-intro .bzlc-cut-toggle:focus-visible{outline:2px solid var(--life-accent);outline-offset:5px}
+#bz-life-calendar-intro .bzlc-cut-switch{position:relative;width:42px;height:25px;flex:0 0 auto;border:0;border-radius:6px;background:var(--life-toggle-off);box-shadow:none;transition:background .18s ease}
+#bz-life-calendar-intro .bzlc-cut-switch::after{content:"";position:absolute;top:4px;left:4px;width:17px;height:17px;border:0;border-radius:5px;background:var(--life-knob);box-shadow:none;transition:transform .18s ease}
+#bz-life-calendar-intro .bzlc-cut-copy{min-width:0;color:inherit}
+#bz-life-calendar-intro .bzlc-cut-pill{display:inline-flex;min-height:26px;margin-left:auto;padding:0 6px;align-items:center;justify-content:center;border:0;border-radius:3px;background:transparent;color:var(--life-accent-strong);font-size:12px;font-weight:850;letter-spacing:.02em;white-space:nowrap}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-cut-toggle[aria-checked="true"]{color:var(--life-text)!important}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-cut-toggle[aria-checked="true"] .bzlc-cut-switch{background:var(--life-accent)!important}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-cut-toggle[aria-checked="true"] .bzlc-cut-switch::after{transform:translateX(17px)!important}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-cut-toggle[aria-checked="true"] .bzlc-cut-pill{background:transparent!important;color:var(--life-accent-strong)!important}
+#bz-life-calendar-intro .bzlc-board{order:2;width:100%}
+#bz-life-calendar-intro .bzlc-grid-wrap{position:relative;width:100%;padding:12px 0 4px;overflow:visible;border-top:0;border-bottom:0;background:linear-gradient(180deg,rgba(255,253,248,.022),rgba(255,253,248,.014))}
+#bz-life-calendar-intro .bzlc-grid{display:block;width:100%;min-width:0;height:auto;contain:layout paint style}
+#bz-life-calendar-intro .bzlc-grid-canvas{display:block;width:100%;height:100%}
+#bz-life-calendar-intro .bzlc-smoke{display:none}
+#bz-life-calendar-intro .bzlc-legend{display:none!important}
+#bz-life-calendar-intro .bzlc-legend-item{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+#bz-life-calendar-intro .bzlc-legend-dot{width:9px;height:9px;flex:0 0 auto;border:1px solid rgba(255,253,248,.34);border-radius:2px;background:var(--life-future)}
+#bz-life-calendar-intro .bzlc-legend-dot.bzlc-lived{border-color:transparent;border-radius:50%;background:var(--life-past)}
+#bz-life-calendar-intro .bzlc-scale-mark{position:absolute;top:-42px;left:auto;z-index:5;color:var(--life-accent-strong);font-size:13px;font-weight:800;line-height:1;white-space:nowrap;pointer-events:none;transform:translate3d(-50%,0,0);padding:0 2px;background:transparent}
+#bz-life-calendar-intro .bzlc-scale-mark.bzlc-scale-mark--cut{color:var(--life-accent-strong);transform:translate3d(-50%,0,0)}
+#bz-life-calendar-intro .bzlc-control{order:3;display:grid;width:min(700px,100%);margin:0;padding-top:6px;border-top:0}
+#bz-life-calendar-intro .bzlc-field{display:grid;gap:11px;margin:0;padding:0;border:0}
+#bz-life-calendar-intro .bzlc-field-top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:14px}
+#bz-life-calendar-intro .bzlc-age-label-row{display:flex;min-width:0;min-height:46px;align-items:center}
+#bz-life-calendar-intro label{margin:0;color:var(--life-text);font-size:17px;font-weight:780;letter-spacing:-.03em;line-height:1.15}
+#bz-life-calendar-intro .bzlc-number{width:108px;min-height:46px;padding:0 12px;border:1px solid var(--life-input-border);border-radius:4px;outline:none;background:var(--life-input-bg);color:var(--life-text);font:inherit;font-size:18px;font-weight:820;text-align:center}
+#bz-life-calendar-intro .bzlc-range{--bzlc-fill:54%;width:100%;height:6px;margin:0;appearance:none;-webkit-appearance:none;border:0;border-radius:3px;outline:none;background:linear-gradient(90deg,var(--life-accent) 0%,var(--life-accent) var(--bzlc-fill),rgba(255,253,248,.22) var(--bzlc-fill),rgba(255,253,248,.22) 100%);cursor:pointer}
+#bz-life-calendar-intro .bzlc-range:focus-visible{outline:2px solid var(--life-accent);outline-offset:7px}
+#bz-life-calendar-intro .bzlc-range::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--life-accent) 0%,var(--life-accent) var(--bzlc-fill),rgba(255,253,248,.22) var(--bzlc-fill),rgba(255,253,248,.22) 100%)}
+#bz-life-calendar-intro .bzlc-range::-webkit-slider-thumb{width:23px;height:23px;margin-top:-8.5px;appearance:none;-webkit-appearance:none;border:4px solid var(--life-knob);border-radius:50%;background:var(--life-accent);box-shadow:0 0 0 1px rgba(8,26,32,.18),0 5px 14px rgba(0,0,0,.18);cursor:pointer}
+#bz-life-calendar-intro .bzlc-range::-moz-range-track{height:6px;border:0;border-radius:3px;background:rgba(255,253,248,.22)}
+#bz-life-calendar-intro .bzlc-range::-moz-range-progress{height:6px;border:0;border-radius:3px;background:var(--life-accent)}
+#bz-life-calendar-intro .bzlc-range::-moz-range-thumb{width:15px;height:15px;border:4px solid var(--life-knob);border-radius:50%;background:var(--life-accent);box-shadow:0 0 0 1px rgba(8,26,32,.18),0 5px 14px rgba(0,0,0,.18);cursor:pointer}
+#bz-life-calendar-intro .bzlc-input-guide{margin:5px 0 0;color:rgba(255,253,248,.56);font-size:12px;font-weight:560;line-height:1.35}
+#bz-life-calendar-intro .bzlc-birth-panel,#bz-life-calendar-intro .bzlc-birth-panel.bzlc-open{display:grid;max-height:none;margin-top:2px;overflow:visible;opacity:1;transform:none;transition:none}
+#bz-life-calendar-intro .bzlc-birth-field{display:grid;gap:0;opacity:.58;transition:opacity .18s ease}
+#bz-life-calendar-intro .bzlc-birth-field:focus-within,#bz-life-calendar-intro .bzlc-birth-field.bzlc-has-value{opacity:1}
+#bz-life-calendar-intro .bzlc-birth-field label{color:rgba(255,253,248,.54);font-size:12px;font-weight:720}
+#bz-life-calendar-intro .bzlc-date-input{width:100%;min-height:42px;padding:0 12px;border:1px solid var(--life-input-border);border-radius:4px;outline:none;background:var(--life-input-bg);color:var(--life-text);font:inherit;font-size:14px;font-weight:700;transition:border-color .18s ease,background .18s ease,box-shadow .18s ease,color .18s ease}
+#bz-life-calendar-intro .bzlc-date-input::placeholder{color:var(--life-muted)}
+#bz-life-calendar-intro .bzlc-number:focus,#bz-life-calendar-intro .bzlc-date-input:focus,#bz-life-calendar-intro .bzlc-birth-field.bzlc-has-value .bzlc-date-input{border-color:var(--life-accent);background:var(--life-input-bg);color:var(--life-text);box-shadow:0 0 0 4px var(--life-focus)}
+#bz-life-calendar-intro .bzlc-number::-webkit-outer-spin-button,#bz-life-calendar-intro .bzlc-number::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+#bz-life-calendar-intro .bzlc-number{-moz-appearance:textfield}
+@media(max-width:360px){
+  #bz-life-calendar-intro .bzlc-cut-toggle{gap:9px;font-size:15px}
+  #bz-life-calendar-intro .bzlc-legend{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){#bz-life-calendar-intro,.bzlc-theme-lab button{transition:none!important}}
+
+/* 0446 · owner:bz-life-calendar · donor angular architecture parity
+   The 0157 visual is not life-calendar.css alone: its settled shape also used
+   the detached architecture/radius owner. Keep that geometry local here so
+   the transplanted calendar does not fall back to the old pill treatment. */
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-container{
+  border-radius:var(--r-scene,10px)!important;
+}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-shell{
+  border-radius:var(--r-scene,10px)!important;
+}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-control,
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-birth-panel{
+  border-radius:var(--r-object,6px)!important;
+}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-cut-toggle{
+  border-radius:var(--r-control,3px)!important;
+}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-cut-pill{
+  border-radius:var(--r-status,4px)!important;
+}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-number,
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-range,
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-date-input{
+  border-radius:var(--r-field,3px)!important;
+}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-board{
+  border-radius:var(--r-inset,2px)!important;
+}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-grid-wrap{
+  border-radius:var(--r-object,6px)!important;
+}
+
+#bz-donor-prelude #bz-life-calendar-intro.bzlc-cut-mode .bzlc-cut-pill{opacity:0!important;visibility:hidden!important;}
+#bz-donor-prelude #bz-life-calendar-intro:not(.bzlc-cut-mode) .bzlc-scale-mark{display:none!important;}
+
+
+/* owner:0687-life-calendar-slider-geometry
+   Match the life-calendar slider to the copper-red heading and the site's angular control language. */
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-range{
+  --life-slider-accent:#B94F35;
+  background:linear-gradient(90deg,var(--life-slider-accent) 0%,var(--life-slider-accent) var(--bzlc-fill),rgba(255,253,248,.22) var(--bzlc-fill),rgba(255,253,248,.22) 100%)!important;
+}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-range::-webkit-slider-runnable-track{
+  background:linear-gradient(90deg,var(--life-slider-accent) 0%,var(--life-slider-accent) var(--bzlc-fill),rgba(255,253,248,.22) var(--bzlc-fill),rgba(255,253,248,.22) 100%)!important;
+}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-range::-webkit-slider-thumb{
+  width:22px;
+  height:22px;
+  margin-top:-8px;
+  border:0!important;
+  border-radius:5px!important;
+  background:#B94F35!important;
+  box-shadow:0 4px 10px rgba(0,0,0,.22)!important;
+}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-range::-moz-range-progress{
+  background:#B94F35!important;
+}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-range::-moz-range-thumb{
+  width:22px;
+  height:22px;
+  border:0!important;
+  border-radius:5px!important;
+  background:#B94F35!important;
+  box-shadow:0 4px 10px rgba(0,0,0,.22)!important;
+}
+
+
+/* owner:0690-life-calendar-slider-color-system
+   One terracotta family with three intensities:
+   title/toggle = reference accent, track = calmer, thumb = cleanest active tone.
+   Thumb stays borderless and uses a soft-angular squircle geometry. */
+#bz-donor-prelude #bz-life-calendar-intro{
+  --life-title-accent:#B94F35;
+  --life-track-accent:#AA654D;
+  --life-thumb-accent:#C95B3C;
+  --life-past:rgba(111,67,51,.52);
+}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-cut-toggle[aria-checked="true"] .bzlc-cut-switch{
+  background:var(--life-title-accent)!important;
+}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-cut-pill,
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-cut-toggle[aria-checked="true"] .bzlc-cut-pill{
+  color:var(--life-title-accent)!important;
+}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-range{
+  --life-slider-accent:var(--life-track-accent);
+  background:linear-gradient(90deg,var(--life-track-accent) 0%,var(--life-track-accent) var(--bzlc-fill),rgba(255,253,248,.22) var(--bzlc-fill),rgba(255,253,248,.22) 100%)!important;
+}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-range::-webkit-slider-runnable-track{
+  background:linear-gradient(90deg,var(--life-track-accent) 0%,var(--life-track-accent) var(--bzlc-fill),rgba(255,253,248,.22) var(--bzlc-fill),rgba(255,253,248,.22) 100%)!important;
+}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-range::-moz-range-progress{
+  background:var(--life-track-accent)!important;
+}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-range::-webkit-slider-thumb{
+  width:28px!important;
+  height:26px!important;
+  margin-top:-10px!important;
+  border:0!important;
+  border-radius:7px!important;
+  background:var(--life-thumb-accent)!important;
+  box-shadow:0 4px 10px rgba(0,0,0,.18)!important;
+}
+#bz-donor-prelude #bz-life-calendar-intro .bzlc-range::-moz-range-thumb{
+  width:28px!important;
+  height:26px!important;
+  border:0!important;
+  border-radius:7px!important;
+  background:var(--life-thumb-accent)!important;
+  box-shadow:0 4px 10px rgba(0,0,0,.18)!important;
+}
+
+
+/* scoped from life-calendar-stage.css */
+/* The 80-year proof remains the final act of the dark diagnostic chapter. */
+#bz-donor-prelude .bz-life-calendar-stage{
+  position:relative;
+  width:100%;
+  margin:0;
+  padding:clamp(50px,5.5vw,78px) 0 clamp(58px,6vw,84px);
+  overflow:hidden;
+  background:#06171d;
+  color:#fffdf8;
+}
+#bz-donor-prelude .bz-life-calendar-stage__chapter{
+  width:min(1360px,100%);
+  margin:0 auto;
+}
+#bz-donor-prelude .bz-life-calendar-stage__heading{
+  width:min(1160px,calc(100% - 48px));
+  margin:0 auto;
+  padding-inline:clamp(24px,5vw,68px);
+}
+#bz-donor-prelude .bz-life-calendar-stage__heading{
+  padding-bottom:clamp(32px,4vw,56px);
+}
+#bz-donor-prelude .bz-life-calendar-stage__heading h2{
+  max-width:12ch;
+  margin:0;
+  color:#fffdf8;
+  font-size:clamp(46px,6.6vw,94px);
+  font-weight:850;
+  line-height:.84;
+  letter-spacing:-.067em;
+}
+#bz-donor-prelude .bz-life-calendar-stage__heading h2 span,
+#bz-donor-prelude .bz-life-calendar-stage__heading h2 strong{
+  display:block;
+}
+#bz-donor-prelude .bz-life-calendar-stage__heading h2 span{white-space:nowrap}
+#bz-donor-prelude .bz-life-calendar-stage__heading h2 strong{
+  margin-top:.08em;
+  color:#b94f35;
+  font-size:.86em;
+  font-weight:inherit;
+}
+#bz-donor-prelude .bz-life-calendar-stage__shell{
+  width:min(1240px,calc(100% - 32px));
+  margin:0 auto;
+}
+
+@media(max-width:700px){
+  #bz-donor-prelude .bz-life-calendar-stage{
+    padding:40px 0 54px;
+  }
+  #bz-donor-prelude .bz-life-calendar-stage__heading{
+    width:100%;
+    padding-inline:20px;
+  }
+  #bz-donor-prelude .bz-life-calendar-stage__heading{
+    padding-bottom:34px;
+  }
+  #bz-donor-prelude .bz-life-calendar-stage__heading h2{
+    width:100%;
+    max-width:none;
+    font-size:clamp(46px,13.4vw,60px);
+    line-height:.87;
+  }
+  #bz-donor-prelude .bz-life-calendar-stage__shell{
+    width:calc(100% - 12px);
+  }
+}
+
+/* 0445 · contextual isolation for the exact 0157 donor stage.
+   The calendar is intentionally nested inside #bz1092-product-lab in the current master.
+   That older product owner has a two-ID generic h2 rule; without this contextual owner
+   it recolors/resizes the donor title. Values below are the donor values, not a redesign. */
+#bz-donor-prelude #bz1092-product-lab .bz-life-calendar-stage__heading h2{
+  max-width:12ch;
+  margin:0;
+  color:#fffdf8;
+  font-size:clamp(46px,6.6vw,94px);
+  font-weight:850;
+  line-height:.84;
+  letter-spacing:-.067em;
+  text-wrap:wrap;
+}
+#bz-donor-prelude #bz1092-product-lab .bz-life-calendar-stage__heading h2 span,
+#bz-donor-prelude #bz1092-product-lab .bz-life-calendar-stage__heading h2 strong{display:block}
+#bz-donor-prelude #bz1092-product-lab .bz-life-calendar-stage__heading h2 span{white-space:nowrap;color:#fffdf8}
+#bz-donor-prelude #bz1092-product-lab .bz-life-calendar-stage__heading h2 strong{
+  margin-top:.08em;
+  color:#b94f35;
+  font-size:.86em;
+  font-weight:inherit;
+}
+@media(max-width:700px){
+  #bz-donor-prelude #bz1092-product-lab .bz-life-calendar-stage__heading h2{
+    width:100%;
+    max-width:none;
+    font-size:clamp(46px,13.4vw,60px);
+    line-height:.87;
+  }
+}
+
+
+/* owner:0687-life-calendar-accent-lock
+   Restore the accepted copper-red title accent exactly. */
+#bz-donor-prelude .bz-life-calendar-stage__heading h2 strong,
+#bz-donor-prelude #bz1092-product-lab .bz-life-calendar-stage__heading h2 strong{
+  color:#B94F35!important;
+}
+
+
+/* owner:0690-life-calendar-title-accent-lock */
+#bz-donor-prelude .bz-life-calendar-stage__heading h2 strong,
+#bz-donor-prelude #bz1092-product-lab .bz-life-calendar-stage__heading h2 strong{
+  color:#B94F35!important;
+}

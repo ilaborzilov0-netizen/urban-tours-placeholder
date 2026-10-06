@@ -1,0 +1,505 @@
+/* owner:decision-turn-final — fixed production composition transferred from candidate 2196 */
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action{border-top:0!important;}
+
+/* Target-master portability: the accepted heading uses the shared Hero-scale formulas. */
+html body #borzilov-lp#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope)[data-bz1108-cta-variant="2"] .bz1092-action-copy h3{
+  font-size:calc(var(--bz1033-title-font-size) * var(--bz1041-word1-scale,1) * .8)!important;
+}
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action-copy h3{
+  transform:translate(calc(2px + var(--bz-turn-cluster-shift-x,0px)),-22px) scale(calc(1.3716 * var(--bz-turn-cluster-fit-scale,1)))!important;
+  transform-origin:left top!important;
+}
+@property --bz-turn-impact-fill{syntax:'<percentage>';inherits:false;initial-value:0%;}
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action{
+  /* Exact first-hit palette: word-one ink, terminal-dot copper and paint endpoint. */
+  --bz-turn-ink:#081A20;
+  --bz-turn-dot-copper:#966343;
+  --bz-turn-paint-copper:#A96A4A;
+}
+/* 0091 owner:decision-turn-typeface-contract — restore the final impact to the Hero typeface.
+   A broad closing-island typography rule was overriding this scene to weight 650.
+   The reveal prefix also used a 0.90em mini-run, which made “ВЫХОД” look assembled from two fonts. */
+html body #borzilov-lp#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action-copy h3,
+html body #borzilov-lp#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-turn-word,
+html body #borzilov-lp#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-turn-exit-prefix,
+html body #borzilov-lp#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-turn-dot{
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important;
+  font-weight:860!important;
+  font-style:normal!important;
+}
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-turn-line{
+  display:block;
+  white-space:nowrap;
+}
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-turn-line--top{
+  transform:translate3d(calc(7% - 33px),0,0)!important;
+}
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-turn-line--bottom{
+  transform:translate3d(40px,-4px,0)!important;
+}
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-turn-word{
+  display:inline-block;
+  position:relative;
+  white-space:nowrap;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+}
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-turn-word--your{
+  color:var(--bz-turn-ink)!important;
+  -webkit-text-fill-color:var(--bz-turn-ink)!important;
+  background:none!important;
+}
+/* Real-glyph paint owner on the original final-hit text box.
+   The DOM and inline metrics are now byte-for-byte equivalent to the original final impact,
+   so the terminal dot returns to its accepted position beside «Д». */
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-turn-word--move{
+  --bz-turn-impact-fill:0%;
+  display:inline-block!important;
+  position:relative!important;
+  box-sizing:content-box!important;
+  padding-right:.12em!important;
+  margin-right:-.12em!important;
+  color:transparent!important;
+  background-image:
+    linear-gradient(90deg,#081A20 0%,#15242B 38%,#43372C 69%,#7D5A3A 87%,var(--bz-turn-paint-copper) 100%),
+    linear-gradient(var(--bz-turn-ink),var(--bz-turn-ink))!important;
+  background-repeat:no-repeat!important;
+  background-position:100% 50%,0 0!important;
+  background-size:var(--bz-turn-impact-fill) 100%,100% 100%!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;
+  transform-origin:100% 50%!important;
+  text-shadow:none!important;
+  filter:none;
+  overflow:visible!important;
+  contain:none!important;
+  clip-path:none!important;
+  -webkit-clip-path:none!important;
+  will-change:background-size,transform,filter;
+}
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-turn-dot-piece{
+  display:inline-block!important;
+  position:relative!important;
+  visibility:visible!important;
+  opacity:1;
+  transform:translate3d(0,0,0);
+  transform-origin:50% 58%!important;
+  overflow:visible!important;
+  contain:none!important;
+  clip-path:none!important;
+  -webkit-clip-path:none!important;
+  vertical-align:.015em;
+}
+/* Exact Hero “Иначе.” punctuation contract: solid terminal copper glyph, no text clipping. */
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-turn-dot{
+  display:inline-block!important;
+  position:relative!important;
+  box-sizing:content-box!important;
+  margin-left:-.08em!important;
+  padding:0!important;
+  color:var(--bz-turn-dot-copper)!important;
+  background:none!important;
+  background-image:none!important;
+  -webkit-background-clip:border-box!important;
+  background-clip:border-box!important;
+  -webkit-text-fill-color:currentColor!important;
+  font:inherit!important;
+  font-size:1em!important;
+  line-height:inherit!important;
+  letter-spacing:0!important;
+  vertical-align:baseline!important;
+  transform:none!important;
+  text-shadow:none!important;
+  filter:none!important;
+  mix-blend-mode:normal!important;
+  isolation:isolate!important;
+  overflow:visible!important;
+  contain:none!important;
+  clip-path:none!important;
+  -webkit-clip-path:none!important;
+}
+@media (max-width:760px){
+  html body #borzilov-lp#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope)[data-bz1108-cta-variant="2"] .bz1092-action-copy h3{
+    font-size:calc(clamp(78px,24vw,102px) * var(--bz1050-hit-scale,1) * var(--bz1050-brosit-scale,1) * .8)!important;
+  }
+}
+
+/* Remove every displaced side-rule owner around the lockup. */
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action-copy::before,
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action-copy h3::before,
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-turn-line::before,
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-turn-line::after{
+  content:none!important;
+  display:none!important;
+  border:0!important;
+  background:none!important;
+  box-shadow:none!important;
+}
+
+/* Mobile decision rule: one canonical line below the complete lockup. */
+@media (max-width:760px){
+  html body #borzilov-lp#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope)[data-bz1108-cta-variant="2"] .bz1092-action-copy h3::after{
+    content:""!important;
+    display:block!important;
+    width:47px!important;
+    height:1px!important;
+    margin:18px auto 0!important;
+    border:0!important;
+    background:rgba(67,80,85,.34)!important;
+    box-shadow:none!important;
+  }
+  /* Transparent geometry spacer preserves the accepted lockup position. */
+  html body #borzilov-lp#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope)[data-bz1108-cta-variant="2"] .bz1092-action-copy::after{
+    content:""!important;
+    display:block!important;
+    flex:0 0 64px!important;
+    width:64px!important;
+    height:1px!important;
+    margin:18px auto 0!important;
+    border:0!important;
+    background:transparent!important;
+    box-shadow:none!important;
+    opacity:0!important;
+    visibility:hidden!important;
+    pointer-events:none!important;
+  }
+}
+
+/* Fixed editorial-paper surface and accepted mobile vertical calibration. */
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action{
+  background:
+    repeating-linear-gradient(0deg,rgba(8,26,32,.012) 0 1px,rgba(255,255,255,0) 1px 6px),
+    linear-gradient(180deg,#F7F1E7 0%,#F5EFE4 100%)!important;
+  box-shadow:inset 0 0 0 1px rgba(8,26,32,.05),inset 0 1px 0 rgba(255,255,255,.74)!important;
+}
+@media (max-width:760px){
+  html body #borzilov-lp#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope)[data-bz1108-cta-variant="2"] .bz1092-action{
+    padding-top:114px!important;
+    padding-bottom:50px!important;
+  }
+}
+
+/* owner:decision-turn-motion — one-shot L1 impact and CTA fork choreography. */
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action.bz-turn-motion-armed:not(.bz-turn-motion-playing):not(.bz-turn-motion-settled) .bz1092-turn-word,
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action.bz-turn-motion-armed:not(.bz-turn-motion-playing):not(.bz-turn-motion-settled) .bz1092-turn-dot-piece,
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action.bz-turn-motion-armed:not(.bz-turn-motion-playing):not(.bz-turn-motion-settled) .bz1092-action-copy h3::after{
+  opacity:0!important;
+}
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action.bz-turn-motion-armed:not(.bz-turn-motion-playing):not(.bz-turn-motion-settled) + .bz1092-action-monolith-wrap{
+  filter:opacity(0)!important;
+  translate:0 18px;
+  pointer-events:none!important;
+}
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action.bz-turn-motion-playing .bz1092-turn-word--your{
+  opacity:0;
+  animation:bz-turn-your-arrive 453ms cubic-bezier(.22,1,.36,1) 0ms forwards;
+  will-change:transform,opacity;
+}
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action.bz-turn-motion-playing .bz1092-turn-word--move{
+  opacity:0;
+  animation:bz-turn-move-rise 493ms cubic-bezier(.22,1,.36,1) 73ms forwards;
+  will-change:transform,opacity;
+}
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action.bz-turn-motion-playing .bz1092-turn-dot-piece{
+  opacity:0;
+  animation:bz-turn-dot-brake 760ms cubic-bezier(.18,.82,.18,1) 716ms forwards;
+  will-change:transform,filter,opacity;
+}
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action.bz-turn-motion-playing + .bz1092-action-monolith-wrap{
+  filter:none!important;
+  translate:none!important;
+  scale:1!important;
+  animation:none!important;
+  will-change:auto!important;
+  pointer-events:none!important;
+}
+@media (max-width:760px){
+  html body #borzilov-lp#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope)[data-bz1108-cta-variant="2"] .bz1092-action.bz-turn-motion-playing .bz1092-action-copy h3::after{
+    opacity:0;
+    animation:bz-turn-divider-materialize 240ms ease 1443ms forwards;
+  }
+}
+@keyframes bz-turn-your-arrive{
+  0%{opacity:1;transform:translate3d(-88px,0,0) scale(.992)}
+  100%{opacity:1;transform:translate3d(0,0,0) scale(1)}
+}
+@keyframes bz-turn-move-rise{
+  0%{opacity:1;transform:translate3d(8px,66px,0) scale(.985)}
+  100%{opacity:1;transform:translate3d(0,0,0) scale(1)}
+}
+/* Exact Hero punctuation physics: same route, braking curve and terminal stillness. */
+@keyframes bz-turn-dot-brake{
+  0%{opacity:0;transform:translate3d(160px,-4px,0) scale(.90);filter:drop-shadow(-10px 0 5px rgba(58,40,34,.38))}
+  16%{opacity:1}
+  74%{opacity:1;transform:translate3d(-14px,0,0) scale(1.026);filter:drop-shadow(4px 0 2px rgba(58,40,34,.28))}
+  89%{transform:translate3d(3px,0,0) scale(.995);filter:none}
+  100%{opacity:1;transform:translate3d(0,0,0) scale(1);filter:none}
+}
+@keyframes bz-turn-divider-materialize{
+  0%{opacity:0}
+  100%{opacity:1}
+}
+/* Original final-hit tail contract.
+   The dot settles at 1476ms and the accepted scene settles at 1802ms.
+   Paint and recoil are executed through WAAPI on separate properties, so the original HOD entrance
+   animation remains the sole animation owner of opacity and arrival geometry. */
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action.bz-turn-impact-finished .bz1092-turn-word--move,
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action.bz-turn-motion-settled .bz1092-turn-word--move{
+  --bz-turn-impact-fill:100%;
+}
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action.bz-turn-motion-settled .bz1092-turn-word,
+#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action.bz-turn-motion-settled .bz1092-turn-dot-piece{
+  opacity:1!important;
+  transform:translate3d(0,0,0)!important;
+  filter:none!important;
+  animation:none!important;
+  will-change:auto!important;
+}
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action.bz-turn-motion-settled + .bz1092-action-monolith-wrap{
+  filter:none!important;
+  translate:none!important;
+  scale:1!important;
+  animation:none!important;
+  will-change:auto!important;
+  pointer-events:auto!important;
+}
+@media (max-width:760px){
+  html body #borzilov-lp#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope)[data-bz1108-cta-variant="2"] .bz1092-action.bz-turn-motion-settled .bz1092-action-copy h3::after{
+    opacity:1!important;
+    animation:none!important;
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  #borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action .bz1092-turn-word,
+  #borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action .bz1092-turn-dot-piece,
+  #borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action .bz1092-action-copy h3::after{
+    opacity:1!important;
+    transform:none!important;
+    filter:none!important;
+    animation:none!important;
+    will-change:auto!important;
+  }
+  #borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action .bz1092-turn-word--move{
+    --bz-turn-impact-fill:100%;
+    transform:none!important;
+    filter:none!important;
+    animation:none!important;
+    will-change:auto!important;
+  }
+  #borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action + .bz1092-action-monolith-wrap{
+    filter:none!important;
+    translate:none!important;
+    scale:1!important;
+    animation:none!important;
+    will-change:auto!important;
+    pointer-events:auto!important;
+  }
+}
+
+/* owner:decision-turn-layout-06-fixed — final calibration locked */
+@media (max-width:760px){
+  html body #borzilov-lp#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-action-copy h3{
+    width:326px!important;
+    max-width:326px!important;
+    justify-items:start!important;
+    transform:translate(calc(20px + var(--bz-turn-cluster-shift-x,0px)),-19px) scale(calc(1.31 * var(--bz-turn-cluster-fit-scale,1)))!important;
+  }
+  html body #borzilov-lp#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-turn-line{
+    transform-origin:left top!important;
+  }
+  html body #borzilov-lp#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-turn-line--top{
+    transform:translate3d(-18px,0,0) scale(.95)!important;
+    z-index:2;
+  }
+  html body #borzilov-lp#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-turn-line--bottom{
+    transform:translate3d(58px,-6px,0) scale(1.01)!important;
+    z-index:1;
+  }
+  /* Keep «Д» inside the parent gradient text paint box.
+     A transformed inline-block becomes an independent paint layer in Chromium/WebKit,
+     so the parent background-clip no longer paints the glyph reliably. */
+  html body #borzilov-lp#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-turn-letter-d{
+    display:inline!important;
+    position:static!important;
+    margin-left:-4.2px!important;
+    transform:none!important;
+    transform-origin:initial!important;
+  }
+  html body #borzilov-lp#borzilov-lp :is(#bz1092-product-lab,#bz1092-product-commercial-late,.bz-final-decision-scope) .bz1092-turn-dot{
+    left:4px!important;
+    top:4px!important;
+    transform:scale(1.19)!important;
+    transform-origin:50% 58%!important;
+  }
+}
+
+
+/* owner:decision-turn-final — EDGE second/third tact after LOCKED “ВАШ ХОД.”
+   Existing word/dot keyframes above remain byte-identical. */
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-turn-line--bottom{
+  position:relative!important;
+}
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-turn-word--move{
+  position:relative!important;
+}
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-turn-exit-prefix{
+  position:absolute;
+  z-index:3;
+  right:calc(100% - 1px);
+  left:auto;
+  top:auto;
+  bottom:-5px;
+  display:block;
+  color:var(--bz-turn-ink);
+  -webkit-text-fill-color:var(--bz-turn-ink);
+  font-family:inherit!important;
+  font-size:1em!important;
+  font-weight:inherit!important;
+  font-style:inherit!important;
+  line-height:inherit!important;
+  letter-spacing:inherit!important;
+  white-space:nowrap;
+  opacity:1;
+  transform:translate3d(3px,0,0) scaleX(var(--bz-turn-exit-fit-scale,1));
+  transform-origin:right bottom;
+  pointer-events:none;
+  backface-visibility:hidden;
+}
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action.bz-turn-exit-disabled .bz1092-turn-exit-prefix{
+  display:none!important;
+}
+
+/* The action-floor geometry is permanently reserved. Only its internal dark skin reveals. */
+#borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap{
+  background:linear-gradient(180deg,#F7F1E7 0%,#F5EFE4 100%)!important;
+}
+#borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap>.bz-final-action-monolith{
+  isolation:isolate;
+  background:transparent!important;
+}
+#borzilov-lp #bz1092-product-commercial-late>.bz1092-object>.bz1092-action-monolith-wrap>.bz-final-action-monolith::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  inset:0;
+  border-radius:inherit;
+  background:#0B242A;
+  transform:translate3d(0,0,0);
+  transform-origin:50% 100%;
+  pointer-events:none;
+}
+#borzilov-lp #bz1092-product-commercial-late .bz-final-action-monolith__main,
+#borzilov-lp #bz1092-product-commercial-late .bz-final-action-monolith__meta,
+#borzilov-lp #bz1092-product-commercial-late .bz-final-action-monolith__sign{
+  position:relative;
+  z-index:1;
+}
+
+/* Armed: LOCKED scene has not started; no hole and no dark CTA yet. */
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action.bz-turn-motion-armed:not(.bz-turn-motion-playing):not(.bz-turn-motion-settled) + .bz1092-action-monolith-wrap{
+  filter:none!important;
+  translate:none!important;
+  scale:1!important;
+  animation:none!important;
+  pointer-events:none!important;
+}
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action.bz-turn-motion-armed:not(.bz-turn-motion-playing):not(.bz-turn-motion-settled) + .bz1092-action-monolith-wrap .bz-final-action-monolith::before{
+  transform:translate3d(0,100%,0)!important;
+}
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action.bz-turn-motion-armed:not(.bz-turn-motion-playing):not(.bz-turn-motion-settled) + .bz1092-action-monolith-wrap :is(.bz-final-action-monolith__main,.bz-final-action-monolith__meta,.bz-final-action-monolith__sign){
+  opacity:0!important;
+}
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action.bz-turn-motion-armed:not(.bz-turn-motion-playing):not(.bz-turn-motion-settled) .bz1092-turn-exit-prefix{
+  opacity:0!important;
+  transform:translate3d(0,9px,0) scaleX(var(--bz-turn-exit-fit-scale,1))!important;
+}
+
+/* Playing: preserve every LOCKED keyframe; compress only the tail after the dot settles. */
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action.bz-turn-motion-playing + .bz1092-action-monolith-wrap{
+  filter:none!important;
+  translate:none!important;
+  scale:1!important;
+  animation:none!important;
+  will-change:auto!important;
+  pointer-events:none!important;
+}
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action.bz-turn-motion-playing .bz1092-turn-exit-prefix{
+  opacity:0;
+  transform:translate3d(0,9px,0) scaleX(var(--bz-turn-exit-fit-scale,1));
+  animation:bz-turn-exit-prefix-arrive 160ms cubic-bezier(.22,.75,.2,1) 1529ms forwards;
+  will-change:transform,opacity;
+}
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action.bz-turn-motion-playing + .bz1092-action-monolith-wrap .bz-final-action-monolith::before{
+  transform:translate3d(0,100%,0);
+  animation:none!important;
+  transition:none!important;
+  will-change:transform;
+}
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action.bz-turn-motion-playing.bz-turn-floor-live + .bz1092-action-monolith-wrap .bz-final-action-monolith::before{
+  transform:translate3d(0,0,0);
+  transition:transform 227ms cubic-bezier(.22,.75,.2,1)!important;
+}
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action.bz-turn-motion-playing + .bz1092-action-monolith-wrap .bz-final-action-monolith__main{
+  opacity:0;
+  transform:translate3d(0,6px,0);
+  animation:bz-turn-cta-copy-arrive 120ms cubic-bezier(.22,.75,.2,1) 1576ms forwards;
+  will-change:transform,opacity;
+}
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action.bz-turn-motion-playing + .bz1092-action-monolith-wrap .bz-final-action-monolith__meta{
+  opacity:0;
+  transform:translate3d(0,4px,0);
+  animation:bz-turn-cta-copy-arrive 113ms cubic-bezier(.22,.75,.2,1) 1596ms forwards;
+  will-change:transform,opacity;
+}
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action.bz-turn-motion-playing + .bz1092-action-monolith-wrap .bz-final-action-monolith__sign{
+  opacity:0;
+  transform:translate3d(-6px,0,0);
+  animation:bz-turn-cta-sign-arrive 107ms cubic-bezier(.22,.75,.2,1) 1643ms forwards;
+  will-change:transform,opacity;
+}
+@keyframes bz-turn-exit-prefix-arrive{
+  from{opacity:0;transform:translate3d(0,9px,0) scaleX(var(--bz-turn-exit-fit-scale,1))}
+  to{opacity:1;transform:translate3d(3px,0,0) scaleX(var(--bz-turn-exit-fit-scale,1))}
+}
+@keyframes bz-turn-cta-copy-arrive{
+  to{opacity:1;transform:translate3d(0,0,0)}
+}
+@keyframes bz-turn-cta-sign-arrive{
+  to{opacity:1;transform:translate3d(0,0,0)}
+}
+
+/* Settled / fast-skip / revisit: a static final scene. */
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action.bz-turn-motion-settled .bz1092-turn-exit-prefix{
+  opacity:1!important;
+  transform:translate3d(3px,0,0) scaleX(var(--bz-turn-exit-fit-scale,1))!important;
+  animation:none!important;
+  will-change:auto!important;
+}
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action.bz-turn-motion-settled + .bz1092-action-monolith-wrap .bz-final-action-monolith::before{
+  transform:translate3d(0,0,0)!important;
+  animation:none!important;
+  will-change:auto!important;
+}
+#borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action.bz-turn-motion-settled + .bz1092-action-monolith-wrap :is(.bz-final-action-monolith__main,.bz-final-action-monolith__meta,.bz-final-action-monolith__sign){
+  opacity:1!important;
+  transform:translate3d(0,0,0)!important;
+  animation:none!important;
+  will-change:auto!important;
+}
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-turn-exit-prefix{
+    opacity:1!important;
+    transform:translate3d(3px,0,0) scaleX(var(--bz-turn-exit-fit-scale,1))!important;
+    animation:none!important;
+  }
+  #borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action + .bz1092-action-monolith-wrap .bz-final-action-monolith::before{
+    transform:translate3d(0,0,0)!important;
+    animation:none!important;
+  }
+  #borzilov-lp :is(#bz1092-product-commercial-late,.bz-final-decision-host) .bz1092-action + .bz1092-action-monolith-wrap :is(.bz-final-action-monolith__main,.bz-final-action-monolith__meta,.bz-final-action-monolith__sign){
+    opacity:1!important;
+    transform:none!important;
+    animation:none!important;
+  }
+}

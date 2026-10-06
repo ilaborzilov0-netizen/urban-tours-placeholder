@@ -1,0 +1,180 @@
+/* owner:final-confession-0591
+   One continuous dark culmination: decision copy → life-in-weeks proof → cost verdict.
+   The calendar keeps its own deeper-black center; copy stays in compact editorial beats. */
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession{
+  box-sizing:border-box;
+  width:100%;
+  margin:0;
+  padding:clamp(78px,7vw,106px) 0 clamp(92px,8vw,124px);
+  background:#06171d;
+  color:#fffaf3;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__inner{
+  width:min(720px,calc(100% - 56px));
+  margin:0 auto;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__inner--before{
+  padding-bottom:clamp(42px,5vw,64px);
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__inner--after{
+  padding-top:clamp(46px,5vw,66px);
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__title{
+  margin:0;
+  max-width:22em;
+  color:#fffaf3;
+  font-size:clamp(26px,2.25vw,32px);
+  line-height:1.12;
+  letter-spacing:-.045em;
+  font-weight:760;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__title span{
+  display:block;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__title span + span{
+  margin-top:.08em;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__body{
+  display:grid;
+  gap:0;
+  color:rgba(255,250,243,.72);
+  font-size:clamp(18px,1.5vw,22px);
+  line-height:1.42;
+  letter-spacing:-.024em;
+  font-weight:520;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__body p{
+  margin:0;
+  max-width:29em;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__body--before{
+  margin-top:clamp(34px,3.8vw,46px);
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__beat + .bz-final-confession__beat{
+  margin-top:8px;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__beat--hard{
+  color:#fffaf3;
+  font-size:1.08em;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__beat--hard strong{
+  font-weight:790;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__body--after{
+  width:min(100%,620px);
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__after-lead{
+  color:#fffaf3;
+  font-size:clamp(21px,1.85vw,26px);
+  line-height:1.28;
+  font-weight:580;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__after-lead strong,
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__after-lead span{
+  display:block;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__after-lead span{
+  margin-top:5px;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__after-lead strong{
+  font-weight:760;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__money{
+  color:#d57b57;
+  font:inherit;
+  font-weight:820;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__after-cost{
+  margin-top:10px!important;
+  color:rgba(255,250,243,.68);
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__after-point{
+  margin-top:clamp(30px,3vw,38px)!important;
+  color:#fffaf3;
+  font-size:clamp(20px,1.7vw,24px);
+  line-height:1.32;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__after-point strong{
+  font-weight:790;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__after-point strong span{
+  display:block;
+}
+@media(max-width:760px){
+  #borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession{
+    padding:58px 0 72px;
+  }
+  #borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__inner{
+    width:calc(100% - 48px);
+    margin:0 auto;
+  }
+  #borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__inner--before{
+    padding-bottom:36px;
+  }
+  #borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__inner--after{
+    padding-top:38px;
+  }
+  #borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__title{
+    font-size:clamp(23px,6.4vw,28px);
+    line-height:1.14;
+  }
+  #borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__body{
+    font-size:clamp(16px,4.25vw,18px);
+    line-height:1.44;
+  }
+  #borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__body--before{
+    margin-top:27px;
+  }
+  #borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__after-lead{
+    font-size:clamp(19px,5vw,22px);
+  }
+  #borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-confession__after-point{
+    margin-top:26px!important;
+    font-size:clamp(18px,4.7vw,21px);
+  }
+}
+
+/* owner:0670-price-bridge
+   The former late "price of later" chapter is reduced to one monetary bridge directly before the tariff. */
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge{
+  width:100%;
+  margin:0;
+  padding:clamp(44px,5vw,64px) clamp(24px,5vw,64px) clamp(34px,4vw,48px);
+  background:#06171d;
+  color:#fffaf3;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge p{
+  width:min(720px,100%);
+  margin:0 auto;
+  display:grid;
+  gap:8px;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge strong,
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge span{
+  display:block;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge strong{
+  color:#fffaf3;
+  font-size:clamp(23px,2.2vw,31px);
+  line-height:1.08;
+  letter-spacing:-.045em;
+  font-weight:780;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge strong b{
+  color:#d57b57;
+  font:inherit;
+  font-weight:850;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge span{
+  color:rgba(255,250,243,.68);
+  font-size:clamp(17px,1.5vw,21px);
+  line-height:1.32;
+  font-weight:590;
+  letter-spacing:-.022em;
+}
+@media(max-width:760px){
+  #borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge{padding:38px 22px 30px}
+  #borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge strong{font-size:23px}
+  #borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-price-bridge span{font-size:16px}
+}

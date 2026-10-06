@@ -1,0 +1,35 @@
+/* owner:0712-error02-voice-relocation
+   The postponed-return inner voice belongs to Error 02 itself.
+   Calendar scene now ends on "Вернуться можно. Вернуть время — нет.";
+   the quote becomes the first semantic beat inside the terracotta Error 02 object. */
+html body #borzilov-lp#borzilov-lp .bz-spine-errors .bz-spine-error--wrong .bz-spine-error__voice{
+  display:grid!important;
+  gap:.06em!important;
+  max-width:19ch!important;
+  margin:0 0 clamp(30px,3.2vw,42px)!important;
+  padding:0!important;
+  color:rgba(255,245,236,.94)!important;
+  -webkit-text-fill-color:rgba(255,245,236,.94)!important;
+  font-family:inherit!important;
+  font-size:clamp(28px,3vw,40px)!important;
+  font-weight:820!important;
+  line-height:1.02!important;
+  letter-spacing:-.052em!important;
+}
+html body #borzilov-lp#borzilov-lp .bz-spine-errors .bz-spine-error--wrong .bz-spine-error__voice span{
+  display:block!important;
+}
+html body #borzilov-lp#borzilov-lp .bz-spine-errors .bz-spine-error--wrong .bz-spine-error__index{
+  margin-bottom:18px!important;
+}
+@media(max-width:760px){
+  html body #borzilov-lp#borzilov-lp .bz-spine-errors .bz-spine-error--wrong .bz-spine-error__voice{
+    max-width:16ch!important;
+    margin-bottom:30px!important;
+    font-size:clamp(25px,7.2vw,31px)!important;
+    line-height:1.04!important;
+  }
+  html body #borzilov-lp#borzilov-lp .bz-spine-errors .bz-spine-error--wrong .bz-spine-error__index{
+    margin-bottom:16px!important;
+  }
+}

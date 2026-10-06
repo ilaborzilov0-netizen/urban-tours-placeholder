@@ -1,0 +1,150 @@
+/* owner:late-product-composition-0339
+   Pure recomposition owner. No new semantic scene.
+   Existing route -> original late bento -> original flip questions -> original final hit -> pass. */
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island{
+  box-sizing:border-box;
+  width:var(--bz-master-island-width,calc(100vw - 8px))!important;
+  max-width:var(--bz-master-island-width,calc(100vw - 8px))!important;
+  margin:var(--bz-island-gap,clamp(64px,8vw,108px)) auto 0!important;
+  padding:0!important;
+  overflow:visible!important;
+}
+html body #borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island > .bz1092-object{
+  display:block!important;
+  grid-template-columns:none!important;
+  grid-template-areas:none!important;
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  border-radius:10px!important;
+  background:#fffdf8!important;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-sharp-questions{
+  width:100%!important;
+  margin:0!important;
+  border-left:0!important;
+  border-right:0!important;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island footer.bz1092-action{
+  width:100%!important;
+  margin:0!important;
+  border-radius:0!important;
+  border-left:0!important;
+  border-right:0!important;
+  border-bottom:0!important;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island footer.bz1092-action:last-child{
+  border-bottom-left-radius:10px!important;
+  border-bottom-right-radius:10px!important;
+}
+@media(max-width:760px){
+  html body #borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island{
+    margin-top:var(--bz-island-gap,clamp(52px,15vw,88px))!important;
+  }
+  html body #borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island > .bz1092-object{
+    border-radius:7px!important;
+  }
+  #borzilov-lp #bz1092-product-lab.bz-late-product-island footer.bz1092-action:last-child{
+    border-bottom-left-radius:7px!important;
+    border-bottom-right-radius:7px!important;
+  }
+}
+
+/* owner:turn-layout-parity-0340 — recover the original final-hit flex alignment after host migration. */
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-decision-host .bz1092-action-copy{
+  align-items:flex-start!important;
+}
+#borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-decision-host .bz1092-action-copy h3{
+  transform-origin:center top!important;
+}
+
+/* owner:late-product-composition-0340 · original final-floor timing transferred to the pass.
+   Geometry is permanently reserved. Only the pass object reveals after the terminal dot lands. */
+#borzilov-lp .bz-pass-after-island[data-bz-turn-pass-state] .bz-pass-reveal-stage > .pricing-register{
+  transform-origin:50% 0;
+}
+#borzilov-lp .bz-pass-after-island[data-bz-turn-pass-state="armed"] .bz-pass-reveal-stage > .pricing-register{
+  opacity:0!important;
+  transform:translate3d(0,18px,0) scale(.995)!important;
+  filter:blur(1.2px)!important;
+  pointer-events:none!important;
+  transition:none!important;
+  will-change:opacity,transform,filter;
+}
+#borzilov-lp .bz-pass-after-island[data-bz-turn-pass-state="revealing"] .bz-pass-reveal-stage > .pricing-register{
+  opacity:1!important;
+  transform:translate3d(0,0,0) scale(1)!important;
+  filter:none!important;
+  pointer-events:auto!important;
+  transition:
+    transform 227ms cubic-bezier(.22,.75,.2,1),
+    opacity 180ms ease-out,
+    filter 180ms ease-out!important;
+  will-change:opacity,transform,filter;
+}
+#borzilov-lp .bz-pass-after-island[data-bz-turn-pass-state="revealed"] .bz-pass-reveal-stage > .pricing-register{
+  opacity:1!important;
+  transform:translate3d(0,0,0) scale(1)!important;
+  filter:none!important;
+  pointer-events:auto!important;
+  transition:none!important;
+  will-change:auto;
+}
+@media(prefers-reduced-motion:reduce){
+  #borzilov-lp .bz-pass-after-island[data-bz-turn-pass-state] .bz-pass-reveal-stage > .pricing-register{
+    opacity:1!important;
+    transform:none!important;
+    filter:none!important;
+    transition:none!important;
+    pointer-events:auto!important;
+  }
+}
+@media(min-width:761px){
+  #borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-decision-host .bz1092-action-copy{
+    display:flex!important;
+    justify-content:center!important;
+    align-items:flex-start!important;
+    width:100%!important;
+  }
+  #borzilov-lp #bz1092-product-lab.bz-late-product-island .bz-final-decision-host .bz1092-action-copy h3{
+    width:max-content!important;
+    max-width:none!important;
+    margin-inline:auto!important;
+    transform:translate3d(-30px,-22px,0) scale(1.3716)!important;
+    transform-origin:50% 0!important;
+  }
+}
+
+/* owner:turn-original-frame-size-0342
+   Restore the original accepted mobile action-frame size only.
+   Typography, lockup transforms, timing and pass reveal remain untouched. */
+@media(max-width:760px){
+  html body #borzilov-lp#borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island[data-bz1108-cta-variant="2"] .bz-final-decision-host > footer.bz1092-action{
+    padding-top:114px!important;
+    padding-bottom:50px!important;
+  }
+}
+
+/* Restore the original accepted mobile type scale. */
+@media(max-width:760px){
+  html body #borzilov-lp#borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island[data-bz1108-cta-variant="2"] .bz-final-decision-host > footer.bz1092-action .bz1092-action-copy h3{
+    font-size:calc(clamp(78px,24vw,102px) * var(--bz1050-hit-scale,1) * var(--bz1050-brosit-scale,1) * .8)!important;
+  }
+}
+
+
+/* 0500 · shorter terminal pause before checkout. Keep the accepted YOUR EXIT lockup, reduce only frame air. */
+html body #borzilov-lp#borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island[data-bz1108-cta-variant="2"] .bz-final-decision-host > footer.bz1092-action{
+  gap:20px!important;
+  padding-top:44px!important;
+  padding-bottom:46px!important;
+}
+@media(max-width:760px){
+  html body #borzilov-lp#borzilov-lp#borzilov-lp #bz1092-product-lab.bz-late-product-island[data-bz1108-cta-variant="2"] .bz-final-decision-host > footer.bz1092-action{
+    gap:18px!important;
+    padding-top:60px!important;
+    padding-bottom:30px!important;
+  }
+}

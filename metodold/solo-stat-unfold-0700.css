@@ -1,0 +1,117 @@
+/* 0701 · chapter-02 solo stat: dense 3–5% cluster -> readable release on scroll */
+#borzilov-lp .bz-solo-stat-unfold{
+  --solo-stat-p:1;
+  --solo-stat-line-p:1;
+}
+#borzilov-lp .bz-solo-stat-unfold .bz-spine-solo__stat-value{
+  position:relative;
+  z-index:2;
+  display:inline-flex;
+  align-items:baseline;
+  width:max-content;
+  transform-origin:left top;
+  transform:
+    translateY(calc(18px * (1 - var(--solo-stat-p))))
+    scale(calc(1.24 - (0.24 * var(--solo-stat-p))));
+  margin-bottom:calc(-0.18em * (1 - var(--solo-stat-p)));
+  letter-spacing:0;
+  will-change:transform, margin-bottom;
+}
+#borzilov-lp .bz-solo-stat-unfold .bz-solo-stat-char{
+  display:inline-block;
+  transform-origin:center center;
+  will-change:transform;
+}
+/* At entry the four signs are intentionally over-dense. As the card travels
+   through the viewport they release into the normal final 3–5% rhythm. */
+#borzilov-lp .bz-solo-stat-unfold .bz-solo-stat-char--3{
+  transform:translateX(calc(.035em * (1 - var(--solo-stat-p))));
+}
+#borzilov-lp .bz-solo-stat-unfold .bz-solo-stat-char--dash{
+  margin-left:calc(-.075em - .085em * (1 - var(--solo-stat-p)));
+  margin-right:calc(-.075em - .075em * (1 - var(--solo-stat-p)));
+  transform:
+    translateY(calc(-.005em * (1 - var(--solo-stat-p))))
+    scaleX(calc(.82 + .18 * var(--solo-stat-p)));
+}
+#borzilov-lp .bz-solo-stat-unfold .bz-solo-stat-char--5{
+  transform:translateX(calc(-.045em * (1 - var(--solo-stat-p))));
+}
+#borzilov-lp .bz-solo-stat-unfold .bz-solo-stat-char--pct{
+  margin-left:calc(-.075em - .115em * (1 - var(--solo-stat-p)));
+  transform:
+    translateX(calc(-.035em * (1 - var(--solo-stat-p))))
+    scale(calc(1.035 - .035 * var(--solo-stat-p)));
+}
+#borzilov-lp .bz-solo-stat-unfold .bz-spine-solo__stat-value::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:calc(-0.085em - 2px);
+  width:clamp(84px,10vw,124px);
+  height:3px;
+  border-radius:999px;
+  background:#d29371;
+  opacity:var(--solo-stat-line-p);
+  transform-origin:left center;
+  transform:scaleX(var(--solo-stat-line-p));
+  will-change:transform, opacity;
+}
+#borzilov-lp .bz-solo-stat-unfold .bz-spine-solo__stat-copy{
+  position:relative;
+  z-index:1;
+  margin-top:calc(clamp(22px,2.4vw,30px) - clamp(28px,3vw,36px) * (1 - var(--solo-stat-p)));
+  transform:translateY(calc(-10px * (1 - var(--solo-stat-p))));
+  opacity:calc(.88 + (.12 * var(--solo-stat-p)));
+  will-change:transform, margin-top, opacity;
+}
+#borzilov-lp .bz-solo-stat-unfold .bz-spine-solo__stat-source{
+  opacity:calc(.78 + (.22 * var(--solo-stat-p)));
+  transform:translateY(calc(6px * (1 - var(--solo-stat-p))));
+  will-change:transform, opacity;
+}
+#borzilov-lp .bz-solo-stat-unfold.is-static .bz-spine-solo__stat-value,
+#borzilov-lp .bz-solo-stat-unfold.is-static .bz-solo-stat-char,
+#borzilov-lp .bz-solo-stat-unfold.is-static .bz-spine-solo__stat-copy,
+#borzilov-lp .bz-solo-stat-unfold.is-static .bz-spine-solo__stat-source,
+#borzilov-lp .bz-solo-stat-unfold.is-static .bz-spine-solo__stat-value::after{
+  transition:none !important;
+}
+@media (max-width: 767.98px){
+  #borzilov-lp .bz-solo-stat-unfold .bz-spine-solo__stat-value{
+    transform:
+      translateY(calc(14px * (1 - var(--solo-stat-p))))
+      scale(calc(1.20 - (0.20 * var(--solo-stat-p))));
+    margin-bottom:calc(-0.15em * (1 - var(--solo-stat-p)));
+  }
+  #borzilov-lp .bz-solo-stat-unfold .bz-solo-stat-char--dash{
+    margin-left:calc(-.072em - .070em * (1 - var(--solo-stat-p)));
+    margin-right:calc(-.072em - .060em * (1 - var(--solo-stat-p)));
+  }
+  #borzilov-lp .bz-solo-stat-unfold .bz-solo-stat-char--pct{
+    margin-left:calc(-.072em - .090em * (1 - var(--solo-stat-p)));
+  }
+  #borzilov-lp .bz-solo-stat-unfold .bz-spine-solo__stat-value::after{
+    width:88px;
+    height:2px;
+    bottom:calc(-0.075em - 1px);
+  }
+  #borzilov-lp .bz-solo-stat-unfold .bz-spine-solo__stat-copy{
+    margin-top:calc(21px - 26px * (1 - var(--solo-stat-p)));
+    transform:translateY(calc(-8px * (1 - var(--solo-stat-p))));
+  }
+}
+@media (prefers-reduced-motion: reduce){
+  #borzilov-lp .bz-solo-stat-unfold{
+    --solo-stat-p:1 !important;
+    --solo-stat-line-p:1 !important;
+  }
+  #borzilov-lp .bz-solo-stat-unfold .bz-spine-solo__stat-value,
+  #borzilov-lp .bz-solo-stat-unfold .bz-solo-stat-char,
+  #borzilov-lp .bz-solo-stat-unfold .bz-spine-solo__stat-copy,
+  #borzilov-lp .bz-solo-stat-unfold .bz-spine-solo__stat-source,
+  #borzilov-lp .bz-solo-stat-unfold .bz-spine-solo__stat-value::after{
+    transition:none !important;
+    will-change:auto;
+  }
+}

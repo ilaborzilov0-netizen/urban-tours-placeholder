@@ -1,0 +1,110 @@
+/* owner:start-timer-hierarchy-0730
+   Production hierarchy refinement: left countdown remains primary; right schedule is intentionally secondary and tertiary.
+   Content unchanged: countdown left; Sunday noon + date right; quiet copper seconds.
+*/
+#borzilov-lp .bz-solution-bento__start[data-bz-start-fixed="0730"]{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.18fr) auto!important;
+  grid-template-areas:"label meta" "note meta"!important;
+  align-items:start!important;
+  column-gap:12px!important;
+  row-gap:6px!important;
+  padding:11px 14px!important;
+}
+#borzilov-lp .bz-solution-bento__start[data-bz-start-fixed="0730"] > span.bz-start-bento-live-label{
+  grid-area:label;
+  display:inline-flex;
+  align-items:baseline;
+  align-self:start;
+  gap:5px;
+  min-width:0;
+  max-width:100%;
+  font-size:13px;
+  line-height:1.08;
+  font-weight:840;
+  white-space:nowrap;
+  color:#081A20;
+}
+#borzilov-lp .bz-solution-bento__start[data-bz-start-fixed="0730"] > span.bz-start-bento-live-label > *{
+  font-size:inherit;
+  line-height:inherit;
+  white-space:nowrap;
+}
+#borzilov-lp .bz-start-bento-prefix{font-weight:840}
+#borzilov-lp .bz-start-bento-days{font:inherit;font-weight:900}
+#borzilov-lp .bz-start-bento-live-timer,
+#borzilov-lp .bz-start-live-timer{
+  display:inline-flex;
+  align-items:baseline;
+  gap:1px;
+  color:rgba(8,26,32,.58);
+  font:700 10px/1 Inter,system-ui,sans-serif;
+  font-variant-numeric:tabular-nums lining-nums;
+  font-feature-settings:"tnum" 1,"lnum" 1;
+  letter-spacing:-.01em;
+  white-space:nowrap;
+}
+#borzilov-lp .bz-start-bento-live-timer .seconds,
+#borzilov-lp .bz-start-live-timer .seconds{
+  color:rgba(176,113,82,.72);
+  font-weight:780;
+}
+#borzilov-lp .bz-solution-bento__start[data-bz-start-fixed="0730"] > strong.bz-start-bento-meta{
+  grid-area:meta;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  justify-content:flex-start;
+  align-self:start;
+  gap:3px;
+  min-width:max-content;
+  text-align:right;
+  font-weight:normal;
+}
+#borzilov-lp .bz-start-bento-when{
+  color:rgba(8,26,32,.50);
+  font-size:10.7px;
+  line-height:1.08;
+  font-weight:700;
+  white-space:nowrap;
+}
+#borzilov-lp .bz-start-bento-date{
+  color:rgba(8,26,32,.34);
+  font-size:9.1px;
+  line-height:1.08;
+  font-weight:680;
+  white-space:nowrap;
+}
+#borzilov-lp .bz-solution-bento__start[data-bz-start-fixed="0730"] > small.bz-solution-bento__start-note{
+  grid-area:note;
+  display:block;
+  color:rgba(8,26,32,.48);
+  font-size:9px;
+  line-height:1.18;
+  font-weight:700;
+  letter-spacing:.01em;
+}
+#borzilov-lp .pricing-register__headline-row .pricing-register__start em[data-bz-start-live]{
+  gap:6px;justify-content:flex-end;flex-wrap:wrap;max-width:min(100%,260px);overflow:visible;
+}
+#borzilov-lp .bz-start-live-meta{display:inline-flex;align-items:center;white-space:nowrap}
+
+@media(max-width:760px){
+  #borzilov-lp .bz-solution-bento__start[data-bz-start-fixed="0730"]{
+    grid-template-columns:minmax(0,1.18fr) auto!important;
+    column-gap:10px!important;
+    row-gap:6px!important;
+    padding:10px 12px!important;
+  }
+  #borzilov-lp .bz-solution-bento__start[data-bz-start-fixed="0730"] > span.bz-start-bento-live-label{font-size:11.4px;gap:4px}
+  #borzilov-lp .bz-start-bento-live-timer{font-size:9.3px}
+  #borzilov-lp .bz-start-bento-when{font-size:9.9px}
+  #borzilov-lp .bz-start-bento-date{font-size:8.5px}
+  #borzilov-lp .bz-solution-bento__start[data-bz-start-fixed="0730"] > small.bz-solution-bento__start-note{font-size:8.4px}
+}
+@media(max-width:420px){
+  #borzilov-lp .bz-solution-bento__start[data-bz-start-fixed="0730"]{column-gap:8px!important}
+  #borzilov-lp .bz-solution-bento__start[data-bz-start-fixed="0730"] > strong.bz-start-bento-meta{min-width:0}
+  #borzilov-lp .bz-start-bento-when{font-size:9.3px}
+  #borzilov-lp .bz-start-bento-date{font-size:8.1px}
+}
