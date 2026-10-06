@@ -1763,6 +1763,73 @@
     }
   }
 </style>
+
+<style id="alfa-modal-success-v27">
+  .alfaLeadModal{
+    position:fixed;inset:0;z-index:100;
+    background:rgba(20,20,18,.46);
+    display:none;align-items:center;justify-content:center;padding:20px;
+    backdrop-filter:blur(11px) saturate(.82);
+    -webkit-backdrop-filter:blur(11px) saturate(.82);
+  }
+  .alfaLeadModal.show{display:flex}
+  .modalCard{width:min(540px,100%);background:var(--paper);padding:32px;border-radius:16px;position:relative;max-height:calc(100dvh - 40px);overflow:auto;box-shadow:0 24px 80px rgba(0,0,0,.18)}
+  .close{position:absolute;top:14px;right:14px;border:0;background:transparent;padding:9px;display:grid;place-items:center;border-radius:5px;color:var(--ink);min-height:42px;min-width:42px;z-index:3}
+  .close svg{height:20px;width:20px}
+  .modalCard .eyebrow{font-size:13px;font-weight:800;letter-spacing:.07em;line-height:1.4;text-transform:uppercase;color:var(--muted);margin:0 42px 17px 0}
+  .modalCard h3{font-size:clamp(32px,6vw,44px);line-height:1.03;letter-spacing:-.045em;margin:0 0 15px}
+  .modalHint{font-size:16px;line-height:1.5;color:var(--muted);margin:0 0 19px}
+  .modalSlot{padding:15px 17px;background:var(--soft);border-radius:8px;display:grid;gap:6px;margin-bottom:23px}
+  .modalSlot small{display:block;font-size:12px;letter-spacing:.07em;font-weight:800;color:var(--muted);margin-bottom:5px}
+  .modalSlot strong{font-size:20px;line-height:1.25;text-transform:capitalize}
+  .modalSlot>b{font-size:17px}
+  .alfaLeadModal form{display:grid;gap:12px}
+  .alfaLeadModal label{font-size:15px;font-weight:700;display:grid;gap:8px}
+  .alfaLeadModal input{min-width:0;width:100%;border:1px solid #bcb7ac;border-radius:7px;background:#fffdf8;padding:15px 14px;font-size:18px;color:var(--ink)}
+  .primary{border:0;border-radius:8px;background:var(--orange);color:white;font-weight:800;font-size:20px;line-height:1.2;padding:18px 14px;min-height:60px}
+  .primary:hover{background:#d73e1b}
+  .alfaLeadModal form>small{font-size:13px;line-height:1.5;color:var(--muted)}
+  .formStatus{font-size:14px;line-height:1.4}
+  .formStatus:empty{display:none}
+  .formStatus.err{color:#a42b15}
+  .formStatus.ok{color:#286b3a}
+  .hp{position:absolute!important;left:-9999px!important;opacity:0!important;pointer-events:none!important}
+
+  .successCurtain{position:fixed;inset:0;z-index:110;background:var(--ink);color:var(--paper);display:none;overflow:auto}
+  .successCurtain.show{display:block}
+  .successCurtainInner{position:relative;width:min(650px,100%);padding:45px 32px;margin:auto}
+  .successMark{width:43px;height:43px;border-radius:50%;background:var(--orange);display:grid;place-items:center;margin-bottom:17px}
+  .successMark svg{width:23px;height:23px}
+  .successCurtain .close{color:var(--paper);top:23px;right:23px}
+  .successCurtain .eyebrow{font-size:13px;color:#bdb8ad;margin:0 45px 16px 0;font-weight:800;letter-spacing:.07em;line-height:1.4;text-transform:uppercase}
+  .successCurtain h2{font-size:clamp(38px,7vw,59px);line-height:1;letter-spacing:-.05em;margin:0 0 20px}
+  .successWhen{display:grid;gap:5px;padding:16px 0;border-block:1px solid #4c4941;margin-bottom:23px}
+  .successWhen strong{font-size:20px;text-transform:capitalize}
+  .successWhen span{font-size:17px;color:#c5c0b5}
+  .successChannelPrompt{font-size:19px;line-height:1.5;margin:0 0 18px}
+  .successChannels{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .successChannel{display:flex;align-items:center;justify-content:space-between;gap:12px;text-decoration:none;padding:17px 18px;border-radius:9px;font-size:18px;line-height:1.25;font-weight:800;min-height:83px}
+  .successChannel.max{background:var(--paper);color:var(--ink)}
+  .successChannel.telegram{background:var(--orange);color:white}
+  .successChannel svg{height:21px;width:21px;flex:none}
+  .successFine,.successPlanNote{font-size:14px;line-height:1.5;color:#bdb8ad;margin-top:20px}
+  .successPlanNote{margin-top:10px}
+  .successChange{display:none}
+  @media(max-width:540px){
+    .alfaLeadModal{padding:12px}
+    .modalCard{padding:27px 21px;border-radius:12px;max-height:calc(100dvh - 24px)}
+    .modalCard h3{font-size:37px}
+    .modalHint{font-size:15px}
+    .modalSlot strong{font-size:19px}
+    .modalCard .eyebrow{font-size:12px}
+    .successCurtainInner{padding:30px 22px}
+    .successCurtain h2{font-size:43px}
+    .successChannels{grid-template-columns:1fr}
+    .successChannel{min-height:75px;font-size:18px}
+    .successChannelPrompt{font-size:18px}
+    .successMark{width:37px;height:37px}
+  }
+</style>
 </head>
 <body class="alpha-page">
 <header class="topbar">
@@ -1790,23 +1857,6 @@
 
           <div class="alpha-hero-cta">
             <button class="cta" id="heroOpenForm" type="button"><span>Записаться бесплатно</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          </div>
-        </div>
-
-        <div class="hero-reveal" id="heroReveal">
-          <form class="hero-inline-form" id="heroInlineForm" novalidate>
-            <label class="hero-inline-label" for="heroPhone">Ваш телефон</label>
-            <input class="hero-inline-input" id="heroPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 999 123-45-67" required>
-            <button class="cta hero-inline-submit" id="heroInlineSubmit" type="submit"><span>Получить место</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            <div class="hero-inline-status" id="heroInlineStatus" aria-live="polite"></div>
-          </form>
-          <p class="alpha-card-note">Камеру и микрофон включать не обязательно. До встречи ничего специально не меняйте.</p>
-          <div class="alpha-success" id="heroSuccess">
-            <p><strong>Место забронировано.</strong><br>Откройте удобного бота и нажмите «Старт», чтобы получить ссылку и напоминание.</p>
-            <div class="alpha-success-links">
-              <a href="https://max.ru/id312334031550_bot" target="_blank" rel="noopener">Открыть MAX</a>
-              <a href="https://t.me/metod_borzilova_bot" target="_blank" rel="noopener">Открыть Telegram</a>
-            </div>
           </div>
         </div>
       </div>
@@ -1920,69 +1970,134 @@
   </main>
 
 
+  <div class="alfaLeadModal" id="alfaLeadModal" role="dialog" aria-modal="true" aria-labelledby="alfaLeadTitle" aria-describedby="alfaLeadHint">
+    <div class="modalCard alfaLeadCard">
+      <button class="close" id="alfaLeadClose" type="button" aria-label="Закрыть регистрацию"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+      <p class="eyebrow">1 / 2 · Запись на встречу</p>
+      <h3 id="alfaLeadTitle">ЗАПИСАТЬСЯ<br>БЕСПЛАТНО.</h3>
+      <p class="modalHint" id="alfaLeadHint">Оставьте телефон. После записи выберите бота для ссылки и напоминаний.</p>
+      <div class="modalSlot">
+        <div><small>ВАША ВСТРЕЧА</small><strong>Среда, 7 октября</strong></div>
+        <b>18:00–21:00 МСК</b>
+      </div>
+      <form id="alfaLeadForm" novalidate>
+        <label><span>Телефон</span><input required name="contact" id="alfaLeadPhone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 999 123-45-67"></label>
+        <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="primary" id="alfaLeadSubmit" type="submit">Записаться бесплатно</button>
+        <div class="formStatus" id="alfaLeadStatus" aria-live="polite"></div>
+        <small>Встреча бесплатна. После записи нужно запустить Telegram- или MAX-бота, чтобы получить ссылку.</small>
+      </form>
+    </div>
+  </div>
+
+  <div class="successCurtain" id="successCurtain" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+    <div class="successCurtainInner">
+      <button class="close" id="successClose" type="button" aria-label="Закрыть подтверждение"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+      <div class="successMark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <p class="eyebrow">Заявка принята · остался один шаг</p>
+      <h2 id="successTitle">ОТКРОЙТЕ БОТА.<br>НАЖМИТЕ «СТАРТ».</h2>
+      <div class="successWhen"><strong id="successDate">Среда, 7 октября</strong><span id="successTime">18:00–21:00 МСК</span></div>
+      <button class="successChange" id="changeEvening" type="button">Сменить вечер</button>
+      <p class="successChannelPrompt">Выберите Telegram или MAX. В боте нажмите <strong>«Старт»</strong>, чтобы получить ссылку и напоминания перед встречей.</p>
+      <div class="successChannels">
+        <a class="successChannel max" id="successMax" href="https://max.ru/id312334031550_bot" target="_blank" rel="noopener"><span>Получить ссылку<br>в MAX</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="successChannel telegram" id="successTelegram" href="https://t.me/metodborzilovabot" target="_blank" rel="noopener"><span>Получить ссылку<br>в Telegram</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <p class="successFine">Специальная подготовка не нужна. Вы можете прийти курящим и задать вопросы на встрече.</p>
+      <div class="successPlanNote">Если планы изменятся, сообщите об этом в боте.</div>
+    </div>
+  </div>
+
 <script>
 (function(){
+  'use strict';
   const API='https://api.marafon-metod.ru/api/leads';
-  const form=document.getElementById('heroInlineForm');
-  const input=document.getElementById('heroPhone');
-  const submit=document.getElementById('heroInlineSubmit');
-  const status=document.getElementById('heroInlineStatus');
-  const success=document.getElementById('heroSuccess');
+  const modal=document.getElementById('alfaLeadModal');
+  const form=document.getElementById('alfaLeadForm');
+  const phone=document.getElementById('alfaLeadPhone');
+  const submit=document.getElementById('alfaLeadSubmit');
+  const status=document.getElementById('alfaLeadStatus');
+  const curtain=document.getElementById('successCurtain');
 
   function valid(v){return String(v||'').replace(/\D/g,'').length>=10}
   function utm(){const p=new URLSearchParams(location.search);return{source:p.get('utm_source')||'',medium:p.get('utm_medium')||'',campaign:p.get('utm_campaign')||'',content:p.get('utm_content')||'',term:p.get('utm_term')||''}}
 
-  async function send(contact){
-    const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({
-      formType:'commercial_application',
-      contactType:'phone',
-      contact,
-      message:'Марафон Метод · /alfa/ · бесплатная живая встреча\nСреда, 7 октября · 18:00–21:00 МСК',
-      price:'0',
-      source:'marafon_free_alfa',
-      sourceUrl:location.href,
-      referrer:document.referrer||'',
-      utm:utm(),
-      website:''
-    })});
-    let result={};try{result=await r.json()}catch(_){}
-    if(!r.ok||!result.ok) throw new Error(result.error||('HTTP '+r.status));
-    return result;
+  function openModal(){
+    status.textContent='';status.className='formStatus';
+    modal.classList.add('show');
+    document.body.style.overflow='hidden';
+    setTimeout(()=>phone.focus(),80);
+    try{if(window.ym)window.ym(110906734,'reachGoal','marafon_free_alfa_modal_open')}catch(_){}
   }
+  function closeModal(){
+    modal.classList.remove('show');
+    if(!curtain.classList.contains('show')) document.body.style.overflow='';
+  }
+  function openSuccess(){
+    modal.classList.remove('show');
+    curtain.classList.add('show');
+    document.body.style.overflow='hidden';
+    try{if(window.ym)window.ym(110906734,'reachGoal','marafon_free_alfa_success_view')}catch(_){}
+  }
+  function closeSuccess(){
+    curtain.classList.remove('show');
+    document.body.style.overflow='';
+  }
+
+  document.getElementById('heroOpenForm').addEventListener('click',openModal);
+  document.querySelectorAll('.js-focus-form').forEach(btn=>btn.addEventListener('click',openModal));
+  document.getElementById('alfaLeadClose').addEventListener('click',closeModal);
+  modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+  document.getElementById('successClose').addEventListener('click',closeSuccess);
+  document.addEventListener('keydown',e=>{
+    if(e.key!=='Escape') return;
+    if(curtain.classList.contains('show')) closeSuccess();
+    else if(modal.classList.contains('show')) closeModal();
+  });
 
   form.addEventListener('submit',async e=>{
     e.preventDefault();
-    const contact=String(input.value||'').trim();
-    if(!valid(contact)){status.textContent='Укажите корректный номер телефона.';return}
-    const old=submit.innerHTML;submit.disabled=true;submit.textContent='Отправляем…';status.textContent='';
+    const contact=String(phone.value||'').trim();
+    const website=String(form.elements.website.value||'').trim();
+    if(!valid(contact)){
+      status.textContent='Укажите корректный номер телефона.';
+      status.className='formStatus err';
+      phone.focus();
+      return;
+    }
+    const old=submit.textContent;
+    submit.disabled=true;submit.textContent='Бронируем…';
+    status.textContent='';status.className='formStatus';
     try{
-      await send(contact);
-      input.value='';
-      status.textContent='Место забронировано.';
-      success.classList.add('show');
-      try{if(window.ym)window.ym(110906734,'reachGoal','marafon_free_alfa_lead')}catch(_){}
+      const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({
+        formType:'commercial_application',
+        contactType:'phone',
+        contact,
+        message:'Марафон Метод · /alfa/ · бесплатная живая встреча\nСреда, 7 октября · 18:00–21:00 МСК\nСсылка после регистрации',
+        price:'0',
+        source:'marafon_free_alfa',
+        sourceUrl:location.href,
+        referrer:document.referrer||'',
+        utm:utm(),
+        website
+      })});
+      let result={};try{result=await r.json()}catch(_){}
+      if(!r.ok||!result.ok) throw new Error(result.error||('HTTP '+r.status));
+      form.reset();
+      openSuccess();
+      try{if(window.ym)window.ym(110906734,'reachGoal','marafon_free_alfa_lead_submit')}catch(_){}
     }catch(err){
       console.error('[alfa-free:lead:error]',err);
-      status.textContent='Не удалось отправить заявку. Попробуйте чуть позже.';
+      status.textContent='Не удалось отправить заявку. Попробуйте ещё раз чуть позже.';
+      status.className='formStatus err';
     }finally{
-      submit.disabled=false;submit.innerHTML=old;
+      submit.disabled=false;
+      submit.textContent=old;
     }
   });
 
-  const heroReveal=document.getElementById('heroReveal');
-  const heroOpenForm=document.getElementById('heroOpenForm');
-  function revealHeroForm(){
-    heroReveal.classList.add('open');
-    heroOpenForm.setAttribute('aria-expanded','true');
-    setTimeout(()=>input.focus(),80);
-    try{if(window.ym)window.ym(110906734,'reachGoal','marafon_free_alfa_form_open')}catch(_){}
-  }
-  heroOpenForm.setAttribute('aria-expanded','false');
-  heroOpenForm.addEventListener('click',revealHeroForm);
-  document.querySelectorAll('.js-focus-form').forEach(btn=>btn.addEventListener('click',()=>{
-    window.scrollTo({top:0,behavior:'smooth'});
-    setTimeout(revealHeroForm,520);
-  }));
+  document.getElementById('successMax').addEventListener('click',()=>{try{if(window.ym)window.ym(110906734,'reachGoal','marafon_free_alfa_success_max')}catch(_){}});
+  document.getElementById('successTelegram').addEventListener('click',()=>{try{if(window.ym)window.ym(110906734,'reachGoal','marafon_free_alfa_success_telegram')}catch(_){}});
 })();
 </script>
 </body></html>
