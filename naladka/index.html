@@ -2073,6 +2073,101 @@
     .legalFooterBottom{display:grid;gap:5px}
   }
 </style>
+
+<style id="alpha-no-prep-v1">
+  .alpha-no-prep{
+    border-top:1px solid var(--line);
+    padding-block:82px;
+    background:#eeeae1;
+  }
+  .alpha-no-prep-grid{
+    display:grid;
+    grid-template-columns:minmax(280px,.78fr) minmax(0,1.22fr);
+    gap:clamp(54px,7vw,120px);
+    align-items:start;
+  }
+  .alpha-no-prep-intro{
+    position:sticky;
+    top:28px;
+  }
+  .alpha-no-prep-intro .section-label{
+    margin-bottom:15px;
+  }
+  .alpha-no-prep-intro h2{
+    margin:0 0 22px;
+    max-width:610px;
+    font-size:clamp(42px,4.2vw,72px);
+    line-height:.94;
+    letter-spacing:-.058em;
+  }
+  .alpha-no-prep-intro>p:last-child{
+    margin:0;
+    max-width:540px;
+    font-size:18px;
+    line-height:1.52;
+    color:var(--muted);
+  }
+  .alpha-no-prep-list{
+    border-top:1px solid var(--ink);
+  }
+  .alpha-no-prep-row{
+    display:grid;
+    grid-template-columns:58px minmax(0,1fr);
+    gap:24px;
+    padding:25px 0 27px;
+    border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .alpha-no-prep-num{
+    padding-top:2px;
+    color:var(--orange);
+    font-size:20px;
+    line-height:1;
+    font-weight:900;
+    letter-spacing:-.03em;
+  }
+  .alpha-no-prep-row h3{
+    margin:0 0 5px;
+    font-size:clamp(20px,1.65vw,27px);
+    line-height:1.06;
+    letter-spacing:-.035em;
+  }
+  .alpha-no-prep-row p{
+    margin:0;
+    max-width:760px;
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.48;
+  }
+  @media(max-width:900px){
+    .alpha-no-prep{padding-block:64px}
+    .alpha-no-prep-grid{
+      grid-template-columns:1fr;
+      gap:42px;
+    }
+    .alpha-no-prep-intro{position:static}
+    .alpha-no-prep-intro h2{max-width:760px}
+  }
+  @media(max-width:560px){
+    .alpha-no-prep{padding-block:52px}
+    .alpha-no-prep-grid{gap:30px}
+    .alpha-no-prep-intro h2{
+      font-size:clamp(38px,11vw,54px);
+      margin-bottom:16px;
+    }
+    .alpha-no-prep-intro>p:last-child{
+      font-size:16px;
+    }
+    .alpha-no-prep-row{
+      grid-template-columns:42px minmax(0,1fr);
+      gap:14px;
+      padding:21px 0 22px;
+    }
+    .alpha-no-prep-num{font-size:18px}
+    .alpha-no-prep-row h3{font-size:20px}
+    .alpha-no-prep-row p{font-size:15px}
+  }
+</style>
 </head>
 <body class="alpha-page">
 <header class="topbar">
@@ -2151,6 +2246,50 @@
   </section>
 
   
+
+  <section class="alpha-no-prep" aria-labelledby="noPrepTitle">
+    <div class="wrap alpha-no-prep-grid">
+      <div class="alpha-no-prep-intro">
+        <p class="section-label">До встречи</p>
+        <h2 id="noPrepTitle">ВАМ НЕ НУЖНО<br>ГОТОВИТЬСЯ К ОТКАЗУ.</h2>
+        <p>До встречи живите как обычно. Не сокращайте, не проверяйте себя и не пытайтесь заранее «собраться».</p>
+      </div>
+
+      <div class="alpha-no-prep-list">
+        <article class="alpha-no-prep-row">
+          <span class="alpha-no-prep-num">01</span>
+          <div>
+            <h3>НЕ НУЖНО ЖДАТЬ, ПОКА БУДЕТЕ ГОТОВЫ</h3>
+            <p>Готовность не требуется заранее. Приходите курящим — разбираться будем уже на встрече.</p>
+          </div>
+        </article>
+
+        <article class="alpha-no-prep-row">
+          <span class="alpha-no-prep-num">02</span>
+          <div>
+            <h3>НЕ НУЖНО СОКРАЩАТЬ</h3>
+            <p>Не курите меньше специально и не выбрасывайте пачку перед встречей.</p>
+          </div>
+        </article>
+
+        <article class="alpha-no-prep-row">
+          <span class="alpha-no-prep-num">03</span>
+          <div>
+            <h3>БЕЗ ОТРЫВА ОТ ВАШЕЙ ЖИЗНИ</h3>
+            <p>Работаем с теми ситуациями, в которых вы действительно курите: кофе, стресс, скука, алкоголь, работа.</p>
+          </div>
+        </article>
+
+        <article class="alpha-no-prep-row">
+          <span class="alpha-no-prep-num">04</span>
+          <div>
+            <h3>БЕЗ ГИПНОЗА И «ПЕРЕПРОШИВКИ»</h3>
+            <p>Разбираем понятные вещи: тягу, ценность сигареты и внутренний торг.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
   <section class="alpha-method-core" aria-labelledby="methodCoreTitle">
     <div class="wrap">
