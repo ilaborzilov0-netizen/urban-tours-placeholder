@@ -2172,7 +2172,8 @@
   const PAYMENT_API='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/api/payment/create';
   const PAYMENT_STATUS='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/api/payment/status';
   const PLAN='evening1990';
-  const AMOUNT=199000;
+  const AMOUNT_RUB=1990;
+  const AMOUNT_MINOR=199000;
   const modal=document.getElementById('alfaLeadModal');
   const form=document.getElementById('alfaLeadForm');
   const nameInput=document.getElementById('alfaLeadName');
@@ -2234,7 +2235,7 @@
     for(let attempt=0;attempt<10;attempt++){
       try{
         const data=await getPaymentStatus(orderId);
-        if(data.confirmed && data.plan===PLAN && Number(data.amount)===AMOUNT){
+        if(data.confirmed && data.plan===PLAN && Number(data.amount)===AMOUNT_MINOR){
           cleanPaymentParams();
           openSuccess();
           return;
@@ -2316,8 +2317,8 @@
       });
       let data={};try{data=await r.json()}catch(_){}
       if(!r.ok||!data.ok||!data.paymentUrl)throw new Error(data.error||'Не удалось открыть оплату.');
-      if(data.plan!==PLAN||Number(data.amount)!==AMOUNT)throw new Error('Платёж создан с неверной стоимостью. Оплата остановлена.');
-      try{sessionStorage.setItem('marafonNaladkaLastPayment',JSON.stringify({orderId:data.orderId,paymentId:data.paymentId,amount:data.amount,createdAt:new Date().toISOString()}))}catch(_){}
+      if(data.plan!==PLAN||Number(data.amount)!==AMOUNT_RUB)throw new Error('Платёж создан с неверной стоимостью. Оплата остановлена.');
+      try{sessionStorage.setItem('marafonNaladkaLastPayment',JSON.stringify({orderId:data.orderId,paymentId:data.paymentId,amountRub:data.amount,amountMinor:data.amountMinor||AMOUNT_MINOR,createdAt:new Date().toISOString()}))}catch(_){}
       try{if(window.ym)window.ym(110906734,'reachGoal','marafon_naladka_1990_payment_redirect')}catch(_){}
       location.assign(data.paymentUrl);
     }catch(err){
