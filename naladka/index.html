@@ -2219,6 +2219,143 @@
     .alpha-format-strip-grid strong{font-size:13px}
   }
 </style>
+
+<style id="alpha-two-errors-v1">
+  .alpha-two-errors{
+    border-top:1px solid var(--line);
+    background:var(--paper);
+    padding-top:92px;
+  }
+  .alpha-two-errors-head{
+    display:grid;
+    grid-template-columns:minmax(180px,.34fr) minmax(0,1.66fr);
+    column-gap:clamp(36px,5vw,86px);
+    align-items:start;
+    margin-bottom:56px;
+  }
+  .alpha-two-errors-head .section-label{
+    margin:8px 0 0;
+  }
+  .alpha-two-errors-head h2{
+    margin:0;
+    max-width:1180px;
+    font-size:clamp(52px,6.1vw,104px);
+    line-height:.88;
+    letter-spacing:-.068em;
+  }
+  .alpha-two-errors-head h2 span{
+    color:var(--orange);
+  }
+  .alpha-two-errors-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    border-top:1px solid var(--ink);
+  }
+  .alpha-two-error{
+    min-height:390px;
+    padding:30px 38px 38px 0;
+    border-right:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+  }
+  .alpha-two-error--second{
+    padding-left:38px;
+    padding-right:0;
+    border-right:0;
+  }
+  .alpha-two-error-num{
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:.08em;
+    color:var(--orange);
+  }
+  .alpha-two-error h3{
+    margin:28px 0 24px;
+    font-size:clamp(40px,4vw,70px);
+    line-height:.92;
+    letter-spacing:-.06em;
+  }
+  .alpha-two-error p{
+    margin:0 0 16px;
+    max-width:650px;
+    font-size:18px;
+    line-height:1.5;
+    color:var(--muted);
+  }
+  .alpha-two-error .alpha-two-error-lead{
+    font-size:clamp(21px,1.8vw,28px);
+    line-height:1.28;
+    letter-spacing:-.025em;
+    color:var(--ink);
+  }
+  .alpha-two-errors-punch{
+    margin-top:54px;
+    padding-block:56px 60px;
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .alpha-two-errors-punch .wrap{
+    display:grid;
+    gap:10px;
+  }
+  .alpha-two-errors-punch p{
+    margin:0;
+    max-width:1240px;
+    font-size:clamp(30px,3.35vw,58px);
+    line-height:1.02;
+    letter-spacing:-.045em;
+  }
+  .alpha-two-errors-punch strong{
+    font-weight:900;
+  }
+  .alpha-two-errors-punch em{
+    color:var(--orange);
+    font-style:normal;
+    font-weight:900;
+  }
+  @media(max-width:900px){
+    .alpha-two-errors{padding-top:68px}
+    .alpha-two-errors-head{
+      grid-template-columns:1fr;
+      gap:18px;
+      margin-bottom:42px;
+    }
+    .alpha-two-errors-head .section-label{margin:0}
+    .alpha-two-errors-grid{grid-template-columns:1fr}
+    .alpha-two-error,
+    .alpha-two-error--second{
+      min-height:0;
+      padding:26px 0 30px;
+      border-right:0;
+      border-bottom:1px solid var(--line);
+    }
+    .alpha-two-error--second{border-bottom:0}
+    .alpha-two-errors-punch{margin-top:36px}
+  }
+  @media(max-width:560px){
+    .alpha-two-errors{padding-top:52px}
+    .alpha-two-errors-head h2{
+      font-size:clamp(42px,12vw,60px);
+      line-height:.9;
+    }
+    .alpha-two-error h3{
+      margin:18px 0 16px;
+      font-size:40px;
+    }
+    .alpha-two-error .alpha-two-error-lead{
+      font-size:20px;
+    }
+    .alpha-two-error p{font-size:16px}
+    .alpha-two-errors-punch{
+      margin-top:28px;
+      padding-block:40px 44px;
+    }
+    .alpha-two-errors-punch p{
+      font-size:clamp(28px,9vw,42px);
+      line-height:1.02;
+    }
+  }
+</style>
 </head>
 <body class="alpha-page">
 <header class="topbar">
@@ -2287,6 +2424,38 @@
       <div class="alpha-stat"><strong>4000+</strong><span>участников<br>прошли программы</span></div>
       <div class="alpha-stat"><strong>3 часа</strong><span>живая встреча<br>в одном вечере</span></div>
       <div class="alpha-stat alpha-stat-result"><strong>7 из 10*</strong><span>бросают среди тех, кто после встречи<br>продолжает работу с поддержкой</span></div>
+    </div>
+  </section>
+
+  <section class="alpha-two-errors" aria-labelledby="twoErrorsTitle">
+    <div class="wrap">
+      <div class="alpha-two-errors-head">
+        <p class="section-label">Почему это тянется годами</p>
+        <h2 id="twoErrorsTitle">ДВЕ ОШИБКИ,<br>ИЗ-ЗА КОТОРЫХ МОЖНО<br><span>ПРОКУРИТЬ ЕЩЁ 10 ЛЕТ.</span></h2>
+      </div>
+
+      <div class="alpha-two-errors-grid">
+        <article class="alpha-two-error">
+          <span class="alpha-two-error-num">01</span>
+          <h3>НЕ НАЧАТЬ.</h3>
+          <p class="alpha-two-error-lead">Вы решили, что обязательно бросите — просто не сейчас.</p>
+          <p>Каждая новая пачка кажется не продолжением курения, а маленькой отсрочкой перед «настоящим» отказом.</p>
+        </article>
+
+        <article class="alpha-two-error alpha-two-error--second">
+          <span class="alpha-two-error-num">02</span>
+          <h3>НАЧАТЬ НЕ ТУДА.</h3>
+          <p class="alpha-two-error-lead">Собраться. Терпеть. Запретить себе. Проверить силу воли.</p>
+          <p>И когда становится тяжело — сделать вывод, что «я пока не готов».</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="alpha-two-errors-punch">
+      <div class="wrap">
+        <p>Чтобы прокурить ещё десять лет, <strong>не нужно решить курить десять лет.</strong></p>
+        <p>Достаточно снова и снова решать: <em>«не сейчас».</em></p>
+      </div>
     </div>
   </section>
 
