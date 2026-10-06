@@ -1892,6 +1892,38 @@
     }
   }
 </style>
+
+<style id="naladka-payment-step-v1">
+  .alfaLeadPrice{
+    margin:-6px 0 22px;
+    padding:17px 0 18px;
+    display:grid;
+    grid-template-columns:auto 1fr;
+    align-items:baseline;
+    gap:5px 14px;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .alfaLeadPrice>span{
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .alfaLeadPrice>strong{
+    justify-self:end;
+    font-size:30px;
+    line-height:1;
+    letter-spacing:-.045em;
+    color:var(--orange);
+  }
+  .alfaLeadPrice>small{
+    grid-column:1/-1;
+    font-size:12px;
+    color:var(--muted);
+  }
+</style>
 </head>
 <body class="alpha-page">
 <header class="topbar">
@@ -1922,7 +1954,7 @@
           </div>
 
           <div class="alpha-hero-cta">
-            <button class="cta" id="heroOpenForm" type="button"><span>Записаться за 1 990 ₽</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="cta" id="heroOpenForm" type="button"><span>Занять место</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           </div>
         </div>
       </div>
@@ -2029,7 +2061,7 @@
         <div class="event-date"><span class="date-weekday">Воскресенье,</span><span class="date-full">11 октября</span></div>
         <p class="event-time">18:00–21:00 МСК</p>
         <p class="event-meta">Яндекс Телемост · живая онлайн-встреча · около 3 часов</p>
-        <button class="cta js-focus-form" type="button"><span>Забронировать место · 1 990 ₽</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="cta js-focus-form" type="button"><span>Занять место</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
     </div>
   </section>
@@ -2040,15 +2072,20 @@
   <div class="alfaLeadModal" id="alfaLeadModal" role="dialog" aria-modal="true" aria-labelledby="alfaLeadTitle">
     <div class="modalCard alfaLeadCard">
       <button class="close" id="alfaLeadClose" type="button" aria-label="Закрыть регистрацию"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
-      <h3 id="alfaLeadTitle">ЗАБРОНИРОВАТЬ<br>МЕСТО · 1 990 ₽</h3>
+      <h3 id="alfaLeadTitle">ЗАНЯТЬ<br>МЕСТО.</h3>
       <div class="modalSlot">
         <div><small>ВАША ВСТРЕЧА</small><strong>Воскресенье, 11 октября</strong></div>
         <b>18:00–21:00 МСК</b>
       </div>
+      <div class="alfaLeadPrice" aria-label="Стоимость участия">
+        <span>Стоимость</span>
+        <strong>1 990 ₽</strong>
+        <small>≈ 7 пачек сигарет</small>
+      </div>
       <form id="alfaLeadForm" novalidate>
         <label><span>Телефон</span><input required name="contact" id="alfaLeadPhone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 999 123-45-67"></label>
         <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="primary" id="alfaLeadSubmit" type="submit">Забронировать место · 1 990 ₽</button>
+        <button class="primary" id="alfaLeadSubmit" type="submit">Перейти к оплате</button>
         <div class="formStatus" id="alfaLeadStatus" aria-live="polite"></div>
       </form>
     </div>
@@ -2058,14 +2095,11 @@
     <div class="successCurtainInner">
       <button class="close" id="successClose" type="button" aria-label="Закрыть подтверждение"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
       <div class="successMark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <h2 id="successTitle">ОТКРОЙТЕ БОТА.<br>НАЖМИТЕ «СТАРТ».</h2>
+      <h2 id="successTitle">ТЕЛЕФОН СОХРАНЁН.<br>ДАЛЬШЕ — ОПЛАТА.</h2>
       <div class="successWhen"><strong id="successDate">Воскресенье, 11 октября</strong><span id="successTime">18:00–21:00 МСК</span></div>
       <button class="successChange" id="changeEvening" type="button">Сменить вечер</button>
-      <p class="successChannelPrompt">Выберите Telegram или MAX. В боте нажмите <strong>«Старт»</strong>, чтобы получить ссылку и напоминания перед встречей.</p>
-      <div class="successChannels">
-        <a class="successChannel max" id="successMax" href="https://max.ru/id312334031550_bot" target="_blank" rel="noopener"><span>Получить ссылку<br>в MAX</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a class="successChannel telegram" id="successTelegram" href="https://t.me/metodborzilovabot" target="_blank" rel="noopener"><span>Получить ссылку<br>в Telegram</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      </div>
+      <p class="successChannelPrompt">Место подтверждается после оплаты 1 990 ₽. Платёжный переход подключим следующим шагом — сейчас эта копия используется для наладки сценария.</p>
+      <div class="successChannels" hidden></div>
     </div>
   </div>
 
