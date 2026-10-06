@@ -1924,6 +1924,11 @@
     color:var(--muted);
   }
 </style>
+
+<style id="naladka-hero-price-clean-v2">
+  .alpha-hero-price-anchor::before{display:none!important;content:none!important}
+  .alpha-hero-price{column-gap:12px!important}
+</style>
 </head>
 <body class="alpha-page">
 <header class="topbar">
@@ -1948,7 +1953,6 @@
             <strong class="alpha-hero-event-time-main">18:00–21:00 <small>МСК</small></strong>
             <div class="alpha-hero-event-meta">Яндекс Телемост</div><div class="alpha-hero-price">
             <strong>1 990 ₽</strong>
-            <span>за участие</span>
             <span class="alpha-hero-price-anchor">≈ 7 пачек сигарет</span>
           </div>
           </div>
@@ -2095,18 +2099,23 @@
     <div class="successCurtainInner">
       <button class="close" id="successClose" type="button" aria-label="Закрыть подтверждение"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
       <div class="successMark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <h2 id="successTitle">ТЕЛЕФОН СОХРАНЁН.<br>ДАЛЬШЕ — ОПЛАТА.</h2>
+      <h2 id="successTitle">МЕСТО ОПЛАЧЕНО.<br>ОТКРОЙТЕ БОТА.</h2>
       <div class="successWhen"><strong id="successDate">Воскресенье, 11 октября</strong><span id="successTime">18:00–21:00 МСК</span></div>
-      <button class="successChange" id="changeEvening" type="button">Сменить вечер</button>
-      <p class="successChannelPrompt">Место подтверждается после оплаты 1 990 ₽. Платёжный переход подключим следующим шагом — сейчас эта копия используется для наладки сценария.</p>
-      <div class="successChannels" hidden></div>
+      <p class="successChannelPrompt">Выберите Telegram или MAX. В боте нажмите <strong>«Старт»</strong>, чтобы получить ссылку и напоминания перед встречей.</p>
+      <div class="successChannels">
+        <a class="successChannel max" id="successMax" href="https://max.ru/id312334031550_bot" target="_blank" rel="noopener"><span>Получить ссылку<br>в MAX</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="successChannel telegram" id="successTelegram" href="https://t.me/metodborzilovabot" target="_blank" rel="noopener"><span>Получить ссылку<br>в Telegram</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
     </div>
   </div>
 
 <script>
 (function(){
   'use strict';
-  const API='https://api.marafon-metod.ru/api/leads';
+  const PAYMENT_API='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/api/payment/create';
+  const PAYMENT_STATUS='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/api/payment/status';
+  const PLAN='evening1990';
+  const AMOUNT=199000;
   const modal=document.getElementById('alfaLeadModal');
   const form=document.getElementById('alfaLeadForm');
   const phone=document.getElementById('alfaLeadPhone');
@@ -2115,10 +2124,17 @@
   const curtain=document.getElementById('successCurtain');
 
   function valid(v){return String(v||'').replace(/\D/g,'').length>=10}
-  function utm(){const p=new URLSearchParams(location.search);return{source:p.get('utm_source')||'',medium:p.get('utm_medium')||'',campaign:p.get('utm_campaign')||'',content:p.get('utm_content')||'',term:p.get('utm_term')||''}}
-
-  function openModal(){
-    status.textContent='';status.className='formStatus';
+  function cleanPaymentParams(){
+    try{
+      const u=new URL(location.href);
+      u.searchParams.delete('payment_result');
+      u.searchParams.delete('orderId');
+      history.replaceState({},'',u.pathname+(u.searchParams.toString()?'?'+u.searchParams.toString():'')+u.hash);
+    }catch(_){}
+  }
+  function openModal(message){
+    status.textContent=message||'';
+    status.className='formStatus'+(message?' err':'');
     modal.classList.add('show');
     document.body.style.overflow='hidden';
     setTimeout(()=>phone.focus(),80);
@@ -2132,28 +2148,70 @@
     modal.classList.remove('show');
     curtain.classList.add('show');
     document.body.style.overflow='hidden';
-    try{if(window.ym)window.ym(110906734,'reachGoal','marafon_naladka_1990_success_view')}catch(_){}
+    try{if(window.ym)window.ym(110906734,'reachGoal','marafon_naladka_1990_payment_success')}catch(_){}
   }
   function closeSuccess(){
     curtain.classList.remove('show');
     document.body.style.overflow='';
   }
+  async function getPaymentStatus(orderId){
+    const r=await fetch(PAYMENT_STATUS+'?orderId='+encodeURIComponent(orderId),{headers:{'Accept':'application/json'},cache:'no-store'});
+    let data={};try{data=await r.json()}catch(_){}
+    if(!r.ok||!data.ok)throw new Error(data.error||'Не удалось проверить оплату.');
+    return data;
+  }
+  async function reconcilePaymentReturn(){
+    const p=new URLSearchParams(location.search);
+    const result=p.get('payment_result');
+    const orderId=p.get('orderId');
+    if(!result||!orderId)return;
+    if(result==='fail'){
+      cleanPaymentParams();
+      openModal('Оплата не завершена. Можно попробовать ещё раз.');
+      return;
+    }
+    for(let attempt=0;attempt<10;attempt++){
+      try{
+        const data=await getPaymentStatus(orderId);
+        if(data.confirmed && data.plan===PLAN && Number(data.amount)===AMOUNT){
+          cleanPaymentParams();
+          openSuccess();
+          return;
+        }
+        if(data.failed){
+          cleanPaymentParams();
+          openModal('Оплата не завершена. Можно попробовать ещё раз.');
+          return;
+        }
+      }catch(err){
+        if(attempt===9){
+          cleanPaymentParams();
+          openModal('Не удалось подтвердить оплату автоматически. Напишите нам, если деньги списались.');
+          return;
+        }
+      }
+      await new Promise(resolve=>setTimeout(resolve,attempt<3?1200:2200));
+    }
+    cleanPaymentParams();
+    openModal('Платёж ещё обрабатывается. Попробуйте обновить страницу через минуту.');
+  }
 
-  document.getElementById('heroOpenForm').addEventListener('click',openModal);
-  document.querySelectorAll('.js-focus-form').forEach(btn=>btn.addEventListener('click',openModal));
+  document.getElementById('heroOpenForm').addEventListener('click',()=>openModal());
+  document.querySelectorAll('.js-focus-form').forEach(btn=>btn.addEventListener('click',()=>openModal()));
   document.getElementById('alfaLeadClose').addEventListener('click',closeModal);
   modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
   document.getElementById('successClose').addEventListener('click',closeSuccess);
   document.addEventListener('keydown',e=>{
-    if(e.key!=='Escape') return;
-    if(curtain.classList.contains('show')) closeSuccess();
-    else if(modal.classList.contains('show')) closeModal();
+    if(e.key!=='Escape')return;
+    if(curtain.classList.contains('show'))closeSuccess();
+    else if(modal.classList.contains('show'))closeModal();
   });
 
   form.addEventListener('submit',async e=>{
     e.preventDefault();
     const contact=String(phone.value||'').trim();
     const website=String(form.elements.website.value||'').trim();
+    if(website)return;
     if(!valid(contact)){
       status.textContent='Укажите корректный номер телефона.';
       status.className='formStatus err';
@@ -2161,38 +2219,45 @@
       return;
     }
     const old=submit.textContent;
-    submit.disabled=true;submit.textContent='Бронируем…';
-    status.textContent='';status.className='formStatus';
+    submit.disabled=true;
+    submit.textContent='Открываем оплату…';
+    status.textContent='';
+    status.className='formStatus';
     try{
-      const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({
-        formType:'commercial_application',
-        contactType:'phone',
-        contact,
-        message:'Марафон Метод · /naladka/ · живая встреча за 1 990 ₽\nВоскресенье, 11 октября · 18:00–21:00 МСК\nЗаявка на участие',
-        price:'1990',
-        source:'marafon_paid_naladka_1990',
-        sourceUrl:location.href,
-        referrer:document.referrer||'',
-        utm:utm(),
-        website
-      })});
-      let result={};try{result=await r.json()}catch(_){}
-      if(!r.ok||!result.ok) throw new Error(result.error||('HTTP '+r.status));
-      form.reset();
-      openSuccess();
-      try{if(window.ym)window.ym(110906734,'reachGoal','marafon_naladka_1990_lead_submit')}catch(_){}
+      const r=await fetch(PAYMENT_API,{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({
+          plan:PLAN,
+          phone:contact,
+          name:'Участник',
+          flowId:'2026-10-11-evening',
+          startDate:'2026-10-11',
+          startLabel:'Воскресенье, 11 октября · 18:00–21:00 МСК',
+          source:'marafon_paid_naladka_1990',
+          returnUrl:location.origin+location.pathname
+        })
+      });
+      let data={};try{data=await r.json()}catch(_){}
+      if(!r.ok||!data.ok||!data.paymentUrl)throw new Error(data.error||'Не удалось открыть оплату.');
+      if(data.plan!==PLAN||Number(data.amount)!==AMOUNT)throw new Error('Платёж создан с неверной стоимостью. Оплата остановлена.');
+      try{sessionStorage.setItem('marafonNaladkaLastPayment',JSON.stringify({orderId:data.orderId,paymentId:data.paymentId,amount:data.amount,createdAt:new Date().toISOString()}))}catch(_){}
+      try{if(window.ym)window.ym(110906734,'reachGoal','marafon_naladka_1990_payment_redirect')}catch(_){}
+      location.assign(data.paymentUrl);
     }catch(err){
-      console.error('[alfa-free:lead:error]',err);
-      status.textContent='Не удалось отправить заявку. Попробуйте ещё раз чуть позже.';
+      console.error('[naladka:payment:error]',err);
+      status.textContent=err&&err.message?err.message:'Не удалось открыть оплату. Попробуйте ещё раз.';
       status.className='formStatus err';
-    }finally{
       submit.disabled=false;
       submit.textContent=old;
     }
   });
 
-  document.getElementById('successMax').addEventListener('click',()=>{try{if(window.ym)window.ym(110906734,'reachGoal','marafon_naladka_1990_success_max')}catch(_){}});
-  document.getElementById('successTelegram').addEventListener('click',()=>{try{if(window.ym)window.ym(110906734,'reachGoal','marafon_naladka_1990_success_telegram')}catch(_){}});
+  const max=document.getElementById('successMax');
+  const telegram=document.getElementById('successTelegram');
+  if(max)max.addEventListener('click',()=>{try{if(window.ym)window.ym(110906734,'reachGoal','marafon_naladka_1990_success_max')}catch(_){}});
+  if(telegram)telegram.addEventListener('click',()=>{try{if(window.ym)window.ym(110906734,'reachGoal','marafon_naladka_1990_success_telegram')}catch(_){}});
+  reconcilePaymentReturn();
 })();
 </script>
 </body></html>
