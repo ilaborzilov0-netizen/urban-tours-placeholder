@@ -1261,13 +1261,6 @@
   }
 </style>
 
-<style id="alpha-hero-picture-v12">
-  .hero-person picture{
-    display:block;
-    width:100%;
-    height:100%;
-  }
-</style>
 
 
 <style id="alpha-hero-caption-refine-v14">
@@ -1705,6 +1698,35 @@
     }
   }
 </style>
+
+<style id="alpha-hero-media-owner-v25">
+  .hero-person{
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-person > picture.hero-person-picture{
+    position:absolute !important;
+    inset:0 !important;
+    display:block !important;
+    width:100% !important;
+    height:100% !important;
+    z-index:0 !important;
+  }
+  .hero-person > picture.hero-person-picture > img{
+    display:block !important;
+    width:100% !important;
+    height:100% !important;
+    min-width:100% !important;
+    min-height:100% !important;
+    object-fit:cover !important;
+    opacity:1 !important;
+    visibility:visible !important;
+  }
+  .hero-person > figcaption{
+    position:absolute !important;
+    z-index:2 !important;
+  }
+</style>
 </head>
 <body class="alpha-page">
 <header class="topbar">
@@ -1754,7 +1776,7 @@
       </div>
 
       <figure class="hero-person">
-        <picture>
+        <picture class="hero-person-picture">
           <img src="assets/hero-wave-hq-q92.webp" alt="Илья Борзилов приветствует участников" loading="eager" fetchpriority="high">
         </picture>
         <figcaption class="hero-person-caption">
@@ -1785,7 +1807,7 @@
         <article class="alpha-result"><span>01</span><h3>Поймём, почему вы всё ещё курите.</h3><p>Где сигарета остаётся паузой, отдыхом, завершением, способом пережить стресс или быть «своим».</p></article>
         <article class="alpha-result"><span>02</span><h3>Найдём ваш внутренний торг.</h3><p>Ту самую мысль, которая превращает «я бросил» в «сейчас одну — потом нормально».</p></article>
         <article class="alpha-result"><span>03</span><h3>Подготовим первый день.</h3><p>Кофе, работа, стресс, компания, алкоголь — заранее разбираем места, где обычно начинается возврат.</p></article>
-        <article class="alpha-result"><span>04</span><h3>Для готовых — последняя сигарета.</h3><p>Не «когда-нибудь после вебинара». Цель — закончить курить прямо на встрече.</p></article>
+        <article class="alpha-result"><span>04</span><h3>ПОСЛЕДНЯЯ СИГАРЕТА.</h3><p>Не «когда-нибудь после вебинара». Цель — закончить курить прямо на встрече.</p></article>
       </div>
     </div>
   </section>
