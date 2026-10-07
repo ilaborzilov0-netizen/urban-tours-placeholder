@@ -1893,6 +1893,115 @@
   }
 </style>
 
+<style id="home-payment-step-v1">
+  .alfaLeadPrice{
+    margin:-6px 0 22px;
+    padding:17px 0 18px;
+    display:grid;
+    grid-template-columns:auto 1fr;
+    align-items:baseline;
+    gap:5px 14px;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .alfaLeadPrice>span{
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .alfaLeadPrice>strong{
+    justify-self:end;
+    font-size:30px;
+    line-height:1;
+    letter-spacing:-.045em;
+    color:var(--orange);
+  }
+  .alfaLeadPrice>small{
+    grid-column:1/-1;
+    font-size:12px;
+    color:var(--muted);
+  }
+</style>
+
+<style id="home-checkout-polish-v1">
+  .modalSlot strong{text-transform:none!important}
+  .alfaLeadCard{width:min(590px,100%)}
+  .alfaLeadPrice{
+    margin:-4px 0 18px!important;
+    padding:15px 0 16px!important;
+    grid-template-columns:auto 1fr!important;
+  }
+  .alfaLeadPrice>strong{font-size:31px!important}
+  .alfaLeadFields{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:12px;
+  }
+  .alfaLeadPhoneField{grid-column:1/-1}
+  .alfaLeadSecure,.alfaLeadAfter,.alfaLeadConsent{
+    margin:0;
+    line-height:1.4;
+  }
+  .alfaLeadSecure{
+    margin-top:2px;
+    padding-left:22px;
+    position:relative;
+    font-size:13px;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .alfaLeadSecure::before{
+    content:"✓";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--orange);
+    font-weight:900;
+  }
+  .alfaLeadAfter{font-size:13px;color:var(--muted)}
+  .alfaLeadConsent{
+    font-size:11px;
+    color:var(--muted);
+    opacity:.9;
+  }
+  @media(max-width:540px){
+    .alfaLeadFields{grid-template-columns:1fr;gap:10px}
+    .alfaLeadPhoneField{grid-column:auto}
+    .alfaLeadCard{padding-top:24px!important}
+    .alfaLeadCard h3{margin-bottom:12px!important}
+    .modalSlot{margin-bottom:17px!important;padding:13px 15px!important}
+    .alfaLeadPrice{margin-bottom:15px!important}
+  }
+</style>
+
+<style id="home-prepay-question-v1">
+  .prepayQuestion{
+    margin-top:12px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    flex-wrap:wrap;
+    gap:4px 7px;
+    font-size:13px;
+    line-height:1.35;
+    color:var(--muted);
+  }
+  .prepayQuestion>a{
+    color:var(--ink);
+    font-weight:800;
+    text-decoration:none;
+    border-bottom:1px solid currentColor;
+  }
+  .prepayQuestion>a:hover{color:var(--orange)}
+  .prepayQuestionSep{color:#aaa59a}
+  .alpha-free-card .prepayQuestion{margin-top:11px}
+  @media(max-width:540px){
+    .prepayQuestion{font-size:12px;margin-top:10px}
+  }
+</style>
+
 <!-- Yandex.Metrika counter 110906734 -->
 <script type="text/javascript">
 (function(m,e,t,r,i,k,a){
@@ -1943,7 +2052,13 @@ ym(110906734,'init',{
           </div>
 
           <div class="alpha-hero-cta">
-            <button class="cta" id="heroOpenForm" type="button"><span>Записаться за 1 990 ₽</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="cta" id="heroOpenForm" type="button"><span>Занять место</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="prepayQuestion" aria-label="Связаться перед оплатой">
+              <span>Есть вопрос перед оплатой?</span>
+              <a href="https://t.me/metodborzilovabot" target="_blank" rel="noopener" data-question-channel="telegram">Telegram</a>
+              <span class="prepayQuestionSep">·</span>
+              <a href="https://max.ru/u/f9LHodD0cOLpevOEzdPM7DBn_9wNoZiKdBMryxkSM2b4SpNmf4xagvVkl8g" target="_blank" rel="noopener" data-question-channel="max">MAX</a>
+            </div>
           </div>
         </div>
       </div>
@@ -2050,7 +2165,13 @@ ym(110906734,'init',{
         <div class="event-date"><span class="date-weekday">Воскресенье,</span><span class="date-full">11 октября</span></div>
         <p class="event-time">18:00–21:00 МСК</p>
         <p class="event-meta">Яндекс Телемост · живая онлайн-встреча · около 3 часов</p>
-        <button class="cta js-focus-form" type="button"><span>Забронировать место · 1 990 ₽</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="cta js-focus-form" type="button"><span>Занять место</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="prepayQuestion" aria-label="Связаться перед оплатой">
+          <span>Есть вопрос перед оплатой?</span>
+          <a href="https://t.me/metodborzilovabot" target="_blank" rel="noopener" data-question-channel="telegram">Telegram</a>
+          <span class="prepayQuestionSep">·</span>
+          <a href="https://max.ru/u/f9LHodD0cOLpevOEzdPM7DBn_9wNoZiKdBMryxkSM2b4SpNmf4xagvVkl8g" target="_blank" rel="noopener" data-question-channel="max">MAX</a>
+        </div>
       </div>
     </div>
   </section>
@@ -2061,15 +2182,26 @@ ym(110906734,'init',{
   <div class="alfaLeadModal" id="alfaLeadModal" role="dialog" aria-modal="true" aria-labelledby="alfaLeadTitle">
     <div class="modalCard alfaLeadCard">
       <button class="close" id="alfaLeadClose" type="button" aria-label="Закрыть регистрацию"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
-      <h3 id="alfaLeadTitle">ЗАБРОНИРОВАТЬ<br>МЕСТО · 1 990 ₽</h3>
+      <h3 id="alfaLeadTitle">ЗАНЯТЬ<br>МЕСТО.</h3>
       <div class="modalSlot">
         <div><small>ВАША ВСТРЕЧА</small><strong>Воскресенье, 11 октября</strong></div>
         <b>18:00–21:00 МСК</b>
       </div>
-      <form id="alfaLeadForm" novalidate>
-        <label><span>Телефон</span><input required name="contact" id="alfaLeadPhone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 999 123-45-67"></label>
+      <div class="alfaLeadPrice" aria-label="Стоимость участия">
+        <span>Стоимость</span>
+        <strong>1 990 ₽</strong>
+      </div>
+      <form id="alfaLeadForm" novalidate autocomplete="off">
+        <div class="alfaLeadFields">
+          <label><span>Имя</span><input required name="name" id="alfaLeadName" type="text" autocomplete="off" placeholder="Илья" minlength="2"></label>
+          <label><span>Email</span><input required name="email" id="alfaLeadEmail" type="email" autocomplete="off" inputmode="email" placeholder="name@mail.ru"></label>
+          <label class="alfaLeadPhoneField"><span>Телефон</span><input required name="contact" id="alfaLeadPhone" type="tel" autocomplete="off" inputmode="tel" placeholder="+7 999 123-45-67"></label>
+        </div>
         <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="primary" id="alfaLeadSubmit" type="submit">Забронировать место · 1 990 ₽</button>
+        <button class="primary" id="alfaLeadSubmit" type="submit">Перейти к оплате</button>
+        <p class="alfaLeadSecure">Защищённая оплата откроется на странице Т-Банка.</p>
+        <p class="alfaLeadAfter">После оплаты — ссылка на встречу и напоминания в Telegram или MAX.</p>
+        <p class="alfaLeadConsent">Нажимая «Перейти к оплате», вы принимаете <a href="/naladka/terms/" target="_blank">условия участия и возврата</a> и <a href="/naladka/privacy/" target="_blank">политику обработки персональных данных</a>.</p>
         <div class="formStatus" id="alfaLeadStatus" aria-live="polite"></div>
       </form>
     </div>
@@ -2079,9 +2211,8 @@ ym(110906734,'init',{
     <div class="successCurtainInner">
       <button class="close" id="successClose" type="button" aria-label="Закрыть подтверждение"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
       <div class="successMark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <h2 id="successTitle">ОТКРОЙТЕ БОТА.<br>НАЖМИТЕ «СТАРТ».</h2>
+      <h2 id="successTitle">МЕСТО ОПЛАЧЕНО.<br>ОТКРОЙТЕ БОТА.</h2>
       <div class="successWhen"><strong id="successDate">Воскресенье, 11 октября</strong><span id="successTime">18:00–21:00 МСК</span></div>
-      <button class="successChange" id="changeEvening" type="button">Сменить вечер</button>
       <p class="successChannelPrompt">Выберите Telegram или MAX. В боте нажмите <strong>«Старт»</strong>, чтобы получить ссылку и напоминания перед встречей.</p>
       <div class="successChannels">
         <a class="successChannel max" id="successMax" href="https://max.ru/id312334031550_bot" target="_blank" rel="noopener"><span>Получить ссылку<br>в MAX</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -2093,22 +2224,36 @@ ym(110906734,'init',{
 <script>
 (function(){
   'use strict';
-  const API='https://api.marafon-metod.ru/api/leads';
+  const PAYMENT_API='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/api/payment/create';
+  const PAYMENT_STATUS='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/api/payment/status';
+  const PLAN='tabletka';
+  const AMOUNT_RUB=1990;
+  const AMOUNT_MINOR=199000;
   const modal=document.getElementById('alfaLeadModal');
   const form=document.getElementById('alfaLeadForm');
+  const nameInput=document.getElementById('alfaLeadName');
+  const emailInput=document.getElementById('alfaLeadEmail');
   const phone=document.getElementById('alfaLeadPhone');
   const submit=document.getElementById('alfaLeadSubmit');
   const status=document.getElementById('alfaLeadStatus');
   const curtain=document.getElementById('successCurtain');
 
-  function valid(v){return String(v||'').replace(/\D/g,'').length>=10}
-  function utm(){const p=new URLSearchParams(location.search);return{source:p.get('utm_source')||'',medium:p.get('utm_medium')||'',campaign:p.get('utm_campaign')||'',content:p.get('utm_content')||'',term:p.get('utm_term')||''}}
-
-  function openModal(){
-    status.textContent='';status.className='formStatus';
+  function validPhone(v){return String(v||'').replace(/\D/g,'').length>=10}
+  function validName(v){return String(v||'').trim().length>=2}
+  function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v||'').trim())}
+  function cleanPaymentParams(){
+    try{
+      const u=new URL(location.href);
+      u.searchParams.delete('payment_result');
+      u.searchParams.delete('orderId');
+      history.replaceState({},'',u.pathname+(u.searchParams.toString()?'?'+u.searchParams.toString():'')+u.hash);
+    }catch(_){}
+  }
+  function openModal(message){
+    status.textContent=message||'';
+    status.className='formStatus'+(message?' err':'');
     modal.classList.add('show');
     document.body.style.overflow='hidden';
-    setTimeout(()=>phone.focus(),80);
     try{if(window.ym)window.ym(110906734,'reachGoal','marafon_home_1990_modal_open')}catch(_){}
   }
   function closeModal(){
@@ -2119,67 +2264,147 @@ ym(110906734,'init',{
     modal.classList.remove('show');
     curtain.classList.add('show');
     document.body.style.overflow='hidden';
-    try{if(window.ym)window.ym(110906734,'reachGoal','marafon_home_1990_success_view')}catch(_){}
+    try{if(window.ym)window.ym(110906734,'reachGoal','marafon_home_1990_payment_success')}catch(_){}
   }
   function closeSuccess(){
     curtain.classList.remove('show');
     document.body.style.overflow='';
   }
+  async function getPaymentStatus(orderId){
+    const r=await fetch(PAYMENT_STATUS+'?orderId='+encodeURIComponent(orderId),{headers:{'Accept':'application/json'},cache:'no-store'});
+    let data={};try{data=await r.json()}catch(_){}
+    if(!r.ok||!data.ok)throw new Error(data.error||'Не удалось проверить оплату.');
+    return data;
+  }
+  async function reconcilePaymentReturn(){
+    const p=new URLSearchParams(location.search);
+    const result=p.get('payment_result');
+    const orderId=p.get('orderId');
+    if(!result||!orderId)return;
+    if(result==='fail'){
+      cleanPaymentParams();
+      openModal('Оплата не завершена. Можно попробовать ещё раз.');
+      return;
+    }
+    for(let attempt=0;attempt<10;attempt++){
+      try{
+        const data=await getPaymentStatus(orderId);
+        if(data.confirmed && data.plan===PLAN && Number(data.amount)===AMOUNT_MINOR){
+          cleanPaymentParams();
+          openSuccess();
+          return;
+        }
+        if(data.failed){
+          cleanPaymentParams();
+          openModal('Оплата не завершена. Можно попробовать ещё раз.');
+          return;
+        }
+      }catch(err){
+        if(attempt===9){
+          cleanPaymentParams();
+          openModal('Не удалось подтвердить оплату автоматически. Напишите нам, если деньги списались.');
+          return;
+        }
+      }
+      await new Promise(resolve=>setTimeout(resolve,attempt<3?1200:2200));
+    }
+    cleanPaymentParams();
+    openModal('Платёж ещё обрабатывается. Попробуйте обновить страницу через минуту.');
+  }
 
-  document.getElementById('heroOpenForm').addEventListener('click',openModal);
-  document.querySelectorAll('.js-focus-form').forEach(btn=>btn.addEventListener('click',openModal));
+  function openCheckoutBlank(){
+    form.reset();
+    status.textContent='';
+    status.className='formStatus';
+    openModal();
+  }
+
+  document.getElementById('heroOpenForm').addEventListener('click',openCheckoutBlank);
+  document.querySelectorAll('.js-focus-form').forEach(btn=>btn.addEventListener('click',openCheckoutBlank));
   document.getElementById('alfaLeadClose').addEventListener('click',closeModal);
   modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
   document.getElementById('successClose').addEventListener('click',closeSuccess);
   document.addEventListener('keydown',e=>{
-    if(e.key!=='Escape') return;
-    if(curtain.classList.contains('show')) closeSuccess();
-    else if(modal.classList.contains('show')) closeModal();
+    if(e.key!=='Escape')return;
+    if(curtain.classList.contains('show'))closeSuccess();
+    else if(modal.classList.contains('show'))closeModal();
   });
 
   form.addEventListener('submit',async e=>{
     e.preventDefault();
+    const customerName=String(nameInput.value||'').trim();
+    const customerEmail=String(emailInput.value||'').trim();
     const contact=String(phone.value||'').trim();
     const website=String(form.elements.website.value||'').trim();
-    if(!valid(contact)){
+    if(website)return;
+    if(!validName(customerName)){
+      status.textContent='Укажите имя.';
+      status.className='formStatus err';
+      nameInput.focus();
+      return;
+    }
+    if(!validEmail(customerEmail)){
+      status.textContent='Укажите корректный email.';
+      status.className='formStatus err';
+      emailInput.focus();
+      return;
+    }
+    if(!validPhone(contact)){
       status.textContent='Укажите корректный номер телефона.';
       status.className='formStatus err';
       phone.focus();
       return;
     }
     const old=submit.textContent;
-    submit.disabled=true;submit.textContent='Бронируем…';
-    status.textContent='';status.className='formStatus';
+    submit.disabled=true;
+    submit.textContent='Переходим к оплате…';
+    status.textContent='';
+    status.className='formStatus';
     try{
-      const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({
-        formType:'commercial_application',
-        contactType:'phone',
-        contact,
-        message:'Марафон Метод · главная · живая встреча за 1 990 ₽\nВоскресенье, 11 октября · 18:00–21:00 МСК\nЗаявка на участие',
-        price:'1990',
-        source:'marafon_paid_home_1990',
-        sourceUrl:location.href,
-        referrer:document.referrer||'',
-        utm:utm(),
-        website
-      })});
-      let result={};try{result=await r.json()}catch(_){}
-      if(!r.ok||!result.ok) throw new Error(result.error||('HTTP '+r.status));
-      form.reset();
-      openSuccess();
-      try{if(window.ym)window.ym(110906734,'reachGoal','marafon_home_1990_lead_submit')}catch(_){}
+      const r=await fetch(PAYMENT_API,{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({
+          plan:PLAN,
+          phone:contact,
+          name:customerName,
+          email:customerEmail,
+          flowId:'2026-10-11-evening',
+          startDate:'2026-10-11',
+          startLabel:'Воскресенье, 11 октября · 18:00–21:00 МСК',
+          source:'marafon_paid_home_1990',
+          returnUrl:location.origin+location.pathname
+        })
+      });
+      let data={};try{data=await r.json()}catch(_){}
+      if(!r.ok||!data.ok||!data.paymentUrl){
+        if(data&&data.code==='UNKNOWN_PLAN')throw new Error('Платёжный сервер не обновлён: тариф не найден.');
+        throw new Error(data.error||'Не удалось открыть оплату.');
+      }
+      if(data.plan!==PLAN)throw new Error('Платёжный сервер вернул другой тариф. Оплата остановлена.');
+      if(Number(data.amount)!==AMOUNT_RUB)throw new Error('Платёжный сервер пока отдаёт '+new Intl.NumberFormat('ru-RU').format(Number(data.amount)||0)+' ₽ вместо 1 990 ₽. Оплата остановлена.');
+      try{sessionStorage.setItem('marafonHomeLastPayment',JSON.stringify({orderId:data.orderId,paymentId:data.paymentId,amountRub:data.amount,amountMinor:data.amountMinor||AMOUNT_MINOR,createdAt:new Date().toISOString()}))}catch(_){}
+      try{if(window.ym)window.ym(110906734,'reachGoal','marafon_home_1990_payment_redirect')}catch(_){}
+      location.assign(data.paymentUrl);
     }catch(err){
-      console.error('[alfa-free:lead:error]',err);
-      status.textContent='Не удалось отправить заявку. Попробуйте ещё раз чуть позже.';
+      console.error('[home:payment:error]',err);
+      status.textContent=err&&err.message?err.message:'Не удалось открыть оплату. Попробуйте ещё раз.';
       status.className='formStatus err';
-    }finally{
       submit.disabled=false;
       submit.textContent=old;
     }
   });
 
-  document.getElementById('successMax').addEventListener('click',()=>{try{if(window.ym)window.ym(110906734,'reachGoal','marafon_home_1990_success_max')}catch(_){}});
-  document.getElementById('successTelegram').addEventListener('click',()=>{try{if(window.ym)window.ym(110906734,'reachGoal','marafon_home_1990_success_telegram')}catch(_){}});
+  document.querySelectorAll('[data-question-channel]').forEach(link=>link.addEventListener('click',()=>{
+    const channel=link.getAttribute('data-question-channel')||'contact';
+    try{if(window.ym)window.ym(110906734,'reachGoal','marafon_home_1990_question_'+channel)}catch(_){}
+  }));
+
+  const max=document.getElementById('successMax');
+  const telegram=document.getElementById('successTelegram');
+  if(max)max.addEventListener('click',()=>{try{if(window.ym)window.ym(110906734,'reachGoal','marafon_home_1990_success_max')}catch(_){}});
+  if(telegram)telegram.addEventListener('click',()=>{try{if(window.ym)window.ym(110906734,'reachGoal','marafon_home_1990_success_telegram')}catch(_){}});
+  reconcilePaymentReturn();
 })();
 </script>
 </body></html>
