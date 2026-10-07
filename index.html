@@ -2264,7 +2264,7 @@ ym(110906734,'init',{
     modal.classList.remove('show');
     curtain.classList.add('show');
     document.body.style.overflow='hidden';
-    try{if(window.ym)window.ym(110906734,'reachGoal','marafon_home_1990_payment_success')}catch(_){}
+    try{if(window.ym)window.ym(110906734,'reachGoal','payment_success')}catch(_){}
   }
   function closeSuccess(){
     curtain.classList.remove('show');
@@ -2361,6 +2361,7 @@ ym(110906734,'init',{
       phone.focus();
       return;
     }
+    try{if(window.ym)window.ym(110906734,'reachGoal','checkout_valid_submit')}catch(_){}
     const old=submit.textContent;
     submit.disabled=true;
     submit.textContent='Переходим к оплате…';
@@ -2390,7 +2391,7 @@ ym(110906734,'init',{
       if(data.plan!==PLAN)throw new Error('Платёжный сервер вернул другой тариф. Оплата остановлена.');
       if(Number(data.amount)!==AMOUNT_RUB)throw new Error('Платёжный сервер пока отдаёт '+new Intl.NumberFormat('ru-RU').format(Number(data.amount)||0)+' ₽ вместо 1 990 ₽. Оплата остановлена.');
       try{sessionStorage.setItem('marafonHomeLastPayment',JSON.stringify({orderId:data.orderId,paymentId:data.paymentId,amountRub:data.amount,amountMinor:data.amountMinor||AMOUNT_MINOR,createdAt:new Date().toISOString()}))}catch(_){}
-      try{if(window.ym)window.ym(110906734,'reachGoal','marafon_home_1990_payment_redirect')}catch(_){}
+      try{if(window.ym)window.ym(110906734,'reachGoal','payment_redirect')}catch(_){}
       location.assign(data.paymentUrl);
     }catch(err){
       console.error('[home:payment:error]',err);
