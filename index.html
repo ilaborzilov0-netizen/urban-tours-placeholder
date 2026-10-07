@@ -2411,7 +2411,27 @@ ym(110906734,'init',{
   const telegram=document.getElementById('successTelegram');
   if(max)max.addEventListener('click',()=>{try{if(window.ym)window.ym(110906734,'reachGoal','marafon_home_1990_success_max')}catch(_){}});
   if(telegram)telegram.addEventListener('click',()=>{try{if(window.ym)window.ym(110906734,'reachGoal','marafon_home_1990_success_telegram')}catch(_){}});
-  reconcilePaymentReturn();
+
+  function showPreviewState(){
+    const preview=new URLSearchParams(location.search).get('preview');
+    if(preview==='payment-success'){
+      modal.classList.remove('show');
+      curtain.classList.add('show');
+      document.body.style.overflow='hidden';
+      return true;
+    }
+    if(preview==='payment-fail'){
+      status.textContent='Оплата не завершена. Деньги не списаны или операция была отменена. Можно попробовать ещё раз.';
+      status.className='formStatus err';
+      modal.classList.add('show');
+      curtain.classList.remove('show');
+      document.body.style.overflow='hidden';
+      return true;
+    }
+    return false;
+  }
+
+  if(!showPreviewState())reconcilePaymentReturn();
 })();
 </script>
 </body></html>
