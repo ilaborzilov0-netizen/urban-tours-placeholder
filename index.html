@@ -2319,8 +2319,14 @@ ym(110906734,'init',{
     openModal();
   }
 
-  document.getElementById('heroOpenForm').addEventListener('click',openCheckoutBlank);
-  document.querySelectorAll('.js-focus-form').forEach(btn=>btn.addEventListener('click',openCheckoutBlank));
+  document.getElementById('heroOpenForm').addEventListener('click',()=>{
+    try{if(window.ym)window.ym(110906734,'reachGoal','marafon_home_1990_cta_hero_click')}catch(_){}
+    openCheckoutBlank();
+  });
+  document.querySelectorAll('.js-focus-form').forEach(btn=>btn.addEventListener('click',()=>{
+    try{if(window.ym)window.ym(110906734,'reachGoal','marafon_home_1990_cta_final_click')}catch(_){}
+    openCheckoutBlank();
+  }));
   document.getElementById('alfaLeadClose').addEventListener('click',closeModal);
   modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
   document.getElementById('successClose').addEventListener('click',closeSuccess);
