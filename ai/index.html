@@ -32,6 +32,17 @@
   
 <!-- Yandex.Metrika 110906734 -->
 <script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=110906734','ym');ym(110906734,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});</script>
+<style id="album-cover-motion-style-20261008">
+.release-art .release-wave,.release-art .release-network{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .7s ease}
+.release-art.release-motion-ready .release-wave{opacity:1}
+.release-art.release-motion-ready .release-network{opacity:1}
+.release-art .release-label,.release-art .release-sticker{z-index:2;pointer-events:none}
+.release-art .release-label{text-shadow:0 2px 20px rgba(0,0,0,.24)}
+.release-motion-toggle{position:absolute;z-index:3;top:5%;left:5%;display:grid;place-items:center;width:40px;height:40px;padding:0;color:#dfff00;background:rgba(3,3,3,.72);border:1px solid rgba(223,255,0,.3);border-radius:50%;transition:background .2s,border-color .2s}
+.release-motion-toggle:hover{background:rgba(35,40,0,.9);border-color:#dfff00}
+.release-motion-toggle[hidden]{display:none}
+@media(prefers-reduced-motion:reduce){.release-art .release-wave,.release-art .release-network,.release-motion-toggle{display:none!important}}
+</style>
 </head>
 <body>
 <noscript><div><img src="https://mc.yandex.ru/watch/110906734" style="position:absolute;left:-9999px" alt=""></div></noscript>
@@ -48,7 +59,7 @@
       <div class="hero-meta"><span>12 треков</span><span>Разовая покупка</span><span>Без расписания</span></div>
     </div>
     <figure class="release">
-      <div class="release-art"><img src="/ai/assets/anchor-release-20261008.webp" width="1254" height="1254" alt="Светящаяся жёлтая лента на чёрном фоне — визуальный образ нового внутреннего ритма"><div class="release-label">БЕЗ<br>ТОРГА<span>VOL. 01 / АУДИОНАСТРОЙ</span></div><span class="release-sticker">ДРУГОЙ<br>ОТВЕТ</span></div>
+      <div class="release-art"><canvas class="release-wave" aria-hidden="true"></canvas><canvas class="release-network" aria-hidden="true"></canvas><button type="button" class="release-motion-toggle" aria-label="Остановить анимацию обложки" aria-pressed="false" hidden><svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 4h3v12H5zm7 0h3v12h-3z"/></svg></button><img src="/ai/assets/anchor-release-20261008.webp" width="1254" height="1254" alt="Светящаяся жёлтая лента на чёрном фоне — визуальный образ нового внутреннего ритма"><div class="release-label">БЕЗ<br>ТОРГА<span>VOL. 01 / АУДИОНАСТРОЙ</span></div><span class="release-sticker">ДРУГОЙ<br>ОТВЕТ</span></div>
       <figcaption><span>Авторские смыслы — Илья Борзилов</span><span>Музыка и вокал — с помощью ИИ</span></figcaption>
     </figure>
   </section>
@@ -300,5 +311,201 @@ async function checkAlbumPaymentReturn() {
 checkAlbumPaymentReturn();
 
 </script>
+<script id="album-cover-motion-20261008">
+/* Album cover: a visual metaphor for repetition and a remembered response. */
+(() => {
+  'use strict';
+  const art = document.querySelector('.release-art');
+  const image = art?.querySelector('img');
+  const surface = art?.querySelector('.release-wave');
+  const network = art?.querySelector('.release-network');
+  const toggle = art?.querySelector('.release-motion-toggle');
+  const audio = document.getElementById('demo-audio');
+  if (!art || !image || !surface || !network || !toggle || !audio) return;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const ctx = network.getContext('2d');
+  let gl;
+  try { gl = surface.getContext('webgl', {alpha: false, antialias: false, depth: false, powerPreference: 'low-power'}); } catch (_) {}
+  if (!ctx || !gl) return;
+  const vertex = 'attribute vec2 position; varying vec2 uv; void main(){uv=position*.5+.5;gl_Position=vec4(position,0.,1.);}';
+  const fragment = `
+    precision mediump float;
+    varying vec2 uv;
+    uniform sampler2D artwork;
+    uniform float time, energy, sweep, strength;
+    float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+    void main(){
+      vec2 p=vec2(uv.x,1.-uv.y);
+      float edge=sin(p.x*3.14159)*sin(p.y*3.14159);
+      float drift=1.+energy*1.7;
+      vec2 bend=vec2(sin(p.y*6.8-time*.43)+sin(p.x*4.+time*.29)*.4,
+        cos(p.x*6.-time*.32)+sin(p.y*7.+time*.25)*.35);
+      vec2 q=clamp(p+bend*.018*edge*drift,0.,1.);
+      vec3 col=texture2D(artwork,q).rgb;
+      float light=max(col.r,col.g);
+      float diagonal=p.x+(1.-p.y)*.47;
+      float pulse=exp(-pow((diagonal-sweep)*9.,2.));
+      float breathing=.93+.10*sin(time*.68)+energy*.20;
+      float grain=hash(floor(q*780.)+floor(time*7.));
+      float sparkle=pow(grain,32.)*smoothstep(.12,.7,light)*(.14+energy*.25);
+      col*=breathing+pulse*(.22+energy*.22);
+      col+=vec3(.77,1.,.05)*sparkle;
+      col+=vec3(.55,.72,.01)*pulse*light*strength*.05;
+      gl_FragColor=vec4(col,1.);
+    }`;
+  function shader(type, source) {
+    const result = gl.createShader(type);
+    gl.shaderSource(result, source); gl.compileShader(result);
+    if (!gl.getShaderParameter(result, gl.COMPILE_STATUS)) { gl.deleteShader(result); throw new Error('Cover shader unavailable'); }
+    return result;
+  }
+  let program, uniforms;
+  try {
+    program = gl.createProgram();
+    gl.attachShader(program, shader(gl.VERTEX_SHADER, vertex));
+    gl.attachShader(program, shader(gl.FRAGMENT_SHADER, fragment));
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error('Cover program unavailable');
+    gl.useProgram(program);
+    const buffer = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,3,-1,-1,3]), gl.STATIC_DRAW);
+    const position = gl.getAttribLocation(program, 'position');
+    gl.enableVertexAttribArray(position); gl.vertexAttribPointer(position,2,gl.FLOAT,false,0,0);
+    uniforms = Object.fromEntries(['time','energy','sweep','strength'].map(name => [name,gl.getUniformLocation(program,name)]));
+    const texture = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D,texture);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+    gl.uniform1i(gl.getUniformLocation(program,'artwork'),0);
+  } catch (_) { return; }
+
+  // Deterministic points keep the network stable while the ribbon flows around it.
+  const route = [[.19,.54],[.31,.49],[.40,.39],[.51,.43],[.60,.34],[.70,.35],[.77,.24],[.86,.18]];
+  const points = route.map(([x,y]) => ({x,y,route:true}));
+  let seed = 1049;
+  const random = () => {seed=(seed*16807)%2147483647;return(seed-1)/2147483646;};
+  for (let i=0;i<41;i++) points.push({x:.13+random()*.77,y:.13+random()*.48,route:false});
+  const links=[];
+  points.forEach((point,i) => {
+    const neighbors=points.map((other,j)=>({j,d:Math.hypot(point.x-other.x,point.y-other.y)}))
+      .filter(other=>other.j!==i && other.d<.19).sort((a,b)=>a.d-b.d).slice(0,3);
+    neighbors.forEach(({j})=>{if(j>i)links.push([i,j]);});
+  });
+  let ready=false, inView=true, stopped=false, failed=false, frame=0, clock=0, last=0, lastDraw=0;
+  let width=0, height=0, mobile=false, analyser=null, audioContext=null, source=null, spectrum=null, energy=0, remembered=false;
+  function resize() {
+    const box=art.getBoundingClientRect();
+    mobile=matchMedia('(max-width: 800px)').matches;
+    const pixelRatio=Math.min(devicePixelRatio||1,mobile?1.25:1.5);
+    width=Math.max(1,Math.round(box.width*pixelRatio));height=Math.max(1,Math.round(box.height*pixelRatio));
+    if(surface.width!==width || surface.height!==height){
+      surface.width=network.width=width;surface.height=network.height=height;
+      gl.viewport(0,0,width,height);
+    }
+  }
+  // The analyser uses only this page's demo audio; it never requests a microphone.
+  function connectAudio() {
+    const AudioContext=window.AudioContext||window.webkitAudioContext;
+    if(!AudioContext || failed) return;
+    try {
+      if(!audioContext)audioContext=new AudioContext();
+      const connect=()=>{
+        if(source || audioContext.state!=='running')return;
+        const candidate=audioContext.createAnalyser();candidate.fftSize=256;candidate.smoothingTimeConstant=.82;
+        const mediaSource=audioContext.createMediaElementSource(audio);
+        // Keep the audible signal connected even if visual analysis is later suspended.
+        mediaSource.connect(audioContext.destination);mediaSource.connect(candidate);
+        source=mediaSource;analyser=candidate;spectrum=new Uint8Array(analyser.frequencyBinCount);
+      };
+      if(audioContext.state==='running')connect();
+      else audioContext.resume().then(connect).catch(()=>{});
+    }catch(_){/* The normal audio player remains usable without a visual analyser. */}
+  }
+  document.querySelectorAll('[data-demo], [data-demo-hero]').forEach(button=>button.addEventListener('click',connectAudio,{capture:true}));
+  audio.addEventListener('pointerdown',connectAudio);
+  audio.addEventListener('play',()=>{remembered=true;art.classList.add('release-listening');start();});
+  ['pause','ended'].forEach(type=>audio.addEventListener(type,()=>art.classList.remove('release-listening')));
+  function drawNetwork(t,sweep,strength) {
+    ctx.clearRect(0,0,width,height);
+    const playing=!audio.paused && !audio.ended;
+    const pulse=(x,y)=>Math.exp(-Math.pow((x+(1-y)*.47-sweep)*8,2));
+    const positions=points.map((point,i)=>({x:(point.x+Math.sin(t*.18+i)*.003)*width,y:(point.y+Math.cos(t*.16+i)*.003)*height}));
+    ctx.lineWidth=Math.max(.65,width/900);
+    links.forEach(([a,b])=>{
+      const p=points[a],q=points[b];
+      const activity=Math.max(pulse(p.x,p.y),pulse(q.x,q.y));
+      ctx.strokeStyle='rgba(205,242,122,'+(.035+activity*.14+energy*.035)+')';
+      ctx.beginPath();ctx.moveTo(positions[a].x,positions[a].y);ctx.lineTo(positions[b].x,positions[b].y);ctx.stroke();
+    });
+    // A remembered route remains illuminated after the wave has passed.
+    ctx.save();ctx.shadowColor='#dfff00';ctx.shadowBlur=width*(.009+energy*.01);
+    ctx.strokeStyle='rgba(224,255,86,'+(.10+strength*.49)+')';ctx.lineWidth=width*(.0013+energy*.001);
+    ctx.beginPath();route.forEach((_,i)=>{const p=positions[i];i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y);});ctx.stroke();
+    points.forEach((point,i)=>{
+      const p=positions[i],activation=pulse(point.x,point.y);
+      const alpha=point.route?.30+strength*.65:.10+activation*.56;
+      const radius=width*(point.route?.0025+strength*.0013:.0014+activation*.0013)*(1+energy*.24);
+      ctx.fillStyle='rgba(227,255,133,'+alpha+')';ctx.beginPath();ctx.arc(p.x,p.y,radius,0,Math.PI*2);ctx.fill();
+    });
+    // A small travelling impulse, followed by a lasting glow.
+    if(t%12<8.8 || playing){
+      const progress=(t*(playing?.72:.37))%1, segment=progress*(route.length-1), index=Math.floor(segment), f=segment-index;
+      const a=positions[index],b=positions[Math.min(index+1,route.length-1)];
+      const x=a.x+(b.x-a.x)*f,y=a.y+(b.y-a.y)*f;
+      ctx.shadowBlur=width*.026;ctx.fillStyle='#f2ffb2';ctx.beginPath();ctx.arc(x,y,width*.0052,0,Math.PI*2);ctx.fill();
+    }
+    ctx.restore();
+  }
+  function draw(timestamp) {
+    frame=0;
+    if(!ready || failed || stopped || reduced.matches || !inView || document.hidden){last=0;return;}
+    if(last){clock+=Math.min((timestamp-last)/1000,.08);}last=timestamp;
+    if(timestamp-lastDraw<(mobile?1000/24:1000/30)){frame=requestAnimationFrame(draw);return;}lastDraw=timestamp;
+    let target=0;
+    if(analyser && !audio.paused && !audio.ended){
+      analyser.getByteFrequencyData(spectrum);
+      for(let i=2;i<48;i++)target+=spectrum[i];target=Math.min(1,target/(46*165));
+    }
+    energy+=(target-energy)*.16;
+    const phase=clock%12;
+    const strength=remembered?.9:Math.min(.93,.16+Math.floor(phase/2.65)*.22);
+    const sweep=phase<8.8 ? ((phase%2.65)/2.65)*1.65-.15 : 2.;
+    try {
+      gl.useProgram(program);gl.uniform1f(uniforms.time,clock);gl.uniform1f(uniforms.energy,energy);
+      gl.uniform1f(uniforms.sweep,sweep);gl.uniform1f(uniforms.strength,strength);
+      gl.drawArrays(gl.TRIANGLES,0,3);drawNetwork(clock,sweep,strength);
+      art.classList.add('release-motion-ready');
+    }catch(_){fallback();return;}
+    frame=requestAnimationFrame(draw);
+  }
+  function start(){if(!frame && ready && !failed && !stopped && !reduced.matches && inView && !document.hidden){last=0;frame=requestAnimationFrame(draw);}}
+  function suspend(){if(frame)cancelAnimationFrame(frame);frame=0;last=0;}
+  function fallback(){failed=true;suspend();art.classList.remove('release-motion-ready');toggle.hidden=true;}
+  function setMotionState(){
+    suspend();
+    art.classList.toggle('release-motion-stopped',stopped);
+    toggle.setAttribute('aria-label',stopped?'Включить анимацию обложки':'Остановить анимацию обложки');
+    toggle.setAttribute('aria-pressed',String(stopped));
+    toggle.innerHTML=stopped?'<svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M6 3v14l11-7z"/></svg>':'<svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 4h3v12H5zm7 0h3v12h-3z"/></svg>';
+    if(reduced.matches){art.classList.remove('release-motion-ready');toggle.hidden=true;}
+    else{toggle.hidden=!ready || failed;start();}
+  }
+  toggle.addEventListener('click',()=>{stopped=!stopped;setMotionState();});
+  reduced.addEventListener('change',setMotionState);
+  document.addEventListener('visibilitychange',()=>document.hidden?suspend():start());
+  surface.addEventListener('webglcontextlost',event=>{event.preventDefault();fallback();});
+  new ResizeObserver(()=>{resize();start();}).observe(art);
+  new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;if(inView)start();else suspend();},{rootMargin:'80px'}).observe(art);
+  function loadArtwork(){
+    if(ready || failed || !image.complete || !image.naturalWidth)return;
+    try{gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);ready=true;resize();setMotionState();}
+    catch(_){fallback();}
+  }
+  image.addEventListener('load',loadArtwork,{once:true});
+  loadArtwork();
+})();
+</script>
 </body>
 </html>
+
