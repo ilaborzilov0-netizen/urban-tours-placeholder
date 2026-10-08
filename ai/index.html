@@ -1,4 +1,4 @@
-<!doctype html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101114"><title>БЕЗ ТОРГА — музыка для жизни без сигарет</title><meta name="description" content="Авторские аудионастройки от специалиста, созданные с помощью ИИ. Песни со смыслом, плейлист и другой взгляд на привычный перекур."><link rel="icon" href="/ai/favicon.svg">  <script type="module" crossorigin src="/ai/assets/index-BBeXM2ee.js?v=20261008-pay1"></script>
+<!doctype html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101114"><title>БЕЗ ТОРГА — музыка для жизни без сигарет</title><meta name="description" content="Авторские аудионастройки от специалиста, созданные с помощью ИИ. Песни со смыслом, плейлист и другой взгляд на привычный перекур."><link rel="icon" href="/ai/favicon.svg">  <script type="module" crossorigin src="/ai/assets/index-BBeXM2ee.js?v=20261008-pay2"></script>
   <link rel="stylesheet" crossorigin href="/ai/assets/index-C9rbtAt-.css">
 
 <style id="ai-checkout-v1">
@@ -240,28 +240,34 @@ ym(110906734,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:tr
 
   form.addEventListener('submit',async function(e){
     e.preventDefault();
-    status.textContent='Проверяем данные…';
-    try{document.activeElement&&document.activeElement.blur&&document.activeElement.blur()}catch(_){}
-    await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
-    await new Promise(resolve=>setTimeout(resolve,80));
 
-    const name=String((form.elements.namedItem('name')&&form.elements.namedItem('name').value)||nameInput.value||'').trim()||'Покупатель';
-    const email=String((form.elements.namedItem('email')&&form.elements.namedItem('email').value)||emailInput.value||'').trim();
-    const website=String(form.elements.website.value||'').trim();
+    const fd=new FormData(form);
+    const website=String(fd.get('website')||'').trim();
     if(website)return;
+
+    const rawName=String(fd.get('name')||nameInput.value||'').trim();
+    const name=rawName||'Покупатель';
+    const email=String(fd.get('email')||emailInput.value||'').trim();
+
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
       status.textContent='Укажите корректный email.';
       emailInput.focus();
       return;
     }
+
     const old=submit.textContent;
     submit.disabled=true;
     submit.textContent='Открываем Т-Банк…';
-    status.textContent='';
+    status.textContent='Создаём платёж…';
+
+    const controller=new AbortController();
+    const timer=setTimeout(()=>controller.abort(),15000);
+
     try{
       const r=await fetch(PAYMENT_API,{
         method:'POST',
         headers:{'Content-Type':'application/json','Accept':'application/json'},
+        signal:controller.signal,
         body:JSON.stringify({
           plan:PLAN,
           name,
@@ -272,14 +278,33 @@ ym(110906734,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:tr
           returnUrl:location.origin+'/ai/'
         })
       });
-      let data={};try{data=await r.json()}catch(_){}
-      if(!r.ok||!data.ok||!data.paymentUrl)throw new Error(data.error||'Не удалось открыть оплату.');
+      clearTimeout(timer);
+
+      let data={};
+      try{data=await r.json()}catch(_){}
+
+      if(!r.ok||!data.ok||!data.paymentUrl){
+        const details=data&&data.fields?Object.values(data.fields).filter(Boolean).join(' '):'';
+        throw new Error(details||data.error||('Ошибка платёжного сервера: '+r.status));
+      }
       if(data.plan!==PLAN)throw new Error('Платёжный сервер вернул другой продукт.');
       if(Number(data.amount)!==AMOUNT_RUB)throw new Error('Платёжный сервер вернул неверную стоимость.');
-      try{sessionStorage.setItem('aiAlbumLastPayment',JSON.stringify({orderId:data.orderId,email,createdAt:new Date().toISOString()}))}catch(_){}
-      location.assign(data.paymentUrl);
+
+      try{
+        sessionStorage.setItem('aiAlbumLastPayment',JSON.stringify({
+          orderId:data.orderId,email,createdAt:new Date().toISOString()
+        }));
+      }catch(_){}
+
+      status.textContent='Платёж создан. Переходим в Т-Банк…';
+      window.location.href=data.paymentUrl;
     }catch(err){
-      status.textContent=err&&err.message?err.message:'Не удалось открыть оплату. Попробуйте ещё раз.';
+      clearTimeout(timer);
+      if(err&&err.name==='AbortError'){
+        status.textContent='Платёжный сервер не ответил за 15 секунд. Попробуйте ещё раз.';
+      }else{
+        status.textContent=err&&err.message?err.message:'Не удалось открыть оплату. Попробуйте ещё раз.';
+      }
       submit.disabled=false;
       submit.textContent=old;
     }
