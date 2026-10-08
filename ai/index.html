@@ -59,9 +59,9 @@ ym(110906734,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:tr
     <h2 id="aiCheckoutTitle">12 ТРЕКОВ.<br><em>490 ₽.</em></h2>
     <p class="ai-pay-lead">Записи ещё готовятся. Это предзаказ: после публикации информация о доступе к альбому будет отправлена на email, указанный при оплате.</p>
     <div class="ai-pay-summary"><span>Один платёж</span><span>Без подписки</span><strong>490 ₽</strong></div>
-    <form class="ai-pay-form" id="aiPayForm" novalidate>
-      <label>Имя<input id="aiPayName" name="name" type="text" minlength="2" required placeholder="Илья" autocomplete="name"></label>
-      <label>Email для доступа<input id="aiPayEmail" name="email" type="email" required placeholder="name@mail.ru" autocomplete="email" inputmode="email"></label>
+    <form class="ai-pay-form" id="aiPayForm" novalidate autocomplete="off">
+      <label>Имя <span style="font-weight:400;color:#777">(необязательно)</span><input id="aiPayName" name="name" type="text" placeholder="Илья" autocomplete="off"></label>
+      <label>Email для доступа<input id="aiPayEmail" name="email" type="email" required placeholder="name@mail.ru" autocomplete="off" inputmode="email"></label>
       <input class="ai-pay-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="ai-pay-submit" id="aiPaySubmit" type="submit">Перейти к оплате · 490 ₽</button>
       <p class="ai-pay-note"><strong>Оплата откроется на странице Т-Банка.</strong><br>Платёжные данные обрабатывает банк. После успешной оплаты вы вернётесь на эту страницу.</p>
@@ -231,6 +231,7 @@ ym(110906734,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:tr
     }
   },true);
 
+  [nameInput,emailInput].forEach(el=>el.addEventListener('input',()=>{status.textContent=''}));
   document.getElementById('aiCheckoutClose').addEventListener('click',closeCheckout);
   document.getElementById('aiResultClose').addEventListener('click',closeResult);
   checkout.addEventListener('click',e=>{if(e.target===checkout)closeCheckout()});
@@ -239,12 +240,20 @@ ym(110906734,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:tr
 
   form.addEventListener('submit',async function(e){
     e.preventDefault();
-    const name=String(nameInput.value||'').trim();
-    const email=String(emailInput.value||'').trim();
+    status.textContent='Проверяем данные…';
+    try{document.activeElement&&document.activeElement.blur&&document.activeElement.blur()}catch(_){}
+    await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+    await new Promise(resolve=>setTimeout(resolve,80));
+
+    const name=String((form.elements.namedItem('name')&&form.elements.namedItem('name').value)||nameInput.value||'').trim()||'Покупатель';
+    const email=String((form.elements.namedItem('email')&&form.elements.namedItem('email').value)||emailInput.value||'').trim();
     const website=String(form.elements.website.value||'').trim();
     if(website)return;
-    if(name.length<2){status.textContent='Укажите имя.';return}
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){status.textContent='Укажите корректный email.';return}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      status.textContent='Укажите корректный email.';
+      emailInput.focus();
+      return;
+    }
     const old=submit.textContent;
     submit.disabled=true;
     submit.textContent='Открываем Т-Банк…';
