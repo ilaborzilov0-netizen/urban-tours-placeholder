@@ -1,45 +1,6 @@
 <!doctype html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101114"><title>БЕЗ ТОРГА — музыка для жизни без сигарет</title><meta name="description" content="Авторские аудионастройки от специалиста, созданные с помощью ИИ. Песни со смыслом, плейлист и другой взгляд на привычный перекур."><link rel="icon" href="/ai/favicon.svg">  <script type="module" crossorigin src="/ai/assets/index-BBeXM2ee.js?v=20261008-pay2"></script>
   <link rel="stylesheet" crossorigin href="/ai/assets/index-C9rbtAt-.css">
 
-<style id="ai-checkout-v1">
-  .ai-pay-layer{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(5,6,8,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-  .ai-pay-layer.show{display:flex}
-  .ai-pay-card{position:relative;width:min(600px,100%);max-height:calc(100dvh - 40px);overflow:auto;background:#f3f3ef;color:#17181c;border-radius:16px;padding:34px;box-shadow:0 28px 90px #0008}
-  .ai-pay-close{position:absolute;right:18px;top:16px;width:42px;height:42px;border:0;background:transparent;color:#17181c;font-size:29px;line-height:1}
-  .ai-pay-eyebrow{display:block;margin:0 46px 12px 0;color:#a53b11;font-size:11px;font-weight:800;letter-spacing:.11em;text-transform:uppercase}
-  .ai-pay-card h2{margin:0;font-size:clamp(38px,6vw,58px);line-height:.93;letter-spacing:-.055em}
-  .ai-pay-card h2 em{color:#d84e1f}
-  .ai-pay-lead{margin:20px 0 22px;color:#555861;font-size:16px;line-height:1.55}
-  .ai-pay-summary{display:grid;grid-template-columns:1fr auto;gap:8px 18px;padding:17px 0;margin-bottom:22px;border-block:1px solid #cbc7bd}
-  .ai-pay-summary span{font-size:13px;color:#6c6d73}
-  .ai-pay-summary strong{grid-column:2;grid-row:1/3;align-self:center;font-size:31px;letter-spacing:-.045em;color:#d84e1f}
-  .ai-pay-form{display:grid;gap:13px}
-  .ai-pay-form label{display:grid;gap:7px;font-size:14px;font-weight:700}
-  .ai-pay-form input{width:100%;min-width:0;border:1px solid #bbb7ad;border-radius:8px;background:#fffdf8;padding:15px 14px;color:#17181c;font-size:17px;outline:none}
-  .ai-pay-form input:focus{border-color:#d84e1f;box-shadow:0 0 0 2px #d84e1f22}
-  .ai-pay-submit{border:0;border-radius:9px;background:#ff7239;color:#111;min-height:60px;padding:17px 20px;font-size:18px;font-weight:800}
-  .ai-pay-submit:disabled{opacity:.6;cursor:wait}
-  .ai-pay-note{margin:0;color:#676970;font-size:12px;line-height:1.5}
-  .ai-pay-note strong{color:#17181c}
-  .ai-pay-status{min-height:20px;margin:0;color:#a33218;font-size:13px;line-height:1.4}
-  .ai-pay-hp{position:absolute!important;left:-9999px!important;opacity:0!important;pointer-events:none!important}
-  .ai-result-card{background:#111215;color:#f3f3f0}
-  .ai-result-mark{display:grid;place-items:center;width:48px;height:48px;margin-bottom:20px;border-radius:50%;background:#ff7239;color:#111;font-size:27px;font-weight:900}
-  .ai-result-card h2{color:#f3f3f0}
-  .ai-result-card .ai-pay-lead{color:#b5b7bf}
-  .ai-result-meta{margin:25px 0;padding:18px 0;border-block:1px solid #383a42;color:#d6d7dc;font-size:15px;line-height:1.5}
-  .ai-result-actions{display:flex;gap:10px;flex-wrap:wrap}
-  .ai-result-actions button,.ai-result-actions a{flex:1;min-width:190px;border:0;border-radius:9px;padding:16px 18px;text-align:center;font-size:15px;font-weight:800}
-  .ai-result-primary{background:#ff7239;color:#111}
-  .ai-result-secondary{background:#f3f3ef;color:#17181c}
-  @media(max-width:560px){
-    .ai-pay-layer{padding:12px;align-items:flex-end}
-    .ai-pay-card{padding:27px 20px 23px;border-radius:14px 14px 0 0;max-height:calc(100dvh - 12px)}
-    .ai-pay-card h2{font-size:40px}
-    .ai-pay-summary strong{font-size:28px}
-    .ai-result-actions{display:grid}
-  }
-</style>
 <!-- Yandex.Metrika counter 110906734 -->
 <script type="text/javascript">
 (function(m,e,t,r,i,k,a){
@@ -51,117 +12,195 @@
 ym(110906734,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});
 </script>
 <!-- /Yandex.Metrika counter 110906734 -->
+
+<style id="ai-home-checkout-v2">
+  :root{
+    --paper:#f3f3ef;
+    --ink:#17181c;
+    --soft:#e8e6df;
+    --line:#cbc7bd;
+    --muted:#6c6d73;
+    --orange:#ff7239;
+  }
+  .alfaLeadModal{
+    position:fixed;inset:0;z-index:10000;
+    background:rgba(20,20,18,.46);
+    display:none;align-items:center;justify-content:center;padding:20px;
+    backdrop-filter:blur(11px) saturate(.82);
+    -webkit-backdrop-filter:blur(11px) saturate(.82);
+  }
+  .alfaLeadModal.show{display:flex}
+  .modalCard{
+    width:min(590px,100%);background:var(--paper);color:var(--ink);
+    padding:32px;border-radius:16px;position:relative;
+    max-height:calc(100dvh - 40px);overflow:auto;
+    box-shadow:0 24px 80px rgba(0,0,0,.18)
+  }
+  .close{
+    position:absolute;top:14px;right:14px;border:0;background:transparent;
+    padding:9px;display:grid;place-items:center;border-radius:5px;
+    color:var(--ink);min-height:42px;min-width:42px;z-index:3;font-size:27px
+  }
+  .modalCard h3{
+    font-size:clamp(32px,6vw,44px);line-height:1.03;letter-spacing:-.045em;
+    margin:0 42px 15px 0
+  }
+  .modalSlot{
+    padding:15px 17px;background:var(--soft);border-radius:8px;
+    display:grid;gap:6px;margin-bottom:23px
+  }
+  .modalSlot small{
+    display:block;font-size:12px;letter-spacing:.07em;font-weight:800;
+    color:var(--muted);margin-bottom:5px
+  }
+  .modalSlot strong{font-size:20px;line-height:1.25}
+  .modalSlot>b{font-size:15px;color:var(--muted)}
+  .alfaLeadPrice{
+    margin:-4px 0 18px;padding:15px 0 16px;display:grid;
+    grid-template-columns:auto 1fr;align-items:baseline;gap:5px 14px;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line)
+  }
+  .alfaLeadPrice>span{
+    font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)
+  }
+  .alfaLeadPrice>strong{
+    justify-self:end;font-size:31px;line-height:1;letter-spacing:-.045em;color:var(--orange)
+  }
+  .alfaLeadModal form{display:grid;gap:12px}
+  .alfaLeadFields{
+    display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px
+  }
+  .alfaLeadPhoneField{grid-column:1/-1}
+  .alfaLeadModal label{font-size:15px;font-weight:700;display:grid;gap:8px}
+  .alfaLeadModal input{
+    min-width:0;width:100%;border:1px solid #bcb7ac;border-radius:7px;
+    background:#fffdf8;padding:15px 14px;font-size:18px;color:var(--ink)
+  }
+  .primary{
+    border:0;border-radius:8px;background:var(--orange);color:#111;
+    font-weight:800;font-size:20px;line-height:1.2;padding:18px 14px;min-height:60px
+  }
+  .primary:hover{background:#ff8856}
+  .primary:disabled{opacity:.65;cursor:wait}
+  .alfaLeadSecure,.alfaLeadAfter{margin:0;line-height:1.4}
+  .alfaLeadSecure{
+    margin-top:2px;padding-left:22px;position:relative;font-size:13px;
+    font-weight:700;color:var(--ink)
+  }
+  .alfaLeadSecure::before{
+    content:"✓";position:absolute;left:0;top:0;color:var(--orange);font-weight:900
+  }
+  .alfaLeadAfter{font-size:13px;color:var(--muted)}
+  .formStatus{font-size:14px;line-height:1.4}
+  .formStatus:empty{display:none}
+  .formStatus.err{color:#a42b15}
+  .formStatus.ok{color:#286b3a}
+  .hp{position:absolute!important;left:-9999px!important;opacity:0!important;pointer-events:none!important}
+
+  .successCurtain{
+    position:fixed;inset:0;z-index:10010;background:#111215;color:#f3f3f0;
+    display:none;overflow:auto
+  }
+  .successCurtain.show{display:block}
+  .successCurtainInner{position:relative;width:min(650px,100%);padding:45px 32px;margin:auto}
+  .successMark{
+    width:43px;height:43px;border-radius:50%;background:var(--orange);
+    color:#111;display:grid;place-items:center;margin-bottom:17px;font-size:25px;font-weight:900
+  }
+  .successCurtain .close{color:#f3f3f0;top:23px;right:23px}
+  .successCurtain h2{
+    font-size:clamp(38px,7vw,59px);line-height:1;letter-spacing:-.05em;margin:0 0 20px
+  }
+  .successWhen{
+    display:grid;gap:5px;padding:16px 0;border-block:1px solid #4c4941;margin-bottom:23px
+  }
+  .successWhen strong{font-size:20px}
+  .successWhen span{font-size:15px;color:#c5c0b5}
+  .successChannelPrompt{font-size:19px;line-height:1.5;margin:0 0 18px}
+  .successBack{
+    display:flex;align-items:center;justify-content:center;text-decoration:none;
+    padding:17px 18px;border-radius:9px;font-size:18px;line-height:1.25;
+    font-weight:800;min-height:70px;background:var(--orange);color:#111;border:0;width:100%
+  }
+  @media(max-width:540px){
+    .alfaLeadModal{padding:12px}
+    .modalCard{padding:27px 21px;border-radius:12px;max-height:calc(100dvh - 24px)}
+    .modalCard h3{font-size:37px}
+    .alfaLeadFields{grid-template-columns:1fr;gap:10px}
+    .alfaLeadPhoneField{grid-column:auto}
+    .successCurtainInner{padding:30px 22px}
+    .successCurtain h2{font-size:43px}
+  }
+</style>
 </head><body><div id="root"><link rel="preload" as="image" href="/ai/images/album.webp" fetchPriority="high"/><header class="header wrap"><a href="#" aria-label="БЕЗ ТОРГА, главная"><span class="brand"><span class="brand-icon"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-music2 lucide-music-2" aria-hidden="true"><circle cx="8" cy="18" r="4"></circle><path d="M12 18V2l7 4"></path></svg></span><span>БЕЗ ТОРГА<small>авторские аудионастройки</small></span></span></a><nav aria-label="Разделы"><a href="#how">Как это устроено</a><a href="#playlist">Плейлист</a><a href="#author">Автор</a><a href="#faq">Вопросы</a></nav><button class="btn small">Предзаказ · 490 ₽</button></header><main><section class="hero wrap"><div><span class="eyebrow"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-headphones" aria-hidden="true"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path></svg> ПЕСНИ ДЛЯ ЖИЗНИ БЕЗ СИГАРЕТ</span><h1>Вместо<br/>«ещё одну» —<br/><em>включи трек.</em></h1><p class="hero-lead">Авторские аудионастройки от специалиста, созданные с помощью ИИ.</p><p class="hero-desc">Музыка, которую хочется слушать. Слова, в которых узнаёшь себя. Другой взгляд на привычный перекур.</p><div class="hero-actions"><button class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg> Посмотреть первый трек</button><button class="text-link">Предзаказать за 490 ₽</button></div><p class="fine">Разные жанры · Один платёж · Без подписки</p></div><div class="hero-art"><div class="cover"><img src="/ai/images/album.webp" alt="Серебряные наушники и оранжевая звуковая лента — обложка БЕЗ ТОРГА" width="1254" height="1254" fetchPriority="high"/><div class="cover-top"><span>АВТОРСКИЙ АЛЬБОМ</span><span>12 ТРЕКОВ</span></div><div class="cover-title">БЕЗ<br/>ТОРГА<small>Слушай музыку. Прислушивайся к смыслу.</small></div></div><button class="hero-player"><span class="play-circle"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg></span><span><strong>01. Без торга</strong><small>Инди-поп · демотрек скоро</small></span><span class="player-label">ПЛЕЙЛИСТ</span></button></div></section><div class="facts wrap"><div><strong>12</strong><span>ситуаций, которые<br/>знакомы курильщику</span></div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-music2 lucide-music-2" aria-hidden="true"><circle cx="8" cy="18" r="4"></circle><path d="M12 18V2l7 4"></path></svg><span>От акустики<br/>до электроники</span></div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-headphones" aria-hidden="true"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path></svg><span>Слушай в своём ритме<br/>дома и на прогулке</span></div><div><strong>490 ₽</strong><span>за весь альбом<br/>без подписки</span></div></div><section class="section wrap"><div class="section-head"><span class="eyebrow">ЗНАКОМЫЙ ВНУТРЕННИЙ РАЗГОВОР</span><h2>Бросить хочется.<br/><span class="dim">Но каждый раз есть «но».</span></h2><p>Сигарета часто вписана в целую историю: отдых, кофе, компанию, трудный день. Об этих историях — наш альбом.</p></div><div class="pain-grid"><article><span class="card-num">01 / ПОТОМ</span><h3>«Сейчас не время. С понедельника».</h3><p>Сначала закончить проект, выспаться, пережить стресс. И дождаться дня, когда решиться будет проще.</p><span class="tag">Трек «<!-- -->Не с понедельника<!-- -->»</span></article><article><span class="card-num">02 / ПАУЗА</span><h3>«Это мои пять минут. Как без них?»</h3><p>Хочется сохранить отдых, тишину и возможность выйти из суеты. Кажется, что вместе с сигаретой уйдёт всё это.</p><span class="tag">Трек «<!-- -->Мне нужна пауза<!-- -->»</span></article><article><span class="card-num">03 / ЕЩЁ ОДНУ</span><h3>«Одну можно. Я же контролирую».</h3><p>Знакомая мысль, с которой начинается новый разговор с собой. В нём тоже можно услышать повторяющийся сюжет.</p><span class="tag">Трек «<!-- -->Без торга<!-- -->»</span></article></div></section><section class="how-section" id="how"><div class="wrap section"><div class="section-head"><span class="eyebrow">МУЗЫКА + СМЫСЛ + ПОВТОРЕНИЕ</span><h2>Почему мы положили<br/>эти мысли <em>на музыку.</em></h2><p>Замысел простой: к хорошей песне хочется возвращаться. Вместе с ней вы снова слышите мысль, которую можно заметить в своём обычном дне.</p></div><div class="how-grid"><article><span class="how-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-music2 lucide-music-2" aria-hidden="true"><circle cx="8" cy="18" r="4"></circle><path d="M12 18V2l7 4"></path></svg></span><span class="card-num">01 / ХОЧЕТСЯ ВКЛЮЧИТЬ</span><h3>Сначала — песня.</h3><p>Мелодия, ритм, голос и жанр. Можно выбрать своё звучание и слушать в привычной обстановке.</p></article><article><span class="how-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-volume2 lucide-volume-2" aria-hidden="true"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"></path><path d="M16 9a5 5 0 0 1 0 6"></path><path d="M19.364 18.364a9 9 0 0 0 0-12.728"></path></svg></span><span class="card-num">02 / ЕСТЬ ЧТО УСЛЫШАТЬ</span><h3>Внутри — ваш сюжет.</h3><p>«Ещё одну», «после этой пачки», «мне нужно расслабиться». Текст предлагает посмотреть на знакомую ситуацию с другой стороны.</p></article><article><span class="how-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-headphones" aria-hidden="true"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path></svg></span><span class="card-num">03 / МОЖНО ВЕРНУТЬСЯ</span><h3>Смысл рядом.</h3><p>Вы возвращаетесь к треку, когда он нужен. Его фраза может стать поводом остановиться и обдумать следующее действие.</p></article></div><div class="meaning-example"><span class="eyebrow">ОДНА МЫСЛЬ ИЗ АЛЬБОМА</span><blockquote>«Мне нужна пауза.<br/><em>Сигарета — не вся пауза».</em></blockquote><p>Важна сама потребность отдохнуть. Песня предлагает отделить её от привычного перекура и подумать, что ещё делает паузу хорошей.</p></div></div></section><section class="section wrap" id="playlist"><div class="section-head split"><div><span class="eyebrow">НАЙДИ СВОЙ ТРЕК</span><h2>Твои «ещё одну».<br/><em>Теперь в песнях.</em></h2></div><p>12 смысловых треков в разных стилях. Выберите название — посмотрите, о чём песня и в какой ситуации к ней можно вернуться.</p></div><div class="playlist-layout"><div class="album-panel" id="selected-track"><img src="/ai/images/album.webp" alt="Обложка альбома БЕЗ ТОРГА" width="480" height="480" loading="lazy"/><span class="eyebrow">ВЫБРАННЫЙ ТРЕК / <!-- -->01</span><h3>Без торга</h3><span class="tag">Инди-поп</span><p class="situation">Когда снова «ещё одну»</p><blockquote>«Ещё одну» — знакомый разговор. Я могу его услышать и не продолжать.</blockquote><p>Про момент, когда желание превращается в уговоры. Замечать мысль и соглашаться с ней — разные действия.</p><div class="audio-player"><button class="audio-play" disabled="" aria-label="Слушать Без торга"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg></button><div class="audio-progress"><span dir="ltr" data-orientation="horizontal" aria-disabled="true" data-disabled="" data-slot="slider" class="relative flex w-full touch-none items-center select-none data-[disabled]:opacity-50 data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col" aria-label="Позиция воспроизведения" style="--radix-slider-thumb-transform:translateX(-50%)"><span data-disabled="" data-orientation="horizontal" data-slot="slider-track" class="relative grow overflow-hidden rounded-full bg-muted data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5"><span data-orientation="horizontal" data-disabled="" data-slot="slider-range" class="absolute bg-primary data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full" style="left:0%;right:100%"></span></span><span style="transform:var(--radix-slider-thumb-transform);position:absolute;left:calc(0% + 0px)"><span role="slider" aria-valuemin="0" aria-valuemax="1" aria-orientation="horizontal" data-orientation="horizontal" data-disabled="" data-slot="slider-thumb" class="block size-4 shrink-0 rounded-full border border-primary bg-white shadow-sm ring-ring/50 transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50" style="display:none" data-radix-collection-item=""></span></span><input style="display:none"/></span><div class="time"><span>0:00</span><span>Аудио скоро</span></div></div></div><p class="audio-status" role="status">Запись ещё не опубликована. Пока можно познакомиться со смыслом трека.</p></div><div class="track-list"><div class="track-list-head"><span>АЛЬБОМ / БЕЗ ТОРГА</span><span>12 ТРЕКОВ</span></div><button class="track-row selected" aria-pressed="true" aria-label="Выбрать трек 01: Без торга"><span class="track-number"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-music2 lucide-music-2" aria-hidden="true"><circle cx="8" cy="18" r="4"></circle><path d="M12 18V2l7 4"></path></svg></span><span class="track-info"><strong>Без торга<span class="demo-tag">ДЕМО</span></strong><small>Когда снова «ещё одну»</small></span><span class="genre">Инди-поп</span><span class="track-action"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg></span></button><button class="track-row " aria-pressed="false" aria-label="Выбрать трек 02: Кофе остаётся"><span class="track-number">02</span><span class="track-info"><strong>Кофе остаётся</strong><small>Утро и привычный кофе</small></span><span class="genre">Соул</span><span class="track-action"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg></span></button><button class="track-row " aria-pressed="false" aria-label="Выбрать трек 03: Не с понедельника"><span class="track-number">03</span><span class="track-info"><strong>Не с понедельника</strong><small>Когда откладываешь решение</small></span><span class="genre">Альтернативный рок</span><span class="track-action"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg></span></button><button class="track-row " aria-pressed="false" aria-label="Выбрать трек 04: Мне нужна пауза"><span class="track-number">04</span><span class="track-info"><strong>Мне нужна пауза</strong><small>Перерыв среди рабочего дня</small></span><span class="genre">Лоу-фай</span><span class="track-action"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg></span></button><button class="track-row " aria-pressed="false" aria-label="Выбрать трек 05: Тише внутри"><span class="track-number">05</span><span class="track-info"><strong>Тише внутри</strong><small>После напряжённого дня</small></span><span class="genre">Неосоул</span><span class="track-action"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg></span></button><button class="track-row " aria-pressed="false" aria-label="Выбрать трек 06: Компания остаётся"><span class="track-number">06</span><span class="track-info"><strong>Компания остаётся</strong><small>Встречи с друзьями</small></span><span class="genre">Фанк</span><span class="track-action"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg></span></button><button class="track-row " aria-pressed="false" aria-label="Выбрать трек 07: Не проверять"><span class="track-number">07</span><span class="track-info"><strong>Не проверять</strong><small>Когда кажется, что «одну можно»</small></span><span class="genre">Синт-поп</span><span class="track-action"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg></span></button><button class="track-row " aria-pressed="false" aria-label="Выбрать трек 08: Скука пройдёт"><span class="track-number">08</span><span class="track-info"><strong>Скука пройдёт</strong><small>Когда нечем занять себя</small></span><span class="genre">Дрим-поп</span><span class="track-action"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg></span></button><button class="track-row " aria-pressed="false" aria-label="Выбрать трек 09: Я не с нуля"><span class="track-number">09</span><span class="track-info"><strong>Я не с нуля</strong><small>После трудного момента</small></span><span class="genre">Акустика</span><span class="track-action"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg></span></button><button class="track-row " aria-pressed="false" aria-label="Выбрать трек 10: Своим голосом"><span class="track-number">10</span><span class="track-info"><strong>Своим голосом</strong><small>Когда трудно услышать себя</small></span><span class="genre">Хип-хоп</span><span class="track-action"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg></span></button><button class="track-row " aria-pressed="false" aria-label="Выбрать трек 11: Обычный день"><span class="track-number">11</span><span class="track-info"><strong>Обычный день</strong><small>Повседневность без перекуров</small></span><span class="genre">Хаус</span><span class="track-action"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg></span></button><button class="track-row " aria-pressed="false" aria-label="Выбрать трек 12: Дальше"><span class="track-number">12</span><span class="track-info"><strong>Дальше</strong><small>Когда нужен следующий шаг</small></span><span class="genre">Электроника</span><span class="track-action"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg></span></button><p class="list-note">Альбом готовится к выпуску. Названия и стили — программа первой версии.</p></div></div></section><section class="routine-section"><div class="wrap routine"><div><span class="eyebrow">В СВОЁМ РИТМЕ</span><h2>Как обычная музыка.<br/><em>С важным для тебя смыслом.</em></h2><p>Не нужно специально медитировать, сидеть в тишине или осваивать технику. Выбирайте песню по ситуации или просто по настроению.</p></div><div class="routine-cards"><article><span>0<!-- -->1</span><h3>Сначала послушай демо</h3><p>Оцени голос, музыку и текст. Важно, чтобы песню действительно хотелось включить снова.</p></article><article><span>0<!-- -->2</span><h3>Найди знакомую ситуацию</h3><p>Кофе, рабочий перерыв, напряжение или «с понедельника». В плейлисте есть отдельные сюжеты.</p></article><article><span>0<!-- -->3</span><h3>Возвращайся, когда нужно</h3><p>Без обязательного графика. Слушай внимательно, когда хочешь разобраться, или включай уже знакомые песни.</p></article></div></div></section><section class="section wrap author-section" id="author"><div class="author-card"><span class="author-monogram">ИБ</span><span class="eyebrow">АВТОР СМЫСЛОВОЙ ПРОГРАММЫ</span><h3>Илья<br/>Борзилов</h3><p>Специалист по отказу от курения.<br/>Автор текстов и идей альбома.</p><span class="author-line">Человек отвечает за смысл.<br/>ИИ помогает создать звучание.</span></div><div class="author-copy"><span class="eyebrow">ЧТО ЗДЕСЬ АВТОРСКОЕ</span><h2>Важны слова.<br/><span class="dim">Музыка даёт им форму.</span></h2><p>Каждый трек начинается с конкретной ситуации курильщика. Что человек ждёт от сигареты? Как уговаривает себя? Чего боится потерять?</p><p>Из этого рождается текст: узнаваемая история и мысль, которую хочется рассмотреть внимательнее. Искусственный интеллект помогает превратить её в песню — с мелодией, голосом и своим характером.</p><div class="role-grid"><div><span>СПЕЦИАЛИСТ</span><strong>Ситуации, содержание,<br/>смысловые акценты</strong></div><div><span>ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ</span><strong>Музыка, вокал,<br/>жанровое звучание</strong></div></div></div></section><section class="section wrap result-section"><div class="section-head"><span class="eyebrow">ЧТО ВЫ ПОЛУЧИТЕ</span><h2>Не просто файлы.<br/><em>Свой плейлист по ситуациям.</em></h2></div><div class="benefit-grid"><article><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-headphones" aria-hidden="true"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path></svg><h3>Музыку на свой вкус</h3><p>Несколько жанров, чтобы выбрать звучание, к которому вам приятно возвращаться.</p></article><article><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-volume2 lucide-volume-2" aria-hidden="true"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"></path><path d="M16 9a5 5 0 0 1 0 6"></path><path d="M19.364 18.364a9 9 0 0 0 0-12.728"></path></svg><h3>Знакомые мысли в словах</h3><p>Песни про торг, откладывание, ритуалы и сложные моменты — без стыда и обвинений.</p></article><article><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download" aria-hidden="true"><path d="M12 15V3"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path></svg><h3>Удобный формат</h3><p>В полной версии — прослушивание онлайн и MP3 для скачивания. Без привязки к расписанию.</p></article><article><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg><h3>Понятную покупку</h3><p>Весь альбом за один платёж. Без подписки и обязательного продолжения.</p></article></div></section><section class="offer-section" id="album"><div class="wrap offer"><div><span class="eyebrow">НАЧНИ С КНОПКИ PLAY</span><h2>Понравится один трек?<br/>Забери <em>весь альбом.</em></h2><p>12 песен о знакомых моментах курения. Разные стили. Авторские тексты. Доступ в своём ритме.</p><button class="text-link"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg> Сначала познакомиться с демо</button></div><div class="price-card"><div class="price-top"><span>БЕЗ ТОРГА</span><span>АВТОРСКИЙ АЛЬБОМ</span></div><h3>Вся музыка.<br/>Все смыслы.</h3><div class="price">490<!-- --> <span>₽</span></div><p>Один платёж. Без подписки.</p><ul><li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>12 треков в разных жанрах</li><li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Песни по знакомым ситуациям</li><li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Онлайн-прослушивание и MP3</li><li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Без ограничения числа прослушиваний</li></ul><button class="btn">Предзаказать · 490 ₽</button><p class="fine">Предзаказ открыт. Оплата — 490 ₽ через Т-Банк.</p></div></div></section><section class="section wrap faq-section" id="faq"><div class="section-head"><span class="eyebrow">ДАВАЙТЕ ПРОЯСНИМ</span><h2>До первого<br/><em>прослушивания.</em></h2><p>Что это за формат и чего от него ждать.</p></div><div class="faq-list"><details><summary>Это медитации или песни?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></summary><p>Полноценные песни в разных жанрах. «Аудионастройки» — название формата: в музыкальный текст встроены мысли о привычке курить. Не требуется сидеть неподвижно, закрывать глаза или выполнять дыхательные упражнения.</p></details><details><summary>За счёт чего это должно работать?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></summary><p>Замысел — соединить приятную музыку с содержанием, к которому хочется возвращаться. В тексте можно узнать свои оправдания и ожидания от сигареты, обдумать их и вспомнить другую мысль в знакомой ситуации. Это объяснение подхода, а не доказательство эффективности именно этого альбома.</p></details><details><summary>Я просто слушаю и гарантированно бросаю?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></summary><p>Нет. Альбом не обещает автоматического отказа, исчезновения тяги или результата за определённое число прослушиваний. Это материал для размышления и поддержки собственного решения. Дальнейшие действия остаются за вами.</p></details><details><summary>Что делает ИИ, а что — специалист?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></summary><p>Автор определяет ситуации, содержание и смысловые акценты текстов. ИИ помогает создавать музыку и вокал. Само использование ИИ не делает треки лечением и не подтверждает их эффективность.</p></details><details><summary>Нужно слушать по порядку и каждый день?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></summary><p>Обязательного режима нет. Можно начать с демо, выбрать близкую ситуацию и возвращаться к понравившимся песням. Для знакомства со смыслом сначала лучше внимательно послушать слова.</p></details><details><summary>Это заменяет другую помощь при отказе от курения?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></summary><p>Нет. Песни можно рассматривать как дополнительный материал. При отказе могут понадобиться поведенческая поддержка и медицинская помощь. В рекомендациях ВОЗ описаны подходы с доказательствами эффективности.</p></details><details><summary>Что входит в 490 ₽?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></summary><p>В предзаказ входят 12 песен, онлайн-прослушивание и скачивание MP3. Разовая покупка без подписки. Записи ещё готовятся; после публикации информация о доступе будет отправлена на email, указанный при оплате.</p></details><details><summary>Где демотрек и отзывы?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></summary><p>Демотрек будет добавлен после подготовки записи. В плейлисте уже можно прочитать его смысл. Отзывов о готовом альбоме пока нет; после выпуска здесь появятся реальные впечатления слушателей.</p></details><a class="source-link" href="https://www.who.int/news/item/02-07-2024-who-releases-first-ever-clinical-treatment-guideline-for-tobacco-cessation-in-adults" target="_blank" rel="noopener noreferrer">Рекомендации ВОЗ об отказе от табака</a></div></section><section class="final wrap"><span class="eyebrow">МУЗЫКА, В КОТОРОЙ УЗНАЁШЬ СЕБЯ</span><h2>Одна знакомая мысль.<br/><em>Другое звучание.</em></h2><button class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg> Посмотреть первый трек</button><p>Познакомься с альбомом. Выбери свой трек.</p></section></main><footer class="wrap footer"><a href="#" aria-label="БЕЗ ТОРГА, наверх"><span class="brand"><span class="brand-icon"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-music2 lucide-music-2" aria-hidden="true"><circle cx="8" cy="18" r="4"></circle><path d="M12 18V2l7 4"></path></svg></span><span>БЕЗ ТОРГА<small>авторские аудионастройки</small></span></span></a><p>© 2026 БЕЗ ТОРГА.<br/>Музыкальный альбом для взрослых 18+.</p><button>О продукте и покупке</button></footer><div class="mobile-bar"><span><strong>Предзаказ · 490 ₽</strong><small>Один платёж. Без подписки.</small></span><button class="btn small">Предзаказать альбом</button></div></div>
-<div class="ai-pay-layer" id="aiCheckout" aria-hidden="true">
-  <section class="ai-pay-card" role="dialog" aria-modal="true" aria-labelledby="aiCheckoutTitle">
-    <button class="ai-pay-close" id="aiCheckoutClose" type="button" aria-label="Закрыть">×</button>
-    <span class="ai-pay-eyebrow">ПРЕДЗАКАЗ · БЕЗ ТОРГА</span>
-    <h2 id="aiCheckoutTitle">12 ТРЕКОВ.<br><em>490 ₽.</em></h2>
-    <p class="ai-pay-lead">Записи ещё готовятся. Это предзаказ: после публикации информация о доступе к альбому будет отправлена на email, указанный при оплате.</p>
-    <div class="ai-pay-summary"><span>Один платёж</span><span>Без подписки</span><strong>490 ₽</strong></div>
-    <form class="ai-pay-form" id="aiPayForm" novalidate autocomplete="off">
-      <label>Имя <span style="font-weight:400;color:#777">(необязательно)</span><input id="aiPayName" name="name" type="text" placeholder="Илья" autocomplete="off"></label>
-      <label>Email для доступа<input id="aiPayEmail" name="email" type="email" required placeholder="name@mail.ru" autocomplete="off" inputmode="email"></label>
-      <input class="ai-pay-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button class="ai-pay-submit" id="aiPaySubmit" type="submit">Перейти к оплате · 490 ₽</button>
-      <p class="ai-pay-note"><strong>Оплата откроется на странице Т-Банка.</strong><br>Платёжные данные обрабатывает банк. После успешной оплаты вы вернётесь на эту страницу.</p>
-      <p class="ai-pay-status" id="aiPayStatus" aria-live="polite"></p>
-    </form>
-  </section>
-</div>
 
-<div class="ai-pay-layer" id="aiPaymentResult" aria-hidden="true">
-  <section class="ai-pay-card ai-result-card" role="dialog" aria-modal="true" aria-labelledby="aiResultTitle">
-    <button class="ai-pay-close" id="aiResultClose" type="button" aria-label="Закрыть" style="color:#f3f3f0">×</button>
-    <div class="ai-result-mark" id="aiResultMark">✓</div>
-    <span class="ai-pay-eyebrow" id="aiResultEyebrow">ОПЛАТА ПОДТВЕРЖДЕНА</span>
-    <h2 id="aiResultTitle">ПРЕДЗАКАЗ<br>ОФОРМЛЕН.</h2>
-    <p class="ai-pay-lead" id="aiResultCopy">Оплата 490 ₽ подтверждена. После публикации альбома информация о доступе будет отправлена на email, указанный при оплате.</p>
-    <div class="ai-result-meta" id="aiResultMeta">БЕЗ ТОРГА · 12 треков · один платёж · без подписки</div>
-    <div class="ai-result-actions">
-      <button class="ai-result-primary" id="aiResultPrimary" type="button">Вернуться к альбому</button>
-      <a class="ai-result-secondary" href="mailto:ilaborzilov0@gmail.com">Вопрос по оплате</a>
+<div class="alfaLeadModal" id="alfaLeadModal" role="dialog" aria-modal="true" aria-labelledby="alfaLeadTitle">
+  <div class="modalCard alfaLeadCard">
+    <button class="close" id="alfaLeadClose" type="button" aria-label="Закрыть">×</button>
+    <h3 id="alfaLeadTitle">ПРЕДЗАКАЗ<br>АЛЬБОМА.</h3>
+
+    <div class="modalSlot">
+      <div><small>БЕЗ ТОРГА</small><strong>12 авторских треков</strong></div>
+      <b>Цифровой альбом · предзаказ</b>
     </div>
-  </section>
+
+    <div class="alfaLeadPrice" aria-label="Стоимость предзаказа">
+      <span>Стоимость</span>
+      <strong>490 ₽</strong>
+    </div>
+
+    <form id="alfaLeadForm" novalidate autocomplete="off">
+      <div class="alfaLeadFields">
+        <label><span>Имя</span><input required name="name" id="alfaLeadName" type="text" autocomplete="off" placeholder="Илья" minlength="2"></label>
+        <label><span>Email</span><input required name="email" id="alfaLeadEmail" type="email" autocomplete="off" inputmode="email" placeholder="name@mail.ru"></label>
+        <label class="alfaLeadPhoneField"><span>Телефон</span><input required name="contact" id="alfaLeadPhone" type="tel" autocomplete="off" inputmode="tel" placeholder="+7 999 123-45-67"></label>
+      </div>
+      <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="primary" id="alfaLeadSubmit" type="submit">Перейти к оплате · 490 ₽</button>
+      <p class="alfaLeadSecure">Защищённая оплата откроется на странице Т-Банка.</p>
+      <p class="alfaLeadAfter"><strong>После подтверждения оплаты предзаказ будет оформлен.</strong> После публикации альбома информацию о доступе отправим на указанный email.</p>
+      <div class="formStatus" id="alfaLeadStatus" aria-live="polite"></div>
+    </form>
+  </div>
 </div>
 
-<script id="ai-payment-v1">
+<div class="successCurtain" id="successCurtain" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+  <div class="successCurtainInner">
+    <button class="close" id="successClose" type="button" aria-label="Закрыть">×</button>
+    <div class="successMark" aria-hidden="true">✓</div>
+    <h2 id="successTitle">ОПЛАТА ПРОШЛА УСПЕШНО.<br>ПРЕДЗАКАЗ ОФОРМЛЕН.</h2>
+    <div class="successWhen">
+      <strong>БЕЗ ТОРГА · 12 треков</strong>
+      <span>490 ₽ · один платёж · без подписки</span>
+    </div>
+    <p class="successChannelPrompt">После публикации альбома информацию о доступе отправим на email, указанный при оплате.</p>
+    <button class="successBack" id="successBack" type="button">Вернуться к альбому</button>
+  </div>
+</div>
+
+<script id="ai-home-payment-v2">
 (function(){
   'use strict';
+
   const PAYMENT_API='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/api/payment/create';
   const PAYMENT_STATUS='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/api/payment/status';
   const PLAN='ai_album';
   const AMOUNT_RUB=490;
   const AMOUNT_MINOR=49000;
-  const SUCCESS_GOAL='ai_payment_success';
 
-  const checkout=document.getElementById('aiCheckout');
-  const resultLayer=document.getElementById('aiPaymentResult');
-  const form=document.getElementById('aiPayForm');
-  const nameInput=document.getElementById('aiPayName');
-  const emailInput=document.getElementById('aiPayEmail');
-  const submit=document.getElementById('aiPaySubmit');
-  const status=document.getElementById('aiPayStatus');
-  const resultMark=document.getElementById('aiResultMark');
-  const resultEyebrow=document.getElementById('aiResultEyebrow');
-  const resultTitle=document.getElementById('aiResultTitle');
-  const resultCopy=document.getElementById('aiResultCopy');
-  const resultMeta=document.getElementById('aiResultMeta');
-  const resultPrimary=document.getElementById('aiResultPrimary');
+  const modal=document.getElementById('alfaLeadModal');
+  const form=document.getElementById('alfaLeadForm');
+  const nameInput=document.getElementById('alfaLeadName');
+  const emailInput=document.getElementById('alfaLeadEmail');
+  const phone=document.getElementById('alfaLeadPhone');
+  const submit=document.getElementById('alfaLeadSubmit');
+  const status=document.getElementById('alfaLeadStatus');
+  const curtain=document.getElementById('successCurtain');
 
-  function lock(on){document.body.style.overflow=on?'hidden':''}
-  function openCheckout(){
-    resultLayer.classList.remove('show');
-    resultLayer.setAttribute('aria-hidden','true');
-    status.textContent='';
-    checkout.classList.add('show');
-    checkout.setAttribute('aria-hidden','false');
-    lock(true);
-  }
-  function closeCheckout(){
-    checkout.classList.remove('show');
-    checkout.setAttribute('aria-hidden','true');
-    if(!resultLayer.classList.contains('show'))lock(false);
-  }
-  function closeResult(){
-    resultLayer.classList.remove('show');
-    resultLayer.setAttribute('aria-hidden','true');
-    lock(false);
-  }
-  function showResult(kind){
-    checkout.classList.remove('show');
-    checkout.setAttribute('aria-hidden','true');
-    resultLayer.classList.add('show');
-    resultLayer.setAttribute('aria-hidden','false');
-    lock(true);
-    if(kind==='pending'){
-      resultMark.textContent='…';
-      resultEyebrow.textContent='ПРОВЕРЯЕМ ПЛАТЁЖ';
-      resultTitle.innerHTML='СЕКУНДУ.<br>УТОЧНЯЕМ СТАТУС.';
-      resultCopy.textContent='Т-Банк уже вернул вас на страницу. Сейчас сверяем окончательный статус операции.';
-      resultMeta.textContent='Не закрывайте страницу — проверка займёт несколько секунд.';
-      resultPrimary.textContent='Вернуться к альбому';
-      resultPrimary.onclick=closeResult;
-      return;
-    }
-    if(kind==='fail'){
-      resultMark.textContent='!';
-      resultEyebrow.textContent='ПЛАТЁЖ НЕ ПОДТВЕРЖДЁН';
-      resultTitle.innerHTML='ОПЛАТА<br>НЕ ЗАВЕРШЕНА.';
-      resultCopy.textContent='Деньги не списаны или операция была отменена. Можно попробовать ещё раз.';
-      resultMeta.textContent='Предзаказ не считается оформленным, пока Т-Банк не подтвердит оплату.';
-      resultPrimary.textContent='Попробовать ещё раз';
-      resultPrimary.onclick=function(){closeResult();openCheckout();};
-      return;
-    }
-    resultMark.textContent='✓';
-    resultEyebrow.textContent='ОПЛАТА ПОДТВЕРЖДЕНА';
-    resultTitle.innerHTML='ПРЕДЗАКАЗ<br>ОФОРМЛЕН.';
-    resultCopy.textContent='Оплата 490 ₽ подтверждена. После публикации альбома информация о доступе будет отправлена на email, указанный при оплате.';
-    resultMeta.textContent='БЕЗ ТОРГА · 12 треков · один платёж · без подписки';
-    resultPrimary.textContent='Вернуться к альбому';
-    resultPrimary.onclick=closeResult;
-  }
+  function validPhone(v){return String(v||'').replace(/\D/g,'').length>=10}
+  function validName(v){return String(v||'').trim().length>=2}
+  function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v||'').trim())}
+
   function cleanPaymentParams(){
     try{
       const u=new URL(location.href);
@@ -170,147 +209,198 @@ ym(110906734,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:tr
       history.replaceState({},'',u.pathname+(u.searchParams.toString()?'?'+u.searchParams.toString():'')+u.hash);
     }catch(_){}
   }
-  async function getStatus(orderId){
-    const r=await fetch(PAYMENT_STATUS+'?orderId='+encodeURIComponent(orderId),{headers:{Accept:'application/json'},cache:'no-store'});
+
+  function openModal(message){
+    status.textContent=message||'';
+    status.className='formStatus'+(message?' err':'');
+    modal.classList.add('show');
+    document.body.style.overflow='hidden';
+  }
+
+  function closeModal(){
+    modal.classList.remove('show');
+    if(!curtain.classList.contains('show'))document.body.style.overflow='';
+  }
+
+  function openSuccess(){
+    modal.classList.remove('show');
+    curtain.classList.add('show');
+    document.body.style.overflow='hidden';
+    try{if(window.ym)window.ym(110906734,'reachGoal','ai_payment_success')}catch(_){}
+  }
+
+  function closeSuccess(){
+    curtain.classList.remove('show');
+    document.body.style.overflow='';
+  }
+
+  async function getPaymentStatus(orderId){
+    const r=await fetch(PAYMENT_STATUS+'?orderId='+encodeURIComponent(orderId),{
+      headers:{'Accept':'application/json'},
+      cache:'no-store'
+    });
     let data={};try{data=await r.json()}catch(_){}
-    if(!r.ok||!data.ok)throw new Error(data.error||'Не удалось проверить платёж.');
+    if(!r.ok||!data.ok)throw new Error(data.error||'Не удалось проверить оплату.');
     return data;
   }
-  function fireSuccess(orderId){
-    try{
-      const key='aiPaymentSuccess:'+orderId;
-      if(sessionStorage.getItem(key))return;
-      sessionStorage.setItem(key,'1');
-      if(window.ym)window.ym(110906734,'reachGoal',SUCCESS_GOAL);
-    }catch(_){
-      try{if(window.ym)window.ym(110906734,'reachGoal',SUCCESS_GOAL)}catch(__){}
-    }
-  }
-  async function reconcile(){
+
+  async function reconcilePaymentReturn(){
     const p=new URLSearchParams(location.search);
     const result=p.get('payment_result');
     const orderId=p.get('orderId');
     if(!result||!orderId)return;
+
     if(result==='fail'){
       cleanPaymentParams();
-      showResult('fail');
+      openModal('Оплата не завершена. Можно попробовать ещё раз.');
       return;
     }
-    showResult('pending');
-    for(let attempt=0;attempt<12;attempt++){
+
+    for(let attempt=0;attempt<10;attempt++){
       try{
-        const data=await getStatus(orderId);
+        const data=await getPaymentStatus(orderId);
         if(data.confirmed&&data.plan===PLAN&&Number(data.amount)===AMOUNT_MINOR){
           cleanPaymentParams();
-          showResult('success');
-          fireSuccess(orderId);
+          openSuccess();
           return;
         }
         if(data.failed){
           cleanPaymentParams();
-          showResult('fail');
+          openModal('Оплата не завершена. Можно попробовать ещё раз.');
           return;
         }
-      }catch(_){}
+      }catch(err){
+        if(attempt===9){
+          cleanPaymentParams();
+          openModal('Не удалось подтвердить оплату автоматически. Напишите нам, если деньги списались.');
+          return;
+        }
+      }
       await new Promise(resolve=>setTimeout(resolve,attempt<3?1200:2200));
     }
+
     cleanPaymentParams();
-    showResult('fail');
-    resultCopy.textContent='Не удалось подтвердить статус автоматически. Если деньги списались, напишите по адресу ниже — проверим платёж вручную.';
+    openModal('Платёж ещё обрабатывается. Попробуйте обновить страницу через минуту.');
+  }
+
+  function openCheckoutBlank(){
+    form.reset();
+    status.textContent='';
+    status.className='formStatus';
+    openModal();
   }
 
   document.addEventListener('click',function(e){
     const btn=e.target.closest&&e.target.closest('button');
-    if(!btn||checkout.contains(btn)||resultLayer.contains(btn))return;
+    if(!btn||modal.contains(btn)||curtain.contains(btn))return;
     const txt=(btn.textContent||'').replace(/\s+/g,' ').trim();
     if(/(?:Предзаказ|Предзаказать|Забрать альбом|Весь альбом)/i.test(txt)){
       e.preventDefault();
       e.stopPropagation();
       if(e.stopImmediatePropagation)e.stopImmediatePropagation();
-      openCheckout();
+      openCheckoutBlank();
     }
   },true);
 
-  [nameInput,emailInput].forEach(el=>el.addEventListener('input',()=>{status.textContent=''}));
-  document.getElementById('aiCheckoutClose').addEventListener('click',closeCheckout);
-  document.getElementById('aiResultClose').addEventListener('click',closeResult);
-  checkout.addEventListener('click',e=>{if(e.target===checkout)closeCheckout()});
-  resultLayer.addEventListener('click',e=>{if(e.target===resultLayer)closeResult()});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(resultLayer.classList.contains('show'))closeResult();else if(checkout.classList.contains('show'))closeCheckout();}});
+  document.getElementById('alfaLeadClose').addEventListener('click',closeModal);
+  modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+  document.getElementById('successClose').addEventListener('click',closeSuccess);
+  document.getElementById('successBack').addEventListener('click',closeSuccess);
 
-  form.addEventListener('submit',async function(e){
+  document.addEventListener('keydown',e=>{
+    if(e.key!=='Escape')return;
+    if(curtain.classList.contains('show'))closeSuccess();
+    else if(modal.classList.contains('show'))closeModal();
+  });
+
+  form.addEventListener('submit',async e=>{
     e.preventDefault();
 
-    const fd=new FormData(form);
-    const website=String(fd.get('website')||'').trim();
+    const customerName=String(nameInput.value||'').trim();
+    const customerEmail=String(emailInput.value||'').trim();
+    const contact=String(phone.value||'').trim();
+    const website=String(form.elements.website.value||'').trim();
+
     if(website)return;
 
-    const rawName=String(fd.get('name')||nameInput.value||'').trim();
-    const name=rawName||'Покупатель';
-    const email=String(fd.get('email')||emailInput.value||'').trim();
-
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    if(!validName(customerName)){
+      status.textContent='Укажите имя.';
+      status.className='formStatus err';
+      nameInput.focus();
+      return;
+    }
+    if(!validEmail(customerEmail)){
       status.textContent='Укажите корректный email.';
+      status.className='formStatus err';
       emailInput.focus();
+      return;
+    }
+    if(!validPhone(contact)){
+      status.textContent='Укажите корректный номер телефона.';
+      status.className='formStatus err';
+      phone.focus();
       return;
     }
 
     const old=submit.textContent;
     submit.disabled=true;
-    submit.textContent='Открываем Т-Банк…';
-    status.textContent='Создаём платёж…';
-
-    const controller=new AbortController();
-    const timer=setTimeout(()=>controller.abort(),15000);
+    submit.textContent='Переходим к оплате…';
+    status.textContent='';
+    status.className='formStatus';
 
     try{
       const r=await fetch(PAYMENT_API,{
         method:'POST',
         headers:{'Content-Type':'application/json','Accept':'application/json'},
-        signal:controller.signal,
         body:JSON.stringify({
           plan:PLAN,
-          name,
-          email,
-          phone:'',
+          phone:contact,
+          name:customerName,
+          email:customerEmail,
           flowId:'ai-album-preorder-490',
-          source:'marafon_ai_album_490',
-          returnUrl:location.origin+'/ai/'
+          source:'marafon_paid_ai_490',
+          returnUrl:location.origin+location.pathname
         })
       });
-      clearTimeout(timer);
 
-      let data={};
-      try{data=await r.json()}catch(_){}
+      let data={};try{data=await r.json()}catch(_){}
 
       if(!r.ok||!data.ok||!data.paymentUrl){
-        const details=data&&data.fields?Object.values(data.fields).filter(Boolean).join(' '):'';
-        throw new Error(details||data.error||('Ошибка платёжного сервера: '+r.status));
+        if(data&&data.code==='UNKNOWN_PLAN'){
+          throw new Error('Платёжный сервер не обновлён: тариф AI не найден.');
+        }
+        throw new Error(data.error||'Не удалось открыть оплату.');
       }
-      if(data.plan!==PLAN)throw new Error('Платёжный сервер вернул другой продукт.');
-      if(Number(data.amount)!==AMOUNT_RUB)throw new Error('Платёжный сервер вернул неверную стоимость.');
+
+      if(data.plan!==PLAN){
+        throw new Error('Платёжный сервер вернул другой тариф. Оплата остановлена.');
+      }
+
+      if(Number(data.amount)!==AMOUNT_RUB){
+        throw new Error('Платёжный сервер отдаёт '+new Intl.NumberFormat('ru-RU').format(Number(data.amount)||0)+' ₽ вместо 490 ₽. Оплата остановлена.');
+      }
 
       try{
-        sessionStorage.setItem('aiAlbumLastPayment',JSON.stringify({
-          orderId:data.orderId,email,createdAt:new Date().toISOString()
+        sessionStorage.setItem('marafonAiLastPayment',JSON.stringify({
+          orderId:data.orderId,
+          paymentId:data.paymentId,
+          amountRub:data.amount,
+          amountMinor:data.amountMinor||AMOUNT_MINOR,
+          createdAt:new Date().toISOString()
         }));
       }catch(_){}
 
-      status.textContent='Платёж создан. Переходим в Т-Банк…';
-      window.location.href=data.paymentUrl;
+      location.assign(data.paymentUrl);
     }catch(err){
-      clearTimeout(timer);
-      if(err&&err.name==='AbortError'){
-        status.textContent='Платёжный сервер не ответил за 15 секунд. Попробуйте ещё раз.';
-      }else{
-        status.textContent=err&&err.message?err.message:'Не удалось открыть оплату. Попробуйте ещё раз.';
-      }
+      console.error('[ai:payment:error]',err);
+      status.textContent=err&&err.message?err.message:'Не удалось открыть оплату. Попробуйте ещё раз.';
+      status.className='formStatus err';
       submit.disabled=false;
       submit.textContent=old;
     }
   });
 
-  reconcile();
+  reconcilePaymentReturn();
 })();
 </script>
 </body></html>
