@@ -36,12 +36,16 @@
 .release-art .release-wave,.release-art .release-network{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .7s ease}
 .release-art.release-motion-ready.release-motion-gpu .release-wave{opacity:1}
 .release-art.release-motion-ready .release-network{opacity:1}
-.release-art .release-label,.release-art .release-sticker{z-index:2;pointer-events:none}
+.release-art .release-label,.release-art .release-sticker{z-index:3;pointer-events:none}
 .release-art .release-label{text-shadow:0 2px 20px rgba(0,0,0,.24)}
-.release-motion-toggle{position:absolute;z-index:3;top:5%;left:5%;display:grid;place-items:center;width:40px;height:40px;padding:0;color:#dfff00;background:rgba(3,3,3,.72);border:1px solid rgba(223,255,0,.3);border-radius:50%;transition:background .2s,border-color .2s}
+.release-motion-toggle{position:absolute;z-index:4;top:5%;left:5%;display:grid;place-items:center;width:40px;height:40px;padding:0;color:#dfff00;background:rgba(3,3,3,.72);border:1px solid rgba(223,255,0,.3);border-radius:50%;transition:background .2s,border-color .2s}
 .release-motion-toggle:hover{background:rgba(35,40,0,.9);border-color:#dfff00}
 .release-motion-toggle[hidden]{display:none}
 @media(prefers-reduced-motion:reduce){.release-art .release-wave,.release-art .release-network,.release-motion-toggle{display:none!important}}
+
+.release-art>img{position:relative;z-index:0;transform-origin:50% 50%}
+.release-art .release-wave{z-index:1}
+.release-art .release-network{z-index:2}
 </style>
 </head>
 <body>
