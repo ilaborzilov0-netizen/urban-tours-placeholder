@@ -136,7 +136,7 @@
   <button class="button outline modal-submit" type="button" data-question>Задать вопрос об оплате</button>
 </dialog>
 
-<script id="ai-audio-anchor-app-20261008">
+<script id="ai-audio-anchor-app-20261008-checkout2">
 'use strict';
 const situations = {
   coffee: { old: '«Без сигареты\nкофе уже не тот».', oldDescription: 'Вкус, отдых и маленькое время для себя будто принадлежат сигарете.', oldFoot: 'Пауза превращается в повод закурить.', answer: '«Кофе остаётся.\nПауза — моя».', description: 'Чашка, тишина и удовольствие от перерыва остаются вашими. Можно исследовать их отдельно от курения.', foot: 'Попробуйте заметить, что приятно в этой паузе само по себе.' },
@@ -258,7 +258,7 @@ purchaseForm.addEventListener('submit', async event => {
     if(data.plan !== 'ai_album' || Number(data.amount) !== ALBUM_PRICE) throw new Error('Сумма оплаты не совпала с 990 ₽. Оплата остановлена.');
     if(!data.paymentUrl) throw new Error('Не получена ссылка на оплату. Попробуйте ещё раз.');
     const paymentUrl = new URL(data.paymentUrl);
-    if(paymentUrl.protocol !== 'https:' || !/(^|\.)(tinkoff\.ru|tbank\.ru)$/.test(paymentUrl.hostname)) throw new Error('Не удалось подтвердить страницу Т-Банка. Оплата остановлена.');
+    if(paymentUrl.protocol !== 'https:' || (!/(^|\.)(tinkoff\.ru|tbank\.ru)$/.test(paymentUrl.hostname) && paymentUrl.hostname !== 'pay.tbank-online.com')) throw new Error('Не удалось подтвердить страницу Т-Банка. Оплата остановлена.');
     try { sessionStorage.setItem('marafonAiLastPayment',JSON.stringify({orderId:data.orderId,paymentId:data.paymentId,amountRub:data.amount,amountMinor:data.amountMinor || 99000,createdAt:new Date().toISOString()})); } catch (_) {}
     albumGoal('ai_payment_created');location.assign(paymentUrl.href);
   } catch(error) {
