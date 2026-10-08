@@ -34,7 +34,7 @@
 <script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=110906734','ym');ym(110906734,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});</script>
 <style id="album-cover-motion-style-20261008">
 .release-art .release-wave,.release-art .release-network{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .7s ease}
-.release-art.release-motion-ready .release-wave{opacity:1}
+.release-art.release-motion-ready.release-motion-gpu .release-wave{opacity:1}
 .release-art.release-motion-ready .release-network{opacity:1}
 .release-art .release-label,.release-art .release-sticker{z-index:2;pointer-events:none}
 .release-art .release-label{text-shadow:0 2px 20px rgba(0,0,0,.24)}
@@ -326,7 +326,7 @@ checkAlbumPaymentReturn();
   const ctx = network.getContext('2d');
   let gl;
   try { gl = surface.getContext('webgl', {alpha: false, antialias: false, depth: false, powerPreference: 'low-power'}); } catch (_) {}
-  if (!ctx || !gl) return;
+  if (!ctx) return;
   const vertex = 'attribute vec2 position; varying vec2 uv; void main(){uv=position*.5+.5;gl_Position=vec4(position,0.,1.);}';
   const fragment = `
     precision mediump float;
@@ -356,11 +356,12 @@ checkAlbumPaymentReturn();
   function shader(type, source) {
     const result = gl.createShader(type);
     gl.shaderSource(result, source); gl.compileShader(result);
-    if (!gl.getShaderParameter(result, gl.COMPILE_STATUS)) { gl.deleteShader(result); throw new Error('Cover shader unavailable'); }
+    if (!gl.getShaderParameter(result, gl.COMPILE_STATUS)) { gl.deleteShader(result); throw new Error(gl.getShaderInfoLog(result) || 'Cover shader unavailable'); }
     return result;
   }
   let program, uniforms;
   try {
+    if (!gl) throw new Error('WebGL unavailable');
     program = gl.createProgram();
     gl.attachShader(program, shader(gl.VERTEX_SHADER, vertex));
     gl.attachShader(program, shader(gl.FRAGMENT_SHADER, fragment));
@@ -378,7 +379,7 @@ checkAlbumPaymentReturn();
     gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
     gl.uniform1i(gl.getUniformLocation(program,'artwork'),0);
-  } catch (_) { return; }
+  } catch (error) { gl = null; art.dataset.motionFallback = error.message; }
 
   // Deterministic points keep the network stable while the ribbon flows around it.
   const route = [[.19,.54],[.31,.49],[.40,.39],[.51,.43],[.60,.34],[.70,.35],[.77,.24],[.86,.18]];
@@ -401,7 +402,7 @@ checkAlbumPaymentReturn();
     width=Math.max(1,Math.round(box.width*pixelRatio));height=Math.max(1,Math.round(box.height*pixelRatio));
     if(surface.width!==width || surface.height!==height){
       surface.width=network.width=width;surface.height=network.height=height;
-      gl.viewport(0,0,width,height);
+      if(gl)gl.viewport(0,0,width,height);
     }
   }
   // The analyser uses only this page's demo audio; it never requests a microphone.
@@ -472,23 +473,28 @@ checkAlbumPaymentReturn();
     const strength=remembered?.9:Math.min(.93,.16+Math.floor(phase/2.65)*.22);
     const sweep=phase<8.8 ? ((phase%2.65)/2.65)*1.65-.15 : 2.;
     try {
-      gl.useProgram(program);gl.uniform1f(uniforms.time,clock);gl.uniform1f(uniforms.energy,energy);
-      gl.uniform1f(uniforms.sweep,sweep);gl.uniform1f(uniforms.strength,strength);
-      gl.drawArrays(gl.TRIANGLES,0,3);drawNetwork(clock,sweep,strength);
+      if(gl){
+        gl.useProgram(program);gl.uniform1f(uniforms.time,clock);gl.uniform1f(uniforms.energy,energy);
+        gl.uniform1f(uniforms.sweep,sweep);gl.uniform1f(uniforms.strength,strength);
+        gl.drawArrays(gl.TRIANGLES,0,3);
+      }else{
+        image.style.transform='scale('+(1.028+Math.sin(clock*.43)*.009+energy*.015)+') translate('+Math.sin(clock*.31)*.8+'%,'+Math.cos(clock*.27)*.65+'%)';
+      }
+      drawNetwork(clock,sweep,strength);
       art.classList.add('release-motion-ready');
     }catch(_){fallback();return;}
     frame=requestAnimationFrame(draw);
   }
   function start(){if(!frame && ready && !failed && !stopped && !reduced.matches && inView && !document.hidden){last=0;frame=requestAnimationFrame(draw);}}
   function suspend(){if(frame)cancelAnimationFrame(frame);frame=0;last=0;}
-  function fallback(){failed=true;suspend();art.classList.remove('release-motion-ready');toggle.hidden=true;}
+  function fallback(){failed=true;suspend();art.classList.remove('release-motion-ready','release-motion-gpu');image.style.transform='';toggle.hidden=true;}
   function setMotionState(){
     suspend();
     art.classList.toggle('release-motion-stopped',stopped);
     toggle.setAttribute('aria-label',stopped?'Включить анимацию обложки':'Остановить анимацию обложки');
     toggle.setAttribute('aria-pressed',String(stopped));
     toggle.innerHTML=stopped?'<svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M6 3v14l11-7z"/></svg>':'<svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 4h3v12H5zm7 0h3v12h-3z"/></svg>';
-    if(reduced.matches){art.classList.remove('release-motion-ready');toggle.hidden=true;}
+    if(reduced.matches){art.classList.remove('release-motion-ready');image.style.transform='';toggle.hidden=true;}
     else{toggle.hidden=!ready || failed;start();}
   }
   toggle.addEventListener('click',()=>{stopped=!stopped;setMotionState();});
@@ -499,7 +505,7 @@ checkAlbumPaymentReturn();
   new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;if(inView)start();else suspend();},{rootMargin:'80px'}).observe(art);
   function loadArtwork(){
     if(ready || failed || !image.complete || !image.naturalWidth)return;
-    try{gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);ready=true;resize();setMotionState();}
+    try{if(gl)gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);art.classList.toggle('release-motion-gpu',!!gl);art.dataset.motionRenderer=gl?'webgl':'canvas';ready=true;resize();setMotionState();}
     catch(_){fallback();}
   }
   image.addEventListener('load',loadArtwork,{once:true});
