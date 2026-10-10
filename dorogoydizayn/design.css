@@ -164,3 +164,6 @@ h1,h2,h3{letter-spacing:-.02em}.hero h1{letter-spacing:-.025em}.brand-name{lette
  .hero .lead{font-size:19px}.pricing-section .price-number{font-size:55px}.pricing-section .free-price{font-size:42px}.final-price{font-size:42px}
  .mobile-bar{padding-inline:17px;gap:8px}.mobile-bar strong{font-size:11px}
 }
+
+/* Keep the raised hand and torso inside a consistent portrait frame. */
+.about-photo img{height:auto;aspect-ratio:4/5;object-position:40% 50%}
