@@ -167,3 +167,34 @@ h1,h2,h3{letter-spacing:-.02em}.hero h1{letter-spacing:-.025em}.brand-name{lette
 
 /* Keep the raised hand and torso inside a consistent portrait frame. */
 .about-photo img{height:auto;aspect-ratio:4/5;object-position:40% 50%}
+
+/* Two stages of one service; one shared entry action. */
+#price .price-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 70px;align-items:stretch}
+#price .price-card{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:subgrid;grid-row:span 8;row-gap:0;align-items:stretch;align-content:start}
+#price .price-label{min-height:24px;align-items:start;margin:0}
+#price .price-card h3{font-size:25px;line-height:1.35;margin:18px 0 0;padding:0}
+#price .price-number{font-size:64px;line-height:1.2;min-height:78px;letter-spacing:-.03em;margin:24px 0 0;align-self:start}
+#price .price-number>span{font-size:.55em}
+#price .price-sub{font-size:13px;line-height:1.7;margin:12px 0 26px;min-height:0}
+#price .price-card ul{display:grid;grid-template-rows:subgrid;grid-row:span 4;row-gap:0;list-style:none;margin:0;padding:0;flex:none}
+#price .price-card li{min-height:52px;padding:14px 0;line-height:1.7;align-items:flex-start}
+#price .price-card li:first-child{padding-top:14px}
+#price .pricing-action{display:flex;align-items:center;gap:27px;margin-top:34px}
+#price .pricing-action .button{flex-shrink:0;min-width:300px;max-width:100%}
+#price .pricing-action .price-foot{margin:0;font-size:12px;line-height:1.75;max-width:330px}
+@media(max-width:1100px){#price .price-grid{column-gap:45px}#price .price-number{font-size:58px;min-height:70px}#price .price-card h3{font-size:23px}}
+@media(max-width:800px){
+ #price .price-grid{grid-template-columns:1fr;gap:40px 0}
+ #price .price-card{display:flex;flex-direction:column;gap:0;grid-row:auto;padding:0}
+ #price .price-card+.price-card{padding-top:32px;border-top:1px solid var(--line)}
+ #price .price-card h3{font-size:25px;margin-top:17px}
+ #price .price-number{min-height:0;font-size:60px;margin-top:19px}
+ #price .price-sub{margin:11px 0 19px}
+ #price .price-card ul{display:block;grid-row:auto}
+ #price .price-card li{min-height:0;padding-block:13px}
+ #price .pricing-action{flex-direction:column;align-items:stretch;gap:12px;margin-top:29px}
+ #price .pricing-action .button{width:100%;min-width:0}
+ #price .pricing-action .price-foot{font-size:11px;max-width:none;text-align:center}
+}
+@media(max-width:420px){#price .price-number{font-size:49px}#price .price-card h3{font-size:23px}#price .price-label{font-size:9px;gap:12px}#price .price-chip{font-size:9px}}
+@media(max-width:360px){#price .price-number{font-size:43px}#price .price-card h3{font-size:22px}}
