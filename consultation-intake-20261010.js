@@ -9,7 +9,8 @@
  const controls=Array.from(form.querySelectorAll('input'));
  function selectedChannel(){return form.querySelector('input[name=contactType]:checked')?.value||'';}
  function updateChannel(){const channel=selectedChannel();telegramField.hidden=channel!=='telegram';telegram.disabled=channel!=='telegram';channelHelp.textContent=channel==='max'?'Напишем в MAX по указанному номеру.':channel==='telegram'?'Напишем в Telegram по номеру или @username.':channel==='phone'?'Позвоним на указанный номер, чтобы согласовать время.':'Выберите удобный способ связи.';}
- form.querySelectorAll('input[name=contactType]').forEach(input=>input.addEventListener('change',updateChannel));
+ form.querySelectorAll('input[name=contactType]').forEach(input=>input.addEventListener('change',()=>{updateChannel();status.hidden=true;}));
+ form.addEventListener('input',()=>{status.hidden=true;});
  updateChannel();
  let sending=false,succeeded=false,openedAt=0,lastTrigger=null;
  phone.classList.add('ym-disable-keys');
