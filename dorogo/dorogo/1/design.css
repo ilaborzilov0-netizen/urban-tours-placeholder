@@ -25,3 +25,15 @@ body.modal-open{overflow:hidden}.booking-dialog{position:fixed;inset:0;margin:au
 
 /* Booking after the programme. */
 .process-booking{display:flex;align-items:center;gap:28px;margin-top:32px}.process-booking .button{flex-shrink:0;min-width:290px}.process-booking-note{font-size:12px;line-height:1.7;color:var(--muted,#647564);max-width:370px}.process-booking-note strong{font-weight:600}.process-booking-note span{display:block;margin-top:4px}@media(max-width:800px){.process-booking{align-items:stretch;flex-direction:column;gap:12px;margin-top:27px}.process-booking .button{width:100%;min-width:0}.process-booking-note{max-width:none;font-size:12px}}
+
+
+/* Personal contact and confirmation. */
+.booking-dialog .success-invitation{margin-top:26px;padding-top:25px;border-top:1px solid var(--line,#d7ddcf)}
+.booking-dialog .success-invitation h3{font-family:inherit;font-size:22px;font-weight:400;line-height:1.35;letter-spacing:-.035em;margin:0 0 17px;color:inherit}
+.booking-dialog .success-invitation p{font-size:14px;line-height:1.8;color:var(--muted,#768670);margin:0 0 14px}
+.booking-dialog .success-invitation .button{width:100%;margin-top:10px;text-decoration:none}
+.booking-dialog .success-invitation .success-optional{font-size:11px;line-height:1.7;text-align:center;margin:13px 0 0}
+.booking-dialog .success-close{display:block;margin:22px auto 0;padding:9px 16px;border:0;background:transparent;color:var(--muted,#768670);font:inherit;font-size:12px;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
+.booking-dialog .success-phone-link{display:inline-block;margin-top:12px;font-size:13px;line-height:1.7;text-decoration:underline;text-underline-offset:4px}
+.booking-dialog .success-close:focus-visible,.booking-dialog .success-phone-link:focus-visible{outline:2px solid var(--accent,#2e5841);outline-offset:4px}
+@media(max-width:420px){.booking-dialog .success-invitation{margin-top:22px;padding-top:22px}.booking-dialog .success-invitation h3{font-size:21px}.booking-dialog .success-invitation p{font-size:13px}.booking-dialog .success-invitation .success-optional{font-size:11px}}
