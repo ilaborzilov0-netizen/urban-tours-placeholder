@@ -67,7 +67,7 @@
    dialog.setAttribute('aria-labelledby','booking-success-title');dialog.setAttribute('aria-describedby','booking-success-description');document.getElementById('booking-success-title').focus();
    goal('premium_50000_lead_success');goal('lead_success',{form:'premium_50000_dorogo_dorogo_design_1_font_1',price:50000});
   }catch(error){showError(error.name==='AbortError'?'Ответ занял больше времени. Ваши данные остались в форме. Если Илья уже связался с вами, повторная заявка не нужна.':error.message||'Не удалось отправить заявку. Попробуйте ещё раз.');goal('premium_50000_lead_error');}
-  finally{clearTimeout(timer);sending=false;submit.disabled=false;controls.forEach(input=>input.disabled=false);updateChannel();submit.textContent='Записаться на первый созвон';}
+  finally{clearTimeout(timer);sending=false;submit.disabled=false;controls.forEach(input=>input.disabled=false);updateChannel();submit.textContent='Согласовать время созвона';}
  });
 })();
 
