@@ -37,7 +37,8 @@
   contactLabel.textContent=isTelegram?'Ваш Telegram':channel==='max'?'Ваш телефон для связи в MAX':'Ваш телефон';
   contactInput.type=isTelegram?'text':'tel';contactInput.inputMode=isTelegram?'text':'tel';contactInput.autocomplete=isTelegram?'off':'tel';contactInput.maxLength=isTelegram?40:30;
   contactInput.placeholder=isTelegram?'@username или телефон':'+7 999 123-45-67';
-  channelHelp.textContent=channel==='max'?'Укажите номер, к которому привязан MAX.':isTelegram?'Достаточно одного контакта: @username или номера телефона.':channel==='phone'?'Укажите номер, на который можно позвонить.':'Выберите удобный способ связи.';
+  channelHelp.textContent=channel==='max'?'Укажите номер, к которому привязан MAX.':isTelegram?'Достаточно одного контакта: @username или номера телефона.':channel==='phone'?'Укажите номер, на который можно позвонить.':'';
+  channelHelp.hidden=!channel;
  }
  form.querySelectorAll('input[name=contactType]').forEach(input=>input.addEventListener('change',()=>{updateChannel();status.hidden=true;}));
  form.addEventListener('input',()=>{status.hidden=true;});
@@ -87,6 +88,7 @@
   finally{clearTimeout(timer);sending=false;submit.disabled=false;controls.forEach(input=>input.disabled=false);updateChannel();submit.textContent='Записаться на бесплатный созвон';}
  });
 })();
+
 
 
 
