@@ -118,3 +118,11 @@ body.still .ha-visual-host *,body.still .ha-visual-host *:before,body.still .ha-
 .ha-visual-host *,.ha-visual-host *:before,.ha-visual-host *:after{animation:none!important;transition:none!important}
 #ha-motion-dock *{animation:none!important;transition:none!important}
 }
+
+
+/* Green original inherits the same motion vocabulary in warm gold, never violet. */
+.ha-theme-green .ha-cloud{background:radial-gradient(circle,#e2c58f54,transparent 68%)}
+.ha-theme-green .ha-spiral-field{background:conic-gradient(from 0deg,#d8b8882c,transparent 27%,#e9d6a743 42%,transparent 66%,#ddc99e31)}
+.ha-theme-green .ha-spiral-svg stop:first-child{stop-color:#fdf1d4}
+.ha-theme-green .ha-spiral-svg stop:nth-child(2){stop-color:#edcc93}
+.ha-theme-green .ha-spiral-svg stop:last-child{stop-color:#af9b6a}
