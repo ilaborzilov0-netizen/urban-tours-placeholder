@@ -1,0 +1,52 @@
+/* Hypnosis design comparison dock. Isolated from each landing design. */
+#hp-compare,#hp-compare *{box-sizing:border-box}
+#hp-compare{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:2147483000;font:normal 12px/1.35 Arial,Helvetica,sans-serif;letter-spacing:normal;text-transform:none;color:#f9f6ff;isolation:isolate;max-width:calc(100vw - 24px);filter:drop-shadow(0 12px 34px #06050b7d)}
+#hp-compare a,#hp-compare button{font:inherit;-webkit-tap-highlight-color:transparent}
+#hp-compare button{cursor:pointer}
+#hp-compare a:focus-visible,#hp-compare button:focus-visible{outline:3px solid #e1c4ff;outline-offset:3px}
+#hp-compare .hp-panel{display:flex;align-items:stretch;gap:7px;width:min(990px,calc(100vw - 28px));min-height:81px;padding:9px;background:rgba(20,19,27,.965);border:1px solid rgba(242,222,255,.23);border-radius:19px;box-shadow:0 16px 75px #0008;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+#hp-compare .hp-header{min-width:119px;display:flex;justify-content:center;flex-direction:column;padding:6px 11px 6px 13px;border-right:1px solid #ffffff2d;gap:6px}
+#hp-compare .hp-heading{font:700 10px/1.25 Arial,Helvetica,sans-serif;color:#dccde9;letter-spacing:.15em;text-transform:uppercase}
+#hp-compare .hp-counter{font:600 11px/1.25 Arial,Helvetica,sans-serif;color:#827c90;white-space:nowrap}
+#hp-compare .hp-choice{display:flex;align-items:center;min-width:0;flex:1;gap:10px;padding:10px 11px;text-decoration:none;border:1px solid transparent;border-radius:12px;color:#c0b9cc;background:#ffffff08;transition:background .15s,border-color .15s;position:relative}
+#hp-compare .hp-choice:hover{background:#ffffff1b;border-color:#ffffff24;color:white}
+#hp-compare .hp-choice.hp-current{background:#382544;border-color:#d4b4ef91;color:#fff}
+#hp-compare .hp-choice.hp-current:after{content:"";width:6px;height:6px;border-radius:50%;background:#edd1ff;box-shadow:0 0 9px #edd1ff;position:absolute;right:9px;top:9px}
+#hp-compare .hp-swatch{flex:none;width:28px;height:36px;border-radius:6px;border:1px solid #ffffff4a;position:relative;overflow:hidden}
+#hp-compare .hp-swatch:after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:16px;height:16px;border-radius:50%;border:2px solid #ffffff80;box-shadow:0 0 0 5px #ffffff13,inset 0 0 7px #fff5}
+#hp-compare .hp-swatch--max{background:radial-gradient(circle at 60% 40%,#e8c0fe 0%,#7541ab 33%,#180d2b 70%)}
+#hp-compare .hp-swatch--green{background:linear-gradient(160deg,#f4eddf 0 40%,#1c4035 41% 100%)}
+#hp-compare .hp-swatch--green:after{border-color:#d4b47c;box-shadow:0 0 0 5px #b69a6b24}
+#hp-compare .hp-swatch--purple{background:linear-gradient(120deg,#0a0b1c,#552f72 70%,#d0a9ff)}
+#hp-compare .hp-swatch--hybrid{background:linear-gradient(145deg,#f1e8f8 0 42%,#28163d 43% 100%)}
+#hp-compare .hp-label{min-width:0;display:flex;flex-direction:column;gap:3px}
+#hp-compare .hp-label strong{font:700 12px/1.18 Arial,Helvetica,sans-serif;color:inherit;letter-spacing:0;white-space:normal}
+#hp-compare .hp-label small{font:normal 10px/1.18 Arial,Helvetica,sans-serif;color:#a59bae;letter-spacing:0}
+#hp-compare .hp-choice.hp-current .hp-label small{color:#d4bfe6}
+#hp-compare .hp-collapse{align-self:stretch;flex:none;display:grid;place-items:center;width:29px;border:0;border-left:1px solid #ffffff23;border-radius:6px;background:transparent;color:#8c8296;font-size:17px}
+#hp-compare .hp-collapse:hover{color:#fff}
+#hp-compare .hp-launch{display:none;align-items:center;justify-content:space-between;gap:16px;width:min(335px,calc(100vw - 30px));background:#1e1927ee;border:1px solid #e9c8ff7d;border-radius:99px;color:#f9edff;padding:13px 18px;box-shadow:0 7px 30px #0008;backdrop-filter:blur(20px)}
+#hp-compare .hp-launch .hp-launch-mark{display:inline-grid;place-items:center;background:#dfb7f6;color:#2b1938;width:26px;height:26px;border-radius:50%;font-size:15px;font-weight:800}
+#hp-compare .hp-launch-title{font:700 12px/1 Arial,Helvetica,sans-serif;flex:1;text-align:left;white-space:nowrap}
+#hp-compare .hp-launch-sub{font-size:10px;color:#b7a2c5}
+#hp-compare.hp-collapsed .hp-panel{display:none}
+#hp-compare.hp-collapsed .hp-launch{display:flex}
+@media(max-width:880px){
+ #hp-compare{bottom:max(12px,env(safe-area-inset-bottom,0px));width:calc(100vw - 26px);display:flex;align-items:center;flex-direction:column;gap:8px}
+ #hp-compare .hp-launch{display:flex;width:100%;max-width:440px;min-height:52px}
+ #hp-compare .hp-panel{display:none}
+ #hp-compare.hp-open .hp-panel{width:100%;max-width:440px;max-height:calc(100dvh - 110px);display:flex;flex-direction:column;overflow-y:auto;border-radius:19px;padding:12px;gap:8px;animation:hp-rise .15s ease-out}
+ #hp-compare.hp-open .hp-launch{display:flex}
+ #hp-compare .hp-header{min-width:0;border:0;border-bottom:1px solid #ffffff28;flex-direction:row;align-items:center;justify-content:space-between;gap:8px;padding:6px 6px 13px;margin-bottom:2px}
+ #hp-compare .hp-heading{font-size:11px}
+ #hp-compare .hp-choice{flex:none;width:100%;min-height:66px;padding:10px 14px;gap:15px;border:1px solid #ffffff13;border-radius:12px}
+ #hp-compare .hp-swatch{width:34px;height:43px}
+ #hp-compare .hp-label strong{font-size:13px}
+ #hp-compare .hp-label small{font-size:11px}
+ #hp-compare .hp-collapse{position:absolute;top:19px;right:18px;height:26px;width:29px;align-self:auto;border:0;color:#cbb6db}
+ #hp-compare .hp-current:after{top:15px;right:14px}
+ #hp-compare.hp-collapsed .hp-launch{display:flex}
+ #hp-compare.hp-collapsed .hp-panel{display:none}
+}
+@keyframes hp-rise{from{opacity:.5;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){#hp-compare *,#hp-compare *:before,#hp-compare *:after{animation:none!important;transition:none!important}}
