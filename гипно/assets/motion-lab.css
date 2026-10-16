@@ -1,4 +1,6 @@
 /* Borderless Antiphase Breath. One full-hero ambience instead of a boxed animation. */
+/* Prevent oversize feathered rings from creating horizontal scrolling. */
+body.ha-enabled{overflow-x:clip}
 body.ha-enabled .hero .hero-visual>.rings,
 body.ha-enabled .hero .hero-visual>.aperture,
 body.ha-enabled .hero .visual>img,
