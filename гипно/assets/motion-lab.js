@@ -18,11 +18,14 @@ function core(){
  return '<div class="ha-core"><svg class="ha-headphone" viewBox="0 0 100 100" aria-hidden="true"><path d="M18 55V45a32 32 0 0 1 64 0v10M18 55h13v29H18c-7 0-10-4-10-11v-8c0-7 3-10 10-10Zm64 0H69v29h13c7 0 10-4 10-11v-8c0-7-3-10-10-10Z"/></svg></div>';
 }
 function breath(){
+ // One shared inhalation/exhalation rhythm: the dark center and every ring
+ // expand and contract together. Other four animation modes remain unchanged.
  var s='<div class="ha-cloud"></div>';
  for(var i=0;i<8;i++){
- s+='<i class="ha-ring" style="--i:'+(5+i*5.1).toFixed(1)+'%;--o:'+(.18+i*.085).toFixed(2)+';--dur:'+(7+i*.7).toFixed(1)+'s;--delay:-'+(i*.83).toFixed(2)+'s"></i>';
+  s+='<i class="ha-ring" style="--i:'+(5+i*5.1).toFixed(1)+'%;--o:'+(.22+i*.083).toFixed(2)+'"></i>';
  }
- return s+dots()+core();
+ s+='<div class="ha-breath-aura"></div><div class="ha-breath-void"></div>';
+ return s+dots();
 }
 function spiralPath(offset){
  var p='';
