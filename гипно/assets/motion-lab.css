@@ -1,4 +1,4 @@
-/* HYPNO BREATH LAB — 10 exclusive live designs, no giant headphone orb */
+/* Borderless Antiphase Breath. One full-hero ambience instead of a boxed animation. */
 body.ha-enabled .hero .hero-visual>.rings,
 body.ha-enabled .hero .hero-visual>.aperture,
 body.ha-enabled .hero .visual>img,
@@ -9,215 +9,102 @@ body.ha-enabled .hero .scene>.new-headphone,
 body.ha-enabled .hero .scene>.motion{display:none!important}
 body.ha-enabled .hero .hero-visual,
 body.ha-enabled .hero .visual,
-body.ha-enabled .hero .scene{position:relative;isolation:isolate}
-body.ha-enabled .hero .hero-visual>.visual-top,
-body.ha-enabled .hero .hero-visual>.visual-bottom,
-body.ha-enabled .hero .hero-visual>.vertical-label{z-index:5}
-body.ha-enabled .hero .visual>.sound-label,
-body.ha-enabled .hero .visual>.hero-index{z-index:6}
+body.ha-enabled .hero .scene{position:relative!important;overflow:visible!important;border-radius:0!important;box-shadow:none!important;isolation:auto!important}
+body.ha-enabled .hero .hero-visual{background:transparent!important;color:#506b5c}
+body.ha-enabled .hero .hero-visual .visual-top,
+body.ha-enabled .hero .hero-visual .vertical-label,
+body.ha-enabled .hero .hero-visual .visual-bottom{color:#425f50;opacity:.83}
+body.ha-enabled .hero .hero-visual .visual-title{color:#284838}
+body.ha-enabled .hero .hero-visual .visual-meta{color:#506a5e;border-color:#49655338}
+body.ha-enabled.variant-03 .visual{background:transparent!important}
+body.ha-enabled.variant-03 .visual:after{display:none!important}
+body.ha-enabled .hero .scene:before{display:none!important}
+body.ha-enabled .hero.ha-seamless-hero{position:relative;isolation:isolate}
+body.ha-enabled .hero.ha-seamless-hero>.ha-visual-host{z-index:0}
+body.ha-enabled .hero.ha-seamless-hero>:not(.ha-visual-host){position:relative;z-index:2}
+body.ha-enabled .hero.ha-seamless-hero .now-chip,
+body.ha-enabled .hero.ha-seamless-hero .scene-label,
+body.ha-enabled .hero.ha-seamless-hero .hero-index,
+body.ha-enabled .hero.ha-seamless-hero .sound-label{z-index:4}
 .ha-visual-host{
---ha-hot:#f5ddff;--ha-light:#d9a7ff;--ha-color:#a66bdd;--ha-dark:#1b0c2b;--ha-core-dark:#110819;
-position:absolute;inset:0;z-index:3;overflow:hidden;border-radius:inherit;pointer-events:none;isolation:isolate;
-background:radial-gradient(ellipse at 50% 45%,#8f53c320,transparent 76%);
+--ha-bright:#f0d9ff;--ha-line:#c28af0;--ha-mid:#995bcf;--ha-black:#0e0719;--ha-edge:#4f276c;
+position:absolute;inset:0;pointer-events:none;overflow:visible!important;isolation:isolate;
+background:none!important;border:0!important;box-shadow:none!important;
 }
-.ha-theme-green{
---ha-hot:#fff3cf;--ha-light:#eed4a0;--ha-color:#b49b65;--ha-dark:#27483f;--ha-core-dark:#112821;
-background:radial-gradient(ellipse at 50% 45%,#d9bd8720,transparent 76%);
+.ha-theme-green{--ha-bright:#fff0c9;--ha-line:#d8b98a;--ha-mid:#ac956d;--ha-black:#102821;--ha-edge:#607455}
+.ha-atmosphere{
+position:absolute;left:var(--ha-x,75%);top:var(--ha-y,50%);
+width:var(--ha-size,750px);height:var(--ha-size,750px);border-radius:50%;
+transform:translate(-50%,-50%);
+background:radial-gradient(circle,var(--ha-mid),transparent 64%);
+filter:blur(44px);opacity:.2;
+animation:ha-ambient 8s cubic-bezier(.44,0,.56,1) infinite;
 }
 .ha-stage,.ha-stage *{box-sizing:border-box}
 .ha-stage{
-position:absolute;top:47%;left:50%;width:min(95%,600px);height:auto;aspect-ratio:1;
-transform:translate(-50%,-50%);isolation:isolate;
+position:absolute;left:var(--ha-x,75%);top:var(--ha-y,50%);
+width:var(--ha-size,750px);height:var(--ha-size,750px);
+transform:translate(-50%,-50%);isolation:isolate;pointer-events:none;overflow:visible;
+-webkit-mask-image:radial-gradient(circle,#000 0 28%,#000f 33%,#000b 42%,#0004 50%,transparent 57%);
+mask-image:radial-gradient(circle,#000 0 28%,#000f 33%,#000b 42%,#0004 50%,transparent 57%);
 }
-.ha-breath-ambient{
-position:absolute;inset:0;border-radius:50%;
-background:radial-gradient(circle,transparent 5%,var(--ha-color) 24%,transparent 70%);
-opacity:.21;filter:blur(37px);
-animation:ha-ambient var(--bt) ease-in-out infinite;
+.ha-mist{
+position:absolute;inset:10%;border-radius:50%;
+background:radial-gradient(circle,transparent 9%,var(--ha-mid) 26%,transparent 75%);
+filter:blur(29px);opacity:.3;animation:ha-mist 8s cubic-bezier(.44,0,.56,1) infinite;
 }
-.ha-breath-ring{
-position:absolute;inset:var(--inset);border-radius:50%;border:1.35px solid var(--ha-light);
-opacity:var(--ring-opacity);box-shadow:0 0 13px var(--ha-color),inset 0 0 12px #d4a2ff0e;
-transform-origin:50% 50%;
-animation:ha-ring-unison var(--bt) cubic-bezier(.46,0,.54,1) infinite both;
-animation-delay:var(--delay);will-change:transform,filter;
+.ha-wave{
+position:absolute;inset:var(--inset);border-radius:50%;
+border:1.3px solid var(--ha-line);opacity:var(--alpha);
+box-shadow:0 0 17px var(--ha-mid),inset 0 0 15px #b78dd91b;
+animation:ha-wave-motion 8s cubic-bezier(.44,0,.56,1) infinite;
+transform-origin:50% 50%;will-change:transform,filter;
 }
-.ha-breath-ring:nth-of-type(2n){border-color:var(--ha-color);box-shadow:0 0 9px var(--ha-color)}
-.ha-breath-halo{
-position:absolute;left:50%;top:50%;width:var(--halo-size);
-aspect-ratio:1;border-radius:50%;z-index:8;
-transform:translate(-50%,-50%);
-background:radial-gradient(circle,transparent 5%,var(--ha-color) 33%,transparent 74%);
-filter:blur(15px);opacity:.36;
-animation:ha-halo var(--bt) cubic-bezier(.46,0,.54,1) infinite;will-change:transform,opacity;
+.ha-wave:nth-of-type(even){border-color:var(--ha-bright);box-shadow:0 0 11px var(--ha-mid)}
+.ha-glow{
+position:absolute;z-index:9;left:50%;top:50%;width:36%;aspect-ratio:1;
+transform:translate(-50%,-50%);border-radius:50%;
+background:radial-gradient(circle,transparent 7%,var(--ha-mid) 32%,transparent 74%);
+filter:blur(19px);opacity:.4;animation:ha-void-motion 8s cubic-bezier(.44,0,.56,1) infinite;
 }
-.ha-breath-center{
-position:absolute;z-index:10;left:50%;top:50%;width:var(--core-size);aspect-ratio:1;border-radius:50%;
-transform:translate(-50%,-50%);
-background:radial-gradient(circle at 49% 47%,var(--ha-core-dark) 0%,var(--ha-dark) 54%,var(--ha-color) 85%,var(--ha-hot) 100%);
-border:1px solid var(--ha-light);
-box-shadow:0 0 19px 3px var(--ha-color),0 0 48px 13px #ad63ed63,0 0 88px 25px #7041a046,inset 0 0 28px 5px #090415a1;
-filter:brightness(var(--lum));
-animation:ha-center-unison var(--bt) cubic-bezier(.46,0,.54,1) infinite;will-change:transform,filter;
+.ha-void{
+position:absolute;z-index:11;left:50%;top:50%;width:15.5%;aspect-ratio:1;
+transform:translate(-50%,-50%);border-radius:50%;
+background:radial-gradient(circle at 50% 49%,var(--ha-black) 0%,#200e30 54%,var(--ha-edge) 83%,var(--ha-bright) 100%);
+border:1px solid var(--ha-line);
+box-shadow:0 0 17px 3px var(--ha-mid),0 0 59px 18px #9a51d56b,inset 0 0 23px 5px #0f051bbd;
+animation:ha-void-motion 8s cubic-bezier(.44,0,.56,1) infinite;
+will-change:transform,filter;
 }
-.ha-theme-green .ha-breath-center{box-shadow:0 0 19px 3px var(--ha-color),0 0 48px 13px #bfa16b63,0 0 88px 25px #a27b4540,inset 0 0 28px 5px #081d17}
-.ha-breath-dust{position:absolute;inset:-4%;z-index:4;animation:ha-dust-turn 50s linear infinite}
-.ha-breath-dust i{position:absolute;left:var(--x);top:var(--y);width:var(--sz);height:var(--sz);
-border-radius:50%;background:var(--ha-light);opacity:var(--op);box-shadow:0 0 10px var(--ha-color)}
-.ha-empty-center{
-position:absolute;left:50%;top:50%;width:11%;aspect-ratio:1;z-index:10;border-radius:50%;
-transform:translate(-50%,-50%);
-background:radial-gradient(circle at center,var(--ha-core-dark),transparent 72%);
-box-shadow:0 0 45px var(--ha-color);opacity:.76;
-animation:ha-empty var(--bt) ease-in-out infinite;
+.ha-theme-green .ha-void{
+background:radial-gradient(circle,#0d231d 0%,#193a30 54%,var(--ha-edge) 83%,var(--ha-bright) 100%);
+box-shadow:0 0 17px 3px var(--ha-mid),0 0 59px 18px #bc9b6f5f,inset 0 0 23px 5px #0a2119;
 }
-/* Distinct motion signatures */
-.ha-soft .ha-breath-ring,.ha-soft .ha-breath-center,.ha-soft .ha-breath-halo{animation-timing-function:cubic-bezier(.45,.05,.55,.95)}
-.ha-soft .ha-breath-center{background:radial-gradient(circle at 40% 24%,#f3ddff 0%,#d7b2f3 17%,#9667c7 45%,#311a43 84%,#140b20 100%);box-shadow:0 0 28px var(--ha-light),0 0 70px #c29ae177}
-.ha-theme-green .ha-soft .ha-breath-center{background:radial-gradient(circle at 38% 25%,#fff9e7 0%,#eed7ae 17%,#baa579 45%,#41594d 84%,#162d26 100%)}
-.ha-deep .ha-breath-ring,.ha-deep .ha-breath-center,.ha-deep .ha-breath-halo{animation-timing-function:cubic-bezier(.3,0,.7,1)}
-.ha-deep .ha-breath-center{border-width:2px;box-shadow:0 0 28px 6px var(--ha-color),0 0 95px 30px #b476ec70,inset 0 0 38px 8px #0b0418}
-.ha-quick .ha-breath-ring,.ha-quick .ha-breath-center,.ha-quick .ha-breath-halo{animation-timing-function:cubic-bezier(.6,0,.3,1)}
-.ha-out .ha-breath-ring,.ha-in .ha-breath-ring{animation-name:ha-travel-ring;animation-timing-function:cubic-bezier(.3,.1,.45,.95)}
-.ha-out .ha-breath-center{animation-name:ha-travel-center}
-.ha-in .ha-breath-center,.ha-in .ha-breath-halo{animation-delay:3s}
-.ha-counter .ha-breath-ring{animation-name:ha-ring-unison}
-.ha-counter .ha-breath-halo{animation-delay:calc(var(--bt) / -2)}
-.ha-chroma .ha-breath-ring{animation-name:ha-ring-chroma}
-.ha-chroma .ha-breath-center{animation-name:ha-center-chroma;background:radial-gradient(circle at 40% 40%,#15123c 0%,#30236c 58%,#e6c5ff 100%)}
-.ha-chroma .ha-breath-halo{animation-name:ha-halo-chroma}
-.ha-double .ha-breath-ring{animation-name:ha-ring-double}
-.ha-double .ha-breath-center{animation-name:ha-center-double}
-.ha-double .ha-breath-halo{animation-name:ha-halo-double}
-.ha-void .ha-breath-halo{width:39%;opacity:.6;filter:blur(25px);animation-name:ha-halo-void}
-.ha-void .ha-breath-ring{border-width:1.1px}
-.ha-void .ha-empty-center{width:10%}
-/* Scale amplitude comes from the selected variant, not from shared presets. */
-@keyframes ha-ring-unison{
-0%,100%{transform:scale(var(--rf));filter:brightness(.68)}
-50%{transform:scale(var(--rt));filter:brightness(1.35)}
+.ha-star{position:absolute;left:var(--x);top:var(--y);z-index:4;width:2px;height:2px;border-radius:50%;background:var(--ha-bright);opacity:var(--a);box-shadow:0 0 10px var(--ha-mid)}
+/* Core peaks exactly when concentric rings are most contracted. */
+@keyframes ha-wave-motion{
+0%,100%{transform:scale(1.16);filter:brightness(1.25)}
+50%{transform:scale(.83);filter:brightness(.7)}
 }
-@keyframes ha-center-unison{
-0%,100%{transform:translate(-50%,-50%) scale(var(--cf));filter:brightness(var(--lum-dim))}
-50%{transform:translate(-50%,-50%) scale(var(--ct));filter:brightness(var(--lum-bright))}
+@keyframes ha-void-motion{
+0%,100%{transform:translate(-50%,-50%) scale(.76);filter:brightness(.81);opacity:.73}
+50%{transform:translate(-50%,-50%) scale(1.26);filter:brightness(1.3);opacity:1}
 }
-@keyframes ha-halo{
-0%,100%{transform:translate(-50%,-50%) scale(.8);opacity:.19}
-50%{transform:translate(-50%,-50%) scale(1.22);opacity:.48}
+@keyframes ha-mist{0%,100%{transform:scale(1.12);opacity:.14}50%{transform:scale(.83);opacity:.36}}
+@keyframes ha-ambient{
+0%,100%{transform:translate(-50%,-50%) scale(1.15);opacity:.27}
+50%{transform:translate(-50%,-50%) scale(.88);opacity:.12}
 }
-@keyframes ha-ambient{0%,100%{transform:scale(.85);opacity:.14}50%{transform:scale(1.2);opacity:.35}}
-@keyframes ha-dust-turn{to{transform:rotate(360deg)}}
-@keyframes ha-travel-ring{
-0%,100%{transform:scale(var(--rf));filter:brightness(.62)}
-30%{transform:scale(1);filter:brightness(.9)}
-53%{transform:scale(var(--rt));filter:brightness(1.47)}
-}
-@keyframes ha-travel-center{
-0%,100%{transform:translate(-50%,-50%) scale(var(--cf));filter:brightness(.75)}
-53%{transform:translate(-50%,-50%) scale(var(--ct));filter:brightness(1.42)}
-}
-@keyframes ha-ring-chroma{
-0%,100%{transform:scale(var(--rf));filter:hue-rotate(-24deg) brightness(.68)}
-50%{transform:scale(var(--rt));filter:hue-rotate(48deg) brightness(1.48)}
-}
-@keyframes ha-center-chroma{
-0%,100%{transform:translate(-50%,-50%) scale(var(--cf));filter:hue-rotate(-33deg) brightness(.78)}
-50%{transform:translate(-50%,-50%) scale(var(--ct));filter:hue-rotate(65deg) brightness(1.5)}
-}
-@keyframes ha-halo-chroma{
-0%,100%{transform:translate(-50%,-50%) scale(.81);filter:hue-rotate(-30deg) blur(16px);opacity:.22}
-50%{transform:translate(-50%,-50%) scale(1.3);filter:hue-rotate(64deg) blur(22px);opacity:.65}
-}
-@keyframes ha-ring-double{
-0%,100%{transform:scale(var(--rf));filter:brightness(.66)}
-26%{transform:scale(1.06);filter:brightness(1.12)}
-39%{transform:scale(.95);filter:brightness(.84)}
-69%{transform:scale(var(--rt));filter:brightness(1.48)}
-}
-@keyframes ha-center-double{
-0%,100%{transform:translate(-50%,-50%) scale(var(--cf));filter:brightness(.7)}
-26%{transform:translate(-50%,-50%) scale(1.1);filter:brightness(1.03)}
-39%{transform:translate(-50%,-50%) scale(.89);filter:brightness(.79)}
-69%{transform:translate(-50%,-50%) scale(var(--ct));filter:brightness(1.48)}
-}
-@keyframes ha-halo-double{
-0%,100%{transform:translate(-50%,-50%) scale(.8);opacity:.17}
-26%{transform:translate(-50%,-50%) scale(1.08);opacity:.44}
-39%{transform:translate(-50%,-50%) scale(.9);opacity:.27}
-69%{transform:translate(-50%,-50%) scale(1.26);opacity:.6}
-}
-@keyframes ha-empty{
-0%,100%{transform:translate(-50%,-50%) scale(.75);opacity:.3;filter:blur(5px)}
-50%{transform:translate(-50%,-50%) scale(1.35);opacity:.9;filter:blur(12px)}
-}
-@keyframes ha-halo-void{
-0%,100%{transform:translate(-50%,-50%) scale(.8);opacity:.23}
-50%{transform:translate(-50%,-50%) scale(1.28);opacity:.62}
-}
-/* When paused or offscreen, no movement; honor accessibility preference. */
-body.ha-paused .ha-visual-host *,body.ha-paused .ha-visual-host *:before,body.ha-paused .ha-visual-host *:after,
-body.still .ha-visual-host *,body.still .ha-visual-host *:before,body.still .ha-visual-host *:after,
-.ha-offscreen *, .ha-offscreen *:before, .ha-offscreen *:after{animation-play-state:paused!important}
-/* Switcher lives above the original 5-landing-design dock. */
-#ha-motion-dock,#ha-motion-dock *{box-sizing:border-box}
-#ha-motion-dock{
-position:fixed;left:50%;bottom:122px;transform:translateX(-50%);width:min(1060px,calc(100vw - 24px));
-z-index:2147482999;color:#f8edff;isolation:isolate;filter:drop-shadow(0 11px 36px #0903158c);
-font:12px/1.3 Arial,Helvetica,sans-serif;letter-spacing:normal;text-transform:none
-}
-#ha-motion-dock button{font:inherit;cursor:pointer}
-#ha-motion-dock button:focus-visible{outline:3px solid #ffe3ff;outline-offset:3px}
-#ha-motion-dock .ha-panel{
-display:flex;align-items:stretch;gap:8px;padding:10px;background:#1d1429f4;
-border:1px solid #d9b5f873;border-radius:18px;box-shadow:0 13px 48px #0009;backdrop-filter:blur(18px)
-}
-#ha-motion-dock .ha-heading{width:126px;flex:none;padding:8px 10px;display:flex;flex-direction:column;justify-content:center;gap:9px}
-#ha-motion-dock .ha-heading strong{font:700 11px/1.35 Arial,sans-serif;color:#f3dfff;letter-spacing:.07em}
-#ha-motion-dock .ha-heading small{font:10px/1.45 Arial,sans-serif;color:#b39ac5}
-#ha-motion-dock .ha-list{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:repeat(2,1fr);gap:6px;flex:1;min-width:0}
-#ha-motion-dock .ha-mode{
-min-width:0;min-height:52px;display:flex;flex-direction:column;justify-content:center;gap:4px;
-background:#ffffff0b;color:#d7c5e2;border:1px solid #ffffff13;border-radius:10px;padding:8px 8px;text-align:left;line-height:1.18
-}
-#ha-motion-dock .ha-mode:hover{background:#ffffff21;color:white}
-#ha-motion-dock .ha-mode[aria-pressed=true]{background:#e0b5ff;color:#291437;border-color:#f1d5ff;box-shadow:inset 0 1px #fff6}
-#ha-motion-dock .ha-mode strong{font-size:11px;line-height:1.13;font-weight:700}
-#ha-motion-dock .ha-mode small{font-size:9.5px;color:inherit;opacity:.73}
-#ha-motion-dock .ha-tools{display:flex;flex-direction:column;justify-content:center;gap:7px;border-left:1px solid #ffffff20;padding-left:8px}
-#ha-motion-dock .ha-tool{width:39px;height:40px;border:1px solid #ffffff25;background:#ffffff12;color:#f4dfff;border-radius:9px}
-#ha-motion-dock .ha-tool:hover{background:#ffffff28}
-#ha-motion-dock .ha-mini{display:none;align-items:center;justify-content:center;gap:12px;min-height:49px;padding:11px 17px;
-max-width:360px;width:100%;margin:auto;border:1px solid #d7b4fa89;border-radius:99px;background:#25192fe8;
-color:white;backdrop-filter:blur(20px);box-shadow:0 10px 28px #0008
-}
-#ha-motion-dock .ha-mini i{width:8px;height:8px;border-radius:50%;background:#e0b5ff;box-shadow:0 0 13px #e0b5ff}
-#ha-motion-dock .ha-mini strong{font-weight:700;font-size:12px}
-#ha-motion-dock .ha-mini span{font-size:10px;color:#bda8cb}
-#ha-motion-dock.ha-collapsed .ha-panel{display:none}
-#ha-motion-dock.ha-collapsed .ha-mini{display:flex}
-@media(max-width:900px){
-#ha-motion-dock{bottom:max(77px,calc(env(safe-area-inset-bottom,0px) + 76px));width:calc(100vw - 26px)}
-#ha-motion-dock .ha-panel{display:none}
-#ha-motion-dock .ha-mini{display:flex}
-#ha-motion-dock.ha-open .ha-panel{
-display:flex;flex-direction:column;align-items:stretch;gap:10px;position:absolute;bottom:58px;left:50%;transform:translateX(-50%);
-width:min(450px,calc(100vw - 26px));max-height:calc(100dvh - 175px);overflow:auto;padding:13px
-}
-#ha-motion-dock.ha-open .ha-heading{width:100%;flex-direction:row;justify-content:space-between;align-items:center;padding:4px 5px 11px;border-bottom:1px solid #ffffff25}
-#ha-motion-dock.ha-open .ha-list{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto;gap:6px}
-#ha-motion-dock.ha-open .ha-mode{min-height:58px;padding:10px}
-#ha-motion-dock.ha-open .ha-mode strong{font-size:12px}
-#ha-motion-dock.ha-open .ha-mode small{font-size:10px}
-#ha-motion-dock.ha-open .ha-tools{flex-direction:row;border-left:0;border-top:1px solid #ffffff20;padding:9px 0 0}
-#ha-motion-dock.ha-open .ha-tool{flex:1}
-.ha-stage{width:min(100%,500px)}
-}
+body.still .ha-visual-host *,
+body.still .ha-visual-host *:before,
+body.still .ha-visual-host *:after,
+.ha-offscreen *,.ha-offscreen *:before,.ha-offscreen *:after{animation-play-state:paused!important}
+@media(max-width:780px){.ha-atmosphere{filter:blur(30px)}.ha-wave{border-width:1.15px}}
 @media(max-width:480px){
-.ha-stage{width:114%;top:43%}
-#ha-motion-dock.ha-open .ha-list{grid-template-columns:1fr 1fr}
-#ha-motion-dock .ha-mini{min-height:48px}
+.ha-stage{-webkit-mask-image:radial-gradient(circle,#000 0 27%,#000d 37%,#0006 46%,transparent 57%);
+mask-image:radial-gradient(circle,#000 0 27%,#000d 37%,#0006 46%,transparent 57%)}
+.ha-void{width:14%}
 }
 @media(prefers-reduced-motion:reduce){
-.ha-visual-host *,.ha-visual-host *:before,.ha-visual-host *:after{animation:none!important;transition:none!important}
-#ha-motion-dock *{animation:none!important;transition:none!important}
+.ha-visual-host *,.ha-visual-host *:before,.ha-visual-host *:after{animation:none!important;transition:none!important;will-change:auto!important}
 }
