@@ -1,0 +1,81 @@
+
+/* MAX NEW: broad-audience, high-clarity landing, visually consistent with MAX */
+body.new-page{background:#0c0917}
+.new-page .hero{min-height:0}
+.new-page .hero-inner{min-height:705px;padding-block:72px 54px;grid-template-columns:1.15fr .85fr}
+.new-page .hero h1{font-size:clamp(64px,6.5vw,100px);line-height:.96;letter-spacing:-.045em}
+.new-page .hero h1 em{white-space:nowrap}
+.new-page .hero .new-now{display:inline-block;color:#e7bbff;font:italic 500 .75em/1.05 'Cormorant Garamond',Georgia,serif;letter-spacing:-.04em;margin-top:12px}
+.new-page .hero-desc{font-size:17px;max-width:545px;margin-top:29px;margin-bottom:28px}
+.new-page .hero .cta{min-width:345px}
+.new-page .new-benefits{display:flex;flex-wrap:wrap;gap:6px 19px;margin-top:19px;color:#beaccf;font-size:11px}
+.new-page .new-benefits span{white-space:nowrap;line-height:1.65}
+.new-page .scene{min-height:545px}
+.new-page .portal{width:min(44vw,530px);height:min(44vw,530px)}
+.new-page .new-headphone{position:absolute;width:145px;height:145px;left:54%;top:50%;transform:translate(-50%,-50%);z-index:10;color:#f6e1ff;filter:drop-shadow(0 8px 20px #140826c9)}
+.new-page .now-chip{bottom:8%;padding:16px 21px;left:-4%}
+.new-page .now-chip b{font-size:30px}
+.new-page .motion{bottom:8%}
+.new-page .bigline{padding-block:88px}
+.new-page .bigline h2{font-size:clamp(54px,6.5vw,95px)}
+.new-page .section{padding-block:90px}
+.new-page .section-top{margin-bottom:42px}
+.new-page .bigcard{min-height:290px}
+.new-page .list-cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+.new-page .new-evidence{margin:27px 0 0;font-size:12px;line-height:1.8;color:#9e8eb0;max-width:800px}
+.new-page .new-access{margin-top:22px;padding:22px 26px;background:#2b1a41;border:1px solid #cda9e44b;color:#bba8cc;font-size:13px;line-height:1.75}
+.new-page .new-access strong{color:#e6c4ff}
+.new-page .track-main{min-height:385px}
+.new-page .track-mini{min-height:108px}
+.new-page .author-quote{color:#f1dfff}
+.new-page .offer{background:radial-gradient(ellipse at 60% 10%,#7143a468,transparent 60%),#160e29}
+.new-page .pricehead span:last-child{color:#d8b5ff}
+.new-page .pricebox .cta{min-width:0}
+.new-page .footer .legal{max-width:1020px}
+.new-page .ending h2{font-size:clamp(50px,6vw,83px)}
+.new-page .sr-only:focus{position:fixed!important;width:auto;height:auto;clip:auto;left:10px;top:10px;background:#fff;color:#000;z-index:100000;padding:12px}
+@media(max-width:1040px){
+ .new-page .hero h1{font-size:75px}
+ .new-page .portal{width:460px;height:460px}
+ .new-page .new-headphone{width:117px;height:117px}
+}
+@media(max-width:800px){
+ .new-page .hero-inner{min-height:0;display:flex;flex-direction:column;align-items:stretch;padding:54px 0 35px}
+ .new-page .hero h1{font-size:clamp(64px,10.5vw,92px)}
+ .new-page .hero-desc{font-size:15px;max-width:600px}
+ .new-page .hero .cta{min-width:0}
+ .new-page .scene{min-height:350px;margin-top:12px}
+ .new-page .portal{left:50%;width:380px;height:380px}
+ .new-page .new-headphone{left:50%;width:105px;height:105px}
+ .new-page .now-chip{bottom:0;left:2%}
+ .new-page .motion{bottom:0}
+ .new-page .list-cards{grid-template-columns:1fr}
+ .new-page .bigcard{min-height:235px}
+ .new-page .section{padding-block:75px}
+}
+@media(max-width:480px){
+ .new-page .hero-inner{padding-top:40px;padding-bottom:20px}
+ .new-page .hero h1{font-size:clamp(57px,13.1vw,71px)}
+ .new-page .hero h1 em{white-space:normal}
+ .new-page .hero .new-now{font-size:.77em;margin-top:8px}
+ .new-page .hero-desc{font-size:15px;line-height:1.7;margin-top:22px;margin-bottom:25px}
+ .new-page .hero .cta-row{display:block}
+ .new-page .hero .cta{width:100%;font-size:13px;min-height:62px;gap:6px;padding:18px 19px}
+ .new-page .hero .jump{display:inline-block;margin-top:16px}
+ .new-page .new-benefits{gap:6px 10px;margin-top:16px}
+ .new-page .new-benefits span{font-size:10px}
+ .new-page .scene{min-height:283px;margin-top:12px}
+ .new-page .portal{width:300px;height:300px}
+ .new-page .new-headphone{width:82px;height:82px}
+ .new-page .now-chip{bottom:1%;padding:12px 13px}
+ .new-page .now-chip b{font-size:26px}
+ .new-page .now-chip span{font-size:8px}
+ .new-page .motion{bottom:1%}
+ .new-page .bigline h2{font-size:56px}
+ .new-page .section h2{font-size:clamp(46px,12vw,58px)}
+ .new-page .section{padding-block:68px}
+ .new-page .new-access{padding:18px}
+ .new-page .track-main{min-height:320px}
+ .new-page .track-main h3{font-size:46px}
+ .new-page .pricebox{padding:26px}
+}
