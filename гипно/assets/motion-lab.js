@@ -23,7 +23,7 @@ function dust(){
  return s+'</div>';
 }
 function scene(v){
- var style='--bt:'+v.t+'s;--core-size:'+v.core+'%;--rf:'+v.rf+';--rt:'+v.rt+';--cf:'+v.cf+';--ct:'+v.ct+';--lum:'+v.light+';';
+ var style='--bt:'+v.t+'s;--core-size:'+v.core+'%;--halo-size:'+(v.core*1.95+10).toFixed(2)+'%;--rf:'+v.rf+';--rt:'+v.rt+';--cf:'+v.cf+';--ct:'+v.ct+';--lum:'+v.light+';--lum-dim:'+(v.light*.79).toFixed(3)+';--lum-bright:'+(v.light*1.28).toFixed(3)+';';
  var s='<div class="ha-stage ha-breath-scene ha-'+v.id+' ha-'+v.kind+'" style="'+style+'">';
  s+='<div class="ha-breath-ambient"></div>';
  for(var i=0;i<v.rings;i++){
