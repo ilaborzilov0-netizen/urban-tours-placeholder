@@ -1,0 +1,34 @@
+/* Production order + question forms for /ai/ hypnosis landing */
+body.new-page .hero .cta-row .jump{border:0;background:none;cursor:pointer;text-align:left;padding:0 0 5px;text-decoration:none;font:inherit;color:#d0b5e8;border-bottom:1px solid #bca4d88a}
+body.new-page .hero .cta-row .jump:hover{color:#fff}
+body.new-page .hypno-dialog{width:min(540px,calc(100vw - 28px));max-height:calc(100dvh - 30px);overflow-y:auto;border:1px solid #d5b1e8;border-radius:8px;background:#190f28;color:#f7eafb;box-shadow:0 32px 120px #000c;padding:37px 35px}
+body.new-page .hypno-dialog::backdrop{background:#08040de8;backdrop-filter:blur(7px)}
+body.new-page .hypno-dialog .tag{color:#cea9e8;margin:0}
+body.new-page .hypno-dialog h2{font:500 51px/1 'Cormorant Garamond',Georgia,serif;color:#f9f0fd;letter-spacing:-.04em;margin:19px 0 10px}
+body.new-page .hypno-dialog .hypno-intro{color:#b9a8cd;font-size:14px;line-height:1.72;margin:0 0 20px}
+body.new-page .hypno-dialog .modalprice{font:500 72px/1 'Cormorant Garamond',Georgia,serif;letter-spacing:-.055em;color:#e0b8ff;margin:12px 0 20px}
+body.new-page .hypno-dialog .modalprice small{font-size:.48em}
+body.new-page .hypno-dialog .close{position:absolute;top:8px;right:15px;background:none;border:0;color:#eed5ff;font-size:34px;cursor:pointer;padding:5px 9px}
+body.new-page .hypno-fields{display:grid;gap:15px}
+body.new-page .hypno-fields label{display:grid;gap:7px;font-size:12px;color:#d3bce4;font-weight:600}
+body.new-page .hypno-fields input,body.new-page .hypno-fields textarea{display:block;width:100%;background:#271837;color:#fff;border:1px solid #7f659c83;border-radius:3px;padding:13px 14px;outline:none;font:normal 15px/1.5 Manrope,Arial,sans-serif}
+body.new-page .hypno-fields input:focus,body.new-page .hypno-fields textarea:focus{border-color:#e0b8ff;box-shadow:0 0 0 3px #9c58bb44}
+body.new-page .hypno-fields [aria-invalid=true]{border-color:#ffaaa9}
+body.new-page .hypno-fields input::placeholder,body.new-page .hypno-fields textarea::placeholder{color:#a28caf}
+body.new-page .hypno-dialog .hypno-detail,body.new-page .hypno-dialog .hypno-legal{font-size:11px;line-height:1.7;color:#ac98bd;margin:13px 0}
+body.new-page .hypno-dialog .hypno-legal a{color:#e6ccfa}
+body.new-page .hypno-dialog .hypno-submit{width:100%;min-width:0;margin-top:18px;min-height:59px;padding:16px 20px}
+body.new-page .hypno-dialog .hypno-submit:disabled{opacity:.65;cursor:wait;transform:none}
+body.new-page .hypno-text-btn{display:block;width:100%;padding:12px 0;border:0;background:transparent;color:#dfc4f2;text-decoration:underline;text-underline-offset:5px;text-align:center;cursor:pointer;font-size:13px}
+body.new-page .hypno-text-btn:hover{color:#fff}
+body.new-page .hypno-dialog .hypno-status{font-size:13px;line-height:1.6;margin:16px 0 0;color:#ffaaa9}
+body.new-page .hypno-dialog .hypno-status.success{color:#c5e9bd}
+body.new-page .hypno-honeypot{position:absolute!important;left:-9999px!important;width:1px!important;opacity:0!important}
+body.new-page:has(.hypno-dialog[open]){overflow:hidden}
+@media(max-width:480px){
+ body.new-page .hypno-dialog{padding:30px 21px;max-height:calc(100dvh - 18px)}
+ body.new-page .hypno-dialog h2{font-size:43px}
+ body.new-page .hypno-dialog .modalprice{font-size:60px}
+ body.new-page .hypno-fields{gap:12px}
+ body.new-page .hero .cta-row .jump{display:inline-block;margin-top:16px}
+}
