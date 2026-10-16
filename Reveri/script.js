@@ -33,6 +33,35 @@
   });
   document.getElementById('contact-cta').addEventListener('click', () => goal('hypno_reveri_contact'));
   document.getElementById('year').textContent = new Date().getFullYear();
+  const professorVideo = document.getElementById('professor-video-player');
+  const professorPlay = document.getElementById('professor-play');
+  const videoError = document.getElementById('video-error');
+  if (professorVideo && professorPlay) {
+    let trackedPlay = false;
+    const showVideoError = () => { videoError.hidden = false; };
+    professorPlay.addEventListener('click', async () => {
+      videoError.hidden = true;
+      professorVideo.scrollIntoView({ block: 'center', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+      try {
+        await professorVideo.play();
+        professorVideo.focus();
+      } catch (_) { showVideoError(); }
+    });
+    professorVideo.addEventListener('loadedmetadata', () => {
+      if (professorVideo.textTracks.length) professorVideo.textTracks[0].mode = 'showing';
+    });
+    professorVideo.addEventListener('play', () => {
+      professorPlay.textContent = 'Видео воспроизводится ↓';
+      if (!trackedPlay) { goal('hypno_reveri_video_play'); trackedPlay = true; }
+    });
+    professorVideo.addEventListener('pause', () => { professorPlay.textContent = 'Продолжить просмотр ▶'; });
+    professorVideo.addEventListener('ended', () => {
+      professorPlay.textContent = 'Посмотреть ещё раз ↻';
+      goal('hypno_reveri_video_complete');
+    });
+    professorVideo.addEventListener('error', showVideoError);
+    professorVideo.querySelector('source').addEventListener('error', showVideoError);
+  }
   document.querySelectorAll('.faq-list details').forEach(detail => detail.addEventListener('toggle', () => {
     if (!detail.open) return;
     document.querySelectorAll('.faq-list details').forEach(other => { if (other !== detail) other.open = false; });
