@@ -230,7 +230,8 @@ purchaseForm.addEventListener('submit', async event => {
   paymentPending = true;submit.disabled = true;submit.textContent = 'Открываем оплату…';albumGoal('ai_payment_create');
   try {
     const data = await albumRequest(PAYMENT_API,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({...customer,plan:'ai_album',flowId:'ai-anchor-album-990',source:'marafon_ai_audioanchors_990',returnUrl:location.origin + location.pathname})});
-    if(data.plan !== 'ai_album' || Number(data.amount) !== ALBUM_PRICE*100) throw new Error('Сумма оплаты не совпала с 990 ₽. Оплата остановлена.');
+    const returnedMinor = data.amountMinor != null ? Number(data.amountMinor) : (Number(data.amount)>=10000 ? Number(data.amount) : Math.round(Number(data.amount)*100));
+    if(data.plan !== 'ai_album' || returnedMinor !== ALBUM_PRICE*100) throw new Error('Сумма оплаты не совпала с 990 ₽. Оплата остановлена.');
     if(!data.paymentUrl) throw new Error('Не получена ссылка на оплату. Попробуйте ещё раз.');
     const paymentUrl = new URL(data.paymentUrl);
     if(paymentUrl.protocol !== 'https:' || (!/(^|\.)(tinkoff\.ru|tbank\.ru)$/.test(paymentUrl.hostname) && paymentUrl.hostname !== 'pay.tbank-online.com')) throw new Error('Не удалось подтвердить страницу Т-Банка. Оплата остановлена.');

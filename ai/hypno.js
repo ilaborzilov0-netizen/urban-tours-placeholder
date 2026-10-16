@@ -56,7 +56,8 @@ payForm?.addEventListener('submit',async ev=>{
  goal('hypno_payment_create');
  try{
   const data=await request(PAYMENT_API,{method:'POST',headers:jsonHeaders,body:JSON.stringify({...customer,plan:PLAN,flowId:'hypnosis-990',source:'marafon_ai_hypnosis',returnUrl:location.origin+location.pathname})});
-  if(data.plan!==PLAN||Number(data.amount)!==PRICE_MINOR)throw new Error('Сумма или тариф не совпадает. Платёж остановлен.');
+  const returnedMinor = data.amountMinor != null ? Number(data.amountMinor) : (Number(data.amount)>=10000 ? Number(data.amount) : Math.round(Number(data.amount)*100));
+  if(data.plan!==PLAN||returnedMinor!==PRICE_MINOR)throw new Error('Сумма или тариф не совпадает. Платёж остановлен.');
   if(!data.paymentUrl||!data.orderId)throw new Error('Сервер не предоставил ссылку на оплату.');
   const url=new URL(data.paymentUrl);
   if(url.protocol!=='https:'||!/(^|\.)(tinkoff\.ru|tbank\.ru)$/.test(url.hostname)&&url.hostname!=='pay.tbank-online.com')
