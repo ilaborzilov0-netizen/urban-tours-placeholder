@@ -1,75 +1,49 @@
-/* Five distinct, exclusive cinematic animations for the hypnosis hero. */
+/* HYPNO BREATH LAB — ten exclusive breathing studies, replacing the old 5-animation picker */
 (function(){
 'use strict';
-var modes=[
-{id:'breath',title:'Дыхание',subtitle:'Breathing Portal'},
-{id:'spiral',title:'Спираль',subtitle:'Slow Spiral'},
-{id:'pulse',title:'Импульс',subtitle:'Magnetic Pulse'},
-{id:'liquid',title:'Жидкий свет',subtitle:'Liquid Glow'},
-{id:'focus',title:'Фокус',subtitle:'Focus Lock'}
+var variants=[
+{id:'b01',title:'Унисон',desc:'7,2с · ровно',t:7.2,core:17.5,rings:8,gap:5.1,rf:.87,rt:1.13,cf:.79,ct:1.2,light:.75,kind:'sync'},
+{id:'b02',title:'Шёлковый прилив',desc:'12с · медленно',t:12,core:11.5,rings:9,gap:4.6,rf:.92,rt:1.08,cf:.88,ct:1.12,light:1.22,kind:'soft'},
+{id:'b03',title:'Глубокий вдох',desc:'9с · широко',t:9,core:23.5,rings:7,gap:5.8,rf:.78,rt:1.21,cf:.76,ct:1.28,light:.7,kind:'deep'},
+{id:'b04',title:'Частый пульс',desc:'4,6с · активно',t:4.6,core:13,rings:10,gap:4.3,rf:.84,rt:1.17,cf:.7,ct:1.32,light:.92,kind:'quick'},
+{id:'b05',title:'Волна наружу',desc:'8,6с · из центра',t:8.6,core:15.5,rings:9,gap:4.8,rf:.83,rt:1.18,cf:.8,ct:1.23,light:.84,kind:'out'},
+{id:'b06',title:'Волна внутрь',desc:'9,2с · к центру',t:9.2,core:12.5,rings:9,gap:5.1,rf:.84,rt:1.16,cf:.82,ct:1.23,light:.65,kind:'in'},
+{id:'b07',title:'Противофаза',desc:'8с · навстречу',t:8,core:19.5,rings:8,gap:5,rf:.84,rt:1.15,cf:.75,ct:1.28,light:.79,kind:'counter'},
+{id:'b08',title:'Хамелеон',desc:'7,8с · цвет и свет',t:7.8,core:16.5,rings:8,gap:5,rf:.85,rt:1.15,cf:.78,ct:1.27,light:1.06,kind:'chroma'},
+{id:'b09',title:'Двойной вдох',desc:'10с · два пика',t:10,core:14.5,rings:8,gap:5.1,rf:.86,rt:1.13,cf:.81,ct:1.25,light:.93,kind:'double'},
+{id:'b10',title:'Без ядра',desc:'11,5с · световая пустота',t:11.5,core:0,rings:11,gap:3.8,rf:.8,rt:1.18,cf:.82,ct:1.21,light:.82,kind:'void'}
 ];
-var valid=modes.map(function(m){return m.id});
-function dots(){
- var s='<div class="ha-dust">';
- for(var i=0;i<19;i++){s+='<i style="--x:'+((i*37+14)%99)+'%;--y:'+((i*47+11)%96)+'%;--s:'+(i%6===0?3:1.4)+'px;--o:'+(.15+(i%5)*.14).toFixed(2)+'"></i>'}
+var ids=variants.map(function(x){return x.id});
+var KEY='hypno_breath_variant_v2';
+function dust(){
+ var s='<div class="ha-breath-dust">';
+ for(var i=0;i<15;i++){
+  s+='<i style="--x:'+((i*41+11)%98)+'%;--y:'+((i*31+21)%96)+'%;--sz:'+(i%5===0?2.3:1.2)+'px;--op:'+(.13+(i%4)*.14).toFixed(2)+'"></i>';
+ }
  return s+'</div>';
 }
-function core(){
- return '<div class="ha-core"><svg class="ha-headphone" viewBox="0 0 100 100" aria-hidden="true"><path d="M18 55V45a32 32 0 0 1 64 0v10M18 55h13v29H18c-7 0-10-4-10-11v-8c0-7 3-10 10-10Zm64 0H69v29h13c7 0 10-4 10-11v-8c0-7-3-10-10-10Z"/></svg></div>';
-}
-function breath(){
- // One shared inhalation/exhalation rhythm: the dark center and every ring
- // expand and contract together. Other four animation modes remain unchanged.
- var s='<div class="ha-cloud"></div>';
- for(var i=0;i<8;i++){
-  s+='<i class="ha-ring" style="--i:'+(5+i*5.1).toFixed(1)+'%;--o:'+(.22+i*.083).toFixed(2)+'"></i>';
+function scene(v){
+ var style='--bt:'+v.t+'s;--core-size:'+v.core+'%;--rf:'+v.rf+';--rt:'+v.rt+';--cf:'+v.cf+';--ct:'+v.ct+';--lum:'+v.light+';';
+ var s='<div class="ha-stage ha-breath-scene ha-'+v.id+' ha-'+v.kind+'" style="'+style+'">';
+ s+='<div class="ha-breath-ambient"></div>';
+ for(var i=0;i<v.rings;i++){
+  // Rings are indexed outside -> inside. Their phase offsets make real moving waves.
+  var delay=0;
+  if(v.kind==='out')delay=(v.rings-1-i)*.34;
+  if(v.kind==='in')delay=i*.35;
+  if(v.kind==='counter')delay=-v.t/2;
+  var gap=3.7+i*v.gap;
+  // Slightly variable ring widths to avoid mechanical blueprint regularity.
+  var opacity=Math.min(.88,.19+i*.083).toFixed(2);
+  s+='<i class="ha-breath-ring" style="--inset:'+gap.toFixed(2)+'%;--ring-opacity:'+opacity+';--delay:'+delay.toFixed(2)+'s"></i>';
  }
- s+='<div class="ha-breath-aura"></div><div class="ha-breath-void"></div>';
- return s+dots();
-}
-function spiralPath(offset){
- var p='';
- for(var i=0;i<=565;i++){
- var ratio=i/565,angle=ratio*Math.PI*12+offset,rad=17+255*Math.pow(ratio,1.13);
- var x=300+Math.cos(angle)*rad,y=300+Math.sin(angle)*rad;
- p+=(i?'L':'M')+x.toFixed(2)+','+y.toFixed(2);
- }
- return p;
-}
-function spiral(){
- var s='<div class="ha-spiral-field"></div><svg class="ha-spiral-svg" viewBox="0 0 600 600" aria-hidden="true"><defs><linearGradient id="ha-spiral-gradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f3dbff" stop-opacity=".16"/><stop offset=".44" stop-color="#dbb2ff" stop-opacity=".97"/><stop offset="1" stop-color="#ba81e6" stop-opacity=".37"/></linearGradient></defs><g class="ha-rotor">';
- for(var i=0;i<3;i++){s+='<path class="ha-spiral-line" d="'+spiralPath(i*Math.PI*2/3)+'" style="animation-delay:-'+(i*3)+'s"></path>';}
- s+='</g><g class="ha-rotor-back">';
- for(var j=0;j<2;j++){s+='<path class="ha-spiral-line echo" d="'+spiralPath(.5+j*2.5)+'"></path>';}
- return s+'</g></svg>'+dots()+core();
-}
-function pulse(){
- var s='<div class="ha-static-ring" style="--inset:16%;--opacity:.25"></div><div class="ha-static-ring" style="--inset:26%;--opacity:.38"></div>';
- for(var i=0;i<5;i++){s+='<i class="ha-ripple" style="--delay:-'+(i*1.28).toFixed(2)+'s"></i>';}
- for(var j=0;j<3;j++){s+='<i class="ha-satellite" style="--dur:'+(22+j*5)+'s;--delay:-'+(j*7)+'s"></i>';}
- s+=dots()+core()+'<div class="ha-bars">';
- for(var k=0;k<23;k++){s+='<i style="--h:'+(7+((k*17+11)%42))+';--dur:'+(1.6+(k%7)*.17).toFixed(2)+'s;--delay:-'+(k*.19).toFixed(2)+'s"></i>';}
+ s+=dust();
+ s+='<div class="ha-breath-halo"></div>';
+ if(v.core>0)s+='<div class="ha-breath-center"></div>';
+ else s+='<div class="ha-empty-center"></div>';
  return s+'</div>';
 }
-function liquid(){
- var configs=[[58,47,8,.38,17,0],[49,62,17,.36,23,-7],[68,43,25,.26,28,-16],[35,53,7,.46,21,-11]];
- var s='';
- for(var i=0;i<configs.length;i++){var x=configs[i];s+='<i class="ha-blob" style="--w:'+x[0]+'%;--h:'+x[1]+'%;--blur:'+x[2]+'px;--opacity:'+x[3]+';--dur:'+x[4]+'s;--delay:'+x[5]+'s"></i>';}
- return s+'<div class="ha-film"></div>'+dots()+core();
-}
-function focus(){
- var s='<div class="ha-iris"></div>';
- for(var i=0;i<5;i++){s+='<i class="ha-beam" style="--angle:'+(i*72)+'deg;--delay:-'+(i*1.6).toFixed(1)+'s"></i>';}
- s+='<svg class="ha-focus-svg" viewBox="0 0 600 600" aria-hidden="true">';
- var radii=[255,216,178,142,106];
- for(var j=0;j<radii.length;j++){
- var dash=(42+j*15)+' '+(19+j*8),dashArc=(23+j*9)+' '+(45+j*19),className='ha-focus-rotor'+(j%2?' rev':'');
- s+='<g class="'+className+'" style="--turn:'+(43+j*8)+'s;--dash:'+dash+';--delay:-'+(j*1.7).toFixed(1)+'s"><circle cx="300" cy="300" r="'+radii[j]+'" stroke-dashoffset="'+(j*47)+'"/><circle class="ha-arc" cx="300" cy="300" r="'+radii[j]+'" style="--dash:'+dashArc+'"/></g>';
- }
- return s+'</svg>'+dots()+core();
-}
-var render={breath:breath,spiral:spiral,pulse:pulse,liquid:liquid,focus:focus};
-function init(){
+function setup(){
  var target=document.querySelector('.hero .hero-visual, .hero .visual, .hero .scene');
  if(!target||document.getElementById('ha-motion-dock'))return;
  var host=document.createElement('div');
@@ -77,61 +51,76 @@ function init(){
  host.setAttribute('aria-hidden','true');
  target.appendChild(host);
  document.body.classList.add('ha-enabled');
- var dock=document.createElement('div');dock.id='ha-motion-dock';
- var markup='<div class="ha-panel" id="ha-control-panel"><div class="ha-heading"><strong>ГИПНО-АНИМАЦИЯ</strong><small>5 отдельных режимов</small></div><div class="ha-list" role="group" aria-label="Выберите анимацию">';
- for(var i=0;i<modes.length;i++){
- var m=modes[i];markup+='<button class="ha-mode" type="button" data-ha-select="'+m.id+'" aria-pressed="false"><strong>0'+(i+1)+' · '+m.title+'</strong><small>'+m.subtitle+'</small></button>';
+ var dock=document.createElement('div');
+ dock.id='ha-motion-dock';
+ var html='<div class="ha-panel" id="ha-breath-options"><div class="ha-heading"><strong>ДЫХАНИЕ · 10 ВЕРСИЙ</strong><small>Варианты центра и волн</small></div><div class="ha-list" role="group" aria-label="Десять вариантов дыхания">';
+ for(var i=0;i<variants.length;i++){
+  var v=variants[i];
+  html+='<button class="ha-mode" type="button" data-ha-select="'+v.id+'" aria-pressed="false"><strong>'+String(i+1).padStart(2,'0')+' · '+v.title+'</strong><small>'+v.desc+'</small></button>';
  }
- markup+='</div><div class="ha-tools"><button class="ha-tool" type="button" data-ha-pause aria-label="Пауза" title="Пауза">Ⅱ</button><button class="ha-tool" type="button" data-ha-close aria-label="Свернуть пульт" title="Свернуть">×</button></div></div>';
- markup+='<button class="ha-mini" type="button" aria-expanded="false" aria-controls="ha-control-panel"><i aria-hidden="true"></i><strong>Анимация: Дыхание</strong><span>5 режимов ▴</span></button>';
- dock.innerHTML=markup;
+ html+='</div><div class="ha-tools"><button class="ha-tool" type="button" data-ha-pause aria-label="Остановить дыхание" title="Пауза">Ⅱ</button><button class="ha-tool" type="button" data-ha-close aria-label="Свернуть пульт" title="Свернуть">×</button></div></div>';
+ html+='<button class="ha-mini" type="button" aria-controls="ha-breath-options" aria-expanded="false"><i aria-hidden="true"></i><strong>Дыхание: Унисон</strong><span>10 версий ▴</span></button>';
+ dock.innerHTML=html;
  document.body.appendChild(dock);
- var mini=dock.querySelector('.ha-mini'),miniName=mini.querySelector('strong'),screen=window.matchMedia('(max-width:900px)');
- var mode='breath',paused=false;
+ var mini=dock.querySelector('.ha-mini'),miniLabel=mini.querySelector('strong');
+ var screen=window.matchMedia('(max-width:900px)');
+ var chosen='b01',paused=false;
  try{
- var urlId=new URLSearchParams(window.location.search).get('animation');
- var saved=window.localStorage.getItem('hypno_motion_mode_v1');
- mode=valid.indexOf(urlId)>=0?urlId:valid.indexOf(saved)>=0?saved:'breath';
+  var params=new URLSearchParams(window.location.search);
+  var fromUrl=params.get('breath')||params.get('animation');
+  var saved=window.localStorage.getItem(KEY);
+  // Legacy ?animation=breath and earlier saved preferences fall back to b01.
+  chosen=ids.indexOf(fromUrl)>=0?fromUrl:ids.indexOf(saved)>=0?saved:'b01';
  }catch(e){}
  function choose(id){
- if(valid.indexOf(id)<0)return;
- mode=id;
- host.dataset.mode=id;
- // Replacing this subtree discards the other four animations, rather than running them invisibly.
- host.innerHTML='<div class="ha-stage ha-'+id+'">'+render[id]()+'</div>';
- var buttons=dock.querySelectorAll('[data-ha-select]');
- for(var i=0;i<buttons.length;i++){buttons[i].setAttribute('aria-pressed',String(buttons[i].getAttribute('data-ha-select')===id));}
- for(var j=0;j<modes.length;j++){if(modes[j].id===id){miniName.textContent='Анимация: '+modes[j].title;break;}}
- try{window.localStorage.setItem('hypno_motion_mode_v1',id);}catch(e){}
- if(screen.matches){dock.classList.remove('ha-open');mini.setAttribute('aria-expanded','false');}
+  var index=ids.indexOf(id);
+  if(index<0)return;
+  chosen=id;
+  host.dataset.mode=id;
+  // Replace the whole DOM subtree: zero hidden animations are left running.
+  host.innerHTML=scene(variants[index]);
+  var bs=dock.querySelectorAll('[data-ha-select]');
+  for(var k=0;k<bs.length;k++)bs[k].setAttribute('aria-pressed',String(bs[k].getAttribute('data-ha-select')===id));
+  miniLabel.textContent='Дыхание: '+variants[index].title;
+  try{window.localStorage.setItem(KEY,id)}catch(e){}
+  if(screen.matches){dock.classList.remove('ha-open');mini.setAttribute('aria-expanded','false')}
  }
  function pause(yes){
- paused=yes;
- document.body.classList.toggle('ha-paused',paused);
- var b=dock.querySelector('[data-ha-pause]');
- b.textContent=paused?'▶':'Ⅱ';
- b.setAttribute('aria-label',paused?'Запустить анимацию':'Остановить анимацию');
- b.title=paused?'Запустить':'Пауза';
+  paused=yes;
+  document.body.classList.toggle('ha-paused',paused);
+  var btn=dock.querySelector('[data-ha-pause]');
+  btn.textContent=paused?'▶':'Ⅱ';
+  btn.title=paused?'Продолжить':'Пауза';
+  btn.setAttribute('aria-label',paused?'Продолжить дыхание':'Остановить дыхание');
  }
- function close(){dock.classList.remove('ha-open');if(!screen.matches)dock.classList.add('ha-collapsed');mini.setAttribute('aria-expanded','false');}
+ function close(){
+  dock.classList.remove('ha-open');
+  if(!screen.matches)dock.classList.add('ha-collapsed');
+  mini.setAttribute('aria-expanded','false');
+ }
  dock.addEventListener('click',function(e){
- var selected=e.target.closest('[data-ha-select]');
- if(selected){choose(selected.getAttribute('data-ha-select'));return;}
- if(e.target.closest('[data-ha-pause]')){pause(!paused);return;}
- if(e.target.closest('[data-ha-close]'))close();
+  var b=e.target.closest('[data-ha-select]');
+  if(b){choose(b.getAttribute('data-ha-select'));return}
+  if(e.target.closest('[data-ha-pause]')){pause(!paused);return}
+  if(e.target.closest('[data-ha-close]'))close();
  });
  mini.addEventListener('click',function(){
- if(screen.matches){var opened=!dock.classList.contains('ha-open');dock.classList.toggle('ha-open',opened);mini.setAttribute('aria-expanded',String(opened));}
- else{dock.classList.remove('ha-collapsed');mini.setAttribute('aria-expanded','true');}
+  if(screen.matches){
+   var opened=!dock.classList.contains('ha-open');
+   dock.classList.toggle('ha-open',opened);
+   mini.setAttribute('aria-expanded',String(opened));
+  }else{
+   dock.classList.remove('ha-collapsed');
+   mini.setAttribute('aria-expanded','true');
+  }
  });
- document.addEventListener('keydown',function(e){if(e.key==='Escape'&&dock.classList.contains('ha-open'))close();});
- document.addEventListener('pointerdown',function(e){if(screen.matches&&dock.classList.contains('ha-open')&&!dock.contains(e.target))close();});
- if(screen.addEventListener)screen.addEventListener('change',function(){dock.classList.remove('ha-open','ha-collapsed');mini.setAttribute('aria-expanded','false');});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&dock.classList.contains('ha-open'))close()});
+ document.addEventListener('pointerdown',function(e){if(screen.matches&&dock.classList.contains('ha-open')&&!dock.contains(e.target))close()});
+ if(screen.addEventListener)screen.addEventListener('change',function(){dock.classList.remove('ha-open','ha-collapsed');mini.setAttribute('aria-expanded','false')});
  if('IntersectionObserver' in window){
- var observer=new IntersectionObserver(function(entries){host.classList.toggle('ha-offscreen',!entries[0].isIntersecting);},{threshold:.01});
- observer.observe(target);
+  new IntersectionObserver(function(entries){host.classList.toggle('ha-offscreen',!entries[0].isIntersecting)},{threshold:.01}).observe(target);
  }
- choose(mode);
+ choose(chosen);
 }
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});else setup();
 })();
