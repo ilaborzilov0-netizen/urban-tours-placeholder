@@ -30,7 +30,15 @@ for(const form of forms){
  try{
  const response=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email,plan:PLAN,flowId:'ai-anchor-instruction-990',source:'marafon_audioyakorya_instruction_'+position,returnUrl:location.origin+location.pathname}),signal:ctrl.signal});
  const data=await response.json().catch(()=>null);
- if(!response.ok||!data||data.ok!==true)throw new Error(data?.error||'Не удалось создать платёж.');
+ if(!response.ok||!data||data.ok!==true){
+   if(data?.code==='INVALID_CUSTOMER'&&(data.fields?.name||data.fields?.phone)){
+     throw new Error('Платёжный сервис ещё обновляется для покупки по email. Попробуйте немного позже.');
+   }
+   if(data?.code==='INVALID_CUSTOMER'&&data.fields?.email){
+     throw new Error('Проверьте написание электронной почты.');
+   }
+   throw new Error(data?.error||'Не удалось создать платёж.');
+ }
  const minor=data.amountMinor!=null?Number(data.amountMinor):(Number(data.amount)>=10000?Number(data.amount):Math.round(Number(data.amount)*100));
  if(data.plan!==PLAN||minor!==PRICE_MINOR||!data.orderId||!data.paymentUrl)throw new Error('Не удалось подтвердить заказ на 990 ₽.');
  const bank=new URL(data.paymentUrl);
