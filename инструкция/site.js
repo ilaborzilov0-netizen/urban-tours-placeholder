@@ -18,14 +18,7 @@ document.querySelectorAll('.faq-list details').forEach(d=>d.addEventListener('to
 const audio=document.getElementById('demo-audio'),btn=document.getElementById('demo-button'),bar=document.getElementById('demo-line'),count=document.getElementById('demo-time');
 function sync(){const sec=Math.min(10,Math.max(0,audio.currentTime||0));bar.style.width=sec*10+'%';count.textContent=String(Math.floor(sec)).padStart(2,'0')+' / 10';btn.textContent=audio.paused?(audio.dataset.fallback==='yes'?'▶ Послушать пример другого трека':'▶ Послушать 10 секунд'):'Ⅱ Пауза';btn.setAttribute('aria-pressed',String(!audio.paused))}
 audio.addEventListener('timeupdate',()=>{if(audio.currentTime>=9.98){audio.pause();audio.currentTime=0}sync()});audio.addEventListener('pause',sync);audio.addEventListener('play',sync);audio.addEventListener('ended',()=>{audio.currentTime=0;sync()});
-audio.addEventListener('error',()=>{if(audio.dataset.fallback)return;
- audio.dataset.fallback='yes';
- document.getElementById('demo-track-description').textContent='Новый фрагмент «Всё происходит» пока не опубликован. Можно послушать 10 секунд другого аудиоякоря — «Жизнь станет лучше».';
- document.getElementById('demo-error').textContent='Для нового трека файл ещё не загружен. Здесь временно играет пример другого трека.';
- document.getElementById('demo-error').hidden=false;
- audio.src='/ai/assets/life-gets-better-demo-20261008.mp3';
- audio.load();sync();
-});
+audio.addEventListener('error',()=>{document.getElementById('demo-error').hidden=false;document.getElementById('demo-error').textContent='Фрагмент временно недоступен. Попробуйте обновить страницу.';});
 btn.addEventListener('click',async()=>{if(!audio.paused){audio.pause();return}try{await audio.play();goal('demo_play')}catch(e){document.getElementById('demo-error').hidden=false}});
 sync();goal('view');
 })();

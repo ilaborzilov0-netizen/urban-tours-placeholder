@@ -37,7 +37,7 @@ for(const form of forms){
  if(bank.protocol!=='https:'||(!/(^|\.)(tinkoff\.ru|tbank\.ru)$/.test(bank.hostname)&&bank.hostname!=='pay.tbank-online.com'))throw new Error('Банковская ссылка не прошла проверку.');
  try{sessionStorage.setItem('marafonAiLastPayment',JSON.stringify({orderId:data.orderId,paymentId:data.paymentId,amountMinor:PRICE_MINOR,createdAt:new Date().toISOString()}))}catch(_){}
  goal('inline_payment_created',{position});location.assign(bank.href);
- }catch(error){status.textContent=error.name==='AbortError'?'Банк отвечает слишком долго. Попробуйте ещё раз.':error.message;status.hidden=false;goal('inline_payment_error',{position});busy=false;setButtons(false);title.textContent='Бросить курить'}
+ }catch(error){status.textContent=error.name==='AbortError'?'Банк отвечает слишком долго. Попробуйте ещё раз.':error.message;status.hidden=false;goal('inline_payment_error',{position});busy=false;setButtons(false);title.textContent='Получить альбом'}
  finally{clearTimeout(timer)}
  });
 }
