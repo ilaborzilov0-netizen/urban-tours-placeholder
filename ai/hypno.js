@@ -37,6 +37,17 @@ function readCustomer(form,status){
  if(form.elements.website.value){showStatus(status,'Не удалось отправить форму.');return null}
  return data;
 }
+function readPurchaseEmail(form,status){
+ const e=form.elements.email;
+ e.removeAttribute('aria-invalid');
+ const email=e.value.trim();
+ if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+  e.setAttribute('aria-invalid','true');showStatus(status,'Введите корректную электронную почту.');e.focus();return null;
+ }
+ if(form.elements.website.value){showStatus(status,'Не удалось отправить форму.');return null}
+ return {email};
+}
+
 async function request(url,options={}){
  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),30000);
  try{
@@ -51,7 +62,7 @@ let busyPay=false;
 payForm?.addEventListener('submit',async ev=>{
  ev.preventDefault();if(busyPay)return;
  const status=document.getElementById('purchase-status');status.hidden=true;
- const customer=readCustomer(payForm,status);if(!customer)return;
+ const customer=readPurchaseEmail(payForm,status);if(!customer)return;
  busyPay=true;const btn=payForm.querySelector('[type=submit]');btn.disabled=true;btn.firstChild.textContent='Открываем оплату… ';
  goal('hypno_payment_create');
  try{
