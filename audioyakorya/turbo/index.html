@@ -1,0 +1,169 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow,noarchive"><title>Турбопульт аудиоякорей — 7 избранных лендингов</title><meta name="description" content="7 отобранных дизайнов аудиоякорей: Claude, Gemini, Work и Grok. Один пульт для просмотра, сравнения и переключения."><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"><style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{font-family:Manrope,Arial,sans-serif;color:#f4f3f0;background:#101115;--lime:#C8F89C;--line:#ffffff1e;--muted:#a0a1aa}
+*,*:before,*:after{box-sizing:border-box}body{min-width:340px;margin:0;font-size:14px}button,select{font:inherit;cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,select:focus-visible{outline:2px solid #d0ffa5;outline-offset:3px}
+.top{padding:29px 38px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:32px;background:radial-gradient(ellipse at 89% -20%,#3b493360,transparent 42%),#15171a}
+.kicker{font:11px 'DM Mono',monospace;letter-spacing:.12em;color:#c8eb9f;text-transform:uppercase}
+.top h1{font-size:clamp(32px,4vw,55px);line-height:1.04;letter-spacing:-.063em;margin:10px 0 7px;font-weight:800}
+.top h1 em{font-style:normal;color:#d9fcae}.top p{margin:0;color:#abaeb4;max-width:760px;line-height:1.7}
+.top-meta{display:flex;gap:12px;align-items:center;flex-shrink:0}.stat{border:1px solid #ffffff2b;border-radius:10px;padding:15px 20px;min-width:97px;text-align:center}.stat strong{font-size:27px;letter-spacing:-.07em;display:block;line-height:1}.stat span{font-size:10px;color:#a6a8ad}
+.workspace{display:grid;grid-template-columns:330px minmax(0,1fr);min-height:calc(100vh - 171px)}.sidebar{padding:23px 14px 25px;background:#191a1f;border-right:1px solid var(--line);overflow-y:auto;max-height:calc(100vh - 171px);position:sticky;top:0}
+.sidebar-label{display:flex;justify-content:space-between;align-items:center;padding:0 11px 10px;color:#b5b5bd;font:10px 'DM Mono',monospace;letter-spacing:.12em}
+.item{display:flex;align-items:stretch;border:1px solid #ffffff1b;border-radius:10px;background:#24252c;margin:7px 0;transition:background .15s,border .15s}
+.item:hover{background:#30313a}.item.chosen{background:#30392c;border-color:#bce18b}.choose{background:none;border:0;padding:13px 8px 13px 12px;color:#f2f0f4;display:flex;align-items:center;gap:11px;text-align:left;width:100%;min-width:0}
+.swatch{background:var(--swatch);border-radius:7px;color:#182015;font:800 15px 'DM Mono',monospace;flex:0 0 47px;display:grid;place-items:center;height:57px}
+.item-body{display:block;min-width:0}.item-family{font:600 10px 'DM Mono',monospace;color:#9eb2a0;letter-spacing:.07em;text-transform:uppercase}.item.chosen .item-family{color:#d1f7a5}.variant-num{opacity:.55}.item strong{display:block;font-size:14px;letter-spacing:-.03em;margin:1px 0}.item small{display:block;color:#aaaab4;font-size:10.7px;line-height:1.4}.item-open{flex:0 0 29px;display:grid;place-items:center;align-self:stretch;color:#a8aaae;font-size:19px;border-left:1px solid #ffffff12}.item-open:hover{color:#e0ffa7}
+.side-foot{border-top:1px solid #ffffff29;margin:21px 10px 0;padding-top:17px;font-size:12px;line-height:1.72;color:#a5a6ae}
+.viewer{min-width:0;padding:17px 22px 30px;overflow:hidden;background:#101115}
+.toolbar{display:flex;align-items:center;gap:7px;flex-wrap:wrap;min-height:42px;margin-bottom:12px}
+.current{display:flex;align-items:center;gap:10px;margin-right:auto;min-width:210px}.current-dot{height:10px;width:10px;border-radius:50%;background:#c9f59e;box-shadow:0 0 0 4px #c9f59e1b}.current strong{display:block;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:270px}.current small{display:block;color:#91959a;font:10px 'DM Mono',monospace}
+.tool{padding:10px 12px;border:1px solid #ffffff2c;border-radius:7px;background:#282a30;color:#e9e9ee;font-size:11px;white-space:nowrap}.tool:hover{background:#373b40}.tool.active{background:#c7f29f;color:#152012;border-color:#c7f29f;font-weight:800}
+.nextprev{display:flex;gap:4px}.nextprev .tool{font-size:17px;padding:6px 13px}.tool.primary{background:#c7f29f;color:#182016;font-weight:800;border-color:#c7f29f}
+.frame-layout{height:calc(100vh - 245px);min-height:500px;max-height:1120px;display:grid;gap:12px;grid-template-columns:minmax(0,1fr);align-items:stretch}
+.frame-layout.split{grid-template-columns:repeat(2,minmax(0,1fr))}.frame-layout.mobile{display:flex;justify-content:center;overflow-x:auto;gap:14px}
+.frame-layout.split.mobile{justify-content:flex-start}.frame-box{min-width:0;height:100%;border:7px solid #303139;border-radius:12px;overflow:hidden;background:#1b1c24;box-shadow:0 18px 65px #0008;display:flex;flex-direction:column}
+.frame-layout.mobile .frame-box{flex:0 0 min(394px,100%);max-width:394px}.frame-layout.mobile.split .frame-box{flex:0 0 394px}
+.frame-head{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:39px;padding:6px 11px;background:#252630;border-bottom:1px solid #ffffff23}
+.frame-head strong{color:#eeeeee;font-size:11px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.frame-head a{font-size:11px;color:#bfe9a2;white-space:nowrap}.frame-head a:hover{text-decoration:underline}
+iframe{border:0;background:#ffffff;width:100%;flex:1;min-height:0}
+.frame-box[hidden]{display:none}
+.compare{display:flex;align-items:center;gap:8px;margin:0 0 11px;padding:9px 12px;background:#1c1e24;border:1px solid #ffffff20;border-radius:7px;font-size:11px;color:#bfc1c4}
+.compare label{white-space:nowrap}.compare select{background:#30333a;border:1px solid #ffffff38;border-radius:6px;padding:8px 11px;color:#fff;min-width:0;max-width:360px;flex:1}.compare .note{margin-left:auto;font-size:10px;color:#93979b}
+.bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:13px;color:#989aa2;font-size:11px}.bottom a{text-decoration:underline}
+.toast{position:fixed;bottom:20px;right:24px;border:1px solid #bdf08e;background:#283923;color:#efffe9;padding:12px 17px;border-radius:8px;box-shadow:0 15px 50px #0009;z-index:50;font-size:12px}.toast[hidden]{display:none}
+@media(max-width:1190px){.workspace{grid-template-columns:280px minmax(0,1fr)}.top{padding:22px 27px}.stat{min-width:75px;padding:12px}.sidebar{padding:14px 10px}.viewer{padding:14px}.current{min-width:180px}.current strong{max-width:195px}.frame-layout{height:calc(100vh - 270px)}}
+@media(max-width:850px){.top{padding:20px 16px;display:block}.top-meta{display:none}.workspace{grid-template-columns:1fr}.sidebar{position:static;max-height:none;display:flex;flex-direction:row;overflow-x:auto;gap:7px;align-items:stretch;padding:10px 12px}.sidebar-label,.side-foot{display:none}.item{flex:0 0 195px;margin:0}.choose{padding:9px;gap:7px}.swatch{height:46px;flex-basis:34px;font-size:12px}.item small{display:none}.item strong{font-size:12px}.item-open{flex-basis:23px}.viewer{padding:12px}.current{min-width:100%;margin:0 0 3px}.current strong{max-width:unset}.frame-layout{height:70vh;min-height:420px}.frame-layout.split{grid-template-columns:1fr}.frame-layout.split:not(.mobile){overflow-x:auto;display:flex}.frame-layout.split:not(.mobile) .frame-box{flex:0 0 min(850px,90vw)}.bottom{display:block}.bottom span{display:block;margin-bottom:6px}}
+@media(prefers-reduced-motion:reduce){.item{transition:none}}
+
+body.focused .sidebar{display:none}body.focused .workspace{grid-template-columns:1fr}body.focused .frame-layout{height:calc(100vh - 245px)}
+</style></head>
+<body><header class="top"><div><div class="kicker">АУДИОЯКОРЯ / TURBO SELECT / 2026</div><h1>7 лучших вариантов.<br><em>Один пульт.</em></h1><p>Claude 2 · Gemini 1–3 · Work 1 и 3 · Grok 4. Мгновенно переключайте, сравнивайте рядом или открывайте сайты отдельно.</p></div><div class="top-meta"><div class="stat"><strong>07</strong><span>ЛЕНДИНГОВ</span></div><div class="stat"><strong>04</strong><span>СЕМЕЙСТВА</span></div></div></header>
+<div class="workspace"><aside class="sidebar" aria-label="Выбор сайта"><div class="sidebar-label"><span>ВЫБРАТЬ ВЕРСИЮ</span><span>01 — 07</span></div><div class="item chosen" data-item="claude2">
+  <button type="button" class="choose" data-select="claude2" aria-pressed="true" aria-label="Показать Claude: Спокойствие">
+    <span class="swatch" style="--swatch:#A3B9AA">02</span>
+    <span class="item-body"><span class="item-family">Claude <span class="variant-num">/ 02</span></span><strong>Спокойствие</strong><small>Светлый фон, воздух, мягкие волны</small></span>
+  </button><a class="item-open" href="/claude/2/" target="_blank" rel="noopener" title="Открыть исходную страницу Спокойствие" aria-label="Открыть Спокойствие отдельно">↗</a>
+</div>
+<div class="item " data-item="gemini1">
+  <button type="button" class="choose" data-select="gemini1" aria-pressed="false" aria-label="Показать Gemini: Cyber-Acoustic">
+    <span class="swatch" style="--swatch:#C8FF5C">01</span>
+    <span class="item-body"><span class="item-family">Gemini <span class="variant-num">/ 01</span></span><strong>Cyber-Acoustic</strong><small>Кислотные волны и Bento-карточки</small></span>
+  </button><a class="item-open" href="/gemini/1/" target="_blank" rel="noopener" title="Открыть исходную страницу Cyber-Acoustic" aria-label="Открыть Cyber-Acoustic отдельно">↗</a>
+</div>
+<div class="item " data-item="gemini2">
+  <button type="button" class="choose" data-select="gemini2" aria-pressed="false" aria-label="Показать Gemini: Pure Focus">
+    <span class="swatch" style="--swatch:#A4D3C0">02</span>
+    <span class="item-body"><span class="item-family">Gemini <span class="variant-num">/ 02</span></span><strong>Pure Focus</strong><small>Молочный минимализм и ясность</small></span>
+  </button><a class="item-open" href="/gemini/2/" target="_blank" rel="noopener" title="Открыть исходную страницу Pure Focus" aria-label="Открыть Pure Focus отдельно">↗</a>
+</div>
+<div class="item " data-item="gemini3">
+  <button type="button" class="choose" data-select="gemini3" aria-pressed="false" aria-label="Показать Gemini: Immersive Audio">
+    <span class="swatch" style="--swatch:#BB9BFF">03</span>
+    <span class="item-body"><span class="item-family">Gemini <span class="variant-num">/ 03</span></span><strong>Immersive Audio</strong><small>Музыкальный стриминг и плеер</small></span>
+  </button><a class="item-open" href="/gemini/3/" target="_blank" rel="noopener" title="Открыть исходную страницу Immersive Audio" aria-label="Открыть Immersive Audio отдельно">↗</a>
+</div>
+<div class="item " data-item="work1">
+  <button type="button" class="choose" data-select="work1" aria-pressed="false" aria-label="Показать Work: Понятный инструмент">
+    <span class="swatch" style="--swatch:#B5EBCF">01</span>
+    <span class="item-body"><span class="item-family">Work <span class="variant-num">/ 01</span></span><strong>Понятный инструмент</strong><small>Чистый продуктовый лендинг</small></span>
+  </button><a class="item-open" href="/audioyakorya/work/pult/?v=instrument&pult=off" target="_blank" rel="noopener" title="Открыть исходную страницу Понятный инструмент" aria-label="Открыть Понятный инструмент отдельно">↗</a>
+</div>
+<div class="item " data-item="work3">
+  <button type="button" class="choose" data-select="work3" aria-pressed="false" aria-label="Показать Work: Авторский подход">
+    <span class="swatch" style="--swatch:#EEBA98">03</span>
+    <span class="item-body"><span class="item-family">Work <span class="variant-num">/ 03</span></span><strong>Авторский подход</strong><small>Личный метод и авторская подача</small></span>
+  </button><a class="item-open" href="/audioyakorya/work/pult/?v=author&pult=off" target="_blank" rel="noopener" title="Открыть исходную страницу Авторский подход" aria-label="Открыть Авторский подход отдельно">↗</a>
+</div>
+<div class="item " data-item="grok4">
+  <button type="button" class="choose" data-select="grok4" aria-pressed="false" aria-label="Показать Grok: Тёплый манифест">
+    <span class="swatch" style="--swatch:#EEB16B">04</span>
+    <span class="item-body"><span class="item-family">Grok <span class="variant-num">/ 04</span></span><strong>Тёплый манифест</strong><small>Смелый заголовок и камерный стиль</small></span>
+  </button><a class="item-open" href="/grok/4/" target="_blank" rel="noopener" title="Открыть исходную страницу Тёплый манифест" aria-label="Открыть Тёплый манифест отдельно">↗</a>
+</div><div class="side-foot">Выбранная версия сохраняется в адресе страницы. Нажимайте <strong>1–7</strong> на клавиатуре или стрелки, чтобы переключаться.<br><br>Для реальной оплаты открывайте исходный сайт через ↗.</div></aside>
+<main class="viewer"><div class="toolbar"><div class="current"><span class="current-dot"></span><div><strong id="current-name">Claude · Спокойствие</strong><small id="current-url">/claude/2/</small></div></div>
+<div class="nextprev"><button type="button" class="tool" id="previous" title="Предыдущий вариант" aria-label="Предыдущий вариант">←</button><button type="button" class="tool" id="next" title="Следующий вариант" aria-label="Следующий вариант">→</button></div>
+<button type="button" class="tool active" data-device="desktop" aria-pressed="true">Десктоп</button><button type="button" class="tool" data-device="phone" aria-pressed="false">Телефон</button>
+<button type="button" class="tool" id="compare-button" aria-pressed="false">▣ Сравнить рядом</button><button type="button" class="tool" id="focus-button">Развернуть</button><button type="button" class="tool" id="copy-button">Скопировать</button><a class="tool primary" id="external" href="/claude/2/" target="_blank" rel="noopener">Открыть сайт ↗</a></div>
+<div class="compare" id="compare-settings" hidden><label for="secondary-choice">Сравнить с:</label><select id="secondary-choice"><option value="claude2">Claude · 02 · Спокойствие</option><option value="gemini1">Gemini · 01 · Cyber-Acoustic</option><option value="gemini2">Gemini · 02 · Pure Focus</option><option value="gemini3">Gemini · 03 · Immersive Audio</option><option value="work1">Work · 01 · Понятный инструмент</option><option value="work3">Work · 03 · Авторский подход</option><option value="grok4">Grok · 04 · Тёплый манифест</option></select><span class="note">Два интерактивных предпросмотра рядом</span></div>
+<div class="frame-layout" id="frame-layout"><div class="frame-box"><div class="frame-head"><strong id="first-name">Claude / 02 — Спокойствие</strong><a id="first-open" href="/claude/2/" target="_blank" rel="noopener">Открыть ↗</a></div><iframe id="first-frame" title="Основной просмотр сайта" src="/claude/2/" loading="eager" allow="autoplay"></iframe></div>
+<div class="frame-box" id="second-box" hidden><div class="frame-head"><strong id="second-name"></strong><a id="second-open" target="_blank" rel="noopener" href="/grok/4/">Открыть ↗</a></div><iframe id="second-frame" title="Второй сайт для сравнения" loading="lazy" allow="autoplay"></iframe></div></div>
+<div class="bottom"><span><span id="count">01 / 07</span> · Одна покупка · 12 треков · 990 ₽ · Разные дизайны</span><span>Сайты исходные — этот пульт их не меняет и не копирует.</span></div></main></div><div class="toast" id="toast" hidden role="status"></div><script>
+(()=>{
+'use strict';
+const variants=[
+{id:'claude2',family:'Claude',num:'02',label:'Спокойствие',src:'/claude/2/'},
+{id:'gemini1',family:'Gemini',num:'01',label:'Cyber-Acoustic',src:'/gemini/1/'},
+{id:'gemini2',family:'Gemini',num:'02',label:'Pure Focus',src:'/gemini/2/'},
+{id:'gemini3',family:'Gemini',num:'03',label:'Immersive Audio',src:'/gemini/3/'},
+{id:'work1',family:'Work',num:'01',label:'Понятный инструмент',src:'/audioyakorya/work/pult/?v=instrument&pult=off'},
+{id:'work3',family:'Work',num:'03',label:'Авторский подход',src:'/audioyakorya/work/pult/?v=author&pult=off'},
+{id:'grok4',family:'Grok',num:'04',label:'Тёплый манифест',src:'/grok/4/'}
+];
+const byId=Object.fromEntries(variants.map(v=>[v.id,v]));
+const params=new URLSearchParams(location.search);
+let selected=byId[params.get('v')]?params.get('v'):'claude2';
+let secondary=byId[params.get('with')]?params.get('with'):'grok4';
+let comparison=params.get('mode')==='compare',mobile=params.get('device')==='phone',focused=false;
+const $=id=>document.getElementById(id);
+const primaryFrame=$('first-frame'),secondaryFrame=$('second-frame'),frameLayout=$('frame-layout');
+const toast=$('toast');
+function url(v){return new URL(v.src,location.origin).href}
+function setFrame(frame,variant){if(frame.dataset.variant!==variant.id){frame.src=url(variant);frame.dataset.variant=variant.id}}
+function buttonState(){document.querySelectorAll('[data-select]').forEach(b=>{
+const active=b.dataset.select===selected;
+b.setAttribute('aria-pressed',String(active));
+b.closest('[data-item]').classList.toggle('chosen',active);
+});}
+function updateUrl(){
+const u=new URL(location.href);u.searchParams.set('v',selected);
+if(comparison){u.searchParams.set('mode','compare');u.searchParams.set('with',secondary)}else{u.searchParams.delete('mode');u.searchParams.delete('with')}
+if(mobile)u.searchParams.set('device','phone');else u.searchParams.delete('device');
+history.replaceState({},'',u.pathname+u.search);
+}
+function render(){
+const main=byId[selected];
+if(comparison&&secondary===selected)secondary=variants.find(v=>v.id!==selected).id;
+setFrame(primaryFrame,main);
+$('first-name').textContent=main.family+' / '+main.num+' — '+main.label;
+$('first-open').href=url(main);
+$('external').href=url(main);
+$('external').ariaLabel='Открыть '+main.label+' целиком';
+$('current-name').textContent=main.family+' · '+main.label;
+$('current-url').textContent=main.src;
+$('count').textContent=String(variants.findIndex(v=>v.id===selected)+1).padStart(2,'0')+' / 07';
+$('secondary-choice').value=secondary;
+const other=byId[secondary];
+if(comparison){setFrame(secondaryFrame,other);$('second-name').textContent=other.family+' / '+other.num+' — '+other.label;$('second-open').href=url(other)}
+$('second-box').hidden=!comparison;
+$('compare-settings').hidden=!comparison;
+frameLayout.classList.toggle('split',comparison);
+frameLayout.classList.toggle('mobile',mobile);
+document.querySelectorAll('[data-device]').forEach(b=>{let on=b.dataset.device===(mobile?'phone':'desktop');b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on))});
+$('compare-button').classList.toggle('active',comparison);$('compare-button').setAttribute('aria-pressed',String(comparison));$('compare-button').textContent=comparison?'✓ Сравнение':'▣ Сравнить рядом';
+$('focus-button').textContent=focused?'Вернуть пульт':'Развернуть';
+document.body.classList.toggle('focused',focused);
+buttonState();updateUrl();
+}
+function choose(id){if(!byId[id])return;selected=id;render();}
+document.querySelectorAll('[data-select]').forEach(b=>b.addEventListener('click',()=>choose(b.dataset.select)));
+document.querySelectorAll('[data-device]').forEach(b=>b.addEventListener('click',()=>{mobile=b.dataset.device==='phone';render()}));
+$('compare-button').addEventListener('click',()=>{comparison=!comparison;render()});
+$('secondary-choice').addEventListener('change',e=>{secondary=e.target.value;render()});
+$('previous').addEventListener('click',()=>{selected=variants[(variants.findIndex(v=>v.id===selected)-1+variants.length)%variants.length].id;render()});
+$('next').addEventListener('click',()=>{selected=variants[(variants.findIndex(v=>v.id===selected)+1)%variants.length].id;render()});
+$('focus-button').addEventListener('click',()=>{focused=!focused;render()});
+$('copy-button').addEventListener('click',async()=>{
+try{await navigator.clipboard.writeText(location.href);toast.textContent='Ссылка на этот выбор скопирована';}
+catch(e){toast.textContent='Ссылка с выбранной версией уже находится в адресной строке';}
+toast.hidden=false;setTimeout(()=>toast.hidden=true,2300);
+});
+document.addEventListener('keydown',e=>{
+if(e.altKey||e.ctrlKey||e.metaKey||e.shiftKey||['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName))return;
+if(/^[1-7]$/.test(e.key)){choose(variants[Number(e.key)-1].id)}
+if(e.key==='ArrowRight')$('next').click();
+if(e.key==='ArrowLeft')$('previous').click();
+});
+window.addEventListener('popstate',()=>{const p=new URLSearchParams(location.search);selected=byId[p.get('v')]?p.get('v'):'claude2';secondary=byId[p.get('with')]?p.get('with'):'grok4';comparison=p.get('mode')==='compare';mobile=p.get('device')==='phone';render()});
+render();
+})();
+</script></body></html>
