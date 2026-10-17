@@ -109,3 +109,33 @@ body.instruction-page{padding-top:0;--pult-height:0px}
 .origin-copy .origin-ending{font-size:12px;color:#728873}
 @media(max-width:850px){.origin-layout{gap:27px}.origin-intro{gap:23px}.author-origin-section{padding:72px 0}}
 @media(max-width:650px){.origin-layout,.origin-intro{grid-template-columns:1fr}.origin-photo{position:static;max-width:410px}.origin-photo img{aspect-ratio:4/3.5}.origin-copy>p{font-size:15px}.origin-copy blockquote{padding:20px 19px}.origin-intro>p{font-size:15px}}
+
+
+/* V2 audio route: first two songs shift perspective; the third is the quit decision. */
+.instruction-page .i-hero h1{font-size:clamp(42px,4.5vw,69px);line-height:1.07}
+.hero-journey{display:flex;align-items:center;flex-wrap:wrap;gap:8px 10px;margin:18px 0 4px;font-size:11px;color:#567765;line-height:1.5}
+.hero-journey span{display:inline-flex;align-items:baseline;gap:6px;padding:8px 10px;background:#ecf5ed;border-radius:6px}
+.hero-journey b{color:#1e6349;font-size:13px}
+.hero-journey .hero-journey-focus{background:#d6e9d9;color:#194e34;font-weight:700}
+.hero-journey i{font-style:normal;color:#9bb5a0}
+.listening-sequence{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:29px 0 14px}
+.sequence-track{border:1px solid #d1e2d5;border-radius:12px;background:#f2f7f2;padding:22px 20px;display:flex;flex-direction:column;gap:5px;text-decoration:none;color:#1a5038;min-height:208px;transition:border-color .2s,transform .2s}
+.sequence-track:hover{border-color:#519276;transform:translateY(-2px)}
+.sequence-n{font-size:12px;font-weight:800;color:#397c57;letter-spacing:.07em;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sequence-label{font-size:12px;color:#648473;margin-top:14px}
+.sequence-track strong{font-size:22px;letter-spacing:-.04em;line-height:1.25}
+.sequence-track small{font-size:12px;line-height:1.65;color:#627b6b;margin-top:7px}
+.sequence-track.sequence-highlight{background:#1e5b42;border-color:#1e5b42;color:#fff}
+.sequence-highlight .sequence-n,.sequence-highlight .sequence-label,.sequence-highlight small{color:#dbecdc}
+.sequence-star{padding:5px 7px;background:#d9edba;border-radius:4px;color:#214b31;font-size:9px;letter-spacing:.08em}
+.sequence-next{font-size:13px;color:#526b5b;margin:10px 0 24px;line-height:1.7}
+.sequence-next b{color:#174f35}
+.sequence-next span{display:block;color:#698374;margin-top:4px}
+.key-decision{border:2px solid #418261;background:#f8fcf8;box-shadow:0 7px 30px #1c62320a}
+.key-decision-label{display:inline-block;font-size:10px;letter-spacing:.11em;font-weight:800;color:#1c6b45;background:#dfeddf;border-radius:5px;padding:7px 10px;margin-bottom:14px}
+.key-decision .key-top h3{color:#17583b}
+.key-decision .key-action{border-left:3px solid #43855e}
+.decision-link{display:inline-flex;align-items:center;color:#166445;font-size:13px;font-weight:800;margin-top:12px;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:800px){.listening-sequence{grid-template-columns:1fr;gap:9px}.sequence-track{min-height:auto;padding:17px 18px}.sequence-label{margin-top:5px}.sequence-track strong{font-size:20px}}
+@media(max-width:520px){.hero-journey{gap:6px}.hero-journey span{padding:6px 7px;font-size:10px}.hero-journey i{display:none}}
+@media(prefers-reduced-motion:reduce){.sequence-track{transition:none}}
