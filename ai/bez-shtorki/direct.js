@@ -52,7 +52,7 @@ for(const form of forms){
   }catch(e){
    goal('hypno_inline_payment_error');goal('hypno_inline_payment_error_'+position);
    status.textContent=e.name==='AbortError'?'Платёжный сервис отвечает дольше обычного. Попробуйте ещё раз.':e.message;
-   status.hidden=false;buttonText.textContent='Получить аудиосеанс';
+   status.hidden=false;buttonText.textContent='Бросить курить';
    for(const f of forms){f.querySelector('[type="submit"]').disabled=false;}
    activePayment=false;
   }finally{clearTimeout(timer)}
