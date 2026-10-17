@@ -5,6 +5,13 @@ const API='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/api/pay
 const STATUS_API='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/api/payment/status';
 const LEADS_API='https://api.marafon-metod.ru/api/leads';
 const price=99000;
+// Do not count embedded preview sessions as visitors in the campaign analytics.
+if(window.self===window.top && !new URLSearchParams(location.search).has('preview')){
+ try{
+  (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return;}k=e.createElement(t);a=e.getElementsByTagName(t)[0];k.async=1;k.src=r;a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=110906734','ym');
+  window.ym(110906734,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});
+ }catch(_){}
+}
 const goals=(event)=>{try{if(typeof window.ym==='function'){window.ym(110906734,'reachGoal','ai_pult_'+variant+'_'+event)}}catch(_){}};
 const dialogs={buy:document.getElementById('purchase-dialog'),ask:document.getElementById('question-dialog'),result:document.getElementById('payment-result-dialog')};
 function openDialog(d){if(!d)return;Object.values(dialogs).forEach(x=>{if(x&&x!==d&&x.open)x.close()});if(!d.open&&d.showModal)d.showModal()}
@@ -37,6 +44,11 @@ let paying=false;
 pay.addEventListener('submit',async e=>{
  e.preventDefault();if(paying)return;ps.hidden=true;
  const buyer=customer(pay,ps);if(!buyer)return;
+ if(window.self!==window.top){
+  display(ps,'Для оплаты откройте эту версию в отдельной вкладке.');
+  window.open(location.origin+location.pathname,'_blank','noopener');
+  return;
+ }
  const button=pay.querySelector('[type="submit"]');paying=true;button.disabled=true;button.textContent='Открываем Т-Банк…';
  goals('payment_create');
  try{
@@ -48,7 +60,6 @@ pay.addEventListener('submit',async e=>{
  if(url.protocol!=='https:'||(!/(^|\.)(tinkoff\.ru|tbank\.ru)$/.test(url.hostname)&&url.hostname!=='pay.tbank-online.com'))throw new Error('Адрес оплаты не прошёл проверку безопасности.');
  try{sessionStorage.setItem('audio_pult_last_order',data.orderId)}catch(_){}
  goals('payment_created');
- if(window.self!==window.top){window.open(location.href.split('?')[0]+'?checkout=1','_blank','noopener');display(ps,'Откройте полную страницу для покупки.');button.disabled=false;button.textContent='Перейти к оплате · 990 ₽';paying=false;return}
  location.assign(url.href);
  }catch(err){display(ps,err.name==='AbortError'?'Сервис отвечает дольше обычного. Повторите попытку.':err.message);goals('payment_error');button.disabled=false;button.textContent='Перейти к оплате · 990 ₽';paying=false}
 });
