@@ -53,7 +53,7 @@ const el={
  hint:$('hint'),transcript:$('transcript-body')
 };
 const hasSpeech=!!(window.speechSynthesis&&window.SpeechSynthesisUtterance);
-let playing=false,elapsed=0,voiceEnabled=false,currentCue=-1,lastFrame=0,raf=0;
+let playing=false,elapsed=0,voiceEnabled=false,voiceTouched=false,startedOnce=false,currentCue=-1,lastFrame=0,raf=0;
 let isVoiceUtterance=false,seekRevision=0,speechGeneration=0;
 const isReduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function clock(n){n=Math.max(0,Math.floor(n));return String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0')}
@@ -116,6 +116,10 @@ function tick(now){
 function play(){
  if(playing)return;
  if(elapsed>=DURATION)render(0,true);
+ if(!startedOnce && !voiceTouched && hasSpeech && ruVoice()){
+  voiceEnabled=true;updateVoiceButton();
+ }
+ startedOnce=true;
  playing=true;
  lastFrame=0;
  updatePlayButton();
@@ -139,6 +143,7 @@ el.bigPlay.addEventListener('click',()=>play());
 el.restart.addEventListener('click',()=>{seek(0);if(!playing)play()});
 el.seek.addEventListener('input',e=>{seek(Number(e.target.value))});
 el.voice.addEventListener('click',()=>{
+ voiceTouched=true;
  if(!hasSpeech){el.hint.textContent='Этот браузер не поддерживает озвучку. Используйте субтитры.';return}
  if(!voiceEnabled&&!ruVoice()){el.hint.textContent='Русский голос на устройстве не найден. Воспроизведение с субтитрами работает без него.';return}
  voiceEnabled=!voiceEnabled;cancelVoice();updateVoiceButton();
@@ -166,6 +171,9 @@ try{
   }
   if(event.data?.type==='ai-motion'){
    el.movie.classList.toggle('motion-off',!event.data.enabled);
+  }
+  if(event.data?.type==='ai-vision'){
+   el.movie.classList.toggle('vision-mode',!!event.data.enabled);
   }
  });
 }catch(_){}
