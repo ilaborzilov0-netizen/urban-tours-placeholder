@@ -57,9 +57,9 @@ sunoLoad.addEventListener('click',()=>{
  goal('ai1414_suno_embed_attempt');
 });
 document.querySelectorAll('[data-suno-direct]').forEach(a=>a.addEventListener('click',()=>goal('ai1414_suno_direct_click')));
-// Ten treatments. Accessibility and motion preferences are independent.
-const allowedThemes=['classic','dark','vinyl','soviet','phonotheque','concert','bureau','neural','quantum','futurelab'];
-let theme='classic',vision=false,motionPref=true;
+// Three shortlisted treatments. Accessibility and motion preferences are independent.
+const allowedThemes=['dark','phonotheque','neural'];
+let theme='dark',vision=false,motionPref=true;
 const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
 const useMotion=()=>motionPref&&!reduceMotion.matches;
 let motionObserver=null;
