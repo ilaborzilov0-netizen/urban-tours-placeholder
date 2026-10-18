@@ -48,3 +48,13 @@
   .compact-album .key-card{padding:14px}
   .compact-album .album-cover-large{max-width:170px}
 }
+
+/* Personal author contacts on /ai/: visible beneath the portrait, not a competing hero CTA. */
+.origin-photo figcaption .author-direct-contact{display:flex;flex-direction:column;align-items:flex-start;gap:10px;width:100%;margin-top:13px;padding-top:14px;border-top:1px solid #dae4da}
+.origin-photo figcaption .author-direct-contact p{font-size:13px;line-height:1.5;color:#476751;margin:0}
+.origin-photo figcaption .author-direct-links{display:flex;flex-wrap:wrap;gap:9px}
+.origin-photo figcaption .author-direct-links a{display:inline-flex;gap:10px;align-items:center;justify-content:space-between;border:1px solid #cddfd2;border-radius:9px;padding:10px 14px;background:#f3f8f3;color:#1c6047;text-decoration:none;font-size:13px;font-weight:700;min-height:43px;transition:background .18s,border-color .18s}
+.origin-photo figcaption .author-direct-links a:hover{background:#e5f1e6;border-color:#88b297}
+.origin-photo figcaption .author-direct-links a:focus-visible{outline:2px solid #1d694d;outline-offset:3px}
+.origin-photo figcaption .author-direct-links .author-link-arrow{font-size:15px;color:#497b60}
+@media(max-width:530px){.origin-photo figcaption .author-direct-links{width:100%}.origin-photo figcaption .author-direct-links a{flex:1;min-width:118px}}
