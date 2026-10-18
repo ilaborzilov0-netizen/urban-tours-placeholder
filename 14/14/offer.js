@@ -20,6 +20,10 @@ const sunoHelp=document.getElementById('suno-help');
 const pultButtons=[...document.querySelectorAll('[data-theme]')];
 const visionButton=document.getElementById('vision-switch');
 const motionButton=document.getElementById('motion-switch');
+const pathStory=document.getElementById('path-story');
+const pathReplay=document.getElementById('path-replay');
+const pathAnnouncement=document.getElementById('path-announcement');
+const mechanismSteps=[...document.querySelectorAll('[data-mech-step]')];
 function updateState(){
  styleButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.style===selectedStyle)));
  document.querySelectorAll('[data-price-card]').forEach(c=>c.classList.toggle('is-selected',c.dataset.priceCard===selectedPlan));
@@ -111,6 +115,85 @@ function setupScrollMotion(){
   if(convert)motionObserver.observe(convert);
  }
 }
+
+/* A 12-second silent explanatory cartoon. No copy is gated on motion. */
+let pathAutoUsed=false;
+let pathPlaying=false;
+let pathObserver=null;
+let pathTimers=[];
+function stopPathTimers(){
+ pathTimers.forEach(clearTimeout);
+ pathTimers=[];
+ pathPlaying=false;
+}
+function setPathScene(scene){
+ if(!pathStory)return;
+ pathStory.dataset.progress=scene;
+ const active=scene==='habit'?'habit':scene.startsWith('listen')?'repeat':scene==='choice'||scene==='complete'?'choice':'';
+ const passed=scene.startsWith('listen')?['habit']:scene==='choice'||scene==='complete'?['habit','repeat']:[];
+ mechanismSteps.forEach(el=>{
+  el.classList.toggle('is-current',el.dataset.mechStep===active);
+  el.classList.toggle('is-completed',passed.includes(el.dataset.mechStep));
+ });
+}
+function playPathStory(trigger){
+ if(!pathStory||!pathReplay)return;
+ if(pathObserver){pathObserver.disconnect();pathObserver=null;}
+ pathAutoUsed=true;
+ stopPathTimers();
+ if(!useMotion()){
+  setPathScene('complete');
+  pathReplay.textContent='↻ Схема без анимации';
+  if(trigger==='button')pathAnnouncement.textContent='Схема показана без движения: знакомая ситуация, повторение песни, новый ответ.';
+  return;
+ }
+ pathPlaying=true;
+ pathAnnouncement.textContent='';
+ pathReplay.textContent='↻ Посмотреть ещё раз';
+ setPathScene('habit');
+ const schedule=[
+  [2650,'listen1'],
+  [4350,'listen2'],
+  [6050,'listen3'],
+  [8350,'choice'],
+  [12000,'complete']
+ ];
+ schedule.forEach(([delay,scene])=>{
+  pathTimers.push(setTimeout(()=>{
+   if(!useMotion()){stopPathTimers();setPathScene('complete');return;}
+   setPathScene(scene);
+   if(scene==='complete'){
+    pathPlaying=false;pathTimers=[];
+    if(trigger==='button')pathAnnouncement.textContent='Анимация завершена: повторение музыки показывает, как другой ответ может стать легче вспомнить.';
+    goal('ai1414_path_story_complete',{trigger});
+   }
+  },delay));
+ });
+ goal('ai1414_path_story_start',{trigger});
+}
+function setupPathAuto(){
+ if(pathObserver){pathObserver.disconnect();pathObserver=null;}
+ if(!pathStory)return;
+ if(!useMotion()){
+  stopPathTimers();
+  setPathScene('complete');
+  pathReplay.textContent='↻ Схема без анимации';
+  return;
+ }
+ if(!pathPlaying && pathAutoUsed){
+  pathReplay.textContent='↻ Повторить за 12 секунд';
+ }
+ if(pathPlaying||pathAutoUsed||!('IntersectionObserver' in window))return;
+ pathObserver=new IntersectionObserver(entries=>{
+  if(entries.some(e=>e.isIntersecting)){
+   pathObserver?.disconnect();pathObserver=null;
+   playPathStory('auto');
+  }
+ },{rootMargin:'0px 0px -10% 0px',threshold:.08});
+ pathObserver.observe(pathStory);
+}
+pathReplay?.addEventListener('click',()=>playPathStory('button'));
+
 function applyAppearance(){
  document.body.classList.remove(...allowedThemes.map(x=>'theme-'+x));
  document.body.classList.add('theme-'+theme);
@@ -129,6 +212,7 @@ function applyAppearance(){
  const meta=document.querySelector('meta[name="theme-color"]');
  if(meta)meta.content=({dark:'#141814',classic:'#f6f2e7',vinyl:'#f0e3cc',soviet:'#efe9d7',phonotheque:'#352a22',concert:'#f5ecdb',bureau:'#e8eee9',neural:'#f7f8f3',quantum:'#080f14',futurelab:'#edf2f1'})[theme]||'#f6f2e7';
  setupScrollMotion();
+ setupPathAuto();
 }
 pultButtons.forEach(b=>b.addEventListener('click',()=>{
  theme=b.dataset.theme;
