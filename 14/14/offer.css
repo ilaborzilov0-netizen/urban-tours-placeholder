@@ -334,3 +334,7 @@ body.vision-mode .record-disc,body.vision-mode .sleeve{transition:none}
  body.vision-mode .hero h1{font-size:clamp(43px,12vw,67px)}
 }
 @media(prefers-reduced-motion:reduce){body{transition:none}.theme-pult *{transition:none}}
+
+/* Explicit hidden state: author display styles must not unhide the iframe/placeholder. */
+#suno-player[hidden],#suno-placeholder[hidden]{display:none!important}
+@media(max-width:900px){#top,#stages,#sounds,#sample,#pricing,#request,#about{scroll-margin-top:120px}}
