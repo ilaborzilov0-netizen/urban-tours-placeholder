@@ -673,3 +673,462 @@ body.theme-bureau .kicker,body.theme-bureau .artifacts-head{font-size:12px}
  body:is(.theme-phonotheque,.theme-concert,.theme-bureau) .artifact figcaption strong{font-size:16px}
  body:is(.theme-phonotheque,.theme-concert,.theme-bureau) .artifact figcaption span{font-size:13px}
 }
+
+
+/* =========================================================
+   EXPERIMENT 08–10 / AI FUTURE / MOBILE FIRST AND 55+
+   ========================================================= */
+.theme-pult .wrap{
+ grid-template-columns:auto minmax(0,1fr) auto;
+}
+.pult-accessibility{display:flex;align-items:center;gap:7px;justify-content:flex-end;min-width:max-content}
+.theme-pult .pult-accessibility button{
+ min-height:44px;font-size:13px;white-space:nowrap;padding:9px 12px;margin:0;border:1px solid var(--stroke);border-radius:8px
+}
+.theme-pult .pult-accessibility .vision-toggle{border:2px solid var(--accent);min-width:92px}
+.theme-pult .pult-accessibility .motion-toggle{font-weight:750;min-width:110px}
+.theme-pult .pult-accessibility button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.theme-pult .pult-accessibility button[aria-pressed="false"]{background:transparent;color:var(--fg)}
+.future-art-direction,.modern-atmosphere,.lab-conversion{display:none}
+.future-note{display:none}
+@media(max-width:900px){
+ .theme-pult .wrap{grid-template-columns:minmax(0,1fr) auto;gap:3px 9px}
+ .theme-pult-label{grid-column:1;grid-row:1}
+ .theme-pult .pult-accessibility{grid-column:2;grid-row:1}
+ .theme-pult-options{grid-column:1/-1;grid-row:2}
+}
+@media(max-width:530px){
+ .theme-pult .pult-accessibility button{min-height:42px;padding:6px 9px;font-size:12px}
+ .theme-pult .pult-accessibility .vision-toggle{min-width:74px}
+ .theme-pult .pult-accessibility .motion-toggle{min-width:91px}
+ .theme-pult .pult-accessibility{gap:5px}
+}
+
+/* Common future materials. Contrast is deliberately maintained under translucent layers. */
+body:is(.theme-neural,.theme-quantum,.theme-futurelab){
+ color:var(--fg);background:var(--bg);
+}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .topline,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .header{
+ background:var(--panel2);color:var(--fg);border-color:var(--stroke)
+}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .header nav,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .header-link,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .brand small{color:var(--sub)}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .header-link,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .contacts a{border-color:var(--stroke);color:var(--accent)}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .hero-lead,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .hero-sub,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .section-intro,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .scroll-instruction,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .hero-note,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .artifacts-note{color:var(--sub)}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .kicker,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .step,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .artifacts-head,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) h1 em,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) h2 em{color:var(--accent)}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .journey-card,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .mechanic-card,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .style-card,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .suno-box,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .review,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .price-card,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .lead-form,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .proof-panel{
+ background:var(--panel);border-color:var(--stroke);color:var(--fg)
+}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .journey-card:nth-child(2),
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .mechanic-card:last-child,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .price-card.is-selected,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .release{
+ background:var(--panel2);border-color:var(--accent)
+}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .journey-card p,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .journey-card li,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .price-card p,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .price-card li,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .proof-panel .proof-description,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .release p,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .suno-copy{color:var(--sub)}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .proof-panel .proof-description strong{color:var(--fg)}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .price-amount,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .mechanic-card strong,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .proof-panel h2,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .review q{color:var(--fg)}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .price-bonus{
+ background:var(--panel2);border-color:var(--stroke);color:var(--fg)
+}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .price-saving .compare,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .price-saving .compare s{color:var(--sub)}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .email-input{color:var(--fg);background:var(--bg);border-color:var(--stroke)}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .email-input::placeholder{color:var(--sub)}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .btn-primary,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .album-num,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .price-saving .percent,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .theme-pult button[aria-pressed="true"]{color:var(--accent-ink,#fff)}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .theme-pult button[aria-pressed="true"]{background:var(--accent)}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .proof-stat strong{color:var(--accent)}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .section,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .footer,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .faq details,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .author{border-color:var(--stroke)}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .author p,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .faq details p,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .price-foot,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .review .review-data,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .suno-box>p{color:var(--sub)}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .artifact figcaption strong{color:var(--fg)}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .artifact figcaption span{color:var(--sub)}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .hero-visual{
+ position:relative;isolation:isolate;overflow:hidden;
+ background:var(--hero-glass,var(--panel2));
+ border-color:var(--stroke);color:var(--fg)
+}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .hero-visual>*:not(.modern-atmosphere){
+ position:relative;z-index:2
+}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .hero-visual .artifacts-note,
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .hero-visual .artifacts-head{color:var(--sub)}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .future-art-direction{display:block;margin:0 0 17px}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .future-note{
+ display:none;align-items:center;gap:12px;padding:11px 14px;
+ border:1px solid var(--stroke);border-radius:10px;
+ background:var(--panel);color:var(--fg)
+}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .future-note strong{
+ display:block;font-size:12px;font-weight:850;letter-spacing:.13em
+}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .future-note small{
+ display:block;font-size:13px;color:var(--sub);line-height:1.45;margin-top:3px
+}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .future-note-symbol{
+ font-size:30px;color:var(--accent);line-height:1;flex:none
+}
+body.theme-neural .future-note-neural,
+body.theme-quantum .future-note-quantum,
+body.theme-futurelab .future-note-lab{display:flex!important}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .modern-atmosphere{
+ display:block;position:absolute;inset:0;z-index:0;
+ overflow:hidden;pointer-events:none
+}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .modern-atmosphere span{
+ display:none;position:absolute;pointer-events:none
+}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .sleeve{
+ isolation:isolate;box-shadow:0 15px 28px #0002;
+}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .record-disc{box-shadow:0 13px 28px #0003}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .mechanic-arrow{color:var(--accent)}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .suno-box{box-shadow:0 12px 32px #00000010}
+body:is(.theme-neural,.theme-quantum,.theme-futurelab) .style-card[aria-pressed=true]{
+ border:2px solid var(--accent);background:var(--panel2)
+}
+
+/* 08 NEURAL LUXURY — soft glass, diffuse pearl, future without complexity */
+body.theme-neural{
+ --bg:#f7f8f3;--panel:#ffffffee;--panel2:#e9f2eb;
+ --fg:#19372e;--sub:#48655a;--accent:#146f51;--accent-ink:#ffffff;
+ --stroke:#b7d0c2;--record-label:#7ba99c;--hero-glass:linear-gradient(140deg,#fffffff5,#edf6efe8 58%,#d5e8e0d6);
+ color-scheme:light;background:
+ radial-gradient(ellipse 60vw 50vh at 85% 8%,#e1f5e885,transparent),
+ #f7f8f3
+}
+body.theme-neural h1,body.theme-neural h2,
+body.theme-neural h3{font-family:Arial,"Helvetica Neue",sans-serif;letter-spacing:-.065em;font-weight:500}
+body.theme-neural h1{font-weight:550}
+body.theme-neural .topline{background:#eaf5ee}
+body.theme-neural .brand-mark{border-color:#32846a;color:#146f51}
+body.theme-neural .hero-visual{
+ border:1px solid #ffffffee;
+ box-shadow:0 23px 80px #3a78662c, inset 0 0 0 1px #abcbc2;
+ backdrop-filter:blur(13px);-webkit-backdrop-filter:blur(13px)
+}
+body.theme-neural .hero-visual .future-note{
+ border:1px solid #d6e7df;background:#ffffffb8;box-shadow:0 4px 15px #173e2814
+}
+body.theme-neural .neural-light{
+ display:block!important;width:390px;height:390px;right:-160px;top:-140px;
+ border-radius:50%;background:radial-gradient(circle,#fff 3%,#a1d8bc77 35%,transparent 70%);
+ filter:blur(17px)
+}
+body.theme-neural .neural-ribbon{
+ display:block!important;inset:auto -10% 24% -13%;
+ height:28%;border-radius:52% 48% 50% 50%;
+ transform:rotate(-13deg);
+ background:linear-gradient(90deg,transparent,#c6dbe76b,#7fddbc98,#effffec7,#92cba28a,transparent);
+ filter:blur(14px);opacity:.85
+}
+body.theme-neural .sleeve{
+ border:1px solid #f4fffa90;border-radius:16px;
+ background:#ffffff21;backdrop-filter:blur(2px);
+ box-shadow:0 16px 28px #537e7759, inset 0 1px 0 #fff7
+}
+body.theme-neural .sleeve-one{
+ --cover-bg:linear-gradient(145deg,#d5f4e6 5%,#74b3a2 45%,#497d7d 100%);
+ --cover-art:radial-gradient(ellipse at 45% 11%,#ffffffcc,#a9efcd 27%,#2f8181a8 66%);
+ color:#143d37;text-shadow:none
+}
+body.theme-neural .sleeve-two{
+ --cover-bg:linear-gradient(145deg,#ecfbf4 0%,#b4d0dd 46%,#72a3ac);
+ --cover-art:radial-gradient(ellipse at 45% 11%,#eaffffe8,#bbf5cf 22%,#75bbb1a1 61%);
+ color:#19433b;text-shadow:none
+}
+body.theme-neural .record-disc{
+ opacity:.8;background:radial-gradient(circle at center,#eefcf4 0 8%,#c8e8dc 8% 13%,#fbfffc 13% 24%,#d0e9e9 24% 34%,#effffb 34% 44%,#9bbdb7 44% 53%,#e2f0eb 53% 80%,#a9cbc3 80%);
+}
+body.theme-neural .record-disc::before{background:radial-gradient(circle,#1b6552 0 7%,#c8ebdb 8%);border-color:#f4fffa}
+body.theme-neural .journey-card,body.theme-neural .price-card,
+body.theme-neural .style-card,body.theme-neural .review{border-radius:19px;box-shadow:0 8px 28px #255e3d0c}
+body.theme-neural .proof-panel{
+ background:linear-gradient(135deg,#ffffff,#e9f5ed);
+ box-shadow:0 18px 42px #265e4418
+}
+body.theme-neural .suno-box{background:linear-gradient(135deg,#fff,#edf6ef)}
+
+/* 09 QUANTUM SOUND — deep obsidian, electric energy in one controlled gesture */
+body.theme-quantum{
+ --bg:#080f14;--panel:#14242b;--panel2:#1a3036;
+ --fg:#eefbfb;--sub:#b2cbd0;--accent:#65e6be;--accent-ink:#071d1c;
+ --stroke:#39545d;--record-label:#59bea8;
+ --hero-glass:linear-gradient(145deg,#101c26,#142b31 68%,#0c1922);
+ color-scheme:dark;
+ background:radial-gradient(ellipse 70vw 46vw at 87% 3%,#163c464f,transparent),#080f14
+}
+body.theme-quantum h1,body.theme-quantum h2,
+body.theme-quantum h3{font-family:Arial,"Helvetica Neue",sans-serif;letter-spacing:-.065em;font-weight:500}
+body.theme-quantum .topline{background:#142a2f}
+body.theme-quantum .brand-mark{border:1px solid #66debc;color:#66debc}
+body.theme-quantum .hero-visual{
+ border-color:#38616c;box-shadow:0 17px 60px #022d2d5c, inset 0 0 0 1px #66dbbf1d
+}
+body.theme-quantum .hero-visual .future-note{
+ background:#0e22299e;border-color:#396e77
+}
+body.theme-quantum .hero-visual .artifacts-head,
+body.theme-quantum .hero-visual .artifacts-note{color:#bbd4d7}
+body.theme-quantum .quantum-orb{
+ display:block!important;width:360px;height:360px;right:-130px;top:11%;
+ border-radius:50%;
+ background:
+ radial-gradient(circle at 37% 34%,#baffeb85 0,#46bfb65e 13%,#164c6255 32%,#07152000 65%),
+ radial-gradient(circle at center,#133b4b 14%,#092633 53%,transparent 65%);
+ box-shadow:0 0 70px #2fe1ce30,inset 0 0 45px #50ddc84d
+}
+body.theme-quantum .quantum-ring{
+ display:block!important;width:310px;height:310px;right:-102px;top:17%;
+ border-radius:50%;border:2px solid #72f8d84f;
+ box-shadow:0 0 21px #78ffdf2c,inset 0 0 15px #91e6ff14
+}
+body.theme-quantum .quantum-ring-two{
+ right:-83px;top:20%;width:265px;height:265px;
+ border-color:#98c9ff40;border-style:dashed;transform:rotate(-19deg)
+}
+body.theme-quantum .sleeve{
+ border:1px solid #89d7cd77;border-radius:9px;
+ box-shadow:0 17px 37px #000a,0 0 25px #3cdccc29
+}
+body.theme-quantum .sleeve-one{
+ --cover-bg:linear-gradient(150deg,#092b38,#13596a 57%,#0a293c);
+ --cover-art:radial-gradient(ellipse at 43% 3%,#86ffe79c,#1a9ca9b8 36%,#042a3e 76%);
+ color:#ebfffa
+}
+body.theme-quantum .sleeve-two{
+ --cover-bg:linear-gradient(160deg,#071b35,#16596a 53%,#065644);
+ --cover-art:radial-gradient(ellipse at 30% 17%,#b6f9fbb2,#2a9d9ca8 36%,#123b5e 72%);
+ color:#ecffff
+}
+body.theme-quantum .record-disc{
+ background:radial-gradient(circle at center,#67fff0 0 4%,#0c2838 4% 10%,#53b3c2 10% 12%,#061724 12% 25%,#1a4c60 25% 26%,#081a27 27% 39%,#235e64 40% 41%,#051421 42% 100%);
+ box-shadow:0 12px 27px #000b,0 0 18px #47eec059
+}
+body.theme-quantum .record-disc::before{background:radial-gradient(circle,#051c20 0 7%,#40afaa 8%);border-color:#89ecdf}
+body.theme-quantum .style-card[aria-pressed=true],body.theme-quantum .price-card.is-selected{
+ box-shadow:0 0 0 1px #68e9c64a,0 0 32px #27dbaf26
+}
+body.theme-quantum .proof-panel{background:linear-gradient(135deg,#172c33,#112029)}
+body.theme-quantum .suno-box{background:linear-gradient(120deg,#1c353b,#14252c)}
+
+/* 10 FUTURE LAB — exact Swiss layout, experiment diagrams, never hide prose */
+body.theme-futurelab{
+ --bg:#edf2f1;--panel:#ffffff;--panel2:#dfeae9;
+ --fg:#172c3b;--sub:#496272;--accent:#176a86;--accent-ink:#fff;
+ --stroke:#bbd0d2;--record-label:#68b8bd;
+ --hero-glass:linear-gradient(135deg,#f9fcfc,#e8f4f2);
+ color-scheme:light;
+ background:linear-gradient(90deg,transparent 0 calc(50% - 1px),#1e698008 calc(50% - 1px) 50%,transparent 50%),#edf2f1
+}
+body.theme-futurelab h1,body.theme-futurelab h2,
+body.theme-futurelab h3{font-family:Arial,"Helvetica Neue",sans-serif;letter-spacing:-.052em;font-weight:550}
+body.theme-futurelab .kicker,body.theme-futurelab .step,
+body.theme-futurelab .artifacts-head,body.theme-futurelab .price-top{
+ font-family:Arial,"Helvetica Neue",sans-serif;letter-spacing:.105em
+}
+body.theme-futurelab .topline{background:#dcebea}
+body.theme-futurelab .brand-mark{border-radius:3px;color:#176a86;border-color:#176a86}
+body.theme-futurelab .hero-visual{
+ background:
+ linear-gradient(#34849b15 1px,transparent 1px) 0 0/22px 22px,
+ linear-gradient(90deg,#34849b15 1px,transparent 1px) 0 0/22px 22px,
+ var(--hero-glass);
+ border:1px solid #90b7be;border-radius:8px;
+ box-shadow:9px 11px 0 #1c60820d
+}
+body.theme-futurelab .hero-visual .future-note{
+ background:#ffffffed;border-radius:4px;border-left:4px solid #176a86
+}
+body.theme-futurelab .lab-grid-node{display:block!important;border:1px solid #27829c99;width:28px;height:28px}
+body.theme-futurelab .lab-node-a{top:18px;right:17px;border-left:0;border-bottom:0}
+body.theme-futurelab .lab-node-b{bottom:16px;left:17px;border-right:0;border-top:0}
+body.theme-futurelab .sleeve{border-radius:4px;border:2px solid #d3eff2;outline:1px solid #6fadb5;outline-offset:-8px}
+body.theme-futurelab .sleeve-one{
+ --cover-bg:repeating-linear-gradient(0deg,#ffffff0b 0 16px,#ffffff29 17px 18px),linear-gradient(145deg,#164e6b,#388e9b 60%,#a9d0bd);
+ --cover-art:linear-gradient(-33deg,transparent 15%,#c5e9df76 16% 17%,transparent 18% 45%,#d9f4eaa8 46% 47%,transparent 48%);
+ color:#f4fffa
+}
+body.theme-futurelab .sleeve-two{
+ --cover-bg:repeating-linear-gradient(90deg,#ffffff0a 0 16px,#ffffff28 17px 18px),linear-gradient(160deg,#1b6574,#7cad9c 61%,#24566c);
+ --cover-art:linear-gradient(33deg,transparent 16%,#c7edf191 17% 18%,transparent 19% 39%,#dafff78c 40% 41%,transparent 42%);
+ color:#fbfffc
+}
+body.theme-futurelab .sleeve::after{
+ inset:auto -10% -17% -15%;height:69%;transform:skewY(-13deg);border-radius:0
+}
+body.theme-futurelab .record-disc{filter:contrast(1.08)}
+body.theme-futurelab .journey-card,body.theme-futurelab .style-card,
+body.theme-futurelab .price-card,body.theme-futurelab .review,
+body.theme-futurelab .proof-panel,body.theme-futurelab .mechanic-card{border-radius:6px}
+body.theme-futurelab .mechanic-card{position:relative;z-index:1;border-left:4px solid #a1c8c9}
+body.theme-futurelab .mechanic-card:last-child{border-left-color:#176a86}
+body.theme-futurelab .lab-conversion{
+ display:flex;align-items:center;gap:14px;flex-wrap:nowrap;
+ border:1px solid #bad1d3;border-radius:6px;margin-top:17px;
+ padding:18px 20px;background:#ffffffeb
+}
+body.theme-futurelab .lab-conversion span:not(.lab-conversion-line){
+ display:block;color:#176a86;font-size:12px;font-weight:850;
+ letter-spacing:.09em;white-space:nowrap
+}
+body.theme-futurelab .lab-conversion strong{
+ display:block;color:#263f4f;font-size:15px;font-weight:700;letter-spacing:0;margin-top:5px
+}
+body.theme-futurelab .lab-conversion-line{
+ flex:1;height:2px;min-width:14px;
+ background:#7caab8;position:relative;transform-origin:left center
+}
+body.theme-futurelab .lab-conversion-line::after{
+ content:"";position:absolute;right:0;top:-4px;border-left:7px solid #176a86;
+ border-top:5px solid transparent;border-bottom:5px solid transparent
+}
+body.theme-futurelab .proof-panel{
+ background:
+ linear-gradient(#176a8609 1px,transparent 1px) 0 0/22px 22px,
+ linear-gradient(90deg,#176a8609 1px,transparent 1px) 0 0/22px 22px,
+ #fff
+}
+body.theme-futurelab .proof-stat{border-color:#176a86}
+
+/* Animation language. Always render meaningful text immediately.
+   Only decorative cards/headings receive 180–500 ms one-time motion. */
+@keyframes neural-arrive{
+ from{transform:translateY(8px) scale(.985);filter:brightness(.98)}
+ to{transform:translateY(0) scale(1);filter:brightness(1)}
+}
+@keyframes neural-sheen{
+ from{opacity:.3;transform:translateX(-7%) rotate(-13deg)}
+ to{opacity:.85;transform:translateX(0) rotate(-13deg)}
+}
+@keyframes quantum-materialize{
+ from{transform:scale(.972);filter:brightness(.76)}
+ to{transform:scale(1);filter:brightness(1)}
+}
+@keyframes quantum-connection{
+ from{transform:scaleX(0);opacity:.1}
+ 85%{opacity:.8}
+ to{transform:scaleX(1);opacity:.6}
+}
+@keyframes quantum-pulse-once{
+ from{opacity:0;transform:scale(.8)}
+ 45%{opacity:.65}
+ to{opacity:0;transform:scale(1.18)}
+}
+@keyframes lab-line-draw{
+ from{transform:scaleX(.03);opacity:.4}
+ to{transform:scaleX(1);opacity:1}
+}
+body.motion-enabled.theme-neural .hero-visual .sleeve{
+ animation:neural-arrive .46s ease-out both
+}
+body.motion-enabled.theme-neural .hero-visual .sleeve-two{
+ animation-delay:.08s
+}
+body.motion-enabled.theme-neural .neural-ribbon{
+ animation:neural-sheen .48s ease-out both
+}
+body.motion-enabled.theme-quantum .hero-visual .artifact-pair{
+ animation:quantum-materialize .5s ease-out both
+}
+body.motion-enabled.theme-quantum .hero-visual .artifact-pair::after{
+ content:"";position:absolute;left:35%;right:35%;top:49%;height:2px;
+ border-radius:4px;pointer-events:none;z-index:4;
+ background:linear-gradient(90deg,transparent,#7bffe4,#94dbff,transparent);
+ box-shadow:0 0 16px #6affd9b0;
+ animation:quantum-connection .42s ease-out both;
+ animation-delay:.14s
+}
+body.motion-enabled.theme-quantum .quantum-ring-one{
+ animation:quantum-pulse-once .65s ease-out both
+}
+body.motion-enabled.theme-futurelab .lab-conversion.is-activated .lab-conversion-line{
+ animation:lab-line-draw .42s ease-out both
+}
+body.motion-enabled.theme-futurelab .mechanic.is-activated .mechanic-arrow{
+ color:#117da0;filter:drop-shadow(0 0 6px #68bfc56c);
+ transition:color .22s,filter .22s
+}
+body.motion-enabled :is(.style-card,.price-card){transition:border-color .18s,box-shadow .18s,background-color .18s}
+body.motion-enabled .style-card:active{transform:scale(.995)}
+body.motion-enabled .theme-pult button{transition:background .16s,color .16s,border-color .16s}
+body.motion-disabled :is(.sleeve,.neural-ribbon,.artifact-pair,.quantum-ring,.lab-conversion-line){
+ animation:none!important;transition:none!important
+}
+body.motion-disabled *,body.motion-disabled *::before,body.motion-disabled *::after{
+ scroll-behavior:auto!important
+}
+
+/* Small screens: decorative surfaces keep a safe distance from reading copy. */
+@media(max-width:850px){
+ body.theme-futurelab .lab-conversion{gap:7px;padding:14px 12px}
+ body.theme-futurelab .lab-conversion strong{font-size:13px}
+ body.theme-futurelab .lab-conversion span:not(.lab-conversion-line){font-size:11px}
+ body.theme-neural .neural-light{right:-160px;top:-85px;width:310px;height:310px}
+ body.theme-quantum .quantum-orb{right:-130px;top:11%;width:290px;height:290px}
+ body.theme-quantum .quantum-ring-one{width:255px;height:255px;right:-112px;top:14%}
+ body.theme-quantum .quantum-ring-two{width:223px;height:223px;right:-90px;top:19%}
+}
+@media(max-width:530px){
+ body:is(.theme-neural,.theme-quantum,.theme-futurelab) .hero-visual{padding:15px}
+ body:is(.theme-neural,.theme-quantum,.theme-futurelab) .future-note{padding:9px 11px}
+ body:is(.theme-neural,.theme-quantum,.theme-futurelab) .future-note strong{font-size:11px}
+ body:is(.theme-neural,.theme-quantum,.theme-futurelab) .future-note small{font-size:12px}
+ body:is(.theme-neural,.theme-quantum,.theme-futurelab) .future-note-symbol{font-size:23px}
+ body.theme-neural .sleeve{border-radius:9px}
+ body.theme-quantum .sleeve{border-radius:6px}
+ body.theme-futurelab .sleeve{border-radius:3px}
+ body.theme-quantum .quantum-orb{right:-118px;width:260px;height:260px;top:14%}
+ body.theme-quantum .quantum-ring-one{right:-107px;top:16%;width:233px;height:233px}
+ body.theme-quantum .quantum-ring-two{right:-83px;top:19%;width:191px;height:191px}
+ body.theme-futurelab .lab-conversion{gap:8px;flex-wrap:wrap;justify-content:space-between}
+ body.theme-futurelab .lab-conversion-line{min-width:8px;flex:0 0 15px}
+ body.theme-futurelab .lab-conversion span:not(.lab-conversion-line){font-size:10px}
+ body.theme-futurelab .lab-conversion strong{font-size:12px}
+ body.vision-mode.theme-futurelab .lab-conversion span:not(.lab-conversion-line){font-size:13px}
+ body.vision-mode.theme-futurelab .lab-conversion strong{font-size:14px}
+ body.vision-mode.theme-futurelab .lab-conversion{flex-wrap:wrap}
+}
+@media(prefers-reduced-motion:reduce){
+ body.motion-enabled *,body.motion-enabled *::before,body.motion-enabled *::after{
+  animation-duration:.01ms!important;animation-iteration-count:1!important;
+  transition-duration:.01ms!important;scroll-behavior:auto!important
+ }
+}
