@@ -24,6 +24,7 @@ const pathStory=document.getElementById('path-story');
 const pathReplay=document.getElementById('path-replay');
 const pathAnnouncement=document.getElementById('path-announcement');
 const mechanismSteps=[...document.querySelectorAll('[data-mech-step]')];
+const listeningNotes=[...document.querySelectorAll('.listen-beats b')];
 function updateState(){
  styleButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.style===selectedStyle)));
  document.querySelectorAll('[data-price-card]').forEach(c=>c.classList.toggle('is-selected',c.dataset.priceCard===selectedPlan));
@@ -135,6 +136,8 @@ function setPathScene(scene){
   el.classList.toggle('is-current',el.dataset.mechStep===active);
   el.classList.toggle('is-completed',passed.includes(el.dataset.mechStep));
  });
+ const heard=scene==='complete'||scene==='choice'?3:scene.startsWith('listen')?Number(scene.slice(6)):0;
+ listeningNotes.forEach((note,index)=>note.classList.toggle('is-heard',index<heard));
 }
 function playPathStory(trigger){
  if(!pathStory||!pathReplay)return;
