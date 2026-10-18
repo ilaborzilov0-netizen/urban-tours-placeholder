@@ -119,3 +119,18 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
 @media(prefers-reduced-motion:reduce){
 .movie *, .movie *::before, .movie *::after{animation:none!important;transition:none!important}
 }
+
+/* Inherit the landing's "А+ Текст" and "Без движения" controls. */
+.movie.vision-mode .stage-heading{font-size:clamp(29px,4.5vw,64px)}
+.movie.vision-mode .narration-subtitles{font-size:clamp(21px,2.8vw,32px)}
+.movie.vision-mode .hint,.movie.vision-mode .transcript p{font-size:17px}
+.movie.vision-mode .movie-controls button{min-height:48px;font-size:17px}
+.movie.motion-off *,.movie.motion-off *::before,.movie.motion-off *::after{
+ animation:none!important;transition:none!important
+}
+@media(max-width:660px){
+ .movie.vision-mode .stage-heading{font-size:clamp(25px,7.2vw,39px)}
+ .movie.vision-mode .narration-subtitles{font-size:clamp(18px,4.7vw,24px)}
+ .movie.vision-mode .hint{font-size:15px}
+ .movie.vision-mode .transport button,.movie.vision-mode .options button{font-size:14px;min-height:47px}
+}
