@@ -19,7 +19,7 @@ function updateState(){
  styleButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.style===selectedStyle)));
  document.querySelectorAll('[data-price-card]').forEach(c=>c.classList.toggle('is-selected',c.dataset.priceCard===selectedPlan));
  planButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.selectPlan===selectedPlan)));
- const planTitle=selectedPlan==='all'?'Все шесть альбомов · 1 990 ₽':'Оба этапа · '+styles[selectedStyle].title+' · 990 ₽';
+ const planTitle=selectedPlan==='all'?'Все шесть альбомов · 1 590 ₽':'Оба этапа · '+styles[selectedStyle].title+' · 990 ₽';
  priceChoice.textContent=planTitle;
  priceName.value=selectedPlan==='all'?'all-six':selectedStyle;
  sampleLabel.textContent=selectedStyle==='author'?'Демо текущих аудиоякорей':'Демо исходного альбома (не выбранной аранжировки)';
@@ -64,7 +64,7 @@ form.addEventListener('submit',async e=>{
    formType:'commercial_contact',name:'',contactType:'email',contact:email,
    message:'Интерес к выпуску двухэтапной музыкальной программы. Тариф: '+(selectedPlan==='all'?'все 6 альбомов':'один стиль')+'. Звучание: '+styles[selectedStyle].title+'. Без оплаты.',
    plan:selectedPlan==='all'?'six-albums-all-styles':'two-albums-'+selectedStyle,
-   price:selectedPlan==='all'?'1990 ₽ (планируемая)':'990 ₽ (планируемая)',
+   price:selectedPlan==='all'?'1590 ₽ (планируемая)':'990 ₽ (планируемая)',
    source:'marafon_14_two_stage_waitlist',sourceUrl:location.origin+location.pathname,
    referrer:document.referrer.slice(0,250),utm,website:''
   };
