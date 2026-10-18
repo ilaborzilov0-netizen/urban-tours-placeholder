@@ -1132,3 +1132,13 @@ body.motion-disabled *,body.motion-disabled *::before,body.motion-disabled *::af
   transition-duration:.01ms!important;scroll-behavior:auto!important
  }
 }
+
+
+/* Truly motion-free preview when the user chooses "Без движения". */
+body.motion-disabled,body.motion-disabled *,body.motion-disabled *::before,body.motion-disabled *::after{
+ animation:none!important;transition:none!important;
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto!important}
+ body,body *,body *::before,body *::after{animation:none!important;transition:none!important}
+}
