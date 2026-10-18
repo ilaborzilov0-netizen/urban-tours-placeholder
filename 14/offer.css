@@ -75,6 +75,35 @@ h1 em,h2 em{color:var(--accent);font-style:normal}
 .price-card ul{margin:0 0 14px;padding-left:20px;flex:1}.price-card li+li{margin-top:7px}
 .price-card button{width:100%}
 .price-foot{color:var(--sub);font-size:12px}
+.price-saving{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:-5px}
+.price-saving .percent{color:#15200f;background:var(--accent);border-radius:6px;padding:4px 7px;font-size:12px;font-weight:800;letter-spacing:-.01em}
+.price-saving .compare{font-size:12px;color:#bdc9b3;line-height:1.4}
+.price-saving .compare s{color:#e8f0e1;text-decoration-thickness:1px;text-decoration-color:#9cb390}
+.price-bonus{padding:12px 14px;border:1px solid #627d48;background:#2c381f;border-radius:9px;font-size:14px;color:#e1f2c9;line-height:1.45;font-weight:700}
+.price-comparison-note{font-size:12px;color:var(--sub);margin:17px 0 0;line-height:1.65}
+.proof-section{padding:60px 0 20px}
+.proof-panel{background:linear-gradient(125deg,#222d20,#182019 75%);border:1px solid #536849;border-radius:18px;padding:34px 38px}
+.proof-panel h2{font-size:clamp(30px,4vw,49px);font-weight:500;line-height:1.08;margin:0 0 27px;letter-spacing:-.06em}
+.proof-panel h2 em{font-style:normal;color:var(--accent)}
+.proof-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:24px}
+.proof-stat{border-left:2px solid #93b64d;padding:4px 14px;min-width:0}
+.proof-stat strong{display:block;font-size:clamp(26px,3vw,40px);line-height:1.15;letter-spacing:-.05em;color:var(--accent);white-space:nowrap}
+.proof-stat span{font-size:12px;line-height:1.55;color:#c3d0c0;display:block;margin-top:6px}
+.proof-panel .proof-description{max-width:850px;color:#d3ded0;font-size:15px;line-height:1.8;margin:0}
+.proof-panel .proof-description strong{color:#f3f8eb}
+.proof-fine{color:#aebcad;font-size:12px;line-height:1.6;margin:10px 0 0}
+@media(max-width:520px){
+ .price-saving{align-items:flex-start}
+ .price-bonus{font-size:13px}
+ .proof-section{padding:36px 0 10px}
+ .proof-panel{padding:24px 18px}
+ .proof-panel h2{font-size:32px;margin-bottom:20px}
+ .proof-stats{gap:5px}
+ .proof-stat{padding:4px 8px}
+ .proof-stat strong{font-size:clamp(19px,5.8vw,28px)}
+ .proof-stat span{font-size:10.5px}
+ .proof-panel .proof-description{font-size:14px;line-height:1.65}
+}
 .release{background:#20291d;border:1px solid #516b3f;border-radius:15px;padding:27px;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .release strong{font-size:23px;display:block;letter-spacing:-.04em;margin-bottom:5px}
 .release p{color:#c3d0b8;font-size:14px;margin:0}
