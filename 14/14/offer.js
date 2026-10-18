@@ -142,6 +142,15 @@ visionButton.addEventListener('click',()=>{
  try{localStorage.setItem('ai1414_vision',vision?'on':'off')}catch(_){}
  goal('ai1414_vision_toggle',{enabled:vision?1:0});
 });
+motionButton.addEventListener('click',()=>{
+ if(reduceMotion.matches)return;
+ motionPref=!motionPref;
+ applyAppearance();
+ try{localStorage.setItem('ai1414_motion',motionPref?'on':'off')}catch(_){}
+ goal('ai1414_motion_toggle',{enabled:motionPref?1:0,theme});
+});
+if(reduceMotion.addEventListener)reduceMotion.addEventListener('change',applyAppearance);
+else if(reduceMotion.addListener)reduceMotion.addListener(applyAppearance);
 applyAppearance();
 document.querySelectorAll('[data-direct-contact]').forEach(a=>a.addEventListener('click',()=>goal('ai14_author_contact',{channel:a.dataset.directContact})));
 form.addEventListener('submit',async e=>{
