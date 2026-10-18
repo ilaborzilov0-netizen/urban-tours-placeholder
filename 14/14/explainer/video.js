@@ -54,8 +54,11 @@ const el={
 };
 const hasSpeech=!!(window.speechSynthesis&&window.SpeechSynthesisUtterance);
 let playing=false,elapsed=0,voiceEnabled=false,voiceTouched=false,startedOnce=false,currentCue=-1,lastFrame=0,raf=0;
-let isVoiceUtterance=false,seekRevision=0,speechGeneration=0;
+let isVoiceUtterance=false,seekRevision=0,speechGeneration=0,actualWatch=0,watch75Reported=false;
 const isReduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function notifyParent(name,details={}){
+ try{window.parent?.postMessage({type:'ai-video-event',name,details},location.origin)}catch(_){}
+}
 function clock(n){n=Math.max(0,Math.floor(n));return String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0')}
 function findIndex(t,arr){let i=0;for(let k=0;k<arr.length;k++)if(t>=arr[k].t)i=k;return i}
 function ruVoice(){const voices=window.speechSynthesis?.getVoices?.()||[];return voices.find(v=>/^ru([-_]|$)/i.test(v.lang))||null}
@@ -106,11 +109,13 @@ function tick(now){
  if(!playing)return;
  if(!lastFrame)lastFrame=now;
  const delta=Math.min(.2,(now-lastFrame)/1000);
+ actualWatch+=delta;
+ if(!watch75Reported&&actualWatch>=285){watch75Reported=true;notifyParent('ai1414_video_75')}
  lastFrame=now;
  // A fixed editorial timeline ensures the 6:20 cut works even without TTS.
  const next=Math.min(DURATION,elapsed+delta);
  render(next);
- if(elapsed>=DURATION){pause();return}
+ if(elapsed>=DURATION){if(actualWatch>=340)notifyParent('ai1414_video_complete');pause();return}
  raf=requestAnimationFrame(tick);
 }
 function play(){
@@ -119,6 +124,7 @@ function play(){
  if(!startedOnce && !voiceTouched && hasSpeech && ruVoice()){
   voiceEnabled=true;updateVoiceButton();
  }
+ if(!startedOnce)notifyParent('ai1414_video_start');
  startedOnce=true;
  playing=true;
  lastFrame=0;
