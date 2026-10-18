@@ -45,7 +45,11 @@ document.querySelectorAll('[data-scroll-request]').forEach(button=>button.addEve
 // Suno is a third-party cross-origin player. Do not claim play or 75% completion
 // when all we can observe is an iframe attempt or a click on the external link.
 sunoLoad.addEventListener('click',()=>{
- sunoFrame.src='https://suno.com/embed/AOYtFSnkg4gmPAVT';
+ // The provided /s/ URL is a short link, not a verified Suno song UUID.
+ // If a canonical ID is supplied later, the official /embed/<uuid> route is used.
+ const songId=new URLSearchParams(location.search).get('suno_id')||'';
+ const safeId=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(songId)?songId:null;
+ sunoFrame.src=safeId?'https://suno.com/embed/'+safeId:'https://suno.com/s/AOYtFSnkg4gmPAVT';
  sunoFrame.hidden=false;
  sunoPlaceholder.hidden=true;
  sunoHelp.textContent='Плеер загружается с Suno. Если не появился или не воспроизводит, воспользуйтесь ссылкой «Открыть песню в Suno».';
