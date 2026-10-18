@@ -57,7 +57,7 @@ sunoLoad.addEventListener('click',()=>{
 });
 document.querySelectorAll('[data-suno-direct]').forEach(a=>a.addEventListener('click',()=>goal('ai1414_suno_direct_click')));
 // Switch among the four actual page treatments. Accessibility mode is independent.
-const allowedThemes=['classic','dark','vinyl','soviet'];
+const allowedThemes=['classic','dark','vinyl','soviet','phonotheque','concert','bureau'];
 let theme='classic',vision=false;
 try{
  const saved=localStorage.getItem('ai1414_theme');
@@ -72,7 +72,7 @@ function applyAppearance(){
  visionButton.setAttribute('aria-pressed',String(vision));
  visionButton.textContent=vision?'А− Обычный':'А+ Текст';
  const meta=document.querySelector('meta[name="theme-color"]');
- if(meta)meta.content=theme==='dark'?'#141814':theme==='classic'?'#f6f2e7':theme==='vinyl'?'#f0e3cc':'#efe9d7';
+ if(meta)meta.content=({dark:'#141814',classic:'#f6f2e7',vinyl:'#f0e3cc',soviet:'#efe9d7',phonotheque:'#352a22',concert:'#f5ecdb',bureau:'#e8eee9'})[theme]||'#f6f2e7';
 }
 pultButtons.forEach(b=>b.addEventListener('click',()=>{
  theme=b.dataset.theme;
