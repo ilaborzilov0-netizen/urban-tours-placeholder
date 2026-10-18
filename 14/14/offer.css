@@ -1350,3 +1350,12 @@ body.vision-mode .path-replay{min-height:58px;font-size:18px}
  .path-story .route-old-line{opacity:.5!important}
  .path-story .path-repeat-dots i{opacity:1!important}
 }
+
+
+/* Three notes become brighter one by one during the repeat phase. */
+body.motion-enabled .story-headphones .listen-beats b{opacity:.48;transform:scale(.92);transition:opacity .25s ease,transform .25s ease}
+body.motion-enabled .story-headphones .listen-beats b.is-heard{opacity:1;transform:scale(1.13)}
+body.motion-disabled .story-headphones .listen-beats b{opacity:1!important;transform:none!important}
+@media(prefers-reduced-motion:reduce){
+ .story-headphones .listen-beats b{opacity:1!important;transform:none!important}
+}
