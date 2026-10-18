@@ -70,15 +70,65 @@ try{
  vision=localStorage.getItem('ai1414_vision')==='on';
  if(localStorage.getItem('ai1414_motion')==='off')motionPref=false;
 }catch(_){}
+
+function clearMotionObserver(){
+ if(motionObserver){motionObserver.disconnect();motionObserver=null;}
+}
+function setupScrollMotion(){
+ clearMotionObserver();
+ const diagram=document.getElementById('mechanic-diagram');
+ const convert=document.querySelector('.lab-conversion');
+ diagram?.classList.remove('is-activated');
+ convert?.classList.remove('is-activated');
+ if(!useMotion() || !('IntersectionObserver' in window))return;
+ if(theme==='neural'){
+  // All copy stays visible. At most 6px/240ms heading movement, once per heading.
+  motionObserver=new IntersectionObserver(entries=>{
+   entries.forEach(entry=>{
+    if(!entry.isIntersecting)return;
+    const el=entry.target;
+    motionObserver?.unobserve(el);
+    if(!motionIntroTags.has(el)){
+     motionIntroTags.add(el);
+     el.animate?.([
+       {opacity:.86,transform:'translateY(6px)'},
+       {opacity:1,transform:'translateY(0)'}
+     ],{duration:240,easing:'ease-out'});
+    }
+   });
+  },{threshold:.22});
+  document.querySelectorAll('.section h2,.proof-panel h2').forEach(el=>motionObserver.observe(el));
+ }
+ if(theme==='futurelab'){
+  motionObserver=new IntersectionObserver(entries=>{
+   entries.forEach(entry=>{
+    if(!entry.isIntersecting)return;
+    entry.target.classList.add('is-activated');
+    motionObserver?.unobserve(entry.target);
+   });
+  },{threshold:.2});
+  if(diagram)motionObserver.observe(diagram);
+  if(convert)motionObserver.observe(convert);
+ }
+}
 function applyAppearance(){
  document.body.classList.remove(...allowedThemes.map(x=>'theme-'+x));
  document.body.classList.add('theme-'+theme);
  document.body.classList.toggle('vision-mode',vision);
+ const enabled=useMotion();
+ document.body.classList.toggle('motion-enabled',enabled);
+ document.body.classList.toggle('motion-disabled',!enabled);
+ document.documentElement.style.scrollBehavior=enabled?'smooth':'auto';
  pultButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.theme===theme)));
  visionButton.setAttribute('aria-pressed',String(vision));
  visionButton.textContent=vision?'А− Обычный':'А+ Текст';
+ motionButton.setAttribute('aria-pressed',String(enabled));
+ motionButton.textContent=enabled?'◉ Анимация':'○ Без движения';
+ motionButton.disabled=reduceMotion.matches;
+ motionButton.title=reduceMotion.matches?'Анимация отключена системной настройкой':'Переключить декоративную анимацию';
  const meta=document.querySelector('meta[name="theme-color"]');
- if(meta)meta.content=({dark:'#141814',classic:'#f6f2e7',vinyl:'#f0e3cc',soviet:'#efe9d7',phonotheque:'#352a22',concert:'#f5ecdb',bureau:'#e8eee9'})[theme]||'#f6f2e7';
+ if(meta)meta.content=({dark:'#141814',classic:'#f6f2e7',vinyl:'#f0e3cc',soviet:'#efe9d7',phonotheque:'#352a22',concert:'#f5ecdb',bureau:'#e8eee9',neural:'#f7f8f3',quantum:'#080f14',futurelab:'#edf2f1'})[theme]||'#f6f2e7';
+ setupScrollMotion();
 }
 pultButtons.forEach(b=>b.addEventListener('click',()=>{
  theme=b.dataset.theme;
