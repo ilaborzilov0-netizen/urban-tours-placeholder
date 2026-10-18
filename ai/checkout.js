@@ -90,5 +90,13 @@ async function checkReturn(){
  }
  panel.textContent='Платёж ещё проверяется. Если деньги списались, напишите вопрос через форму ниже. Без подтверждения банка мы не показываем оплату успешной.';
 }
+// Separate Yandex Metrika goals for direct contacts under the author photo.
+const authorContactGoals={max:'ai_author_max_click',telegram:'ai_author_telegram_click'};
+document.querySelectorAll('[data-author-link]').forEach(link=>{
+  link.addEventListener('click',()=>{
+    const id=authorContactGoals[link.dataset.authorLink];
+    if(id){try{window.ym?.(110906734,'reachGoal',id)}catch(_){}}
+  });
+});
 checkReturn();
 })();
