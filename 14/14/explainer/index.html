@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Как работают аудиоякоря — видеоразбор</title>
+<link rel="stylesheet" href="/14/14/explainer/video.css?v=1">
+<script defer src="/14/14/explainer/video.js?v=1"></script>
+</head>
+<body>
+<main class="movie" id="movie" data-scene="0" data-voice="off" aria-label="Анимированный видеоразбор работы аудиоякорей">
+  <div class="movie-stage" id="stage">
+    <div class="noise" aria-hidden="true"></div>
+    <div class="scene-art">
+      <div class="visual-logo">
+        <div class="big-symbol">◎</div>
+        <div class="orbit orbit1"></div><div class="orbit orbit2"></div>
+        <div class="visual-word">АУДИОЯКОРЯ</div>
+      </div>
+      <div class="visual-two">
+        <div class="part physical"><span>01</span><strong>НИКОТИН</strong><small>Физическая зависимость</small></div>
+        <div class="part mental"><span>02</span><strong>ПРИВЫЧКИ</strong><small>Мысли и ассоциации</small></div>
+      </div>
+      <div class="visual-cues">
+        <span class="cues-head">ЗНАКОМЫЕ СИТУАЦИИ</span>
+        <div class="cue cu1"><i>☕</i> «Кофе — значит сигарета»</div>
+        <div class="cue cu2"><i>↯</i> «Стресс — надо закурить»</div>
+        <div class="cue cu3"><i>◷</i> «Это мой отдых»</div>
+        <div class="cue cu4"><i>↻</i> «Одна ничего не сделает»</div>
+      </div>
+      <div class="visual-dominant">
+        <div class="dominant-outer"><div class="dominant-center">ПОРА<br>ЗАКУРИТЬ</div></div>
+        <div class="incoming in1">кофе</div><div class="incoming in2">пауза</div><div class="incoming in3">стресс</div><div class="incoming in4">скука</div>
+      </div>
+      <div class="visual-thought">
+        <div class="thought-old">Старая мысль</div><div class="thought-transfer">слово → повторение → свой ответ</div><div class="thought-new">Новая мысль</div>
+      </div>
+      <div class="visual-path">
+        <div class="path-top">☕ УТРЕННИЙ КОФЕ</div>
+        <svg viewBox="0 0 600 215" aria-hidden="true"><path class="oldroad" d="M300 12C300 80 130 86 125 210"/><path class="newroad" d="M300 12C300 80 470 86 475 210"/></svg>
+        <div class="path-answers"><span class="old-ans">«Надо закурить»</span><span class="new-ans">«И так хорошо»</span></div>
+      </div>
+      <div class="visual-listen"><div class="record"><span>♫</span></div><div class="ripple ripple1"></div><div class="ripple ripple2"></div><div class="ripple ripple3"></div><div class="repeat-word">СЛУШАЮ СНОВА</div></div>
+      <div class="visual-albums">
+        <div class="mini-album album-one"><span>01 / ДО</span><strong>До последней сигареты</strong></div>
+        <div class="mini-album album-two"><span>02 / ПОСЛЕ</span><strong>Жизнь без сигарет</strong></div>
+      </div>
+      <div class="visual-finish">
+        <span class="finish-icon">✓</span>
+        <strong>НОВЫЙ ОТВЕТ.<br>НОВЫЙ ВЫБОР.</strong>
+        <small>Оба альбома — одна понятная последовательность.</small>
+      </div>
+    </div>
+    <div class="stage-shade"></div>
+    <div class="stage-label" id="stage-label">01 / ВСТУПЛЕНИЕ</div>
+    <div class="stage-heading" id="stage-heading">Не сила воли. Другой взгляд на сигарету.</div>
+    <div class="narration-subtitles" id="subtitles" aria-live="off">Если вы уже не раз пытались бросить курить и возвращались — вы не слабый.</div>
+    <button class="main-play" type="button" id="big-play" aria-label="Запустить видеоразбор">
+      <span class="play-triangle" aria-hidden="true">▶</span><span class="play-label">Смотреть объяснение</span>
+    </button>
+    <div class="stage-bug">НАУЧНО-ПОПУЛЯРНЫЙ ВИДЕОРАЗБОР · 18+</div>
+  </div>
+  <div class="movie-controls">
+    <div class="transport">
+      <button id="play" type="button" aria-label="Воспроизвести или поставить на паузу">▶ <span>Пуск</span></button>
+      <button id="restart" type="button" aria-label="Начать видеоразбор сначала">↻</button>
+      <div class="time-current" id="time-current" aria-live="off">00:00</div>
+      <input id="seek" type="range" min="0" max="380" step="1" value="0" aria-label="Положение видеоразбора">
+      <div class="time-total">06:20</div>
+    </div>
+    <div class="options">
+      <button type="button" id="voice" aria-pressed="false" title="Озвучивание русским голосом браузера">◌ <span>Голос выкл.</span></button>
+      <button type="button" id="captions" aria-pressed="true" title="Показать или скрыть субтитры">CC <span>Субтитры</span></button>
+      <button type="button" id="fullscreen" title="Открыть видеоразбор во весь экран">⛶ <span>Весь экран</span></button>
+    </div>
+  </div>
+  <p class="hint" id="hint">Нажмите «Смотреть объяснение». Субтитры работают на всех устройствах. Русская озвучка зависит от голосов, установленных в браузере.</p>
+  <details class="transcript"><summary>Читать весь текст ролика</summary><div id="transcript-body"></div></details>
+</main>
+</body></html>
