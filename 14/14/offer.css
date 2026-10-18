@@ -1661,3 +1661,15 @@ body.vision-mode .video-explainer-foot{font-size:17px}
  .video-explainer-foot{font-size:13px;line-height:1.55;margin-top:12px}
  body.vision-mode .video-explainer-foot{font-size:16px}
 }
+
+
+/* Actual narrated MP4 replaces the prototype iframe, keeping the video lightweight. */
+.video-frame-shell .explainer-real-video{
+ display:block;width:100%;height:auto;aspect-ratio:16/9;
+ object-fit:contain;background:#091916;
+ border:0;border-radius:inherit;
+}
+.video-explainer-foot a{color:var(--accent);text-underline-offset:3px}
+@media(max-width:680px){
+ .video-frame-shell .explainer-real-video{aspect-ratio:16/9;height:auto}
+}
