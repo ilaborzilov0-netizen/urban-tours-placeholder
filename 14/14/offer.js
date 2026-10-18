@@ -20,6 +20,22 @@ const sunoHelp=document.getElementById('suno-help');
 const pultButtons=[...document.querySelectorAll('[data-theme]')];
 const visionButton=document.getElementById('vision-switch');
 const motionButton=document.getElementById('motion-switch');
+const explainFrame=document.querySelector('#video-explainer iframe');
+function syncExplainer(){
+ if(!explainFrame?.contentWindow)return;
+ try{
+  explainFrame.contentWindow.postMessage({type:'ai-theme',theme},location.origin);
+  explainFrame.contentWindow.postMessage({type:'ai-motion',enabled:useMotion()},location.origin);
+  explainFrame.contentWindow.postMessage({type:'ai-vision',enabled:vision},location.origin);
+ }catch(_){}
+}
+explainFrame?.addEventListener('load',syncExplainer);
+window.addEventListener('message',event=>{
+ if(event.origin!==location.origin||event.source!==explainFrame?.contentWindow)return;
+ if(event.data?.type!=='ai-video-event')return;
+ const allowed=new Set(['ai1414_video_start','ai1414_video_75','ai1414_video_complete']);
+ if(allowed.has(event.data.name))goal(event.data.name);
+});
 const pathStory=document.getElementById('path-story');
 const pathReplay=document.getElementById('path-replay');
 const pathAnnouncement=document.getElementById('path-announcement');
@@ -216,6 +232,7 @@ function applyAppearance(){
  if(meta)meta.content=({dark:'#141814',classic:'#f6f2e7',vinyl:'#f0e3cc',soviet:'#efe9d7',phonotheque:'#352a22',concert:'#f5ecdb',bureau:'#e8eee9',neural:'#f7f8f3',quantum:'#080f14',futurelab:'#edf2f1'})[theme]||'#f6f2e7';
  setupScrollMotion();
  setupPathAuto();
+ syncExplainer();
 }
 pultButtons.forEach(b=>b.addEventListener('click',()=>{
  theme=b.dataset.theme;
