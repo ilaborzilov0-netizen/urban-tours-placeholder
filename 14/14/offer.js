@@ -19,6 +19,7 @@ const sunoPlaceholder=document.getElementById('suno-placeholder');
 const sunoHelp=document.getElementById('suno-help');
 const pultButtons=[...document.querySelectorAll('[data-theme]')];
 const visionButton=document.getElementById('vision-switch');
+const motionButton=document.getElementById('motion-switch');
 function updateState(){
  styleButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.style===selectedStyle)));
  document.querySelectorAll('[data-price-card]').forEach(c=>c.classList.toggle('is-selected',c.dataset.priceCard===selectedPlan));
@@ -35,7 +36,7 @@ styleButtons.forEach(button=>button.addEventListener('click',()=>{
 planButtons.forEach(button=>button.addEventListener('click',()=>{
  selectedPlan=button.dataset.selectPlan;
  updateState();goal('ai14_plan_select',{plan:selectedPlan});
- document.getElementById('request').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'});
+ document.getElementById('request').scrollIntoView({behavior:useMotion()?'smooth':'auto',block:'start'});
  document.getElementById('email').focus({preventScroll:true});
 }));
 document.querySelectorAll('[data-scroll-request]').forEach(button=>button.addEventListener('click',()=>{
@@ -56,13 +57,18 @@ sunoLoad.addEventListener('click',()=>{
  goal('ai1414_suno_embed_attempt');
 });
 document.querySelectorAll('[data-suno-direct]').forEach(a=>a.addEventListener('click',()=>goal('ai1414_suno_direct_click')));
-// Switch among the four actual page treatments. Accessibility mode is independent.
-const allowedThemes=['classic','dark','vinyl','soviet','phonotheque','concert','bureau'];
-let theme='classic',vision=false;
+// Ten treatments. Accessibility and motion preferences are independent.
+const allowedThemes=['classic','dark','vinyl','soviet','phonotheque','concert','bureau','neural','quantum','futurelab'];
+let theme='classic',vision=false,motionPref=true;
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+const useMotion=()=>motionPref&&!reduceMotion.matches;
+let motionObserver=null;
+const motionIntroTags=new WeakSet();
 try{
  const saved=localStorage.getItem('ai1414_theme');
  if(allowedThemes.includes(saved))theme=saved;
  vision=localStorage.getItem('ai1414_vision')==='on';
+ if(localStorage.getItem('ai1414_motion')==='off')motionPref=false;
 }catch(_){}
 function applyAppearance(){
  document.body.classList.remove(...allowedThemes.map(x=>'theme-'+x));
