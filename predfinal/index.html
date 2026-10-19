@@ -1119,6 +1119,23 @@ body.theme-dark .album-showcase{border-top:0;padding-top:0}
    body.theme-dark .listening-guide-steps p{font-size:16px}
   }
  </style>
+
+<style data-source="prefinal-lead-copy-no-album-shift-20261019">
+/* First-album geometry remains untouched. Reserve the prior 8-line intro slot on screenshot-sized phones. */
+body.theme-dark .hero .hero-lead-hook{
+ display:block;font-size:1.16em;font-weight:750;line-height:1.32;
+ letter-spacing:-.028em;color:#f7fff1;margin:0 0 11px;
+}
+body.theme-dark .hero .hero-lead-message{display:block}
+@media(min-width:361px) and (max-width:440px){
+ body.theme-dark .hero .hero-lead,
+ body.theme-dark.vision-mode .hero .hero-lead{min-height:8lh}
+}
+@media(max-width:360px){
+ body.theme-dark .hero .hero-lead,
+ body.theme-dark.vision-mode .hero .hero-lead{min-height:8lh}
+}
+</style>
 </head>
 <body class="theme-dark vision-mode">
  <header class="header"><div class="wrap header-inner">
@@ -1130,7 +1147,7 @@ body.theme-dark .album-showcase{border-top:0;padding-top:0}
    <div class="hero-copy">
     <p class="kicker"><span class="little-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span> Научная логика подхода</p>
     <h1>Бросьте курить<br>с помощью<br><span>аудиоякорей.</span></h1>
-    <p class="hero-lead">Слушайте посылы, которые меняют мозг на физиологическом уровне, влияя на ваш взгляд на курение. Они запоминаются, как припев песни, услышанной в магазине, и продолжают работать на вас фоном — даже когда музыка уже выключена.</p>
+    <p class="hero-lead"><strong class="hero-lead-hook">Просто слушайте.</strong><span class="hero-lead-message">Терапевтические посылы сами меняют мозг на физиологическом уровне и убирают желание курить. Запоминаются, как припев, и продолжают работать даже когда вы их уже не слышите.</span></p>
     <p class="hero-description"><strong>Понятный психологический механизм.</strong></p>
    </div>
   </section>
