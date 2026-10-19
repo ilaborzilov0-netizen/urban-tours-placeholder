@@ -67,7 +67,8 @@ sampleBlocks.forEach(block=>{
  const genre=block.dataset.audioPreview;
  const url=block.dataset.audioSrc;
  const limit=Math.max(1,Number(block.dataset.audioDuration||30));
- const durationLabel=Math.ceil(limit);
+ const durationLabel=Math.round(limit);
+ const secondsWord=(durationLabel%100>=11&&durationLabel%100<=14)?'секунд':durationLabel%10===1?'секунда':durationLabel%10>=2&&durationLabel%10<=4?'секунды':'секунд';
  seek.max=String(limit);
  if(!url){
   button.disabled=true;
@@ -82,7 +83,7 @@ sampleBlocks.forEach(block=>{
   seek.style.setProperty('--progress',(t/limit*100)+'%');
   time.textContent=clock(t)+' / '+clock(durationLabel);
   const playing=!audio.paused&&!audio.ended;
-  button.textContent=(playing?'❚❚ Пауза':'▶ Послушать фрагмент')+' · '+durationLabel+' секунд';
+  button.textContent=(playing?'❚❚ Пауза':'▶ Послушать фрагмент')+' · '+durationLabel+' '+secondsWord;
   button.setAttribute('aria-label',playing?'Приостановить прослушивание':'Воспроизвести фрагмент');
   block.classList.toggle('is-playing',playing);
  };
