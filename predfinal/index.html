@@ -8,7 +8,7 @@
  <title>Аудиоякоря — два альбома, чтобы бросить курить</title>
  <meta name="description" content="Музыкальная программа отказа от курения: два альбома, три звучания. Выберите комплект, послушайте аудиоякорь.">
  <link rel="canonical" href="https://marafon-metod.ru/predfinal/">
- <link rel="stylesheet" href="/predfinal/offer.css?v=20261019-brain-v15">
+ <link rel="stylesheet" href="/predfinal/offer.css?v=20261019-album-tracks-v17">
  <script defer src="/predfinal/offer.js?v=20261019-remove-mechanism-v16"></script>
  <script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return}k=e.createElement(t);a=e.getElementsByTagName(t)[0];k.async=1;k.src=r;a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=110906734','ym');ym(110906734,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});</script>
  <style data-source="pricing-v6-critical">/* /predfinal/: 3 equal-content price tiers, mobile stack and aligned desktop grid */
@@ -561,6 +561,81 @@ body.theme-dark .brain-effect-bottom{
  body.theme-dark .brain-trail-step{gap:11px}
 }
 </style>
+<style data-source="album-tracks-v17-critical">
+/* v17: 10-track titles per album, three visible and seven expandable in place. */
+body.theme-dark .album-tracklist{
+ margin-top:25px;padding:19px 0 0;
+ border-top:1px solid #52634d;
+ min-width:0;
+}
+body.theme-dark .album-tracklist-title{
+ display:flex;align-items:center;justify-content:space-between;
+ flex-wrap:wrap;gap:8px;margin-bottom:12px;
+}
+body.theme-dark .album-tracklist-title>span{
+ font-size:14px;line-height:1.4;font-weight:800;
+ letter-spacing:.085em;text-transform:uppercase;color:#bfcdb8;
+}
+body.theme-dark .album-tracklist-title>strong{
+ display:inline-flex;align-items:center;white-space:nowrap;
+ padding:5px 11px;border:1px solid #7da159;border-radius:999px;
+ color:#e3ff83;background:#2d4027;
+ font-size:15px;line-height:1.3;font-weight:800;
+}
+body.theme-dark .album-tracklist-preview,
+body.theme-dark .album-tracklist-more{
+ list-style:decimal;list-style-position:outside;
+ padding:0 0 0 27px;margin:0;
+ color:#dce8d6;
+}
+body.theme-dark .album-tracklist-preview li,
+body.theme-dark .album-tracklist-more li{
+ padding:7px 0 7px 4px;
+ font-size:18px;line-height:1.45;
+ overflow-wrap:break-word;
+}
+body.theme-dark .album-tracklist-preview li::marker,
+body.theme-dark .album-tracklist-more li::marker{
+ color:#d9ff34;font-size:15px;font-weight:800;
+}
+body.theme-dark .album-tracklist-details{
+ margin:8px 0 0;
+}
+body.theme-dark .album-tracklist-details summary{
+ display:flex;align-items:center;justify-content:space-between;
+ cursor:pointer;user-select:none;
+ width:100%;min-height:51px;
+ padding:10px 12px;border:1px solid #677d52;border-radius:10px;
+ color:#dfff54;background:#223025;
+ font-size:17px;font-weight:800;line-height:1.3;
+}
+body.theme-dark .album-tracklist-details summary::-webkit-details-marker{display:none}
+body.theme-dark .album-tracklist-details summary::marker{content:""}
+body.theme-dark .album-tracklist-details summary:hover{
+ border-color:#c4e777;background:#2b3d2b;
+}
+body.theme-dark .album-tracklist-details summary:focus-visible{
+ outline:3px solid #e6ff63;outline-offset:3px;
+}
+body.theme-dark .album-tracklist-details .tracklist-open{display:none}
+body.theme-dark .album-tracklist-details[open] .tracklist-closed{display:none}
+body.theme-dark .album-tracklist-details[open] .tracklist-open{display:inline}
+body.theme-dark .album-tracklist-more{
+ padding-top:10px;
+ padding-bottom:9px;
+}
+@media(max-width:780px){
+ body.theme-dark .album-tracklist{margin-top:23px;padding-top:17px}
+ body.theme-dark .album-tracklist-preview li,
+ body.theme-dark .album-tracklist-more li{font-size:18px;line-height:1.43}
+ body.theme-dark .album-tracklist-details summary{font-size:17px;min-height:54px}
+}
+@media(max-width:359px){
+ body.theme-dark .album-tracklist-preview li,
+ body.theme-dark .album-tracklist-more li{font-size:17px}
+ body.theme-dark .album-tracklist-details summary{font-size:16px}
+}
+</style>
 </head>
 <body class="theme-dark vision-mode">
  <header class="header"><div class="wrap header-inner">
@@ -602,6 +677,26 @@ body.theme-dark .brain-effect-bottom{
         <li>По-новому услышать оправдания «сигарета помогает отдохнуть».</li>
         <li>Ослабить внутренний торг «сейчас покурю, потом брошу».</li>
        </ul>
+       <div class="album-tracklist" aria-label="Список треков альбома 1">
+        <div class="album-tracklist-title"><span>Треки альбома</span><strong>10 треков</strong></div>
+        <ol class="album-tracklist-preview">
+         <li>Сигарета — не награда</li>
+         <li>Сейчас покурю, потом брошу</li>
+         <li>Кофе без обязательного перекура</li>
+        </ol>
+        <details class="album-tracklist-details" data-album="1">
+         <summary><span class="tracklist-closed">Показать все 10 треков <span aria-hidden="true">↓</span></span><span class="tracklist-open">Свернуть список <span aria-hidden="true">↑</span></span></summary>
+         <ol class="album-tracklist-more" start="4">
+          <li>Кому нужна эта пауза?</li>
+          <li>Мне помогает успокоиться — правда?</li>
+          <li>Последняя пачка</li>
+          <li>Страх остаться без сигарет</li>
+          <li>Не теряю ничего важного</li>
+          <li>Я готов жить иначе</li>
+          <li>Моя последняя сигарета</li>
+         </ol>
+        </details>
+       </div>
       </div>
      </article>
      <article class="album-display album-display--two">
@@ -619,6 +714,26 @@ body.theme-dark .brain-effect-bottom{
         <li>Кофе, стресс, перерывы и другие привычные триггеры.</li>
         <li>Мысль «одну сигарету можно» и возвращение к своему решению.</li>
        </ul>
+       <div class="album-tracklist" aria-label="Список треков альбома 2">
+        <div class="album-tracklist-title"><span>Треки альбома</span><strong>10 треков</strong></div>
+        <ol class="album-tracklist-preview">
+         <li>Утренний кофе — и так хорошо</li>
+         <li>Одна сигарета — ловушка</li>
+         <li>Стресс пройдёт без дыма</li>
+        </ol>
+        <details class="album-tracklist-details" data-album="2">
+         <summary><span class="tracklist-closed">Показать все 10 треков <span aria-hidden="true">↓</span></span><span class="tracklist-open">Свернуть список <span aria-hidden="true">↑</span></span></summary>
+         <ol class="album-tracklist-more" start="4">
+          <li>Перерыв остаётся моим</li>
+          <li>После еды — свобода</li>
+          <li>Вечер без перекура</li>
+          <li>Когда накрывает скука</li>
+          <li>На встрече с друзьями</li>
+          <li>Я больше не считаю дни</li>
+          <li>Жизнь без сигарет</li>
+         </ol>
+        </details>
+       </div>
       </div>
      </article>
     </div>
