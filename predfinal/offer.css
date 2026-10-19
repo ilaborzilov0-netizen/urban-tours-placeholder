@@ -2810,3 +2810,79 @@ body.theme-dark .brain-effect-bottom{
  body.theme-dark .brain-trail-step{gap:11px}
 }
 
+
+
+/* v17: 10-track titles per album, three visible and seven expandable in place. */
+body.theme-dark .album-tracklist{
+ margin-top:25px;padding:19px 0 0;
+ border-top:1px solid #52634d;
+ min-width:0;
+}
+body.theme-dark .album-tracklist-title{
+ display:flex;align-items:center;justify-content:space-between;
+ flex-wrap:wrap;gap:8px;margin-bottom:12px;
+}
+body.theme-dark .album-tracklist-title>span{
+ font-size:14px;line-height:1.4;font-weight:800;
+ letter-spacing:.085em;text-transform:uppercase;color:#bfcdb8;
+}
+body.theme-dark .album-tracklist-title>strong{
+ display:inline-flex;align-items:center;white-space:nowrap;
+ padding:5px 11px;border:1px solid #7da159;border-radius:999px;
+ color:#e3ff83;background:#2d4027;
+ font-size:15px;line-height:1.3;font-weight:800;
+}
+body.theme-dark .album-tracklist-preview,
+body.theme-dark .album-tracklist-more{
+ list-style:decimal;list-style-position:outside;
+ padding:0 0 0 27px;margin:0;
+ color:#dce8d6;
+}
+body.theme-dark .album-tracklist-preview li,
+body.theme-dark .album-tracklist-more li{
+ padding:7px 0 7px 4px;
+ font-size:18px;line-height:1.45;
+ overflow-wrap:break-word;
+}
+body.theme-dark .album-tracklist-preview li::marker,
+body.theme-dark .album-tracklist-more li::marker{
+ color:#d9ff34;font-size:15px;font-weight:800;
+}
+body.theme-dark .album-tracklist-details{
+ margin:8px 0 0;
+}
+body.theme-dark .album-tracklist-details summary{
+ display:flex;align-items:center;justify-content:space-between;
+ cursor:pointer;user-select:none;
+ width:100%;min-height:51px;
+ padding:10px 12px;border:1px solid #677d52;border-radius:10px;
+ color:#dfff54;background:#223025;
+ font-size:17px;font-weight:800;line-height:1.3;
+}
+body.theme-dark .album-tracklist-details summary::-webkit-details-marker{display:none}
+body.theme-dark .album-tracklist-details summary::marker{content:""}
+body.theme-dark .album-tracklist-details summary:hover{
+ border-color:#c4e777;background:#2b3d2b;
+}
+body.theme-dark .album-tracklist-details summary:focus-visible{
+ outline:3px solid #e6ff63;outline-offset:3px;
+}
+body.theme-dark .album-tracklist-details .tracklist-open{display:none}
+body.theme-dark .album-tracklist-details[open] .tracklist-closed{display:none}
+body.theme-dark .album-tracklist-details[open] .tracklist-open{display:inline}
+body.theme-dark .album-tracklist-more{
+ padding-top:10px;
+ padding-bottom:9px;
+}
+@media(max-width:780px){
+ body.theme-dark .album-tracklist{margin-top:23px;padding-top:17px}
+ body.theme-dark .album-tracklist-preview li,
+ body.theme-dark .album-tracklist-more li{font-size:18px;line-height:1.43}
+ body.theme-dark .album-tracklist-details summary{font-size:17px;min-height:54px}
+}
+@media(max-width:359px){
+ body.theme-dark .album-tracklist-preview li,
+ body.theme-dark .album-tracklist-more li{font-size:17px}
+ body.theme-dark .album-tracklist-details summary{font-size:16px}
+}
+
