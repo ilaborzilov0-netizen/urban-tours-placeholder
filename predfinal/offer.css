@@ -2440,3 +2440,59 @@ body.theme-dark .credibility-section>.wrap>.author-contact .contacts a:focus-vis
   font-size:16px;
  }
 }
+
+
+/* v11: emotional bridge from habit explanation into listening. */
+body.theme-dark .freedom-vision{padding:65px 0 70px;background:#101713}
+body.theme-dark .freedom-vision-panel{
+ position:relative;overflow:hidden;isolation:isolate;
+ border-radius:22px;border:1px solid #42583f;
+ background:radial-gradient(ellipse at 100% 0%,#405d3450 0%,transparent 57%),linear-gradient(145deg,#212d20 0%,#171f19 75%);
+ padding:clamp(27px,5vw,66px);box-shadow:0 19px 50px #0408044a
+}
+body.theme-dark .freedom-vision-kicker{
+ color:#ddff47;letter-spacing:.10em;text-transform:uppercase;
+ font-size:14px;font-weight:850;line-height:1.35;margin:0 0 22px
+}
+body.theme-dark .freedom-vision h2{
+ max-width:1000px;margin:0 0 28px;color:#f5f7f0;
+ font-size:clamp(36px,5.15vw,67px);line-height:1.12;letter-spacing:-.053em;font-weight:750
+}
+body.theme-dark .freedom-vision h2 em{font-style:normal;color:#dcff27}
+body.theme-dark .freedom-vision-scenes{
+ max-width:810px;font-size:clamp(20px,2.1vw,26px)!important;
+ line-height:1.54!important;color:#f2f7ec!important;margin:0 0 22px!important
+}
+body.theme-dark .freedom-vision-prose{
+ max-width:860px;color:#cddbc9!important;
+ font-size:20px!important;line-height:1.6!important;margin:0 0 24px!important
+}
+body.theme-dark .freedom-vision-conclusion{
+ max-width:800px;color:#eaf3e3!important;
+ font-size:20px!important;line-height:1.55!important;font-weight:750;margin:0 0 20px!important
+}
+body.theme-dark .freedom-vision-cta{
+ display:inline-flex;align-items:center;justify-content:center;gap:10px;
+ min-height:57px;padding:13px 23px;border-radius:10px;
+ background:#dfff17;color:#111910;font-weight:850;font-size:19px;line-height:1.35;
+ text-decoration:none;text-align:center
+}
+body.theme-dark .freedom-vision-cta:hover{background:#ecff65}
+body.theme-dark .freedom-vision-cta:focus-visible{outline:3px solid #fff;outline-offset:3px}
+@media(max-width:780px){
+ body.theme-dark .freedom-vision{padding:40px 0 45px}
+ body.theme-dark .freedom-vision-panel{padding:27px 20px 29px;border-radius:16px}
+ body.theme-dark .freedom-vision-kicker{font-size:13px;margin-bottom:18px}
+ body.theme-dark .freedom-vision h2{
+  font-size:clamp(33px,8.3vw,47px);line-height:1.15;letter-spacing:-.047em;margin-bottom:22px
+ }
+ body.theme-dark .freedom-vision-scenes{font-size:20px!important;margin-bottom:18px!important}
+ body.theme-dark .freedom-vision-prose{font-size:19px!important;margin-bottom:20px!important}
+ body.theme-dark .freedom-vision-conclusion{font-size:19px!important}
+ body.theme-dark .freedom-vision-cta{width:100%;font-size:18px;min-height:59px;padding:13px 8px}
+}
+@media(max-width:350px){
+ body.theme-dark .freedom-vision-panel{padding:23px 16px 25px}
+ body.theme-dark .freedom-vision h2{font-size:32px}
+}
+
