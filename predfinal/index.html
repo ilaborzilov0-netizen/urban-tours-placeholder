@@ -8,7 +8,7 @@
  <title>Аудиоякоря — два альбома, чтобы бросить курить</title>
  <meta name="description" content="Музыкальная программа отказа от курения: два альбома, три звучания. Выберите комплект, послушайте аудиоякорь.">
  <link rel="canonical" href="https://marafon-metod.ru/predfinal/">
- <link rel="stylesheet" href="/predfinal/offer.css?v=20261019-album-tracks-v17">
+ <link rel="stylesheet" href="/predfinal/offer.css?v=20261019-music-tracklist-v18">
  <script defer src="/predfinal/offer.js?v=20261019-remove-mechanism-v16"></script>
  <script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return}k=e.createElement(t);a=e.getElementsByTagName(t)[0];k.async=1;k.src=r;a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=110906734','ym');ym(110906734,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});</script>
  <style data-source="pricing-v6-critical">/* /predfinal/: 3 equal-content price tiers, mobile stack and aligned desktop grid */
@@ -636,6 +636,86 @@ body.theme-dark .album-tracklist-more{
  body.theme-dark .album-tracklist-details summary{font-size:16px}
 }
 </style>
+<style data-source="music-tracklist-v18-critical">
+/* v18 final music service composition: full square album covers and numbered tracks. */
+body.theme-dark .album-showcase-grid{align-items:start}
+body.theme-dark .album-art{
+ width:100%;max-width:none;aspect-ratio:1;
+ margin:0 0 23px;background:none;
+}
+body.theme-dark .album-cover,
+body.theme-dark .album-showcase .album-cover{
+ inset:0;top:0;left:0;width:100%;height:100%;
+ position:absolute;aspect-ratio:1;
+ overflow:hidden;border-radius:11px;
+ box-shadow:0 16px 34px #0008,0 0 0 1px #dbe9ce40;
+}
+body.theme-dark .album-showcase .album-cover img{
+ display:block;width:100%;height:100%;object-fit:cover;object-position:center center;
+}
+body.theme-dark .album-disc{display:none!important}
+body.theme-dark .album-description{max-width:none;padding:0}
+body.theme-dark .album-phase{margin:0 0 10px;font-size:14px;line-height:1.4;font-weight:850;letter-spacing:.08em}
+body.theme-dark .album-description h3{
+ font-size:clamp(28px,3vw,38px);letter-spacing:-.045em;margin:0 0 12px;
+}
+body.theme-dark .album-description>p{
+ max-width:650px;font-size:19px;line-height:1.52;margin:0 0 23px;
+}
+body.theme-dark .album-tracklist{margin:0;padding:17px 0 0;border-top:1px solid #4f644d}
+body.theme-dark .album-tracklist-title{
+ display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 10px;
+}
+body.theme-dark .album-tracklist-title>span{
+ color:#aebfa9;font-size:13px;line-height:1.4;letter-spacing:.08em;
+}
+body.theme-dark .album-tracklist-title>strong{
+ padding:0;border:none;background:transparent;border-radius:0;
+ color:#e2ff77;font-size:20px;font-weight:800;line-height:1.3;
+}
+body.theme-dark .album-tracklist-preview,
+body.theme-dark .album-tracklist-more{list-style:none;padding:0;margin:0;color:#dce8d6}
+body.theme-dark .album-tracklist-preview{counter-reset:album-track 0}
+body.theme-dark .album-tracklist-more{counter-reset:album-track 3}
+body.theme-dark .album-tracklist-preview li,
+body.theme-dark .album-tracklist-more li{
+ display:grid;grid-template-columns:31px minmax(0,1fr);
+ gap:8px;align-items:center;min-height:54px;
+ font-size:19px;line-height:1.35;
+ padding:9px 10px 9px 6px;
+ border-bottom:1px solid #384939;
+ color:#f0f5ed;
+}
+body.theme-dark .album-tracklist-preview li::before,
+body.theme-dark .album-tracklist-more li::before{
+ counter-increment:album-track;content:counter(album-track,decimal-leading-zero);
+ color:#b7c7b3;font-variant-numeric:tabular-nums;
+ font-weight:700;font-size:15px;line-height:1;
+}
+body.theme-dark .album-tracklist-details{margin-top:14px}
+body.theme-dark .album-tracklist-details summary{
+ min-height:54px;border-radius:9px;font-size:18px;font-weight:750;
+}
+body.theme-dark .album-tracklist-more{padding-top:4px;padding-bottom:7px}
+@media(max-width:780px){
+ body.theme-dark .album-art{width:100%;margin:0 0 21px}
+ body.theme-dark .album-description h3{font-size:clamp(28px,7.4vw,36px)}
+ body.theme-dark .album-description>p{font-size:19px;line-height:1.52}
+ body.theme-dark .album-tracklist-title>strong{font-size:20px}
+ body.theme-dark .album-tracklist-preview li,
+ body.theme-dark .album-tracklist-more li{
+  min-height:54px;font-size:18px;line-height:1.4;
+  grid-template-columns:31px minmax(0,1fr);
+ }
+}
+@media(max-width:359px){
+ body.theme-dark .album-tracklist-title>strong{font-size:18px}
+ body.theme-dark .album-tracklist-preview li,
+ body.theme-dark .album-tracklist-more li{
+  font-size:17px;grid-template-columns:28px minmax(0,1fr);gap:6px;
+ }
+}
+</style>
 </head>
 <body class="theme-dark vision-mode">
  <header class="header"><div class="wrap header-inner">
@@ -664,28 +744,23 @@ body.theme-dark .album-tracklist-more{
     <div class="album-showcase-grid">
      <article class="album-display album-display--one">
       <div class="album-art">
-       <div class="album-disc" aria-hidden="true"><span class="album-disc-label"></span></div>
        <div class="album-cover album-cover--one">
         <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/64ee6e9d-dca2-41c0-b822-3797c4383fef.jpg" alt="Обложка альбома «До последней сигареты»: мужчина с чашкой кофе готовится оставить курение" width="1100" height="1003" loading="eager" decoding="async">
        </div>
       </div>
       <div class="album-description">
-       <span class="album-phase">01 / ДО ОТКАЗА</span>
+       <span class="album-phase">ПЕРВЫЙ ЭТАП · ДО ОТКАЗА</span>
        <h3>До последней сигареты</h3>
        <p>Подготовка к отказу от курения. Музыка помогает переосмыслить привычные мысли о сигарете и подойти к решению.</p>
-       <ul class="album-benefits">
-        <li>По-новому услышать оправдания «сигарета помогает отдохнуть».</li>
-        <li>Ослабить внутренний торг «сейчас покурю, потом брошу».</li>
-       </ul>
        <div class="album-tracklist" aria-label="Список треков альбома 1">
-        <div class="album-tracklist-title"><span>Треки альбома</span><strong>10 треков</strong></div>
+        <div class="album-tracklist-title"><span>Треклист</span><strong>10 аудиоякорей</strong></div>
         <ol class="album-tracklist-preview">
          <li>Сигарета — не награда</li>
          <li>Сейчас покурю, потом брошу</li>
          <li>Кофе без обязательного перекура</li>
         </ol>
         <details class="album-tracklist-details" data-album="1">
-         <summary><span class="tracklist-closed">Показать все 10 треков <span aria-hidden="true">↓</span></span><span class="tracklist-open">Свернуть список <span aria-hidden="true">↑</span></span></summary>
+         <summary><span class="tracklist-closed">Показать все 10 <span aria-hidden="true">↓</span></span><span class="tracklist-open">Свернуть список <span aria-hidden="true">↑</span></span></summary>
          <ol class="album-tracklist-more" start="4">
           <li>Кому нужна эта пауза?</li>
           <li>Мне помогает успокоиться — правда?</li>
@@ -701,28 +776,23 @@ body.theme-dark .album-tracklist-more{
      </article>
      <article class="album-display album-display--two">
       <div class="album-art">
-       <div class="album-disc" aria-hidden="true"><span class="album-disc-label"></span></div>
        <div class="album-cover album-cover--two">
         <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/48b9058f-60e4-4a15-9b9b-11f7cf9bae89.png" alt="Обложка альбома «Жизнь без сигарет»: мужчина спокойно смотрит на море и рассвет" width="1254" height="1254" loading="lazy" decoding="async">
        </div>
       </div>
       <div class="album-description">
-       <span class="album-phase">02 / ПОСЛЕ ОТКАЗА</span>
+       <span class="album-phase">ВТОРОЙ ЭТАП · ПОСЛЕ ОТКАЗА</span>
        <h3>Жизнь без сигарет</h3>
        <p>Музыка для первых дней без курения. Возвращайтесь к новым ответам в ситуациях, где раньше хотелось закурить.</p>
-       <ul class="album-benefits">
-        <li>Кофе, стресс, перерывы и другие привычные триггеры.</li>
-        <li>Мысль «одну сигарету можно» и возвращение к своему решению.</li>
-       </ul>
        <div class="album-tracklist" aria-label="Список треков альбома 2">
-        <div class="album-tracklist-title"><span>Треки альбома</span><strong>10 треков</strong></div>
+        <div class="album-tracklist-title"><span>Треклист</span><strong>10 аудиоякорей</strong></div>
         <ol class="album-tracklist-preview">
          <li>Утренний кофе — и так хорошо</li>
          <li>Одна сигарета — ловушка</li>
          <li>Стресс пройдёт без дыма</li>
         </ol>
         <details class="album-tracklist-details" data-album="2">
-         <summary><span class="tracklist-closed">Показать все 10 треков <span aria-hidden="true">↓</span></span><span class="tracklist-open">Свернуть список <span aria-hidden="true">↑</span></span></summary>
+         <summary><span class="tracklist-closed">Показать все 10 <span aria-hidden="true">↓</span></span><span class="tracklist-open">Свернуть список <span aria-hidden="true">↑</span></span></summary>
          <ol class="album-tracklist-more" start="4">
           <li>Перерыв остаётся моим</li>
           <li>После еды — свобода</li>
@@ -737,7 +807,7 @@ body.theme-dark .album-tracklist-more{
       </div>
      </article>
     </div>
-    <p class="album-showcase-note">Оба альбома цифровые: слушайте с телефона, дома или в дороге. Начать можно ещё до отказа.</p>
+    <p class="album-showcase-note">Два цифровых альбома для прослушивания на телефоне и компьютере.</p>
     <a class="btn btn-primary album-showcase-cta" href="#pricing">Выбрать комплект · от 990 ₽ →</a>
    </div>
   </section>
@@ -898,7 +968,7 @@ body.theme-dark .album-tracklist-more{
    <div class="sound-sample-content"><h3>Под гитару</h3>
     <p>Низкий голос и спокойное, доверительное исполнение.</p>
     <div class="sound-playback sound-playback--empty" data-audio-preview="author" >
- <button class="sound-play" type="button" data-play="author" aria-label="Воспроизвести 30-секундный фрагмент">▶ Послушать · 30 секунд</button>
+ <button class="sound-play" type="button" data-play="author" aria-label="Воспроизвести 30-секундный фрагмент">▶ Послушать фрагмент · 30 секунд</button>
  <div class="sound-player-timeline"><input type="range" min="0" max="30" step=".1" value="0" aria-label="Позиция воспроизведения" class="sound-seek" disabled><span class="sound-elapsed">0:00 / 0:30</span></div>
  <audio preload="none" class="sound-audio"></audio>
 </div>
@@ -909,7 +979,7 @@ body.theme-dark .album-tracklist-more{
    <div class="sound-sample-content"><h3>Душевная эстрада</h3>
     <p>Выразительная мелодия, живые инструменты и запоминающийся припев.</p>
     <div class="sound-playback sound-playback--empty" data-audio-preview="estrada" >
- <button class="sound-play" type="button" data-play="estrada" aria-label="Воспроизвести 30-секундный фрагмент">▶ Послушать · 30 секунд</button>
+ <button class="sound-play" type="button" data-play="estrada" aria-label="Воспроизвести 30-секундный фрагмент">▶ Послушать фрагмент · 30 секунд</button>
  <div class="sound-player-timeline"><input type="range" min="0" max="30" step=".1" value="0" aria-label="Позиция воспроизведения" class="sound-seek" disabled><span class="sound-elapsed">0:00 / 0:30</span></div>
  <audio preload="none" class="sound-audio"></audio>
 </div>
@@ -920,7 +990,7 @@ body.theme-dark .album-tracklist-more{
    <div class="sound-sample-content"><h3>Современное звучание</h3>
     <p>Мягкий поп, ровный ритм и современная аранжировка.</p>
     <div class="sound-playback" data-audio-preview="modern" data-audio-src="/ai/assets/life-gets-better-demo-20261008.mp3">
- <button class="sound-play" type="button" data-play="modern" aria-label="Воспроизвести 30-секундный фрагмент">▶ Послушать · 30 секунд</button>
+ <button class="sound-play" type="button" data-play="modern" aria-label="Воспроизвести 30-секундный фрагмент">▶ Послушать фрагмент · 30 секунд</button>
  <div class="sound-player-timeline"><input type="range" min="0" max="30" step=".1" value="0" aria-label="Позиция воспроизведения" class="sound-seek" ><span class="sound-elapsed">0:00 / 0:30</span></div>
  <audio preload="none" src="/ai/assets/life-gets-better-demo-20261008.mp3" class="sound-audio"></audio>
 </div>
