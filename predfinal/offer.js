@@ -9,11 +9,6 @@ const styles={
 let selectedStyle='author',selectedPlan='all',isSending=false,isSent=false;
 const styleButtons=[...document.querySelectorAll('.tier-genre [data-style]')];
 const planButtons=[...document.querySelectorAll('[data-select-plan]')];
-const pathStory=document.getElementById('path-story');
-const pathReplay=document.getElementById('path-replay');
-const pathAnnouncement=document.getElementById('path-announcement');
-const mechanismSteps=[...document.querySelectorAll('[data-mech-step]')];
-const listeningNotes=[...document.querySelectorAll('.listen-beats b')];
 function updateState(){
  styleButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.style===selectedStyle)));
  document.querySelectorAll('[data-price-card]').forEach(c=>c.classList.toggle('is-selected',c.dataset.priceCard===selectedPlan));
@@ -135,86 +130,6 @@ function setupScrollMotion(){
  }
 }
 
-/* A 12-second silent explanatory cartoon. No copy is gated on motion. */
-let pathAutoUsed=false;
-let pathPlaying=false;
-let pathObserver=null;
-let pathTimers=[];
-function stopPathTimers(){
- pathTimers.forEach(clearTimeout);
- pathTimers=[];
- pathPlaying=false;
-}
-function setPathScene(scene){
- if(!pathStory)return;
- pathStory.dataset.progress=scene;
- const active=scene==='habit'?'habit':scene.startsWith('listen')?'repeat':scene==='choice'||scene==='complete'?'choice':'';
- const passed=scene.startsWith('listen')?['habit']:scene==='choice'||scene==='complete'?['habit','repeat']:[];
- mechanismSteps.forEach(el=>{
-  el.classList.toggle('is-current',el.dataset.mechStep===active);
-  el.classList.toggle('is-completed',passed.includes(el.dataset.mechStep));
- });
- const heard=scene==='complete'||scene==='choice'?3:scene.startsWith('listen')?Number(scene.slice(6)):0;
- listeningNotes.forEach((note,index)=>note.classList.toggle('is-heard',index<heard));
-}
-function playPathStory(trigger){
- if(!pathStory||!pathReplay)return;
- if(pathObserver){pathObserver.disconnect();pathObserver=null;}
- pathAutoUsed=true;
- stopPathTimers();
- if(!useMotion()){
-  setPathScene('complete');
-  pathReplay.textContent='↻ Схема без анимации';
-  if(trigger==='button')pathAnnouncement.textContent='Схема показана без движения: знакомая ситуация, повторение песни, новый ответ.';
-  return;
- }
- pathPlaying=true;
- pathAnnouncement.textContent='';
- pathReplay.textContent='↻ Посмотреть ещё раз';
- setPathScene('habit');
- const schedule=[
-  [2650,'listen1'],
-  [4350,'listen2'],
-  [6050,'listen3'],
-  [8350,'choice'],
-  [12000,'complete']
- ];
- schedule.forEach(([delay,scene])=>{
-  pathTimers.push(setTimeout(()=>{
-   if(!useMotion()){stopPathTimers();setPathScene('complete');return;}
-   setPathScene(scene);
-   if(scene==='complete'){
-    pathPlaying=false;pathTimers=[];
-    if(trigger==='button')pathAnnouncement.textContent='Анимация завершена: повторение музыки показывает, как другой ответ может стать легче вспомнить.';
-    goal('predfinal_path_story_complete',{trigger});
-   }
-  },delay));
- });
- goal('predfinal_path_story_start',{trigger});
-}
-function setupPathAuto(){
- if(pathObserver){pathObserver.disconnect();pathObserver=null;}
- if(!pathStory)return;
- if(!useMotion()){
-  stopPathTimers();
-  setPathScene('complete');
-  pathReplay.textContent='↻ Схема без анимации';
-  return;
- }
- if(!pathPlaying && pathAutoUsed){
-  pathReplay.textContent='↻ Повторить за 12 секунд';
- }
- if(pathPlaying||pathAutoUsed||!('IntersectionObserver' in window))return;
- pathObserver=new IntersectionObserver(entries=>{
-  if(entries.some(e=>e.isIntersecting)){
-   pathObserver?.disconnect();pathObserver=null;
-   playPathStory('auto');
-  }
- },{rootMargin:'0px 0px -10% 0px',threshold:.08});
- pathObserver.observe(pathStory);
-}
-pathReplay?.addEventListener('click',()=>playPathStory('button'));
-
 function applyAppearance(){
  document.body.classList.add('theme-dark','vision-mode');
  const enabled=useMotion();
@@ -222,7 +137,6 @@ function applyAppearance(){
  document.body.classList.toggle('motion-disabled',!enabled);
  document.documentElement.style.scrollBehavior=enabled?'smooth':'auto';
  setupScrollMotion();
- setupPathAuto();
 }
 if(reduceMotion.addEventListener)reduceMotion.addEventListener('change',applyAppearance);
 else if(reduceMotion.addListener)reduceMotion.addListener(applyAppearance);
