@@ -1062,6 +1062,63 @@ body.theme-dark .album-showcase{border-top:0;padding-top:0}
  body.theme-dark.vision-mode .hero .hero-lead{font-size:19px!important}
 }
 </style>
+
+ <style data-source="prefinal-listening-guide-20261019">
+  /* Four open steps between previews and the pricing button. */
+  body.theme-dark .sound-showcase-instruction{
+   max-width:840px;margin:34px 0 0;padding:29px 27px 24px;
+   background:#1d2a1f;border:1px solid #526951;border-radius:18px;
+  }
+  body.theme-dark .listening-guide-heading{margin:0 0 23px}
+  body.theme-dark .listening-guide-kicker{
+   margin:0 0 8px;color:#dfff42;font-size:14px;font-weight:800;
+   text-transform:uppercase;letter-spacing:.08em;
+  }
+  body.theme-dark .listening-guide-heading h2{
+   margin:0;color:#f4f8ef;font-weight:650;
+   font-size:clamp(29px,3.4vw,40px);line-height:1.13;letter-spacing:-.035em;
+  }
+  body.theme-dark .listening-guide-steps{
+   display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+   gap:13px;list-style:none;margin:0;padding:0;counter-reset:none;
+  }
+  body.theme-dark .listening-guide-steps>li{
+   display:flex;align-items:flex-start;gap:14px;
+   min-width:0;padding:20px 18px;
+   border:1px solid #3c543e;border-radius:12px;background:#253529;
+  }
+  body.theme-dark .listening-guide-number{
+   flex:none;display:grid;place-items:center;width:40px;height:40px;
+   color:#deff4a;background:#17251a;border:1px solid #586c50;
+   border-radius:11px;font-size:15px;font-weight:850;
+  }
+  body.theme-dark .listening-guide-steps h3{
+   margin:0 0 8px;color:#f6faef;font-size:19px;font-weight:750;
+   letter-spacing:-.018em;line-height:1.26;
+  }
+  body.theme-dark .listening-guide-steps p{
+   margin:0;color:#d4e2d0;font-size:17px;line-height:1.51;
+  }
+  body.theme-dark .sound-showcase-instruction + .sound-showcase-action{margin-top:25px}
+  @media(max-width:720px){
+   body.theme-dark .sound-showcase-instruction{
+    margin-top:28px;padding:23px 17px 18px;border-radius:15px;
+   }
+   body.theme-dark .listening-guide-heading{margin-bottom:18px}
+   body.theme-dark .listening-guide-kicker{font-size:13px}
+   body.theme-dark .listening-guide-heading h2{font-size:31px}
+   body.theme-dark .listening-guide-steps{grid-template-columns:minmax(0,1fr);gap:11px}
+   body.theme-dark .listening-guide-steps>li{padding:16px 13px;gap:12px}
+   body.theme-dark .listening-guide-number{width:36px;height:36px;font-size:14px}
+   body.theme-dark .listening-guide-steps h3{font-size:19px}
+   body.theme-dark .listening-guide-steps p{font-size:17px}
+  }
+  @media(max-width:360px){
+   body.theme-dark .listening-guide-steps>li{padding:15px 11px;gap:10px}
+   body.theme-dark .listening-guide-steps h3{font-size:18px}
+   body.theme-dark .listening-guide-steps p{font-size:16px}
+  }
+ </style>
 </head>
 <body class="theme-dark vision-mode">
  <header class="header"><div class="wrap header-inner">
@@ -1209,6 +1266,30 @@ body.theme-dark .album-showcase{border-top:0;padding-top:0}
 
    </div>
   </article>
+ </div>
+ <div class="sound-showcase-instruction" id="listening-guide" aria-labelledby="listening-guide-heading">
+  <div class="listening-guide-heading">
+   <p class="listening-guide-kicker">Инструкция</p>
+   <h2 id="listening-guide-heading">Как пройти программу</h2>
+  </div>
+  <ol class="listening-guide-steps">
+   <li>
+    <span class="listening-guide-number" aria-hidden="true">01</span>
+    <div><h3>Выберите день отказа</h3><p>Сегодня или в течение ближайших трёх дней.</p></div>
+   </li>
+   <li>
+    <span class="listening-guide-number" aria-hidden="true">02</span>
+    <div><h3>Перед отказом прослушайте первый альбом</h3><p>«До последней сигареты» — полностью, по порядку, минимум один раз.</p></div>
+   </li>
+   <li>
+    <span class="listening-guide-number" aria-hidden="true">03</span>
+    <div><h3>После отказа переходите ко второму альбому</h3><p>«Жизнь без сигарет» сначала прослушайте полностью по порядку. Затем в течение семи дней возвращайтесь к нему и включайте треки в любом порядке.</p></div>
+   </li>
+   <li>
+    <span class="listening-guide-number" aria-hidden="true">04</span>
+    <div><h3>Дальше слушайте по желанию</h3><p>После первой недели можно возвращаться к обоим альбомам. Выбирайте треки, которые хочется услышать снова.</p></div>
+   </li>
+  </ol>
  </div>
  <div class="sound-showcase-action"><a class="btn btn-primary album-showcase-cta" href="#pricing">Выбрать комплект · от 990 ₽ →</a></div>
 </div></section>
