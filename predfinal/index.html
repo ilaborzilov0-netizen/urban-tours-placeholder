@@ -202,6 +202,10 @@ body.theme-dark .checkout-genre{display:none!important}
 @media(max-width:899px){
  body.theme-dark .prefinal-pricing-section .price-bottom .tier-genre .tier-genre-chip{min-height:37px;font-size:14px}
 }
+/* A single CTA after the three audio previews, before the author story. */
+body.theme-dark .sound-showcase-action{display:flex;justify-content:center;margin-top:32px}
+body.theme-dark .sound-showcase-action .album-showcase-cta{margin:0}
+@media(max-width:720px){body.theme-dark .sound-showcase-action{margin-top:26px}}
 </style>
 <style data-source="pricing-v9-highlight">
 /* v9: emphasize the 1490 ₽ complete-sound plan without a popularity claim. */
@@ -1080,9 +1084,59 @@ body.theme-dark .album-showcase .visually-hidden{
       </div>
      </article>
     </div>
-    <a class="btn btn-primary album-showcase-cta" href="#pricing">Выбрать комплект · от 990 ₽ →</a>
    </div>
   </section>
+
+  <section class="section sound-showcase" id="sounds" aria-labelledby="sounds-heading"><div class="wrap">
+ <div class="sound-showcase-head">
+  <p class="kicker">Одна программа — разные музыкальные стили</p>
+  <h2 id="sounds-heading">Найдите звучание,<br><em>которое вам по душе.</em></h2>
+  <p>Послушайте фрагменты и выберите звучание по душе. Можно выбрать сразу или послушать другие варианты — это ни к чему не обязывает.</p>
+ </div>
+ <div class="sound-samples">
+  <article class="sound-sample" data-sound-card="author">
+   <div class="sound-sample-icon" aria-hidden="true">♫</div>
+   <div class="sound-sample-content"><h3>Под гитару</h3>
+    <p>Низкий голос и спокойное, доверительное исполнение.</p>
+    <div class="sound-playback" data-audio-preview="author" data-audio-duration="37.6" data-audio-src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/ed83f511-977e-4fe7-840c-e8ff1222c3a2.mp3">
+ <button class="sound-play" type="button" data-play="author" aria-label="Воспроизвести фрагмент: 38 секунд">▶ Послушать фрагмент · 38 секунд</button>
+ <div class="sound-player-timeline"><input type="range" min="0" max="37.6" step=".1" value="0" aria-label="Позиция воспроизведения" class="sound-seek"><span class="sound-elapsed">0:00 / 0:38</span></div>
+ <audio preload="none" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/ed83f511-977e-4fe7-840c-e8ff1222c3a2.mp3" class="sound-audio"></audio>
+</div>
+    <button type="button" class="sound-favorite" data-favorite-genre="author" aria-pressed="false" aria-label="Выбрать музыкальное звучание: Под гитару"><span class="sound-favorite-mark" aria-hidden="true">✓</span><span class="sound-favorite-label">Мне нравится это звучание</span></button>
+
+   </div>
+  </article>
+  <article class="sound-sample" data-sound-card="estrada">
+   <div class="sound-sample-icon" aria-hidden="true">♬</div>
+   <div class="sound-sample-content"><h3>Душевная эстрада</h3>
+    <p>Выразительная мелодия, живые инструменты и запоминающийся припев.</p>
+    <div class="sound-playback" data-audio-preview="estrada" data-audio-duration="34.12" data-audio-src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/40afffa9-c314-45d7-9052-15ecd65cc48c.mp3">
+ <button class="sound-play" type="button" data-play="estrada" aria-label="Воспроизвести фрагмент: 34 секунды">▶ Послушать фрагмент · 34 секунды</button>
+ <div class="sound-player-timeline"><input type="range" min="0" max="34.12" step=".1" value="0" aria-label="Позиция воспроизведения" class="sound-seek"><span class="sound-elapsed">0:00 / 0:34</span></div>
+ <audio preload="none" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/40afffa9-c314-45d7-9052-15ecd65cc48c.mp3" class="sound-audio"></audio>
+</div>
+    <button type="button" class="sound-favorite" data-favorite-genre="estrada" aria-pressed="false" aria-label="Выбрать музыкальное звучание: Душевная эстрада"><span class="sound-favorite-mark" aria-hidden="true">✓</span><span class="sound-favorite-label">Мне нравится это звучание</span></button>
+
+   </div>
+  </article>
+  <article class="sound-sample" data-sound-card="modern">
+   <div class="sound-sample-icon" aria-hidden="true">♪</div>
+   <div class="sound-sample-content"><h3>Современное звучание</h3>
+    <p>Мягкий поп, ровный ритм и современная аранжировка.</p>
+    <div class="sound-playback" data-audio-preview="modern" data-audio-duration="32.94" data-audio-src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/2c4c9344-789f-442a-9311-ad9daf6211a2.mp3">
+ <button class="sound-play" type="button" data-play="modern" aria-label="Воспроизвести фрагмент: 33 секунды">▶ Послушать фрагмент · 33 секунды</button>
+ <div class="sound-player-timeline"><input type="range" min="0" max="32.94" step=".1" value="0" aria-label="Позиция воспроизведения" class="sound-seek"><span class="sound-elapsed">0:00 / 0:33</span></div>
+ <audio preload="none" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/2c4c9344-789f-442a-9311-ad9daf6211a2.mp3" class="sound-audio"></audio>
+</div>
+    <button type="button" class="sound-favorite" data-favorite-genre="modern" aria-pressed="false" aria-label="Выбрать музыкальное звучание: Современное звучание"><span class="sound-favorite-mark" aria-hidden="true">✓</span><span class="sound-favorite-label">Мне нравится это звучание</span></button>
+
+   </div>
+  </article>
+ </div>
+ <div class="sound-showcase-action"><a class="btn btn-primary album-showcase-cta" href="#pricing">Выбрать комплект · от 990 ₽ →</a></div>
+</div></section>
+
 
   <section class="credibility-section section" id="about"><div class="wrap">
    <h2 class="author-section-title">За аудиоякорями —<br><em>годы живой практики.</em></h2>
@@ -1240,55 +1294,7 @@ body.theme-dark .album-showcase .visually-hidden{
     </div>
    </div>
   </section>
-<section class="section sound-showcase" id="sounds" aria-labelledby="sounds-heading"><div class="wrap">
- <div class="sound-showcase-head">
-  <p class="kicker">Одна программа — разные музыкальные стили</p>
-  <h2 id="sounds-heading">Найдите звучание,<br><em>которое вам по душе.</em></h2>
-  <p>Послушайте фрагменты и выберите звучание по душе. Можно выбрать сразу или послушать другие варианты — это ни к чему не обязывает.</p>
- </div>
- <div class="sound-samples">
-  <article class="sound-sample" data-sound-card="author">
-   <div class="sound-sample-icon" aria-hidden="true">♫</div>
-   <div class="sound-sample-content"><h3>Под гитару</h3>
-    <p>Низкий голос и спокойное, доверительное исполнение.</p>
-    <div class="sound-playback" data-audio-preview="author" data-audio-duration="37.6" data-audio-src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/ed83f511-977e-4fe7-840c-e8ff1222c3a2.mp3">
- <button class="sound-play" type="button" data-play="author" aria-label="Воспроизвести фрагмент: 38 секунд">▶ Послушать фрагмент · 38 секунд</button>
- <div class="sound-player-timeline"><input type="range" min="0" max="37.6" step=".1" value="0" aria-label="Позиция воспроизведения" class="sound-seek"><span class="sound-elapsed">0:00 / 0:38</span></div>
- <audio preload="none" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/ed83f511-977e-4fe7-840c-e8ff1222c3a2.mp3" class="sound-audio"></audio>
-</div>
-    <button type="button" class="sound-favorite" data-favorite-genre="author" aria-pressed="false" aria-label="Выбрать музыкальное звучание: Под гитару"><span class="sound-favorite-mark" aria-hidden="true">✓</span><span class="sound-favorite-label">Мне нравится это звучание</span></button>
 
-   </div>
-  </article>
-  <article class="sound-sample" data-sound-card="estrada">
-   <div class="sound-sample-icon" aria-hidden="true">♬</div>
-   <div class="sound-sample-content"><h3>Душевная эстрада</h3>
-    <p>Выразительная мелодия, живые инструменты и запоминающийся припев.</p>
-    <div class="sound-playback" data-audio-preview="estrada" data-audio-duration="34.12" data-audio-src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/40afffa9-c314-45d7-9052-15ecd65cc48c.mp3">
- <button class="sound-play" type="button" data-play="estrada" aria-label="Воспроизвести фрагмент: 34 секунды">▶ Послушать фрагмент · 34 секунды</button>
- <div class="sound-player-timeline"><input type="range" min="0" max="34.12" step=".1" value="0" aria-label="Позиция воспроизведения" class="sound-seek"><span class="sound-elapsed">0:00 / 0:34</span></div>
- <audio preload="none" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/40afffa9-c314-45d7-9052-15ecd65cc48c.mp3" class="sound-audio"></audio>
-</div>
-    <button type="button" class="sound-favorite" data-favorite-genre="estrada" aria-pressed="false" aria-label="Выбрать музыкальное звучание: Душевная эстрада"><span class="sound-favorite-mark" aria-hidden="true">✓</span><span class="sound-favorite-label">Мне нравится это звучание</span></button>
-
-   </div>
-  </article>
-  <article class="sound-sample" data-sound-card="modern">
-   <div class="sound-sample-icon" aria-hidden="true">♪</div>
-   <div class="sound-sample-content"><h3>Современное звучание</h3>
-    <p>Мягкий поп, ровный ритм и современная аранжировка.</p>
-    <div class="sound-playback" data-audio-preview="modern" data-audio-duration="32.94" data-audio-src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/2c4c9344-789f-442a-9311-ad9daf6211a2.mp3">
- <button class="sound-play" type="button" data-play="modern" aria-label="Воспроизвести фрагмент: 33 секунды">▶ Послушать фрагмент · 33 секунды</button>
- <div class="sound-player-timeline"><input type="range" min="0" max="32.94" step=".1" value="0" aria-label="Позиция воспроизведения" class="sound-seek"><span class="sound-elapsed">0:00 / 0:33</span></div>
- <audio preload="none" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/2c4c9344-789f-442a-9311-ad9daf6211a2.mp3" class="sound-audio"></audio>
-</div>
-    <button type="button" class="sound-favorite" data-favorite-genre="modern" aria-pressed="false" aria-label="Выбрать музыкальное звучание: Современное звучание"><span class="sound-favorite-mark" aria-hidden="true">✓</span><span class="sound-favorite-label">Мне нравится это звучание</span></button>
-
-   </div>
-  </article>
- </div>
-
-</div></section>
 <section class="section prefinal-pricing-section" id="pricing" aria-labelledby="pricing-heading"><div class="wrap">
    <div class="section-head pricing-head"><div>
     <p class="kicker">Выберите свой комплект</p>
