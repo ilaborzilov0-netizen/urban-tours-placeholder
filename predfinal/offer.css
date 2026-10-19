@@ -2355,3 +2355,40 @@ body.theme-dark .checkout-genre{display:none!important}
   min-height:37px;font-size:14px;
  }
 }
+
+
+/* v9: emphasize the 1490 ₽ complete-sound plan without a popularity claim. */
+body.theme-dark .prefinal-pricing-section .price-top-row{
+ display:flex;align-items:flex-start;justify-content:space-between;gap:6px;flex-wrap:wrap;margin-bottom:9px;
+}
+body.theme-dark .prefinal-pricing-section .price-top-row .price-top{margin:0;min-width:0}
+body.theme-dark .prefinal-pricing-section .price-recommend{
+ display:inline-flex;align-items:center;justify-content:center;
+ border-radius:999px;padding:5px 9px;
+ color:#142009;background:#dcff23;font-size:12px;font-weight:900;
+ line-height:1.15;letter-spacing:0;white-space:nowrap;
+}
+body.theme-dark .prefinal-pricing-section .price-featured-reason{
+ margin:0 0 17px;font-size:16px!important;line-height:1.46!important;color:#e0ead2!important;
+}
+body.theme-dark .prefinal-pricing-section .price-upgrade{
+ color:#dcff78!important;margin:0 0 13px!important;font-size:16px!important;
+ line-height:1.35!important;font-weight:850;
+}
+body.theme-dark .prefinal-pricing-section .price-card--featured{
+ background:linear-gradient(155deg,#31472b 0%,#223321 70%,#1e2b1e 100%);
+ border-color:#d9ff17;
+}
+body.theme-dark .prefinal-pricing-section .price-card[data-price-card="duo"] .price-saving strong{
+ color:#cad3bf;
+}
+body.theme-dark .prefinal-pricing-section .price-card[data-price-card="duo"] .price-compare s{
+ color:#aebba7;
+}
+@media(min-width:900px){
+ body.theme-dark .prefinal-pricing-section .price-card--featured .price-featured-reason{
+  font-size:15px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-recommend{font-size:11px;padding:5px 7px}
+}
+
