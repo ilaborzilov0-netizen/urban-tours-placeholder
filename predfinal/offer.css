@@ -2063,3 +2063,95 @@ body.theme-dark .credibility-stats{margin-top:27px}
  body.theme-dark .author-contact .contacts a{font-size:14px}
  body.theme-dark .album-benefits li{font-size:17px}
 }
+
+
+/* /predfinal/ mobile-first combined sound previews: standalone, not plan selectors. */
+body.theme-dark .sound-showcase{padding:69px 0 82px;background:linear-gradient(180deg,#111612,#172019 96%);border-block:1px solid #374838}
+body.theme-dark .sound-showcase>.wrap{max-width:1120px}
+body.theme-dark .sound-showcase-head{max-width:820px;margin-bottom:35px}
+body.theme-dark .sound-showcase-head h2{font-size:clamp(37px,5vw,63px);line-height:1.1;letter-spacing:-.051em;margin:0 0 18px}
+body.theme-dark .sound-showcase-head h2 em{font-style:normal;color:var(--accent)}
+body.theme-dark .sound-showcase-head>p:last-child{font-size:20px;color:#d0decd;line-height:1.56;max-width:720px;margin:0}
+body.theme-dark .sound-samples{display:grid;gap:17px;max-width:840px}
+body.theme-dark .sound-sample{
+ display:grid;grid-template-columns:53px minmax(0,1fr);gap:20px;
+ border:1px solid #4d654e;background:#222e24;border-radius:18px;
+ padding:28px 30px 26px;min-width:0;box-shadow:0 14px 25px #050c0755;
+}
+body.theme-dark .sound-sample-icon{
+ display:flex;align-items:flex-start;justify-content:center;
+ width:53px;height:53px;font-size:32px;font-weight:800;color:var(--accent);
+ padding-top:2px;
+}
+body.theme-dark .sound-sample-content{min-width:0}
+body.theme-dark .sound-sample h3{
+ font-size:27px;line-height:1.2;letter-spacing:-.035em;margin:1px 0 7px;color:#fff;
+}
+body.theme-dark .sound-sample-content>p{font-size:19px;line-height:1.52;color:#cfdbc9;margin:0 0 21px;max-width:680px}
+body.theme-dark .sound-playback{
+ display:grid;grid-template-columns:minmax(205px,auto) minmax(0,1fr);
+ gap:16px;align-items:center;
+ padding:16px;border-radius:12px;background:#121a15;border:1px solid #465744;
+}
+body.theme-dark .sound-play{
+ appearance:none;cursor:pointer;
+ display:inline-flex;align-items:center;justify-content:center;
+ min-height:56px;white-space:normal;text-align:center;
+ font-size:18px;font-weight:850;padding:11px 16px;border-radius:10px;
+ border:1px solid #d7ff1c;background:var(--accent);color:#0f1710;
+}
+body.theme-dark .sound-play:hover:not(:disabled){filter:brightness(.97)}
+body.theme-dark .sound-play:disabled{
+ cursor:not-allowed;opacity:.50;background:transparent;color:#ccd8be;border:1px solid #61755c;
+}
+body.theme-dark .sound-player-timeline{display:flex;align-items:center;gap:11px;min-width:0}
+body.theme-dark .sound-seek{
+ width:100%;min-width:0;flex:1;height:7px;border-radius:15px;
+ accent-color:var(--accent);cursor:pointer;
+ background:linear-gradient(to right,var(--accent) 0%,var(--accent) var(--progress,0%),#506350 var(--progress,0%),#506350 100%);
+}
+body.theme-dark .sound-seek:disabled{opacity:.48;cursor:not-allowed}
+body.theme-dark .sound-elapsed{
+ font-size:14px;color:#d4dfcf;font-variant-numeric:tabular-nums;
+ white-space:nowrap;
+}
+body.theme-dark .sound-audio{display:none}
+body.theme-dark .sound-choose{max-width:840px;margin-top:32px}
+body.theme-dark .sound-choose p{font-size:18px;line-height:1.55;color:#bdccb9;margin:0 0 19px}
+body.theme-dark .sound-choose-cta{
+ display:inline-flex;align-items:center;justify-content:center;min-height:60px;
+ padding:15px 23px;font-size:19px;font-weight:800;text-align:center;text-decoration:none
+}
+/* Genre is selected at the actual purchase form only, and playing a preview never changes it. */
+body.theme-dark .checkout-genre{border:0;margin:0 0 22px;padding:0;min-width:0}
+body.theme-dark .checkout-genre[hidden]{display:none!important}
+body.theme-dark .checkout-genre legend{
+ font-size:18px;font-weight:800;line-height:1.4;color:#f5f8ef;padding:0 0 14px
+}
+body.theme-dark .checkout-style-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+body.theme-dark .checkout-style-options button{
+ min-height:60px;padding:11px 7px;border-radius:9px;cursor:pointer;
+ font-size:16px;font-weight:800;line-height:1.35;
+ background:#111a14;color:#e0e9d8;border:1px solid #547051;
+}
+body.theme-dark .checkout-style-options button[aria-pressed=true]{
+ background:#dfff19;border-color:#dfff19;color:#111911;
+}
+@media(max-width:720px){
+ body.theme-dark .sound-showcase{padding:50px 0 58px}
+ body.theme-dark .sound-showcase-head h2{font-size:clamp(36px,9vw,49px)}
+ body.theme-dark .sound-showcase-head>p:last-child{font-size:19px}
+ body.theme-dark .sound-samples{gap:14px}
+ body.theme-dark .sound-sample{grid-template-columns:minmax(0,1fr);gap:6px;padding:22px 18px 20px;border-radius:15px}
+ body.theme-dark .sound-sample-icon{width:auto;height:40px;font-size:30px;justify-content:flex-start}
+ body.theme-dark .sound-sample h3{font-size:24px}
+ body.theme-dark .sound-sample-content>p{font-size:18px;margin-bottom:16px}
+ body.theme-dark .sound-playback{grid-template-columns:minmax(0,1fr);gap:13px;padding:13px}
+ body.theme-dark .sound-play{width:100%;font-size:17px;min-height:57px}
+ body.theme-dark .sound-player-timeline{gap:9px}
+ body.theme-dark .sound-elapsed{font-size:13px}
+ body.theme-dark .sound-choose p{font-size:17px}
+ body.theme-dark .sound-choose-cta{width:100%;font-size:18px}
+ body.theme-dark .checkout-style-options{grid-template-columns:1fr;gap:8px}
+ body.theme-dark .checkout-style-options button{min-height:52px;font-size:17px}
+}
