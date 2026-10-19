@@ -8,8 +8,8 @@
  <title>Аудиоякоря — два альбома, чтобы бросить курить</title>
  <meta name="description" content="Музыкальная программа отказа от курения: два альбома, три звучания. Выберите комплект, послушайте аудиоякорь.">
  <link rel="canonical" href="https://marafon-metod.ru/predfinal/">
- <link rel="stylesheet" href="/predfinal/offer.css?v=20261019-three-prices-v6">
- <script defer src="/predfinal/offer.js?v=20261019-three-prices-v6"></script>
+ <link rel="stylesheet" href="/predfinal/offer.css?v=20261019-genre-chips-v7">
+ <script defer src="/predfinal/offer.js?v=20261019-genre-chips-v7"></script>
  <script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return}k=e.createElement(t);a=e.getElementsByTagName(t)[0];k.async=1;k.src=r;a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=110906734','ym');ym(110906734,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});</script>
  <style data-source="pricing-v6-critical">/* /predfinal/: 3 equal-content price tiers, mobile stack and aligned desktop grid */
 body.theme-dark .prefinal-pricing-section .pricing{
@@ -172,7 +172,37 @@ body.theme-dark .checkout-duo-note[hidden]{display:none!important}
  body.theme-dark .prefinal-pricing-section .price-card--featured.is-selected{padding:18px 15px 19px}
  body.theme-dark .prefinal-pricing-section .price-card h3{font-size:24px}
  body.theme-dark .prefinal-pricing-section .price-compare>span{font-size:44px}
-}</style>
+}
+/* Inline critical additions for the compact genre chips and minimal order summary. */
+body.theme-dark .prefinal-pricing-section .tier-genre{display:flex;align-content:start;flex-wrap:wrap;gap:7px;margin:-4px 0 15px}
+body.theme-dark .prefinal-pricing-section .tier-genre-chip{
+ appearance:none;cursor:pointer;width:auto;min-height:36px;min-width:0;
+ border-radius:999px;border:1px solid #67815c;background:#141e16;
+ padding:6px 11px;font-size:14px;font-weight:800;line-height:1.2;
+ color:#d9e8d0;white-space:nowrap;box-shadow:none;
+}
+body.theme-dark .prefinal-pricing-section .tier-genre-chip[aria-pressed=true]{
+ background:#dbff1a;color:#151c10;border-color:#dbff1a;
+}
+body.theme-dark .prefinal-pricing-section .tier-genre-chip:focus-visible{
+ outline:3px solid #f5f9e4;outline-offset:2px;
+}
+body.theme-dark .prefinal-pricing-section .price-card[data-price-card=one] .price-amount{margin:0 0 13px}
+body.theme-dark .checkout-order-summary{
+ margin:0 0 18px;padding:0;border:0;background:transparent;
+ font-size:16px;line-height:1.4;color:#bfccb9;
+}
+body.theme-dark .checkout-order-summary strong{color:#fff;font-size:17px;font-weight:750}
+body.theme-dark .checkout-genre{display:none!important}
+@media(min-width:900px){
+ body.theme-dark .prefinal-pricing-section .price-bottom{min-height:220px}
+ body.theme-dark .prefinal-pricing-section .price-card[data-price-card=one] .price-amount{margin:0 0 13px}
+ body.theme-dark .prefinal-pricing-section .tier-genre{margin:0 0 14px}
+}
+@media(max-width:899px){
+ body.theme-dark .prefinal-pricing-section .tier-genre-chip{min-height:37px;font-size:14px}
+}
+</style>
 </head>
 <body class="theme-dark vision-mode">
  <header class="header"><div class="wrap header-inner">
@@ -386,8 +416,12 @@ body.theme-dark .checkout-duo-note[hidden]{display:none!important}
      </ul>
      <div class="price-bottom">
       <div class="price-amount">990 <span>₽</span></div>
-      <div class="price-saving price-saving--blank" aria-hidden="true"></div>
-      <button type="button" class="btn btn-primary" data-select-plan="one" aria-pressed="true">Выбрать звучание</button>
+      <div class="tier-genre" role="group" aria-label="Выберите звучание для комплекта 990 рублей">
+       <button type="button" class="tier-genre-chip" data-style="author" aria-pressed="true" title="Под гитару">Под гитару</button>
+       <button type="button" class="tier-genre-chip" data-style="estrada" aria-pressed="false" title="Душевная эстрада">Эстрада</button>
+       <button type="button" class="tier-genre-chip" data-style="modern" aria-pressed="false" title="Современное звучание">Современное</button>
+      </div>
+      <button type="button" class="btn btn-primary" data-select-plan="one" aria-pressed="true">Получить за 990 ₽ →</button>
      </div>
     </article>
     <article class="price-card price-card--featured" data-price-card="all" aria-label="Комплект: все три звучания для себя, 1490 рублей">
@@ -427,16 +461,8 @@ body.theme-dark .checkout-duo-note[hidden]{display:none!important}
     <p class="form-copy">Одна покупка — оба этапа: подготовка к отказу и поддержка в первые дни без сигарет.</p>
    </div>
    <form class="lead-form" id="release-form" novalidate>
-    <p class="form-choice">ВАШ КОМПЛЕКТ<strong id="selected-price-choice">Оба этапа · Под гитару · 990 ₽</strong></p>
-    <fieldset class="checkout-genre" id="checkout-genre"><legend>Выберите звучание для комплекта из двух альбомов</legend>
-     <div class="checkout-style-options" role="group" aria-label="Музыкальное звучание комплекта">
-      <button type="button" data-style="author" aria-pressed="true">Под гитару</button>
-      <button type="button" data-style="estrada" aria-pressed="false">Душевная эстрада</button>
-      <button type="button" data-style="modern" aria-pressed="false">Современное</button>
-     </div>
-    </fieldset>
+    <p class="checkout-order-summary" aria-live="polite">К оплате: <strong id="selected-price-choice">Под гитару · 990 ₽</strong></p>
     <input type="hidden" name="selection" id="selected-price-name" value="author">
-    <p class="checkout-duo-note" id="checkout-duo-note" hidden>Для двоих: каждый получает доступ ко всем трём звучаниям и обоим альбомам.</p>
     <label class="field-label" for="email">Электронная почта для альбомов и чека</label>
     <input class="email-input ym-disable-keys" name="email" id="email" type="email" maxlength="160" autocomplete="email" inputmode="email" placeholder="name@mail.ru" required>
     <input type="text" name="website" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
