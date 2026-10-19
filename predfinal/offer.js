@@ -23,13 +23,20 @@ function updateState(){
  styleButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.style===selectedStyle)));
  document.querySelectorAll('[data-price-card]').forEach(c=>c.classList.toggle('is-selected',c.dataset.priceCard===selectedPlan));
  planButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.selectPlan===selectedPlan)));
- const planTitle=selectedPlan==='all'?'Все шесть альбомов · 1 590 ₽':'Оба этапа · '+styles[selectedStyle].title+' · 990 ₽';
- priceChoice.textContent=planTitle;
- if(genreField)genreField.hidden=selectedPlan==='all';
- priceName.value=selectedPlan==='all'?'all-six':selectedStyle;
+ const priceMap={one:990,all:1490,duo:2090};
+ const titles={
+  one:'Одно звучание · '+styles[selectedStyle].title+' · 990 ₽',
+  all:'Все три звучания · для себя · 1 490 ₽',
+  duo:'Все три звучания · для двоих · 2 090 ₽'
+ };
+ const selectedPrice=priceMap[selectedPlan]??990;
+ priceChoice.textContent=titles[selectedPlan]??titles.one;
+ if(genreField)genreField.hidden=selectedPlan!=='one';
+ const duoNote=document.getElementById('checkout-duo-note');
+ if(duoNote)duoNote.hidden=selectedPlan!=='duo';
+ priceName.value=selectedPlan==='duo'?'all-six-duo':selectedPlan==='all'?'all-six':selectedStyle;
  const payButton=document.querySelector('.prefinal-pay-btn');
- if(payButton)payButton.textContent=selectedPlan==='all'?'Перейти к оплате · 1 590 ₽ →':'Перейти к оплате · 990 ₽ →';
-
+ if(payButton)payButton.textContent='Перейти к оплате · '+selectedPrice.toLocaleString('ru-RU')+' ₽ →';
 }
 styleButtons.forEach(button=>button.addEventListener('click',()=>{
  selectedStyle=button.dataset.style;
@@ -250,7 +257,7 @@ form.addEventListener('submit',e=>{
   status.classList.add('error');status.hidden=false;form.elements.email.focus();return;
  }
  if(form.elements.website.value)return;
- goal('predfinal_checkout_preview',{plan:selectedPlan,style:selectedStyle});
+ goal('predfinal_checkout_preview',{plan:selectedPlan,style:selectedStyle,amount:selectedPlan==='one'?990:selectedPlan==='all'?1490:2090});
  status.textContent='Внутренний предпросмотр оформления. Для выбранных комплектов необходимо подключить соответствующие тарифы Т-Банка; оплата не списывается.';
  status.classList.add('error');status.hidden=false;
 });
