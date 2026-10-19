@@ -1926,3 +1926,13 @@ body.theme-dark .album-showcase-note{
  body.theme-dark .album-cover-brand{font-size:10px}
  body.theme-dark .album-cover-footer{font-size:9px}
 }
+
+
+/* Keep the vinyl inside each desktop grid column at intermediate widths. */
+@media(min-width:781px){
+ body.theme-dark .album-art{width:min(calc(100% - 72px),475px)}
+}
+/* Tighten the hero at the narrowest sizes while retaining 55+ text. */
+@media(max-width:360px){
+ body.theme-dark .prefinal-hero-cta{font-size:17px;padding-inline:9px}
+}
