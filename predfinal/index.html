@@ -1138,12 +1138,63 @@ body.theme-dark .hero .hero-lead-afterthought{display:block;margin-top:47px}
  body.theme-dark.vision-mode .hero .hero-lead{min-height:8lh}
 }
 </style>
+<style data-source="predfinal-no-header-hero-spacing-20261019">
+/* No top menu: reuse the former 60px header space in the existing hero.
+   The first album art is not repositioned. Reference mobile 390px: 605px total hero. */
+body.theme-dark.vision-mode .hero{
+ padding:64px 0 46px;
+}
+body.theme-dark .hero .kicker{margin-bottom:39px}
+body.theme-dark.vision-mode .hero h1{
+ font-size:clamp(51px,6.6vw,84px);
+ line-height:1.035;letter-spacing:-.055em;
+ margin-bottom:30px;
+}
+@media (min-width:781px) {
+ body.theme-dark.vision-mode .hero{padding:66px 0 50px}
+ body.theme-dark .hero .kicker{margin-bottom:39px}
+}
+@media (min-width:441px) and (max-width:780px) {
+ body.theme-dark.vision-mode .hero{
+  padding:46px 0 42px;
+ }
+ body.theme-dark .hero .kicker{margin-bottom:38px}
+ body.theme-dark.vision-mode .hero h1{
+  font-size:clamp(45px,8.2vw,59px);margin-bottom:28px;
+ }
+}
+@media (min-width:361px) and (max-width:440px) {
+ body.theme-dark.vision-mode .hero{
+  padding:46px 0 24px;
+  min-height:605px;
+  box-sizing:border-box;
+ }
+ body.theme-dark .hero .kicker{
+  margin-bottom:46px;
+ }
+ body.theme-dark.vision-mode .hero h1{
+  font-size:clamp(40px,11vw,45px);
+  line-height:1.04;
+  letter-spacing:-.055em;
+  margin-bottom:29px;
+ }
+}
+@media (max-width:360px) {
+ body.theme-dark.vision-mode .hero{
+  padding:42px 0 24px;
+  min-height:650px;
+  box-sizing:border-box;
+ }
+ body.theme-dark .hero .kicker{margin-bottom:40px}
+ body.theme-dark.vision-mode .hero h1{
+  font-size:clamp(35px,10.6vw,38px);
+  line-height:1.045;
+  margin-bottom:27px;
+ }
+}
+</style>
 </head>
 <body class="theme-dark vision-mode">
- <header class="header"><div class="wrap header-inner">
-  <a href="#top" class="brand"><span class="brand-mark">↳</span><span>аудиоякоря<small>Другой ответ на привычный перекур</small></span></a>
-  <a href="#pricing" class="header-link" aria-label="Комплекты и цены"><span class="header-link-long">Комплекты и цены</span><span class="header-link-short">Цены</span></a>
- </div></header>
  <main>
   <section class="hero wrap" id="top">
    <div class="hero-copy">
