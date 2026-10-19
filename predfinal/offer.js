@@ -7,8 +7,7 @@ const styles={
   modern:{title:'Современное звучание',subtitle:'Тёплый поп и живой ритм'}
 };
 let selectedStyle='author',selectedPlan='one',isSending=false,isSent=false;
-const styleButtons=[...document.querySelectorAll('#checkout-genre [data-style]')];
-const genreField=document.getElementById('checkout-genre');
+const styleButtons=[...document.querySelectorAll('.tier-genre [data-style]')];
 const planButtons=[...document.querySelectorAll('[data-select-plan]')];
 const priceChoice=document.querySelector('#selected-price-choice');
 const priceName=document.querySelector('#selected-price-name');
@@ -25,22 +24,20 @@ function updateState(){
  planButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.selectPlan===selectedPlan)));
  const priceMap={one:990,all:1490,duo:2090};
  const titles={
-  one:'Одно звучание · '+styles[selectedStyle].title+' · 990 ₽',
-  all:'Все три звучания · для себя · 1 490 ₽',
-  duo:'Все три звучания · для двоих · 2 090 ₽'
+  one:styles[selectedStyle].title+' · 990 ₽',
+  all:'Все звучания · 1 490 ₽',
+  duo:'Для двоих · 2 090 ₽'
  };
  const selectedPrice=priceMap[selectedPlan]??990;
  priceChoice.textContent=titles[selectedPlan]??titles.one;
- if(genreField)genreField.hidden=selectedPlan!=='one';
- const duoNote=document.getElementById('checkout-duo-note');
- if(duoNote)duoNote.hidden=selectedPlan!=='duo';
  priceName.value=selectedPlan==='duo'?'all-six-duo':selectedPlan==='all'?'all-six':selectedStyle;
  const payButton=document.querySelector('.prefinal-pay-btn');
  if(payButton)payButton.textContent='Перейти к оплате · '+selectedPrice.toLocaleString('ru-RU')+' ₽ →';
 }
 styleButtons.forEach(button=>button.addEventListener('click',()=>{
  selectedStyle=button.dataset.style;
- updateState();goal('predfinal_style_select',{style:selectedStyle});
+ selectedPlan='one';
+ updateState();goal('predfinal_style_select',{style:selectedStyle,source:'basic_price_card'});
 }));
 planButtons.forEach(button=>button.addEventListener('click',()=>{
  selectedPlan=button.dataset.selectPlan;
