@@ -6,19 +6,46 @@ const styles={
   estrada:{title:'Душевная эстрада',subtitle:'Оркестровая мелодия и сильный припев'},
   modern:{title:'Современное звучание',subtitle:'Тёплый поп и живой ритм'}
 };
-let selectedStyle='author',selectedPlan='all',isSending=false,isSent=false;
+// A demo preference and the 990 ₽ tariff share a single selected genre.
+// Listening and choosing a genre do not change the pricing plan or navigate.
+let storedStyle=null;
+try{storedStyle=sessionStorage.getItem('predfinal_preferred_genre')}catch(_){}
+let selectedStyle=Object.hasOwn(styles,storedStyle)?storedStyle:'author';
+let hasFavorite=Object.hasOwn(styles,storedStyle);
+let selectedPlan='all';
 const styleButtons=[...document.querySelectorAll('.tier-genre [data-style]')];
+const favoriteButtons=[...document.querySelectorAll('[data-favorite-genre]')];
 const planButtons=[...document.querySelectorAll('[data-select-plan]')];
+function saveFavorite(style){
+ if(!Object.hasOwn(styles,style))return;
+ selectedStyle=style;
+ hasFavorite=true;
+ try{sessionStorage.setItem('predfinal_preferred_genre',style)}catch(_){}
+}
 function updateState(){
  styleButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.style===selectedStyle)));
+ favoriteButtons.forEach(b=>{
+  const chosen=hasFavorite&&b.dataset.favoriteGenre===selectedStyle;
+  b.setAttribute('aria-pressed',String(chosen));
+  const card=b.closest('.sound-sample');
+  card?.classList.toggle('is-favorite',chosen);
+  const caption=b.querySelector('.sound-favorite-label');
+  if(caption)caption.textContent=chosen?'Выбрано':'Мне нравится это звучание';
+  b.setAttribute('aria-label',(chosen?'Выбрано звучание: ':'Выбрать звучание: ')+styles[b.dataset.favoriteGenre].title);
+ });
  document.querySelectorAll('[data-price-card]').forEach(c=>c.classList.toggle('is-selected',c.dataset.priceCard===selectedPlan));
  planButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.selectPlan===selectedPlan)));
 }
 
 styleButtons.forEach(button=>button.addEventListener('click',()=>{
- selectedStyle=button.dataset.style;
+ saveFavorite(button.dataset.style);
  selectedPlan='one';
  updateState();goal('predfinal_style_select',{style:selectedStyle,source:'basic_price_card'});
+}));
+favoriteButtons.forEach(button=>button.addEventListener('click',()=>{
+ saveFavorite(button.dataset.favoriteGenre);
+ updateState();
+ goal('predfinal_demo_favorite',{style:selectedStyle});
 }));
 planButtons.forEach(button=>button.addEventListener('click',()=>{
  selectedPlan=button.dataset.selectPlan;
