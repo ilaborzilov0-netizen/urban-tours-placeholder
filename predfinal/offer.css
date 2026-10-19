@@ -2967,3 +2967,72 @@ body.theme-dark .album-tracklist-more{padding-top:4px;padding-bottom:7px}
  }
 }
 
+
+
+/* v19: expanded album tracklists keep collapse button BELOW track 10. */
+body.theme-dark .album-tracklist-details[open]{display:flex;flex-direction:column}
+body.theme-dark .album-tracklist-details[open] .album-tracklist-more{order:1}
+body.theme-dark .album-tracklist-details[open]>summary{order:2;margin-top:10px}
+
+
+
+/* v20: one shared, compact cost comparison directly after pricing cards. */
+body.theme-dark .cigarette-cost-comparison{
+ margin:24px 0 26px;padding:24px 25px 20px;
+ border:1px solid #536c47;border-radius:17px;
+ background:linear-gradient(120deg,#233224,#1a261d);
+}
+body.theme-dark .cigarette-cost-kicker{
+ margin:0 0 18px;
+ color:#dfff4f;font-size:14px;font-weight:850;
+ letter-spacing:.085em;text-transform:uppercase;line-height:1.35;
+}
+body.theme-dark .cigarette-cost-values{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:24px;
+}
+body.theme-dark .cigarette-cost-value{
+ min-width:0;display:flex;flex-direction:column;gap:8px;
+}
+body.theme-dark .cigarette-cost-value:first-child{
+ border-right:1px solid #4d6247;padding-right:18px;
+}
+body.theme-dark .cigarette-cost-value strong{
+ color:#e2ff4c;font-weight:850;letter-spacing:-.05em;line-height:1;
+ font-size:clamp(36px,4.4vw,57px);
+ white-space:nowrap;
+}
+body.theme-dark .cigarette-cost-value strong span{font-size:.63em}
+body.theme-dark .cigarette-cost-cigarettes strong{color:#f0f4e9}
+body.theme-dark .cigarette-cost-value>span{
+ font-size:19px;line-height:1.42;color:#dae5d2;
+}
+body.theme-dark .cigarette-cost-value>span b{color:#fff;font-weight:800}
+body.theme-dark .cigarette-cost-note{
+ border-top:1px solid #50674b;padding-top:15px;
+ font-size:17px!important;line-height:1.5!important;
+ color:#c4d2bc!important;margin:22px 0 0!important;
+}
+body.theme-dark .cigarette-cost-note strong{
+ font-weight:800;color:#e6f5d5;
+}
+@media(max-width:580px){
+ body.theme-dark .cigarette-cost-comparison{
+  padding:20px 17px 19px;margin:21px 0 25px;border-radius:14px;
+ }
+ body.theme-dark .cigarette-cost-values{
+  grid-template-columns:minmax(0,1fr);gap:17px;
+ }
+ body.theme-dark .cigarette-cost-value:first-child{
+  border-right:none;border-bottom:1px solid #4d6247;
+  padding:0 0 17px;
+ }
+ body.theme-dark .cigarette-cost-value{gap:5px}
+ body.theme-dark .cigarette-cost-value strong{font-size:clamp(40px,11vw,53px)}
+ body.theme-dark .cigarette-cost-value>span{font-size:18px}
+ body.theme-dark .cigarette-cost-note{margin-top:18px!important;font-size:16px!important}
+}
+@media(max-width:359px){
+ body.theme-dark .cigarette-cost-value strong{font-size:39px}
+}
+
