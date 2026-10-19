@@ -2,21 +2,18 @@
 const counter=110906734;
 const goal=(name,details)=>{try{window.ym?.(counter,'reachGoal',name,details||{})}catch(e){}};
 const styles={
-  author:{title:'Авторская песня',subtitle:'Гитара и взрослый мужской голос'},
+  author:{title:'Под гитару',subtitle:'Гитара и взрослый мужской голос'},
   estrada:{title:'Душевная эстрада',subtitle:'Оркестровая мелодия и сильный припев'},
   modern:{title:'Современное звучание',subtitle:'Тёплый поп и живой ритм'}
 };
 let selectedStyle='author',selectedPlan='one',isSending=false,isSent=false;
-const styleButtons=[...document.querySelectorAll('[data-style]')];
+const styleButtons=[...document.querySelectorAll('#checkout-genre [data-style]')];
+const genreField=document.getElementById('checkout-genre');
 const planButtons=[...document.querySelectorAll('[data-select-plan]')];
 const priceChoice=document.querySelector('#selected-price-choice');
 const priceName=document.querySelector('#selected-price-name');
 const form=document.querySelector('#release-form');
 const status=document.querySelector('#release-status');
-const sunoLoad=document.getElementById('suno-load');
-const sunoFrame=document.getElementById('suno-player');
-const sunoPlaceholder=document.getElementById('suno-placeholder');
-const sunoHelp=document.getElementById('suno-help');
 const pathStory=document.getElementById('path-story');
 const pathReplay=document.getElementById('path-replay');
 const pathAnnouncement=document.getElementById('path-announcement');
@@ -28,6 +25,7 @@ function updateState(){
  planButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.selectPlan===selectedPlan)));
  const planTitle=selectedPlan==='all'?'Все шесть альбомов · 1 590 ₽':'Оба этапа · '+styles[selectedStyle].title+' · 990 ₽';
  priceChoice.textContent=planTitle;
+ if(genreField)genreField.hidden=selectedPlan==='all';
  priceName.value=selectedPlan==='all'?'all-six':selectedStyle;
  const payButton=document.querySelector('.prefinal-pay-btn');
  if(payButton)payButton.textContent=selectedPlan==='all'?'Перейти к оплате · 1 590 ₽ →':'Перейти к оплате · 990 ₽ →';
@@ -47,20 +45,59 @@ document.querySelectorAll('[data-scroll-request]').forEach(button=>button.addEve
  goal('predfinal_request_click',{location:button.dataset.scrollRequest});
  document.getElementById('pricing').scrollIntoView({behavior:'smooth',block:'start'});
 }));
-// Suno is a third-party cross-origin player. Do not claim play or 75% completion
-// when all we can observe is an iframe attempt or a click on the external link.
-sunoLoad.addEventListener('click',()=>{
- // The provided /s/ URL is a short link, not a verified Suno song UUID.
- // If a canonical ID is supplied later, the official /embed/<uuid> route is used.
- const songId=new URLSearchParams(location.search).get('suno_id')||'';
- const safeId=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(songId)?songId:null;
- sunoFrame.src=safeId?'https://suno.com/embed/'+safeId:'https://suno.com/s/AOYtFSnkg4gmPAVT';
- sunoFrame.hidden=false;
- sunoPlaceholder.hidden=true;
- sunoHelp.textContent='Плеер загружается с Suno. Если не появился или не воспроизводит, воспользуйтесь ссылкой «Открыть песню в Suno».';
- goal('predfinal_suno_embed_attempt');
+// Native previews: each player is independent of purchasing. A new play pauses the
+// previous one. Missing files are NEVER substituted with the wrong genre.
+const sampleBlocks=[...document.querySelectorAll('[data-audio-preview]')];
+let activeSample=null;
+const clock=t=>{const sec=Math.max(0,Math.floor(t||0));return Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0');};
+sampleBlocks.forEach(block=>{
+ const audio=block.querySelector('audio');
+ const button=block.querySelector('[data-play]');
+ const seek=block.querySelector('.sound-seek');
+ const time=block.querySelector('.sound-elapsed');
+ const genre=block.dataset.audioPreview;
+ const url=block.dataset.audioSrc;
+ if(!url){
+  button.disabled=true;
+  button.setAttribute('aria-label','Образец звучания не загружен');
+  button.title='Для этого стиля ещё нет отдельного аудиофрагмента';
+  time.textContent='0:00 / 0:30';
+  return;
+ }
+ const sync=()=>{
+  const total=30;
+  const t=Math.min(total,audio.currentTime||0);
+  seek.value=String(t);
+  seek.style.setProperty('--progress',(t/total*100)+'%');
+  time.textContent=clock(t)+' / 0:30';
+  const playing=!audio.paused&&!audio.ended;
+  button.textContent=(playing?'❚❚ Пауза':'▶ Послушать')+' · 30 секунд';
+  button.setAttribute('aria-label',playing?'Приостановить прослушивание':'Воспроизвести фрагмент');
+  block.classList.toggle('is-playing',playing);
+ };
+ button.addEventListener('click',()=>{
+  if(audio.paused){
+   sampleBlocks.forEach(other=>{const player=other.querySelector('audio');if(player!==audio&&!player.paused)player.pause();});
+   activeSample=block;
+   const p=audio.play();
+   if(p?.catch)p.catch(()=>{sync();});
+  }else audio.pause();
+ });
+ seek.addEventListener('input',()=>{
+  if(audio.readyState>0&&Number.isFinite(audio.duration))audio.currentTime=Math.min(29.99,Number(seek.value));
+  sync();
+ });
+ audio.addEventListener('play',()=>{sync();goal('predfinal_audio_preview_play',{genre});});
+ audio.addEventListener('pause',sync);
+ audio.addEventListener('timeupdate',()=>{if(audio.currentTime>=30){audio.pause();audio.currentTime=0;}sync();});
+ audio.addEventListener('ended',()=>{audio.currentTime=0;sync();goal('predfinal_audio_preview_complete',{genre});});
+ audio.addEventListener('error',()=>{
+  button.disabled=true;
+  button.setAttribute('aria-label','Не удалось загрузить аудиозапись');
+  button.title='Не удалось загрузить аудиозапись';
+ });
+ sync();
 });
-document.querySelectorAll('[data-suno-direct]').forEach(a=>a.addEventListener('click',()=>goal('predfinal_suno_direct_click')));
 // Final dark-only layout: large-print style is a fixed baseline, not an optional mode.
 const theme='dark';
 const motionPref=true;
