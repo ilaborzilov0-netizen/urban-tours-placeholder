@@ -3178,3 +3178,23 @@ body.theme-dark .sound-showcase .sound-sample .sound-favorite[aria-pressed="true
 @media(prefers-reduced-motion:reduce){
  body.theme-dark .sound-showcase .sound-sample .sound-favorite{transition:none}
 }
+
+/* v28: restored crossed-out individual purchase totals; larger than earlier versions. */
+body.theme-dark .prefinal-pricing-section .price-compare{
+ display:flex;align-items:baseline;column-gap:13px;row-gap:7px;flex-wrap:wrap;
+}
+body.theme-dark .prefinal-pricing-section .price-compare s{
+ font-size:clamp(26px,2.4vw,32px);
+ line-height:1.12;font-weight:700;letter-spacing:-.035em;
+ color:#bfccba;text-decoration-color:#b7d49f;
+ text-decoration-thickness:2px;text-decoration-skip-ink:none;white-space:nowrap;
+}
+@media(max-width:420px){
+ body.theme-dark .prefinal-pricing-section .price-compare s{font-size:26px;}
+ body.theme-dark .prefinal-pricing-section .price-compare{column-gap:10px;}
+}
+@media(max-width:359px){
+ body.theme-dark .prefinal-pricing-section .price-compare s{font-size:24px;}
+ body.theme-dark .prefinal-pricing-section .price-compare{column-gap:7px;}
+}
+
