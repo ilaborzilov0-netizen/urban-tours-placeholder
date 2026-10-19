@@ -31,7 +31,6 @@ document.querySelectorAll('[data-scroll-request]').forEach(button=>button.addEve
 // Native previews: each player is independent of purchasing. A new play pauses the
 // previous one. Missing files are NEVER substituted with the wrong genre.
 const sampleBlocks=[...document.querySelectorAll('[data-audio-preview]')];
-let activeSample=null;
 const clock=t=>{const sec=Math.max(0,Math.floor(t||0));return Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0');};
 sampleBlocks.forEach(block=>{
  const audio=block.querySelector('audio');
@@ -40,39 +39,50 @@ sampleBlocks.forEach(block=>{
  const time=block.querySelector('.sound-elapsed');
  const genre=block.dataset.audioPreview;
  const url=block.dataset.audioSrc;
+ const limit=Math.max(1,Number(block.dataset.audioDuration||30));
+ const durationLabel=Math.ceil(limit);
+ seek.max=String(limit);
  if(!url){
   button.disabled=true;
   button.setAttribute('aria-label','Образец звучания не загружен');
   button.title='Для этого стиля ещё нет отдельного аудиофрагмента';
-  time.textContent='0:00 / 0:30';
+  time.textContent='0:00 / '+clock(durationLabel);
   return;
  }
  const sync=()=>{
-  const total=30;
-  const t=Math.min(total,audio.currentTime||0);
+  const t=Math.min(limit,audio.currentTime||0);
   seek.value=String(t);
-  seek.style.setProperty('--progress',(t/total*100)+'%');
-  time.textContent=clock(t)+' / 0:30';
+  seek.style.setProperty('--progress',(t/limit*100)+'%');
+  time.textContent=clock(t)+' / '+clock(durationLabel);
   const playing=!audio.paused&&!audio.ended;
-  button.textContent=(playing?'❚❚ Пауза':'▶ Послушать фрагмент')+' · 30 секунд';
+  button.textContent=(playing?'❚❚ Пауза':'▶ Послушать фрагмент')+' · '+durationLabel+' секунд';
   button.setAttribute('aria-label',playing?'Приостановить прослушивание':'Воспроизвести фрагмент');
   block.classList.toggle('is-playing',playing);
  };
  button.addEventListener('click',()=>{
   if(audio.paused){
-   sampleBlocks.forEach(other=>{const player=other.querySelector('audio');if(player!==audio&&!player.paused)player.pause();});
-   activeSample=block;
+   sampleBlocks.forEach(other=>{
+    const player=other.querySelector('audio');
+    if(player!==audio&&!player.paused)player.pause();
+   });
    const p=audio.play();
-   if(p?.catch)p.catch(()=>{sync();});
+   if(p?.catch)p.catch(()=>sync());
   }else audio.pause();
  });
  seek.addEventListener('input',()=>{
-  if(audio.readyState>0&&Number.isFinite(audio.duration))audio.currentTime=Math.min(29.99,Number(seek.value));
+  if(audio.readyState>0&&Number.isFinite(audio.duration))
+   audio.currentTime=Math.max(0,Math.min(limit-0.05,audio.duration-0.05,Number(seek.value)));
   sync();
  });
  audio.addEventListener('play',()=>{sync();goal('predfinal_audio_preview_play',{genre});});
  audio.addEventListener('pause',sync);
- audio.addEventListener('timeupdate',()=>{if(audio.currentTime>=30){audio.pause();audio.currentTime=0;}sync();});
+ audio.addEventListener('timeupdate',()=>{
+  if(audio.currentTime>=limit&&!audio.ended){
+   audio.pause();audio.currentTime=0;
+   goal('predfinal_audio_preview_complete',{genre});
+  }
+  sync();
+ });
  audio.addEventListener('ended',()=>{audio.currentTime=0;sync();goal('predfinal_audio_preview_complete',{genre});});
  audio.addEventListener('error',()=>{
   button.disabled=true;
