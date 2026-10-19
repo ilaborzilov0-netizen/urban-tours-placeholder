@@ -8,8 +8,8 @@
  <title>Аудиоякоря — два альбома, чтобы бросить курить</title>
  <meta name="description" content="Музыкальная программа отказа от курения: два альбома, три звучания. Выберите комплект, послушайте аудиоякорь.">
  <link rel="canonical" href="https://marafon-metod.ru/predfinal/">
- <link rel="stylesheet" href="/predfinal/offer.css?v=20261019-genre-chips-v7">
- <script defer src="/predfinal/offer.js?v=20261019-no-checkout-v8"></script>
+ <link rel="stylesheet" href="/predfinal/offer.css?v=20261019-mid-recommended-v9">
+ <script defer src="/predfinal/offer.js?v=20261019-mid-recommended-v9"></script>
  <script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return}k=e.createElement(t);a=e.getElementsByTagName(t)[0];k.async=1;k.src=r;a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=110906734','ym');ym(110906734,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});</script>
  <style data-source="pricing-v6-critical">/* /predfinal/: 3 equal-content price tiers, mobile stack and aligned desktop grid */
 body.theme-dark .prefinal-pricing-section .pricing{
@@ -201,6 +201,42 @@ body.theme-dark .checkout-genre{display:none!important}
 }
 @media(max-width:899px){
  body.theme-dark .prefinal-pricing-section .price-bottom .tier-genre .tier-genre-chip{min-height:37px;font-size:14px}
+}
+</style>
+<style data-source="pricing-v9-highlight">
+/* v9: emphasize the 1490 ₽ complete-sound plan without a popularity claim. */
+body.theme-dark .prefinal-pricing-section .price-top-row{
+ display:flex;align-items:flex-start;justify-content:space-between;gap:6px;flex-wrap:wrap;margin-bottom:9px;
+}
+body.theme-dark .prefinal-pricing-section .price-top-row .price-top{margin:0;min-width:0}
+body.theme-dark .prefinal-pricing-section .price-recommend{
+ display:inline-flex;align-items:center;justify-content:center;
+ border-radius:999px;padding:5px 9px;
+ color:#142009;background:#dcff23;font-size:12px;font-weight:900;
+ line-height:1.15;letter-spacing:0;white-space:nowrap;
+}
+body.theme-dark .prefinal-pricing-section .price-featured-reason{
+ margin:0 0 17px;font-size:16px!important;line-height:1.46!important;color:#e0ead2!important;
+}
+body.theme-dark .prefinal-pricing-section .price-upgrade{
+ color:#dcff78!important;margin:0 0 13px!important;font-size:16px!important;
+ line-height:1.35!important;font-weight:850;
+}
+body.theme-dark .prefinal-pricing-section .price-card--featured{
+ background:linear-gradient(155deg,#31472b 0%,#223321 70%,#1e2b1e 100%);
+ border-color:#d9ff17;
+}
+body.theme-dark .prefinal-pricing-section .price-card[data-price-card="duo"] .price-saving strong{
+ color:#cad3bf;
+}
+body.theme-dark .prefinal-pricing-section .price-card[data-price-card="duo"] .price-compare s{
+ color:#aebba7;
+}
+@media(min-width:900px){
+ body.theme-dark .prefinal-pricing-section .price-card--featured .price-featured-reason{
+  font-size:15px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-recommend{font-size:11px;padding:5px 7px}
 }
 </style>
 </head>
@@ -399,7 +435,7 @@ body.theme-dark .checkout-genre{display:none!important}
   </article>
  </div>
  <div class="sound-choose">
-  <p>Прослушивание не выбирает комплект. За 990 ₽ — один стиль и оба альбома, за 1 490 ₽ — все три звучания для себя, за 2 090 ₽ — все три звучания для двоих.</p>
+  <p>Прослушивание не выбирает комплект. За 990 ₽ — один стиль и оба альбома, за 1 490 ₽ — все три звучания для себя, за 2 490 ₽ — все три звучания для двоих.</p>
   <a href="#pricing" class="btn btn-primary sound-choose-cta">Выбрать комплект · от 990 ₽ →</a>
  </div>
 </div></section>
@@ -409,7 +445,7 @@ body.theme-dark .checkout-genre{display:none!important}
     <h2 id="pricing-heading">Оба альбома.<br><em>Ваш выбор звучания.</em></h2>
    </div><p class="section-intro">Во всех комплектах — полная программа: подготовка к отказу и поддержка после него. Выберите количество звучаний и участников.</p></div>
    <div class="pricing">
-    <article class="price-card is-selected" data-price-card="one" aria-label="Комплект: одно звучание, 990 рублей">
+    <article class="price-card" data-price-card="one" aria-label="Комплект: одно звучание, 990 рублей">
      <div class="price-card-top"><span class="price-top">Одно звучание</span><h3>Для себя</h3></div>
      <ul class="price-features">
       <li>Для одного человека</li><li>Один стиль на выбор</li><li>Оба альбома: до и после отказа</li>
@@ -421,41 +457,43 @@ body.theme-dark .checkout-genre{display:none!important}
        <button type="button" class="tier-genre-chip" data-style="estrada" aria-pressed="false" title="Душевная эстрада">Эстрада</button>
        <button type="button" class="tier-genre-chip" data-style="modern" aria-pressed="false" title="Современное звучание">Современное</button>
       </div>
-      <button type="button" class="btn btn-primary" data-select-plan="one" aria-pressed="true">Получить за 990 ₽ →</button>
+      <button type="button" class="btn btn-primary" data-select-plan="one" aria-pressed="false">Получить за 990 ₽ →</button>
      </div>
     </article>
-    <article class="price-card price-card--featured" data-price-card="all" aria-label="Комплект: все три звучания для себя, 1490 рублей">
-     <div class="price-card-top"><span class="price-top">Все звучания</span><h3>Для себя · все стили</h3></div>
+    <article class="price-card price-card--featured is-selected" data-price-card="all" aria-label="Комплект: все три звучания для себя, 1490 рублей">
+     <div class="price-card-top"><div class="price-top-row"><span class="price-top">Все звучания</span><span class="price-recommend">Рекомендуем</span></div><h3>Для себя · все три стиля</h3></div>
      <ul class="price-features">
       <li>Для одного человека</li><li>Все три музыкальных стиля</li><li>Оба альбома в каждом стиле</li>
      </ul>
+     <p class="price-featured-reason">Не нужно выбирать один стиль. Переключайтесь между исполнениями под настроение.</p>
      <div class="price-bottom">
       <div class="price-compare"><s>2 970 ₽</s><span>1 490 <small>₽</small></span></div>
+      <p class="price-upgrade">Всего на 500 ₽ дороже одного звучания</p>
       <div class="price-saving"><strong>Экономия 1 480 ₽ · почти 50%</strong><small>При покупке звучаний по отдельности</small></div>
-      <button type="button" class="btn btn-primary" data-select-plan="all" aria-pressed="false">Получить все звучания</button>
+      <button type="button" class="btn btn-primary" data-select-plan="all" aria-pressed="true">Получить все звучания</button>
      </div>
     </article>
-    <article class="price-card" data-price-card="duo" aria-label="Комплект для двух человек: все три звучания, 2090 рублей">
-     <div class="price-card-top"><span class="price-top">Для двоих</span><h3>Вместе с близким</h3></div>
+    <article class="price-card" data-price-card="duo" aria-label="Комплект для двух человек: все три звучания, 2490 рублей">
+     <div class="price-card-top"><span class="price-top">Для двоих</span><h3>Для себя и близкого</h3></div>
      <ul class="price-features">
       <li>Для двух человек</li><li>Все три музыкальных стиля каждому</li><li>Оба альбома каждому</li>
      </ul>
      <div class="price-bottom">
-      <div class="price-compare"><s>5 940 ₽</s><span>2 090 <small>₽</small></span></div>
-      <div class="price-saving"><strong>Экономия 3 850 ₽ · почти 65%</strong><small>При покупке звучаний по отдельности</small></div>
+      <div class="price-compare"><s>5 940 ₽</s><span>2 490 <small>₽</small></span></div>
+      <div class="price-saving"><strong>Экономия 3 450 ₽ · около 58%</strong><small>При покупке звучаний по отдельности</small></div>
       <button type="button" class="btn btn-primary" data-select-plan="duo" aria-pressed="false">Получить для двоих</button>
      </div>
     </article>
    </div>
-   <p class="pricing-explainer">За дополнительные 500 ₽ — все три звучания вместо одного. Ещё за 600 ₽ — полная программа также для близкого человека.</p>
+   <p class="pricing-explainer">За дополнительные 500 ₽ — все три звучания вместо одного. Ещё за 1 000 ₽ — полная программа также для близкого человека.</p>
    <p class="copyright-under-pricing"><span class="copyright-icon" aria-hidden="true">©</span> Авторский музыкальный продукт. Материалы альбома защищены авторским правом. Копирование и распространение без разрешения запрещены.</p>
   </div></section>
   <section class="section"><div class="wrap faq">
    <div><p class="kicker">Коротко о главном</p><h2>Остались<br><em>вопросы?</em></h2></div>
    <div>
     <details><summary>Когда перестать курить?</summary><p>Песни первого этапа можно слушать ещё во время курения. Если готовы отказаться сейчас, не нужно ждать какого-либо специального трека: переставайте и возвращайтесь к новым ответам, когда они потребуются.</p></details>
-    <details><summary>Нужно ли слушать все три музыкальных стиля?</summary><p>Нет. В комплекте за 990 ₽ вы выбираете одно звучание, а в вариантах за 1 490 ₽ и 2 090 ₽ доступны все три стиля. Содержание программы одинаковое — отличаются звучания и количество участников.</p></details>
-    <details><summary>Что я получу после оплаты?</summary><p>В любом комплекте доступны оба этапа: «До последней сигареты» и «Жизнь без сигарет». Вариант за 990 ₽ включает одно выбранное звучание, за 1 490 ₽ — все три звучания для одного человека, за 2 090 ₽ — все три звучания для двоих. Ссылки для прослушивания и инструкция отправляются на электронную почту, указанную при покупке.</p></details>
+    <details><summary>Нужно ли слушать все три музыкальных стиля?</summary><p>Нет. В комплекте за 990 ₽ вы выбираете одно звучание, а в вариантах за 1 490 ₽ и 2 490 ₽ доступны все три стиля. Содержание программы одинаковое — отличаются звучания и количество участников.</p></details>
+    <details><summary>Что я получу после оплаты?</summary><p>В любом комплекте доступны оба этапа: «До последней сигареты» и «Жизнь без сигарет». Вариант за 990 ₽ включает одно выбранное звучание, за 1 490 ₽ — все три звучания для одного человека, за 2 490 ₽ — все три звучания для двоих. Ссылки для прослушивания и инструкция отправляются на электронную почту, указанную при покупке.</p></details>
     <details><summary>Поможет ли музыка, если тяга сильная?</summary><p>Аудиоякоря задуманы как инструмент для запоминания новых ответов на привычные мысли о сигарете. Индивидуальный результат может различаться; музыкальный формат не является заменой медицинской помощи или проверенной терапии табачной зависимости.</p></details>
    </div>
   </div></section>
