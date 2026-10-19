@@ -3097,3 +3097,32 @@ body.theme-dark .first-listen-content p{
  body.theme-dark .first-listen-content h2{font-size:30px}
 }
 
+
+
+/* v22: 77% concept headline above demos and reordered pricing footer. */
+body.theme-dark .first-listen-number span{font-size:.56em}
+body.theme-dark .first-listen-content h2{max-width:870px}
+body.theme-dark .prefinal-pricing-section .copyright-under-pricing{
+ margin:25px 0 0;
+}
+body.theme-dark .prefinal-pricing-section .cigarette-cost-comparison{
+ margin-top:18px;
+}
+@media(max-width:760px){
+ body.theme-dark .first-listen-number{font-size:clamp(98px,26vw,134px)}
+ body.theme-dark .first-listen-content h2{font-size:clamp(31px,8.5vw,46px)}
+ body.theme-dark .prefinal-pricing-section .copyright-under-pricing{margin-top:24px}
+ body.theme-dark .prefinal-pricing-section .cigarette-cost-comparison{margin-top:16px}
+}
+
+
+
+/* v23: prices shown directly without artificial crossed-out benchmarks. */
+body.theme-dark .prefinal-pricing-section .price-compare>span{
+ display:block;
+}
+body.theme-dark .prefinal-pricing-section .price-card[data-price-card="all"] .price-compare,
+body.theme-dark .prefinal-pricing-section .price-card[data-price-card="duo"] .price-compare{
+ margin-bottom:12px;
+}
+
