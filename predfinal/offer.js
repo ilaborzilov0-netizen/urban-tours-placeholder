@@ -54,7 +54,7 @@ sampleBlocks.forEach(block=>{
   seek.style.setProperty('--progress',(t/total*100)+'%');
   time.textContent=clock(t)+' / 0:30';
   const playing=!audio.paused&&!audio.ended;
-  button.textContent=(playing?'❚❚ Пауза':'▶ Послушать')+' · 30 секунд';
+  button.textContent=(playing?'❚❚ Пауза':'▶ Послушать фрагмент')+' · 30 секунд';
   button.setAttribute('aria-label',playing?'Приостановить прослушивание':'Воспроизвести фрагмент');
   block.classList.toggle('is-playing',playing);
  };
