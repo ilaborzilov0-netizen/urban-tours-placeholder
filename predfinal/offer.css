@@ -3036,3 +3036,64 @@ body.theme-dark .cigarette-cost-note strong{
  body.theme-dark .cigarette-cost-value strong{font-size:39px}
 }
 
+
+
+/* v21: social-proof style listening introduction without invented survey statistics. */
+body.theme-dark .first-listen-section{
+ padding:28px 0 0;background:#111713;
+}
+body.theme-dark .first-listen-panel{
+ display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.25fr);
+ align-items:center;gap:clamp(22px,3.8vw,52px);
+ padding:clamp(27px,4.2vw,55px);
+ background:linear-gradient(135deg,#283a29,#233324);
+ border:1px solid #526f50;border-radius:20px;
+}
+body.theme-dark .first-listen-figure{min-width:0}
+body.theme-dark .first-listen-kicker{
+ color:#dfff35;font-size:15px;font-weight:900;
+ letter-spacing:.085em;text-transform:uppercase;line-height:1.4;
+ margin:0 0 14px;
+}
+body.theme-dark .first-listen-number{
+ color:#d9ff26;font-size:clamp(88px,12vw,168px);
+ font-weight:900;letter-spacing:-.095em;
+ line-height:.95;margin:0;white-space:nowrap;
+ font-variant-numeric:lining-nums tabular-nums;
+}
+body.theme-dark .first-listen-number span{
+ font-size:.29em;letter-spacing:-.045em;font-weight:800;
+ margin-left:6px;vertical-align:baseline;
+}
+body.theme-dark .first-listen-content h2{
+ font-size:clamp(35px,3.9vw,60px);
+ line-height:1.09;letter-spacing:-.051em;
+ color:#f1f6ed;margin:0 0 17px;
+ font-weight:800;
+}
+body.theme-dark .first-listen-content h2 em{
+ font-style:normal;color:#dfff57;
+}
+body.theme-dark .first-listen-content p{
+ font-size:20px;line-height:1.53;color:#d0ddc9;
+ max-width:650px;margin:0;
+}
+@media(max-width:760px){
+ body.theme-dark .first-listen-section{padding:16px 0 0}
+ body.theme-dark .first-listen-panel{
+  grid-template-columns:minmax(0,1fr);gap:18px;
+  padding:26px 21px 27px;border-radius:16px;
+ }
+ body.theme-dark .first-listen-kicker{font-size:13px;margin-bottom:12px}
+ body.theme-dark .first-listen-number{font-size:clamp(96px,25vw,126px)}
+ body.theme-dark .first-listen-content h2{
+  font-size:clamp(31px,8vw,43px);line-height:1.13;margin-bottom:14px;
+ }
+ body.theme-dark .first-listen-content p{font-size:18px;line-height:1.52}
+}
+@media(max-width:350px){
+ body.theme-dark .first-listen-panel{padding:23px 17px}
+ body.theme-dark .first-listen-number{font-size:90px}
+ body.theme-dark .first-listen-content h2{font-size:30px}
+}
+
