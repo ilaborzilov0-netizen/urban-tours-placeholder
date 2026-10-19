@@ -8,7 +8,7 @@
  <title>Аудиоякоря — два альбома, чтобы бросить курить</title>
  <meta name="description" content="Музыкальная программа отказа от курения: два альбома, три звучания. Выберите комплект, послушайте аудиоякорь.">
  <link rel="canonical" href="https://marafon-metod.ru/predfinal/">
- <link rel="stylesheet" href="/predfinal/offer.css?v=20261019-track-toggle-v19">
+ <link rel="stylesheet" href="/predfinal/offer.css?v=20261019-economy-v20">
  <script defer src="/predfinal/offer.js?v=20261019-music-tracklist-v18"></script>
  <script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return}k=e.createElement(t);a=e.getElementsByTagName(t)[0];k.async=1;k.src=r;a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=110906734','ym');ym(110906734,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});</script>
  <style data-source="pricing-v6-critical">/* /predfinal/: 3 equal-content price tiers, mobile stack and aligned desktop grid */
@@ -729,6 +729,67 @@ body.theme-dark .album-tracklist-details[open] > summary{
  margin-top:10px;
 }
 </style>
+<style data-source="cigarette-cost-v20-critical">
+/* v20: one shared, compact cost comparison directly after pricing cards. */
+body.theme-dark .cigarette-cost-comparison{
+ margin:24px 0 26px;padding:24px 25px 20px;
+ border:1px solid #536c47;border-radius:17px;
+ background:linear-gradient(120deg,#233224,#1a261d);
+}
+body.theme-dark .cigarette-cost-kicker{
+ margin:0 0 18px;
+ color:#dfff4f;font-size:14px;font-weight:850;
+ letter-spacing:.085em;text-transform:uppercase;line-height:1.35;
+}
+body.theme-dark .cigarette-cost-values{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:24px;
+}
+body.theme-dark .cigarette-cost-value{
+ min-width:0;display:flex;flex-direction:column;gap:8px;
+}
+body.theme-dark .cigarette-cost-value:first-child{
+ border-right:1px solid #4d6247;padding-right:18px;
+}
+body.theme-dark .cigarette-cost-value strong{
+ color:#e2ff4c;font-weight:850;letter-spacing:-.05em;line-height:1;
+ font-size:clamp(36px,4.4vw,57px);
+ white-space:nowrap;
+}
+body.theme-dark .cigarette-cost-value strong span{font-size:.63em}
+body.theme-dark .cigarette-cost-cigarettes strong{color:#f0f4e9}
+body.theme-dark .cigarette-cost-value>span{
+ font-size:19px;line-height:1.42;color:#dae5d2;
+}
+body.theme-dark .cigarette-cost-value>span b{color:#fff;font-weight:800}
+body.theme-dark .cigarette-cost-note{
+ border-top:1px solid #50674b;padding-top:15px;
+ font-size:17px!important;line-height:1.5!important;
+ color:#c4d2bc!important;margin:22px 0 0!important;
+}
+body.theme-dark .cigarette-cost-note strong{
+ font-weight:800;color:#e6f5d5;
+}
+@media(max-width:580px){
+ body.theme-dark .cigarette-cost-comparison{
+  padding:20px 17px 19px;margin:21px 0 25px;border-radius:14px;
+ }
+ body.theme-dark .cigarette-cost-values{
+  grid-template-columns:minmax(0,1fr);gap:17px;
+ }
+ body.theme-dark .cigarette-cost-value:first-child{
+  border-right:none;border-bottom:1px solid #4d6247;
+  padding:0 0 17px;
+ }
+ body.theme-dark .cigarette-cost-value{gap:5px}
+ body.theme-dark .cigarette-cost-value strong{font-size:clamp(40px,11vw,53px)}
+ body.theme-dark .cigarette-cost-value>span{font-size:18px}
+ body.theme-dark .cigarette-cost-note{margin-top:18px!important;font-size:16px!important}
+}
+@media(max-width:359px){
+ body.theme-dark .cigarette-cost-value strong{font-size:39px}
+}
+</style>
 </head>
 <body class="theme-dark vision-mode">
  <header class="header"><div class="wrap header-inner">
@@ -1058,7 +1119,20 @@ body.theme-dark .album-tracklist-details[open] > summary{
      </div>
     </article>
    </div>
-   <p class="pricing-explainer">За дополнительные 500 ₽ — все три звучания вместо одного. Ещё за 1 000 ₽ — полная программа также для близкого человека.</p>
+   <aside class="cigarette-cost-comparison" aria-label="Сравнение стоимости программы и сигарет">
+    <p class="cigarette-cost-kicker">Сравните с привычными расходами</p>
+    <div class="cigarette-cost-values">
+     <div class="cigarette-cost-value cigarette-cost-program">
+      <strong>1 490 <span>₽</span></strong>
+      <span>Программа «Все звучания»<br><b>один раз</b></span>
+     </div>
+     <div class="cigarette-cost-value cigarette-cost-cigarettes">
+      <strong>7 500 <span>₽</span></strong>
+      <span>Сигареты при пачке в день<br><b>каждые 30 дней</b></span>
+     </div>
+    </div>
+    <p class="cigarette-cost-note"><strong>6 дней без покупок сигарет — 1 500 ₽ в кармане.</strong> Этого достаточно, чтобы покрыть цену программы за 1 490 ₽. Расчёт: одна пачка в день по 250 ₽.</p>
+   </aside>
    <p class="copyright-under-pricing"><span class="copyright-icon" aria-hidden="true">©</span> Авторский музыкальный продукт. Материалы альбома защищены авторским правом. Копирование и распространение без разрешения запрещены.</p>
   </div></section>
   <section class="section"><div class="wrap faq">
