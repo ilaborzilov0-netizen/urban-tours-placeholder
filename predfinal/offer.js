@@ -17,25 +17,6 @@ const sunoLoad=document.getElementById('suno-load');
 const sunoFrame=document.getElementById('suno-player');
 const sunoPlaceholder=document.getElementById('suno-placeholder');
 const sunoHelp=document.getElementById('suno-help');
-const pultButtons=[...document.querySelectorAll('[data-theme]')];
-const visionButton=document.getElementById('vision-switch');
-const motionButton=document.getElementById('motion-switch');
-const explainFrame=document.querySelector('#video-explainer iframe');
-function syncExplainer(){
- if(!explainFrame?.contentWindow)return;
- try{
-  explainFrame.contentWindow.postMessage({type:'ai-theme',theme},location.origin);
-  explainFrame.contentWindow.postMessage({type:'ai-motion',enabled:useMotion()},location.origin);
-  explainFrame.contentWindow.postMessage({type:'ai-vision',enabled:vision},location.origin);
- }catch(_){}
-}
-explainFrame?.addEventListener('load',syncExplainer);
-window.addEventListener('message',event=>{
- if(event.origin!==location.origin||event.source!==explainFrame?.contentWindow)return;
- if(event.data?.type!=='ai-video-event')return;
- const allowed=new Set(['predfinal_video_start','predfinal_video_75','predfinal_video_complete']);
- if(allowed.has(event.data.name))goal(event.data.name);
-});
 const pathStory=document.getElementById('path-story');
 const pathReplay=document.getElementById('path-replay');
 const pathAnnouncement=document.getElementById('path-announcement');
@@ -80,19 +61,13 @@ sunoLoad.addEventListener('click',()=>{
  goal('predfinal_suno_embed_attempt');
 });
 document.querySelectorAll('[data-suno-direct]').forEach(a=>a.addEventListener('click',()=>goal('predfinal_suno_direct_click')));
-// Three shortlisted treatments. Accessibility and motion preferences are independent.
-const allowedThemes=['dark'];
-let theme='dark',vision=false,motionPref=true;
+// Final dark-only layout: large-print style is a fixed baseline, not an optional mode.
+const theme='dark';
+const motionPref=true;
 const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
 const useMotion=()=>motionPref&&!reduceMotion.matches;
 let motionObserver=null;
 const motionIntroTags=new WeakSet();
-try{
- const saved=localStorage.getItem('predfinal_theme');
- if(allowedThemes.includes(saved))theme=saved;
- vision=localStorage.getItem('predfinal_vision')==='on';
- if(localStorage.getItem('predfinal_motion')==='off')motionPref=false;
-}catch(_){}
 
 function clearMotionObserver(){
  if(motionObserver){motionObserver.disconnect();motionObserver=null;}
@@ -216,45 +191,14 @@ function setupPathAuto(){
 pathReplay?.addEventListener('click',()=>playPathStory('button'));
 
 function applyAppearance(){
- document.body.classList.remove(...allowedThemes.map(x=>'theme-'+x));
- document.body.classList.add('theme-'+theme);
- document.body.classList.toggle('vision-mode',vision);
+ document.body.classList.add('theme-dark','vision-mode');
  const enabled=useMotion();
  document.body.classList.toggle('motion-enabled',enabled);
  document.body.classList.toggle('motion-disabled',!enabled);
  document.documentElement.style.scrollBehavior=enabled?'smooth':'auto';
- pultButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.theme===theme)));
- visionButton.setAttribute('aria-pressed',String(vision));
- visionButton.textContent=vision?'А− Обычный':'А+ Текст';
- motionButton.setAttribute('aria-pressed',String(enabled));
- motionButton.textContent=enabled?'◉ Анимация':'○ Без движения';
- motionButton.disabled=reduceMotion.matches;
- motionButton.title=reduceMotion.matches?'Анимация отключена системной настройкой':'Переключить декоративную анимацию';
- const meta=document.querySelector('meta[name="theme-color"]');
- if(meta)meta.content=({dark:'#141814',classic:'#f6f2e7',vinyl:'#f0e3cc',soviet:'#efe9d7',phonotheque:'#352a22',concert:'#f5ecdb',bureau:'#e8eee9',neural:'#f7f8f3',quantum:'#080f14',futurelab:'#edf2f1'})[theme]||'#f6f2e7';
  setupScrollMotion();
  setupPathAuto();
- syncExplainer();
 }
-pultButtons.forEach(b=>b.addEventListener('click',()=>{
- theme=b.dataset.theme;
- applyAppearance();
- try{localStorage.setItem('predfinal_theme',theme)}catch(_){}
- goal('predfinal_theme_select',{theme});
-}));
-visionButton.addEventListener('click',()=>{
- vision=!vision;
- applyAppearance();
- try{localStorage.setItem('predfinal_vision',vision?'on':'off')}catch(_){}
- goal('predfinal_vision_toggle',{enabled:vision?1:0});
-});
-motionButton.addEventListener('click',()=>{
- if(reduceMotion.matches)return;
- motionPref=!motionPref;
- applyAppearance();
- try{localStorage.setItem('predfinal_motion',motionPref?'on':'off')}catch(_){}
- goal('predfinal_motion_toggle',{enabled:motionPref?1:0,theme});
-});
 if(reduceMotion.addEventListener)reduceMotion.addEventListener('change',applyAppearance);
 else if(reduceMotion.addListener)reduceMotion.addListener(applyAppearance);
 applyAppearance();
