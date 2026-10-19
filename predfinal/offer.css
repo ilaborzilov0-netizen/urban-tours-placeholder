@@ -2392,3 +2392,51 @@ body.theme-dark .prefinal-pricing-section .price-card[data-price-card="duo"] .pr
  body.theme-dark .prefinal-pricing-section .price-recommend{font-size:11px;padding:5px 7px}
 }
 
+
+
+/* v10: contact author after credentials, not in the middle of the biography. */
+body.theme-dark .credibility-section>.wrap>.author-contact{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:14px 24px;
+ border-top:1px solid #40543e;
+ padding:23px 0 0;margin:28px 0 0;
+}
+body.theme-dark .credibility-section>.wrap>.author-contact .author-contact-title{
+ margin:0!important;color:#d9e5d7!important;
+ font-size:18px!important;font-weight:700;
+ line-height:1.35!important;
+}
+body.theme-dark .credibility-section>.wrap>.author-contact .contacts{
+ display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+}
+body.theme-dark .credibility-section>.wrap>.author-contact .contacts a{
+ display:inline-flex;align-items:center;justify-content:center;gap:6px;
+ min-width:114px;min-height:50px;
+ border:1px solid #526b50;border-radius:10px;background:#18231b;
+ padding:12px 20px;text-align:center;
+ color:#d8ff63;font-size:16px;font-weight:800;
+ text-decoration:none;white-space:nowrap;
+}
+body.theme-dark .credibility-section>.wrap>.author-contact .contacts a:hover{
+ background:#263b26;border-color:#a8cc70;
+}
+body.theme-dark .credibility-section>.wrap>.author-contact .contacts a:focus-visible{
+ outline:3px solid #e3ff3c;outline-offset:3px;
+}
+@media(max-width:780px){
+ body.theme-dark .credibility-section>.wrap>.author-contact{
+  display:grid;grid-template-columns:minmax(0,1fr);
+  gap:15px;padding-top:22px;margin-top:24px;
+ }
+ body.theme-dark .credibility-section>.wrap>.author-contact .author-contact-title{
+  font-size:18px!important;
+ }
+ body.theme-dark .credibility-section>.wrap>.author-contact .contacts{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;width:100%;
+ }
+ body.theme-dark .credibility-section>.wrap>.author-contact .contacts a{
+  min-width:0;min-height:54px;padding:11px 8px;
+  font-size:16px;
+ }
+}
