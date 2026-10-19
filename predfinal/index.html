@@ -999,6 +999,69 @@ body.theme-dark .album-showcase .visually-hidden{
  body.theme-dark .hero .kicker{font-size:11px!important}
 }
 </style>
+<style data-source="hero-copy-match-audioyakorya-20261019">
+/* /predfinal/: mobile-first headline and long introductory copy matching /audioyakorya/. */
+body.theme-dark .hero .hero-copy{
+ max-width:930px;
+ font-family:Arial,Helvetica,sans-serif;
+}
+body.theme-dark .hero .kicker{
+ display:flex;align-items:center;gap:11px;
+ text-transform:none;letter-spacing:.035em;
+ color:#e8eee4;line-height:1.4!important;
+ font-size:12px!important;font-weight:600;
+ margin:0 0 26px;
+}
+body.theme-dark .hero .little-bars{
+ display:inline-flex;align-items:center;gap:3px;
+ height:18px;flex:none;
+}
+body.theme-dark .hero .little-bars i{
+ display:block;width:3px;height:10px;background:#dfff00;
+}
+body.theme-dark .hero .little-bars i:nth-child(2){height:18px}
+body.theme-dark .hero .little-bars i:nth-child(3){height:14px}
+body.theme-dark.vision-mode .hero h1{
+ font-family:Arial,Helvetica,sans-serif;
+ font-size:clamp(48px,6.5vw,78px);
+ font-weight:500;line-height:1.02;letter-spacing:-.055em;
+ max-width:850px;margin:0 0 28px;
+}
+body.theme-dark.vision-mode .hero h1 span{color:#dfff00}
+body.theme-dark .hero .hero-lead,
+body.theme-dark.vision-mode .hero .hero-lead{
+ max-width:825px;font-size:clamp(20px,2vw,24px)!important;
+ line-height:1.53!important;letter-spacing:-.018em;
+ color:#f2f3ef;margin:0;
+}
+body.theme-dark .hero .hero-description{
+ margin:22px 0 0;max-width:780px;
+ font-size:18px;line-height:1.55;color:#f2f3ef;
+}
+body.theme-dark .hero .hero-description strong{font-weight:500;color:inherit}
+body.theme-dark .hero{padding-bottom:28px}
+body.theme-dark .album-showcase{border-top:0;padding-top:0}
+@media(max-width:780px){
+ body.theme-dark.vision-mode .hero{padding:31px 0 24px}
+ body.theme-dark .hero .kicker{margin-bottom:25px;font-size:11px!important}
+ body.theme-dark.vision-mode .hero h1{
+  font-size:clamp(38px,9.8vw,49px);
+  line-height:1.04;letter-spacing:-.056em;margin-bottom:26px;
+ }
+ body.theme-dark .hero .hero-lead,
+ body.theme-dark.vision-mode .hero .hero-lead{
+  font-size:21px!important;line-height:1.48!important;
+  letter-spacing:-.02em;
+ }
+ body.theme-dark .hero .hero-description{font-size:17px;line-height:1.5;margin-top:22px}
+ body.theme-dark .album-showcase{padding-top:0}
+}
+@media(max-width:360px){
+ body.theme-dark.vision-mode .hero h1{font-size:36px}
+ body.theme-dark .hero .hero-lead,
+ body.theme-dark.vision-mode .hero .hero-lead{font-size:19px!important}
+}
+</style>
 </head>
 <body class="theme-dark vision-mode">
  <header class="header"><div class="wrap header-inner">
@@ -1008,10 +1071,10 @@ body.theme-dark .album-showcase .visually-hidden{
  <main>
   <section class="hero wrap" id="top">
    <div class="hero-copy">
-    <p class="kicker">Музыкальная программа отказа от курения</p>
-    <h1>Бросьте курить<br>с помощью <em>аудиоякорей</em></h1>
-    <p class="hero-lead">Первый альбом — подготовка к отказу, второй — поддержка после него.</p>
-    <p class="hero-spec"><span>Два цифровых альбома</span><span>Три звучания на выбор</span><strong>От 990 ₽</strong></p>
+    <p class="kicker"><span class="little-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span> Научная логика подхода</p>
+    <h1>Бросьте курить<br>с помощью<br><span>аудиоякорей.</span></h1>
+    <p class="hero-lead">Слушайте посылы, которые меняют мозг на физиологическом уровне, влияя на ваш взгляд на курение. Они запоминаются, как припев песни, услышанной в магазине, и продолжают работать на вас фоном — даже когда музыка уже выключена.</p>
+    <p class="hero-description"><strong>Понятный психологический механизм.</strong></p>
    </div>
   </section>
 
