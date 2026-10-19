@@ -9,10 +9,6 @@ const styles={
 let selectedStyle='author',selectedPlan='one',isSending=false,isSent=false;
 const styleButtons=[...document.querySelectorAll('.tier-genre [data-style]')];
 const planButtons=[...document.querySelectorAll('[data-select-plan]')];
-const priceChoice=document.querySelector('#selected-price-choice');
-const priceName=document.querySelector('#selected-price-name');
-const form=document.querySelector('#release-form');
-const status=document.querySelector('#release-status');
 const pathStory=document.getElementById('path-story');
 const pathReplay=document.getElementById('path-replay');
 const pathAnnouncement=document.getElementById('path-announcement');
@@ -22,18 +18,8 @@ function updateState(){
  styleButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.style===selectedStyle)));
  document.querySelectorAll('[data-price-card]').forEach(c=>c.classList.toggle('is-selected',c.dataset.priceCard===selectedPlan));
  planButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.selectPlan===selectedPlan)));
- const priceMap={one:990,all:1490,duo:2090};
- const titles={
-  one:styles[selectedStyle].title+' · 990 ₽',
-  all:'Все звучания · 1 490 ₽',
-  duo:'Для двоих · 2 090 ₽'
- };
- const selectedPrice=priceMap[selectedPlan]??990;
- priceChoice.textContent=titles[selectedPlan]??titles.one;
- priceName.value=selectedPlan==='duo'?'all-six-duo':selectedPlan==='all'?'all-six':selectedStyle;
- const payButton=document.querySelector('.prefinal-pay-btn');
- if(payButton)payButton.textContent='Перейти к оплате · '+selectedPrice.toLocaleString('ru-RU')+' ₽ →';
 }
+
 styleButtons.forEach(button=>button.addEventListener('click',()=>{
  selectedStyle=button.dataset.style;
  selectedPlan='one';
@@ -42,8 +28,6 @@ styleButtons.forEach(button=>button.addEventListener('click',()=>{
 planButtons.forEach(button=>button.addEventListener('click',()=>{
  selectedPlan=button.dataset.selectPlan;
  updateState();goal('predfinal_plan_select',{plan:selectedPlan});
- document.getElementById('request').scrollIntoView({behavior:useMotion()?'smooth':'auto',block:'start'});
- document.getElementById('email').focus({preventScroll:true});
 }));
 document.querySelectorAll('[data-scroll-request]').forEach(button=>button.addEventListener('click',()=>{
  goal('predfinal_request_click',{location:button.dataset.scrollRequest});
@@ -244,20 +228,6 @@ if(reduceMotion.addEventListener)reduceMotion.addEventListener('change',applyApp
 else if(reduceMotion.addListener)reduceMotion.addListener(applyAppearance);
 applyAppearance();
 document.querySelectorAll('[data-direct-contact]').forEach(a=>a.addEventListener('click',()=>goal('predfinal_author_contact',{channel:a.dataset.directContact})));
-// Isolated checkout mock; no bank call to the unrelated ai_album tariff.
-form.addEventListener('submit',e=>{
- e.preventDefault();
- status.hidden=true;status.classList.remove('error');
- const email=String(form.elements.email.value||'').trim();
- if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-  status.textContent='Укажите правильный email для получения альбомов и чека.';
-  status.classList.add('error');status.hidden=false;form.elements.email.focus();return;
- }
- if(form.elements.website.value)return;
- goal('predfinal_checkout_preview',{plan:selectedPlan,style:selectedStyle,amount:selectedPlan==='one'?990:selectedPlan==='all'?1490:2090});
- status.textContent='Внутренний предпросмотр оформления. Для выбранных комплектов необходимо подключить соответствующие тарифы Т-Банка; оплата не списывается.';
- status.classList.add('error');status.hidden=false;
-});
 
 updateState();
 })();
