@@ -8,7 +8,7 @@
  <title>Аудиоякоря — два альбома, чтобы бросить курить</title>
  <meta name="description" content="Музыкальная программа отказа от курения: два альбома, три звучания. Выберите комплект, послушайте аудиоякорь.">
  <link rel="canonical" href="https://marafon-metod.ru/predfinal/">
- <link rel="stylesheet" href="/predfinal/offer.css?v=20261019-audioloop-v13">
+ <link rel="stylesheet" href="/predfinal/offer.css?v=20261019-audioloop-v14">
  <script defer src="/predfinal/offer.js?v=20261019-mid-recommended-v9"></script>
  <script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return}k=e.createElement(t);a=e.getElementsByTagName(t)[0];k.async=1;k.src=r;a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=110906734','ym');ym(110906734,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});</script>
  <style data-source="pricing-v6-critical">/* /predfinal/: 3 equal-content price tiers, mobile stack and aligned desktop grid */
@@ -389,6 +389,48 @@ body.theme-dark .audio-loop-step--result .audio-loop-content h3{color:#e3ff76}
  body.theme-dark .audio-loop-content p{font-size:17px}
 }
 </style>
+<style data-source="audio-loop-aspiration-v14">
+/* v14: single aspirational payoff, attached to the four-step audio-loop. */
+body.theme-dark .audio-loop-aspiration{
+ margin-top:21px;
+ padding:23px 30px;
+ border:1px solid #718d49;
+ border-radius:16px;
+ background:linear-gradient(105deg,#283922 0%,#1c2b1d 100%);
+}
+body.theme-dark .audio-loop-aspiration-label{
+ margin:0 0 13px;
+ font-size:13px;letter-spacing:.115em;
+ font-weight:900;text-transform:uppercase;
+ color:#cde998;
+}
+body.theme-dark .audio-loop-aspiration-line{
+ margin:0;display:flex;align-items:center;gap:15px;
+ font-size:clamp(21px,2.65vw,34px);
+ line-height:1.22;letter-spacing:-.035em;color:#f8faf1;
+}
+body.theme-dark .audio-loop-aspiration-input{font-weight:750}
+body.theme-dark .audio-loop-aspiration-arrow{
+ color:#dfff22;flex:none;font-size:1.3em;font-weight:650;line-height:1;
+}
+body.theme-dark .audio-loop-aspiration-result{
+ color:#dfff44;font-weight:850;
+}
+@media(max-width:899px){
+ body.theme-dark .audio-loop-aspiration{margin-top:16px;padding:22px 20px;border-radius:14px}
+ body.theme-dark .audio-loop-aspiration-line{
+  flex-direction:column;align-items:flex-start;gap:7px;
+  font-size:clamp(22px,5.6vw,30px);line-height:1.28;
+ }
+ body.theme-dark .audio-loop-aspiration-arrow{
+  transform:rotate(90deg);margin-left:3px;
+ }
+}
+@media(max-width:359px){
+ body.theme-dark .audio-loop-aspiration{padding:20px 16px}
+ body.theme-dark .audio-loop-aspiration-line{font-size:22px}
+}
+</style>
 </head>
 <body class="theme-dark vision-mode">
  <header class="header"><div class="wrap header-inner">
@@ -520,6 +562,14 @@ body.theme-dark .audio-loop-step--result .audio-loop-content h3{color:#e3ff76}
       </div>
      </li>
     </ol>
+    <div class="audio-loop-aspiration" aria-label="Желаемый результат аудиоякорей">
+     <p class="audio-loop-aspiration-label">Желаемый сценарий</p>
+     <p class="audio-loop-aspiration-line">
+      <span class="audio-loop-aspiration-input">Слушаю фоном</span>
+      <span class="audio-loop-aspiration-arrow" aria-hidden="true">→</span>
+      <strong class="audio-loop-aspiration-result">автоматически перестаю хотеть курить</strong>
+     </p>
+    </div>
    </div>
   </section>
   <section class="section mechanism-story-section" id="mechanism">
