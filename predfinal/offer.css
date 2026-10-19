@@ -2155,3 +2155,168 @@ body.theme-dark .checkout-style-options button[aria-pressed=true]{
  body.theme-dark .checkout-style-options{grid-template-columns:1fr;gap:8px}
  body.theme-dark .checkout-style-options button{min-height:52px;font-size:17px}
 }
+
+
+
+/* /predfinal/: 3 equal-content price tiers, mobile stack and aligned desktop grid */
+body.theme-dark .prefinal-pricing-section .pricing{
+ display:grid;grid-template-columns:minmax(0,1fr);
+ gap:14px;margin-top:30px;
+}
+body.theme-dark .prefinal-pricing-section .pricing-head{margin-bottom:20px}
+body.theme-dark .prefinal-pricing-section .price-card{
+ display:flex;flex-direction:column;gap:0;min-width:0;
+ border:1px solid #4f604e;border-radius:16px;background:#202a21;
+ padding:23px 23px 24px;
+ box-shadow:none;
+}
+body.theme-dark .prefinal-pricing-section .price-card.is-selected{
+ padding:23px 23px 24px;
+ box-shadow:inset 0 0 0 1px #dfff9e7a;
+}
+body.theme-dark .prefinal-pricing-section .price-card--featured{
+ border:2px solid #d9ff17;
+ padding:22px 22px 23px;
+ background:linear-gradient(145deg,#2c3b24,#222e20);
+}
+body.theme-dark .prefinal-pricing-section .price-card--featured.is-selected{
+ padding:22px 22px 23px;
+ border-color:#d9ff17;
+ box-shadow:inset 0 0 0 1px #dfff9e80;
+}
+body.theme-dark .prefinal-pricing-section .price-top{
+ display:block;color:#dcff42;font-size:14px;font-weight:850;
+ letter-spacing:.075em;text-transform:uppercase;
+ margin:0 0 9px;
+}
+body.theme-dark .prefinal-pricing-section .price-card h3{
+ font-size:clamp(24px,2.5vw,29px);font-weight:800;line-height:1.18;
+ color:#f7f9f3;letter-spacing:-.04em;margin:0 0 21px;
+}
+body.theme-dark .prefinal-pricing-section .price-features{
+ list-style:none;padding:0;margin:0 0 20px;
+ display:grid;gap:11px;flex:1;
+}
+body.theme-dark.vision-mode .prefinal-pricing-section .price-features li{
+ position:relative;
+ padding-left:26px;
+ margin:0;font-size:18px;line-height:1.4;
+ color:#e0e9da;
+}
+body.theme-dark .prefinal-pricing-section .price-features li::before{
+ content:"✓";position:absolute;top:0;left:0;
+ color:var(--accent);font-size:19px;font-weight:900;
+}
+body.theme-dark .prefinal-pricing-section .price-bottom{
+ margin-top:auto;
+ display:flex;flex-direction:column;
+ gap:0;
+}
+body.theme-dark .prefinal-pricing-section .price-amount{
+ font-size:clamp(48px,5vw,58px);font-weight:800;line-height:1.1;
+ letter-spacing:-.055em;color:#fff;margin:0 0 21px;
+}
+body.theme-dark .prefinal-pricing-section .price-amount span{
+ font-size:.59em;
+}
+body.theme-dark .prefinal-pricing-section .price-compare{
+ display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+ margin:0 0 9px;
+}
+body.theme-dark .prefinal-pricing-section .price-compare s{
+ font-size:21px;line-height:1.1;color:#b6c0b2;
+ text-decoration-color:#b2d99a;
+ text-decoration-thickness:2px;
+}
+body.theme-dark .prefinal-pricing-section .price-compare>span{
+ font-size:clamp(44px,4.5vw,55px);
+ color:#fff;font-weight:800;letter-spacing:-.065em;line-height:1.13;
+}
+body.theme-dark .prefinal-pricing-section .price-compare small{
+ font-size:.58em;
+}
+body.theme-dark .prefinal-pricing-section .price-saving{
+ display:flex;flex-direction:column;align-items:flex-start;gap:3px;
+ margin:0 0 18px;
+}
+body.theme-dark .prefinal-pricing-section .price-saving strong{
+ font-size:17px;line-height:1.34;color:#ddff6a;font-weight:800;
+}
+body.theme-dark .prefinal-pricing-section .price-saving small{
+ font-size:13px;line-height:1.36;color:#bac9b4;
+}
+body.theme-dark .prefinal-pricing-section .price-saving--blank{display:none}
+body.theme-dark .prefinal-pricing-section .price-bottom button{
+ width:100%;min-height:59px;padding:11px 14px;
+ font-size:18px;line-height:1.32;font-weight:850;
+ border-radius:10px;
+ white-space:normal;
+}
+body.theme-dark .prefinal-pricing-section .pricing-explainer{
+ max-width:1020px;
+ font-size:17px;line-height:1.55;color:#c6d5be;
+ margin:20px 0 29px;
+}
+body.theme-dark .checkout-duo-note{
+ font-size:17px;line-height:1.42;font-weight:700;
+ color:#dfff8a;background:#34472d;border:1px solid #779966;
+ border-radius:10px;padding:12px 14px;margin:0 0 16px;
+}
+body.theme-dark .checkout-duo-note[hidden]{display:none!important}
+@media(min-width:900px){
+ body.theme-dark .prefinal-pricing-section .pricing{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  align-items:stretch;
+  gap:15px;
+ }
+ body.theme-dark .prefinal-pricing-section .price-card,
+ body.theme-dark .prefinal-pricing-section .price-card.is-selected{
+  padding:23px 19px 23px;
+ }
+ body.theme-dark .prefinal-pricing-section .price-card--featured,
+ body.theme-dark .prefinal-pricing-section .price-card--featured.is-selected{
+  padding:22px 18px 22px;
+ }
+ body.theme-dark .prefinal-pricing-section .price-card h3{
+  font-size:clamp(23px,2vw,28px);
+  min-height:65px;
+ }
+ body.theme-dark .prefinal-pricing-section .price-features{
+  grid-template-rows:repeat(3,minmax(0,auto));
+ }
+ body.theme-dark .prefinal-pricing-section .price-features li{
+  font-size:17px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-bottom{
+  min-height:194px;
+  justify-content:flex-end;
+ }
+ body.theme-dark .prefinal-pricing-section .price-amount{
+  margin:0 0 74px;font-size:52px;
+ }
+ body.theme-dark .prefinal-pricing-section .price-compare{
+  align-items:baseline;gap:8px;flex-wrap:wrap;
+ }
+ body.theme-dark .prefinal-pricing-section .price-compare s{font-size:18px}
+ body.theme-dark .prefinal-pricing-section .price-compare>span{font-size:46px}
+ body.theme-dark .prefinal-pricing-section .price-saving strong{font-size:15px}
+ body.theme-dark .prefinal-pricing-section .price-bottom button{
+  font-size:16px;min-height:65px;
+ }
+}
+@media(max-width:899px){
+ body.theme-dark .prefinal-pricing-section .price-card{
+  width:100%;max-width:650px;
+ }
+ body.theme-dark .prefinal-pricing-section .price-saving--blank{display:none}
+ body.theme-dark .prefinal-pricing-section .price-card h3{margin-bottom:18px}
+ body.theme-dark .prefinal-pricing-section .price-features{margin-bottom:17px;gap:9px}
+}
+@media(max-width:360px){
+ body.theme-dark .prefinal-pricing-section .price-card,
+ body.theme-dark .prefinal-pricing-section .price-card.is-selected{padding:19px 16px 20px}
+ body.theme-dark .prefinal-pricing-section .price-card--featured,
+ body.theme-dark .prefinal-pricing-section .price-card--featured.is-selected{padding:18px 15px 19px}
+ body.theme-dark .prefinal-pricing-section .price-card h3{font-size:24px}
+ body.theme-dark .prefinal-pricing-section .price-compare>span{font-size:44px}
+}
