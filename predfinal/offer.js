@@ -6,7 +6,7 @@ const styles={
   estrada:{title:'Душевная эстрада',subtitle:'Оркестровая мелодия и сильный припев'},
   modern:{title:'Современное звучание',subtitle:'Тёплый поп и живой ритм'}
 };
-let selectedStyle='author',selectedPlan='one',isSending=false,isSent=false;
+let selectedStyle='author',selectedPlan='all',isSending=false,isSent=false;
 const styleButtons=[...document.querySelectorAll('.tier-genre [data-style]')];
 const planButtons=[...document.querySelectorAll('[data-select-plan]')];
 const pathStory=document.getElementById('path-story');
