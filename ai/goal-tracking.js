@@ -126,10 +126,10 @@
   },{threshold:[0,0.35,0.75]});
   observer.observe(el);
  }
- visibleOnce('#sounds','ai_demo_view');
- visibleOnce('#listening-guide','ai_guide_view');
- visibleOnce('#reviews','ai_reviews_view');
- visibleOnce('#pricing','ai_pricing_view');
+ visibleOnce('#sounds h2','ai_demo_view');
+ visibleOnce('#listening-guide h2','ai_guide_view');
+ visibleOnce('#reviews h2','ai_reviews_view');
+ visibleOnce('#pricing h2','ai_pricing_view');
 
  // Albums & FAQs. Reading them is an explicit click, not just page scroll.
  document.querySelectorAll('.album-tracklist-details[data-album]').forEach(el=>{
@@ -189,7 +189,9 @@
    if(opened&&!submitted)emit('ai_checkout_closed');
    opened=false;submitted=false;
   });
-  checkout.addEventListener('submit',()=>{submitted=true;});
+  // A form submit can fail validation or backend creation. Only actual bank
+  // redirection counts as leaving the sheet to pay.
+  window.addEventListener('pagehide',()=>{submitted=true;});
   const observer=new MutationObserver(()=>{
    if(checkout.open&&!opened){opened=true;submitted=false;}
   });
