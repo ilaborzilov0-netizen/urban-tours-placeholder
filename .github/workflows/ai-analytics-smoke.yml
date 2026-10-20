@@ -5,6 +5,7 @@ on:
     paths:
       - "ai/index.html"
       - "ai/posthog-init.js"
+      - "ai/goal-tracking.js"
       - "analytics.js"
       - "predfinal/offer.js"
       - "predfinal/checkout.js"
@@ -47,16 +48,20 @@ jobs:
                   s,html=get('/ai/?check=ai-analytics-20261020')
                   a=html.count('/ai/posthog-init.js?v=20261020-prod1')==1
                   b=html.count('/analytics.js?v=20261020-clarity-ai1')==1
-                  c='offer.js?v=20261020-ga4-v35' in html and 'checkout.js?v=20261020-ga4-v9' in html
+                  c='offer.js?v=20261020-goals-v36' in html and 'checkout.js?v=20261020-goals-v10' in html
                   d='https://www.googletagmanager.com/gtag/js?id=G-J076WS14NV' in html
                   e="gtag('config','G-J076WS14NV'" in html
-                  if a and b and c and d and e:
+                  f='/ai/goal-tracking.js?v=20261020-semantic-v1' in html
+                  if a and b and c and d and e and f:
+                      _,goals=get('/ai/goal-tracking.js?v=20261020-semantic-v1')
                       _,posthog=get('/ai/posthog-init.js?v=20261020-prod1')
                       _,clarity=get('/analytics.js?v=20261020-clarity-ai1')
-                      _,offer=get('/predfinal/offer.js?v=20261020-ga4-v35')
-                      _,checkout=get('/predfinal/checkout.js?v=20261020-ga4-v9')
+                      _,offer=get('/predfinal/offer.js?v=20261020-goals-v36')
+                      _,checkout=get('/predfinal/checkout.js?v=20261020-goals-v10')
                       if all([
                           'https://eu.i.posthog.com' in posthog,
+                          'ai_checkout_genre_' in goals,
+                          'ai_guitar_50' in goals,
                           'disable_session_recording:true' in posthog,
                           'xpsxeyxojq' in clarity,
                           'posthog?.capture?' in offer,
@@ -66,7 +71,7 @@ jobs:
                       ]):
                           print('PASS: live /ai/ serves GA4 G-J076WS14NV, EU PostHog, Clarity and Yandex goal forwarding without test traffic.')
                           sys.exit(0)
-                  print('Attempt',attempt,'html ready:',a,b,c,d,e)
+                  print('Attempt',attempt,'html ready:',a,b,c,d,e,f)
               except Exception as e:print('Attempt',attempt,'error',repr(e))
               if attempt<8:time.sleep(4)
           sys.exit('FAIL: scripts are not all deployed to live /ai/')
