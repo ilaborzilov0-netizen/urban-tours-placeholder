@@ -1241,6 +1241,32 @@ body.theme-dark .review-section .section-head h2{
  body.theme-dark .review-section .section-head h2{font-size:clamp(28px,9.4vw,34px)}
 }
 </style>
+<style data-source="predfinal-brain-physiology-20261020">
+/* Physiology explanation: three readable bullet points, same section as mechanism. */
+body.theme-dark .brain-explainer-body .brain-physiology{
+ background:#202e22;border-color:#58714d;
+}
+body.theme-dark .brain-physiology .brain-block-heading{margin-bottom:22px}
+body.theme-dark .brain-physiology-points{
+ display:grid;gap:16px;list-style:none;margin:0;padding:0;
+}
+body.theme-dark .brain-physiology-points li{
+ position:relative;padding:0 0 0 28px;
+ font-size:clamp(18px,1.8vw,21px);line-height:1.56;
+ color:#e2ebdd;
+}
+body.theme-dark .brain-physiology-points li::before{
+ content:"";position:absolute;left:2px;top:.65em;
+ width:9px;height:9px;border-radius:50%;background:#dfff42;
+ box-shadow:0 0 0 3px #dfff4220;
+}
+@media(max-width:720px){
+ body.theme-dark .brain-physiology .brain-block-heading{margin-bottom:17px}
+ body.theme-dark .brain-physiology-points{gap:17px}
+ body.theme-dark .brain-physiology-points li{padding-left:24px;font-size:19px;line-height:1.54}
+ body.theme-dark .brain-physiology-points li::before{width:8px;height:8px}
+}
+</style>
 </head>
 <body class="theme-dark vision-mode">
  <main>
@@ -1517,6 +1543,16 @@ body.theme-dark .review-section .section-head h2{
       <p>Если одни и те же звуки и фразы повторяются много раз, нейроны всё равно начинают связываться сильнее.</p>
       <p>Сознание может быть занято другим (работа, телевизор, дорога), а подсознание уже прокладывает новую дорогу.</p>
       <p>Именно поэтому мягкая мелодия + спокойные повторы работают особенно хорошо: они не раздражают и позволяют мозгу спокойно «перестраивать провода».</p>
+     </article>
+     <article class="brain-process brain-physiology" aria-labelledby="brain-physiology-heading">
+      <div class="brain-block-heading">
+       <h3 id="brain-physiology-heading">Что происходит физиологически</h3>
+      </div>
+      <ul class="brain-physiology-points">
+       <li>Нейроны, которые часто работают вместе, начинают лучше «проводить» сигнал друг к другу.</li>
+       <li>Связи между ними укрепляются (это называется синаптическая пластичность).</li>
+       <li>Старые ненужные связи (например, «захотелось → достал сигарету») используются всё реже и постепенно слабеют. Мозг просто экономит энергию и «убирает» то, чем редко пользуются.</li>
+      </ul>
      </article>
     </div>
    </div>
