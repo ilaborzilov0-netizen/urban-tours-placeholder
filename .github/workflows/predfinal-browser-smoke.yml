@@ -8,6 +8,8 @@ on:
       - "predfinal/offer.css"
       - "predfinal/checkout.js"
       - "tests/predfinal-browser-smoke.mjs"
+      - "tests/predfinal-pult-smoke.mjs"
+      - "predfinal/pult/index.html"
       - ".github/workflows/predfinal-browser-smoke.yml"
   workflow_dispatch:
 
@@ -32,3 +34,5 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Verify checkout and question UX against mock payment API
         run: node tests/predfinal-browser-smoke.mjs
+      - name: Verify all five audio-chain compositions in Chromium
+        run: node tests/predfinal-pult-smoke.mjs
