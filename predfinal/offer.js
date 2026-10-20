@@ -8,6 +8,7 @@ const goal=(name,details)=>{
    if(Object.prototype.hasOwnProperty.call(details||{},key))safe[key]=details[key];
   }
   window.posthog?.capture?.(name,safe);
+  window.gtag?.('event',name,safe);
  }catch(_){}
 };
 const styles={
