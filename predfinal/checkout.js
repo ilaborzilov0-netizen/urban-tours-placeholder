@@ -2,9 +2,9 @@
 (()=>{'use strict';
 const API='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net';
 const PLANS=Object.freeze({
- one:{id:'audio_pair_one',amount:99000,title:'Оба альбома · одно звучание',price:'990 ₽'},
- all:{id:'audio_pair_all',amount:149000,title:'Оба альбома · все три звучания',price:'1 490 ₽'},
- duo:{id:'audio_pair_duo',amount:249000,title:'Оба альбома · для двух человек',price:'2 490 ₽'}
+ one:{id:'audio_pair_one',amount:199000,title:'Оба альбома · одно звучание',price:'1 990 ₽'},
+ all:{id:'audio_pair_all',amount:299000,title:'Оба альбома · все три звучания',price:'2 990 ₽'},
+ duo:{id:'audio_pair_duo',amount:449000,title:'Оба альбома · для двух человек',price:'4 490 ₽'}
 });
 const GENRES=Object.freeze({author:'Под гитару',estrada:'Душевная эстрада',modern:'Современное звучание'});
 const goal=(name,data={})=>{try{window.ym?.(110906734,'reachGoal','predfinal_'+name,data)}catch(_){}};
@@ -131,7 +131,7 @@ async function verifyBackendTariffs(){
   const response=await apiRequest('/api/payment/plans',{cache:'no-store'});
   if(response.testMode===true)throw new Error('Платёжный сервер сейчас в тестовом режиме. Настоящие покупки временно недоступны.');
   const correct=Object.values(PLANS).every(plan=>Number(response.tariffs?.[plan.id])===plan.amount);
-  if(!correct||response.service!=='audio-pair-checkout')throw new Error('Тарифы на платёжном сервере ещё не обновлены. Пожалуйста, попробуйте позже.');
+  if(!correct||response.service!=='audio-pair-checkout'||response.build!=='predfinal-three-tiers-20261020-v2')throw new Error('Тарифы на платёжном сервере ещё не обновлены. Пожалуйста, попробуйте позже.');
   paymentContractReady=true;
   clearMessage(purchaseStatus);
   retryPlans.hidden=true;submit.disabled=false;
