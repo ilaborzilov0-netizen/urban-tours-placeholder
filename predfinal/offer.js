@@ -6,46 +6,61 @@ const styles={
   estrada:{title:'Душевная эстрада',subtitle:'Оркестровая мелодия и сильный припев'},
   modern:{title:'Современное звучание',subtitle:'Тёплый поп и живой ритм'}
 };
-// A demo preference and the 990 ₽ tariff share a single selected genre.
-// Listening and choosing a genre do not change the pricing plan or navigate.
+// Demo likes are independent and multi-select. The 990 ₽ plan's genre is
+// a separate single choice, selected only with the tariff genre controls.
 let storedStyle=null;
 try{storedStyle=sessionStorage.getItem('predfinal_preferred_genre')}catch(_){}
 let selectedStyle=Object.hasOwn(styles,storedStyle)?storedStyle:'author';
-let hasFavorite=Object.hasOwn(styles,storedStyle);
 let selectedPlan='all';
 const styleButtons=[...document.querySelectorAll('.tier-genre [data-style]')];
 const favoriteButtons=[...document.querySelectorAll('[data-favorite-genre]')];
 const planButtons=[...document.querySelectorAll('[data-select-plan]')];
-function saveFavorite(style){
- if(!Object.hasOwn(styles,style))return;
- selectedStyle=style;
- hasFavorite=true;
- try{sessionStorage.setItem('predfinal_preferred_genre',style)}catch(_){}
+const favoritesKey='predfinal_liked_genres';
+let likedStyles=new Set();
+try{
+ const saved=sessionStorage.getItem(favoritesKey);
+ if(saved!==null){
+  const parsed=JSON.parse(saved);
+  if(Array.isArray(parsed))likedStyles=new Set(parsed.filter(s=>Object.hasOwn(styles,s)));
+ }else if(Object.hasOwn(styles,storedStyle)){
+  // Restore one formerly selected preference without changing the plan.
+  likedStyles.add(storedStyle);
+ }
+}catch(_){}
+function saveLikes(){
+ try{sessionStorage.setItem(favoritesKey,JSON.stringify([...likedStyles]))}catch(_){}
 }
 function updateState(){
  styleButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.style===selectedStyle)));
  favoriteButtons.forEach(b=>{
-  const chosen=hasFavorite&&b.dataset.favoriteGenre===selectedStyle;
-  b.setAttribute('aria-pressed',String(chosen));
-  const card=b.closest('.sound-sample');
-  card?.classList.toggle('is-favorite',chosen);
+  const genre=b.dataset.favoriteGenre;
+  const liked=likedStyles.has(genre);
+  b.setAttribute('aria-pressed',String(liked));
+  b.closest('.sound-sample')?.classList.toggle('is-favorite',liked);
   const caption=b.querySelector('.sound-favorite-label');
-  if(caption)caption.textContent=chosen?'Выбрано':'Мне нравится это звучание';
-  b.setAttribute('aria-label',(chosen?'Выбрано звучание: ':'Выбрать звучание: ')+styles[b.dataset.favoriteGenre].title);
+  if(caption)caption.textContent=liked?'Нравится':'Мне нравится это звучание';
+  b.setAttribute('aria-label',(liked?'Убрать отметку «Нравится»: ':'Отметить понравившееся звучание: ')+styles[genre].title);
  });
  document.querySelectorAll('[data-price-card]').forEach(c=>c.classList.toggle('is-selected',c.dataset.priceCard===selectedPlan));
  planButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.selectPlan===selectedPlan)));
 }
 
 styleButtons.forEach(button=>button.addEventListener('click',()=>{
- saveFavorite(button.dataset.style);
+ const style=button.dataset.style;
+ if(!Object.hasOwn(styles,style))return;
+ selectedStyle=style;
+ try{sessionStorage.setItem('predfinal_preferred_genre',style)}catch(_){}
  selectedPlan='one';
- updateState();goal('predfinal_style_select',{style:selectedStyle,source:'basic_price_card'});
+ updateState();goal('predfinal_style_select',{style,source:'basic_price_card'});
 }));
 favoriteButtons.forEach(button=>button.addEventListener('click',()=>{
- saveFavorite(button.dataset.favoriteGenre);
+ const style=button.dataset.favoriteGenre;
+ if(!Object.hasOwn(styles,style))return;
+ if(likedStyles.has(style))likedStyles.delete(style);
+ else likedStyles.add(style);
+ saveLikes();
  updateState();
- goal('predfinal_demo_favorite',{style:selectedStyle});
+ goal('predfinal_demo_favorite',{style,liked:likedStyles.has(style)});
 }));
 planButtons.forEach(button=>button.addEventListener('click',()=>{
  selectedPlan=button.dataset.selectPlan;
@@ -58,12 +73,23 @@ document.querySelectorAll('[data-scroll-request]').forEach(button=>button.addEve
 // Native previews: each player is independent of purchasing. A new play pauses the
 // previous one. Missing files are NEVER substituted with the wrong genre.
 const sampleBlocks=[...document.querySelectorAll('[data-audio-preview]')];
+const listenedKey='predfinal_listened_demos';
+let listenedStyles=new Set();
+try{
+ const previous=JSON.parse(sessionStorage.getItem(listenedKey)||'[]');
+ if(Array.isArray(previous))listenedStyles=new Set(previous.filter(s=>Object.hasOwn(styles,s)));
+}catch(_){}
+function saveListened(){
+ try{sessionStorage.setItem(listenedKey,JSON.stringify([...listenedStyles]))}catch(_){}
+}
 const clock=t=>{const sec=Math.max(0,Math.floor(t||0));return Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0');};
 sampleBlocks.forEach(block=>{
  const audio=block.querySelector('audio');
  const button=block.querySelector('[data-play]');
  const seek=block.querySelector('.sound-seek');
  const time=block.querySelector('.sound-elapsed');
+ const status=block.closest('.sound-sample')?.querySelector('.sound-listen-status');
+ const card=block.closest('.sound-sample');
  const genre=block.dataset.audioPreview;
  const url=block.dataset.audioSrc;
  const limit=Math.max(1,Number(block.dataset.audioDuration||30));
@@ -79,13 +105,27 @@ sampleBlocks.forEach(block=>{
  }
  const sync=()=>{
   const t=Math.min(limit,audio.currentTime||0);
+  const completed=listenedStyles.has(genre);
+  const playing=!audio.paused&&!audio.ended;
   seek.value=String(t);
   seek.style.setProperty('--progress',(t/limit*100)+'%');
   time.textContent=clock(t)+' / '+clock(durationLabel);
-  const playing=!audio.paused&&!audio.ended;
-  button.textContent=(playing?'❚❚ Пауза':'▶ Послушать фрагмент')+' · '+durationLabel+' '+secondsWord;
-  button.setAttribute('aria-label',playing?'Приостановить прослушивание':'Воспроизвести фрагмент');
+  button.textContent=playing?'❚❚ Пауза':completed?'↻ Послушать ещё раз':'▶ Послушать фрагмент · '+durationLabel+' '+secondsWord;
+  button.setAttribute('aria-label',playing?'Приостановить прослушивание':completed?'Послушать фрагмент ещё раз':'Воспроизвести фрагмент');
   block.classList.toggle('is-playing',playing);
+  card?.classList.toggle('is-playing',playing);
+  card?.classList.toggle('is-listened',completed);
+  const message=playing?'Сейчас играет':completed?'✓ Фрагмент прослушан':'';
+  if(status&&status.textContent!==message)status.textContent=message;
+ };
+ const finish=()=>{
+  const fresh=!listenedStyles.has(genre);
+  listenedStyles.add(genre);
+  saveListened();
+  if(!audio.paused)audio.pause();
+  try{audio.currentTime=0}catch(_){}
+  sync();
+  if(fresh)goal('predfinal_audio_preview_complete',{genre});
  };
  button.addEventListener('click',()=>{
   if(audio.paused){
@@ -93,6 +133,7 @@ sampleBlocks.forEach(block=>{
     const player=other.querySelector('audio');
     if(player!==audio&&!player.paused)player.pause();
    });
+   if(audio.ended||audio.currentTime>=limit-0.02)audio.currentTime=0;
    const p=audio.play();
    if(p?.catch)p.catch(()=>sync());
   }else audio.pause();
@@ -105,17 +146,15 @@ sampleBlocks.forEach(block=>{
  audio.addEventListener('play',()=>{sync();goal('predfinal_audio_preview_play',{genre});});
  audio.addEventListener('pause',sync);
  audio.addEventListener('timeupdate',()=>{
-  if(audio.currentTime>=limit&&!audio.ended){
-   audio.pause();audio.currentTime=0;
-   goal('predfinal_audio_preview_complete',{genre});
-  }
-  sync();
+  if(audio.currentTime>=limit-0.02&&!audio.ended)finish();
+  else sync();
  });
- audio.addEventListener('ended',()=>{audio.currentTime=0;sync();goal('predfinal_audio_preview_complete',{genre});});
+ audio.addEventListener('ended',finish);
  audio.addEventListener('error',()=>{
   button.disabled=true;
   button.setAttribute('aria-label','Не удалось загрузить аудиозапись');
   button.title='Не удалось загрузить аудиозапись';
+  sync();
  });
  sync();
 });
