@@ -44,10 +44,11 @@ try{
   assert.ok(now.priority&&now.priority.top>=now.heading.bottom-1,'Prominent 40+ caption must follow headline at '+width);
   assert.ok(now.priority.bottom<now.lead.top+1,'Secondary message must follow emphasis at '+width);
   assert.ok(now.scrollWidth<=width+2,'No horizontal overflow at '+width);
-  assert.ok(Math.abs(diff)<=2,'First album cover MOVED at '+width+'px: '+JSON.stringify(result.at(-1)));
   await ctx.close();
  }
+ console.log('COVER_POSITION_DATA '+JSON.stringify(result));
+ const moved=result.filter(x=>Math.abs(x.delta)>2);
+ assert.ok(moved.length===0,'First album cover MOVED: '+JSON.stringify(moved));
  console.log('PASS: Cover stays at baseline coordinates, headline/40+ priority/secondary text in order, no horizontal overflow.');
- console.log(JSON.stringify(result,null,2));
 }catch(error){console.error('FAIL: '+(error.stack||String(error)));process.exitCode=1}
 finally{await browser?.close();server.kill('SIGTERM');await fs.rm(reference,{force:true})}
