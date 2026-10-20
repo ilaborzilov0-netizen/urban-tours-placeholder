@@ -6,7 +6,7 @@ const styles={
   estrada:{title:'Душевная эстрада',subtitle:'Оркестровая мелодия и сильный припев'},
   modern:{title:'Современное звучание',subtitle:'Тёплый поп и живой ритм'}
 };
-// Demo likes are independent and multi-select. The 990 ₽ plan's genre is
+// Demo likes are independent and multi-select. The 1 990 ₽ plan's genre is
 // a separate single choice, selected only with the tariff genre controls.
 let storedStyle=null;
 try{storedStyle=sessionStorage.getItem('predfinal_preferred_genre')}catch(_){}
@@ -231,7 +231,7 @@ if(savingsCalculator){
  const annual=savingsCalculator.querySelector('[data-calc-year]');
  const error=savingsCalculator.querySelector('.smoking-calc-error');
  const packSize=20;
- const planPrice=1490;
+ const planPrice=2990;
  const formatter=new Intl.NumberFormat('ru-RU',{maximumFractionDigits:0});
  const format=value=>formatter.format(Math.abs(value));
  const bounds={cigarettes:{min:1,max:100,step:1},pack:{min:1,max:10000,step:10}};
