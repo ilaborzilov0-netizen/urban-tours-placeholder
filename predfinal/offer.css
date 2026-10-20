@@ -4065,3 +4065,194 @@ body.theme-dark .freedom-vision.typographic-chain .freedom-vision-cta{
  body.theme-dark .brain-explainer.typographic-chain .brain-background .brain-block-heading h3{font-size:28px}
  body.theme-dark .freedom-vision.typographic-chain h2{font-size:33px}
 }
+
+
+/* /predfinal/ v36: focused black checkout drawer, no generic green cards, no temporary UI. */
+dialog.predfinal-checkout-sheet{
+ width:min(100vw,445px);
+ background:#111312;
+ color:#f8f8f5;
+ border-color:#3b423e;
+ box-shadow:-16px 0 55px #000a;
+ font-family:Arial,Helvetica,sans-serif;
+}
+dialog.predfinal-checkout-sheet .predfinal-sheet-content{
+ padding:31px 28px 28px;
+}
+dialog.predfinal-checkout-sheet .predfinal-sheet-close{
+ top:16px;right:14px;
+ border:0;box-shadow:none;
+ background:transparent;color:#fafbf8;
+ font-size:31px;font-weight:350;
+}
+dialog.predfinal-checkout-sheet .predfinal-sheet-close:hover{
+ background:#262927;
+}
+dialog.predfinal-checkout-sheet .predfinal-sheet-eyebrow{
+ margin:2px 48px 22px 0;
+ color:#dfff19;
+ font-size:11px;font-weight:850;
+ letter-spacing:.12em;line-height:1.3;
+}
+dialog.predfinal-checkout-sheet #predfinal-checkout-heading{
+ color:#f7f8f7;
+ margin:0 0 15px;
+ font-size:clamp(35px,6.8vw,47px);
+ line-height:1.06;letter-spacing:-.051em;
+ font-weight:530;
+}
+dialog.predfinal-checkout-sheet #predfinal-checkout-heading em{
+ font-style:normal;color:#dfff19;
+}
+dialog.predfinal-checkout-sheet .predfinal-sheet-caption{
+ margin:0 0 29px;color:#c8ceca;
+ font-size:16px;line-height:1.42;
+}
+dialog.predfinal-checkout-sheet .predfinal-order-recap{
+ display:flex;align-items:flex-end;justify-content:space-between;
+ gap:12px;
+ margin:0 0 23px;padding:0 0 17px;
+ border:0;border-bottom:1px solid #3c423f;border-radius:0;
+ background:transparent;box-shadow:none;
+}
+dialog.predfinal-checkout-sheet .predfinal-order-description{
+ min-width:0;display:flex;flex-direction:column;gap:5px;
+}
+dialog.predfinal-checkout-sheet .predfinal-order-label{
+ color:#aebbb1;font-size:13px;font-weight:500;line-height:1.35;
+}
+dialog.predfinal-checkout-sheet .predfinal-order-recap strong{
+ color:#f5f6f3;font-size:17px;font-weight:750;line-height:1.3;
+}
+dialog.predfinal-checkout-sheet .predfinal-order-price{
+ flex:none;color:#f2f6ee;
+ font-size:29px;font-weight:600;letter-spacing:-.046em;
+ line-height:1.12;white-space:nowrap;
+ font-variant-numeric:tabular-nums;
+}
+dialog.predfinal-checkout-sheet .predfinal-checkout-genre{
+ margin:0 0 22px;padding:0;border:0;min-width:0;
+}
+dialog.predfinal-checkout-sheet .predfinal-checkout-genre legend{
+ padding:0;margin:0 0 10px;
+ color:#f6f6f4;font-size:15px;font-weight:650;line-height:1.3;
+}
+dialog.predfinal-checkout-sheet .predfinal-checkout-genre label{
+ min-height:43px;
+ display:flex;align-items:center;gap:12px;
+ margin:0 0 7px;padding:9px 13px;
+ background:#1f2220;color:#e5e7e4;
+ border:1px solid #424b43;border-radius:7px;
+ font-size:16px;font-weight:450;line-height:1.3;
+}
+dialog.predfinal-checkout-sheet .predfinal-checkout-genre label:has(input:checked){
+ background:#292e28;border-color:#bbdf49;color:#f8f8f4;
+}
+dialog.predfinal-checkout-sheet .predfinal-checkout-genre input{
+ width:17px;height:17px;accent-color:#dfff19;
+}
+dialog.predfinal-checkout-sheet .predfinal-sheet-field{
+ margin:0 0 9px;font-size:15px;line-height:1.3;
+ font-weight:620;color:#f9fbf8;
+}
+dialog.predfinal-checkout-sheet .predfinal-sheet-input{
+ min-height:53px;border:1px solid #4c5650;
+ border-radius:6px;background:#202320;
+ color:#f7f9f5;font-size:17px;font-weight:450;
+ padding:12px 13px;
+}
+dialog.predfinal-checkout-sheet .predfinal-sheet-input::placeholder{
+ color:#88938c;opacity:1;
+}
+dialog.predfinal-checkout-sheet .predfinal-sheet-hint{
+ color:#aab6aa;margin:7px 0 0;
+ font-size:13px;line-height:1.42;
+}
+dialog.predfinal-checkout-sheet .predfinal-sheet-status{
+ margin:13px 0 0;padding:11px 12px;
+ font-size:14px;line-height:1.42;
+}
+dialog.predfinal-checkout-sheet .predfinal-sheet-submit{
+ background:#dfff19;border:0;color:#151a12;
+ border-radius:6px;
+ min-height:57px;margin:24px 0 0;
+ padding:13px 12px;
+ font-size:17px;line-height:1.3;font-weight:800;
+}
+dialog.predfinal-checkout-sheet .predfinal-sheet-submit:hover:not(:disabled){
+ background:#efff67;
+}
+dialog.predfinal-checkout-sheet .predfinal-sheet-submit:disabled{
+ opacity:.65;cursor:wait;
+}
+dialog.predfinal-checkout-sheet .predfinal-sheet-submit[aria-busy="true"]{
+ position:relative;
+}
+dialog.predfinal-checkout-sheet .predfinal-sheet-submit[aria-busy="true"]:after{
+ content:"";
+ display:inline-block;vertical-align:middle;
+ margin-left:10px;width:13px;height:13px;
+ border:2px solid #293419;border-top-color:transparent;
+ border-radius:50%;animation:predfinal-spinner .9s linear infinite;
+}
+@keyframes predfinal-spinner{to{transform:rotate(360deg)}}
+dialog.predfinal-checkout-sheet .predfinal-sheet-privacy{
+ margin:12px 0 0;color:#969f99;
+ text-align:center;font-size:12px;line-height:1.45;
+}
+dialog.predfinal-checkout-sheet .predfinal-sheet-privacy a{
+ color:#ccd5c8;text-decoration:underline;text-decoration-color:#89978a;
+}
+dialog.predfinal-checkout-sheet .predfinal-sheet-secondary{
+ margin:12px 0 0;min-height:43px;
+ border:1px solid #818b80;border-radius:6px;
+ color:#f0f5ed;background:#232823;
+ font-size:14px;font-weight:700;
+}
+@media(max-width:640px){
+ dialog.predfinal-checkout-sheet{
+  width:100%;height:auto;max-height:min(96dvh,900px);
+  background:#111312;
+  border:1px solid #4d564e;border-bottom:0;
+  border-radius:14px 14px 0 0;
+ }
+ dialog.predfinal-checkout-sheet .predfinal-sheet-content{
+  padding:24px 22px calc(23px + env(safe-area-inset-bottom,0px));
+ }
+ dialog.predfinal-checkout-sheet .predfinal-sheet-eyebrow{
+  margin:1px 44px 17px 0;font-size:11px;
+ }
+ dialog.predfinal-checkout-sheet #predfinal-checkout-heading{
+  font-size:clamp(34px,8.8vw,41px);margin-bottom:13px;
+ }
+ dialog.predfinal-checkout-sheet .predfinal-sheet-caption{
+  margin-bottom:23px;font-size:15px;
+ }
+ dialog.predfinal-checkout-sheet .predfinal-order-recap{
+  margin-bottom:19px;padding-bottom:14px;
+ }
+ dialog.predfinal-checkout-sheet .predfinal-checkout-genre{
+  margin-bottom:19px;
+ }
+ dialog.predfinal-checkout-sheet .predfinal-order-price{
+  font-size:28px;
+ }
+ dialog.predfinal-checkout-sheet .predfinal-sheet-submit{
+  margin-top:20px;min-height:56px;
+ }
+}
+@media(max-width:359px){
+ dialog.predfinal-checkout-sheet .predfinal-sheet-content{
+  padding-inline:17px;
+ }
+ dialog.predfinal-checkout-sheet .predfinal-order-price{font-size:25px}
+ dialog.predfinal-checkout-sheet .predfinal-order-recap strong{font-size:16px}
+ dialog.predfinal-checkout-sheet .predfinal-checkout-genre label{
+  padding:8px 10px;font-size:15px;
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ dialog.predfinal-checkout-sheet .predfinal-sheet-submit[aria-busy="true"]:after{
+  animation:none;
+ }
+}
