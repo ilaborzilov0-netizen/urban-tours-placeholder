@@ -65,6 +65,21 @@ try{
  assert.equal(await page.locator('[data-select-plan]').count(),3,'Three price cards required');
  assert.equal(await page.locator('[data-open-question]').count(),3,'Pricing, FAQ and footer question CTAs required');
  assert.equal(await page.locator('.author-contact-title').textContent(),'Есть вопрос? Напишите мне, разберёмся.');
+ const lastInvitation=page.locator('#start-today');
+ assert.equal(await lastInvitation.count(),1);
+ assert.equal((await lastInvitation.locator('h2').innerText()).replace(/\\s+/g,' ').trim(),'Ещё десять лет с сигаретой начинаются с «брошу потом».');
+ assert.equal(await lastInvitation.locator('p').innerText(),'Начните с прослушивания сегодня.');
+ assert.equal(await lastInvitation.locator('a').count(),1,'The final section must have only one CTA');
+ assert.equal(await lastInvitation.locator('a').innerText().then(t=>t.replace('↗','').trim()),'Послушать фрагменты');
+ assert.equal(await lastInvitation.locator('a').getAttribute('href'),'#sounds');
+ const blockOrder=await page.locator('main > section, main + footer').evaluateAll(nodes=>nodes.map(e=>e.id||e.className));
+ assert.ok(blockOrder.indexOf('start-today')>blockOrder.findIndex(v=>v.includes('section')),'CTA must be within the main after other content');
+ const faqBottom=await page.locator('.predfinal-faq-contact').evaluate(e=>e.getBoundingClientRect().bottom+scrollY);
+ const finalTop=await lastInvitation.evaluate(e=>e.getBoundingClientRect().top+scrollY);
+ assert.ok(finalTop>=faqBottom,'The final invitation should be after FAQ');
+ await lastInvitation.locator('a').click();
+ assert.equal(new URL(page.url()).hash,'#sounds','Final CTA should navigate back to demo');
+
  const orderedNodes=await page.locator('#pricing').locator('#smoking-savings, .pricing, .predfinal-pricing-contact, .copyright-under-pricing').evaluateAll(nodes=>nodes.map(node=>node.id||node.className));
  assert.deepEqual(orderedNodes,['smoking-savings','pricing','predfinal-pricing-contact','copyright-under-pricing']);
  const equivalents=page.locator('[data-smoking-equivalent]');
