@@ -6,7 +6,7 @@ import { chromium } from 'playwright';
 const SITE='http://127.0.0.1:18765';
 const PAYMENT_HOST='ilaborzilov0-netizen-metod-payment-test-0305.twc1.net';
 const PRICE={audio_pair_one:199000,audio_pair_all:299000,audio_pair_duo:449000};
-let purchases=[],leads=[];
+let purchases=[],leads=[],plansProbed=0;
 const server=spawn('python3',['-m','http.server','18765','--bind','127.0.0.1'],{stdio:'ignore'});
 let browser;
 const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
@@ -38,9 +38,7 @@ try{
   };
   const json=(payload,status=200)=>route.fulfill({status,headers,body:JSON.stringify(payload)});
   if(req.method()==='OPTIONS')return route.fulfill({status:204,headers,body:''});
-  if(url.pathname==='/api/payment/plans')return json({
-   ok:true,service:'audio-pair-checkout',testMode:false,build:'predfinal-three-tiers-20261020-v2',tariffs:PRICE
-  });
+  if(url.pathname==='/api/payment/plans'){plansProbed++;return json({ok:false,error:'missing legacy endpoint'},404);}
   if(url.pathname==='/api/payment/create'){
    const data=req.postDataJSON();purchases.push(data);
    const amount=PRICE[data.plan];
@@ -124,6 +122,10 @@ try{
  assert.equal(await checkout.locator('input[name=email]').getAttribute('placeholder'),'Укажите ваш email');
  assert.equal(await checkout.locator('.predfinal-order-recap').evaluate(el=>getComputedStyle(el).backgroundColor),'rgba(0, 0, 0, 0)','Checkout recap must be open text, not a green card');
  assert.equal(await checkout.evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(17, 19, 18)','The payment sheet must use the minimal dark design');
+ assert.equal(await checkout.locator('#predfinal-checkout-status').isHidden(),true,'No server warnings on drawer open');
+ assert.equal(await checkout.locator('.predfinal-retry').count(),0,'No redundant retry button');
+ assert.equal(await checkout.locator('[type=submit]').isEnabled(),true,'Payment CTA must be active immediately');
+ assert.equal(plansProbed,0,'Checkout cannot rely on legacy catalog endpoint');
  await page.waitForFunction(()=>!document.querySelector('#predfinal-checkout-form [type=submit]').disabled);
  const payButtonRect=await checkout.locator('[type=submit]').boundingBox();
  assert.ok(payButtonRect&&payButtonRect.y+payButtonRect.height<844,'Primary CTA must be visible on a 390x844 mobile screen');
@@ -172,13 +174,26 @@ try{
  assert.equal(purchases.length,2);
  assert.equal(purchases[1].plan,'audio_pair_duo');
  await pageDuo.close();
+ const unavailable=await load();
+ await unavailable.route('https://'+PAYMENT_HOST+'/api/payment/create',async route=>{
+  await route.fulfill({status:400,contentType:'application/json',headers:{'access-control-allow-origin':SITE},body:JSON.stringify({ok:false,code:'UNKNOWN_PLAN',error:'Legacy server'})});
+ });
+ await unavailable.locator('[data-select-plan="all"]').click();
+ assert.equal(await unavailable.locator('#predfinal-checkout-status').isHidden(),true);
+ await unavailable.locator('#predfinal-checkout-email').fill('buyer@example.org');
+ await unavailable.locator('#predfinal-checkout-form [type=submit]').click();
+ await unavailable.locator('#predfinal-checkout-status').waitFor({state:'visible'});
+ assert.match(await unavailable.locator('#predfinal-checkout-status').innerText(),/Не удалось открыть оплату/);
+ assert.equal(await unavailable.locator('#predfinal-checkout-form [type=submit]').isEnabled(),true);
+ await unavailable.close();
+ assert.equal(plansProbed,0,'No use of legacy tariff endpoint');
  const returned=await context.newPage();
  await returned.goto(SITE+'/predfinal/?payment_result=success&orderId=MBT-audio_pair_all-20261020-demo',{waitUntil:'domcontentloaded'});
  await returned.locator('#predfinal-result-heading').getByText('Оплата подтверждена').waitFor();
  assert.match(await returned.locator('#predfinal-result-message').textContent(),/Письмо.*отправлено/);
  await returned.close();
  const narrow=await browser.newPage({viewport:{width:320,height:640}});
- await narrow.route('https://'+PAYMENT_HOST+'/**',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ok:true,service:'audio-pair-checkout',build:'predfinal-three-tiers-20261020-v2',testMode:false,tariffs:PRICE})}));
+ await narrow.route('https://'+PAYMENT_HOST+'/**',route=>route.fulfill({status:404,contentType:'application/json',body:JSON.stringify({ok:false,error:'old server'})}));
  await narrow.goto(SITE+'/predfinal/',{waitUntil:'domcontentloaded'});
  await narrow.locator('[data-select-plan="one"]').click();
  const narrowDialog=narrow.locator('#predfinal-checkout-dialog');
