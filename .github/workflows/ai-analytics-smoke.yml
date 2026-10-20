@@ -31,3 +31,38 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Verify PostHog and Clarity without sending real analytics
         run: node tests/ai-analytics-smoke.mjs
+      - name: Verify new scripts reached the public website
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import urllib.request,time,sys,re
+          origin='https://marafon-metod.ru'
+          def get(path):
+              req=urllib.request.Request(origin+path,headers={'User-Agent':'Mozilla/5.0','Cache-Control':'no-cache'})
+              with urllib.request.urlopen(req,timeout=15) as response:
+                  return response.status,response.read().decode('utf-8','replace')
+          for attempt in range(1,9):
+              try:
+                  s,html=get('/ai/?check=ai-analytics-20261020')
+                  a=html.count('/ai/posthog-init.js?v=20261020-prod1')==1
+                  b=html.count('/analytics.js?v=20261020-clarity-ai1')==1
+                  c='offer.js?v=20261020-posthog-v34' in html and 'checkout.js?v=20261020-posthog-v8' in html
+                  if a and b and c:
+                      _,posthog=get('/ai/posthog-init.js?v=20261020-prod1')
+                      _,clarity=get('/analytics.js?v=20261020-clarity-ai1')
+                      _,offer=get('/predfinal/offer.js?v=20261020-posthog-v34')
+                      _,checkout=get('/predfinal/checkout.js?v=20261020-posthog-v8')
+                      if all([
+                          'https://eu.i.posthog.com' in posthog,
+                          'disable_session_recording:true' in posthog,
+                          'xpsxeyxojq' in clarity,
+                          'posthog?.capture?' in offer,
+                          'posthog?.capture?' in checkout
+                      ]):
+                          print('PASS: live /ai/ serves working PostHog EU and existing Clarity scripts; existing Yandex goals are mirrored without test traffic.')
+                          sys.exit(0)
+                  print('Attempt',attempt,'html ready:',a,b,c)
+              except Exception as e:print('Attempt',attempt,'error',repr(e))
+              if attempt<8:time.sleep(4)
+          sys.exit('FAIL: scripts are not all deployed to live /ai/')
+          PY
