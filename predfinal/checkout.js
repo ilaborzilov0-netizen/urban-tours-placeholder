@@ -91,7 +91,7 @@ orderForm.querySelectorAll('input[name="genre"]').forEach(input=>{
 });
 document.querySelectorAll('[data-open-question]').forEach(button=>{
  button.addEventListener('click',()=>{
-  questionOrigin=button.closest('footer')?'footer':'pricing';
+  questionOrigin=['pricing','faq','footer'].includes(button.dataset.questionLocation)?button.dataset.questionLocation:(button.closest('footer')?'footer':'pricing');
   clearMessage(questionStatus);
   openSheet(questionDialog);
   goal('question_open',{location:questionOrigin});
