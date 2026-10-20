@@ -23,11 +23,8 @@ const orderTitle=qs('[data-checkout-title]');
 const orderPrice=qs('[data-checkout-price]');
 const orderSubmitPrice=qs('[data-checkout-submit-price]');
 const checkoutGenres=qs('[data-checkout-genre]');
-const retryPlans=qs('[data-retry-plans]');
-retryPlans?.addEventListener('click',()=>verifyBackendTariffs());
 const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 let activePlan='all',paymentBusy=false,questionBusy=false,questionSent=false;
-let paymentContractReady=false;
 let questionOrigin='footer';
 const showMessage=(target,message,success=false)=>{
  target.textContent=message;target.hidden=false;
@@ -63,7 +60,6 @@ function currentGenre(){
 function setPlan(plan){
  if(!PLANS[plan])return;
  activePlan=plan;
- paymentContractReady=false;
  const details=PLANS[plan];
  orderTitle.textContent=details.title;
  orderPrice.textContent=details.price;
@@ -78,7 +74,6 @@ document.querySelectorAll('[data-select-plan]').forEach(button=>{
   if(paymentBusy)return;
   setPlan(button.dataset.selectPlan);
   openSheet(orderDialog);
-  verifyBackendTariffs();
   goal('checkout_open',{plan:PLANS[activePlan].id});
  });
 });
@@ -113,8 +108,7 @@ async function apiRequest(path,options={}){
   });
   const payload=await response.json().catch(()=>null);
   if(!response.ok||!payload||payload.ok!==true){
-   const problem=path==='/api/payment/plans'?'Оплата сейчас недоступна. Попробуйте ещё раз.':
-    payload?.code==='UNKNOWN_PLAN'?'Оплата сейчас недоступна. Попробуйте позже.':
+   const problem=payload?.code==='UNKNOWN_PLAN'?'Не удалось создать заказ. Напишите мне, чтобы оформить покупку.':
     payload?.code==='INVALID_GENRE'?'Выберите одно музыкальное звучание.':
     payload?.code==='INVALID_CUSTOMER'?'Проверьте адрес электронной почты.':
     payload?.error||'Не удалось получить ответ сервера.';
@@ -123,28 +117,6 @@ async function apiRequest(path,options={}){
   return payload;
  }finally{clearTimeout(timer)}
 }
-async function verifyBackendTariffs(){
- const submit=orderForm.querySelector('[type="submit"]');
- submit.disabled=true;submit.setAttribute('aria-busy','true');
- paymentContractReady=false;retryPlans.hidden=true;clearMessage(purchaseStatus);
- try{
-  const response=await apiRequest('/api/payment/plans',{cache:'no-store'});
-  const correct=Object.values(PLANS).every(plan=>Number(response.tariffs?.[plan.id])===plan.amount);
-  if(response.testMode===true||!correct||response.service!=='audio-pair-checkout'||response.build!=='predfinal-three-tiers-20261020-v2'){
-   throw new Error('Оплата сейчас недоступна. Попробуйте ещё раз.');
-  }
-  paymentContractReady=true;
-  clearMessage(purchaseStatus);
-  retryPlans.hidden=true;submit.disabled=false;
-  goal('payment_plans_verified');
- }catch(error){
-  paymentContractReady=false;submit.disabled=true;retryPlans.hidden=false;
-  showMessage(purchaseStatus,'Оплата сейчас недоступна. Нажмите «Повторить попытку» или напишите мне.');
-  goal('payment_plans_unavailable');
- }finally{
-  submit.removeAttribute('aria-busy');
- }
-}
 function minorAmount(data){
  if(data.amountMinor!==undefined&&data.amountMinor!==null)return Number(data.amountMinor);
  const amount=Number(data.amount);
@@ -152,10 +124,6 @@ function minorAmount(data){
 }
 orderForm.addEventListener('submit',async event=>{
  event.preventDefault();if(paymentBusy)return;
- if(!paymentContractReady){
-  showMessage(purchaseStatus,'Оплата ещё не готова. Повторите попытку.');
-  return;
- }
  clearMessage(purchaseStatus);
  const details=PLANS[activePlan];
  if(!details)return;
