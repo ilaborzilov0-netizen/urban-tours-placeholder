@@ -1,0 +1,33 @@
+name: AI landing analytics verification
+on:
+  push:
+    branches: [main]
+    paths:
+      - "ai/index.html"
+      - "ai/posthog-init.js"
+      - "analytics.js"
+      - "predfinal/offer.js"
+      - "predfinal/checkout.js"
+      - "tests/ai-analytics-smoke.mjs"
+      - ".github/workflows/ai-analytics-smoke.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  analytics:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install test browser
+        run: |
+          npm init -y
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Verify PostHog and Clarity without sending real analytics
+        run: node tests/ai-analytics-smoke.mjs
