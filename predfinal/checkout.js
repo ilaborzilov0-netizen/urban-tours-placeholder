@@ -262,7 +262,10 @@ async function verifyPayment(orderId,plan){
    const reply=await apiRequest('/api/payment/status?orderId='+encodeURIComponent(orderId),{cache:'no-store'});
    if(reply.orderId!==orderId||reply.plan!==plan||minorAmount(reply)!==details.amount)throw new Error('Данные заказа не совпадают с выбранным тарифом.');
    if(reply.confirmed===true){
-    showResult('Оплата подтверждена','Т-Банк подтвердил оплату '+details.price+'. Подтверждение покупки направляется на ваш email. Если аудиозаписи ещё не пришли, задайте вопрос через форму на сайте.');
+    const emailDelivery=reply.customerEmailSent===true?
+     'Письмо о подтверждении покупки отправлено на указанный email.':
+     'Отправка письма о подтверждении пока не подтверждена сервером.';
+    showResult('Оплата подтверждена','Т-Банк подтвердил оплату '+details.price+'. '+emailDelivery+' Если доступ к аудиозаписям не пришёл, задайте вопрос через форму на сайте.');
     goal('payment_success',{plan});
     cleanBankQuery();return;
    }
@@ -285,10 +288,8 @@ const paymentResult=query.get('payment_result'),orderId=query.get('orderId');
 if(paymentResult){
  const plan=Object.values(PLANS).find(p=>orderId?.startsWith('MBT-'+p.id+'-'))?.id;
  lastResultPlan=plan;
- if(paymentResult==='fail'){
-  showResult('Оплата не завершена','Т-Банк не подтвердил оплату. Вы можете повторить покупку или задать вопрос.');
-  cleanBankQuery();
- }else if(paymentResult==='success'&&plan){
+ if((paymentResult==='fail'||paymentResult==='success')&&plan){
+  // Redirect parameters are not proof of bank outcome, including payment_result=fail.
   verifyPayment(orderId,plan);
  }else{
   showResult('Не удалось определить заказ','Ссылка возврата не содержит корректного номера. Свяжитесь с нами, если деньги списались.');
