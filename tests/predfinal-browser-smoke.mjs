@@ -5,7 +5,7 @@ import { chromium } from 'playwright';
 
 const SITE='http://127.0.0.1:18765';
 const PAYMENT_HOST='ilaborzilov0-netizen-metod-payment-test-0305.twc1.net';
-const PRICE={audio_pair_one:99000,audio_pair_all:149000,audio_pair_duo:249000};
+const PRICE={audio_pair_one:199000,audio_pair_all:299000,audio_pair_duo:449000};
 let purchases=[],leads=[];
 const server=spawn('python3',['-m','http.server','18765','--bind','127.0.0.1'],{stdio:'ignore'});
 let browser;
@@ -39,7 +39,7 @@ try{
   const json=(payload,status=200)=>route.fulfill({status,headers,body:JSON.stringify(payload)});
   if(req.method()==='OPTIONS')return route.fulfill({status:204,headers,body:''});
   if(url.pathname==='/api/payment/plans')return json({
-   ok:true,service:'audio-pair-checkout',testMode:false,tariffs:PRICE
+   ok:true,service:'audio-pair-checkout',testMode:false,build:'predfinal-three-tiers-20261020-v2',tariffs:PRICE
   });
   if(url.pathname==='/api/payment/create'){
    const data=req.postDataJSON();purchases.push(data);
@@ -73,7 +73,7 @@ try{
  await checkout.waitFor({state:'visible'});
  assert.equal(await checkout.evaluate(el=>el.open),true);
  await page.waitForFunction(()=>!document.querySelector('#predfinal-checkout-form [type=submit]').disabled);
- assert.equal(await page.locator('[data-checkout-price]').textContent(),'990 ₽');
+ assert.equal(await page.locator('[data-checkout-price]').textContent(),'1 990 ₽');
  assert.equal(await page.locator('[name=genre][value=estrada]').isChecked(),true);
  const geometry=await checkout.boundingBox();
  assert.ok(geometry&&geometry.x>=-1&&geometry.width<=391,'Mobile sheet must fit viewport');
@@ -89,7 +89,7 @@ try{
  await pageAll.locator('[data-select-plan="all"]').click();
  await pageAll.locator('#predfinal-checkout-dialog').waitFor({state:'visible'});
  await pageAll.waitForFunction(()=>!document.querySelector('#predfinal-checkout-form [type=submit]').disabled);
- assert.equal(await pageAll.locator('[data-checkout-price]').textContent(),'1 490 ₽');
+ assert.equal(await pageAll.locator('[data-checkout-price]').textContent(),'2 990 ₽');
  assert.equal(await pageAll.locator('[data-checkout-genre]').isHidden(),true);
  await pageAll.keyboard.press('Escape');
  assert.equal(await pageAll.locator('#predfinal-checkout-dialog').evaluate(el=>el.open),false);
@@ -110,7 +110,7 @@ try{
  const pageDuo=await load();
  await pageDuo.locator('[data-select-plan="duo"]').click();
  await pageDuo.waitForFunction(()=>!document.querySelector('#predfinal-checkout-form [type=submit]').disabled);
- assert.equal(await pageDuo.locator('[data-checkout-price]').textContent(),'2 490 ₽');
+ assert.equal(await pageDuo.locator('[data-checkout-price]').textContent(),'4 490 ₽');
  await pageDuo.locator('#predfinal-checkout-email').fill('duo@example.org');
  await pageDuo.locator('#predfinal-checkout-form [type=submit]').click();
  await pageDuo.waitForURL('**/mock/demo');
@@ -122,7 +122,7 @@ try{
  await returned.locator('#predfinal-result-heading').getByText('Оплата подтверждена').waitFor();
  assert.match(await returned.locator('#predfinal-result-message').textContent(),/Письмо.*отправлено/);
  await returned.close();
- console.log('PASS: mobile 390px, 990/1490/2490 tiers, selected genre, bank navigation stub, question receipt, Escape close, verified return. No real charges.');
+ console.log('PASS: mobile 390px, 1990/2990/4490 tiers, selected genre, bank navigation stub, question receipt, Escape close, verified return. No real charges.');
 }catch(error){
  console.error('FAIL:',error.stack||error);
  process.exitCode=1;
