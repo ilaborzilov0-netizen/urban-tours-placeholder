@@ -1071,12 +1071,12 @@ body.theme-dark .album-showcase{border-top:0;padding-top:0}
   }
   body.theme-dark .listening-guide-heading{margin:0 0 23px}
   body.theme-dark .listening-guide-kicker{
-   margin:0 0 8px;color:#dfff42;font-size:14px;font-weight:800;
-   text-transform:uppercase;letter-spacing:.08em;
+   margin:0 0 8px;color:#dfff42;font-size:15px;font-weight:700;
+   text-transform:none;letter-spacing:.01em;line-height:1.4;
   }
   body.theme-dark .listening-guide-heading h2{
-   margin:0;color:#f4f8ef;font-weight:650;
-   font-size:clamp(29px,3.4vw,40px);line-height:1.13;letter-spacing:-.035em;
+   margin:0;color:#f4f8ef;font-weight:800;text-transform:uppercase;
+   font-size:clamp(38px,5.8vw,64px);line-height:1.03;letter-spacing:-.057em;
   }
   body.theme-dark .listening-guide-steps{
    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
@@ -1105,8 +1105,8 @@ body.theme-dark .album-showcase{border-top:0;padding-top:0}
     margin-top:28px;padding:23px 17px 18px;border-radius:15px;
    }
    body.theme-dark .listening-guide-heading{margin-bottom:18px}
-   body.theme-dark .listening-guide-kicker{font-size:13px}
-   body.theme-dark .listening-guide-heading h2{font-size:31px}
+   body.theme-dark .listening-guide-kicker{font-size:14px}
+   body.theme-dark .listening-guide-heading h2{font-size:clamp(29px,9.6vw,48px);letter-spacing:-.055em}
    body.theme-dark .listening-guide-steps{grid-template-columns:minmax(0,1fr);gap:11px}
    body.theme-dark .listening-guide-steps>li{padding:16px 13px;gap:12px}
    body.theme-dark .listening-guide-number{width:36px;height:36px;font-size:14px}
@@ -1114,6 +1114,7 @@ body.theme-dark .album-showcase{border-top:0;padding-top:0}
    body.theme-dark .listening-guide-steps p{font-size:17px}
   }
   @media(max-width:360px){
+   body.theme-dark .listening-guide-heading h2{font-size:clamp(28px,9.4vw,34px)}
    body.theme-dark .listening-guide-steps>li{padding:15px 11px;gap:10px}
    body.theme-dark .listening-guide-steps h3{font-size:18px}
    body.theme-dark .listening-guide-steps p{font-size:16px}
@@ -1338,8 +1339,8 @@ body.theme-dark.vision-mode .hero h1{
  </div>
  <div class="sound-showcase-instruction" id="listening-guide" aria-labelledby="listening-guide-heading">
   <div class="listening-guide-heading">
-   <p class="listening-guide-kicker">Инструкция</p>
-   <h2 id="listening-guide-heading">Как пройти программу</h2>
+   <p class="listening-guide-kicker">Как пройти программу</p>
+   <h2 id="listening-guide-heading">Инструкция</h2>
   </div>
   <ol class="listening-guide-steps">
    <li>
