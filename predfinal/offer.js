@@ -226,7 +226,6 @@ const savingsCalculator=document.getElementById('smoking-savings');
 if(savingsCalculator){
  const cigaretteInput=savingsCalculator.querySelector('[data-calc-input="cigarettes"]');
  const packInput=savingsCalculator.querySelector('[data-calc-input="pack"]');
- const dailyLabel=savingsCalculator.querySelector('[data-calc-daily]');
  const error=savingsCalculator.querySelector('.smoking-calc-error');
  const priceDays={one:1990,all:2990,duo:4490};
  const priceRows=[...document.querySelectorAll('[data-smoking-equivalent]')];
@@ -251,7 +250,6 @@ if(savingsCalculator){
   cigaretteInput.setAttribute('aria-invalid',String(cigarettes===null));
   packInput.setAttribute('aria-invalid',String(pack===null));
   error.textContent=valid?'':'Укажите от 1 до 100 сигарет в день и цену пачки от 1 до 10 000 ₽.';
-  dailyLabel.textContent=valid?fmt.format(cigarettes*pack/packSize)+' ₽ в день':'— ₽ в день';
   priceRows.forEach(row=>{
    const key=row.dataset.smokingEquivalent;
    if(!Object.hasOwn(priceDays,key))return;
