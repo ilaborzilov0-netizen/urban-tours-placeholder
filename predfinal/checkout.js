@@ -15,6 +15,7 @@ const goal=(name,data={})=>{
    if(Object.prototype.hasOwnProperty.call(data,key))safe[key]=data[key];
   }
   window.posthog?.capture?.('predfinal_'+name,safe);
+  window.gtag?.('event','predfinal_'+name,safe);
  }catch(_){}
 };
 const qs=s=>document.querySelector(s);
