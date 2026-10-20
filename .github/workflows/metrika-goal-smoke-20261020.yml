@@ -1,0 +1,126 @@
+name: Yandex Metrika safe create/delete smoke test
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/metrika-goal-smoke-20261020.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: metrika-smoke-counter-110906734
+  cancel-in-progress: false
+
+jobs:
+  smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      YANDEX_METRIKA_OAUTH: ${{ secrets.YANDEX_METRIKA_OAUTH }}
+      COUNTER_ID: "110906734"
+    steps:
+      - name: Verify secret, create and delete a private test goal
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import sys
+          import urllib.request
+          import urllib.error
+
+          token=os.environ.get("YANDEX_METRIKA_OAUTH","").strip()
+          counter=os.environ["COUNTER_ID"]
+          if not token:
+              print("RESULT SECRET_MISSING: set YANDEX_METRIKA_OAUTH in this repository's Actions secrets.")
+              sys.exit(2)
+
+          base=f"https://api-metrika.yandex.net/management/v1/counter/{counter}"
+          event=f"chatgpt_api_smoke_{os.environ.get('GITHUB_RUN_ID','unknown')}_{os.environ.get('GITHUB_RUN_ATTEMPT','1')}"
+          name="тест"
+          created_id=None
+          before_ids=set()
+          errors=[]
+
+          class APIError(Exception):
+              pass
+
+          def call(method,path,json_body=None):
+              body=json.dumps(json_body,ensure_ascii=False).encode("utf-8") if json_body is not None else None
+              headers={"Authorization":"OAuth "+token,"Accept":"application/json"}
+              if body is not None:headers["Content-Type"]="application/json"
+              request=urllib.request.Request(base+path,data=body,headers=headers,method=method)
+              try:
+                  with urllib.request.urlopen(request,timeout=23) as response:
+                      raw=response.read()
+                      return json.loads(raw.decode("utf-8")) if raw else {}
+              except urllib.error.HTTPError as error:
+                  # The body and request headers are intentionally never logged (OAuth token is secret).
+                  raise APIError(f"{method} {path.split('?')[0]} HTTP {error.code}") from None
+              except urllib.error.URLError:
+                  raise APIError(f"{method} failed: network error") from None
+
+          def list_goals():
+              result=call("GET","/goals")
+              goals=result.get("goals")
+              if not isinstance(goals,list):
+                  raise APIError("Goals API returned unexpected response shape")
+              return goals
+
+          def is_ours(goal):
+              return (
+                  goal.get("name")==name
+                  and goal.get("type")=="action"
+                  and any(c.get("url")==event and c.get("type")=="exact" for c in (goal.get("conditions") or []) if isinstance(c,dict))
+              )
+
+          try:
+              goals=list_goals()
+              before_ids={g.get("id") for g in goals}
+              print("READ_OK counter",counter,"existing_goals",len(goals),flush=True)
+              payload={"goal":{"name":name,"type":"action","conditions":[{"type":"exact","url":event}]}}
+              result=call("POST","/goals",payload)
+              goal=result.get("goal")
+              if not isinstance(goal,dict) or not isinstance(goal.get("id"),int):
+                  raise APIError("Created goal response missing numeric ID; cleanup will search by unique event")
+              created_id=goal["id"]
+              print("CREATE_OK name",name,"goal_id",created_id,flush=True)
+              check=call("GET",f"/goal/{created_id}").get("goal",{})
+              if not is_ours(check):
+                  raise APIError("Goal verification failed: unexpected name or event")
+              print("VERIFY_OK goal_id",created_id,flush=True)
+          except Exception as error:
+              errors.append(str(error) if isinstance(error,APIError) else type(error).__name__)
+          finally:
+              # Cleanup even if the create call succeeded but its response was lost.
+              try:
+                  fresh=list_goals()
+                  candidates=[g for g in fresh if is_ours(g) and g.get("id") not in before_ids]
+                  if created_id is not None:
+                      candidates=[g for g in candidates if g.get("id")==created_id]
+                  if len(candidates)>1:
+                      errors.append("SAFE_ABORT: multiple matching test goals; no deletion")
+                  elif len(candidates)==1:
+                      target_id=candidates[0]["id"]
+                      print("CLEANUP_START goal_id",target_id,flush=True)
+                      call("DELETE",f"/goal/{target_id}")
+                      if any(g.get("id")==target_id for g in list_goals()):
+                          errors.append(f"DELETE_NOT_CONFIRMED goal_id {target_id}")
+                      else:
+                          print("DELETE_OK goal_id",target_id,flush=True)
+                  elif created_id is not None:
+                      # Goal may have vanished externally; do not delete anything by name alone.
+                      errors.append(f"CREATED_GOAL_NOT_LOCATED goal_id {created_id}")
+                  else:
+                      print("CLEANUP_NO_TEST_GOAL_FOUND",flush=True)
+              except Exception as error:
+                  errors.append("CLEANUP_FAILED "+(str(error) if isinstance(error,APIError) else type(error).__name__))
+                  if created_id is not None:print("REVIEW_GOAL_ID",created_id,flush=True)
+
+          if errors:
+              for message in errors:print("RESULT_ERROR",message,flush=True)
+              sys.exit(1)
+          print("RESULT_SUCCESS: read, create, verify, delete, verify absent. Test goal removed.",flush=True)
+          PY
