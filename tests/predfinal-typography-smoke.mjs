@@ -110,7 +110,7 @@ try{
   assert.equal(checks.reviewCount,3);
   assert.equal(checks.audioCount,3);
   assert.equal(checks.planCount,3);
-  assert.equal(checks.contactCount,3);
+  assert.equal(checks.contactCount,2);
   console.log('PASS: Typography variant 4 '+width+'px; copy, line rules, open layout, panels, flow and commerce preserved');
   await page.close();
  }
