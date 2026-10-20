@@ -7,7 +7,16 @@ const PLANS=Object.freeze({
  duo:{id:'audio_pair_duo',amount:449000,title:'3 стиля на двоих',price:'4 490 ₽'}
 });
 const GENRES=Object.freeze({author:'Под гитару',estrada:'Душевная эстрада',modern:'Современное звучание'});
-const goal=(name,data={})=>{try{window.ym?.(110906734,'reachGoal','predfinal_'+name,data)}catch(_){}};
+const goal=(name,data={})=>{
+ try{window.ym?.(110906734,'reachGoal','predfinal_'+name,data)}catch(_){}
+ if(!/^\/ai\/?$/.test(location.pathname))return;
+ try{
+  const safe={};for(const key of ['genre','style','plan','location','type','notified']){
+   if(Object.prototype.hasOwnProperty.call(data,key))safe[key]=data[key];
+  }
+  window.posthog?.capture?.('predfinal_'+name,safe);
+ }catch(_){}
+};
 const qs=s=>document.querySelector(s);
 const dialogs=[...document.querySelectorAll('dialog.predfinal-sheet')];
 const orderDialog=qs('#predfinal-checkout-dialog');
