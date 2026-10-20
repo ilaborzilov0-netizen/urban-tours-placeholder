@@ -10,6 +10,7 @@ const goal=(name,details)=>{
   window.posthog?.capture?.(name,safe);
   window.gtag?.('event',name,safe);
  }catch(_){}
+ try{window.aiGoals?.fromLegacy?.(name,details||{})}catch(_){}
 };
 const styles={
   author:{title:'Под гитару',subtitle:'Гитара и взрослый мужской голос'},
