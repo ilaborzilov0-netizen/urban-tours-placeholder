@@ -2,9 +2,9 @@
 (()=>{'use strict';
 const API='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net';
 const PLANS=Object.freeze({
- one:{id:'audio_pair_one',amount:199000,title:'Оба альбома · одно звучание',price:'1 990 ₽'},
- all:{id:'audio_pair_all',amount:299000,title:'Оба альбома · все три звучания',price:'2 990 ₽'},
- duo:{id:'audio_pair_duo',amount:449000,title:'Оба альбома · для двух человек',price:'4 490 ₽'}
+ one:{id:'audio_pair_one',amount:199000,title:'1 стиль',price:'1 990 ₽'},
+ all:{id:'audio_pair_all',amount:299000,title:'3 стиля',price:'2 990 ₽'},
+ duo:{id:'audio_pair_duo',amount:449000,title:'3 стиля на двоих',price:'4 490 ₽'}
 });
 const GENRES=Object.freeze({author:'Под гитару',estrada:'Душевная эстрада',modern:'Современное звучание'});
 const goal=(name,data={})=>{try{window.ym?.(110906734,'reachGoal','predfinal_'+name,data)}catch(_){}};
@@ -113,8 +113,8 @@ async function apiRequest(path,options={}){
   });
   const payload=await response.json().catch(()=>null);
   if(!response.ok||!payload||payload.ok!==true){
-   const problem=path==='/api/payment/plans'?'Платёжный сервер ещё не подтвердил новые тарифы. Попробуйте позже.':
-    payload?.code==='UNKNOWN_PLAN'?'Платёжный тариф ещё не обновлён на сервере. Попробуйте позже.':
+   const problem=path==='/api/payment/plans'?'Оплата сейчас недоступна. Попробуйте ещё раз.':
+    payload?.code==='UNKNOWN_PLAN'?'Оплата сейчас недоступна. Попробуйте позже.':
     payload?.code==='INVALID_GENRE'?'Выберите одно музыкальное звучание.':
     payload?.code==='INVALID_CUSTOMER'?'Проверьте адрес электронной почты.':
     payload?.error||'Не удалось получить ответ сервера.';
@@ -125,22 +125,24 @@ async function apiRequest(path,options={}){
 }
 async function verifyBackendTariffs(){
  const submit=orderForm.querySelector('[type="submit"]');
- submit.disabled=true;paymentContractReady=false;retryPlans.hidden=true;
- showMessage(purchaseStatus,'Проверяем доступность оплаты и стоимость комплектов…');
+ submit.disabled=true;submit.setAttribute('aria-busy','true');
+ paymentContractReady=false;retryPlans.hidden=true;clearMessage(purchaseStatus);
  try{
   const response=await apiRequest('/api/payment/plans',{cache:'no-store'});
-  if(response.testMode===true)throw new Error('Платёжный сервер сейчас в тестовом режиме. Настоящие покупки временно недоступны.');
   const correct=Object.values(PLANS).every(plan=>Number(response.tariffs?.[plan.id])===plan.amount);
-  if(!correct||response.service!=='audio-pair-checkout'||response.build!=='predfinal-three-tiers-20261020-v2')throw new Error('Тарифы на платёжном сервере ещё не обновлены. Пожалуйста, попробуйте позже.');
+  if(response.testMode===true||!correct||response.service!=='audio-pair-checkout'||response.build!=='predfinal-three-tiers-20261020-v2'){
+   throw new Error('Оплата сейчас недоступна. Попробуйте ещё раз.');
+  }
   paymentContractReady=true;
   clearMessage(purchaseStatus);
   retryPlans.hidden=true;submit.disabled=false;
   goal('payment_plans_verified');
  }catch(error){
   paymentContractReady=false;submit.disabled=true;retryPlans.hidden=false;
-  const message=error.name==='AbortError'?'Платёжный сервер не отвечает. Попробуйте позже.':error.message;
-  showMessage(purchaseStatus,message);
+  showMessage(purchaseStatus,'Оплата сейчас недоступна. Нажмите «Повторить попытку» или напишите мне.');
   goal('payment_plans_unavailable');
+ }finally{
+  submit.removeAttribute('aria-busy');
  }
 }
 function minorAmount(data){
@@ -151,7 +153,7 @@ function minorAmount(data){
 orderForm.addEventListener('submit',async event=>{
  event.preventDefault();if(paymentBusy)return;
  if(!paymentContractReady){
-  showMessage(purchaseStatus,'Проверка тарифов ещё не прошла. Закройте и снова откройте окно оплаты.');
+  showMessage(purchaseStatus,'Оплата ещё не готова. Повторите попытку.');
   return;
  }
  clearMessage(purchaseStatus);
@@ -162,7 +164,7 @@ orderForm.addEventListener('submit',async event=>{
  const email=emailInput.value.trim();
  if(email.length>64||!emailPattern.test(email)){
   emailInput.setAttribute('aria-invalid','true');
-  showMessage(purchaseStatus,'Введите правильный email для чека и информации по заказу.');
+  showMessage(purchaseStatus,'Укажите правильный адрес электронной почты.');
   emailInput.focus();return;
  }
  const genre=activePlan==='one'?orderForm.querySelector('input[name="genre"]:checked')?.value:'all';
@@ -173,7 +175,7 @@ orderForm.addEventListener('submit',async event=>{
  const submit=orderForm.querySelector('[type="submit"]');
  submit.disabled=true;
  const initial=submit.innerHTML;
- submit.textContent='Создаём заказ в Т-Банке…';
+ submit.textContent='Переходим к оплате…';
  goal('payment_create',{plan:details.id});
  try{
   const payload=await apiRequest('/api/payment/create',{
@@ -187,7 +189,7 @@ orderForm.addEventListener('submit',async event=>{
   goal('payment_created',{plan:details.id});
   location.assign(payload.paymentUrl);
  }catch(error){
-  showMessage(purchaseStatus,error.name==='AbortError'?'Платёжный сервер не ответил за 30 секунд. Попробуйте ещё раз.':error.message);
+  showMessage(purchaseStatus,'Не удалось открыть оплату. Попробуйте ещё раз или напишите мне.');
   goal('payment_error',{plan:details.id});
   paymentBusy=false;submit.disabled=false;submit.innerHTML=initial;
  }
