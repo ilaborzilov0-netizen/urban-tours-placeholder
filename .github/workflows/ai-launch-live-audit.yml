@@ -1,0 +1,80 @@
+name: AI launch live audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/ai-launch-live-audit.yml"
+      - "ai/index.html"
+      - "yakorya-ai-archive-20261020/index.html"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  live-check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Verify live /ai/ and archive before traffic
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import urllib.request, urllib.error, time, re, sys
+          root='https://marafon-metod.ru'
+          def get(path):
+              url=root+path
+              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0','Cache-Control':'no-cache'})
+              with urllib.request.urlopen(req,timeout=18) as r:
+                  return r.status,r.read().decode('utf-8','replace')
+          for n in range(1,11):
+              try:
+                  livecode,live=get('/ai/?launch_audit=20261020')
+                  oldcode,old=get('/yakorya-ai-archive-20261020/?launch_audit=20261020')
+                  good=(
+                      livecode==200 and oldcode==200
+                      and 'class="hero-priority"' in live
+                      and 'data-select-plan="one"' in live
+                      and 'data-select-plan="all"' in live
+                      and 'data-select-plan="duo"' in live
+                      and 'id="smoking-savings"' in live
+                      and '/predfinal/checkout.js?v=20261020-direct-order-v7' in live
+                      and '110906734' in live
+                      and 'href="https://marafon-metod.ru/ai/"' in live
+                      and 'АРХИВ · 20 октября 2026' in old
+                      and 'Все 12 аудиоякорей' in old
+                  )
+                  print('Attempt',n,'new AI live',livecode,'archive live',oldcode,'new page verified',good)
+                  if good:break
+              except Exception as e:print('Attempt',n,'error',repr(e))
+              time.sleep(5)
+          else:sys.exit('FAIL: live /ai or archive has not deployed')
+          for resource in [
+              '/predfinal/offer.css?v=20261020-pricing-minimal-v38',
+              '/predfinal/offer.js?v=20261020-tiercalc-v33',
+              '/predfinal/checkout.js?v=20261020-direct-order-v7',
+              '/ai/offer-compact.css?v=20261018-author1',
+              '/ai/checkout.js?v=20261018-author1']:
+              status,body=get(resource)
+              print('Referenced resource',resource,'status',status,'bytes',len(body))
+              if status!=200 or not body:sys.exit('FAIL: missing '+resource)
+          print('PASS: new live /ai, old archived /ai, Yandex ID, three tiers, demo references and linked assets.')
+          PY
+      - name: Read-only payment backend readiness
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import urllib.request,urllib.error,sys,json
+          base='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net'
+          url=base+'/api/payment/plans'
+          try:
+              with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0'}),timeout=16) as r:
+                  data=json.load(r)
+                  print('Server status',r.status,'plans',data.get('tariffs'),'testMode',data.get('testMode'))
+                  if data.get('tariffs')=={'audio_pair_one':199000,'audio_pair_all':299000,'audio_pair_duo':449000} and data.get('testMode') is False:
+                      print('PASS: payment server reflects expected production prices');sys.exit(0)
+                  print('BLOCKER: payment server prices not production-ready');sys.exit(1)
+          except urllib.error.HTTPError as e:
+              print('BLOCKER: payment server GET /api/payment/plans returned',e.code)
+              sys.exit(1)
+          except Exception as e:
+              print('BLOCKER: could not verify payment server:',repr(e));sys.exit(1)
+          PY
