@@ -1198,6 +1198,24 @@ body.theme-dark.vision-mode .hero h1{
 body.theme-dark .review-section .review q .review-para{display:block}
 body.theme-dark .review-section .review q .review-para + .review-para{margin-top:14px}
 </style>
+<style data-source="predfinal-brain-original-copy-restoration-20261020">
+body.theme-dark .brain-original-copy{max-width:1050px}
+body.theme-dark .brain-original-copy .brain-effect-list{gap:17px;margin-bottom:29px}
+body.theme-dark .brain-original-copy .brain-effect-list li{grid-template-columns:38px minmax(0,1fr);gap:14px}
+body.theme-dark .brain-original-copy .brain-effect-list li span{width:38px;height:38px;font-size:16px}
+body.theme-dark .brain-original-copy .brain-effect-list p{font-size:clamp(19px,2vw,22px);line-height:1.53}
+body.theme-dark .brain-original-outcome{font-size:clamp(19px,2vw,22px);line-height:1.6;color:#eef6e7;margin:0 0 29px}
+body.theme-dark .brain-original-short-label{font-weight:850;font-size:20px;line-height:1.4;color:#dfff42;margin:0 0 9px}
+body.theme-dark .brain-original-short{font-size:clamp(19px,2vw,22px);line-height:1.6;color:#e1ebdb;margin:0}
+@media(max-width:720px){
+ body.theme-dark .brain-original-copy .brain-effect-list{gap:17px;margin-bottom:26px}
+ body.theme-dark .brain-original-copy .brain-effect-list li{grid-template-columns:32px minmax(0,1fr);gap:12px}
+ body.theme-dark .brain-original-copy .brain-effect-list li span{width:32px;height:32px}
+ body.theme-dark .brain-original-copy .brain-effect-list p,
+ body.theme-dark .brain-original-outcome,
+ body.theme-dark .brain-original-short{font-size:19px;line-height:1.55}
+}
+</style>
 </head>
 <body class="theme-dark vision-mode">
  <main>
@@ -1447,56 +1465,20 @@ body.theme-dark .review-section .review q .review-para + .review-para{margin-top
   <section class="brain-explainer section" id="brain" aria-labelledby="brain-heading">
    <div class="wrap">
     <div class="brain-explainer-heading">
-     <p class="kicker">Как это работает на уровне памяти</p>
-     <h2 id="brain-heading">Мелодия становится знакомой.<br><em>Новый ответ — ближе.</em></h2>
-     <p>Мозг учится через повторение и ассоциации. Когда важная мысль звучит вместе с музыкой, её может стать легче вспомнить в привычный момент.</p>
+     <h2 id="brain-heading">Как получается эффект</h2>
+     <p>Когда якорь уже создан:</p>
     </div>
     <div class="brain-explainer-body">
-     <article class="brain-process" aria-labelledby="brain-process-title">
-      <div class="brain-block-heading">
-       <span class="brain-section-symbol" aria-hidden="true">01</span>
-       <h3 id="brain-process-title">Как возникает новая связь</h3>
-      </div>
-      <p class="brain-rule">«Что часто повторяется вместе — то легче вспоминается вместе».</p>
-      <ol class="brain-trail-list">
-       <li class="brain-trail-step">
-        <span class="brain-trail-node" aria-hidden="true">1</span>
-        <div><h4>Первое знакомство</h4><p>Вы слышите мелодию и слова. Мозг воспринимает звук и смысл, а в памяти появляется первый след — как едва заметная тропинка.</p></div>
-       </li>
-       <li class="brain-trail-step">
-        <span class="brain-trail-node" aria-hidden="true">2</span>
-        <div><h4>Повторение</h4><p>Вы возвращаетесь к песне. Знакомое сочетание звука и смысла узнаётся быстрее. Тропинка становится всё заметнее.</p></div>
-       </li>
-       <li class="brain-trail-step">
-        <span class="brain-trail-node" aria-hidden="true">3</span>
-        <div><h4>Закрепление</h4><p>Со временем мелодия может сама напомнить вам о новой мысли — без необходимости заново переслушивать целую лекцию.</p></div>
-       </li>
-      </ol>
-     </article>
-     <article class="brain-background" aria-labelledby="brain-background-title">
-      <div class="brain-block-heading">
-       <span class="brain-section-symbol" aria-hidden="true">02</span>
-       <h3 id="brain-background-title">Почему можно слушать фоном</h3>
-      </div>
-      <p class="brain-background-lead">Не нужно превращать прослушивание в отдельную работу.</p>
-      <p>Включайте знакомые песни, когда занимаетесь домашними делами, гуляете или отдыхаете. Мелодию можно узнавать, даже когда внимание занято другим.</p>
-      <p>А когда вслушиваетесь в слова, смысл становится яснее. Так музыка помогает возвращаться к важной мысли без ощущения, что вы снова проходите урок.</p>
-      <div class="brain-background-illustration" aria-hidden="true">
-       <span>♪</span><span>дом</span><span>·</span><span>дорога</span><span>·</span><span>отдых</span>
-      </div>
-     </article>
-     <article class="brain-effect" aria-labelledby="brain-effect-title">
-      <div class="brain-block-heading">
-       <span class="brain-section-symbol" aria-hidden="true">03</span>
-       <h3 id="brain-effect-title">Как знакомая песня помогает в момент тяги</h3>
-      </div>
+     <article class="brain-process brain-original-copy">
       <ol class="brain-effect-list">
-       <li><span>1</span><p>Вы слышите знакомую мелодию или припев.</p></li>
-       <li><span>2</span><p>Вспоминается новая мысль: «Я могу отдохнуть и без сигареты».</p></li>
-       <li><span>3</span><p>Между привычным импульсом и действием появляется место для другого выбора.</p></li>
-       <li><span>4</span><p>Вы снова возвращаетесь к этой мысли — и постепенно она становится привычнее.</p></li>
+       <li><span aria-hidden="true">1</span><p>Вы слышите знакомую мелодию или фразу.</p></li>
+       <li><span aria-hidden="true">2</span><p>Мозг автоматически включает связанную с ней нейронную цепочку.</p></li>
+       <li><span aria-hidden="true">3</span><p>Появляется нужное состояние (спокойствие, отсутствие желания курить, уверенность и т.д.).</p></li>
+       <li><span aria-hidden="true">4</span><p>Чем чаще вы этим пользуетесь, тем сильнее становится якорь.</p></li>
       </ol>
-      <p class="brain-effect-bottom">Смысл аудиоякорей — не бесконечно бороться с сигаретой, а помогать ей терять прежнюю ценность.</p>
+      <p class="brain-original-outcome">Со временем новый путь становится настолько привычным, что старая привычка просто «отваливается» сама — потому что мозг уже предпочитает более сильную и удобную дорогу.</p>
+      <p class="brain-original-short-label">Коротко:</p>
+      <p class="brain-original-short">Аудиоякорь — это специально созданная «кнопка» в мозге. Вы много раз нажимаете на неё через повторение звука, и со временем она начинает работать автоматически. Всё благодаря способности мозга менять свои связи.</p>
      </article>
     </div>
    </div>
