@@ -4335,3 +4335,111 @@ body.theme-dark .predfinal-final-invitation-cta:focus-visible{
 @media(max-width:359px){
  body.theme-dark .predfinal-final-invitation h2{font-size:33px}
 }
+
+
+/* /predfinal/ v38: minimal pricing inputs, let the tariffs take visual priority. */
+body.theme-dark .prefinal-pricing-section .pricing-head{
+ margin-bottom:16px;
+}
+body.theme-dark .prefinal-pricing-section .smoking-savings--compact{
+ margin:0 0 23px;
+ padding:15px 0 0;
+ border:0;
+ border-top:1px solid #35463a;
+ border-radius:0;
+ background:transparent;
+ box-shadow:none;
+}
+body.theme-dark .smoking-savings--compact h2{
+ color:#dee9da;
+ font-size:clamp(18px,1.85vw,22px);
+ font-weight:700;
+ letter-spacing:-.022em;
+ line-height:1.3;
+ margin:0 0 13px;
+}
+body.theme-dark .smoking-savings--compact .smoking-calc-fields{
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ max-width:600px;
+ gap:15px;
+ margin:0 0 7px;
+}
+body.theme-dark .smoking-savings--compact .smoking-calc-field label{
+ margin:0 0 6px;
+ min-height:0;
+ color:#becfba;
+ font-size:14px;
+ line-height:1.4;
+ font-weight:650;
+}
+body.theme-dark .smoking-savings--compact .smoking-calc-stepper{
+ min-height:48px;
+ grid-template-columns:42px minmax(0,1fr) 42px;
+ border-radius:8px;
+ border:1px solid #415344;
+ background:#1a241c;
+}
+body.theme-dark .smoking-savings--compact .smoking-calc-stepper button{
+ color:#d9ead0;
+ background:#28362b;
+ min-height:48px;
+ font-size:23px;
+}
+body.theme-dark .smoking-savings--compact .smoking-calc-stepper input{
+ color:#f4f8f0;
+ background:#151f18;
+ min-height:48px;
+ font-size:20px;
+ border-inline:1px solid #415344;
+ padding:7px 3px;
+}
+body.theme-dark .smoking-savings--compact .smoking-calc-note{
+ margin:8px 0 0;
+ font-size:12px;
+ line-height:1.4;
+ color:#8d9e8d;
+}
+body.theme-dark .smoking-savings--compact .smoking-calc-error{
+ margin:6px 0 0;
+}
+@media(max-width:720px){
+ body.theme-dark .prefinal-pricing-section .pricing-head{margin-bottom:15px}
+ body.theme-dark .prefinal-pricing-section .smoking-savings--compact{
+  margin:0 0 20px;
+  padding:14px 0 0;
+ }
+ body.theme-dark .smoking-savings--compact h2{
+  font-size:19px;
+  margin:0 0 12px;
+ }
+ body.theme-dark .smoking-savings--compact .smoking-calc-fields{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:11px;
+  margin:0 0 6px;
+ }
+ body.theme-dark .smoking-savings--compact .smoking-calc-field label{
+  min-height:0;
+  font-size:13px;
+  margin:0 0 6px;
+ }
+ body.theme-dark .smoking-savings--compact .smoking-calc-stepper{
+  min-height:46px;
+  grid-template-columns:35px minmax(0,1fr) 35px;
+ }
+ body.theme-dark .smoking-savings--compact .smoking-calc-stepper button{
+  min-height:46px;font-size:22px;
+ }
+ body.theme-dark .smoking-savings--compact .smoking-calc-stepper input{
+  min-height:46px;font-size:20px;
+ }
+ body.theme-dark .smoking-savings--compact .smoking-calc-note{
+  font-size:11px;margin:7px 0 0;
+ }
+}
+@media(max-width:360px){
+ body.theme-dark .smoking-savings--compact .smoking-calc-fields{gap:9px}
+ body.theme-dark .smoking-savings--compact .smoking-calc-stepper{
+  grid-template-columns:32px minmax(0,1fr) 32px;
+ }
+ body.theme-dark .smoking-savings--compact .smoking-calc-stepper input{font-size:18px}
+}
