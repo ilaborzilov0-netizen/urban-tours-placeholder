@@ -17,6 +17,7 @@ const goal=(name,data={})=>{
   window.posthog?.capture?.('predfinal_'+name,safe);
   window.gtag?.('event','predfinal_'+name,safe);
  }catch(_){}
+ try{window.aiGoals?.fromLegacy?.('predfinal_'+name,data||{})}catch(_){}
 };
 const qs=s=>document.querySelector(s);
 const dialogs=[...document.querySelectorAll('dialog.predfinal-sheet')];
@@ -91,7 +92,7 @@ orderForm.querySelectorAll('input[name="genre"]').forEach(input=>{
  input.addEventListener('change',()=>{
   if(!input.checked||!GENRES[input.value])return;
   const matching=qs('.tier-genre [data-style="'+input.value+'"]');
-  if(matching)matching.click();
+  if(matching){if(window.aiGoals)window.aiGoals.suppressPriceStyleOnce=true;matching.click();}
  });
 });
 document.querySelectorAll('[data-open-question]').forEach(button=>{
@@ -165,6 +166,7 @@ orderForm.addEventListener('submit',async event=>{
   if(activePlan==='one'&&payload.genre!==genre)throw new Error('Сервер не подтвердил выбранное звучание.');
   try{sessionStorage.setItem('predfinal_last_payment',JSON.stringify({orderId:payload.orderId,plan:details.id,amount:details.amount,genre,createdAt:Date.now()}))}catch(_){}
   goal('payment_created',{plan:details.id});
+  goal('bank_redirect',{plan:details.id});
   location.assign(payload.paymentUrl);
  }catch(error){
   showMessage(purchaseStatus,'Не удалось открыть оплату. Попробуйте ещё раз или напишите мне.');
