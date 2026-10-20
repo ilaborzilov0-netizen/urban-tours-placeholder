@@ -34,7 +34,7 @@
  function fromLegacy(name,data={}){
   const genre=genres[data.genre||data.style];
   const plan=prices[data.plan];
-  const ctx={genre:data.genre||data.style,plan:data.plan};
+  const ctx={genre:data.genre||data.style,plan:data.plan,reason:data.reason};
   switch(name){
    case 'predfinal_audio_preview_play':
     if(genre)unique('ai_'+genre+'_play',ctx);
