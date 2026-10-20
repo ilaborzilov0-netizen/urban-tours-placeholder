@@ -1171,6 +1171,22 @@ body.theme-dark .hero .hero-lead-afterthought{display:block;margin-top:22px}
  }
  body.theme-dark .hero .hero-lead-afterthought{margin-top:16px}
 }
+/* Match original album top across hero wrapping breakpoints. Album markup/styles untouched. */
+@media (min-width:361px) and (max-width:380px) {
+ body.theme-dark.vision-mode .hero{min-height:631px}
+}
+@media (min-width:411px) and (max-width:440px) {
+ body.theme-dark.vision-mode .hero{min-height:612px}
+}
+@media (min-width:441px) and (max-width:780px) {
+ body.theme-dark .hero .hero-lead-afterthought{margin-top:7px}
+}
+@media (min-width:781px) and (max-width:1199px) {
+ body.theme-dark .hero .hero-lead-afterthought{margin-top:1px}
+}
+@media (min-width:1200px) {
+ body.theme-dark .hero .hero-lead-afterthought{margin-top:0}
+}
 </style>
 <style data-source="predfinal-no-header-hero-spacing-20261019">
 /* No top menu: reuse the former 60px header space in the existing hero.
