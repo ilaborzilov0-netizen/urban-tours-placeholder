@@ -63,7 +63,7 @@ try{
  async function load(){const p=await context.newPage();await p.goto(SITE+'/predfinal/',{waitUntil:'domcontentloaded'});return p}
  const page=await load();
  assert.equal(await page.locator('[data-select-plan]').count(),3,'Three price cards required');
- assert.equal(await page.locator('[data-open-question]').count(),3,'Pricing, FAQ and footer question CTAs required');
+ assert.equal(await page.locator('[data-open-question]').count(),2,'Pricing and FAQ question CTAs required; footer remains legal-only');
  assert.equal(await page.locator('.author-contact-title').textContent(),'Есть вопрос? Напишите мне, разберёмся.');
  const lastInvitation=page.locator('#start-today');
  assert.equal(await lastInvitation.count(),1);
@@ -144,9 +144,7 @@ try{
  assert.equal(await pageAll.locator('#predfinal-checkout-dialog').evaluate(el=>el.open),false);
  await pageAll.locator('.predfinal-faq-contact [data-open-question]').click();
  assert.equal(await pageAll.locator('#predfinal-question-dialog').evaluate(el=>el.open),true);
- await pageAll.keyboard.press('Escape');
- assert.equal(await pageAll.locator('#predfinal-question-dialog').evaluate(el=>el.open),false);
- await pageAll.locator('footer [data-open-question]').click();
+ assert.equal(await pageAll.locator('footer [data-open-question]').count(),0);
  await pageAll.locator('#predfinal-question-dialog').waitFor({state:'visible'});
  await pageAll.locator('#predfinal-question-contact').fill('buyer@example.org');
  await pageAll.locator('#predfinal-question-message').fill('Подойдёт ли программа при большом стаже?');
