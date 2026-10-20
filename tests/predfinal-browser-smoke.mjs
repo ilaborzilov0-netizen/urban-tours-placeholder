@@ -67,7 +67,7 @@ try{
  assert.equal(await page.locator('.author-contact-title').textContent(),'Есть вопрос? Напишите мне, разберёмся.');
  const lastInvitation=page.locator('#start-today');
  assert.equal(await lastInvitation.count(),1);
- assert.equal((await lastInvitation.locator('h2').innerText()).replace(/\\s+/g,' ').trim(),'Ещё десять лет с сигаретой начинаются с «брошу потом».');
+ assert.equal((await lastInvitation.locator('h2').innerText()).replace(/\s+/g,' ').trim(),'Ещё десять лет с сигаретой начинаются с «брошу потом».');
  assert.equal(await lastInvitation.locator('p').innerText(),'Начните с прослушивания сегодня.');
  assert.equal(await lastInvitation.locator('a').count(),1,'The final section must have only one CTA');
  assert.equal(await lastInvitation.locator('a').innerText().then(t=>t.replace('↗','').trim()),'Послушать фрагменты');
