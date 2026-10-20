@@ -25,6 +25,7 @@ const orderSubmitPrice=qs('[data-checkout-submit-price]');
 const checkoutGenres=qs('[data-checkout-genre]');
 const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 let activePlan='all',paymentBusy=false,questionBusy=false,questionSent=false;
+let paymentContractReady=false;
 let questionOrigin='footer';
 const showMessage=(target,message,success=false)=>{
  target.textContent=message;target.hidden=false;
@@ -60,6 +61,7 @@ function currentGenre(){
 function setPlan(plan){
  if(!PLANS[plan])return;
  activePlan=plan;
+ paymentContractReady=false;
  const details=PLANS[plan];
  orderTitle.textContent=details.title;
  orderPrice.textContent=details.price;
@@ -74,6 +76,7 @@ document.querySelectorAll('[data-select-plan]').forEach(button=>{
   if(paymentBusy)return;
   setPlan(button.dataset.selectPlan);
   openSheet(orderDialog);
+  verifyBackendTariffs();
   goal('checkout_open',{plan:PLANS[activePlan].id});
  });
 });
@@ -108,7 +111,8 @@ async function apiRequest(path,options={}){
   });
   const payload=await response.json().catch(()=>null);
   if(!response.ok||!payload||payload.ok!==true){
-   const problem=payload?.code==='UNKNOWN_PLAN'?'Платёжный тариф ещё не обновлён на сервере. Попробуйте позже.':
+   const problem=path==='/api/payment/plans'?'Платёжный сервер ещё не подтвердил новые тарифы. Попробуйте позже.':
+    payload?.code==='UNKNOWN_PLAN'?'Платёжный тариф ещё не обновлён на сервере. Попробуйте позже.':
     payload?.code==='INVALID_GENRE'?'Выберите одно музыкальное звучание.':
     payload?.code==='INVALID_CUSTOMER'?'Проверьте адрес электронной почты.':
     payload?.error||'Не удалось получить ответ сервера.';
@@ -117,6 +121,26 @@ async function apiRequest(path,options={}){
   return payload;
  }finally{clearTimeout(timer)}
 }
+async function verifyBackendTariffs(){
+ const submit=orderForm.querySelector('[type="submit"]');
+ submit.disabled=true;paymentContractReady=false;
+ showMessage(purchaseStatus,'Проверяем доступность оплаты и стоимость комплектов…');
+ try{
+  const response=await apiRequest('/api/payment/plans',{cache:'no-store'});
+  if(response.testMode===true)throw new Error('Платёжный сервер сейчас в тестовом режиме. Настоящие покупки временно недоступны.');
+  const correct=Object.values(PLANS).every(plan=>Number(response.tariffs?.[plan.id])===plan.amount);
+  if(!correct||response.service!=='audio-pair-checkout')throw new Error('Тарифы на платёжном сервере ещё не обновлены. Пожалуйста, попробуйте позже.');
+  paymentContractReady=true;
+  clearMessage(purchaseStatus);
+  submit.disabled=false;
+  goal('payment_plans_verified');
+ }catch(error){
+  paymentContractReady=false;submit.disabled=true;
+  const message=error.name==='AbortError'?'Платёжный сервер не отвечает. Попробуйте позже.':error.message;
+  showMessage(purchaseStatus,message);
+  goal('payment_plans_unavailable');
+ }
+}
 function minorAmount(data){
  if(data.amountMinor!==undefined&&data.amountMinor!==null)return Number(data.amountMinor);
  const amount=Number(data.amount);
@@ -124,6 +148,10 @@ function minorAmount(data){
 }
 orderForm.addEventListener('submit',async event=>{
  event.preventDefault();if(paymentBusy)return;
+ if(!paymentContractReady){
+  showMessage(purchaseStatus,'Проверка тарифов ещё не прошла. Закройте и снова откройте окно оплаты.');
+  return;
+ }
  clearMessage(purchaseStatus);
  const details=PLANS[activePlan];
  if(!details)return;
