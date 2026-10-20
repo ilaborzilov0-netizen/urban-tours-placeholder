@@ -11,7 +11,7 @@ const goal=(name,data={})=>{
  try{window.ym?.(110906734,'reachGoal','predfinal_'+name,data)}catch(_){}
  if(!/^\/ai\/?$/.test(location.pathname))return;
  try{
-  const safe={};for(const key of ['genre','style','plan','location','type','notified']){
+  const safe={};for(const key of ['genre','style','plan','location','type','notified','reason']){
    if(Object.prototype.hasOwnProperty.call(data,key))safe[key]=data[key];
   }
   window.posthog?.capture?.('predfinal_'+name,safe);
@@ -123,7 +123,11 @@ async function apiRequest(path,options={}){
     payload?.code==='INVALID_GENRE'?'Выберите одно музыкальное звучание.':
     payload?.code==='INVALID_CUSTOMER'?'Проверьте адрес электронной почты.':
     payload?.error||'Не удалось получить ответ сервера.';
-   throw new Error(problem);
+   const err=new Error(problem);
+   const code=typeof payload?.code==='string'&&/^[A-Z0-9_]{1,40}$/.test(payload.code)
+    ?payload.code:'HTTP_'+response.status;
+   err.checkoutCode=code;
+   throw err;
   }
   return payload;
  }finally{clearTimeout(timer)}
@@ -170,7 +174,7 @@ orderForm.addEventListener('submit',async event=>{
   location.assign(payload.paymentUrl);
  }catch(error){
   showMessage(purchaseStatus,'Не удалось открыть оплату. Попробуйте ещё раз или напишите мне.');
-  goal('payment_error',{plan:details.id});
+  goal('payment_error',{plan:details.id,reason:error?.checkoutCode||((error?.name==='AbortError')?'TIMEOUT':'NETWORK_OR_VALIDATION')});
   paymentBusy=false;submit.disabled=false;submit.innerHTML=initial;
  }
 });
