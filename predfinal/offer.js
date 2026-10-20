@@ -1,6 +1,15 @@
 (()=>{'use strict';
 const counter=110906734;
-const goal=(name,details)=>{try{window.ym?.(counter,'reachGoal',name,details||{})}catch(e){}};
+const goal=(name,details)=>{
+ try{window.ym?.(counter,'reachGoal',name,details||{})}catch(_){}
+ if(!/^\/ai\/?$/.test(location.pathname))return;
+ try{
+  const safe={};for(const key of ['genre','style','liked','plan','source','channel']){
+   if(Object.prototype.hasOwnProperty.call(details||{},key))safe[key]=details[key];
+  }
+  window.posthog?.capture?.(name,safe);
+ }catch(_){}
+};
 const styles={
   author:{title:'Под гитару',subtitle:'Гитара и взрослый мужской голос'},
   estrada:{title:'Душевная эстрада',subtitle:'Оркестровая мелодия и сильный припев'},
