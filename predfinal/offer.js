@@ -220,5 +220,82 @@ else if(reduceMotion.addListener)reduceMotion.addListener(applyAppearance);
 applyAppearance();
 document.querySelectorAll('[data-direct-contact]').forEach(a=>a.addEventListener('click',()=>goal('predfinal_author_contact',{channel:a.dataset.directContact})));
 
+
+/* Interactive cigarette-cost calculator; distinct from plan selection/checkout. */
+const savingsCalculator=document.getElementById('smoking-savings');
+if(savingsCalculator){
+ const cigaretteInput=savingsCalculator.querySelector('[data-calc-input="cigarettes"]');
+ const packInput=savingsCalculator.querySelector('[data-calc-input="pack"]');
+ const payback=savingsCalculator.querySelector('[data-calc-days-number]');
+ const paybackUnit=savingsCalculator.querySelector('[data-calc-days-unit]');
+ const annual=savingsCalculator.querySelector('[data-calc-year]');
+ const error=savingsCalculator.querySelector('.smoking-calc-error');
+ const packSize=20;
+ const planPrice=1490;
+ const formatter=new Intl.NumberFormat('ru-RU',{maximumFractionDigits:0});
+ const format=value=>formatter.format(Math.abs(value));
+ const bounds={cigarettes:{min:1,max:100,step:1},pack:{min:1,max:10000,step:10}};
+ const inputs={cigarettes:cigaretteInput,pack:packInput};
+ const read=(input,key)=>{
+  const raw=input.value.trim();
+  const n=Number(raw);
+  const {min,max}=bounds[key];
+  return raw!==''&&Number.isInteger(n)&&n>=min&&n<=max?n:null;
+ };
+ const dayUnit=days=>{
+  const mod100=days%100,mod10=days%10;
+  return mod100>=11&&mod100<=14?'дней':mod10===1?'день':mod10>=2&&mod10<=4?'дня':'дней';
+ };
+ const renderSavings=()=>{
+  const cigarettes=read(cigaretteInput,'cigarettes');
+  const pack=read(packInput,'pack');
+  cigaretteInput.setAttribute('aria-invalid',String(cigarettes===null));
+  packInput.setAttribute('aria-invalid',String(pack===null));
+  error.textContent=cigarettes===null||pack===null?'Введите целое число: от 1 до 100 сигарет и от 1 до 10 000 ₽ за пачку.':'';
+  if(cigarettes===null||pack===null){
+   payback.textContent='—';
+   paybackUnit.textContent='дней без сигарет';
+   annual.textContent='—';
+  }else{
+   const perDay=cigarettes*pack/packSize;
+   const days=Math.ceil(planPrice/perDay);
+   const netYear=Math.round(perDay*365-planPrice);
+   payback.textContent=format(days);
+   paybackUnit.textContent=dayUnit(days)+' без сигарет';
+   annual.textContent=(netYear<0?'−':'')+format(netYear);
+  }
+  savingsCalculator.querySelectorAll('[data-calc-adjust]').forEach(button=>{
+   const key=button.dataset.calcAdjust;
+   const value=read(inputs[key],key);
+   const {min,max}=bounds[key];
+   const change=Number(button.dataset.step);
+   button.disabled=value!==null&&(change<0?value<=min:value>=max);
+  });
+ };
+ savingsCalculator.querySelectorAll('[data-calc-adjust]').forEach(button=>{
+  button.addEventListener('click',()=>{
+   const key=button.dataset.calcAdjust;
+   const input=inputs[key];
+   const {min,max,step}=bounds[key];
+   const current=read(input,key);
+   const delta=Number(button.dataset.step)*step;
+   const safe=current===null?Math.max(min,Math.min(max,Number(input.value)||min)):current;
+   input.value=String(Math.max(min,Math.min(max,safe+delta)));
+   renderSavings();
+   input.focus({preventScroll:true});
+  });
+ });
+ Object.entries(inputs).forEach(([key,input])=>{
+  input.addEventListener('input',renderSavings);
+  input.addEventListener('blur',()=>{
+   const {min,max}=bounds[key];
+   const raw=Number(input.value);
+   input.value=String(input.value.trim()===''||!Number.isFinite(raw)?min:Math.max(min,Math.min(max,Math.round(raw))));
+   renderSavings();
+  });
+ });
+ renderSavings();
+}
+
 updateState();
 })();
