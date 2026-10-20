@@ -10,6 +10,7 @@ on:
       - "tests/predfinal-browser-smoke.mjs"
       - "tests/predfinal-pult-smoke.mjs"
       - "tests/predfinal-typography-smoke.mjs"
+      - "tests/predfinal-hero-position-smoke.mjs"
       - "predfinal/pult/index.html"
       - ".github/workflows/predfinal-browser-smoke.yml"
   workflow_dispatch:
@@ -24,6 +25,8 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
@@ -39,3 +42,5 @@ jobs:
         run: node tests/predfinal-pult-smoke.mjs
       - name: Verify chosen typography v4 on 320-1440px and intact checkout
         run: node tests/predfinal-typography-smoke.mjs
+      - name: Verify first album cover has not moved from baseline
+        run: node tests/predfinal-hero-position-smoke.mjs
