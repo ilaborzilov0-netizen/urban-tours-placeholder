@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101711">
+<title>Пульт · 5 компоновок четырёх блоков — Аудиоякоря</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{--bg:#101711;--panel:#1d281e;--panel2:#263629;--ink:#f4f7f0;--muted:#c5d1c2;--line:#405640;--lime:#dfff19;--soft:#d6edc6;--font:Arial,Helvetica,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#dfe6f0;color:var(--ink);font-family:var(--font)}
+button,a{font:inherit}
+button:focus-visible,a:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+button{cursor:pointer}
+.pult{position:sticky;top:0;z-index:30;background:#0f1711;color:#f5fbec;border-bottom:1px solid #425542;box-shadow:0 12px 30px #0002}
+.pult-inner{max-width:1260px;margin:0 auto;padding:13px 20px 12px;display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.pult-brand{display:flex;gap:11px;align-items:center;min-width:160px}
+.pult-symbol{display:grid;place-items:center;width:41px;height:41px;border:1px solid #94b453;border-radius:12px;color:var(--lime);font-weight:900;font-size:22px}
+.pult-brand strong{display:block;font-size:18px;line-height:1.15;letter-spacing:-.03em}
+.pult-brand small{display:block;margin-top:4px;font-size:11px;color:#a5b7a1;letter-spacing:.05em;text-transform:uppercase}
+.pult-controls{display:flex;flex-wrap:wrap;gap:6px;align-items:center;flex:1;justify-content:center}
+.pick{color:#d2dfcc;background:transparent;border:1px solid #445b42;border-radius:9px;padding:9px 12px;min-height:39px;white-space:nowrap;font-size:13px;font-weight:700}
+.pick:hover{border-color:#acc881;color:#fff}
+.pick[aria-pressed=true]{background:#dfff19;color:#172015;border-color:#dfff19}
+.pult-view{display:flex;gap:5px;padding:4px;background:#202d23;border:1px solid #435d42;border-radius:11px}
+.pult-view button{background:transparent;border:0;color:#becbb9;font-size:13px;font-weight:750;padding:8px 10px;border-radius:7px;white-space:nowrap}
+.pult-view button[aria-pressed=true]{background:#374b36;color:#f5ffd9}
+.pult-foot{max-width:1260px;margin:0 auto;padding:0 20px 12px;display:flex;align-items:center;gap:12px;justify-content:space-between}
+.pult-foot p{margin:0;color:#b5c4af;font-size:12px;line-height:1.4}
+.back-link{color:#e5ffa5;text-decoration:none;font-size:13px;white-space:nowrap}
+.demo-top{margin:22px auto 16px;max-width:1080px;padding:0 20px;display:flex;justify-content:space-between;align-items:flex-end;gap:15px}
+.demo-top strong{display:block;color:#243328;font-size:23px;letter-spacing:-.045em}
+.demo-top p{color:#66756c;font-size:14px;max-width:650px;line-height:1.5;margin:5px 0 0}
+.demo-counter{font-size:13px;font-weight:800;color:#496148;white-space:nowrap}
+.preview-stage{padding:0 14px 45px;display:flex;justify-content:center}
+.preview-frame{width:min(1120px,100%);transition:width .28s ease;background:#101711;box-shadow:0 18px 65px #14271633;border:1px solid #c1cfc1;container:preview/inline-size;overflow:hidden}
+.preview-frame.is-mobile{width:min(390px,100%)}
+.preview-frame.is-desktop{width:min(1120px,100%)}
+.story{color:var(--ink);background:#101711;--s:clamp(17px,1.75cqw,20px);font-size:var(--s);line-height:1.55;min-height:900px;padding:clamp(22px,4.5cqw,64px);font-family:var(--font)}
+.story h2,.story h3,.story h4,.story p{margin-top:0}
+.story h2{font-size:clamp(32px,4.6cqw,62px);line-height:1.1;letter-spacing:-.048em;font-weight:800;margin-bottom:20px}
+.story h3{font-size:clamp(21px,2.4cqw,28px);line-height:1.22;letter-spacing:-.035em;font-weight:800}
+.story p,.story li{overflow-wrap:break-word}
+.story .kicker{color:var(--lime);font-size:clamp(12px,1.2cqw,15px);font-weight:850;text-transform:uppercase;letter-spacing:.07em;line-height:1.4;margin:0 0 16px}
+.story em{font-style:normal;color:var(--lime)}
+.story .intro{max-width:790px;color:#d4e1d0;margin-bottom:24px}
+.story .chain-step{list-style:none}
+.story .chain-step p{margin:0;color:#d7e4d3}
+.story .step-id{display:grid;place-items:center;flex:0 0 auto;color:var(--lime);font-weight:850;font-size:16px}
+.story ol,.story ul{padding:0;margin:0;list-style:none}
+.story .physio .phys-item p{margin:0;color:#d8e3d4}
+.story .physio strong{font-weight:850;color:#f8fff0}
+.story .background p{color:#d3e1d0}
+.story .background .topic{font-weight:850;color:var(--lime)}
+.story .situations{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 16px}
+.story .situations span{border:1px solid #637c58;color:#dcedd1;border-radius:99px;padding:5px 10px;font-size:13px;line-height:1.4}
+.story .vision h2{max-width:1020px}
+.story .vision .scenes{display:grid;gap:5px;margin:23px 0;color:#f1f8ec}
+.story .vision .scenes span{display:block}
+.story .vision .ending{font-weight:750;color:#fff}
+.story .final-cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;margin-top:9px;min-height:56px;padding:12px 18px;border-radius:10px;background:var(--lime);color:#132012;text-decoration:none;font-size:17px;font-weight:850;line-height:1.35}
+.story .final-cta:hover{background:#efff69}
+.story .segment{min-width:0}
+.story .sequence{display:grid;gap:16px}
+.story .sequence h3{margin:0 0 6px}
+.story .phys-list{display:grid;gap:0}
+.story .phys-item{min-width:0}
+.story .physio h2,.story .background h2{font-size:clamp(27px,3.45cqw,43px)}
+.story .physio,.story .background,.story .vision{margin-top:clamp(48px,6cqw,96px)}
+.story .background p{margin:0 0 16px}
+.story .background p:last-child{margin:0}
+.story .vision .vision-copy{max-width:720px}
+.story .vision p{margin:0 0 18px}
+.story .vision .scenes{margin-bottom:19px}
+.variant-hint{display:none}
+/* 01 — EDITORIAL: near-native numbered logic, three open lines, quiet inset, emphatic close */
+.v1 .essence .intro{font-size:clamp(18px,2.1cqw,23px)}
+.v1 .sequence{margin-top:30px;gap:0;border:1px solid #445745;border-radius:16px;background:#1c281f;padding:9px clamp(16px,3cqw,32px)}
+.v1 .chain-step{position:relative;display:grid;grid-template-columns:44px 1fr;gap:15px;padding:18px 0;border-bottom:1px solid #394e3c}
+.v1 .chain-step:last-child{border:0}
+.v1 .step-id{width:42px;height:42px;border:1px solid #809b56;border-radius:50%;background:#27362a}
+.v1 .physio{background:transparent}
+.v1 .phys-list{gap:0}
+.v1 .phys-item{padding:20px 3px 20px 21px;border-top:1px solid #405743;position:relative}
+.v1 .phys-item:last-child{border-bottom:1px solid #405743}
+.v1 .phys-item:before{content:"";position:absolute;left:0;top:29px;width:7px;height:7px;border-radius:50%;background:var(--lime)}
+.v1 .background{padding:26px 28px 27px;border-left:4px solid var(--lime);background:#1b281f;border-radius:0 12px 12px 0}
+.v1 .background h2{margin-bottom:15px}
+.v1 .situations{margin-top:18px}
+.v1 .vision{padding:clamp(22px,4cqw,48px);border-radius:17px;border:1px solid #5b784b;background:linear-gradient(155deg,#2b3c2a,#17251a)}
+.v1 .vision .scenes{gap:9px}
+/* 02 — ROUTE: rail, large movement cues, minimal physiology columns and large destination */
+.v2 .essence{border-bottom:1px solid #556957;padding-bottom:42px}
+.v2 .essence .kicker{display:inline-block;background:#dfff19;color:#162215;padding:6px 10px;border-radius:5px}
+.v2 .sequence{position:relative;gap:0;margin-left:17px;padding-left:29px;border-left:2px solid #738b5b}
+.v2 .chain-step{display:flex;gap:18px;position:relative;padding:14px 0 31px}
+.v2 .step-id{position:absolute;top:17px;left:-48px;width:36px;height:36px;background:#dfff19;color:#172016;border-radius:50%;font-size:13px}
+.v2 .chain-step h3{max-width:570px}
+.v2 .physio{padding:0}
+.v2 .phys-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid #78926e;border-bottom:1px solid #78926e}
+.v2 .phys-item{padding:21px 17px 22px;border-right:1px solid #4c5e4f}
+.v2 .phys-item:first-child{padding-left:0}
+.v2 .phys-item:last-child{padding-right:0;border-right:0}
+.v2 .phys-item strong{display:block;color:var(--lime);margin-bottom:9px}
+.v2 .background{padding:28px 32px;background:#223026;border-radius:18px}
+.v2 .background h2{max-width:700px}
+.v2 .background p:not(:last-child){margin-bottom:15px}
+.v2 .vision{padding:30px 0 16px;border-top:2px solid var(--lime)}
+.v2 .vision h2{font-size:clamp(39px,5.3cqw,70px)}
+.v2 .vision .scenes{display:flex;flex-wrap:wrap;gap:9px 20px;color:#dfff19;font-weight:750}
+.v2 .vision .scenes span{border-bottom:1px solid #536949;padding-bottom:5px}
+/* 03 — ATLAS: information-design 2x2, numbered physiology, use-context on quiet field */
+.v3 .essence{text-align:left}
+.v3 .essence .intro{max-width:670px}
+.v3 .sequence{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.v3 .chain-step{padding:22px 21px 24px;border-radius:13px;background:#202c22;border:1px solid #4b6247}
+.v3 .chain-step:last-child{border-color:#dfff19;background:#273724}
+.v3 .step-id{justify-content:start;font-size:31px;line-height:1;letter-spacing:-.055em;margin-bottom:19px}
+.v3 .chain-step h3{min-height:2.4em}
+.v3 .phys-list{gap:14px}
+.v3 .phys-item{display:grid;grid-template-columns:38px 1fr;gap:14px;padding:17px 0;border-top:1px solid #465943}
+.v3 .phys-item:before{content:counter(phys-counter,decimal-leading-zero);counter-increment:phys-counter;color:var(--lime);font-size:16px;font-weight:850;line-height:1.6}
+.v3 .phys-list{counter-reset:phys-counter}
+.v3 .background{background:#141e17;border-top:1px solid #6b8363;border-bottom:1px solid #6b8363;padding:27px 0}
+.v3 .background .situations span{border-radius:7px;background:#233329}
+.v3 .vision{background:#26382b;border:1px solid #65845b;border-radius:18px;padding:clamp(23px,4cqw,43px)}
+.v3 .vision .scenes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.v3 .vision .scenes span{padding:13px 0;border-top:1px solid #78906d;font-weight:750;font-size:clamp(16px,2cqw,20px)}
+/* 04 — TYPE: monumental headings, almost no card UI, long hairlines, inset quotation */
+.v4{background:#0b120d}
+.v4 .essence h2{font-size:clamp(44px,6.5cqw,86px);max-width:900px}
+.v4 .essence .intro{font-size:clamp(20px,2.4cqw,27px)}
+.v4 .sequence{gap:0;border-top:2px solid var(--lime)}
+.v4 .chain-step{display:grid;grid-template-columns:93px 1fr;align-items:start;gap:15px;padding:22px 0;border-bottom:1px solid #4e674d}
+.v4 .step-id{font-size:clamp(34px,5.1cqw,65px);line-height:1;display:block;text-align:left;letter-spacing:-.065em}
+.v4 .sequence h3{font-size:clamp(23px,3.15cqw,38px)}
+.v4 .physio h2{font-size:clamp(34px,4.2cqw,57px)}
+.v4 .phys-item{padding:23px 0;position:relative;border-top:1px solid #5e7755}
+.v4 .phys-item strong{color:var(--lime)}
+.v4 .phys-item p{font-size:clamp(20px,2.35cqw,27px);line-height:1.48}
+.v4 .background{position:relative;padding:0 0 0 24px;border-left:4px solid #dfff19}
+.v4 .background h2{font-size:clamp(30px,4.1cqw,55px)}
+.v4 .background .situations span{border:0;border-radius:0;border-bottom:1px solid #819b70;padding:2px 0}
+.v4 .background p{max-width:760px}
+.v4 .vision{padding:30px 0 12px;border-top:1px solid #687e5c}
+.v4 .vision h2{font-size:clamp(43px,6.9cqw,90px);letter-spacing:-.06em}
+.v4 .vision .scenes{gap:4px;font-size:clamp(20px,2.4cqw,29px)}
+/* 05 — STRIP: compact publication, sections as contrasting bands; 4 block rhythm differs */
+.v5{padding:0;background:#0f1610}
+.v5 .segment{padding:clamp(25px,4.7cqw,54px)}
+.v5 .essence{background:#172319}
+.v5 .essence h2{max-width:920px}
+.v5 .essence .sequence{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;border-top:1px solid #728e65;padding-top:24px}
+.v5 .chain-step{padding:14px 0 0;border-top:5px solid #617454}
+.v5 .chain-step:last-child{border-color:#dfff19}
+.v5 .step-id{justify-content:start;margin:0 0 15px;font-size:15px}
+.v5 .chain-step h3{font-size:clamp(19px,2.1cqw,24px)}
+.v5 .chain-step p{font-size:clamp(16px,1.6cqw,18px)}
+.v5 .physio{background:#101711;margin:0}
+.v5 .physio h2{max-width:770px}
+.v5 .phys-list{gap:10px}
+.v5 .phys-item{padding:14px 17px;background:#1e2b21;border-left:3px solid #91b06d}
+.v5 .phys-item strong{color:#dfff19}
+.v5 .background{background:#253629;margin:0}
+.v5 .background h2{max-width:760px}
+.v5 .background .situations span{background:#354a38}
+.v5 .background .background-copy{columns:2;column-gap:40px}
+.v5 .background .background-copy p{break-inside:avoid}
+.v5 .vision{background:#141e16;margin:0;border-top:1px solid #627f56}
+.v5 .vision .scenes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:24px 0}
+.v5 .vision .scenes span{padding-top:10px;border-top:2px solid #dfff19;font-weight:800}
+/* Responsive based on the preview frame, not the browser */
+@container preview (max-width:620px){
+ .story{padding:clamp(20px,4.5cqw,26px);font-size:18px;line-height:1.55}
+ .story h2{font-size:clamp(29px,7.6cqw,37px);line-height:1.12;margin-bottom:15px}
+ .story h3{font-size:clamp(20px,5.5cqw,24px)}
+ .story .physio h2,.story .background h2{font-size:clamp(26px,7cqw,32px)}
+ .story .intro{font-size:18px;margin-bottom:20px}
+ .story .physio,.story .background,.story .vision{margin-top:46px}
+ .story .final-cta{width:100%;font-size:17px}
+ .v1 .sequence{padding:5px 16px}
+ .v1 .chain-step{grid-template-columns:40px 1fr;gap:12px;padding:19px 0}
+ .v1 .step-id{width:36px;height:36px;font-size:14px}
+ .v1 .background{padding:20px 18px 22px}
+ .v1 .vision{padding:23px 19px}
+ .v2 .sequence{margin-left:17px;padding-left:25px}
+ .v2 .chain-step{padding:13px 0 24px}
+ .v2 .step-id{left:-44px}
+ .v2 .phys-list{display:block}
+ .v2 .phys-item,.v2 .phys-item:first-child,.v2 .phys-item:last-child{padding:18px 0;border-right:0;border-bottom:1px solid #50604f}
+ .v2 .background{padding:23px 19px}
+ .v2 .vision h2{font-size:clamp(34px,8.7cqw,43px)}
+ .v3 .sequence{grid-template-columns:1fr;gap:11px}
+ .v3 .chain-step{padding:20px 18px}
+ .v3 .chain-step h3{min-height:0}
+ .v3 .step-id{font-size:27px;margin-bottom:13px}
+ .v3 .phys-item{grid-template-columns:31px 1fr;gap:10px}
+ .v3 .vision{padding:24px 18px}
+ .v3 .vision .scenes{grid-template-columns:1fr}
+ .v4 .essence h2{font-size:clamp(36px,9.3cqw,48px)}
+ .v4 .chain-step{grid-template-columns:49px 1fr;gap:11px;padding:18px 0}
+ .v4 .step-id{font-size:32px}
+ .v4 .sequence h3{font-size:22px}
+ .v4 .phys-item p{font-size:20px}
+ .v4 .background{padding-left:16px}
+ .v4 .vision h2{font-size:clamp(35px,9cqw,49px)}
+ .v5{padding:0}
+ .v5 .segment{padding:29px 20px}
+ .v5 .essence .sequence{grid-template-columns:1fr;gap:11px}
+ .v5 .chain-step{padding:15px 0;border-top-width:2px}
+ .v5 .step-id{margin:0 0 8px}
+ .v5 .chain-step h3{font-size:21px}
+ .v5 .background .background-copy{columns:1}
+ .v5 .vision .scenes{grid-template-columns:1fr;gap:9px}
+}
+@media(max-width:790px){
+ .pult-inner{padding:11px 13px;gap:10px}
+ .pult-brand small{display:none}
+ .pult-brand{min-width:0}
+ .pult-brand strong{font-size:15px}
+ .pult-symbol{width:35px;height:35px}
+ .pult-controls{justify-content:flex-start;flex:0 0 100%;flex-wrap:nowrap;overflow:auto;padding-bottom:3px}
+ .pick{padding:9px 11px;font-size:12px}
+ .pult-view button{padding:7px 10px}
+ .pult-foot{padding:0 13px 9px}
+ .pult-foot p{font-size:11px}
+ .demo-top{margin:17px auto 12px;padding:0 16px}
+ .demo-top strong{font-size:20px}
+ .demo-top p{font-size:13px}
+ .preview-stage{padding:0 0 30px}
+ .preview-frame{border-left:0;border-right:0;width:100%!important}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="pult">
+ <div class="pult-inner">
+  <div class="pult-brand"><span class="pult-symbol" aria-hidden="true">♫</span><div><strong>Пульт цепочки</strong><small>Аудиоякоря · 5 компоновок</small></div></div>
+  <nav class="pult-controls" aria-label="Выбрать оформление">
+   <button class="pick" type="button" data-variant="v1" aria-pressed="true">01 · Редакция</button>
+   <button class="pick" type="button" data-variant="v2" aria-pressed="false">02 · Маршрут</button>
+   <button class="pick" type="button" data-variant="v3" aria-pressed="false">03 · Атлас</button>
+   <button class="pick" type="button" data-variant="v4" aria-pressed="false">04 · Типографика</button>
+   <button class="pick" type="button" data-variant="v5" aria-pressed="false">05 · Полосы</button>
+  </nav>
+  <div class="pult-view" role="group" aria-label="Ширина предпросмотра">
+   <button type="button" data-screen="mobile" aria-pressed="true" title="Узкий мобильный экран">Моб.</button>
+   <button type="button" data-screen="desktop" aria-pressed="false" title="Широкий экран">ПК</button>
+  </div>
+ </div>
+ <div class="pult-foot"><p>Одни и те же тексты. Меняется только визуальная композиция.</p><a href="/predfinal/#audio-path" class="back-link">Исходная страница ↗</a></div>
+</header>
+<div class="demo-top" role="status" aria-live="polite">
+ <div><strong id="variant-title">01 — Спокойная редакция</strong><p id="variant-desc">Понятная последовательность, открытая физиология, компактная вставка про прослушивание и эмоциональный финал.</p></div>
+ <div class="demo-counter" id="counter">1 / 5</div>
+</div>
+<main class="preview-stage">
+ <div class="preview-frame is-mobile" id="frame">
+  <div class="story v1" id="story">
+   <section class="segment essence" id="essence" aria-labelledby="essence-title">
+    <p class="kicker">Суть аудиоякорей</p>
+    <h2 id="essence-title">От концентрата опыта —<br><em>к новому отношению к курению.</em></h2>
+    <p class="intro">Всё главное — в понятных музыкальных фразах. К ним легче возвращаться, чем к длинной лекции.</p>
+    <ol class="sequence">
+     <li class="chain-step"><span class="step-id" aria-hidden="true">01</span><div><h3>Концентрат опыта</h3><p>Главные выводы многолетней практики — коротко и по существу.</p></div></li>
+     <li class="chain-step"><span class="step-id" aria-hidden="true">02</span><div><h3>Приятное прослушивание</h3><p>Не лекция, которую нужно заставлять себя слушать, а музыка по душе.</p></div></li>
+     <li class="chain-step"><span class="step-id" aria-hidden="true">03</span><div><h3>Многократное возвращение к содержанию</h3><p>Знакомые куплеты и припевы снова возвращают к важным мыслям.</p></div></li>
+     <li class="chain-step"><span class="step-id" aria-hidden="true">04</span><div><h3>Желаемое ослабление тяги</h3><p>Чтобы сигарета постепенно теряла прежнюю ценность и переставала казаться необходимой.</p></div></li>
+    </ol>
+   </section>
+   <section class="segment physio" aria-labelledby="physio-title">
+    <h2 id="physio-title">Что происходит физиологически</h2>
+    <ul class="phys-list">
+     <li class="phys-item"><p><strong>Нейроны, которые часто работают вместе,</strong> начинают лучше «проводить» сигнал друг к другу.</p></li>
+     <li class="phys-item"><p><strong>Связи между ними укрепляются</strong> (это называется синаптическая пластичность).</p></li>
+     <li class="phys-item"><p><strong>Старые ненужные связи</strong> (например, «захотелось → достал сигарету») используются всё реже и постепенно слабеют. Мозг просто экономит энергию и «убирает» то, чем редко пользуются.</p></li>
+    </ul>
+   </section>
+   <section class="segment background" aria-labelledby="background-title">
+    <h2 id="background-title">Почему это работает даже в фоне</h2>
+    <p class="topic">Мозг не всегда требует вашего полного внимания.</p>
+    <div class="situations" aria-label="Ситуации из текста"><span>Работа</span><span>Телевизор</span><span>Дорога</span></div>
+    <div class="background-copy">
+     <p>Если одни и те же звуки и фразы повторяются много раз, нейроны всё равно начинают связываться сильнее.</p>
+     <p>Сознание может быть занято другим (работа, телевизор, дорога), а подсознание уже прокладывает новую дорогу.</p>
+     <p>Именно поэтому мягкая мелодия + спокойные повторы работают особенно хорошо: они не раздражают и позволяют мозгу спокойно «перестраивать провода».</p>
+    </div>
+   </section>
+   <section class="segment vision" aria-labelledby="vision-title">
+    <p class="kicker">Ради чего всё это</p>
+    <h2 id="vision-title">Представьте: вы больше не бросаете курить.<br><em>Вам просто больше не хочется.</em></h2>
+    <div class="vision-copy">
+     <p class="scenes"><span>Кофе без перекура.</span><span>Спокойный вечер без сигареты.</span><span>Пачка, о которой вы забыли.</span></p>
+     <p>Вы не отсчитываете минуты и не уговариваете себя потерпеть. Курение просто перестало занимать прежнее место в вашей жизни.</p>
+     <p class="ending">Именно к такой свободе направлена программа «Аудиоякоря».</p>
+     <a class="final-cta" href="/predfinal/#sounds">Начните с прослушивания <span aria-hidden="true">↗</span></a>
+    </div>
+   </section>
+  </div>
+ </div>
+</main>
+<script>
+(function(){
+ 'use strict';
+ var data={
+  v1:['01 — Спокойная редакция','Понятная последовательность, открытая физиология, компактная вставка про прослушивание и эмоциональный финал.'],
+  v2:['02 — Маршрут изменений','Одна направляющая линия, три тезиса в колонках, бытовое объяснение и крупная финальная цель.'],
+  v3:['03 — Атлас смысла','Первый блок как схема из четырёх частей; физиология по трём опорам; третий блок легче и ниже.'],
+  v4:['04 — Сила типографики','Максимум воздуха и крупные слова без череды зелёных карточек.'],
+  v5:['05 — Контрастные полосы','Четыре блока разного тона: схема, объяснение, повседневность и эмоциональный вывод.']
+ };
+ var order=Object.keys(data);
+ var story=document.getElementById('story'),frame=document.getElementById('frame');
+ var title=document.getElementById('variant-title'),desc=document.getElementById('variant-desc'),counter=document.getElementById('counter');
+ var variantButtons=[].slice.call(document.querySelectorAll('[data-variant]'));
+ var screenButtons=[].slice.call(document.querySelectorAll('[data-screen]'));
+ function setVariant(key){
+  if(!Object.prototype.hasOwnProperty.call(data,key))return;
+  story.className='story '+key;
+  title.textContent=data[key][0];desc.textContent=data[key][1];
+  counter.textContent=(order.indexOf(key)+1)+' / '+order.length;
+  variantButtons.forEach(function(button){button.setAttribute('aria-pressed',String(button.dataset.variant===key))});
+  var url=new URL(location.href);url.searchParams.set('v',key);history.replaceState({},'',url.pathname+url.search+url.hash);
+ }
+ function setScreen(value){
+  if(value!=='mobile'&&value!=='desktop')return;
+  frame.className='preview-frame is-'+value;
+  screenButtons.forEach(function(button){button.setAttribute('aria-pressed',String(button.dataset.screen===value))});
+ }
+ variantButtons.forEach(function(button){button.addEventListener('click',function(){setVariant(button.dataset.variant)})});
+ screenButtons.forEach(function(button){button.addEventListener('click',function(){setScreen(button.dataset.screen)})});
+ document.addEventListener('keydown',function(event){
+  if(event.target.closest('input,textarea,select'))return;
+  if(!event.altKey||!['ArrowLeft','ArrowRight'].includes(event.key))return;
+  event.preventDefault();
+  var current=order.indexOf(story.className.split(' ')[1]);
+  setVariant(order[(current+(event.key==='ArrowRight'?1:order.length-1))%order.length]);
+ });
+ var initial=new URLSearchParams(location.search).get('v');if(data[initial])setVariant(initial);
+})();
+</script>
+</body>
+</html>
