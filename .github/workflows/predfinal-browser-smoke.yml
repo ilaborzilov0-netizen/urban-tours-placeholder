@@ -9,6 +9,7 @@ on:
       - "predfinal/checkout.js"
       - "tests/predfinal-browser-smoke.mjs"
       - "tests/predfinal-pult-smoke.mjs"
+      - "tests/predfinal-typography-smoke.mjs"
       - "predfinal/pult/index.html"
       - ".github/workflows/predfinal-browser-smoke.yml"
   workflow_dispatch:
@@ -36,3 +37,5 @@ jobs:
         run: node tests/predfinal-browser-smoke.mjs
       - name: Verify all five audio-chain compositions in Chromium
         run: node tests/predfinal-pult-smoke.mjs
+      - name: Verify chosen typography v4 on 320-1440px and intact checkout
+        run: node tests/predfinal-typography-smoke.mjs
