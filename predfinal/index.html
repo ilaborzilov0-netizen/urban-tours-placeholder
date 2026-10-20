@@ -8,8 +8,8 @@
  <title>Аудиоякоря — два альбома, чтобы бросить курить</title>
  <meta name="description" content="Музыкальная программа отказа от курения: два альбома, три звучания. Выберите комплект, послушайте аудиоякорь.">
  <link rel="canonical" href="https://marafon-metod.ru/predfinal/">
- <link rel="stylesheet" href="/predfinal/offer.css?v=20261020-demo-states-v30">
- <script defer src="/predfinal/offer.js?v=20261020-demo-states-v30"></script>
+ <link rel="stylesheet" href="/predfinal/offer.css?v=20261020-savings-v31">
+ <script defer src="/predfinal/offer.js?v=20261020-savings-v31"></script>
  <script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return}k=e.createElement(t);a=e.getElementsByTagName(t)[0];k.async=1;k.src=r;a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=110906734','ym');ym(110906734,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});</script>
  <style data-source="pricing-v6-critical">/* /predfinal/: 3 equal-content price tiers, mobile stack and aligned desktop grid */
 body.theme-dark .prefinal-pricing-section .pricing{
@@ -1634,21 +1634,42 @@ body.theme-dark .brain-physiology-points li::before{
      </div>
     </article>
    </div>
-   <p class="copyright-under-pricing"><span class="copyright-icon" aria-hidden="true">©</span> Авторский музыкальный продукт. Материалы альбома защищены авторским правом. Копирование и распространение без разрешения запрещены.</p>
-   <aside class="cigarette-cost-comparison" aria-label="Сравнение стоимости программы и сигарет">
-    <p class="cigarette-cost-kicker">Сравните с привычными расходами</p>
-    <div class="cigarette-cost-values">
-     <div class="cigarette-cost-value cigarette-cost-program">
-      <strong>1 490 <span>₽</span></strong>
-      <span>Программа «Все звучания»<br><b>один раз</b></span>
+   <section class="smoking-savings" id="smoking-savings" aria-labelledby="smoking-savings-heading">
+    <h2 id="smoking-savings-heading">Сколько вы сэкономите <em>без сигарет?</em></h2>
+    <div class="smoking-calc-fields">
+     <div class="smoking-calc-field">
+      <label for="smoking-calc-cigarettes">Сколько сигарет вы курите в день?</label>
+      <div class="smoking-calc-stepper">
+       <button type="button" data-calc-adjust="cigarettes" data-step="-1" aria-label="Уменьшить количество сигарет на одну">−</button>
+       <input id="smoking-calc-cigarettes" data-calc-input="cigarettes" type="number" inputmode="numeric" min="1" max="100" step="1" value="20" aria-describedby="smoking-calc-cigarettes-unit">
+       <button type="button" data-calc-adjust="cigarettes" data-step="1" aria-label="Увеличить количество сигарет на одну">+</button>
+      </div>
+      <p class="smoking-calc-unit" id="smoking-calc-cigarettes-unit">сигарет в день</p>
      </div>
-     <div class="cigarette-cost-value cigarette-cost-cigarettes">
-      <strong>7 500 <span>₽</span></strong>
-      <span>Сигареты при пачке в день<br><b>каждые 30 дней</b></span>
+     <div class="smoking-calc-field">
+      <label for="smoking-calc-pack">Сколько стоит ваша пачка?</label>
+      <div class="smoking-calc-stepper">
+       <button type="button" data-calc-adjust="pack" data-step="-1" aria-label="Уменьшить стоимость пачки на 10 рублей">−</button>
+       <input id="smoking-calc-pack" data-calc-input="pack" type="number" inputmode="numeric" min="1" max="10000" step="1" value="250" aria-describedby="smoking-calc-pack-unit">
+       <button type="button" data-calc-adjust="pack" data-step="1" aria-label="Увеличить стоимость пачки на 10 рублей">+</button>
+      </div>
+      <p class="smoking-calc-unit" id="smoking-calc-pack-unit">₽ за пачку</p>
      </div>
     </div>
-    <p class="cigarette-cost-note"><strong>6 дней без покупок сигарет — 1 500 ₽ в кармане.</strong> Этого достаточно, чтобы покрыть цену программы за 1 490 ₽. Расчёт: одна пачка в день по 250 ₽.</p>
-   </aside>
+    <div class="smoking-calc-results" aria-live="polite" aria-atomic="true">
+     <div class="smoking-calc-result">
+      <p class="smoking-calc-value"><strong data-calc-days-number>6</strong> <span data-calc-days-unit>дней без сигарет</span></p>
+      <p>За это время вы сэкономите стоимость комплекта «Все звучания» за 1 490 ₽.</p>
+     </div>
+     <div class="smoking-calc-result">
+      <p class="smoking-calc-value"><strong data-calc-year>89 760</strong> <span>₽ за первый год</span></p>
+      <p>Останется у вас после вычета стоимости комплекта.</p>
+     </div>
+    </div>
+    <p class="smoking-calc-error" role="status" aria-live="polite"></p>
+    <p class="smoking-calc-note">Расчёт: 20 сигарет в пачке, 365 дней без сигарет и стоимость комплекта «Все звучания» 1 490 ₽.</p>
+   </section>
+   <p class="copyright-under-pricing"><span class="copyright-icon" aria-hidden="true">©</span> Авторский музыкальный продукт. Материалы альбома защищены авторским правом. Копирование и распространение без разрешения запрещены.</p>
   </div></section>
   <section class="section"><div class="wrap faq">
    <div><p class="kicker">Коротко о главном</p><h2>Остались<br><em>вопросы?</em></h2></div>
