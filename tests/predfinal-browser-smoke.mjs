@@ -63,7 +63,10 @@ try{
  async function load(){const p=await context.newPage();await p.goto(SITE+'/predfinal/',{waitUntil:'domcontentloaded'});return p}
  const page=await load();
  assert.equal(await page.locator('[data-select-plan]').count(),3,'Three price cards required');
- assert.equal(await page.locator('[data-open-question]').count(),2,'Pricing and footer question CTAs required');
+ assert.equal(await page.locator('[data-open-question]').count(),3,'Pricing, FAQ and footer question CTAs required');
+ assert.equal(await page.locator('.author-contact-title').textContent(),'Есть вопрос? Напишите мне, разберёмся.');
+ const orderedNodes=await page.locator('#pricing').locator('.predfinal-pricing-contact, .copyright-under-pricing, #smoking-savings').evaluateAll(nodes=>nodes.map(node=>node.className));
+ assert.deepEqual(orderedNodes,['predfinal-pricing-contact','copyright-under-pricing','smoking-savings']);
  await page.locator('[data-style="estrada"]').click();
  await page.locator('[data-select-plan="one"]').click();
  const checkout=page.locator('#predfinal-checkout-dialog');
@@ -90,6 +93,10 @@ try{
  assert.equal(await pageAll.locator('[data-checkout-genre]').isHidden(),true);
  await pageAll.keyboard.press('Escape');
  assert.equal(await pageAll.locator('#predfinal-checkout-dialog').evaluate(el=>el.open),false);
+ await pageAll.locator('.predfinal-faq-contact [data-open-question]').click();
+ assert.equal(await pageAll.locator('#predfinal-question-dialog').evaluate(el=>el.open),true);
+ await pageAll.keyboard.press('Escape');
+ assert.equal(await pageAll.locator('#predfinal-question-dialog').evaluate(el=>el.open),false);
  await pageAll.locator('footer [data-open-question]').click();
  await pageAll.locator('#predfinal-question-dialog').waitFor({state:'visible'});
  await pageAll.locator('#predfinal-question-contact').fill('buyer@example.org');
