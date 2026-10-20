@@ -56,9 +56,11 @@ try{
    assert.ok(measured.body<=measured.viewport+3,'Unexpected horizontal overflow in variant '+variant+' at width '+width+': '+JSON.stringify(measured));
    if(width===1440){
     await page.locator('[data-screen=desktop]').click();
+    await page.waitForFunction(()=>document.querySelector('#frame').getBoundingClientRect().width>900);
     const big=await page.locator('#frame').evaluate(el=>el.getBoundingClientRect().width);
     assert.ok(big>900,'Wide preview did not expand');
     await page.locator('[data-screen=mobile]').click();
+    await page.waitForFunction(()=>document.querySelector('#frame').getBoundingClientRect().width<395);
     const small=await page.locator('#frame').evaluate(el=>el.getBoundingClientRect().width);
     assert.ok(small>=375&&small<=395,'Mobile preview width not 390px');
    }
