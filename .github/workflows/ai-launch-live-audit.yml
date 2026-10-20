@@ -42,7 +42,19 @@ jobs:
                       and 'АРХИВ · 20 октября 2026' in old
                       and 'Все 12 аудиоякорей' in old
                   )
-                  print('Attempt',n,'new AI live',livecode,'archive live',oldcode,'new page verified',good)
+                  flags={
+                    'priority': 'class="hero-priority"' in live,
+                    'one':'data-select-plan="one"' in live,
+                    'all':'data-select-plan="all"' in live,
+                    'duo':'data-select-plan="duo"' in live,
+                    'savings':'id="smoking-savings"' in live,
+                    'checkout_script':'/predfinal/checkout.js?v=20261020-direct-order-v7' in live,
+                    'metrika':'110906734' in live,
+                    'canonical':'href="https://marafon-metod.ru/ai/"' in live,
+                    'archive_banner':'АРХИВ · 20 октября 2026' in old,
+                    'archive_copy':'Все 12 аудиоякорей' in old,
+                  }
+                  print('Attempt',n,'new AI live',livecode,'archive live',oldcode,'new page verified',good,'checks:',flags)
                   if good:break
               except Exception as e:print('Attempt',n,'error',repr(e))
               time.sleep(5)
@@ -59,6 +71,7 @@ jobs:
           print('PASS: new live /ai, old archived /ai, Yandex ID, three tiers, demo references and linked assets.')
           PY
       - name: Read-only payment backend readiness
+        if: always()
         shell: bash
         run: |
           python3 - <<'PY'
