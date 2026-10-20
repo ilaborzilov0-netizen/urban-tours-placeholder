@@ -23,6 +23,8 @@ const orderTitle=qs('[data-checkout-title]');
 const orderPrice=qs('[data-checkout-price]');
 const orderSubmitPrice=qs('[data-checkout-submit-price]');
 const checkoutGenres=qs('[data-checkout-genre]');
+const retryPlans=qs('[data-retry-plans]');
+retryPlans?.addEventListener('click',()=>verifyBackendTariffs());
 const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 let activePlan='all',paymentBusy=false,questionBusy=false,questionSent=false;
 let paymentContractReady=false;
@@ -123,7 +125,7 @@ async function apiRequest(path,options={}){
 }
 async function verifyBackendTariffs(){
  const submit=orderForm.querySelector('[type="submit"]');
- submit.disabled=true;paymentContractReady=false;
+ submit.disabled=true;paymentContractReady=false;retryPlans.hidden=true;
  showMessage(purchaseStatus,'Проверяем доступность оплаты и стоимость комплектов…');
  try{
   const response=await apiRequest('/api/payment/plans',{cache:'no-store'});
@@ -132,10 +134,10 @@ async function verifyBackendTariffs(){
   if(!correct||response.service!=='audio-pair-checkout')throw new Error('Тарифы на платёжном сервере ещё не обновлены. Пожалуйста, попробуйте позже.');
   paymentContractReady=true;
   clearMessage(purchaseStatus);
-  submit.disabled=false;
+  retryPlans.hidden=true;submit.disabled=false;
   goal('payment_plans_verified');
  }catch(error){
-  paymentContractReady=false;submit.disabled=true;
+  paymentContractReady=false;submit.disabled=true;retryPlans.hidden=false;
   const message=error.name==='AbortError'?'Платёжный сервер не отвечает. Попробуйте позже.':error.message;
   showMessage(purchaseStatus,message);
   goal('payment_plans_unavailable');
