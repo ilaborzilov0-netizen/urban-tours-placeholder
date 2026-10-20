@@ -9,7 +9,7 @@ assert.equal(expectedIds.size,68);
 assert.equal(new Set(config.goals.map(x=>x.name)).size,68);
 for(const p of ['ai/goal-tracking.js','predfinal/offer.js','predfinal/checkout.js'])new Function(await readFile(p,'utf8'));
 const markup=await readFile('ai/index.html','utf8');
-assert.match(markup,/\/ai\/goal-tracking\.js\?v=20261020-semantic-v1/);
+assert.match(markup,/\/ai\/goal-tracking\.js\?v=20261020-semantic-v2/);
 const child=spawn('python3',['-m','http.server','18770','--bind','127.0.0.1'],{stdio:'ignore'});
 let browser;
 try{
