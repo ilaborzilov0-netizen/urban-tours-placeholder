@@ -3817,3 +3817,251 @@ body.theme-dark .prefinal-pricing-section .tier-smoking-equivalent span{
  body.theme-dark .smoking-savings--compact .smoking-calc-stepper input{font-size:18px}
  body.theme-dark .smoking-savings--compact .smoking-calc-fields{gap:8px}
 }
+
+
+/* /predfinal/ v35: pult typography variant 4 — original copy, editorial instead of card UI. */
+body.theme-dark .audio-loop-section.typographic-chain,
+body.theme-dark .brain-explainer.typographic-chain,
+body.theme-dark .freedom-vision.typographic-chain{
+ background:#0b120d;
+ border:0;
+ color:#f5f8ee;
+}
+body.theme-dark .audio-loop-section.typographic-chain{padding:76px 0 35px}
+body.theme-dark .audio-loop-section.typographic-chain .audio-loop-heading{
+ max-width:1020px;margin:0 0 38px;
+}
+body.theme-dark .audio-loop-section.typographic-chain .audio-loop-heading h2{
+ font-size:clamp(44px,6.4vw,84px);
+ line-height:1.085;letter-spacing:-.059em;
+ font-weight:800;max-width:940px;
+ margin:0 0 24px;
+}
+body.theme-dark .audio-loop-section.typographic-chain .audio-loop-heading>p:last-child{
+ max-width:810px;color:#d8e4d4;
+ font-size:clamp(20px,2.2vw,27px);line-height:1.49;
+}
+body.theme-dark .audio-loop-section.typographic-chain .audio-loop-steps{
+ display:block;gap:0;list-style:none;
+ width:100%;max-width:none;
+ padding:0;margin:0;
+ border:0;border-top:2px solid #dfff19;border-radius:0;
+ background:none;box-shadow:none;
+}
+body.theme-dark .audio-loop-section.typographic-chain .audio-loop-step{
+ display:grid;grid-template-columns:93px minmax(0,1fr);
+ align-items:start;gap:15px;min-width:0;
+ padding:23px 0;border-bottom:1px solid #4e674d;
+}
+body.theme-dark .audio-loop-section.typographic-chain .audio-loop-step:after{
+ content:none!important;display:none!important;
+}
+body.theme-dark .audio-loop-section.typographic-chain .audio-loop-index,
+body.theme-dark .audio-loop-section.typographic-chain .audio-loop-step--result .audio-loop-index{
+ display:block;position:static;
+ width:auto;height:auto;padding:0;margin:0;
+ background:none;border:0;border-radius:0;box-shadow:none;
+ text-align:left;line-height:1;
+ font-size:clamp(34px,4.7vw,65px);
+ font-weight:850;letter-spacing:-.065em;
+ color:#dfff19;
+}
+body.theme-dark .audio-loop-section.typographic-chain .audio-loop-content h3,
+body.theme-dark .audio-loop-section.typographic-chain .audio-loop-step--result .audio-loop-content h3{
+ color:#f5f8ee;font-size:clamp(23px,3vw,38px);line-height:1.18;
+ font-weight:850;letter-spacing:-.037em;
+ margin:0 0 9px;
+}
+body.theme-dark .audio-loop-section.typographic-chain .audio-loop-content p{
+ max-width:810px;color:#d1e1ce;
+ font-size:clamp(18px,1.9vw,23px);line-height:1.55;
+ margin:0;
+}
+/* Physiology on the shared page background: open paragraphs and hairline dividers. */
+body.theme-dark .brain-explainer.typographic-chain{padding:68px 0 42px}
+body.theme-dark .brain-explainer.typographic-chain .brain-explainer-body{
+ display:block;grid-template-columns:none;gap:0;
+}
+body.theme-dark .brain-explainer.typographic-chain .brain-explainer-body>article,
+body.theme-dark .brain-explainer.typographic-chain .brain-explainer-body .brain-physiology{
+ padding:0;margin:0;border:0;border-radius:0;
+ background:none;box-shadow:none;
+}
+body.theme-dark .brain-explainer.typographic-chain .brain-physiology .brain-block-heading{
+ margin:0 0 25px;
+}
+body.theme-dark .brain-explainer.typographic-chain .brain-block-heading{
+ display:block;min-height:0;gap:0;
+}
+body.theme-dark .brain-explainer.typographic-chain .brain-physiology .brain-block-heading h3{
+ max-width:960px;font-size:clamp(34px,4.2vw,57px);
+ line-height:1.13;letter-spacing:-.049em;
+ margin:0;color:#f4f9ee;font-weight:850;
+}
+body.theme-dark .brain-explainer.typographic-chain .brain-physiology-points{
+ display:block;list-style:none;
+ padding:0;margin:0;gap:0;
+}
+body.theme-dark .brain-explainer.typographic-chain .brain-physiology-points li{
+ position:relative;display:block;
+ padding:21px 0 23px;margin:0;border-top:1px solid #5e7755;
+ color:#dce8d7;font-size:clamp(20px,2.24vw,27px);line-height:1.48;
+}
+body.theme-dark .brain-explainer.typographic-chain .brain-physiology-points li::before{
+ content:none!important;display:none!important;
+}
+body.theme-dark .brain-explainer.typographic-chain .brain-physiology-points li strong{
+ color:#dfff19;font-weight:850;
+}
+/* Small everyday-life aside — the only left-hand rule in the middle. */
+body.theme-dark .brain-explainer.typographic-chain .brain-explainer-body .brain-background{
+ margin:69px 0 0;padding:0 0 0 24px;
+ border:0;border-left:4px solid #dfff19;
+ background:none;border-radius:0;box-shadow:none;
+}
+body.theme-dark .brain-explainer.typographic-chain .brain-background .brain-block-heading{
+ margin:0 0 24px;
+}
+body.theme-dark .brain-explainer.typographic-chain .brain-background .brain-block-heading h3{
+ max-width:980px;font-size:clamp(30px,4.1vw,55px);
+ line-height:1.12;letter-spacing:-.049em;
+ font-weight:850;color:#f5f8ef;margin:0;
+}
+body.theme-dark .brain-explainer.typographic-chain .brain-background p{
+ max-width:770px;font-size:clamp(19px,2vw,23px);
+ line-height:1.58;color:#d3e1d0;margin:0 0 18px;
+}
+body.theme-dark .brain-explainer.typographic-chain .brain-background .brain-background-lead{
+ color:#f0f7e9;font-size:clamp(20px,2.2vw,26px);
+ font-weight:800;margin:0 0 17px;
+}
+body.theme-dark .brain-explainer.typographic-chain .brain-background p:last-child{margin-bottom:0}
+body.theme-dark .brain-explainer.typographic-chain .brain-background-contexts{
+ display:flex;flex-wrap:wrap;gap:12px;margin:0 0 23px;
+}
+body.theme-dark .brain-explainer.typographic-chain .brain-background-contexts span{
+ display:inline-block;color:#dceacf;
+ border:0;border-bottom:1px solid #819b70;border-radius:0;
+ padding:3px 0;font-size:15px;line-height:1.4;
+}
+/* Large emotional outcome without an extra green card. */
+body.theme-dark .freedom-vision.typographic-chain{padding:58px 0 88px}
+body.theme-dark .freedom-vision.typographic-chain .freedom-vision-panel{
+ position:static;overflow:visible;isolation:auto;
+ padding:34px 0 12px;border:0;border-top:1px solid #687e5c;
+ border-radius:0;background:none;box-shadow:none;
+}
+body.theme-dark .freedom-vision.typographic-chain .freedom-vision-kicker{
+ margin:0 0 18px;color:#dfff19;
+}
+body.theme-dark .freedom-vision.typographic-chain h2{
+ max-width:1100px;
+ font-size:clamp(43px,6.65vw,90px);
+ font-weight:850;line-height:1.09;letter-spacing:-.061em;
+ color:#f3f7ed;margin:0 0 29px;
+}
+body.theme-dark .freedom-vision.typographic-chain h2 em{color:#dfff19}
+body.theme-dark .freedom-vision.typographic-chain .freedom-vision-scenes{
+ display:grid;gap:5px;max-width:900px;
+ margin:0 0 24px!important;
+ font-size:clamp(20px,2.4vw,29px)!important;
+ line-height:1.48!important;
+ color:#f4faed!important;
+}
+body.theme-dark .freedom-vision.typographic-chain .freedom-vision-scenes span{display:block}
+body.theme-dark .freedom-vision.typographic-chain .freedom-vision-prose{
+ max-width:880px;color:#cddbc9!important;
+ font-size:clamp(19px,2vw,23px)!important;line-height:1.63!important;
+ margin:0 0 21px!important;
+}
+body.theme-dark .freedom-vision.typographic-chain .freedom-vision-conclusion{
+ max-width:810px;color:#eaf4e1!important;
+ font-size:clamp(19px,2vw,23px)!important;line-height:1.54!important;
+ font-weight:800;margin:0 0 22px!important;
+}
+body.theme-dark .freedom-vision.typographic-chain .freedom-vision-cta{
+ border-radius:10px;background:#dfff19;color:#172014;
+ font-size:18px;font-weight:850;
+}
+@media(max-width:780px){
+ body.theme-dark .audio-loop-section.typographic-chain{padding:46px 0 26px}
+ body.theme-dark .audio-loop-section.typographic-chain .audio-loop-heading{margin-bottom:27px}
+ body.theme-dark .audio-loop-section.typographic-chain .audio-loop-heading h2{
+  font-size:clamp(36px,9.25vw,48px);line-height:1.1;letter-spacing:-.058em;
+  margin-bottom:18px;
+ }
+ body.theme-dark .audio-loop-section.typographic-chain .audio-loop-heading>p:last-child{
+  font-size:19px;line-height:1.54;
+ }
+ body.theme-dark .audio-loop-section.typographic-chain .audio-loop-step{
+  grid-template-columns:49px minmax(0,1fr);gap:11px;
+  padding:19px 0 20px;
+ }
+ body.theme-dark .audio-loop-section.typographic-chain .audio-loop-index,
+ body.theme-dark .audio-loop-section.typographic-chain .audio-loop-step--result .audio-loop-index{
+  font-size:32px;width:auto;height:auto;line-height:1;
+ }
+ body.theme-dark .audio-loop-section.typographic-chain .audio-loop-content h3,
+ body.theme-dark .audio-loop-section.typographic-chain .audio-loop-step--result .audio-loop-content h3{
+  font-size:22px;line-height:1.19;margin:0 0 7px;
+ }
+ body.theme-dark .audio-loop-section.typographic-chain .audio-loop-content p{
+  font-size:18px;line-height:1.5;
+ }
+ body.theme-dark .brain-explainer.typographic-chain{padding:48px 0 26px}
+ body.theme-dark .brain-explainer.typographic-chain .brain-physiology .brain-block-heading{
+  margin-bottom:18px;
+ }
+ body.theme-dark .brain-explainer.typographic-chain .brain-physiology .brain-block-heading h3{
+  font-size:clamp(30px,8.5vw,40px);
+ }
+ body.theme-dark .brain-explainer.typographic-chain .brain-physiology-points li{
+  padding:19px 0 21px;font-size:20px;line-height:1.51;
+ }
+ body.theme-dark .brain-explainer.typographic-chain .brain-explainer-body .brain-background{
+  margin-top:51px;padding-left:17px;border-left-width:4px;
+ }
+ body.theme-dark .brain-explainer.typographic-chain .brain-background .brain-block-heading{
+  margin-bottom:20px;
+ }
+ body.theme-dark .brain-explainer.typographic-chain .brain-background .brain-block-heading h3{
+  font-size:clamp(29px,8vw,39px);
+ }
+ body.theme-dark .brain-explainer.typographic-chain .brain-background p{
+  font-size:19px;line-height:1.56;margin-bottom:17px;
+ }
+ body.theme-dark .brain-explainer.typographic-chain .brain-background .brain-background-lead{
+  font-size:20px;
+ }
+ body.theme-dark .brain-explainer.typographic-chain .brain-background-contexts{
+  gap:12px;margin-bottom:19px;
+ }
+ body.theme-dark .freedom-vision.typographic-chain{padding:45px 0 53px}
+ body.theme-dark .freedom-vision.typographic-chain .freedom-vision-panel{
+  padding:28px 0 10px;
+ }
+ body.theme-dark .freedom-vision.typographic-chain h2{
+  font-size:clamp(35px,9vw,49px);line-height:1.11;
+  margin-bottom:24px;
+ }
+ body.theme-dark .freedom-vision.typographic-chain .freedom-vision-scenes{
+  font-size:20px!important;line-height:1.55!important;gap:5px;margin-bottom:19px!important;
+ }
+ body.theme-dark .freedom-vision.typographic-chain .freedom-vision-prose{
+  font-size:19px!important;line-height:1.58!important;margin-bottom:19px!important;
+ }
+ body.theme-dark .freedom-vision.typographic-chain .freedom-vision-conclusion{
+  font-size:19px!important;line-height:1.55!important;margin-bottom:20px!important;
+ }
+ body.theme-dark .freedom-vision.typographic-chain .freedom-vision-cta{
+  width:100%;min-height:59px;font-size:18px;
+ }
+}
+@media(max-width:359px){
+ body.theme-dark .audio-loop-section.typographic-chain .audio-loop-heading h2{font-size:33px}
+ body.theme-dark .audio-loop-section.typographic-chain .audio-loop-step{grid-template-columns:44px minmax(0,1fr);gap:10px}
+ body.theme-dark .audio-loop-section.typographic-chain .audio-loop-content h3{font-size:20px}
+ body.theme-dark .brain-explainer.typographic-chain .brain-physiology-points li{font-size:19px}
+ body.theme-dark .brain-explainer.typographic-chain .brain-background .brain-block-heading h3{font-size:28px}
+ body.theme-dark .freedom-vision.typographic-chain h2{font-size:33px}
+}
