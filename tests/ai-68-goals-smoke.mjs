@@ -32,7 +32,12 @@ try{
   window.gtag=()=>{};
   window.posthog={capture:()=>{}};
  });
- const occurred=async id=>page.evaluate(target=>window.__goals.map(x=>x.id).includes(target),id);
+ const occurred=async id=>{
+  try{
+   await page.waitForFunction(target=>window.__goals.some(x=>x.id===target),id,{timeout:2000});
+   return true;
+  }catch(_){return false}
+ };
  const counts=async id=>page.evaluate(target=>window.__goals.filter(x=>x.id===target).length,id);
 
  // Real DOM interactions from every visible section.
