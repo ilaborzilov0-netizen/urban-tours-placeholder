@@ -4256,3 +4256,82 @@ dialog.predfinal-checkout-sheet .predfinal-sheet-secondary{
   animation:none;
  }
 }
+
+
+/* /predfinal/ v37: final post-FAQ invitation, no card, no frame. */
+body.theme-dark .predfinal-final-invitation{
+ background:#0b120d;
+ border:0;
+ padding:clamp(64px,8vw,112px) 0 clamp(78px,9vw,124px);
+ color:#f4f8ee;
+}
+body.theme-dark .predfinal-final-invitation .wrap{
+ max-width:1120px;
+}
+body.theme-dark .predfinal-final-invitation h2{
+ max-width:1030px;
+ margin:0 0 22px;
+ font-size:clamp(42px,6.3vw,82px);
+ font-weight:850;
+ line-height:1.105;
+ letter-spacing:-.055em;
+ color:#f4f8ee;
+ text-wrap:balance;
+}
+body.theme-dark .predfinal-final-invitation h2 em{
+ color:#dfff19;
+ font-style:normal;
+}
+body.theme-dark .predfinal-final-invitation p{
+ max-width:780px;
+ margin:0 0 29px;
+ font-size:clamp(21px,2.5vw,29px);
+ font-weight:500;
+ line-height:1.42;
+ color:#d5e3d0;
+}
+body.theme-dark .predfinal-final-invitation-cta{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ gap:12px;
+ min-height:59px;
+ padding:14px 24px;
+ border:0;
+ border-radius:8px;
+ background:#dfff19;
+ color:#132010;
+ text-decoration:none;
+ font-size:18px;
+ line-height:1.4;
+ font-weight:850;
+}
+body.theme-dark .predfinal-final-invitation-cta:hover{background:#efff6b}
+body.theme-dark .predfinal-final-invitation-cta:focus-visible{
+ outline:3px solid #f5f9ed;
+ outline-offset:4px;
+}
+@media(max-width:720px){
+ body.theme-dark .predfinal-final-invitation{
+  padding:58px 0 76px;
+ }
+ body.theme-dark .predfinal-final-invitation h2{
+  font-size:clamp(35px,8.5vw,47px);
+  line-height:1.12;
+  letter-spacing:-.053em;
+  margin-bottom:19px;
+ }
+ body.theme-dark .predfinal-final-invitation p{
+  font-size:20px;line-height:1.42;
+  margin-bottom:25px;
+ }
+ body.theme-dark .predfinal-final-invitation-cta{
+  width:100%;
+  min-height:60px;
+  padding:14px 16px;
+  font-size:18px;
+ }
+}
+@media(max-width:359px){
+ body.theme-dark .predfinal-final-invitation h2{font-size:33px}
+}
