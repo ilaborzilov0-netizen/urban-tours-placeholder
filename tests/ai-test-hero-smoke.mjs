@@ -33,13 +33,23 @@ try{
   assert.equal(await page.locator('.ai-test-hero h1').count(),1);
   assert.match(await page.locator('.ai-test-hero h1').innerText(),/Бросьте курить,\s*просто слушая аудио\./);
   assert.match(await page.locator('.ai-test-hero .hero-priority').innerText(),/40 лет и больше/);
-  assert.match(await page.locator('.ai-test-simple').innerText(),/Без таблеток, пластырей и силы воли/);
-  assert.equal(await page.locator('.ai-test-contents').innerText(),'Два альбома · 20 аудиоякорей');
+  assert.equal(await page.locator('.ai-test-audience').innerText(),'Для тех, кто курит много лет');
+  assert.equal(await page.locator('.ai-test-simple').innerText(),'Без таблеток, пластырей и силы воли. Просто слушаете.');
+  assert.equal(await page.locator('.ai-test-contents').innerText(),'Два альбома · 20 коротких аудиозаписей');
+  assert.equal(await page.locator('.ai-test-price-from').innerText(),'от');
   assert.equal(await page.locator('.ai-test-price strong').innerText(),'1 990 ₽');
-  assert.ok(!(await page.locator('.ai-test-price').innerText()).includes('от 1 990 ₽'),'Test price must not be a vague "from" price');
-  assert.equal(await page.locator('.ai-test-price-context').innerText(),'за оба альбома в одном звучании');
+  assert.equal(await page.locator('.ai-test-price-context').count(),0);
   assert.match((await page.locator('.ai-test-access').innerText()).replace(/\s+/g,' ').trim(),/^✓ Доступ сразу после оплаты$/);
+  assert.equal(await page.locator('.ai-test-access strong').innerText(),'сразу');
+  assert.equal(await page.locator('.ai-test-guarantee strong').innerText(),'30 дней');
   assert.match(await page.locator('.ai-test-guarantee').innerText(),/30 дней/);
+  const fontInfo=await page.evaluate(()=>{
+   const size=selector=>parseFloat(getComputedStyle(document.querySelector(selector)).fontSize);
+   return {mechanism:size('.ai-test-mechanism'),access:size('.ai-test-access'),guarantee:size('.ai-test-guarantee'),tariffLink:size('.ai-test-look-at-tiers a')};
+  });
+  if(width<=390)assert.ok(Object.values(fontInfo).every(v=>v>=17), 'All mobile trust copy and tariff link must be readable: '+JSON.stringify(fontInfo));
+  const heroTop=await page.locator('.ai-test-hero h1').evaluate(e=>e.getBoundingClientRect().top);
+  assert.ok(heroTop>=75,'Header needs 1–2 lines of breathing room above it: '+heroTop);
   assert.match(await page.locator('.ai-test-mechanism').innerText(),/курить больше не хочется/);
   assert.ok((await page.locator('.ai-test-mechanism').innerText()).length<175,'Keep mechanism short enough to reveal cover earlier');
   assert.equal(await page.locator('.album-cover img').count(),2,'Keep album covers');
@@ -54,7 +64,7 @@ try{
   });
   console.log('Hero layout',width,JSON.stringify(offsets));
   assert.ok(offsets.mechanism<offsets.link && offsets.link<offsets.cover,'Quiet link must come directly after mechanism and before cover');
-  if(width<=390)assert.ok(offsets.cover<844,'First album cover should start within initial mobile viewport at '+width+'px');
+  if(width<=390)assert.ok(offsets.cover<844,'First album cover should still start within initial 844px mobile viewport at '+width+'px: '+offsets.cover);
   const screen=await page.evaluate(()=>({scrollWidth:document.documentElement.scrollWidth,clientWidth:document.documentElement.clientWidth}));
   assert.ok(screen.scrollWidth<=screen.clientWidth+2,'Horizontal overflow at '+width+': '+JSON.stringify(screen));
   await page.locator('.ai-test-look-at-tiers a').click();
