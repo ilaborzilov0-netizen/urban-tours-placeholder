@@ -38,7 +38,7 @@ try{
   assert.equal(await page.locator('.ai-test-price strong').innerText(),'1 990 ₽');
   assert.ok(!(await page.locator('.ai-test-price').innerText()).includes('от 1 990 ₽'),'Test price must not be a vague "from" price');
   assert.equal(await page.locator('.ai-test-price-context').innerText(),'за оба альбома в одном звучании');
-  assert.equal(await page.locator('.ai-test-access').innerText(),'✓ Доступ сразу после оплаты');
+  assert.match((await page.locator('.ai-test-access').innerText()).replace(/\s+/g,' ').trim(),/^✓ Доступ сразу после оплаты$/);
   assert.match(await page.locator('.ai-test-guarantee').innerText(),/30 дней/);
   assert.match(await page.locator('.ai-test-mechanism').innerText(),/курить больше не хочется/);
   assert.ok((await page.locator('.ai-test-mechanism').innerText()).length<175,'Keep mechanism short enough to reveal cover earlier');
