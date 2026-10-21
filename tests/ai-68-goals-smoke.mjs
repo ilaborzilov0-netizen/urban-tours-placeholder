@@ -60,7 +60,7 @@ try{
  assert.equal(await pack.inputValue(),'200');
  assert.deepEqual(await readDays(),['10','15','23'],'Default payback periods must reflect 200 RUB/day');
  assert.ok((await savings.first().innerText()).includes('В среднем за ≈'));
- assert.equal((await annual.locator('[data-annual-savings-amount]').textContent()).trim(),'73 000 ₽');
+ assert.equal(await annualRubles(),'73 000 ₽');
  assert.match(await annual.locator('[data-annual-savings-title]').innerText(),/В среднем/);
  assert.equal(await page.locator('#smoking-savings h2').textContent(),'Ваши расходы на сигареты');
  await page.locator('#smoking-savings [data-calc-adjust="pack"][data-step="1"]').click();
