@@ -58,9 +58,9 @@ jobs:
                       and 'class="author-contact-title">Есть вопрос? Напишите мне, разберёмся.</p>' in live
                       and live.index('class="predfinal-final-invitation-cta"') < live.index('class="predfinal-final-contact"') < live.index('<footer class="wrap footer">')
                       and 'value="200" aria-describedby="smoking-calc-note"' in live
-                      and 'data-smoking-equivalent="one"' in live
-                      and 'data-smoking-equivalent="all"' in live
-                      and 'data-smoking-equivalent="duo"' in live
+                      and 'data-smoking-equivalent="one"' not in live
+                      and live.count('data-smoking-equivalent="all"')==1
+                      and 'data-smoking-equivalent="duo"' not in live
                       and '/predfinal/offer.js?v=20261021-savings-v38' in live
                       and '/predfinal/checkout.js?' in live
                       and '110906734' in live
@@ -80,6 +80,7 @@ jobs:
                     'all':'data-select-plan="all"' in live,
                     'duo':'data-select-plan="duo"' in live,
                     'savings':'id="smoking-savings"' in live,
+                    'payback_only_featured': 'data-smoking-equivalent="one"' not in live and live.count('data-smoking-equivalent="all"')==1 and 'data-smoking-equivalent="duo"' not in live,
                     'annual_panel': 'data-annual-savings' in live,
                     'refund_hero': 'class="hero-refund-guarantee"' in live,
                     'refund_all_three': live.count('class="price-refund-note"')==3,
