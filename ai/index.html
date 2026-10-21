@@ -2020,5 +2020,11 @@ body.theme-dark .faq #guarantee-faq{scroll-margin-top:22px}
    <button type="button" class="predfinal-sheet-secondary" data-sheet-close>Вернуться на сайт</button>
   </div>
  </dialog>
+ <script data-purpose="open-refund-faq-from-guarantee">
+ document.querySelector('.ai-refund-more')?.addEventListener('click',()=>{
+  const faq=document.getElementById('guarantee-faq');
+  if(faq)faq.open=true;
+ });
+ </script>
  </body>
 </html>
