@@ -35,7 +35,7 @@ try{
   assert.match(await page.locator('.ai-test-hero .hero-priority').innerText(),/40 лет и больше/);
   assert.equal(await page.locator('.ai-test-audience').innerText(),'Для тех, кто курит много лет');
   assert.equal(await page.locator('.ai-test-simple').innerText(),'Без таблеток, пластырей и силы воли.');
-  assert.equal(await page.locator('.ai-test-contents').innerText(),'Два альбома · 20 коротких аудиозаписей');
+  assert.equal(await page.locator('.ai-test-contents').innerText(),'Два альбома · 20 аудиоякорей');
   assert.equal(await page.locator('.ai-test-price-from').innerText(),'от');
   assert.equal(await page.locator('.ai-test-price strong').innerText(),'1 990 ₽');
   assert.equal(await page.locator('.ai-test-price-context').count(),0);
