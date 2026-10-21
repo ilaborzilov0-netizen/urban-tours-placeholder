@@ -6,6 +6,7 @@ on:
       - ".github/workflows/ai-launch-live-audit.yml"
       - "ai/index.html"
       - "yakorya-ai-archive-20261020/index.html"
+      - "ai/archive-20261021/**"
   workflow_dispatch:
 permissions:
   contents: read
@@ -25,14 +26,19 @@ jobs:
               req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0','Cache-Control':'no-cache'})
               with urllib.request.urlopen(req,timeout=18) as r:
                   return r.status,r.read().decode('utf-8','replace')
-          for n in range(1,7):
+          for n in range(1,15):
               try:
                   livecode,live=get('/ai/?launch_audit=20261021&run='+os.getenv('GITHUB_RUN_ID','manual')+'&n='+str(n))
                   oldcode,old=get('/yakorya-ai-archive-20261020/?launch_audit=20261020')
+                  backupcode,backup=get('/ai/archive-20261021/?backup_audit='+str(n))
                   good=(
                       livecode==200 and oldcode==200
                       and 'class="hero-priority"' in live
-                      and ('<span class="hero-offer-contents">Два альбома · 20 аудиоякорей</span>' in live and '<span class="hero-offer-price">от 1 990 ₽</span>' in live and live.index('class="hero-priority"') < live.index('class="hero-offer-summary"') < live.index('class="hero-lead"'))
+                      and '<p class="ai-test-contents">Два альбома · 20 аудиоякорей</p>' in live
+                      and '<span class="ai-test-title-main">Бросьте курить,</span><span class="ai-test-title-rest">просто слушая аудио.</span>' in live
+                      and live.count('class="ai-test-group ai-test-group--')==3
+                      and live.index('class="ai-test-look-at-tiers"') < live.index('class="album-showcase section"') < live.index('class="album-cover album-cover--one"') < live.index('class="ai-test-mechanism"')
+                      and 'data-source="ai-test-even-hero-spacing-20261021-v8"' in live
                       and all(cta in live for cta in (
                           '<a class="btn btn-primary album-showcase-cta" href="#pricing">Выбрать комплект →</a>',
                           '<a class="freedom-vision-cta" href="#pricing">Выбрать комплект →</a>',
@@ -43,7 +49,7 @@ jobs:
                       and 'data-select-plan="duo"' in live
                       and 'id="smoking-savings"' in live
                       and 'data-annual-savings' in live
-                      and 'class="hero-refund-guarantee"' in live
+                      and 'Не подошло? Вернём 100% в течение <span class="ai-test-emphasis">30&nbsp;дней</span>' in live
                       and live.count('class="price-refund-note"')==3
                       and live.count('<span class="price-access-note">Доступ сразу после оплаты</span>')==3
                       and live.count('<span class="price-return-note">Возврат 100% в течение 30 дней</span>')==3
@@ -73,10 +79,16 @@ jobs:
                       and 'href="https://marafon-metod.ru/ai/"' in live
                       and 'АРХИВ · 20 октября 2026' in old
                       and 'Все 12 аудиоякорей' in old
+                      and backupcode==200
+                      and 'Научная логика подхода' in backup
+                      and '<h1>Бросьте курить<br>с помощью<br><span>аудиоякорей.</span></h1>' in backup
+                      and 'src="/ai/archive-20261021/player-progress.js?v=snapshot1"' in backup
                   )
                   flags={
                     'priority': 'class="hero-priority"' in live,
-                    'starting_price_line': ('<span class="hero-offer-contents">Два альбома · 20 аудиоякорей</span>' in live and '<span class="hero-offer-price">от 1 990 ₽</span>' in live and live.index('class="hero-priority"') < live.index('class="hero-offer-summary"') < live.index('class="hero-lead"')),
+                    'starting_price_line': '<p class="ai-test-contents">Два альбома · 20 аудиоякорей</p>' in live and '<p class="ai-test-price">' in live,
+                    'promoted_hero': 'class="hero wrap ai-test-hero"' in live and live.count('class="ai-test-group ai-test-group--')==3,
+                    'below_cover_mechanism': 'class="album-cover album-cover--one"' in live and live.find('class="album-cover album-cover--one"') < live.find('class="ai-test-mechanism"'),
                     'intermediate_ctas': all(cta in live for cta in (
                       '<a class="btn btn-primary album-showcase-cta" href="#pricing">Выбрать комплект →</a>',
                       '<a class="freedom-vision-cta" href="#pricing">Выбрать комплект →</a>',
@@ -90,7 +102,7 @@ jobs:
                     'payback_only_featured': 'data-smoking-equivalent="one"' not in live and live.count('data-smoking-equivalent="all"')==1 and 'data-smoking-equivalent="duo"' not in live,
                     'concise_featured_payback': '<p class="tier-smoking-equivalent" data-smoking-equivalent="all">Комплект окупится за ≈<strong data-smoking-days>15</strong>' in live,
                     'annual_panel': 'data-annual-savings' in live,
-                    'refund_hero': 'class="hero-refund-guarantee"' in live,
+                    'refund_hero': 'Не подошло? Вернём 100% в течение <span class="ai-test-emphasis">30&nbsp;дней</span>' in live,
                     'refund_all_three': live.count('class="price-refund-note"')==3,
                     'two_line_card_notes': live.count('<span class="price-access-note">Доступ сразу после оплаты</span>')==3 and live.count('<span class="price-return-note">Возврат 100% в течение 30 дней</span>')==3,
                     'refund_below_tiers': 'id="guarantee"' in live and live.index('data-price-card="duo"') < live.index('id="guarantee"') < live.index('data-annual-savings'),
@@ -106,6 +118,7 @@ jobs:
                     'canonical':'href="https://marafon-metod.ru/ai/"' in live,
                     'archive_banner':'АРХИВ · 20 октября 2026' in old,
                     'archive_copy':'Все 12 аудиоякорей' in old,
+                    'pre_promotion_snapshot': backupcode==200 and 'Научная логика подхода' in backup,
                   }
                   print('Attempt',n,'new AI live',livecode,'archive live',oldcode,'new page verified',good,'checks:',flags)
                   print('CTA deployment diagnostic:', {
@@ -117,11 +130,11 @@ jobs:
                     'old_final_listen': 'Послушать фрагменты <span aria-hidden="true">↗</span>' in live,
                   })
                   print('Offer placement diagnostic:',{
-                    'contents': '<span class="hero-offer-contents">Два альбома · 20 аудиоякорей</span>' in live,
-                    'price': '<span class="hero-offer-price">от 1 990 ₽</span>' in live,
+                    'contents': '<p class="ai-test-contents">Два альбома · 20 аудиоякорей</p>' in live,
+                    'price': '<p class="ai-test-price"><span class="ai-test-price-from">от</span> <strong>1 990 ₽</strong></p>' in live,
                     'priority_at':live.find('class="hero-priority"'),
-                    'offer_at':live.find('class="hero-offer-summary"'),
-                    'lead_at':live.find('class="hero-lead"'),
+                    'offer_at':live.find('class="ai-test-contents"'),
+                    'lead_at':live.find('class="ai-test-group--trust"'),
                     'old_one_line': 'Два альбома · 20 аудиоякорей · от 1 990 ₽' in live
                   })
                   if good:break
@@ -130,6 +143,10 @@ jobs:
           else:sys.exit('FAIL: live /ai or archive has not deployed')
           for resource in [
               '/predfinal/offer.css?v=20261020-pricing-minimal-v38',
+              '/ai/archive-20261021/offer.css?v=snapshot1',
+              '/ai/archive-20261021/player-progress.js?v=snapshot1',
+              '/ai/archive-20261021/checkout.js?v=snapshot1',
+              '/ai/archive-20261021/goal-tracking.js?v=snapshot1',
               '/ai/player-progress.js?v=20261021-percent-no-seek-v1',
               '/predfinal/checkout.js?v=20261020-errorcode-v11',
               '/ai/offer-compact.css?v=20261018-author1',
