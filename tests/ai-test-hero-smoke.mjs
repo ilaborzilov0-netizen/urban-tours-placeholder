@@ -144,7 +144,7 @@ try{
  await archivedPage.route(/https:\/\/(?:eu-assets\.i\.posthog\.com|eu\.i\.posthog\.com|www\.clarity\.ms|mc\.yandex\.ru|www\.googletagmanager\.com|d2ol7oe51mr4n9\.cloudfront\.net)\//,route=>route.fulfill({status:200,contentType:'application/javascript',body:'/* stub */'}));
  await archivedPage.goto(root+'/ai/archive-20261021/',{waitUntil:'domcontentloaded'});
  await archivedPage.waitForFunction(()=>Boolean(window.aiGoals));
- assert.equal(await archivedPage.locator('.kicker').innerText().then(s=>s.trim()),'Научная логика подхода');
+ assert.equal(await archivedPage.locator('.hero .kicker').innerText().then(s=>s.trim()),'Научная логика подхода');
  assert.equal(await archivedPage.locator('[data-audio-preview] progress.sound-progress').count(),3,'Old archive must keep all three working player progress bars');
  assert.equal(await archivedPage.locator('[data-price-card]').count(),3,'Old archive must keep all prices');
  await archivedPage.locator('[data-select-plan="all"]').click();
