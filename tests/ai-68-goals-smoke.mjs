@@ -86,6 +86,30 @@ try{
  assert.doesNotMatch(await annual.locator('[data-annual-savings-title]').innerText(),/В среднем/);
  const rect=await annual.boundingBox();
  assert.ok(rect&&rect.width<391,'Yearly savings panel fits mobile viewport');
+ // Both contact paths are two lines. Only the second line opens the question sheet.
+ assert.equal(await page.locator('.predfinal-faq-contact').count(),0,'FAQ must end without the redundant contact block');
+ assert.equal(await page.locator('.author-contact-title').innerText(),'Есть вопрос? Напишите мне, разберёмся.','Author section must remain unchanged');
+ for(const selector of ['.predfinal-pricing-contact','.predfinal-final-contact']){
+  const block=page.locator(selector);
+  assert.equal(await block.locator('.ai-question-prompt').innerText(),'Есть вопрос?');
+  assert.equal(await block.locator('[data-open-question]').innerText(),'Напишите мне — разберёмся.');
+  assert.equal(await block.locator('button').count(),1,'Only the second line should be clickable');
+  const styles=await block.locator('[data-open-question]').evaluate(el=>({align:getComputedStyle(el).textAlign,underline:getComputedStyle(el).textDecorationLine}));
+  assert.equal(styles.align,'center','Question link must be centered');
+  assert.ok(styles.underline.includes('underline'),'Question link must be underlined');
+ }
+ const footerQuestion=page.locator('.predfinal-final-contact');
+ const finalButton=page.locator('.predfinal-final-invitation-cta');
+ const positions=await Promise.all([finalButton,footerQuestion,page.locator('footer')].map(el=>el.evaluate(node=>{const r=node.getBoundingClientRect();return {top:r.top+scrollY,bottom:r.bottom+scrollY}})));
+ assert.ok(positions[0].bottom<=positions[1].top && positions[1].bottom<=positions[2].top,'Question must be below final CTA and above the footer');
+ await footerQuestion.locator('[data-open-question]').click();
+ assert.equal(await page.locator('#predfinal-question-dialog').evaluate(el=>el.open),true,'Final question opens existing drawer');
+ assert.ok(await occurred('ai_question_open_faq'),'Keep the tracked after-FAQ question goal');
+ await page.locator('#predfinal-question-dialog [data-sheet-close]').click();
+ await page.locator('.predfinal-pricing-contact [data-open-question]').click();
+ assert.equal(await page.locator('#predfinal-question-dialog').evaluate(el=>el.open),true,'Pricing question opens existing drawer');
+ assert.ok(await occurred('ai_question_open_pricing'),'Keep pricing question goal');
+ await page.locator('#predfinal-question-dialog [data-sheet-close]').click();
  await page.locator('.sound-showcase-action a').click();
  assert.ok(await occurred('ai_to_pricing_demo'),'Demo CTA missing');
  await page.locator('[data-select-plan="all"]').click();
