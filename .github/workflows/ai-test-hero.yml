@@ -45,7 +45,8 @@ jobs:
                   original_status,original=fetch('/ai/?compare_test_variant='+str(i))
                   expected=(
                       status==200 and original_status==200
-                      and 'Бросьте курить,<br><span>просто слушая аудио.</span>' in test
+                      and 'Бросьте курить,<br><span class="ai-test-title-rest">просто слушая <span class="ai-test-title-last">аудио.</span></span>' in test
+                      and 'data-source="ai-test-hero-dominance-peek-cover-20261021-v5"' in test
                       and 'class="ai-test-mechanism"' in test
                       and 'class="ai-test-guarantee"' in test
                       and '<p class="ai-test-audience">Для тех, кто курит много лет</p>' in test
