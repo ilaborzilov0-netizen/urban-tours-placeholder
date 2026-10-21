@@ -98,6 +98,30 @@ try{
   assert.equal(styles.align,'center','Question link must be centered');
   assert.ok(styles.underline.includes('underline'),'Question link must be underlined');
  }
+ // Refund reassurance must be visible in all four placements and actually explain how to request it.
+ const guarantee=page.locator('#guarantee');
+ assert.equal(await page.locator('.hero-refund-guarantee').count(),1,'First screen refund reassurance');
+ assert.match(await page.locator('.hero-refund-guarantee').innerText(),/100%.*30 дней/);
+ assert.equal(await page.locator('.price-refund-note').count(),3,'Every plan needs the same 30-day note');
+ for(const note of await page.locator('.price-refund-note').allInnerTexts()){
+  assert.equal(note,'Можно вернуть деньги в любой момент в течение 30 дней.');
+ }
+ assert.equal(await guarantee.count(),1);
+ assert.match(await guarantee.locator('h3').innerText(),/30 дней гарантии.*100%/);
+ assert.match(await guarantee.innerText(),/Без вопросов и объяснений/);
+ const guaranteeRect=await guarantee.boundingBox();
+ assert.ok(guaranteeRect && guaranteeRect.width<=391,'Guarantee block fits a 390px mobile screen');
+ const guaranteeOrder=await page.locator('#pricing').locator('.pricing, #guarantee, [data-annual-savings]').evaluateAll(elements=>elements.map(e=>e.id||e.className));
+ assert.deepEqual(guaranteeOrder,['pricing','guarantee','annual-savings-panel'],'Guarantee must be directly below all price cards');
+ assert.equal(await page.locator('#guarantee-faq').count(),1);
+ assert.equal(await page.locator('#guarantee-faq').evaluate(e=>e.open),false);
+ await guarantee.locator('.ai-refund-more').click();
+ assert.equal(await page.locator('#guarantee-faq').evaluate(e=>e.open),true,'How-to-refund link must expand FAQ');
+ assert.equal(new URL(page.url()).hash,'#guarantee-faq');
+ assert.match(await page.locator('#guarantee-faq').innerText(),/30 календарных дней/);
+ assert.match(await page.locator('#guarantee-faq').innerText(),/100% стоимости комплекта/);
+ assert.equal(await page.locator('#guarantee-faq a[href="https://t.me/metodborzilova"]').count(),1);
+ assert.equal(await page.locator('#guarantee-faq a[href^="https://max.ru/"]').count(),1);
  const footerQuestion=page.locator('.predfinal-final-contact');
  const finalButton=page.locator('.predfinal-final-invitation-cta');
  const positions=await Promise.all([finalButton,footerQuestion,page.locator('footer')].map(el=>el.evaluate(node=>{const r=node.getBoundingClientRect();return {top:r.top+scrollY,bottom:r.bottom+scrollY}})));
