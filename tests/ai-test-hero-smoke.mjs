@@ -5,7 +5,10 @@ import {chromium} from 'playwright';
 const root='http://127.0.0.1:18773';
 const test=await readFile('ai/test/index.html','utf8');
 const original=await readFile('ai/index.html','utf8');
-assert.ok(original.includes('Научная логика подхода'),'Original /ai/ must stay untouched');
+const archive=await readFile('ai/archive-20261021/index.html','utf8');
+assert.ok(archive.includes('Научная логика подхода'),'Snapshot must preserve old /ai/ hero');
+assert.ok(original.includes('class="hero wrap ai-test-hero"'),'Production /ai/ must now share the promoted hero');
+assert.ok(!original.includes('Научная логика подхода'),'Old production heading must be archived, not live');
 assert.ok(!test.includes('Научная логика подхода'),'Test first screen must not contain science kicker');
 assert.ok(test.includes('href="https://marafon-metod.ru/ai/test/"'),'Test canonical must be unique');
 assert.ok(test.includes('name="robots" content="noindex,nofollow"'),'Test variant should remain out of search indexing');
@@ -124,7 +127,7 @@ try{
   console.log('PASS test variant at',width,'px — hero, covers, quiet tariff link, checkout, calculator, no JS error or overflow');
   await page.close();
  }
- console.log('PASS /ai/ original content unchanged; variant scripts parsed; bank return points to backend-allowlisted /ai/');
+ console.log('PASS shared hero on /ai/ and /ai/test/; archived old hero preserved; variant scripts parsed; bank return is allowlisted');
 }finally{
  await browser?.close();
  server.kill();
