@@ -43,6 +43,12 @@ jobs:
                       and 'data-select-plan="duo"' in live
                       and 'id="smoking-savings"' in live
                       and 'data-annual-savings' in live
+                      and live.count('class="ai-question-prompt"')==2
+                      and 'data-question-location="pricing">Напишите мне — разберёмся.</button>' in live
+                      and 'data-question-location="faq">Напишите мне — разберёмся.</button>' in live
+                      and 'class="predfinal-faq-contact"' not in live
+                      and 'class="author-contact-title">Есть вопрос? Напишите мне, разберёмся.</p>' in live
+                      and live.index('class="predfinal-final-invitation-cta"') < live.index('class="predfinal-final-contact"') < live.index('<footer class="wrap footer">')
                       and 'value="200" aria-describedby="smoking-calc-note"' in live
                       and 'data-smoking-equivalent="one"' in live
                       and 'data-smoking-equivalent="all"' in live
@@ -67,6 +73,10 @@ jobs:
                     'duo':'data-select-plan="duo"' in live,
                     'savings':'id="smoking-savings"' in live,
                     'annual_panel': 'data-annual-savings' in live,
+                    'question_prompts_two_lines': live.count('class="ai-question-prompt"')==2,
+                    'footer_question_below_cta': 'class="predfinal-final-contact"' in live and live.index('class="predfinal-final-invitation-cta"') < live.index('class="predfinal-final-contact"') < live.index('<footer class="wrap footer">'),
+                    'no_question_in_faq': 'class="predfinal-faq-contact"' not in live,
+                    'author_question_unchanged': 'class="author-contact-title">Есть вопрос? Напишите мне, разберёмся.</p>' in live,
                     'default_pack_200':'value="200" aria-describedby="smoking-calc-note"' in live,
                     'new_savings_script':'/predfinal/offer.js?v=20261021-savings-v38' in live,
                     'checkout_script':'/predfinal/checkout.js?' in live,
