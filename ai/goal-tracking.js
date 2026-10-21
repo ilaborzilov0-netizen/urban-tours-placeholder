@@ -150,7 +150,7 @@
  ];
  links.forEach(([selector,id])=>document.querySelectorAll(selector).forEach(el=>el.addEventListener('click',()=>emit(id))));
 
- // Calculator: one real change compared with the page's 20/250 starting values.
+ // Calculator: one real change compared with the page's 20/200 starting values.
  const calculator=document.getElementById('smoking-savings');
  if(calculator){
   const inputs=calculator.querySelectorAll('[data-calc-input]');
