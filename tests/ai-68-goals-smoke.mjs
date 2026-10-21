@@ -7,9 +7,13 @@ assert.equal(config.goals.length,68);
 const expectedIds=new Set(config.goals.map(x=>x.id));
 assert.equal(expectedIds.size,68);
 assert.equal(new Set(config.goals.map(x=>x.name)).size,68);
-for(const p of ['ai/goal-tracking.js','predfinal/offer.js','predfinal/checkout.js'])new Function(await readFile(p,'utf8'));
+for(const p of ['ai/goal-tracking.js','ai/player-progress.js','predfinal/checkout.js'])new Function(await readFile(p,'utf8'));
 const markup=await readFile('ai/index.html','utf8');
 assert.match(markup,/\/ai\/goal-tracking\.js\?v=20261020-semantic-v2/);
+ assert.match(markup,/\/ai\/player-progress\.js\?v=20261021-percent-no-seek-v1/);
+ assert.equal((markup.match(/<progress class="sound-progress"/g)||[]).length,3);
+ assert.ok(!markup.includes('class="sound-seek"'), 'Original must have no seek input');
+ assert.ok(!markup.includes('0:00 /'), 'Original must show percent instead of elapsed time');
 const child=spawn('python3',['-m','http.server','18770','--bind','127.0.0.1'],{stdio:'ignore'});
 let browser;
 try{
@@ -158,6 +162,30 @@ try{
  assert.ok(await occurred('ai_plan_4490_click'),'4490 plan not emitted');
  await page.locator('#predfinal-checkout-dialog [data-sheet-close]').click();
 
+ // Read-only progress cannot be dragged, typed into, or clicked to seek; only the play/stop button controls the track.
+ assert.equal(await page.locator('[data-audio-preview] progress.sound-progress').count(),3);
+ assert.equal(await page.locator('[data-audio-preview] input[type="range"]').count(),0);
+ for(const block of await page.locator('[data-audio-preview]').all()){
+  const progress=block.locator('progress.sound-progress');
+  assert.equal(await progress.getAttribute('max'),'100');
+  assert.equal(await progress.getAttribute('value'),'0');
+  assert.equal((await block.locator('.sound-elapsed').innerText()).trim(),'0%');
+ }
+ await page.evaluate(()=>{
+  const audio=document.querySelector('[data-audio-preview="author"] audio');
+  let current=0;
+  Object.defineProperty(audio,'currentTime',{configurable:true,get:()=>current,set:v=>{current=v}});
+  current=18.8;
+  audio.dispatchEvent(new Event('timeupdate'));
+ });
+ assert.equal(await page.locator('[data-audio-preview="author"] progress').evaluate(e=>e.value),50);
+ assert.equal(await page.locator('[data-audio-preview="author"] .sound-elapsed').innerText(),'50%');
+ await page.evaluate(()=>{
+  const audio=document.querySelector('[data-audio-preview="author"] audio');
+  audio.currentTime=0;
+  audio.dispatchEvent(new Event('timeupdate'));
+ });
+ assert.equal(await page.locator('[data-audio-preview="author"] .sound-elapsed').innerText(),'0%');
  // Seeking instantly to 90% MUST NOT produce either listened milestone.
  await page.evaluate(()=>{
   const a=document.querySelector('[data-audio-preview="author"] audio');
@@ -207,7 +235,7 @@ try{
  assert.ok(emitted.length>15,'Unusually few events captured');
  for(const id of emitted)assert.ok(expectedIds.has(id),'Unknown goal '+id);
  assert.deepEqual(failures,[],'Browser threw an error');
- console.log('PASS: 68 catalog entries; DOM, UX, all tiers, checkout, bank verification mapping, 50/90 real-playback-seeking guard; no external analytics or payments.');
+ console.log('PASS: 68 catalog entries; DOM, UX, all tiers, checkout, bank verification mapping, 50/90 real-playback-seeking guard and noninteractive percentage demo; no external analytics or payments.');
 }finally{
  await browser?.close();
  child.kill('SIGTERM');
