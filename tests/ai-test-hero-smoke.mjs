@@ -42,7 +42,7 @@ try{
   assert.match((await page.locator('.ai-test-access').innerText()).replace(/\s+/g,' ').trim(),/^✓ Доступ сразу после оплаты$/);
   assert.equal(await page.locator('.ai-test-access .ai-test-emphasis').innerText(),'сразу');
   assert.equal(await page.locator('.ai-test-guarantee .ai-test-emphasis').innerText(),'30\u00a0дней');
-  assert.match((await page.locator('.ai-test-guarantee').innerText()).replace(/\u00a0/g,' '),/30 дней/);
+  assert.equal((await page.locator('.ai-test-guarantee').innerText()).replace(/\s+/g,' ').trim(),'✓ Не подошло? Вернём 100% в течение 30 дней');
   const refundLayout=await page.locator('.ai-test-guarantee').evaluate(p=>{
    const mark=p.querySelector('.ai-test-emphasis');
    return {parentDisplay:getComputedStyle(p).display,markDisplay:getComputedStyle(mark).display,markWhiteSpace:getComputedStyle(mark).whiteSpace,refundWidth:p.getBoundingClientRect().width};
@@ -61,7 +61,7 @@ try{
    return {top:e.getBoundingClientRect().top,first:measure(first),second:measure(second),fullWidth:e.getBoundingClientRect().width};
   });
   console.log('Headline hierarchy',width,JSON.stringify(title));
-  assert.ok(title.top>=90,'Header needs a top pause: '+JSON.stringify(title));
+  assert.ok(title.top>=115,'Header needs more top breathing room than previous version: '+JSON.stringify(title));
   assert.ok(title.first.font>title.second.font*1.45,'The first phrase must dominate the subtitle: '+JSON.stringify(title));
   if(width===360)assert.ok(title.first.font>=46,'360px main headline must be enlarged: '+title.first.font);
   if(width===390)assert.ok(title.first.font>=49,'390px main headline must be enlarged: '+title.first.font);
@@ -87,6 +87,7 @@ try{
   });
   assert.ok(breaks.first>=20&&breaks.second>=22,'Three groups need visible pauses: '+JSON.stringify(breaks));
   assert.ok(breaks.first>breaks.inside*1.5 && breaks.second>breaks.checkGap*1.5,'Groups must be spaced more than related statements: '+JSON.stringify(breaks));
+  assert.ok(Math.abs(breaks.first-breaks.second)<=4,'Major section gaps must follow a consistent rhythm: '+JSON.stringify(breaks));
   assert.equal(await page.locator('.album-cover img').count(),2,'Keep album covers');
   assert.equal(await page.locator('[data-price-card]').count(),3,'Keep all tariffs');
   assert.equal(await page.locator('[data-annual-savings]').count(),1,'Keep yearly savings panel');
