@@ -145,8 +145,8 @@
  });
  const links=[
   ['.sound-showcase-action a[href="#pricing"]','ai_to_pricing_demo'],
-  ['.freedom-vision-cta[href="#sounds"]','ai_to_demo_explainer'],
-  ['.predfinal-final-invitation-cta[href="#sounds"]','ai_to_demo_final']
+  ['.freedom-vision-cta[href="#pricing"]','ai_to_demo_explainer'],
+  ['.predfinal-final-invitation-cta[href="#pricing"]','ai_to_demo_final']
  ];
  links.forEach(([selector,id])=>document.querySelectorAll(selector).forEach(el=>el.addEventListener('click',()=>emit(id))));
 
