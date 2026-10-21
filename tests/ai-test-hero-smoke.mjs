@@ -40,18 +40,39 @@ try{
   assert.equal(await page.locator('.ai-test-price strong').innerText(),'1 990 ₽');
   assert.equal(await page.locator('.ai-test-price-context').count(),0);
   assert.match((await page.locator('.ai-test-access').innerText()).replace(/\s+/g,' ').trim(),/^✓ Доступ сразу после оплаты$/);
-  assert.equal(await page.locator('.ai-test-access strong').innerText(),'сразу');
-  assert.equal(await page.locator('.ai-test-guarantee strong').innerText(),'30 дней');
-  assert.match(await page.locator('.ai-test-guarantee').innerText(),/30 дней/);
+  assert.equal(await page.locator('.ai-test-access .ai-test-emphasis').innerText(),'сразу');
+  assert.equal(await page.locator('.ai-test-guarantee .ai-test-emphasis').innerText(),'30\u00a0дней');
+  assert.match((await page.locator('.ai-test-guarantee').innerText()).replace(/\u00a0/g,' '),/30 дней/);
+  const refundLayout=await page.locator('.ai-test-guarantee').evaluate(p=>{
+   const mark=p.querySelector('.ai-test-emphasis');
+   return {parentDisplay:getComputedStyle(p).display,markDisplay:getComputedStyle(mark).display,markWhiteSpace:getComputedStyle(mark).whiteSpace,refundWidth:p.getBoundingClientRect().width};
+  });
+  assert.equal(refundLayout.parentDisplay,'block','Refund must be a normal flowing paragraph, not flex');
+  assert.equal(refundLayout.markDisplay,'inline','Highlighted phrase must stay inside its text flow');
+  assert.equal(refundLayout.markWhiteSpace,'nowrap','30 days must remain together');
   const fontInfo=await page.evaluate(()=>{
    const size=selector=>parseFloat(getComputedStyle(document.querySelector(selector)).fontSize);
-   return {mechanism:size('.ai-test-mechanism'),access:size('.ai-test-access'),guarantee:size('.ai-test-guarantee'),tariffLink:size('.ai-test-look-at-tiers a')};
+   return {mechanism:size('.album-display--one>.ai-test-mechanism'),access:size('.ai-test-access'),guarantee:size('.ai-test-guarantee'),tariffLink:size('.ai-test-look-at-tiers a')};
   });
   if(width<=390)assert.ok(Object.values(fontInfo).every(v=>v>=17), 'All mobile trust copy and tariff link must be readable: '+JSON.stringify(fontInfo));
   const heroTop=await page.locator('.ai-test-hero h1').evaluate(e=>e.getBoundingClientRect().top);
   assert.ok(heroTop>=75,'Header needs 1–2 lines of breathing room above it: '+heroTop);
-  assert.match(await page.locator('.ai-test-mechanism').innerText(),/курить больше не хочется/);
-  assert.ok((await page.locator('.ai-test-mechanism').innerText()).length<175,'Keep mechanism short enough to reveal cover earlier');
+  assert.equal(await page.locator('.ai-test-group').count(),3);
+  assert.equal(await page.locator('.ai-test-hero .ai-test-mechanism').count(),0,'No dense mechanism paragraph before first cover');
+  assert.equal(await page.locator('.album-display--one > .ai-test-mechanism').count(),1,'Explanation belongs directly below first album cover');
+  assert.match(await page.locator('.album-display--one > .ai-test-mechanism').innerText(),/курить больше не хочется/);
+  const breaks=await page.evaluate(()=>{
+   const rect=s=>document.querySelector(s).getBoundingClientRect();
+   const gap=(a,b)=>rect(b).top-rect(a).bottom;
+   return {
+    first:gap('.ai-test-group--heading','.ai-test-group--offer'),
+    second:gap('.ai-test-group--offer','.ai-test-group--trust'),
+    inside:gap('.ai-test-simple','.ai-test-purchase-reassurance'),
+    checkGap:gap('.ai-test-access','.ai-test-guarantee')
+   };
+  });
+  assert.ok(breaks.first>=20&&breaks.second>=22,'Three groups need visible pauses: '+JSON.stringify(breaks));
+  assert.ok(breaks.first>breaks.inside*1.5 && breaks.second>breaks.checkGap*1.5,'Groups must be spaced more than related statements: '+JSON.stringify(breaks));
   assert.equal(await page.locator('.album-cover img').count(),2,'Keep album covers');
   assert.equal(await page.locator('[data-price-card]').count(),3,'Keep all tariffs');
   assert.equal(await page.locator('[data-annual-savings]').count(),1,'Keep yearly savings panel');
@@ -60,11 +81,17 @@ try{
   assert.equal(await page.locator('.ai-test-look-at-tiers a').evaluate(e=>getComputedStyle(e).backgroundColor),'rgba(0, 0, 0, 0)','The first-screen journey link must have no colored CTA background');
   const offsets=await page.evaluate(()=>{
    const top=x=>document.querySelector(x).getBoundingClientRect().top+scrollY;
-   return {link:top('.ai-test-look-at-tiers'),cover:top('.album-display--one .album-cover'),mechanism:top('.ai-test-mechanism')};
+   return {
+    trust:top('.ai-test-group--trust'),
+    link:top('.ai-test-look-at-tiers'),
+    cover:top('.album-display--one .album-cover'),
+    mechanism:top('.album-display--one>.ai-test-mechanism'),
+    coverBottom:document.querySelector('.album-display--one .album-cover').getBoundingClientRect().bottom+scrollY
+   };
   });
   console.log('Hero layout',width,JSON.stringify(offsets));
-  assert.ok(offsets.mechanism<offsets.link && offsets.link<offsets.cover,'Quiet link must come directly after mechanism and before cover');
-  if(width<=390)assert.ok(offsets.cover<844,'First album cover should still start within initial 844px mobile viewport at '+width+'px: '+offsets.cover);
+  assert.ok(offsets.trust<offsets.link && offsets.link<offsets.cover && offsets.coverBottom<=offsets.mechanism,'Link precedes cover; description follows cover');
+  if(width<=390)assert.ok(offsets.cover>=495&&offsets.cover<=760,'Upper part of album cover should be visible at the bottom of 844px viewport at '+width+'px: '+offsets.cover);
   const screen=await page.evaluate(()=>({scrollWidth:document.documentElement.scrollWidth,clientWidth:document.documentElement.clientWidth}));
   assert.ok(screen.scrollWidth<=screen.clientWidth+2,'Horizontal overflow at '+width+': '+JSON.stringify(screen));
   await page.locator('.ai-test-look-at-tiers a').click();
