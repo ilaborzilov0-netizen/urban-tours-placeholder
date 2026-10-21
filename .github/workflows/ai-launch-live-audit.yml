@@ -58,11 +58,14 @@ jobs:
                       and 'class="author-contact-title">Есть вопрос? Напишите мне, разберёмся.</p>' in live
                       and live.index('class="predfinal-final-invitation-cta"') < live.index('class="predfinal-final-contact"') < live.index('<footer class="wrap footer">')
                       and 'value="200" aria-describedby="smoking-calc-note"' in live
+                      and live.count('<progress class="sound-progress"')==3
+                      and 'class="sound-seek"' not in live
+                      and '0:00 /' not in live
                       and 'data-smoking-equivalent="one"' not in live
                       and live.count('data-smoking-equivalent="all"')==1
                       and '<p class="tier-smoking-equivalent" data-smoking-equivalent="all">Комплект окупится за ≈<strong data-smoking-days>15</strong>' in live
                       and 'data-smoking-equivalent="duo"' not in live
-                      and '/predfinal/offer.js?v=20261021-savings-v38' in live
+                      and '/ai/player-progress.js?v=20261021-percent-no-seek-v1' in live
                       and '/predfinal/checkout.js?' in live
                       and '110906734' in live
                       and 'href="https://marafon-metod.ru/ai/"' in live
@@ -81,6 +84,7 @@ jobs:
                     'all':'data-select-plan="all"' in live,
                     'duo':'data-select-plan="duo"' in live,
                     'savings':'id="smoking-savings"' in live,
+                    'read_only_percentage_demos': live.count('<progress class="sound-progress"')==3 and 'class="sound-seek"' not in live and '0:00 /' not in live,
                     'payback_only_featured': 'data-smoking-equivalent="one"' not in live and live.count('data-smoking-equivalent="all"')==1 and 'data-smoking-equivalent="duo"' not in live,
                     'concise_featured_payback': '<p class="tier-smoking-equivalent" data-smoking-equivalent="all">Комплект окупится за ≈<strong data-smoking-days>15</strong>' in live,
                     'annual_panel': 'data-annual-savings' in live,
@@ -93,7 +97,7 @@ jobs:
                     'no_question_in_faq': 'class="predfinal-faq-contact"' not in live,
                     'author_question_unchanged': 'class="author-contact-title">Есть вопрос? Напишите мне, разберёмся.</p>' in live,
                     'default_pack_200':'value="200" aria-describedby="smoking-calc-note"' in live,
-                    'new_savings_script':'/predfinal/offer.js?v=20261021-savings-v38' in live,
+                    'new_savings_script':'/ai/player-progress.js?v=20261021-percent-no-seek-v1' in live,
                     'checkout_script':'/predfinal/checkout.js?' in live,
                     'metrika':'110906734' in live,
                     'canonical':'href="https://marafon-metod.ru/ai/"' in live,
@@ -123,7 +127,7 @@ jobs:
           else:sys.exit('FAIL: live /ai or archive has not deployed')
           for resource in [
               '/predfinal/offer.css?v=20261020-pricing-minimal-v38',
-              '/predfinal/offer.js?v=20261021-savings-v38',
+              '/ai/player-progress.js?v=20261021-percent-no-seek-v1',
               '/predfinal/checkout.js?v=20261020-errorcode-v11',
               '/ai/offer-compact.css?v=20261018-author1',
               '/ai/checkout.js?v=20261018-author1']:
