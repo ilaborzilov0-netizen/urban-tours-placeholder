@@ -4,6 +4,8 @@ on:
     branches: [main]
     paths:
       - "ai/test/**"
+      - "ai/index.html"
+      - "ai/archive-20261021/**"
       - "tests/ai-test-hero-smoke.mjs"
       - ".github/workflows/ai-test-hero.yml"
   workflow_dispatch:
@@ -77,7 +79,9 @@ jobs:
                       and 'src="/ai/test/goal-tracking.js?' in test
                       and test.count('<article class="price-card')==3
                       and 'Научная логика подхода' not in test
-                      and 'Научная логика подхода' in original
+                      and 'class="hero wrap ai-test-hero"' in original
+                      and 'Научная логика подхода' not in original
+                      and '<p class="ai-test-contents">Два альбома · 20 аудиоякорей</p>' in original
                   )
                   print('Published variant attempt',i,'status',status,'original',original_status,'expected',expected,'bytes',len(test))
                   if expected:
