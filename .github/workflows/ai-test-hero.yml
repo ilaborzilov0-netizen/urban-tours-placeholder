@@ -45,13 +45,15 @@ jobs:
                   original_status,original=fetch('/ai/?compare_test_variant='+str(i))
                   expected=(
                       status==200 and original_status==200
-                      and 'Бросьте курить,<br><span class="ai-test-title-rest">просто слушая <span class="ai-test-title-last">аудио.</span></span>' in test
+                      and 'class="ai-test-title-main">Бросьте курить,</span><span class="ai-test-title-rest">просто слушая аудио.</span>' in test
+                      and 'data-source="ai-test-large-lead-one-line-subtitle-20261021-v6"' in test
                       and 'data-source="ai-test-hero-dominance-peek-cover-20261021-v5"' in test
                       and 'class="ai-test-mechanism"' in test
                       and 'class="ai-test-guarantee"' in test
                       and '<p class="ai-test-audience">Для тех, кто курит много лет</p>' in test
                       and '<p class="ai-test-contents">Два альбома · 20 коротких аудиозаписей</p>' in test
-                      and 'Без таблеток, пластырей и силы воли. Просто слушаете.' in test
+                      and '<p class="ai-test-simple">Без таблеток, пластырей и силы воли.</p>' in test
+                      and 'Просто слушаете.' not in test
                       and '<p class="ai-test-price"><span class="ai-test-price-from">от</span> <strong>1 990 ₽</strong></p>' in test
                       and 'за оба альбома в одном звучании' not in test
                       and 'Доступ <span class="ai-test-emphasis">сразу</span> после оплаты' in test
