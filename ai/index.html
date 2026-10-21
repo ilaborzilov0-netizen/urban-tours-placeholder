@@ -25,7 +25,7 @@
  <script defer src="/ai/posthog-init.js?v=20261020-prod1"></script>
  <script defer src="/analytics.js?v=20261020-clarity-ai1"></script>
  <script defer src="/ai/goal-tracking.js?v=20261020-semantic-v2"></script>
- <script defer src="/predfinal/offer.js?v=20261021-savings-v38"></script>
+ <script defer src="/ai/player-progress.js?v=20261021-percent-no-seek-v1"></script>
  <script defer src="/predfinal/checkout.js?v=20261020-errorcode-v11"></script>
  <script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return}k=e.createElement(t);a=e.getElementsByTagName(t)[0];k.async=1;k.src=r;a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=110906734','ym');ym(110906734,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});</script>
  <style data-source="pricing-v6-critical">/* /predfinal/: 3 equal-content price tiers, mobile stack and aligned desktop grid */
@@ -1500,6 +1500,33 @@ body.theme-dark .faq #guarantee-faq{scroll-margin-top:22px}
  body.theme-dark .prefinal-pricing-section .ai-refund-copy p{font-size:16px}
 }
 </style>
+<style data-source="ai-demo-percent-no-seek-20261021">
+/* Original /ai/ only: progress is read-only; no draggable handles or elapsed-time readout. */
+body.theme-dark .sound-showcase .sound-player-timeline{
+ display:flex;align-items:center;gap:10px;min-width:0;
+}
+body.theme-dark .sound-showcase progress.sound-progress{
+ display:block;flex:1;min-width:0;width:100%;height:8px;
+ border:0;border-radius:99px;overflow:hidden;appearance:none;-webkit-appearance:none;
+ background:#475347;color:#dfff00;pointer-events:none;cursor:default;
+}
+body.theme-dark .sound-showcase progress.sound-progress::-webkit-progress-bar{
+ background:#475347;border-radius:99px;
+}
+body.theme-dark .sound-showcase progress.sound-progress::-webkit-progress-value{
+ background:#dfff00;border-radius:99px;transition:width .18s linear;
+}
+body.theme-dark .sound-showcase progress.sound-progress::-moz-progress-bar{
+ background:#dfff00;border-radius:99px;
+}
+body.theme-dark .sound-showcase .sound-player-timeline .sound-elapsed{
+ min-width:38px;text-align:right;white-space:nowrap;
+ color:#edf5e9;font-size:14px;font-variant-numeric:tabular-nums;
+}
+@media(max-width:720px){
+ body.theme-dark .sound-showcase .sound-player-timeline .sound-elapsed{font-size:13px}
+}
+</style>
 </head>
 <body class="theme-dark vision-mode">
  <main>
@@ -1610,7 +1637,7 @@ body.theme-dark .faq #guarantee-faq{scroll-margin-top:22px}
     <p>Низкий голос и спокойное, доверительное исполнение.</p>
     <div class="sound-playback" data-audio-preview="author" data-audio-duration="37.6" data-audio-src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/ed83f511-977e-4fe7-840c-e8ff1222c3a2.mp3">
  <button class="sound-play" type="button" data-play="author" aria-label="Воспроизвести фрагмент: 38 секунд">▶ Послушать фрагмент · 38 секунд</button>
- <div class="sound-player-timeline"><input type="range" min="0" max="37.6" step=".1" value="0" aria-label="Позиция воспроизведения" class="sound-seek"><span class="sound-elapsed">0:00 / 0:38</span></div>
+ <div class="sound-player-timeline"><progress class="sound-progress" max="100" value="0" aria-label="Прослушано, процентов"></progress><span class="sound-elapsed" aria-live="off">0%</span></div>
  <audio preload="none" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/ed83f511-977e-4fe7-840c-e8ff1222c3a2.mp3" class="sound-audio"></audio>
 </div>
     <div class="sound-playback-status">
@@ -1627,7 +1654,7 @@ body.theme-dark .faq #guarantee-faq{scroll-margin-top:22px}
     <p>Выразительная мелодия, живые инструменты и запоминающийся припев.</p>
     <div class="sound-playback" data-audio-preview="estrada" data-audio-duration="34.12" data-audio-src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/40afffa9-c314-45d7-9052-15ecd65cc48c.mp3">
  <button class="sound-play" type="button" data-play="estrada" aria-label="Воспроизвести фрагмент: 34 секунды">▶ Послушать фрагмент · 34 секунды</button>
- <div class="sound-player-timeline"><input type="range" min="0" max="34.12" step=".1" value="0" aria-label="Позиция воспроизведения" class="sound-seek"><span class="sound-elapsed">0:00 / 0:34</span></div>
+ <div class="sound-player-timeline"><progress class="sound-progress" max="100" value="0" aria-label="Прослушано, процентов"></progress><span class="sound-elapsed" aria-live="off">0%</span></div>
  <audio preload="none" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/40afffa9-c314-45d7-9052-15ecd65cc48c.mp3" class="sound-audio"></audio>
 </div>
     <div class="sound-playback-status">
@@ -1644,7 +1671,7 @@ body.theme-dark .faq #guarantee-faq{scroll-margin-top:22px}
     <p>Мягкий поп, ровный ритм и современная аранжировка.</p>
     <div class="sound-playback" data-audio-preview="modern" data-audio-duration="32.94" data-audio-src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/2c4c9344-789f-442a-9311-ad9daf6211a2.mp3">
  <button class="sound-play" type="button" data-play="modern" aria-label="Воспроизвести фрагмент: 33 секунды">▶ Послушать фрагмент · 33 секунды</button>
- <div class="sound-player-timeline"><input type="range" min="0" max="32.94" step=".1" value="0" aria-label="Позиция воспроизведения" class="sound-seek"><span class="sound-elapsed">0:00 / 0:33</span></div>
+ <div class="sound-player-timeline"><progress class="sound-progress" max="100" value="0" aria-label="Прослушано, процентов"></progress><span class="sound-elapsed" aria-live="off">0%</span></div>
  <audio preload="none" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/2c4c9344-789f-442a-9311-ad9daf6211a2.mp3" class="sound-audio"></audio>
 </div>
     <div class="sound-playback-status">
