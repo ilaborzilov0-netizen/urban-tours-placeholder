@@ -109,8 +109,11 @@ try{
  }
  // Refund reassurance must be visible in all four placements and actually explain how to request it.
  const guarantee=page.locator('#guarantee');
- assert.equal(await page.locator('.hero-refund-guarantee').count(),1,'First screen refund reassurance');
- assert.match(await page.locator('.hero-refund-guarantee').innerText(),/100%.*30 дней/);
+ assert.equal(await page.locator('.ai-test-hero').count(),1,'Promoted 50+ first-screen composition');
+ assert.equal(await page.locator('.ai-test-contents').innerText(),'Два альбома · 20 аудиоякорей');
+ assert.match((await page.locator('.ai-test-guarantee').innerText()).replace(/\s+/g,' '),/Не подошло\? Вернём 100% в течение 30 дней/);
+ assert.equal(await page.locator('.ai-test-hero .ai-test-mechanism').count(),0,'Mechanism should appear only after first album cover');
+ assert.equal(await page.locator('.album-display--one > .ai-test-mechanism').count(),1);
  assert.equal(await page.locator('.price-refund-note').count(),3,'Every plan needs the same two-line note');
  for(const note of await page.locator('.price-refund-note').all()){
   assert.equal(await note.locator('.price-access-note').innerText(),'Доступ сразу после оплаты');
