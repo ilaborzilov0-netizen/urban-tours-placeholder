@@ -6,7 +6,7 @@ import {chromium} from 'playwright';
 const pageHtml=await fs.readFile('ai/index.html','utf8');
 const install=await fs.readFile('ai/posthog-init.js','utf8');
 const clarity=await fs.readFile('analytics.js','utf8');
-const offer=await fs.readFile('predfinal/offer.js','utf8');
+const offer=await fs.readFile('ai/player-progress.js','utf8');
 const checkout=await fs.readFile('predfinal/checkout.js','utf8');
 assert.match(pageHtml,/src="\/ai\/posthog-init\.js\?v=20261020-prod1"/);
 assert.match(pageHtml,/https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-J076WS14NV/);
