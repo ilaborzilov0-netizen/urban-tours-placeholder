@@ -67,6 +67,14 @@ jobs:
                     'archive_copy':'Все 12 аудиоякорей' in old,
                   }
                   print('Attempt',n,'new AI live',livecode,'archive live',oldcode,'new page verified',good,'checks:',flags)
+                  print('CTA deployment diagnostic:', {
+                    'demo_to_pricing': '<a class="btn btn-primary album-showcase-cta" href="#pricing">Выбрать комплект</a>' in live,
+                    'freedom_to_pricing': '<a class="freedom-vision-cta" href="#pricing">Выбрать комплект</a>' in live,
+                    'final_to_pricing': '<a class="predfinal-final-invitation-cta" href="#pricing">Выбрать комплект</a>' in live,
+                    'old_demo_price': 'Выбрать комплект · от 1 990 ₽ →' in live,
+                    'old_freedom_listen': 'Начните с прослушивания' in live,
+                    'old_final_listen': 'Послушать фрагменты <span aria-hidden="true">↗</span>' in live,
+                  })
                   print('Offer placement diagnostic:',{
                     'contents': '<span class="hero-offer-contents">Два альбома · 20 аудиоякорей</span>' in live,
                     'price': '<span class="hero-offer-price">от 1 990 ₽</span>' in live,
