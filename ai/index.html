@@ -1400,6 +1400,51 @@ body.theme-dark .prefinal-pricing-section .annual-savings-detail{
  body.theme-dark .prefinal-pricing-section .annual-savings-detail{font-size:16px}
 }
 </style>
+<style data-source="ai-question-after-final-cta-20261021">
+/* Secondary question path: plain first line, only the second line is clickable. */
+body.theme-dark .prefinal-pricing-section .predfinal-pricing-contact{
+ display:flex;flex-direction:column;align-items:center;text-align:center;
+ gap:3px;margin-top:22px;
+}
+body.theme-dark .predfinal-final-invitation .predfinal-final-actions{
+ display:inline-flex;flex-direction:column;align-items:stretch;
+ max-width:100%;vertical-align:top;
+}
+body.theme-dark .predfinal-final-invitation .predfinal-final-contact{
+ display:flex;flex-direction:column;align-items:center;text-align:center;
+ gap:3px;margin:22px 0 0;padding:0;
+}
+body.theme-dark .prefinal-pricing-section .predfinal-pricing-contact .ai-question-prompt,
+body.theme-dark .predfinal-final-invitation .predfinal-final-contact .ai-question-prompt{
+ margin:0;padding:0;color:#d8e4d2;font-size:clamp(17px,1.7vw,19px);
+ font-weight:500;line-height:1.35;letter-spacing:0;
+}
+body.theme-dark .prefinal-pricing-section .predfinal-pricing-contact .predfinal-question-cta,
+body.theme-dark .predfinal-final-invitation .predfinal-final-contact .predfinal-question-cta{
+ display:inline-block;max-width:100%;min-height:36px;
+ padding:4px 3px;margin:0;border:0;background:transparent;
+ color:#e5f1df;font-size:clamp(18px,1.85vw,20px);font-weight:700;
+ line-height:1.38;text-align:center;text-decoration:underline;
+ text-decoration-color:#a1c58a;text-decoration-thickness:1px;text-underline-offset:4px;
+ cursor:pointer;white-space:normal;
+}
+body.theme-dark .prefinal-pricing-section .predfinal-pricing-contact .predfinal-question-cta:hover,
+body.theme-dark .predfinal-final-invitation .predfinal-final-contact .predfinal-question-cta:hover{
+ color:#dfff42;text-decoration-color:#dfff42;
+}
+@media(max-width:720px){
+ body.theme-dark .predfinal-final-invitation .predfinal-final-actions{
+  display:flex;width:100%;
+ }
+ body.theme-dark .predfinal-final-invitation .predfinal-final-contact{
+  margin-top:22px;
+ }
+ body.theme-dark .prefinal-pricing-section .predfinal-pricing-contact .ai-question-prompt,
+ body.theme-dark .predfinal-final-invitation .predfinal-final-contact .ai-question-prompt{font-size:18px}
+ body.theme-dark .prefinal-pricing-section .predfinal-pricing-contact .predfinal-question-cta,
+ body.theme-dark .predfinal-final-invitation .predfinal-final-contact .predfinal-question-cta{font-size:19px}
+}
+</style>
 </head>
 <body class="theme-dark vision-mode">
  <main>
@@ -1785,7 +1830,8 @@ body.theme-dark .prefinal-pricing-section .annual-savings-detail{
     <p class="annual-savings-detail" data-annual-savings-detail>Столько можно сэкономить на сигаретах при 20 сигаретах в день и пачке за 200 ₽. Если расход выше — экономия больше.</p>
    </section>
    <div class="predfinal-pricing-contact">
-    <button type="button" class="predfinal-question-cta" data-open-question data-question-location="pricing">Есть вопрос? Напишите мне, разберёмся.</button>
+    <p class="ai-question-prompt">Есть вопрос?</p>
+    <button type="button" class="predfinal-question-cta" data-open-question data-question-location="pricing">Напишите мне — разберёмся.</button>
    </div>
    <p class="copyright-under-pricing"><span class="copyright-icon" aria-hidden="true">©</span> Авторский музыкальный продукт. Материалы альбома защищены авторским правом. Копирование и распространение без разрешения запрещены.</p>
 
@@ -1828,16 +1874,19 @@ body.theme-dark .prefinal-pricing-section .annual-savings-detail{
      <p>Можно слушать с телефона, в машине, дома — когда удобно.</p>
      <p>Никаких приложений устанавливать не нужно, всё открывается по ссылке.</p>
     </details>
-    <div class="predfinal-faq-contact">
-     <button type="button" class="predfinal-question-cta" data-open-question data-question-location="faq">Есть вопрос? Напишите мне, разберёмся.</button>
-    </div>
    </div>
   </div></section>
   <section class="section predfinal-final-invitation" id="start-today" aria-labelledby="start-today-heading">
    <div class="wrap">
     <h2 id="start-today-heading">Ещё десять лет с сигаретой начинаются с <em>«брошу потом».</em></h2>
     <p>Начните с прослушивания сегодня.</p>
-    <a class="predfinal-final-invitation-cta" href="#pricing">Выбрать комплект →</a>
+    <div class="predfinal-final-actions">
+     <a class="predfinal-final-invitation-cta" href="#pricing">Выбрать комплект →</a>
+     <div class="predfinal-final-contact">
+      <p class="ai-question-prompt">Есть вопрос?</p>
+      <button type="button" class="predfinal-question-cta" data-open-question data-question-location="faq">Напишите мне — разберёмся.</button>
+     </div>
+    </div>
    </div>
   </section>
  </main>
