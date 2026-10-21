@@ -123,8 +123,8 @@ sampleBlocks.forEach(block=>{
   const pct=completedThisPlay?100:Math.max(0,Math.min(100,Math.floor((t/limit)*100)));
   progress.value=pct;
   time.textContent=pct+'%';
-  button.textContent=playing?'❚❚ Пауза':completed?'↻ Послушать ещё раз':'▶ Послушать фрагмент · '+durationLabel+' '+secondsWord;
-  button.setAttribute('aria-label',playing?'Приостановить прослушивание':completed?'Послушать фрагмент ещё раз':'Воспроизвести фрагмент');
+  button.textContent=playing?'■ Стоп':completed?'↻ Послушать ещё раз':'▶ Послушать фрагмент · '+durationLabel+' '+secondsWord;
+  button.setAttribute('aria-label',playing?'Остановить прослушивание':completed?'Послушать фрагмент ещё раз':'Воспроизвести фрагмент');
   block.classList.toggle('is-playing',playing);
   card?.classList.toggle('is-playing',playing);
   card?.classList.toggle('is-listened',completed);
@@ -145,13 +145,22 @@ sampleBlocks.forEach(block=>{
   if(audio.paused){
    sampleBlocks.forEach(other=>{
     const player=other.querySelector('audio');
-    if(player!==audio&&!player.paused)player.pause();
+    if(player!==audio&&!player.paused){
+     player.pause();
+     try{player.currentTime=0}catch(_){}
+     player.dispatchEvent(new Event('timeupdate'));
+    }
    });
    if(completedThisPlay||audio.ended||audio.currentTime>=limit-0.02)audio.currentTime=0;
    completedThisPlay=false;
    const p=audio.play();
    if(p?.catch)p.catch(()=>sync());
-  }else audio.pause();
+  }else{
+   audio.pause();
+   try{audio.currentTime=0}catch(_){}
+   completedThisPlay=false;
+   sync();
+  }
  });
  audio.addEventListener('play',()=>{sync();goal('predfinal_audio_preview_play',{genre});});
  audio.addEventListener('pause',sync);
