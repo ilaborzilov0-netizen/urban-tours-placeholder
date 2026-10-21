@@ -111,9 +111,12 @@ try{
  const guarantee=page.locator('#guarantee');
  assert.equal(await page.locator('.hero-refund-guarantee').count(),1,'First screen refund reassurance');
  assert.match(await page.locator('.hero-refund-guarantee').innerText(),/100%.*30 дней/);
- assert.equal(await page.locator('.price-refund-note').count(),3,'Every plan needs the same 30-day note');
- for(const note of await page.locator('.price-refund-note').allInnerTexts()){
-  assert.equal(note,'Можно вернуть деньги в любой момент в течение 30 дней.');
+ assert.equal(await page.locator('.price-refund-note').count(),3,'Every plan needs the same two-line note');
+ for(const note of await page.locator('.price-refund-note').all()){
+  assert.equal(await note.locator('.price-access-note').innerText(),'Доступ сразу после оплаты');
+  assert.equal(await note.locator('.price-return-note').innerText(),'Возврат 100% в течение 30 дней');
+  assert.ok((await note.locator('.price-access-note').evaluate(el=>getComputedStyle(el).display))==='block');
+  assert.ok((await note.locator('.price-return-note').evaluate(el=>getComputedStyle(el).display))==='block');
  }
  assert.equal(await guarantee.count(),1);
  assert.match(await guarantee.locator('h3').innerText(),/30 дней гарантии.*100%/);
