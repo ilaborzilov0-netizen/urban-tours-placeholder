@@ -53,7 +53,7 @@ jobs:
                       and 'Без таблеток, пластырей и силы воли. Просто слушаете.' in test
                       and '<p class="ai-test-price"><span class="ai-test-price-from">от</span> <strong>1 990 ₽</strong></p>' in test
                       and 'за оба альбома в одном звучании' not in test
-                      and 'Доступ <strong>сразу</strong> после оплаты' in test
+                      and 'Доступ <span class="ai-test-emphasis">сразу</span> после оплаты' in test
                       and '<span class="ai-test-emphasis">30&nbsp;дней</span>' in test
                       and '<span class="ai-test-emphasis">сразу</span>' in test
                       and 'data-source="ai-test-grouped-hero-20261021-v4"' in test
