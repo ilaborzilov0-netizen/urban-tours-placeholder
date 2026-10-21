@@ -42,6 +42,12 @@ jobs:
                       and 'data-select-plan="all"' in live
                       and 'data-select-plan="duo"' in live
                       and 'id="smoking-savings"' in live
+                      and 'data-annual-savings' in live
+                      and 'value="200" aria-describedby="smoking-calc-note"' in live
+                      and 'data-smoking-equivalent="one"' in live
+                      and 'data-smoking-equivalent="all"' in live
+                      and 'data-smoking-equivalent="duo"' in live
+                      and '/predfinal/offer.js?v=20261021-savings-v37' in live
                       and '/predfinal/checkout.js?' in live
                       and '110906734' in live
                       and 'href="https://marafon-metod.ru/ai/"' in live
@@ -60,6 +66,9 @@ jobs:
                     'all':'data-select-plan="all"' in live,
                     'duo':'data-select-plan="duo"' in live,
                     'savings':'id="smoking-savings"' in live,
+                    'annual_panel': 'data-annual-savings' in live,
+                    'default_pack_200':'value="200" aria-describedby="smoking-calc-note"' in live,
+                    'new_savings_script':'/predfinal/offer.js?v=20261021-savings-v37' in live,
                     'checkout_script':'/predfinal/checkout.js?' in live,
                     'metrika':'110906734' in live,
                     'canonical':'href="https://marafon-metod.ru/ai/"' in live,
@@ -89,7 +98,7 @@ jobs:
           else:sys.exit('FAIL: live /ai or archive has not deployed')
           for resource in [
               '/predfinal/offer.css?v=20261020-pricing-minimal-v38',
-              '/predfinal/offer.js?v=20261020-goals-v36',
+              '/predfinal/offer.js?v=20261021-savings-v37',
               '/predfinal/checkout.js?v=20261020-errorcode-v11',
               '/ai/offer-compact.css?v=20261018-author1',
               '/ai/checkout.js?v=20261018-author1']:
