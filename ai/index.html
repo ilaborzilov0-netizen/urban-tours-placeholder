@@ -25,7 +25,7 @@
  <script defer src="/ai/posthog-init.js?v=20261020-prod1"></script>
  <script defer src="/analytics.js?v=20261020-clarity-ai1"></script>
  <script defer src="/ai/goal-tracking.js?v=20261020-semantic-v2"></script>
- <script defer src="/predfinal/offer.js?v=20261020-goals-v36"></script>
+ <script defer src="/predfinal/offer.js?v=20261021-savings-v37"></script>
  <script defer src="/predfinal/checkout.js?v=20261020-errorcode-v11"></script>
  <script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return}k=e.createElement(t);a=e.getElementsByTagName(t)[0];k.async=1;k.src=r;a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=110906734','ym');ym(110906734,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});</script>
  <style data-source="pricing-v6-critical">/* /predfinal/: 3 equal-content price tiers, mobile stack and aligned desktop grid */
@@ -1360,6 +1360,46 @@ body.theme-dark .hero .hero-offer-summary .hero-offer-price{
  body.theme-dark .hero .hero-offer-summary .hero-offer-price{font-size:19px}
 }
 </style>
+<style data-source="ai-savings-20261021">
+/* One clear cigarette-cost comparison per plan; 12-month summary immediately after plans. */
+body.theme-dark .prefinal-pricing-section .tier-smoking-equivalent{
+ font-size:16px;line-height:1.48;color:#e5efdd;font-weight:500;
+}
+body.theme-dark .prefinal-pricing-section .tier-smoking-equivalent strong{
+ color:#dfff42;font-size:19px;font-weight:850;
+}
+body.theme-dark .prefinal-pricing-section .tier-smoking-equivalent span[data-smoking-unit]{
+ color:inherit;font-weight:500;
+}
+body.theme-dark .prefinal-pricing-section .annual-savings-panel{
+ margin:27px 0 24px;padding:27px 28px 28px;
+ background:linear-gradient(125deg,#243426,#1b271e);
+ border:1px solid #62794d;border-radius:17px;
+}
+body.theme-dark .prefinal-pricing-section .annual-savings-eyebrow{
+ margin:0 0 12px;color:#d9e7d4;
+ font-size:clamp(17px,1.9vw,21px);line-height:1.35;font-weight:700;
+}
+body.theme-dark .prefinal-pricing-section .annual-savings-amount{
+ margin:0 0 9px;color:#dfff42;font-size:clamp(46px,6vw,76px);
+ font-weight:850;line-height:1.1;letter-spacing:-.055em;font-variant-numeric:tabular-nums;
+}
+body.theme-dark .prefinal-pricing-section .annual-savings-detail{
+ margin:0;max-width:760px;color:#d5e0d0;font-size:clamp(16px,1.7vw,19px);
+ line-height:1.5;font-weight:500;
+}
+@media(max-width:720px){
+ body.theme-dark .prefinal-pricing-section .tier-smoking-equivalent{font-size:15px}
+ body.theme-dark .prefinal-pricing-section .annual-savings-panel{
+  margin:23px 0 21px;padding:22px 18px 24px;border-radius:14px;
+ }
+ body.theme-dark .prefinal-pricing-section .annual-savings-eyebrow{font-size:17px;margin-bottom:9px}
+ body.theme-dark .prefinal-pricing-section .annual-savings-amount{
+  font-size:clamp(41px,11vw,62px);white-space:normal;overflow-wrap:normal;
+ }
+ body.theme-dark .prefinal-pricing-section .annual-savings-detail{font-size:16px}
+}
+</style>
 </head>
 <body class="theme-dark vision-mode">
  <main>
@@ -1688,13 +1728,13 @@ body.theme-dark .hero .hero-offer-summary .hero-offer-price{
       <label for="smoking-calc-pack">Цена пачки, ₽</label>
       <div class="smoking-calc-stepper">
        <button type="button" data-calc-adjust="pack" data-step="-1" aria-label="Уменьшить стоимость пачки на 10 рублей">−</button>
-       <input id="smoking-calc-pack" data-calc-input="pack" type="number" inputmode="numeric" min="1" max="10000" step="1" value="250" aria-describedby="smoking-calc-note">
+       <input id="smoking-calc-pack" data-calc-input="pack" type="number" inputmode="numeric" min="1" max="10000" step="1" value="200" aria-describedby="smoking-calc-note">
        <button type="button" data-calc-adjust="pack" data-step="1" aria-label="Увеличить стоимость пачки на 10 рублей">+</button>
       </div>
      </div>
     </div>
     <p class="smoking-calc-error" role="status" aria-live="polite"></p>
-    <p class="smoking-calc-note" id="smoking-calc-note">Расчёт: 20 сигарет в пачке.</p>
+    <p class="smoking-calc-note" id="smoking-calc-note">Расчётный ориентир: 20 сигарет в день, пачка 200 ₽ (20 сигарет).</p>
    </section>
    <div class="pricing">
     <article class="price-card" data-price-card="one" aria-label="Комплект: один стиль, 1990 рублей">
@@ -1709,7 +1749,7 @@ body.theme-dark .hero .hero-offer-summary .hero-offer-price{
        <button type="button" class="tier-genre-chip" data-style="estrada" aria-pressed="false" title="Душевная эстрада">Эстрада</button>
        <button type="button" class="tier-genre-chip" data-style="modern" aria-pressed="false" title="Современное звучание">Современное</button>
       </div>
-      <p class="tier-smoking-equivalent" data-smoking-equivalent="one">≈ <strong data-smoking-days>8</strong> <span data-smoking-unit>дней</span> ваших расходов на сигареты</p>
+      <p class="tier-smoking-equivalent" data-smoking-equivalent="one"><span data-smoking-prefix>В среднем за ≈</span><strong data-smoking-days>10</strong> <span data-smoking-unit>дней</span> без сигарет вы сэкономите стоимость комплекта.</p>
       <button type="button" class="btn btn-primary" data-select-plan="one" aria-pressed="false">Получить за 1 990 ₽ →</button>
      </div>
     </article>
@@ -1722,7 +1762,7 @@ body.theme-dark .hero .hero-offer-summary .hero-offer-price{
      <div class="price-bottom">
       <div class="price-compare"><s title="Стоимость трёх звучаний по отдельности">5 970 ₽</s><span>2 990 <small>₽</small></span></div>
       <div class="price-saving"><strong>Экономия 2 980 ₽</strong></div>
-      <p class="tier-smoking-equivalent" data-smoking-equivalent="all">≈ <strong data-smoking-days>12</strong> <span data-smoking-unit>дней</span> ваших расходов на сигареты</p>
+      <p class="tier-smoking-equivalent" data-smoking-equivalent="all"><span data-smoking-prefix>В среднем за ≈</span><strong data-smoking-days>15</strong> <span data-smoking-unit>дней</span> без сигарет вы сэкономите стоимость комплекта.</p>
       <button type="button" class="btn btn-primary" data-select-plan="all" aria-pressed="true">Получить все звучания</button>
      </div>
     </article>
@@ -1734,11 +1774,16 @@ body.theme-dark .hero .hero-offer-summary .hero-offer-price{
      <div class="price-bottom">
       <div class="price-compare"><s title="Стоимость трёх звучаний по отдельности для двоих">11 940 ₽</s><span>4 490 <small>₽</small></span></div>
       <div class="price-saving"><strong>Экономия 7 450 ₽</strong></div>
-      <p class="tier-smoking-equivalent" data-smoking-equivalent="duo">≈ <strong data-smoking-days>18</strong> <span data-smoking-unit>дней</span> ваших расходов на сигареты</p>
+      <p class="tier-smoking-equivalent" data-smoking-equivalent="duo"><span data-smoking-prefix>В среднем за ≈</span><strong data-smoking-days>23</strong> <span data-smoking-unit>дней</span> без сигарет вы сэкономите стоимость комплекта.</p>
       <button type="button" class="btn btn-primary" data-select-plan="duo" aria-pressed="false">Получить для двоих</button>
      </div>
     </article>
    </div>
+   <section class="annual-savings-panel" data-annual-savings aria-labelledby="annual-savings-heading">
+    <p class="annual-savings-eyebrow" id="annual-savings-heading" data-annual-savings-title>В среднем при расчётном расходе за первый год без сигарет</p>
+    <p class="annual-savings-amount" data-annual-savings-amount aria-live="polite">73 000 ₽</p>
+    <p class="annual-savings-detail" data-annual-savings-detail>Столько можно сэкономить на сигаретах при 20 сигаретах в день и пачке за 200 ₽. Если расход выше — экономия больше.</p>
+   </section>
    <div class="predfinal-pricing-contact">
     <button type="button" class="predfinal-question-cta" data-open-question data-question-location="pricing">Есть вопрос? Напишите мне, разберёмся.</button>
    </div>
