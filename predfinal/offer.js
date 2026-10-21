@@ -240,6 +240,13 @@ if(savingsCalculator){
  const error=savingsCalculator.querySelector('.smoking-calc-error');
  const priceDays={one:1990,all:2990,duo:4490};
  const priceRows=[...document.querySelectorAll('[data-smoking-equivalent]')];
+ const annualPanel=document.querySelector('[data-annual-savings]');
+ const annualTitle=annualPanel?.querySelector('[data-annual-savings-title]');
+ const annualAmount=annualPanel?.querySelector('[data-annual-savings-amount]');
+ const annualDetail=annualPanel?.querySelector('[data-annual-savings-detail]');
+ const calculatorNote=savingsCalculator.querySelector('#smoking-calc-note');
+ // Once a visitor edits either input, keep the personal wording even after resetting.
+ let personalized=false;
  const packSize=20;
  const fmt=new Intl.NumberFormat('ru-RU',{maximumFractionDigits:2});
  const bounds={cigarettes:{min:1,max:100,step:1},pack:{min:1,max:10000,step:10}};
@@ -267,7 +274,24 @@ if(savingsCalculator){
    const days=valid?Math.ceil(priceDays[key]/(cigarettes*pack/packSize)):null;
    row.querySelector('[data-smoking-days]').textContent=days===null?'—':fmt.format(days);
    row.querySelector('[data-smoking-unit]').textContent=days===null?'дней':dayUnit(days);
+   const prefix=row.querySelector('[data-smoking-prefix]');
+   if(prefix)prefix.textContent=personalized?'За ≈':'В среднем за ≈';
   });
+  if(annualPanel){
+   const annualSaving=valid?(cigarettes*pack/packSize)*365:null;
+   annualAmount.textContent=annualSaving===null?'—':fmt.format(annualSaving)+' ₽';
+   annualTitle.textContent=personalized?'За первый год без сигарет при ваших расходах':'В среднем при расчётном расходе за первый год без сигарет';
+   annualDetail.textContent=!valid
+    ?'Укажите количество сигарет и стоимость пачки, чтобы посчитать экономию.'
+    :personalized
+     ?'Столько вы сэкономите на сигаретах за год, если полностью откажетесь от них при указанных вами расходах.'
+     :'Столько можно сэкономить на сигаретах при 20 сигаретах в день и пачке за 200 ₽. Если расход выше — экономия больше.';
+  }
+  if(calculatorNote&&annualPanel){
+   calculatorNote.textContent=personalized
+    ?'Расчёт по вашим значениям. В пачке — 20 сигарет.'
+    :'Расчётный ориентир: 20 сигарет в день, пачка 200 ₽ (20 сигарет).';
+  }
   savingsCalculator.querySelectorAll('[data-calc-adjust]').forEach(button=>{
    const key=button.dataset.calcAdjust;
    const value=read(inputs[key],key);
@@ -285,16 +309,19 @@ if(savingsCalculator){
    const delta=Number(button.dataset.step)*step;
    const safe=current===null?Math.max(min,Math.min(max,Number(input.value)||min)):current;
    input.value=String(Math.max(min,Math.min(max,safe+delta)));
+   personalized=true;
    renderSavings();
    input.focus({preventScroll:true});
   });
  });
  Object.entries(inputs).forEach(([key,input])=>{
-  input.addEventListener('input',renderSavings);
+  input.addEventListener('input',()=>{personalized=true;renderSavings();});
   input.addEventListener('blur',()=>{
    const {min,max}=bounds[key];
    const raw=Number(input.value);
-   input.value=String(input.value.trim()===''||!Number.isFinite(raw)?min:Math.max(min,Math.min(max,Math.round(raw))));
+   const normalized=String(input.value.trim()===''||!Number.isFinite(raw)?min:Math.max(min,Math.min(max,Math.round(raw))));
+   if(normalized!==input.value.trim())personalized=true;
+   input.value=normalized;
    renderSavings();
   });
  });
