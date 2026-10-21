@@ -60,6 +60,7 @@ jobs:
                       and 'value="200" aria-describedby="smoking-calc-note"' in live
                       and 'data-smoking-equivalent="one"' not in live
                       and live.count('data-smoking-equivalent="all"')==1
+                      and '<p class="tier-smoking-equivalent" data-smoking-equivalent="all">Комплект окупится за ≈<strong data-smoking-days>15</strong>' in live
                       and 'data-smoking-equivalent="duo"' not in live
                       and '/predfinal/offer.js?v=20261021-savings-v38' in live
                       and '/predfinal/checkout.js?' in live
@@ -81,6 +82,7 @@ jobs:
                     'duo':'data-select-plan="duo"' in live,
                     'savings':'id="smoking-savings"' in live,
                     'payback_only_featured': 'data-smoking-equivalent="one"' not in live and live.count('data-smoking-equivalent="all"')==1 and 'data-smoking-equivalent="duo"' not in live,
+                    'concise_featured_payback': '<p class="tier-smoking-equivalent" data-smoking-equivalent="all">Комплект окупится за ≈<strong data-smoking-days>15</strong>' in live,
                     'annual_panel': 'data-annual-savings' in live,
                     'refund_hero': 'class="hero-refund-guarantee"' in live,
                     'refund_all_three': live.count('class="price-refund-note"')==3,
