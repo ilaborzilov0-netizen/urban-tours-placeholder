@@ -105,7 +105,7 @@ try{
   });
   console.log('Hero layout',width,JSON.stringify(offsets));
   assert.ok(offsets.trust<offsets.link && offsets.link<offsets.cover && offsets.coverBottom<=offsets.mechanism,'Link precedes cover; description follows cover');
-  if(width===360||width===390){
+  if(width===320||width===360||width===390){
    const visible=844-offsets.cover;
    assert.ok(visible>=55&&visible<=115,'Cover should peek 60–100px, not compete with headline at '+width+'px: '+visible);
   }
