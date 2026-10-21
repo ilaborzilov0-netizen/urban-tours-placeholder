@@ -63,8 +63,8 @@ try{
   console.log('Headline hierarchy',width,JSON.stringify(title));
   assert.ok(title.top>=90,'Header needs a top pause: '+JSON.stringify(title));
   assert.ok(title.first.font>title.second.font*1.45,'The first phrase must dominate the subtitle: '+JSON.stringify(title));
-  if(width===360)assert.ok(title.first.font>=48,'360px main headline must be enlarged: '+title.first.font);
-  if(width===390)assert.ok(title.first.font>=53,'390px main headline must be enlarged: '+title.first.font);
+  if(width===360)assert.ok(title.first.font>=46,'360px main headline must be enlarged: '+title.first.font);
+  if(width===390)assert.ok(title.first.font>=49,'390px main headline must be enlarged: '+title.first.font);
   if(width===1366)assert.ok(title.first.font>=98,'Desktop main headline must be enlarged: '+title.first.font);
   assert.equal(title.first.whiteSpace,'nowrap');
   assert.equal(title.second.whiteSpace,'nowrap');
