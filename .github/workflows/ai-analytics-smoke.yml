@@ -8,6 +8,7 @@ on:
       - "ai/goal-tracking.js"
       - "analytics.js"
       - "predfinal/offer.js"
+      - "ai/player-progress.js"
       - "predfinal/checkout.js"
       - "tests/ai-analytics-smoke.mjs"
       - ".github/workflows/ai-analytics-smoke.yml"
@@ -48,7 +49,7 @@ jobs:
                   s,html=get('/ai/?check=ai-analytics-20261020')
                   a=html.count('/ai/posthog-init.js?v=20261020-prod1')==1
                   b=html.count('/analytics.js?v=20261020-clarity-ai1')==1
-                  c='offer.js?v=20261021-savings-v38' in html and 'checkout.js?v=20261020-errorcode-v11' in html
+                  c='player-progress.js?v=20261021-percent-no-seek-v1' in html and 'checkout.js?v=20261020-errorcode-v11' in html
                   d='https://www.googletagmanager.com/gtag/js?id=G-J076WS14NV' in html
                   e="gtag('config','G-J076WS14NV'" in html
                   f='/ai/goal-tracking.js?v=20261020-semantic-v2' in html
@@ -56,7 +57,7 @@ jobs:
                       _,goals=get('/ai/goal-tracking.js?v=20261020-semantic-v2')
                       _,posthog=get('/ai/posthog-init.js?v=20261020-prod1')
                       _,clarity=get('/analytics.js?v=20261020-clarity-ai1')
-                      _,offer=get('/predfinal/offer.js?v=20261021-savings-v38')
+                      _,offer=get('/ai/player-progress.js?v=20261021-percent-no-seek-v1')
                       _,checkout=get('/predfinal/checkout.js?v=20261020-errorcode-v11')
                       if all([
                           'https://eu.i.posthog.com' in posthog,
