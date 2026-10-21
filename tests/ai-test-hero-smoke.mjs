@@ -31,7 +31,7 @@ try{
   await page.goto(root+'/ai/test/',{waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>Boolean(window.aiGoals));
   assert.equal(await page.locator('.ai-test-hero h1').count(),1);
-  assert.match(await page.locator('.ai-test-hero h1').innerText(),/Бросьте курить,\s*просто слушая аудио\./);
+  assert.match(await page.locator('.ai-test-hero h1').innerText(),/Бросьте курить,\s*просто слушая\s+аудио\./);
   assert.match(await page.locator('.ai-test-hero .hero-priority').innerText(),/40 лет и больше/);
   assert.equal(await page.locator('.ai-test-audience').innerText(),'Для тех, кто курит много лет');
   assert.equal(await page.locator('.ai-test-simple').innerText(),'Без таблеток, пластырей и силы воли. Просто слушаете.');
