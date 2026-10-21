@@ -45,6 +45,8 @@ jobs:
                       and 'data-annual-savings' in live
                       and 'class="hero-refund-guarantee"' in live
                       and live.count('class="price-refund-note"')==3
+                      and live.count('<span class="price-access-note">Доступ сразу после оплаты</span>')==3
+                      and live.count('<span class="price-return-note">Возврат 100% в течение 30 дней</span>')==3
                       and 'id="guarantee"' in live
                       and 'id="guarantee-faq"' in live
                       and 'Как работает гарантия возврата денег?' in live
@@ -90,6 +92,7 @@ jobs:
                     'annual_panel': 'data-annual-savings' in live,
                     'refund_hero': 'class="hero-refund-guarantee"' in live,
                     'refund_all_three': live.count('class="price-refund-note"')==3,
+                    'two_line_card_notes': live.count('<span class="price-access-note">Доступ сразу после оплаты</span>')==3 and live.count('<span class="price-return-note">Возврат 100% в течение 30 дней</span>')==3,
                     'refund_below_tiers': 'id="guarantee"' in live and live.index('data-price-card="duo"') < live.index('id="guarantee"') < live.index('data-annual-savings'),
                     'refund_faq': 'id="guarantee-faq"' in live and 'Как работает гарантия возврата денег?' in live,
                     'question_prompts_two_lines': live.count('class="ai-question-prompt"')==2,
