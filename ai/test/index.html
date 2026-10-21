@@ -1586,19 +1586,109 @@ body.theme-dark .album-showcase{padding-top:0!important}
  body.theme-dark .ai-test-hero .ai-test-look-at-tiers{margin-top:8px}
  body.theme-dark .ai-test-hero .ai-test-look-at-tiers a{font-size:16px}
 }
+</style><style data-source="ai-test-hero-readability-20261021-v3">
+/* A/B only: clearer 50+ typography, relaxed top, compact offer, visible quiet link. */
+body.theme-dark.vision-mode .hero.ai-test-hero{
+ padding-top:clamp(52px,5.4vw,76px)!important;
+ padding-bottom:15px!important;
+}
+body.theme-dark .ai-test-hero .ai-test-audience{
+ margin:0 0 18px;
+ color:#bccdb8;
+ font-size:clamp(16px,1.5vw,18px);
+ font-weight:650;
+ line-height:1.35;
+ letter-spacing:.01em;
+}
+body.theme-dark .ai-test-hero .ai-test-simple{
+ display:block;
+ max-width:850px;
+ margin:0 0 14px!important;
+ color:#f1f5ee;
+ font-size:clamp(18px,1.85vw,22px);
+ font-weight:650;
+ line-height:1.38;
+}
+body.theme-dark .ai-test-hero .ai-test-contents{
+ margin:0 0 7px;
+ font-size:clamp(17px,1.8vw,21px);
+ font-weight:650;
+ line-height:1.36;
+}
+body.theme-dark .ai-test-hero .ai-test-price{
+ display:flex;align-items:baseline;flex-wrap:wrap;gap:0 10px;
+ margin:0 0 10px!important;
+}
+body.theme-dark .ai-test-hero .ai-test-price-from{
+ color:#f4f8f1;
+ font-size:clamp(20px,2.5vw,28px);
+ font-weight:650;
+}
+body.theme-dark .ai-test-hero .ai-test-access,
+body.theme-dark .ai-test-hero .ai-test-guarantee{
+ font-size:clamp(18px,1.8vw,21px);
+ line-height:1.4;
+ margin:0 0 6px;
+}
+body.theme-dark .ai-test-hero .ai-test-access strong,
+body.theme-dark .ai-test-hero .ai-test-guarantee strong{
+ color:#dfff42;
+ font-weight:850;
+}
+body.theme-dark .ai-test-hero .ai-test-mechanism{
+ font-size:clamp(18px,1.6vw,20px);
+ line-height:1.45;
+}
+body.theme-dark .ai-test-hero .ai-test-look-at-tiers{
+ margin:22px 0 21px!important;
+}
+body.theme-dark .ai-test-hero .ai-test-look-at-tiers a{
+ font-size:clamp(19px,1.9vw,22px)!important;
+ padding:5px 0;
+ line-height:1.42;
+}
+@media(max-width:780px){
+ body.theme-dark.vision-mode .hero.ai-test-hero{
+  padding-top:47px!important;padding-bottom:10px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-audience{
+  font-size:16px;margin-bottom:15px;
+ }
+ body.theme-dark .ai-test-hero .ai-test-simple{
+  font-size:18px;line-height:1.36;margin-bottom:12px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-contents{
+  font-size:17px;line-height:1.36;margin-bottom:6px;
+ }
+ body.theme-dark .ai-test-hero .ai-test-price-from{font-size:23px}
+ body.theme-dark .ai-test-hero .ai-test-access,
+ body.theme-dark .ai-test-hero .ai-test-guarantee{
+  font-size:17px;line-height:1.4;margin-bottom:5px;
+ }
+ body.theme-dark .ai-test-hero .ai-test-mechanism{
+  font-size:17px;line-height:1.43;
+ }
+ body.theme-dark .ai-test-hero .ai-test-look-at-tiers{
+  margin:19px 0 20px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-look-at-tiers a{
+  font-size:19px!important;
+ }
+}
 </style></head>
 <body class="theme-dark vision-mode ai-test-page">
  <main>
   <section class="hero wrap ai-test-hero" id="top">
    <div class="hero-copy">
+    <p class="ai-test-audience">Для тех, кто курит много лет</p>
     <h1>Бросьте курить,<br><span>просто слушая аудио.</span></h1>
     <p class="hero-priority">Даже при стаже <strong>40 лет и больше.</strong></p>
-    <p class="ai-test-simple">Без таблеток, пластырей и силы воли.<strong>Надели наушники — слушаете.</strong></p>
+    <p class="ai-test-simple">Без таблеток, пластырей и силы воли. Просто слушаете.</p>
     <div class="ai-test-purchase-reassurance">
-     <p class="ai-test-contents">Два альбома · 20 аудиоякорей</p>
-     <p class="ai-test-price"><strong>1 990 ₽</strong><span class="ai-test-price-context">за оба альбома в одном звучании</span></p>
-     <p class="ai-test-access"><span aria-hidden="true">✓</span> Доступ сразу после оплаты</p>
-     <p class="ai-test-guarantee"><span aria-hidden="true">✓</span> Вернём все деньги в течение 30 дней, если не подошло.</p>
+     <p class="ai-test-contents">Два альбома · 20 коротких аудиозаписей</p>
+     <p class="ai-test-price"><span class="ai-test-price-from">от</span> <strong>1 990 ₽</strong></p>
+     <p class="ai-test-access"><span aria-hidden="true">✓</span> Доступ <strong>сразу</strong> после оплаты</p>
+     <p class="ai-test-guarantee"><span aria-hidden="true">✓</span> Вернём все деньги в течение <strong>30 дней</strong>, если не подошло.</p>
     </div>
     <p class="ai-test-mechanism"><strong>Аудиоякорь</strong> — короткая запись, которую слушаете как музыку. Как знакомый припев, она остаётся в голове и закрепляет мысль: курить больше не хочется.</p>
     <div class="ai-test-look-at-tiers"><a href="#pricing">Смотреть тарифы →</a></div>
