@@ -23,7 +23,7 @@ try{
  }
  assert.ok(ready,'Local static server did not start');
  browser=await chromium.launch({headless:true,args:['--no-sandbox']});
- for(const width of [360,390,1366]){
+ for(const width of [320,360,390,1366]){
   const page=await browser.newPage({viewport:{width,height:844}});
   const errors=[];
   page.on('pageerror',e=>errors.push(e.message));
@@ -55,8 +55,16 @@ try{
    return {mechanism:size('.album-display--one>.ai-test-mechanism'),access:size('.ai-test-access'),guarantee:size('.ai-test-guarantee'),tariffLink:size('.ai-test-look-at-tiers a')};
   });
   if(width<=390)assert.ok(Object.values(fontInfo).every(v=>v>=17), 'All mobile trust copy and tariff link must be readable: '+JSON.stringify(fontInfo));
-  const heroTop=await page.locator('.ai-test-hero h1').evaluate(e=>e.getBoundingClientRect().top);
-  assert.ok(heroTop>=75,'Header needs 1–2 lines of breathing room above it: '+heroTop);
+  const title=await page.locator('.ai-test-hero h1').evaluate(e=>{
+   const style=getComputedStyle(e),box=e.getBoundingClientRect();
+   return {top:box.top,size:parseFloat(style.fontSize),lines:Math.round(box.height/parseFloat(style.lineHeight)),width:box.width};
+  });
+  console.log('Headline hierarchy',width,JSON.stringify(title));
+  assert.ok(title.top>=90,'Headline needs a clear upper pause: '+JSON.stringify(title));
+  if(width===360)assert.ok(title.size>=39,'360px headline should grow by roughly 15–25%: '+title.size);
+  if(width===390)assert.ok(title.size>=42,'390px headline should grow by roughly 15–25%: '+title.size);
+  if(width===1366)assert.ok(title.size>=82,'Desktop headline should be more prominent: '+title.size);
+  if(width<=390)assert.equal(title.lines,3,'Mobile headline must fit the intended three lines: '+JSON.stringify(title));
   assert.equal(await page.locator('.ai-test-group').count(),3);
   assert.equal(await page.locator('.ai-test-hero .ai-test-mechanism').count(),0,'No dense mechanism paragraph before first cover');
   assert.equal(await page.locator('.album-display--one > .ai-test-mechanism').count(),1,'Explanation belongs directly below first album cover');
@@ -91,7 +99,10 @@ try{
   });
   console.log('Hero layout',width,JSON.stringify(offsets));
   assert.ok(offsets.trust<offsets.link && offsets.link<offsets.cover && offsets.coverBottom<=offsets.mechanism,'Link precedes cover; description follows cover');
-  if(width<=390)assert.ok(offsets.cover>=495&&offsets.cover<=760,'Upper part of album cover should be visible at the bottom of 844px viewport at '+width+'px: '+offsets.cover);
+  if(width===360||width===390){
+   const visible=844-offsets.cover;
+   assert.ok(visible>=55&&visible<=115,'Cover should peek 60–100px, not compete with headline at '+width+'px: '+visible);
+  }
   const screen=await page.evaluate(()=>({scrollWidth:document.documentElement.scrollWidth,clientWidth:document.documentElement.clientWidth}));
   assert.ok(screen.scrollWidth<=screen.clientWidth+2,'Horizontal overflow at '+width+': '+JSON.stringify(screen));
   await page.locator('.ai-test-look-at-tiers a').click();
