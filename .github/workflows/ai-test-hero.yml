@@ -54,11 +54,16 @@ jobs:
                       and '<p class="ai-test-price"><span class="ai-test-price-from">от</span> <strong>1 990 ₽</strong></p>' in test
                       and 'за оба альбома в одном звучании' not in test
                       and 'Доступ <strong>сразу</strong> после оплаты' in test
-                      and '<strong>30 дней</strong>' in test
+                      and '<span class="ai-test-emphasis">30&nbsp;дней</span>' in test
+                      and '<span class="ai-test-emphasis">сразу</span>' in test
+                      and 'data-source="ai-test-grouped-hero-20261021-v4"' in test
+                      and test.count('class="ai-test-group ai-test-group--')==3
                       and 'data-source="ai-test-hero-readability-20261021-v3"' in test
                       and '<div class="ai-test-look-at-tiers"><a href="#pricing">Смотреть тарифы →</a></div>' in test
-                      and test.index('class="ai-test-mechanism"') < test.index('class="ai-test-look-at-tiers"') < test.index('class="album-showcase section"')
+                      and test.index('class="ai-test-look-at-tiers"') < test.index('class="album-showcase section"') < test.index('class="album-cover album-cover--one"') < test.index('class="ai-test-mechanism"')
                       and 'Как знакомый припев, она остаётся в голове' in test
+                      and 'class="ai-test-group ai-test-group--trust"' in test
+                      and 'class="ai-test-check"' in test
                       and 'Аудиоякорь</strong> — короткая запись, которую слушаешь как обычную музыку' not in test
                       and '<p class="ai-test-price">от ' not in test
                       and 'class="ai-test-look-at-tiers"' in test
