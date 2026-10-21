@@ -62,11 +62,12 @@ try{
  assert.ok((await savings.first().innerText()).includes('В среднем за ≈'));
  assert.equal(await annualRubles(),'73 000 ₽');
  assert.match(await annual.locator('[data-annual-savings-title]').innerText(),/В среднем/);
- assert.equal(await page.locator('#smoking-savings h2').textContent(),'Ваши расходы на сигареты');
+ assert.equal(await page.locator('#smoking-savings h2').textContent(),'Расчётный пример расходов на сигареты');
  await page.locator('#smoking-savings [data-calc-adjust="pack"][data-step="1"]').click();
  await page.waitForTimeout(60);
  assert.ok(await occurred('ai_calculator_changed'),'Calculator change missing');
  assert.equal(await pack.inputValue(),'210');
+ assert.equal(await page.locator('#smoking-savings h2').textContent(),'Ваши расходы на сигареты');
  assert.deepEqual(await readDays(),['10','15','22'],'Adjusting pack price must update every tier');
  assert.equal(await annualRubles(),'76 650 ₽');
  assert.ok((await savings.first().innerText()).startsWith('За ≈'),'First edit must switch payback copy to personal');
