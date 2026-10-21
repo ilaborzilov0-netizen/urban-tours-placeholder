@@ -48,7 +48,7 @@ jobs:
                   s,html=get('/ai/?check=ai-analytics-20261020')
                   a=html.count('/ai/posthog-init.js?v=20261020-prod1')==1
                   b=html.count('/analytics.js?v=20261020-clarity-ai1')==1
-                  c='offer.js?v=20261020-goals-v36' in html and 'checkout.js?v=20261020-errorcode-v11' in html
+                  c='offer.js?v=20261021-savings-v37' in html and 'checkout.js?v=20261020-errorcode-v11' in html
                   d='https://www.googletagmanager.com/gtag/js?id=G-J076WS14NV' in html
                   e="gtag('config','G-J076WS14NV'" in html
                   f='/ai/goal-tracking.js?v=20261020-semantic-v2' in html
@@ -56,7 +56,7 @@ jobs:
                       _,goals=get('/ai/goal-tracking.js?v=20261020-semantic-v2')
                       _,posthog=get('/ai/posthog-init.js?v=20261020-prod1')
                       _,clarity=get('/analytics.js?v=20261020-clarity-ai1')
-                      _,offer=get('/predfinal/offer.js?v=20261020-goals-v36')
+                      _,offer=get('/predfinal/offer.js?v=20261021-savings-v37')
                       _,checkout=get('/predfinal/checkout.js?v=20261020-errorcode-v11')
                       if all([
                           'https://eu.i.posthog.com' in posthog,
