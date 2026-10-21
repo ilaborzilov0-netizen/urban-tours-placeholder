@@ -32,6 +32,7 @@ jobs:
                   good=(
                       livecode==200 and oldcode==200
                       and 'class="hero-priority"' in live
+                      and 'Два альбома · 20 аудиоякорей · от 1 990 ₽' in live
                       and 'data-select-plan="one"' in live
                       and 'data-select-plan="all"' in live
                       and 'data-select-plan="duo"' in live
@@ -44,6 +45,7 @@ jobs:
                   )
                   flags={
                     'priority': 'class="hero-priority"' in live,
+                    'starting_price_line': 'Два альбома · 20 аудиоякорей · от 1 990 ₽' in live,
                     'one':'data-select-plan="one"' in live,
                     'all':'data-select-plan="all"' in live,
                     'duo':'data-select-plan="duo"' in live,
