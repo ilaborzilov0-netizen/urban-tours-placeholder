@@ -1445,6 +1445,61 @@ body.theme-dark .predfinal-final-invitation .predfinal-final-contact .predfinal-
  body.theme-dark .predfinal-final-invitation .predfinal-final-contact .predfinal-question-cta{font-size:19px}
 }
 </style>
+<style data-source="ai-guarantee-30-day-20261021">
+/* Trust reassurance in the hero, immediately after purchase buttons and in FAQ. */
+body.theme-dark .hero .hero-refund-guarantee{
+ display:block;margin-top:7px;
+ color:#bacbb7;font-size:clamp(13px,1.25vw,15px);font-weight:550;line-height:1.5;
+ letter-spacing:0;
+}
+body.theme-dark .prefinal-pricing-section .price-bottom .price-refund-note{
+ margin:9px 0 0;padding:0 4px;text-align:center;
+ color:#c4d3be!important;font-size:13px!important;line-height:1.42!important;
+ font-weight:500;
+}
+body.theme-dark .prefinal-pricing-section .ai-refund-guarantee{
+ display:flex;align-items:flex-start;gap:18px;
+ margin:26px 0 18px;padding:26px 25px;
+ border:1px solid #748e50;border-radius:16px;
+ background:linear-gradient(135deg,#2a3824,#1b291c);
+}
+body.theme-dark .prefinal-pricing-section .ai-refund-icon{
+ flex:none;color:#dfff42;margin-top:1px;
+}
+body.theme-dark .prefinal-pricing-section .ai-refund-copy{min-width:0}
+body.theme-dark .prefinal-pricing-section .ai-refund-copy h3{
+ margin:0 0 8px;color:#f4f8ef;
+ font-size:clamp(23px,2.8vw,29px);line-height:1.21;font-weight:800;letter-spacing:-.03em;
+}
+body.theme-dark .prefinal-pricing-section .ai-refund-copy p{
+ margin:0 0 10px;max-width:740px;color:#dce8d4;
+ font-size:clamp(16px,1.65vw,18px);line-height:1.5;
+}
+body.theme-dark .prefinal-pricing-section .ai-refund-more,
+body.theme-dark .faq #guarantee-faq a{
+ color:#e1ff87;text-decoration:underline;text-underline-offset:4px;
+ font-size:16px;font-weight:700;
+}
+body.theme-dark .prefinal-pricing-section .ai-refund-more:focus-visible,
+body.theme-dark .faq #guarantee-faq a:focus-visible{
+ outline:3px solid #dfff42;outline-offset:4px;
+}
+body.theme-dark .faq #guarantee-faq{scroll-margin-top:22px}
+@media(max-width:720px){
+ body.theme-dark .hero .hero-refund-guarantee{font-size:14px;margin-top:6px}
+ body.theme-dark .prefinal-pricing-section .price-bottom .price-refund-note{
+  font-size:13px!important;margin-top:10px;
+ }
+ body.theme-dark .prefinal-pricing-section .ai-refund-guarantee{
+  gap:13px;margin:22px 0 17px;padding:20px 16px;border-radius:13px;
+ }
+ body.theme-dark .prefinal-pricing-section .ai-refund-icon{width:30px;height:35px}
+ body.theme-dark .prefinal-pricing-section .ai-refund-copy h3{
+  font-size:clamp(21px,6vw,26px);margin-bottom:8px;
+ }
+ body.theme-dark .prefinal-pricing-section .ai-refund-copy p{font-size:16px}
+}
+</style>
 </head>
 <body class="theme-dark vision-mode">
  <main>
@@ -1453,7 +1508,7 @@ body.theme-dark .predfinal-final-invitation .predfinal-final-contact .predfinal-
     <p class="kicker"><span class="little-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span> Научная логика подхода</p>
     <h1>Бросьте курить<br>с помощью<br><span>аудиоякорей.</span></h1>
     <p class="hero-priority">Даже при стаже <strong>40 лет и больше.</strong></p>
-    <p class="hero-offer-summary"><span class="hero-offer-contents">Два альбома · 20 аудиоякорей</span><span class="hero-offer-price">от 1 990 ₽</span></p>
+    <p class="hero-offer-summary"><span class="hero-offer-contents">Два альбома · 20 аудиоякорей</span><span class="hero-offer-price">от 1 990 ₽</span><span class="hero-refund-guarantee">Гарантия: возврат 100% оплаты в течение 30 дней</span></p>
     <p class="hero-lead"><strong class="hero-lead-hook">Просто слушайте.</strong><span class="hero-lead-message">Терапевтические посылы сами меняют мозг на физиологическом уровне и убирают желание курить.</span><span class="hero-lead-afterthought">Запоминаются, как припев, и продолжают работать даже когда вы их уже не слышите.</span></p>
    </div>
   </section>
@@ -1796,6 +1851,7 @@ body.theme-dark .predfinal-final-invitation .predfinal-final-contact .predfinal-
       </div>
       <p class="tier-smoking-equivalent" data-smoking-equivalent="one"><span data-smoking-prefix>В среднем за ≈</span><strong data-smoking-days>10</strong> <span data-smoking-unit>дней</span> без сигарет вы сэкономите стоимость комплекта.</p>
       <button type="button" class="btn btn-primary" data-select-plan="one" aria-pressed="false">Получить за 1 990 ₽ →</button>
+      <p class="price-refund-note">Можно вернуть деньги в любой момент в течение 30 дней.</p>
      </div>
     </article>
     <article class="price-card price-card--featured is-selected" data-price-card="all" aria-label="Комплект: три стиля для себя, 2990 рублей">
@@ -1809,6 +1865,7 @@ body.theme-dark .predfinal-final-invitation .predfinal-final-contact .predfinal-
       <div class="price-saving"><strong>Экономия 2 980 ₽</strong></div>
       <p class="tier-smoking-equivalent" data-smoking-equivalent="all"><span data-smoking-prefix>В среднем за ≈</span><strong data-smoking-days>15</strong> <span data-smoking-unit>дней</span> без сигарет вы сэкономите стоимость комплекта.</p>
       <button type="button" class="btn btn-primary" data-select-plan="all" aria-pressed="true">Получить все звучания</button>
+      <p class="price-refund-note">Можно вернуть деньги в любой момент в течение 30 дней.</p>
      </div>
     </article>
     <article class="price-card" data-price-card="duo" aria-label="Комплект для двух человек: три стиля, 4490 рублей">
@@ -1821,9 +1878,18 @@ body.theme-dark .predfinal-final-invitation .predfinal-final-contact .predfinal-
       <div class="price-saving"><strong>Экономия 7 450 ₽</strong></div>
       <p class="tier-smoking-equivalent" data-smoking-equivalent="duo"><span data-smoking-prefix>В среднем за ≈</span><strong data-smoking-days>23</strong> <span data-smoking-unit>дней</span> без сигарет вы сэкономите стоимость комплекта.</p>
       <button type="button" class="btn btn-primary" data-select-plan="duo" aria-pressed="false">Получить для двоих</button>
+      <p class="price-refund-note">Можно вернуть деньги в любой момент в течение 30 дней.</p>
      </div>
     </article>
    </div>
+   <section class="ai-refund-guarantee" id="guarantee" aria-labelledby="ai-guarantee-title">
+    <svg class="ai-refund-icon" width="37" height="43" viewBox="0 0 24 28" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 21 6v7.3c0 6.2-4.3 10.6-9 12.7-4.7-2.1-9-6.5-9-12.7V6L12 2Z"/><path d="m7.7 13.6 2.9 2.9 5.8-6.1"/></svg>
+    <div class="ai-refund-copy">
+     <h3 id="ai-guarantee-title">30 дней гарантии. Вернём 100% денег.</h3>
+     <p>Не понравилось или не подошло? Запросите возврат в течение 30 дней после покупки. Без вопросов и объяснений.</p>
+     <a class="ai-refund-more" href="#guarantee-faq">Как вернуть деньги →</a>
+    </div>
+   </section>
    <section class="annual-savings-panel" data-annual-savings aria-labelledby="annual-savings-heading">
     <p class="annual-savings-eyebrow" id="annual-savings-heading" data-annual-savings-title>В среднем при расчётном расходе за первый год без сигарет</p>
     <p class="annual-savings-amount" data-annual-savings-amount aria-live="polite">73 000 ₽</p>
@@ -1873,6 +1939,12 @@ body.theme-dark .predfinal-final-invitation .predfinal-final-contact .predfinal-
      <p>Сразу после оплаты вы получите доступ ко всем аудиоякорям.</p>
      <p>Можно слушать с телефона, в машине, дома — когда удобно.</p>
      <p>Никаких приложений устанавливать не нужно, всё открывается по ссылке.</p>
+    </details>
+    <details id="guarantee-faq">
+     <summary>Как работает гарантия возврата денег?</summary>
+     <p>Если аудиоякоря не понравились или не подошли, в течение 30 календарных дней со дня оплаты вы можете вернуть 100% стоимости комплекта. Без вопросов и объяснений.</p>
+     <p>Просто напишите мне в <a href="https://t.me/metodborzilova" target="_blank" rel="noopener noreferrer">Telegram</a> или <a href="https://max.ru/u/f9LHodD0cOLpevOEzdPM7DBn_9wNoZiKdBMryxkSM2b4SpNmf4xagvVkl8g" target="_blank" rel="noopener noreferrer">MAX</a> и укажите электронную почту, использованную при покупке, чтобы найти платёж. Причину объяснять не нужно.</p>
+     <p>Верну полную оплаченную сумму тем же способом, которым вы платили. Срок поступления денег после оформления возврата зависит от банка.</p>
     </details>
    </div>
   </div></section>
