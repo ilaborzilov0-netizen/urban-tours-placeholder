@@ -245,6 +245,7 @@ if(savingsCalculator){
  const annualAmount=annualPanel?.querySelector('[data-annual-savings-amount]');
  const annualDetail=annualPanel?.querySelector('[data-annual-savings-detail]');
  const calculatorNote=savingsCalculator.querySelector('#smoking-calc-note');
+ const calculatorHeading=savingsCalculator.querySelector('#smoking-savings-heading');
  // Once a visitor edits either input, keep the personal wording even after resetting.
  let personalized=false;
  const packSize=20;
@@ -287,6 +288,7 @@ if(savingsCalculator){
      ?'Столько вы сэкономите на сигаретах за год, если полностью откажетесь от них при указанных вами расходах.'
      :'Столько можно сэкономить на сигаретах при 20 сигаретах в день и пачке за 200 ₽. Если расход выше — экономия больше.';
   }
+  if(calculatorHeading&&annualPanel)calculatorHeading.textContent=personalized?'Ваши расходы на сигареты':'Расчётный пример расходов на сигареты';
   if(calculatorNote&&annualPanel){
    calculatorNote.textContent=personalized
     ?'Расчёт по вашим значениям. В пачке — 20 сигарет.'
