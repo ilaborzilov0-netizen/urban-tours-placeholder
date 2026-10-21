@@ -33,6 +33,11 @@ jobs:
                       livecode==200 and oldcode==200
                       and 'class="hero-priority"' in live
                       and ('<span class="hero-offer-contents">Два альбома · 20 аудиоякорей</span>' in live and '<span class="hero-offer-price">от 1 990 ₽</span>' in live and live.index('class="hero-priority"') < live.index('class="hero-offer-summary"') < live.index('class="hero-lead"'))
+                      and all(cta in live for cta in (
+                          '<a class="btn btn-primary album-showcase-cta" href="#pricing">Выбрать комплект</a>',
+                          '<a class="freedom-vision-cta" href="#pricing">Выбрать комплект</a>',
+                          '<a class="predfinal-final-invitation-cta" href="#pricing">Выбрать комплект</a>'
+                      ))
                       and 'data-select-plan="one"' in live
                       and 'data-select-plan="all"' in live
                       and 'data-select-plan="duo"' in live
@@ -46,6 +51,11 @@ jobs:
                   flags={
                     'priority': 'class="hero-priority"' in live,
                     'starting_price_line': ('<span class="hero-offer-contents">Два альбома · 20 аудиоякорей</span>' in live and '<span class="hero-offer-price">от 1 990 ₽</span>' in live and live.index('class="hero-priority"') < live.index('class="hero-offer-summary"') < live.index('class="hero-lead"')),
+                    'intermediate_ctas': all(cta in live for cta in (
+                      '<a class="btn btn-primary album-showcase-cta" href="#pricing">Выбрать комплект</a>',
+                      '<a class="freedom-vision-cta" href="#pricing">Выбрать комплект</a>',
+                      '<a class="predfinal-final-invitation-cta" href="#pricing">Выбрать комплект</a>'
+                    )),
                     'one':'data-select-plan="one"' in live,
                     'all':'data-select-plan="all"' in live,
                     'duo':'data-select-plan="duo"' in live,
