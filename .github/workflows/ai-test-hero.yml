@@ -51,7 +51,7 @@ jobs:
                       and 'class="ai-test-mechanism"' in test
                       and 'class="ai-test-guarantee"' in test
                       and '<p class="ai-test-audience">Для тех, кто курит много лет</p>' in test
-                      and '<p class="ai-test-contents">Два альбома · 20 коротких аудиозаписей</p>' in test
+                      and '<p class="ai-test-contents">Два альбома · 20 аудиоякорей</p>' in test
                       and '<p class="ai-test-simple">Без таблеток, пластырей и силы воли.</p>' in test
                       and 'Просто слушаете.' not in test
                       and '<p class="ai-test-price"><span class="ai-test-price-from">от</span> <strong>1 990 ₽</strong></p>' in test
