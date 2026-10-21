@@ -57,7 +57,8 @@ jobs:
                       and '<p class="ai-test-price"><span class="ai-test-price-from">от</span> <strong>1 990 ₽</strong></p>' in test
                       and 'за оба альбома в одном звучании' not in test
                       and 'Доступ <span class="ai-test-emphasis">сразу</span> после оплаты' in test
-                      and '<span class="ai-test-emphasis">30&nbsp;дней</span>' in test
+                      and '<p class="ai-test-guarantee"><span class="ai-test-check" aria-hidden="true">✓</span> Не подошло? Вернём 100% в течение <span class="ai-test-emphasis">30&nbsp;дней</span></p>' in test
+                      and 'data-source="ai-test-even-hero-spacing-20261021-v8"' in test
                       and '<span class="ai-test-emphasis">сразу</span>' in test
                       and 'data-source="ai-test-grouped-hero-20261021-v4"' in test
                       and test.count('class="ai-test-group ai-test-group--')==3
