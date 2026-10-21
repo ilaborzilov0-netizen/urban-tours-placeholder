@@ -63,7 +63,7 @@ try{
  assert.equal(await page.locator('[data-price-card="duo"] .tier-smoking-equivalent').count(),0,'No payback box in third package');
  assert.equal(await page.locator('[data-price-card="all"] .tier-smoking-equivalent').count(),1,'Keep dynamic payback in featured package');
  assert.deepEqual(await readDays(),['15'],'Default featured payback must reflect 200 RUB/day');
- assert.ok((await savings.first().innerText()).includes('В среднем за ≈'));
+ assert.match(await savings.first().innerText(),/^Комплект окупится за ≈15 дней без сигарет\.$/);
  assert.equal(await annualRubles(),'73 000 ₽');
  assert.match(await annual.locator('[data-annual-savings-title]').innerText(),/В среднем/);
  assert.equal(await page.locator('#smoking-savings h2').textContent(),'Расчётный пример расходов на сигареты');
@@ -74,11 +74,12 @@ try{
  assert.equal(await page.locator('#smoking-savings h2').textContent(),'Ваши расходы на сигареты');
  assert.deepEqual(await readDays(),['15'],'Adjusting pack price must update only the featured tier');
  assert.equal(await annualRubles(),'76 650 ₽');
- assert.ok((await savings.first().innerText()).startsWith('За ≈'),'First edit must switch payback copy to personal');
+ assert.match(await savings.first().innerText(),/^Комплект окупится за ≈15 дней без сигарет\.$/,'Text must not change after editing; only the number changes');
  assert.match(await annual.locator('[data-annual-savings-title]').innerText(),/ваших расходах/);
  await cigarettes.fill('10');
  await pack.fill('200');
  assert.deepEqual(await readDays(),['30'],'Personalized featured payback must recompute at 10 cigarettes/day');
+ assert.match(await savings.first().innerText(),/^Комплект окупится за ≈30 дней без сигарет\.$/);
  assert.equal(await annualRubles(),'36 500 ₽');
  await cigarettes.fill('');
  assert.deepEqual(await readDays(),['—'],'Invalid input must not show a fictitious featured saving period');
@@ -86,7 +87,7 @@ try{
  await cigarettes.fill('20');
  assert.deepEqual(await readDays(),['15']);
  assert.equal(await annualRubles(),'73 000 ₽');
- assert.ok((await savings.first().innerText()).startsWith('За ≈'),'Wording must remain personal even after restoring defaults');
+ assert.match(await savings.first().innerText(),/^Комплект окупится за ≈15 дней без сигарет\.$/,'Returning to defaults preserves concise copy');
  assert.doesNotMatch(await annual.locator('[data-annual-savings-title]').innerText(),/В среднем/);
  const rect=await annual.boundingBox();
  assert.ok(rect&&rect.width<391,'Yearly savings panel fits mobile viewport');
