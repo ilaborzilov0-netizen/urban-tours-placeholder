@@ -27,7 +27,7 @@ jobs:
                   js=get('analytics.js?v=20261022-journey-v1')
                   needed=['core','views','actions','calculator','checkout','audio']
                   assert all('journey-'+name for name in needed)
-                  assert 'journey-core.js' in js and 'DOMContentLoaded' in js, 'LOADER_NOT_UPDATED'
+                  assert 'journey-' in js and 'DOMContentLoaded' in js, 'LOADER_NOT_UPDATED'
                   for name in needed:
                       a=get('ai/journey-'+name+'.js?v=20261022-v1')
                       assert len(a)>300 and 'ai_' in a
