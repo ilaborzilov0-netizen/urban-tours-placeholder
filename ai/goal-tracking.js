@@ -128,7 +128,7 @@
  }
  visibleOnce('#opt-demo','ai_demo_view');
  visibleOnce('#reviews h2','ai_reviews_view');
- visibleOnce('#pricing .pricing','ai_pricing_view');
+ visibleOnce('#pricing [data-price-card="one"]','ai_pricing_view');
 
  // Albums & FAQs. Reading them is an explicit click, not just page scroll.
  document.querySelectorAll('.album-tracklist-details[data-album]').forEach(el=>{
