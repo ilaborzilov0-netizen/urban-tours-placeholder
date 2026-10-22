@@ -24,7 +24,7 @@ jobs:
                   return f.read().decode('utf8','replace')
           for i in range(12):
               try:
-                  js=get('analytics.js?v=20261020-clarity-ai1')
+                  js=get('analytics.js?v=20261022-journey-v1')
                   needed=['core','views','actions','calculator','checkout','audio']
                   assert all('journey-'+name for name in needed)
                   assert 'journey-core.js' in js and 'DOMContentLoaded' in js
