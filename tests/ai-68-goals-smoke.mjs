@@ -20,7 +20,7 @@ for(const name of ['ai/goal-tracking.js','ai/audio-player-prod-20261022.js','pre
 'ai/journey-core.js','ai/journey-views.js','ai/journey-actions.js'])new Function(await readFile(name,'utf8'));
 const html=await readFile('ai/index.html','utf8');
 assert.ok(html.includes('110906734')&&html.includes('G-J076WS14NV'));
-assert.ok(html.includes('/ai/goal-tracking.js?v=20261022-new-player-v1'));
+assert.ok(html.includes('/ai/goal-tracking.js?v=20261022-new-player-v2'));
 assert.ok(html.includes('id="opt-demo"'));
 assert.ok(html.includes('/ai/audio-player-prod-20261022.js?v=1'));
 assert.ok(html.includes('/ai/landing-prod-20261022.css?v=1'));
