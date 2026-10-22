@@ -1822,8 +1822,8 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
 </style> <link rel="stylesheet" href="/ai/оптимайз/pult.css?v=20261022-countdown-v1">
  <script defer src="/ai/оптимайз/pult.js?v=20261022-remaining-seconds-v1"></script>
  <link rel="stylesheet" href="/ai/оптимайз/air.css?v=20261022-hero-shift-v1">
- <link rel="stylesheet" href="/ai/оптимайз/calc-pult.css?v=20261022-v2">
- <script defer src="/ai/оптимайз/calc-pult.js?v=20261022-v3"></script>
+ <link rel="stylesheet" href="/ai/оптимайз/calc-pult.css?v=20261022-single-v1">
+ <script defer src="/ai/оптимайз/calc-pult.js?v=20261022-single-v1"></script>
 </head>
 <body class="theme-dark vision-mode">
  <main>
@@ -1909,21 +1909,33 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
    </div>
   </section>
 
-  <!-- Interactive DESIGN PULT: five independently styled, fully working savings calculators.
-       This prototype exists only on /ai/оптимайз/ until a variant is selected. -->
-  <section class="calc-showcase" id="calc-showcase" aria-labelledby="calc-showcase-title">
+  <!-- Approved option 04: single, working savings calculator before tariffs. -->
+  <section class="calc-showcase" id="calc-showcase" aria-label="Калькулятор экономии на сигаретах">
    <div class="wrap calc-showcase-wrap">
-    <h2 class="calc-showcase-title" id="calc-showcase-title">5 вариантов калькулятора</h2>
-    <div class="calc-tabs" role="tablist" aria-label="Выберите оформление калькулятора">
-     <button id="calc-option-1" type="button" role="tab" aria-selected="true" aria-controls="calc-live-stage" data-calc-variant="1"><b>01</b> Классика</button>
-     <button id="calc-option-2" type="button" role="tab" aria-selected="false" aria-controls="calc-live-stage" data-calc-variant="2" tabindex="-1"><b>02</b> Компакт</button>
-     <button id="calc-option-3" type="button" role="tab" aria-selected="false" aria-controls="calc-live-stage" data-calc-variant="3" tabindex="-1"><b>03</b> Пульт</button>
-     <button id="calc-option-4" type="button" role="tab" aria-selected="false" aria-controls="calc-live-stage" data-calc-variant="4" tabindex="-1"><b>04</b> Акцент</button>
-     <button id="calc-option-5" type="button" role="tab" aria-selected="false" aria-controls="calc-live-stage" data-calc-variant="5" tabindex="-1"><b>05</b> Минимум</button>
-    </div>
-    <div class="calc-live-stage" id="calc-live-stage" data-calc-stage role="tabpanel" aria-labelledby="calc-option-1">
-     <p>Загружаем калькулятор…</p>
-    </div>
+    <article class="cc-card cc-v4" aria-labelledby="savings-title">
+     <h2 id="savings-title">Ваша экономия без сигарет</h2>
+     <div class="cc-result">
+      <strong data-calc-result aria-live="polite">73 000 ₽ за год</strong>
+     </div>
+     <div class="cc-controls cc-rows">
+      <div class="cc-pill">
+       <label for="cc-cigarettes">Сигарет в день</label>
+       <div class="cc-stepper" role="group" aria-label="Сигарет в день">
+        <button type="button" data-calc-adjust="cigarettes" data-dir="-1" aria-label="Уменьшить количество сигарет">−</button>
+        <input id="cc-cigarettes" type="number" inputmode="numeric" data-calc-input="cigarettes" min="1" max="100" step="1" value="20" aria-label="Сигарет в день">
+        <button type="button" data-calc-adjust="cigarettes" data-dir="1" aria-label="Увеличить количество сигарет">+</button>
+       </div>
+      </div>
+      <div class="cc-pill">
+       <label for="cc-pack">Цена пачки, ₽</label>
+       <div class="cc-stepper" role="group" aria-label="Цена пачки, ₽">
+        <button type="button" data-calc-adjust="pack" data-dir="-1" aria-label="Уменьшить цену пачки">−</button>
+        <input id="cc-pack" type="number" inputmode="numeric" data-calc-input="pack" min="1" max="10000" step="1" value="200" aria-label="Цена пачки, ₽">
+        <button type="button" data-calc-adjust="pack" data-dir="1" aria-label="Увеличить цену пачки">+</button>
+       </div>
+      </div>
+     </div>
+    </article>
    </div>
   </section>
 
@@ -1972,6 +1984,11 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
      </div>
     </article>
    </div>
+   <p class="copyright-under-pricing">© Аудиоякоря · Авторский музыкальный проект · 18+. Копирование и распространение материалов без разрешения запрещены.</p>
+   <div class="predfinal-pricing-contact">
+    <p class="ai-question-prompt">Есть вопросы?</p>
+    <button type="button" class="predfinal-question-cta" data-open-question data-question-location="pricing">Напишите — разберёмся.</button>
+   </div>
    <section class="ai-refund-guarantee" id="guarantee" aria-labelledby="ai-guarantee-title">
     <svg class="ai-refund-icon" width="37" height="43" viewBox="0 0 24 28" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 21 6v7.3c0 6.2-4.3 10.6-9 12.7-4.7-2.1-9-6.5-9-12.7V6L12 2Z"/><path d="m7.7 13.6 2.9 2.9 5.8-6.1"/></svg>
     <div class="ai-refund-copy">
@@ -1980,10 +1997,6 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
      <a class="ai-refund-more" href="#guarantee-faq">Как вернуть деньги →</a>
     </div>
    </section>
-   <div class="predfinal-pricing-contact">
-    <p class="ai-question-prompt">Есть вопрос?</p>
-    <button type="button" class="predfinal-question-cta" data-open-question data-question-location="pricing">Напишите мне — разберёмся.</button>
-   </div>
    </div></section>
   <!-- Deeper explanation follows album artwork and pricing, not the first-screen preview. -->
   <section class="ai-after-demo" aria-label="Как работают аудиоякоря и гарантия покупки">
@@ -2092,7 +2105,7 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
      <h3 class="author-name">Илья Борзилов</h3>
      <p class="author-subtitle">Автор программы · Более 10 лет работы с курящими людьми</p>
     <div class="author-contact" aria-label="Связаться с автором">
-    <p class="author-contact-title">Есть вопрос? Напишите мне, разберёмся.</p>
+    <p class="author-contact-title">Есть вопросы? Напишите — разберёмся.</p>
     <div class="contacts">
     <a data-direct-contact="max" href="https://max.ru/u/f9LHodD0cOLpevOEzdPM7DBn_9wNoZiKdBMryxkSM2b4SpNmf4xagvVkl8g" target="_blank" rel="noopener noreferrer" aria-label="Написать Илье Борзилову в MAX">MAX <span aria-hidden="true">↗</span></a>
     <a data-direct-contact="telegram" href="https://t.me/metodborzilova" target="_blank" rel="noopener noreferrer" aria-label="Написать Илье Борзилову в Telegram">Telegram <span aria-hidden="true">↗</span></a>
@@ -2242,15 +2255,14 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
     <div class="predfinal-final-actions">
      <a class="predfinal-final-invitation-cta" href="#pricing">Выбрать комплект →</a>
      <div class="predfinal-final-contact">
-      <p class="ai-question-prompt">Есть вопрос?</p>
-      <button type="button" class="predfinal-question-cta" data-open-question data-question-location="faq">Напишите мне — разберёмся.</button>
+      <p class="ai-question-prompt">Есть вопросы?</p>
+      <button type="button" class="predfinal-question-cta" data-open-question data-question-location="faq">Напишите — разберёмся.</button>
      </div>
     </div>
    </div>
   </section>
  </main>
  <footer class="wrap footer">
-  <span>© Аудиоякоря · Авторский музыкальный проект · 18+. Копирование и распространение материалов без разрешения запрещены.</span>
   <span><a href="/consultation-privacy/">Обработка персональных данных</a></span>
  </footer>
 
@@ -2284,7 +2296,7 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
   <div class="predfinal-sheet-content">
    <button type="button" class="predfinal-sheet-close" data-sheet-close aria-label="Закрыть окно">×</button>
    <p class="predfinal-sheet-eyebrow">Вопрос об аудиоякорях</p>
-   <h2 id="predfinal-question-heading">Напишите мне, разберёмся.</h2>
+   <h2 id="predfinal-question-heading">Напишите — разберёмся.</h2>
    <p class="predfinal-sheet-caption">Оставьте вопрос и контакт, по которому вам удобно получить ответ.</p>
    <form id="predfinal-question-form" novalidate>
     <label class="predfinal-sheet-field" for="predfinal-question-contact">Телефон или электронная почта</label>
