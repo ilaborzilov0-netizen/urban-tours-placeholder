@@ -1,0 +1,70 @@
+name: Classic 990 live payment hotfix verification
+on:
+  push:
+    branches: [main]
+    paths:
+      - "ai/index.html"
+      - ".github/workflows/classic-990-payment-hotfix.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  payment-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check live deployed HTML and test unpaid payment creation
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json,urllib.request,urllib.parse,urllib.error,hashlib,time,re,sys
+          base='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net'
+          site='https://marafon-metod.ru/ai/'
+          original=open('ai/index.html',encoding='utf8').read()
+          for attempt in range(1,18):
+            req=urllib.request.Request(site+'?verify_hotfix='+str(attempt),headers={'Cache-Control':'no-cache','User-Agent':'Mozilla/5.0'})
+            with urllib.request.urlopen(req,timeout=20) as response:remote=response.read().decode('utf8')
+            good='function albumAmountMinor(data)' in remote and remote==original
+            print('HOTFIX_DEPLOY',attempt,'exact',good,flush=True)
+            if good:break
+            time.sleep(7)
+          else:sys.exit('NEW_HTML_NOT_LIVE')
+          with urllib.request.urlopen(base+'/health',timeout=20) as resp:
+            health=json.load(resp)
+            assert resp.status==200
+          assert health.get('ok') is True
+          assert health.get('testMode') is False
+          assert health.get('tariffs',{}).get('ai_album')==99000
+          print('TARIFF_HEALTH',{'enabled':True,'minor_amount':99000},flush=True)
+          # Valid synthetic email - create a single unpaid bank order, NEVER open payment URL.
+          payload={'plan':'ai_album','email':'checkout-contract-test-20261022@example.com',
+            'flowId':'classic-990-smoke-20261022','source':'github_checkout_contract_test',
+            'returnUrl':'https://marafon-metod.ru/ai/'}
+          req=urllib.request.Request(base+'/api/payment/create',data=json.dumps(payload).encode(),
+            headers={'Content-Type':'application/json','Accept':'application/json',
+             'Origin':'https://marafon-metod.ru'},method='POST')
+          try:
+            with urllib.request.urlopen(req,timeout=35) as resp:
+              actual=json.load(resp)
+              status=resp.status
+          except urllib.error.HTTPError as exc:
+            reason=exc.read().decode(errors='replace')
+            print('LIVE_CREATE_FAILED',exc.code,reason[:350],flush=True)
+            raise
+          safe={'status':status,'ok':actual.get('ok'),'plan':actual.get('plan'),
+            'amount':actual.get('amount'),'amountMinor':actual.get('amountMinor'),
+            'hasBankLink':bool(actual.get('paymentUrl'))}
+          print('LIVE_CREATE_RESPONSE',safe,flush=True)
+          assert actual.get('ok') and actual.get('plan')=='ai_album'
+          minor=actual.get('amountMinor')
+          amount=actual.get('amount')
+          if amount==990:normalized=99000
+          elif amount==99000:normalized=99000
+          else:raise AssertionError('Unexpected live amount units, amount not 990/99000')
+          if minor is not None:assert minor==normalized,'amountMinor differs from normalized price'
+          assert actual.get('paymentUrl','').startswith('https://')
+          host=urllib.parse.urlparse(actual['paymentUrl']).hostname
+          assert host and (host.endswith('.tbank.ru') or host.endswith('.tinkoff.ru') or host=='pay.tbank-online.com')
+          print('UNPAID_LIVE_ORDER_CREATED_AND_VALIDATED',{'amount_minor':normalized,'redirect_not_followed':True},flush=True)
+          PY
