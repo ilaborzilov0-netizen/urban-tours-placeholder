@@ -1529,3 +1529,10 @@ body.theme-dark .album-showcase .album-display--one{
   margin:0!important;
  }
 }
+
+/* 2026-10-22: instruction removed. Keep legacy demo/favorite nodes
+   in the DOM for compatibility with the unified first-screen player,
+   but remove their entire section from visual layout (no blank gap). */
+body.theme-dark #sounds{
+ display:none!important;
+}
