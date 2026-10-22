@@ -72,6 +72,36 @@ try{
  assert.ok(captured.includes('ai_classic_bank_redirect'));
  assert.ok(!captured.includes('ai_classic_paid'),'Never count purchase without verified bank return');
  console.log('MOCK_PAYMENT_SUCCESS',JSON.stringify({plan:paymentRequest.plan,amount:99000,hasEmail:true,neverBankCharged:true}));
+ // Verify scroll-depth goals and actual listened-time milestones, including replays.
+ const audioPage=await browser.newPage({viewport:{width:390,height:844}});
+ let audioGoals=[];
+ await audioPage.exposeBinding('__testGoal',(_source,counter,verb,name)=>{
+  if(counter===110906734&&verb==='reachGoal')audioGoals.push(name);
+ });
+ await audioPage.addInitScript(()=>{window.ym=(...args)=>window.__testGoal(...args);window.posthog={__loaded:true,capture:()=>{}};});
+ await audioPage.route('https://**',route=>route.fulfill({status:200,contentType:'application/javascript',body:''}));
+ await audioPage.goto('http://127.0.0.1:18772/ai/',{waitUntil:'domcontentloaded'});
+ await audioPage.waitForFunction(()=>!!window.aiClassicTracker);
+ await audioPage.evaluate(()=>{
+  const a=document.querySelector('#demo-audio');
+  let current=0;
+  Object.defineProperty(a,'currentTime',{configurable:true,get:()=>current,set:v=>{current=v}});
+  Object.defineProperty(a,'paused',{configurable:true,get:()=>false});
+  a.dispatchEvent(new Event('play'));
+  for(let i=1;i<=60;i++){a.currentTime=i*.5;a.dispatchEvent(new Event('timeupdate'))}
+  a.dispatchEvent(new Event('ended'));
+  a.currentTime=0;a.dispatchEvent(new Event('play'));
+  window.scrollTo(0,document.documentElement.scrollHeight);
+ });
+ await audioPage.waitForTimeout(300);
+ for(const id of ['ai_classic_demo_play','ai_classic_demo_50','ai_classic_demo_90','ai_classic_demo_complete','ai_classic_scroll_25','ai_classic_scroll_50','ai_classic_scroll_75','ai_classic_scroll_90','ai_classic_scroll_100']){
+  assert.ok(audioGoals.includes(id),'Missing playback or scroll goal: '+id);
+ }
+ assert.equal(audioGoals.filter(x=>x==='ai_classic_demo_play').length,2,'Repeated listens must be counted');
+ assert.equal(audioGoals.filter(x=>x==='ai_classic_demo_50').length,1,'Half-heard reach should be one per session');
+ assert.equal(audioGoals.filter(x=>x==='ai_classic_demo_90').length,1,'90%-heard reach should be one per session');
+ console.log('DEMO_AND_SCROLL_GOALS_PASS',JSON.stringify({plays:2,realCoverageMilestones:[50,90],maxScrollDepth:100}));
+
  // Question request on separate page, also fully mocked.
  const q=await browser.newPage({viewport:{width:390,height:844}});
  let qCaptured=[];
