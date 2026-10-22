@@ -6,7 +6,8 @@ on:
       - ".github/workflows/ai-launch-live-audit.yml"
       - "ai/index.html"
       - "ai/archive-2026-10-22/**"
-      - "ai/оптимайз/pult.js"
+      - "ai/audio-player-prod-20261022.js"
+      - "ai/landing-prod-20261022.css"
   workflow_dispatch:
 permissions:
   contents: read
@@ -30,7 +31,7 @@ jobs:
               try:
                   status,html=get('/ai/?deploy_audit=20261022&run='+os.environ.get('GITHUB_RUN_ID','test')+'&attempt='+str(attempt))
                   archived,old=get('/ai/archive-2026-10-22/?deploy_audit=20261022')
-                  jsstatus,js=get('/ai/оптимайз/pult.js?v=20261022-milestones-v1')
+                  jsstatus,js=get('/ai/audio-player-prod-20261022.js?v=1')
                   checks={
                     'http200':status==200 and archived==200 and jsstatus==200,
                     'promoted_heading':'<span class="ai-test-title-main">Бросьте курить</span>' in html,
@@ -40,6 +41,8 @@ jobs:
                     'metrika_one_bootstrap':html.count('mc.yandex.ru/metrika/tag.js?id=110906734')==1,
                     'canonical':'rel="canonical" href="https://marafon-metod.ru/ai/"' in html,
                     'goal_script':'/ai/goal-tracking.js?v=20261022-new-player-v1' in html,
+                    'frozen_player_src':'/ai/audio-player-prod-20261022.js?v=1' in html,
+                    'frozen_css_src':'/ai/landing-prod-20261022.css?v=1' in html,
                     'journey_loader':'/analytics.js?v=20261022-new-views-v1' in html,
                     'checkout':'/predfinal/checkout.js?v=20261020-errorcode-v11' in html,
                     'cards':all('data-price-card="'+tier+'"' in html for tier in ('one','all','duo')),
