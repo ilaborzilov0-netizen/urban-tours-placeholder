@@ -74,7 +74,7 @@ try {
 
  await page.locator('.hero-buy-cta').click();
  assert.ok(await occurs('ai_hero_tariffs_click'),'Main CTA click goal missing');
- await page.waitForTimeout(700);
+ await page.waitForTimeout(1900); // Allow smooth anchor scroll plus 650ms visibility dwell.
  assert.ok(await occurs('ai_pricing_view'),'Pricing in-view goal missing');
  await page.locator('[data-select-plan="all"]').first().click();
  assert.ok(await occurs('ai_plan_2990_click'),'2990 tier click goal missing');
