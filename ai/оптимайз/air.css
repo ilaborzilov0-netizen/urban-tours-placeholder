@@ -1536,3 +1536,15 @@ body.theme-dark .album-showcase .album-display--one{
 body.theme-dark #sounds{
  display:none!important;
 }
+
+
+/* Safety net: eliminate obsolete 77% survey-stat block, including on cached markup. */
+body.theme-dark #first-listen,
+body.theme-dark .first-listen-section,
+body.theme-dark .first-listen-panel{
+ display:none!important;
+ margin:0!important;
+ padding:0!important;
+ height:0!important;
+ border:0!important;
+}
