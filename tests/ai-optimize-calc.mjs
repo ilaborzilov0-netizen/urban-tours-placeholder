@@ -27,6 +27,28 @@ try {
    return nodes.map(s=>document.querySelector(s)?.getBoundingClientRect().top+window.scrollY??-1);
   });
   assert.ok(positions.every((x,i)=>x>=0&&(i===0||x>positions[i-1])),'Incorrect section order: '+positions);
+
+  const guaranteeFlow=await page.evaluate(()=>{
+    const pricing=document.querySelector('.prefinal-pricing-section');
+    const review=document.querySelector('.review-section');
+    const guarantee=document.querySelector('.ai-refund-guarantee');
+    const question=document.querySelector('.predfinal-pricing-contact');
+    const matrix=new DOMMatrix(getComputedStyle(guarantee).transform);
+    return {
+      pricingBackground:getComputedStyle(pricing).backgroundColor,
+      reviewBackground:getComputedStyle(review).backgroundColor,
+      border:getComputedStyle(review).borderTopWidth,
+      moveY:matrix.m42,
+      distanceToReviews:review.getBoundingClientRect().top-guarantee.getBoundingClientRect().bottom,
+      distanceFromQuestion:guarantee.getBoundingClientRect().top-question.getBoundingClientRect().bottom
+    };
+  });
+  assert.equal(guaranteeFlow.pricingBackground,guaranteeFlow.reviewBackground,'Tariffs/reviews need same background');
+  assert.equal(guaranteeFlow.border,'0px','Divider must be removed');
+  assert.equal(guaranteeFlow.moveY,34,'Guarantee alone must be offset 34px without reflow');
+  assert.ok(guaranteeFlow.distanceToReviews>=0,'Moved guarantee must not overlap reviews');
+  assert.ok(guaranteeFlow.distanceFromQuestion>0,'Moved guarantee must keep gap below question');
+
   assert.equal(await page.locator('.copyright-under-pricing').count(),0);
   assert.equal(await page.locator('footer:has-text("© Аудиоякоря")').count(),1);
   assert.equal(await page.locator('.predfinal-pricing-contact .ai-question-prompt').innerText(),'Есть вопросы?');
