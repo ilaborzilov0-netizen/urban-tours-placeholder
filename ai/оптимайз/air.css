@@ -1696,3 +1696,35 @@ body.theme-dark .ai-after-demo.ai-core-message.ai-core-message--between{
   padding:8px 0 7px!important;
  }
 }
+
+
+/* 2026-10-22: no motivational final CTA; a compact contact invitation only. */
+body.theme-dark .predfinal-final-invitation.prefinal-final-invitation--questions{
+ padding:clamp(28px,4vw,42px) 0 clamp(40px,5vw,56px)!important;
+ border:0!important;
+}
+body.theme-dark .predfinal-final-invitation--questions .predfinal-final-contact{
+ display:flex!important;
+ flex-direction:column!important;
+ align-items:center!important;
+ text-align:center!important;
+ gap:8px!important;
+ margin:0 auto!important;
+ padding:0!important;
+}
+body.theme-dark .predfinal-final-invitation--questions .predfinal-final-contact h2.ai-question-prompt{
+ display:block!important;
+ margin:0!important;
+ padding:0!important;
+ max-width:none!important;
+ color:#ecf3e6!important;
+ font:500 clamp(18px,2.2vw,21px)/1.3 Arial,Helvetica,sans-serif!important;
+ letter-spacing:0!important;
+ text-transform:none!important;
+}
+body.theme-dark .predfinal-final-invitation--questions .predfinal-final-contact .predfinal-question-cta{
+ min-height:44px!important;
+ font-size:clamp(18px,2.2vw,21px)!important;
+ font-weight:700!important;
+ line-height:1.3!important;
+}
