@@ -1,0 +1,150 @@
+{
+  "counter_id": 110906734,
+  "version": "classic-990-2026-10-22",
+  "goals": [
+    {
+      "id": "ai_classic_hero_view",
+      "name": "КЛАССИКА — первый экран увидел"
+    },
+    {
+      "id": "ai_classic_scroll_25",
+      "name": "КЛАССИКА — глубина 25%"
+    },
+    {
+      "id": "ai_classic_scroll_50",
+      "name": "КЛАССИКА — глубина 50%"
+    },
+    {
+      "id": "ai_classic_scroll_75",
+      "name": "КЛАССИКА — глубина 75%"
+    },
+    {
+      "id": "ai_classic_scroll_90",
+      "name": "КЛАССИКА — глубина 90%"
+    },
+    {
+      "id": "ai_classic_scroll_100",
+      "name": "КЛАССИКА — дошёл до низа"
+    },
+    {
+      "id": "ai_classic_idea_view",
+      "name": "КЛАССИКА — увидел идею"
+    },
+    {
+      "id": "ai_classic_switch_view",
+      "name": "КЛАССИКА — увидел ситуации"
+    },
+    {
+      "id": "ai_classic_mechanism_view",
+      "name": "КЛАССИКА — увидел механизм"
+    },
+    {
+      "id": "ai_classic_tracks_view",
+      "name": "КЛАССИКА — увидел треклист"
+    },
+    {
+      "id": "ai_classic_order_view",
+      "name": "КЛАССИКА — увидел предложение 990 ₽"
+    },
+    {
+      "id": "ai_classic_faq_view",
+      "name": "КЛАССИКА — увидел вопросы"
+    },
+    {
+      "id": "ai_classic_final_view",
+      "name": "КЛАССИКА — увидел финальную кнопку"
+    },
+    {
+      "id": "ai_classic_buy_hero",
+      "name": "КЛАССИКА — клик покупка первый экран"
+    },
+    {
+      "id": "ai_classic_buy_order",
+      "name": "КЛАССИКА — клик покупка карточка 990"
+    },
+    {
+      "id": "ai_classic_buy_final",
+      "name": "КЛАССИКА — клик покупка финал"
+    },
+    {
+      "id": "ai_classic_buy_demo",
+      "name": "КЛАССИКА — клик покупка из демо"
+    },
+    {
+      "id": "ai_classic_demo_play",
+      "name": "КЛАССИКА — демо начал слушать"
+    },
+    {
+      "id": "ai_classic_demo_50",
+      "name": "КЛАССИКА — демо реально прослушал 50%"
+    },
+    {
+      "id": "ai_classic_demo_90",
+      "name": "КЛАССИКА — демо реально прослушал 90%"
+    },
+    {
+      "id": "ai_classic_demo_complete",
+      "name": "КЛАССИКА — демо дослушал"
+    },
+    {
+      "id": "ai_classic_checkout_open",
+      "name": "КЛАССИКА — открыл оплату"
+    },
+    {
+      "id": "ai_classic_email_valid",
+      "name": "КЛАССИКА — ввёл корректный email"
+    },
+    {
+      "id": "ai_classic_pay_click",
+      "name": "КЛАССИКА — нажал перейти к оплате"
+    },
+    {
+      "id": "ai_classic_order_created",
+      "name": "КЛАССИКА — заказ создан"
+    },
+    {
+      "id": "ai_classic_bank_redirect",
+      "name": "КЛАССИКА — переход в Т-Банк"
+    },
+    {
+      "id": "ai_classic_paid",
+      "name": "КЛАССИКА — подтверждена оплата 990 ₽"
+    },
+    {
+      "id": "ai_classic_payment_error",
+      "name": "КЛАССИКА — ошибка создания оплаты"
+    },
+    {
+      "id": "ai_classic_checkout_closed",
+      "name": "КЛАССИКА — закрыл оплату"
+    },
+    {
+      "id": "ai_classic_question_open",
+      "name": "КЛАССИКА — открыл вопрос"
+    },
+    {
+      "id": "ai_classic_question_sent",
+      "name": "КЛАССИКА — отправил вопрос"
+    },
+    {
+      "id": "ai_classic_question_error",
+      "name": "КЛАССИКА — ошибка отправки вопроса"
+    },
+    {
+      "id": "ai_classic_situation_click",
+      "name": "КЛАССИКА — выбрал ситуацию"
+    },
+    {
+      "id": "ai_classic_faq_open",
+      "name": "КЛАССИКА — раскрыл FAQ"
+    },
+    {
+      "id": "ai_classic_demo_button_hero",
+      "name": "КЛАССИКА — нажал демо вверху"
+    },
+    {
+      "id": "ai_classic_demo_button_tracks",
+      "name": "КЛАССИКА — нажал демо в треклисте"
+    }
+  ]
+}

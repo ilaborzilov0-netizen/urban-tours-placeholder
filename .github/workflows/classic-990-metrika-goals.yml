@@ -1,0 +1,30 @@
+name: Classic 990 Metrika goals sync
+on:
+  push:
+    branches: [main]
+    paths:
+      - "ai/classic-goals.json"
+      - "ai/sync_classic_metrika_goals.py"
+      - ".github/workflows/classic-990-metrika-goals.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: yandex-metrika-goals-110906734
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      YANDEX_METRIKA_OAUTH: ${{ secrets.YANDEX_METRIKA_OAUTH }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify available goal slots and current IDs
+        env:
+          METRIKA_SYNC_MODE: check
+        run: python3 ai/sync_classic_metrika_goals.py
+      - name: Create only missing goals, then verify all 36
+        env:
+          METRIKA_SYNC_MODE: apply
+        run: python3 ai/sync_classic_metrika_goals.py
