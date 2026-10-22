@@ -137,28 +137,30 @@
  }
  function alignFirstFold(){
   if(!hero)return;
-  const keys=['--fold-heading-gap','--fold-offer-gap','--fold-demo-gap'];
-  keys.forEach(k=>hero.style.removeProperty(k));
+  const props=['--fold-top-space','--fold-heading-gap','--fold-demo-gap'];
+  props.forEach(k=>hero.style.removeProperty(k));
   if(!matchMedia('(max-width:780px)').matches||window.scrollY>3)return;
   const first=root.querySelector('.opt-line:nth-child(1)');
   const second=root.querySelector('.opt-line:nth-child(2)');
   if(!first||!second)return;
-  // Measure AFTER applying CSS minima (including hero CTA and review).
   const viewport=Math.max(1,window.visualViewport?.height||window.innerHeight);
   const firstBottom=first.getBoundingClientRect().bottom;
   const secondTop=second.getBoundingClientRect().top;
-  // Never let the first sample disappear below the fold.
+  const short=viewport<=720;
+  const baseTop=short?33:68;
+  const baseHeading=short?12:17;
+  const baseDemo=short?8:12;
+  // The FIRST song must remain fully visible. Add only room actually available.
   const capacity=Math.max(0,viewport-firstBottom-9);
-  // The next row should start immediately below the fold, without splitting the card.
-  const required=Math.max(0,viewport+1-secondTop);
-  const extra=Math.floor(Math.min(capacity,required,290));
+  const desired=Math.max(0,viewport+1-secondTop);
+  const extra=Math.floor(Math.min(capacity,desired,180));
   if(extra<3)return;
-  const baseHeading=16,baseOffer=13,baseDemo=10;
-  const headingAdd=Math.round(extra*.32);
-  const offerAdd=Math.round(extra*.33);
-  const demoAdd=extra-headingAdd-offerAdd;
-  hero.style.setProperty('--fold-heading-gap',baseHeading+headingAdd+'px');
-  hero.style.setProperty('--fold-offer-gap',baseOffer+offerAdd+'px');
+  // Most unused space goes ABOVE the heading, not between pitch and CTA.
+  const topAdd=Math.round(extra*.73);
+  const headAdd=Math.round(extra*.10);
+  const demoAdd=extra-topAdd-headAdd;
+  hero.style.setProperty('--fold-top-space',baseTop+topAdd+'px');
+  hero.style.setProperty('--fold-heading-gap',baseHeading+headAdd+'px');
   hero.style.setProperty('--fold-demo-gap',baseDemo+demoAdd+'px');
  }
  window.addEventListener('resize',scheduleFoldAlignment,{passive:true});
