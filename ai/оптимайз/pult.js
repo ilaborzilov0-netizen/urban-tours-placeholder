@@ -25,7 +25,7 @@
    +'<button class="opt-round" type="button" data-opt-play="'+t.id+'" aria-label="'+playLabel(t)+'" aria-pressed="'+(isActive&&playing)+'"><span aria-hidden="true">'+(isActive&&playing?'Ⅱ':'▶')+'</span></button>'
    +'<div class="opt-line-text"><strong>'+t.name+'</strong>'
    +'<span class="opt-line-caption" data-status="'+t.id+'">'+(isActive&&playing?'Сейчас играет':finished.has(t.id)?'Прослушано · '+Math.round(t.duration)+' сек.': 'Фрагмент · '+Math.round(t.duration)+' сек.')+'</span></div>'
-   +'<button class="opt-like'+(isLiked?' is-liked':'')+'" type="button" data-opt-like="'+t.id+'" aria-pressed="'+isLiked+'" aria-label="'+(isLiked?'Убрать отметку «Нравится»: ':'Нравится звучание: ')+t.name+'"><span aria-hidden="true">'+(isLiked?'♥':'♡')+'</span><span>Нравится</span></button>'
+   +'<button class="opt-like'+(isLiked?' is-liked':'')+'" type="button" data-opt-like="'+t.id+'" aria-pressed="'+isLiked+'" aria-label="'+(isLiked?'Убрать отметку «Нравится»: ':'Нравится звучание: ')+t.name+'"><svg class="opt-heart-icon" xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"/></svg></button>'
    +'<div class="opt-trackbar" role="progressbar" aria-label="Прослушано: '+t.name+'" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-progress="'+t.id+'"><i></i></div>'
    +'</div>';
  }
@@ -103,7 +103,6 @@
    b.classList.toggle('is-liked',yes);
    b.setAttribute('aria-pressed',String(yes));
    b.setAttribute('aria-label',(yes?'Убрать отметку «Нравится»: ':'Нравится звучание: ')+music[id].name);
-   b.querySelector('span').textContent=yes?'♥':'♡';
   }
  }
  root.addEventListener('click',e=>{
@@ -127,33 +126,20 @@
  });
  window.addEventListener('pagehide',()=>{playing=false;audio.pause()});
 
- // The complete three-track panel, not just the first row, must fit in
- // the initial viewport on typical mobile screens. Give spare height to
- // breathing room ABOVE the headline; compress only on short screens.
+ // The first-screen panel is a complete viewport-height layout.
+ // On unusually short displays, soften nonessential gaps while preserving
+ // 44px tap targets and scroll access.
  let fitFrame=0;
  function scheduleFit(){
   if(fitFrame)cancelAnimationFrame(fitFrame);
-  fitFrame=requestAnimationFrame(()=>{fitFrame=0;fitViewport()});
- }
- function fitViewport(){
-  if(!hero)return;
-  // Don't shift the page while someone is scrolling or listening.
-  if(window.scrollY>8)return;
-  hero.style.removeProperty('--hero-fit-top');
-  hero.classList.remove('hero-compact-height');
-  if(!matchMedia('(max-width:780px)').matches)return;
-  const viewport=Math.max(1,window.visualViewport?.height||window.innerHeight);
-  const minTop=viewport<620?12:viewport<720?22:40;
-  const maxTop=viewport<620?32:viewport<720?62:96;
-  const initialTop=parseFloat(getComputedStyle(hero).paddingTop)||0;
-  const initialBottom=root.getBoundingClientRect().bottom;
-  const desiredTop=Math.max(minTop,Math.min(maxTop,initialTop+viewport-12-initialBottom));
-  hero.style.setProperty('--hero-fit-top',Math.round(desiredTop)+'px');
-  if(root.getBoundingClientRect().bottom>viewport-8){
-   hero.classList.add('hero-compact-height');
-   const overflow=root.getBoundingClientRect().bottom-(viewport-8);
-   hero.style.setProperty('--hero-fit-top',Math.round(Math.max(10,desiredTop-overflow))+'px');
-  }
+  fitFrame=requestAnimationFrame(()=>{
+   fitFrame=0;
+   if(!hero)return;
+   hero.classList.remove('hero-compact-height');
+   if(!matchMedia('(max-width:780px)').matches)return;
+   const viewport=window.visualViewport?.height||window.innerHeight;
+   if(hero.scrollHeight>viewport+3)hero.classList.add('hero-compact-height');
+  });
  }
  window.addEventListener('resize',scheduleFit,{passive:true});
  window.addEventListener('orientationchange',scheduleFit,{passive:true});
