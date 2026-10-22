@@ -1684,3 +1684,15 @@ body.theme-dark .ai-after-demo.ai-core-message .ai-core-message-quote strong{
   line-height:1.2!important;
  }
 }
+
+
+/* The one-line idea now sits BETWEEN album #2 and the savings calculator.
+   Avoid accumulating the old standalone section's oversized whitespace. */
+body.theme-dark .ai-after-demo.ai-core-message.ai-core-message--between{
+ padding:12px 0 10px!important;
+}
+@media(max-width:780px){
+ body.theme-dark .ai-after-demo.ai-core-message.ai-core-message--between{
+  padding:8px 0 7px!important;
+ }
+}
