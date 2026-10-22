@@ -6,7 +6,7 @@ if(typeof track!=='function')return;
 document.addEventListener('click',event=>{
  const el=event.target.closest('a,button,summary');
  if(!el)return;
- if(el.closest('.ai-test-look-at-tiers'))
+ if(el.closest('.ai-test-look-at-tiers')||el.matches('.hero-buy-cta'))
   track('ai_hero_tariffs_click',{section:'hero',element:'tariffs_link'});
  if(el.matches('.ai-refund-more'))
   track('ai_guarantee_details_click',{section:'guarantee'});
