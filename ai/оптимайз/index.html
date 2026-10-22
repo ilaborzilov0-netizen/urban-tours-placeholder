@@ -1822,6 +1822,8 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
 </style> <link rel="stylesheet" href="/ai/оптимайз/pult.css?v=20261022-countdown-v1">
  <script defer src="/ai/оптимайз/pult.js?v=20261022-remaining-seconds-v1"></script>
  <link rel="stylesheet" href="/ai/оптимайз/air.css?v=20261022-hero-shift-v1">
+ <link rel="stylesheet" href="/ai/оптимайз/calc-pult.css?v=20261022-v1">
+ <script defer src="/ai/оптимайз/calc-pult.js?v=20261022-v1"></script>
 </head>
 <body class="theme-dark vision-mode">
  <main>
@@ -1907,6 +1909,24 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
    </div>
   </section>
 
+  <!-- Interactive DESIGN PULT: five independently styled, fully working savings calculators.
+       This prototype exists only on /ai/оптимайз/ until a variant is selected. -->
+  <section class="calc-showcase" id="calc-showcase" aria-labelledby="calc-showcase-title">
+   <div class="wrap calc-showcase-wrap">
+    <h2 class="calc-showcase-title" id="calc-showcase-title">5 вариантов калькулятора</h2>
+    <div class="calc-tabs" role="tablist" aria-label="Выберите оформление калькулятора">
+     <button id="calc-option-1" type="button" role="tab" aria-selected="true" aria-controls="calc-live-stage" data-calc-variant="1"><b>01</b> Классика</button>
+     <button id="calc-option-2" type="button" role="tab" aria-selected="false" aria-controls="calc-live-stage" data-calc-variant="2" tabindex="-1"><b>02</b> Компакт</button>
+     <button id="calc-option-3" type="button" role="tab" aria-selected="false" aria-controls="calc-live-stage" data-calc-variant="3" tabindex="-1"><b>03</b> Пульт</button>
+     <button id="calc-option-4" type="button" role="tab" aria-selected="false" aria-controls="calc-live-stage" data-calc-variant="4" tabindex="-1"><b>04</b> Акцент</button>
+     <button id="calc-option-5" type="button" role="tab" aria-selected="false" aria-controls="calc-live-stage" data-calc-variant="5" tabindex="-1"><b>05</b> Минимум</button>
+    </div>
+    <div class="calc-live-stage" id="calc-live-stage" data-calc-stage role="tabpanel" aria-labelledby="calc-option-1">
+     <p>Загружаем калькулятор…</p>
+    </div>
+   </div>
+  </section>
+
   <section class="section prefinal-pricing-section" id="pricing" aria-label="Комплекты и цены"><div class="wrap">
    <div class="pricing">
     <article class="price-card" data-price-card="one" aria-label="Комплект: один стиль, 1990 рублей">
@@ -1959,34 +1979,6 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
      <p>Не понравилось или не подошло? Запросите возврат в течение 30 дней после покупки. Без вопросов и объяснений.</p>
      <a class="ai-refund-more" href="#guarantee-faq">Как вернуть деньги →</a>
     </div>
-   </section>
-   <section class="smoking-savings smoking-savings--compact" id="smoking-savings" aria-labelledby="smoking-savings-heading">
-    <h2 id="smoking-savings-heading">Расчётный пример расходов на сигареты</h2>
-    <div class="smoking-calc-fields">
-     <div class="smoking-calc-field">
-      <label for="smoking-calc-cigarettes">Сигарет в день</label>
-      <div class="smoking-calc-stepper">
-       <button type="button" data-calc-adjust="cigarettes" data-step="-1" aria-label="Уменьшить количество сигарет на одну">−</button>
-       <input id="smoking-calc-cigarettes" data-calc-input="cigarettes" type="number" inputmode="numeric" min="1" max="100" step="1" value="20" aria-describedby="smoking-calc-note">
-       <button type="button" data-calc-adjust="cigarettes" data-step="1" aria-label="Увеличить количество сигарет на одну">+</button>
-      </div>
-     </div>
-     <div class="smoking-calc-field">
-      <label for="smoking-calc-pack">Цена пачки, ₽</label>
-      <div class="smoking-calc-stepper">
-       <button type="button" data-calc-adjust="pack" data-step="-1" aria-label="Уменьшить стоимость пачки на 10 рублей">−</button>
-       <input id="smoking-calc-pack" data-calc-input="pack" type="number" inputmode="numeric" min="1" max="10000" step="1" value="200" aria-describedby="smoking-calc-note">
-       <button type="button" data-calc-adjust="pack" data-step="1" aria-label="Увеличить стоимость пачки на 10 рублей">+</button>
-      </div>
-     </div>
-    </div>
-    <p class="smoking-calc-error" role="status" aria-live="polite"></p>
-    <p class="smoking-calc-note" id="smoking-calc-note">Расчётный ориентир: 20 сигарет в день, пачка 200 ₽ (20 сигарет).</p>
-   </section>
-   <section class="annual-savings-panel" data-annual-savings aria-labelledby="annual-savings-heading">
-    <p class="annual-savings-eyebrow" id="annual-savings-heading" data-annual-savings-title>В среднем при расчётном расходе за первый год без сигарет</p>
-    <p class="annual-savings-amount" data-annual-savings-amount aria-live="polite">73 000 ₽</p>
-    <p class="annual-savings-detail" data-annual-savings-detail>Столько можно сэкономить на сигаретах при 20 сигаретах в день и пачке за 200 ₽. Если расход выше — экономия больше.</p>
    </section>
    <div class="predfinal-pricing-contact">
     <p class="ai-question-prompt">Есть вопрос?</p>
