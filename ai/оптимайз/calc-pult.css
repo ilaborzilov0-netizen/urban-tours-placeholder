@@ -161,3 +161,25 @@ body.theme-dark .prefinal-pricing-section .ai-refund-guarantee{
   font-size:clamp(23px,7vw,29px)!important;
  }
 }
+
+
+/* 2026-10-22: tariffs and reviews read as ONE uninterrupted chapter.
+   Only the guarantee card moves visually: translate does not reflow
+   the questions, tariffs, section boundary, or review heading. */
+body.theme-dark .prefinal-pricing-section,
+body.theme-dark .review-section{
+ background:#121b15!important;
+ background-image:none!important;
+ border-top:0!important;
+ border-bottom:0!important;
+ box-shadow:none!important;
+}
+body.theme-dark .prefinal-pricing-section .ai-refund-guarantee{
+ transform:translateY(34px)!important;
+}
+/* Keep position stable even if a mobile browser reduces animations. */
+@media(prefers-reduced-motion:reduce){
+ body.theme-dark .prefinal-pricing-section .ai-refund-guarantee{
+  transition:none!important;
+ }
+}
