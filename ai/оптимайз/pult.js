@@ -30,11 +30,11 @@
    +'</div>';
  }
  function render(){
-  root.innerHTML='<div class="opt-overline"><strong>Послушайте, как звучат аудиоякоря</strong><span>3 коротких фрагмента на выбор</span></div>'
+  root.innerHTML='<div class="opt-overline"><strong>Послушайте аудиоякоря</strong><span>Три звучания на выбор</span></div>'
    +'<div class="opt-lines">'+tracks.map(item).join('')+'</div>'
-   +'<p class="opt-tip">Нажмите ▶ для прослушивания. Отметьте ♥ то, что понравилось.</p>'
    +'<p class="opt-error" role="status"'+(errorText?'':' hidden')+'>'+errorText+'</p>';
   progress();
+  scheduleFit();
  }
  function progress(){
   tracks.forEach(t=>{
@@ -127,48 +127,36 @@
  });
  window.addEventListener('pagehide',()=>{playing=false;audio.pause()});
 
- // Keep the three tracks in ONE card. Only adjust the vertical rhythm above it:
- // on the first mobile viewport, row 1 stays visible and row 2 starts below the fold.
- // No clipping, duplicate player or artificially divided card.
- let foldFrame=0;
- function scheduleFoldAlignment(){
-  if(foldFrame)cancelAnimationFrame(foldFrame);
-  foldFrame=requestAnimationFrame(()=>{foldFrame=0;alignFirstFold()});
+ // The complete three-track panel, not just the first row, must fit in
+ // the initial viewport on typical mobile screens. Give spare height to
+ // breathing room ABOVE the headline; compress only on short screens.
+ let fitFrame=0;
+ function scheduleFit(){
+  if(fitFrame)cancelAnimationFrame(fitFrame);
+  fitFrame=requestAnimationFrame(()=>{fitFrame=0;fitViewport()});
  }
- function alignFirstFold(){
+ function fitViewport(){
   if(!hero)return;
-  const props=['--fold-top-space','--fold-heading-gap','--fold-demo-gap'];
-  props.forEach(k=>hero.style.removeProperty(k));
-  if(!matchMedia('(max-width:780px)').matches||window.scrollY>3)return;
-  const first=root.querySelector('.opt-line:nth-child(1)');
-  const second=root.querySelector('.opt-line:nth-child(2)');
-  if(!first||!second)return;
+  hero.style.removeProperty('--hero-fit-top');
+  hero.classList.remove('hero-compact-height');
+  if(!matchMedia('(max-width:780px)').matches)return;
   const viewport=Math.max(1,window.visualViewport?.height||window.innerHeight);
-  const firstBottom=first.getBoundingClientRect().bottom;
-  const secondTop=second.getBoundingClientRect().top;
-  const short=viewport<=720;
-  const baseTop=short?33:68;
-  const baseHeading=short?12:17;
-  const baseDemo=short?8:12;
-  // The FIRST song must remain fully visible. Add only room actually available.
-  const capacity=Math.max(0,viewport-firstBottom-9);
-  const desired=Math.max(0,viewport+1-secondTop);
-  // With the shorter first-screen copy, allow the freed height to become
-  // whitespace ABOVE the hero; keep only row 1 visible at the fold.
-  const extra=Math.floor(Math.min(capacity,desired,400));
-  if(extra<3)return;
-  // Most unused space goes ABOVE the heading, not between pitch and CTA.
-  const topAdd=Math.round(extra*.73);
-  const headAdd=Math.round(extra*.10);
-  const demoAdd=extra-topAdd-headAdd;
-  hero.style.setProperty('--fold-top-space',baseTop+topAdd+'px');
-  hero.style.setProperty('--fold-heading-gap',baseHeading+headAdd+'px');
-  hero.style.setProperty('--fold-demo-gap',baseDemo+demoAdd+'px');
+  const minTop=viewport<620?12:viewport<720?22:40;
+  const maxTop=viewport<620?32:viewport<720?62:96;
+  const initialTop=parseFloat(getComputedStyle(hero).paddingTop)||0;
+  const initialBottom=root.getBoundingClientRect().bottom;
+  const desiredTop=Math.max(minTop,Math.min(maxTop,initialTop+viewport-12-initialBottom));
+  hero.style.setProperty('--hero-fit-top',Math.round(desiredTop)+'px');
+  if(root.getBoundingClientRect().bottom>viewport-8){
+   hero.classList.add('hero-compact-height');
+   const overflow=root.getBoundingClientRect().bottom-(viewport-8);
+   hero.style.setProperty('--hero-fit-top',Math.round(Math.max(10,desiredTop-overflow))+'px');
+  }
  }
- window.addEventListener('resize',scheduleFoldAlignment,{passive:true});
- window.addEventListener('orientationchange',scheduleFoldAlignment,{passive:true});
- if(document.fonts?.ready)document.fonts.ready.then(scheduleFoldAlignment);
- window.addEventListener('load',scheduleFoldAlignment,{once:true});
+ window.addEventListener('resize',scheduleFit,{passive:true});
+ window.addEventListener('orientationchange',scheduleFit,{passive:true});
+ window.visualViewport?.addEventListener('resize',scheduleFit,{passive:true});
+ if(document.fonts?.ready)document.fonts.ready.then(scheduleFit);
+ window.addEventListener('load',scheduleFit,{once:true});
  render();
- scheduleFoldAlignment();
 })();
