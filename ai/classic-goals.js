@@ -66,7 +66,12 @@ function watch(selector,name){
     visits++;
     timer=setTimeout(()=>{
       if(inside&&document.visibilityState==='visible'&&el.getClientRects().length){
-        if(!sent.has(prefix+name+'_view'))unique(name+'_view',{section:name});
+        if(!sent.has(prefix+name+'_view')){
+         if(name==='author'||name==='usage'){
+           sent.add(prefix+name+'_view');
+           track(name+'_view',{section:name},false);
+         }else unique(name+'_view',{section:name});
+       }
       }
     },700);
   }else if(!visible&&inside){
@@ -123,7 +128,8 @@ document.addEventListener('click',event=>{
    track('situation_click',{section:'switch',item:el.dataset.situation},true);
  }else if(el.matches('.faq-list summary')){
    const idx=[...document.querySelectorAll('.faq-list summary')].indexOf(el)+1;
-   track('faq_open',{section:'faq',item:'question_'+idx});
+   const opening=!el.closest('details')?.open;
+   track(opening?'faq_open':'faq_close',{section:'faq',item:'question_'+idx},opening);
  }else if(el.matches('[data-modal-close]')){
    track('modal_close',{origin:el.closest('dialog')?.id||''},false);
  }else if(el.matches('.release-motion-toggle')){
