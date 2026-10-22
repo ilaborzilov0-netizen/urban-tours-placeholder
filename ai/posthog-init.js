@@ -12,7 +12,8 @@
     capture_pageview:true,
     capture_pageleave:true,
     autocapture:false,
-    disable_session_recording:true,
+    disable_session_recording:false,
+    session_recording:{maskAllInputs:true},
     person_profiles:"identified_only"
   });
 })(document,window);
