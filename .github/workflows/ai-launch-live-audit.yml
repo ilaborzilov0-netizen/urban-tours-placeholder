@@ -16,46 +16,50 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 6
     steps:
-      - name: Verify current optimized /ai/ and preserved archive through public domain
+      - name: Verify newly promoted /ai/ and immutable archive on public domain
         shell: bash
         run: |
           python3 - <<'PY'
           import urllib.request,time,sys,os
           from urllib.parse import quote
           base='https://marafon-metod.ru'
+          archive='/ai/archive-pre-optimize-20261022-1800/'
           def get(path):
               req=urllib.request.Request(base+quote(path,safe='/?=&'),headers={'User-Agent':'Mozilla/5.0','Cache-Control':'no-cache'})
               with urllib.request.urlopen(req,timeout=18) as res:
                   return res.status,res.read().decode('utf-8','replace')
           for attempt in range(1,19):
               try:
-                  status,html=get('/ai/?deploy_audit=20261022&run='+os.environ.get('GITHUB_RUN_ID','test')+'&attempt='+str(attempt))
-                  archived,old=get('/ai/archive-2026-10-22/?deploy_audit=20261022')
-                  jsstatus,js=get('/ai/audio-player-prod-20261022.js?v=1')
+                  nonce='?release_audit='+os.environ.get('GITHUB_RUN_ID','test')+'&attempt='+str(attempt)
+                  live_status,html=get('/ai/'+nonce)
+                  old_status,old=get(archive+nonce)
+                  jsstatus,js=get('/ai/live-20261022/pult.js'+nonce)
+                  cssstatus,css=get('/ai/live-20261022/air.css'+nonce)
                   checks={
-                    'http200':status==200 and archived==200 and jsstatus==200,
-                    'promoted_heading':'<span class="ai-test-title-main">Бросьте курить</span>' in html,
-                    'new_audio_panel':'id="opt-demo"' in html,
-                    'three_audio_sources':'Под гитару' in js and 'Душевная эстрада' in js and 'Современное звучание' in js,
-                    'milestone_events':"'_50'" in js and "'_90'" in js and 'aiGoals' in js,
+                    'http200':all(code==200 for code in (live_status,old_status,jsstatus,cssstatus)),
+                    'new_sections_order':all(i>=0 for i in [html.find('id="top"'),html.find('id="audio-path"'),html.find('id="albums"'),html.find('id="calc-showcase"')]) and html.find('id="top"')<html.find('id="audio-path"')<html.find('id="albums"')<html.find('id="calc-showcase"')<html.find('id="pricing"'),
+                    'new_quote':'Аудиоякоря работают не с силой воли' in html,
+                    'compact_demo':'id="opt-demo"' in html and 'Под гитару' in js and 'Душевная эстрада' in js and 'Современное звучание' in js,
+                    'audio_milestones':"aiGoals" in js and "_50" in js and "_90" in js,
+                    'live_assets':'/ai/live-20261022/pult.js?v=' in html and '/ai/live-20261022/air.css?v=' in html and 'audio-loop-section#audio-path' in css,
+                    'seamless_essence':'opt-essence-seamless-critical-20261022' in html and 'background:var(--bg,#111412)!important' in html,
+                    'no_test_asset_link':'href="/ai/оптимайз/' not in html and 'src="/ai/оптимайз/' not in html,
                     'metrika_one_bootstrap':html.count('mc.yandex.ru/metrika/tag.js?id=110906734')==1,
+                    'analytics':'G-J076WS14NV' in html and '/ai/posthog-init.js' in html and '/ai/goal-tracking.js' in html and '/analytics.js' in html,
                     'canonical':'rel="canonical" href="https://marafon-metod.ru/ai/"' in html,
-                    'goal_script':'/ai/goal-tracking.js?v=20261022-new-player-v2' in html,
-                    'frozen_player_src':'/ai/audio-player-prod-20261022.js?v=1' in html,
-                    'frozen_css_src':'/ai/landing-prod-20261022.css?v=1' in html,
-                    'journey_loader':'/analytics.js?v=20261022-new-views-v2' in html,
                     'checkout':'/predfinal/checkout.js?v=20261020-errorcode-v11' in html,
                     'cards':all('data-price-card="'+tier+'"' in html for tier in ('one','all','duo')),
-                    'backup_preserved':'<span class="ai-test-title-main">Бросьте курить,</span>' in old and 'id="opt-demo"' not in old,
+                    'archive': 'FROZEN ARCHIVE' in old and '/ai/archive-pre-optimize-20261022-1800/landing.css' in old and '/ai/archive-pre-optimize-20261022-1800/audio-player.js' in old,
+                    'archive_analytics_disabled': 'mc.yandex.ru/metrika' not in old and 'G-J076WS14NV' not in old,
                   }
-                  print('DEPLOY_AUDIT',attempt,checks,flush=True)
+                  print('RELEASE_AUDIT',attempt,checks,flush=True)
                   if all(checks.values()):
-                      print('LIVE_NEW_AI_AND_ARCHIVE_CONFIRMED',flush=True)
+                      print('LIVE_OPTIMIZED_AI_AND_INDEPENDENT_ARCHIVE_CONFIRMED',flush=True)
                       sys.exit(0)
               except Exception as e:
                   print('AUDIT_ATTEMPT',attempt,'EXCEPTION',type(e).__name__,str(e)[:150],flush=True)
               if attempt<18:time.sleep(8)
-          sys.exit('LIVE_NEW_AI_NOT_VERIFIED')
+          sys.exit('LIVE_PROMOTION_NOT_VERIFIED')
           PY
       - name: Read-only payment backend readiness
         if: always()
