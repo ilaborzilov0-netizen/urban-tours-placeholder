@@ -5,8 +5,6 @@ const track=window.aiJourneyTrack;if(typeof track!=='function')return;
 const visible=new Set();
 const rows=[
  ['.ai-test-title-main','ai_hero_view','hero'],
- ['#opt-demo','ai_demo_view_journey','demos'],
- ['.hero-buy-cta','ai_hero_buy_cta_view','hero'],
  ['.album-display--one .album-cover','ai_album1_view','albums'],
  ['.album-display--two .album-cover','ai_album2_view','albums'],
  ['#about h2','ai_author_view','author'],
