@@ -180,7 +180,8 @@ if(audio){
   lastT=t;lastWall=now;
  });
  audio.addEventListener('ended',()=>{
-  track('demo_complete',{section:'demo',count:playCount},coverage()>=nominal*.8);
+  if(coverage()>=nominal*.9)track('demo_complete',{section:'demo',count:playCount});
+  else track('demo_skipped_to_end',{section:'demo',count:playCount},false);
  });
  audio.addEventListener('error',()=>track('demo_error',{section:'demo'},false));
 }
