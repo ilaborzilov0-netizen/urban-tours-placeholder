@@ -1701,3 +1701,68 @@ body.theme-dark.vision-mode .hero.ai-test-hero .hero-review-author{
   min-height:44px!important;
  }
 }
+
+
+/* 2026-10-22 /ai/оптимайз/: a single START here in the audio previews.
+   Keep the first play button lime and every other play button dark with
+   a crisp lime outline, including when that sample is currently playing.
+   Hearts are entirely removed in pult.js; no dead third grid column.
+   The album cover peeks by ~9px instead of ~27px on typical mobile
+   viewports: 25px reserved below hero, less 16px album section inset. */
+body.theme-dark .ai-test-hero #opt-demo .opt-line{
+ grid-template-columns:44px minmax(0,1fr)!important;
+ column-gap:11px!important;
+}
+body.theme-dark .ai-test-hero #opt-demo .opt-line .opt-round{
+ box-sizing:border-box!important;
+ display:flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ width:44px!important;
+ height:44px!important;
+ min-width:44px!important;
+ min-height:44px!important;
+ padding:0!important;
+ border-radius:9px!important;
+ box-shadow:none!important;
+ transition:background-color .15s ease,border-color .15s ease!important;
+}
+body.theme-dark .ai-test-hero #opt-demo [data-demo-style="author"] .opt-round,
+body.theme-dark .ai-test-hero #opt-demo [data-demo-style="author"].is-active .opt-round{
+ background:#dfff29!important;
+ border:2px solid #dfff29!important;
+ color:#15200d!important;
+}
+body.theme-dark .ai-test-hero #opt-demo [data-demo-style="estrada"] .opt-round,
+body.theme-dark .ai-test-hero #opt-demo [data-demo-style="modern"] .opt-round,
+body.theme-dark .ai-test-hero #opt-demo [data-demo-style="estrada"].is-active .opt-round,
+body.theme-dark .ai-test-hero #opt-demo [data-demo-style="modern"].is-active .opt-round{
+ background:#17261c!important;
+ border:2px solid #dfff29!important;
+ color:#dfff29!important;
+}
+body.theme-dark .ai-test-hero #opt-demo .opt-trackbar{
+ grid-column:1/-1!important;
+ pointer-events:none!important;
+ touch-action:none!important;
+}
+@media(max-width:780px){
+ body.theme-dark.vision-mode .hero.ai-test-hero{
+  min-height:calc(100svh - 25px)!important;
+  min-height:calc(100dvh - 25px)!important;
+ }
+ body.theme-dark .album-showcase{
+  padding-top:16px!important;
+ }
+ body.theme-dark .ai-test-hero #opt-demo .opt-line{
+  grid-template-columns:44px minmax(0,1fr)!important;
+  column-gap:10px!important;
+ }
+}
+/* On shorter devices, never shrink play targets below 44px. The page
+   remains scrollable when content cannot physically fit on one screen. */
+@media(prefers-reduced-motion:reduce){
+ body.theme-dark .ai-test-hero #opt-demo .opt-round{
+  transition:none!important;
+ }
+}
