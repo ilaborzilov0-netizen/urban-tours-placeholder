@@ -1,0 +1,20 @@
+name: Metrika October 14 campaign attribution read-only
+on:
+  push:
+    branches: [main]
+    paths:
+      - "ai/read_metrika_oct14_2026.py"
+      - ".github/workflows/metrika-oct14-readonly.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    env:
+      YANDEX_METRIKA_OAUTH: ${{ secrets.YANDEX_METRIKA_OAUTH }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read aggregate campaign and ad statistics from October 13–16
+        run: python3 ai/read_metrika_oct14_2026.py
