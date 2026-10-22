@@ -30,7 +30,7 @@ try{
   assert.equal(await page.locator('#calc-showcase [data-calc-input]').count(),2);
   assert.equal(await page.locator('[data-calc-variant="'+i+'"]').getAttribute('aria-selected'),'true');
   assert.equal(await page.locator('#calc-showcase [data-calc-result]').innerText(),'73 000 ₽ за год');
-  assert.ok(await page.locator('#calc-showcase .cc-card').evaluate(el=>el.classList.contains('cc-v'+i)));
+  assert.ok(await page.locator('#calc-showcase .cc-card').evaluate((el,i)=>el.classList.contains('cc-v'+i),i));
   for(const b of await page.locator('#calc-showcase [data-calc-adjust]').all()){
    const size=await b.boundingBox();
    assert.ok(size && size.height>=43,'Buttons too small for mobile 55+: '+JSON.stringify(size));
