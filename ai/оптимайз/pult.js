@@ -46,18 +46,28 @@
   }
   return finished.has(t.id)?100:0;
  }
+ // The visual timer is a countdown, never a percentage.
+ // Ceil prevents displaying "0 сек." before the audio actually ends.
+ function remainingSeconds(t){
+  if(finished.has(t.id))return 0;
+  if(active!==t.id)return Math.ceil(t.duration);
+  if(audio.ended)return 0;
+  const current=Number.isFinite(audio.currentTime)?audio.currentTime:0;
+  return Math.max(0,Math.ceil(t.duration-Math.max(0,current)));
+ }
+ function remainingLabel(t){return remainingSeconds(t)+' сек.'}
  function playLabel(t){return active===t.id&&playing?'Пауза: '+t.name:'Слушать: '+t.name}
  function item(t){
   const isActive=active===t.id;
   return '<div class="opt-line'+(isActive?' is-active':'')+'" data-demo-style="'+t.id+'">'
    +'<button class="opt-round" type="button" data-opt-play="'+t.id+'" aria-label="'+playLabel(t)+'" aria-pressed="'+(isActive&&playing)+'"><span aria-hidden="true">'+(isActive&&playing?'Ⅱ':'▶')+'</span></button>'
    +'<div class="opt-line-text"><strong>'+t.name+'</strong>'
-   +'<span class="opt-line-caption" data-status="'+t.id+'">'+(finished.has(t.id)?'Прослушано · 100%':'Прослушано · '+listenedPercent(t)+'%')+'</span></div>'
+   +'<span class="opt-line-caption" data-status="'+t.id+'" aria-label="Осталось '+remainingSeconds(t)+' секунд">'+remainingLabel(t)+'</span></div>'
    +'<div class="opt-trackbar" role="progressbar" aria-label="Прослушано: '+t.name+'" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-progress="'+t.id+'"><i></i></div>'
    +'</div>';
  }
  function render(){
-  root.innerHTML='<div class="opt-overline"><strong>Послушайте аудиоякоря</strong><span>Три звучания на выбор</span></div>'
+  root.innerHTML='<div class="opt-overline"><strong>Послушайте демо</strong></div>'
    +'<div class="opt-lines">'+tracks.map(item).join('')+'</div>'
    +'<p class="opt-error" role="status"'+(errorText?'':' hidden')+'>'+errorText+'</p>';
   progress();
@@ -69,8 +79,8 @@
    if(bar){bar.setAttribute('aria-valuenow',String(Math.round(value)));bar.querySelector('i').style.width=value.toFixed(1)+'%'}
    const status=root.querySelector('[data-status="'+t.id+'"]');
    if(status){
-    const prefix=active===t.id&&playing?'Играет':active===t.id&&audio.currentTime>0&&!audio.ended?'Пауза':'Прослушано';
-    status.textContent=prefix+' · '+value+'%';
+    status.textContent=remainingLabel(t);
+    status.setAttribute('aria-label','Осталось '+remainingSeconds(t)+' секунд');
    }
   });
  }
