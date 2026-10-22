@@ -117,3 +117,9 @@ body.theme-dark .opt-playlist+.opt-dock+.opt-mainbar{margin-top:7px}
 @media(prefers-reduced-motion:reduce){
  body.theme-dark .opt-demo button,body.theme-dark .opt-trackbar i,body.theme-dark .opt-mainbar i{transition:none}
 }
+/* Distinct thumbs-up feedback for the UI concept, separate from music likes. */
+body.theme-dark .opt-footer{display:flex;justify-content:space-between;align-items:center;gap:6px 12px;flex-wrap:wrap;margin-top:8px}
+body.theme-dark .opt-footer .opt-tip{margin:0!important}
+body.theme-dark .opt-vote{display:inline-flex;align-items:center;justify-content:center;min-height:37px!important;padding:6px 10px!important;border:1px solid #647b56!important;background:#1a271c!important;color:#dceacb!important;font-size:13px!important;font-weight:750!important}
+body.theme-dark .opt-vote.is-voted{background:#46512a!important;border-color:#dfff29!important;color:#dfff29!important}
+@media(max-width:780px){body.theme-dark .opt-footer{margin-top:6px}body.theme-dark .opt-vote{font-size:12px!important;min-height:34px!important}}
