@@ -15,7 +15,7 @@ assert.ok(html.includes('name="ai-landing-variant" content="classic-990-20261022
 assert.ok(html.includes('/ai/classic-goals.js?v=20261022-990-v1'));
 assert.ok(html.includes('G-J076WS14NV')&&html.includes('/ai/posthog-init.js')&&html.includes('/analytics.js'));
 assert.ok(html.includes('110906734')&&html.includes('aiClassicTracker.legacy'));
-assert.ok(html.includes("Number(data.amount) !== ALBUM_PRICE * 100"));
+assert.ok(html.includes("albumAmountMinor(data) !== ALBUM_PRICE * 100"),'Checkout verifies normalized ruble/kopeck amount');
 const server=spawn('python3',['-m','http.server','18772','--bind','127.0.0.1'],{stdio:'ignore'});
 let browser;
 try{
