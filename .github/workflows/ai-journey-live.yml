@@ -1,0 +1,40 @@
+name: AI journey live asset audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - "analytics.js"
+      - "ai/journey-*.js"
+      - ".github/workflows/ai-journey-live.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  public:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - name: Verify live original has every journey module
+        run: |
+          python3 - <<'PY'
+          import urllib.request,time,sys
+          root='https://marafon-metod.ru/'
+          def get(p):
+              with urllib.request.urlopen(urllib.request.Request(root+p,headers={'Cache-Control':'no-cache'}),timeout=25) as f:
+                  return f.read().decode('utf8','replace')
+          for i in range(12):
+              try:
+                  js=get('analytics.js?journey_v1='+str(i))
+                  needed=['core','views','actions','calculator','checkout','audio']
+                  assert all('journey-'+name for name in needed)
+                  assert 'journey-' in js and 'DOMContentLoaded' in js
+                  for name in needed:
+                      a=get('ai/journey-'+name+'.js?v=20261022-v1')
+                      assert len(a)>300 and 'ai_' in a
+                  print('LIVE_JOURNEY_READY 6/6',flush=True)
+                  sys.exit(0)
+              except Exception as e:
+                  print('NOT_YET_READY',i,type(e).__name__,flush=True)
+                  time.sleep(10)
+          sys.exit('LIVE_JOURNEY_INCOMPLETE')
+          PY
