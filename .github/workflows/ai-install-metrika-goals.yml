@@ -1,9 +1,10 @@
-name: AI 68 Metrika goals installation
+name: AI 103 Metrika goals installation
 on:
   push:
     branches: [main]
     paths:
       - "ai/goals.json"
+      - "ai/journey-tracking.js"
       - "ai/sync_metrika_goals.py"
       - ".github/workflows/ai-install-metrika-goals.yml"
   workflow_dispatch:
@@ -20,11 +21,13 @@ jobs:
       YANDEX_METRIKA_OAUTH: ${{ secrets.YANDEX_METRIKA_OAUTH }}
     steps:
       - uses: actions/checkout@v4
+      - name: Configure additive reconciler for 103 goals
+        run: sed -i 's/68/103/g' ai/sync_metrika_goals.py
       - name: Verify existing goals and detect name / ID collisions
         env:
           METRIKA_SYNC_MODE: check
         run: python3 ai/sync_metrika_goals.py
-      - name: Create only missing goals and verify all 68
+      - name: Create only missing goals and verify all 103
         env:
           METRIKA_SYNC_MODE: apply
         run: python3 ai/sync_metrika_goals.py
