@@ -57,6 +57,7 @@ jobs:
                       'copyright_in_footer':page.count('© Аудиоякоря')==1 and page.find('© Аудиоякоря')>page.find('<footer class="wrap footer">'),
                       'question_without_author':'Напишите — разберёмся.' in page and 'Напишите мне' not in page,
                       'final_contact_only':'Остались вопросы?' in page and 'Напишите нам — разберёмся.' in page and 'Ещё десять лет с сигаретой начинаются' not in page,
+                      'essence_seamless_live':'opt-essence-seamless-critical-20261022' in page and 'background:var(--bg,#111412)!important' in page and 'border:0!important' in page,
                       'live_prod_unchanged':'id="calc-showcase"' not in production and 'audio-player-prod-20261022.js' in production
                   }
                   print('PUBLIC_PREVIEW',attempt,checks,flush=True)
