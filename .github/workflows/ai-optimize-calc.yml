@@ -44,13 +44,13 @@ jobs:
               try:
                   page=fetch('/ai/оптимайз/?calccheck=20261022&attempt='+str(attempt))
                   scripts=fetch('/ai/оптимайз/calc-pult.js?v=20261022-single-v1')
-                  css=fetch('/ai/оптимайз/calc-pult.css?v=20261022-single-v1')
+                  css=fetch('/ai/оптимайз/calc-pult.css?v=20261022-single-v2')
                   production=fetch('/ai/?check=live-prod-safe')
                   checks={
                       'single_calculator':page.count('class="cc-card cc-v4"')==1 and 'data-calc-variant' not in page,
                       'calculator_before_tariffs':0<page.find('id="calc-showcase"')<page.find('id="pricing"'),
                       'old_blocks_gone':'class="annual-savings-panel"' not in page and 'id="smoking-savings"' not in page,
-                      'new_assets':'calc-pult.js?v=20261022-single-v1' in page and 'calc-pult.css?v=20261022-single-v1' in page,
+                      'new_assets':'calc-pult.js?v=20261022-single-v1' in page and 'calc-pult.css?v=20261022-single-v2' in page,
                       'working_calculator':"const annual=()" in scripts and "data-calc-adjust" in scripts and 'selected=' not in scripts,
                       'approved_visual_variant':'.cc-v4' in css and '.cc-v5' not in css,
                       'pricing_footer_order':0<page.find('class="pricing"')<page.find('class="copyright-under-pricing"')<page.find('class="predfinal-pricing-contact"')<page.find('class="ai-refund-guarantee"'),
