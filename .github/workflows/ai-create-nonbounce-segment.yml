@@ -1,0 +1,23 @@
+name: Create AI non-bounce Metrika API segment
+on:
+  push:
+    branches: [main]
+    paths:
+      - "ai/nonbounce_segment.py"
+      - ".github/workflows/ai-create-nonbounce-segment.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: metrika-segments-110906734
+  cancel-in-progress: false
+jobs:
+  create_and_verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    env:
+      YANDEX_METRIKA_OAUTH: ${{ secrets.YANDEX_METRIKA_OAUTH }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create or reuse AI non-bounce segment and count unique visitors
+        run: python3 ai/nonbounce_segment.py
