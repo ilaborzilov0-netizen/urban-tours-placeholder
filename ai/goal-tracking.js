@@ -99,7 +99,7 @@
  const api=window.aiGoals={emit,fromLegacy,suppressPriceStyleOnce:false};
  // Keep passive milestones once per browser-tab session, including reloads.
  for(const id of [
-  'ai_demo_view','ai_guide_view','ai_reviews_view','ai_pricing_view',
+  'ai_demo_view','ai_reviews_view','ai_pricing_view',
   'ai_guitar_50','ai_guitar_90','ai_estrada_50','ai_estrada_90',
   'ai_modern_50','ai_modern_90','ai_checkout_email_valid','ai_calculator_changed'
  ]){
@@ -126,10 +126,9 @@
   },{threshold:[0,0.35,0.75]});
   observer.observe(el);
  }
- visibleOnce('#sounds h2','ai_demo_view');
- visibleOnce('#listening-guide h2','ai_guide_view');
+ visibleOnce('#opt-demo','ai_demo_view');
  visibleOnce('#reviews h2','ai_reviews_view');
- visibleOnce('#pricing h2','ai_pricing_view');
+ visibleOnce('#pricing .pricing','ai_pricing_view');
 
  // Albums & FAQs. Reading them is an explicit click, not just page scroll.
  document.querySelectorAll('.album-tracklist-details[data-album]').forEach(el=>{
