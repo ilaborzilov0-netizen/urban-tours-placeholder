@@ -840,3 +840,38 @@ body.theme-dark .ai-test-hero .ai-test-group--heading{
     font-size:15px!important;line-height:1.43!important;
   }
 }
+
+
+/* 2026-10-22: Shift space released by removing the two offer lines
+   to the TOP of the first screen. Keep headline -> button close and clear. */
+body.theme-dark.vision-mode .hero.ai-test-hero{
+ padding-top:clamp(74px,8vw,116px)!important;
+}
+body.theme-dark .ai-test-hero .ai-test-group--heading{
+ margin-bottom:22px!important;
+}
+@media(max-width:780px){
+ body.theme-dark.vision-mode .hero.ai-test-hero{
+  padding-top:var(--fold-top-space,68px)!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--heading{
+  margin-bottom:var(--fold-heading-gap,17px)!important;
+ }
+ body.theme-dark .ai-test-hero .hero-action{
+  margin-top:0!important;
+ }
+ body.theme-dark .hero.ai-test-hero #opt-demo{
+  margin-top:var(--fold-demo-gap,12px)!important;
+ }
+}
+@media(max-width:780px) and (max-height:720px){
+ body.theme-dark.vision-mode .hero.ai-test-hero{
+  padding-top:var(--fold-top-space,33px)!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--heading{
+  margin-bottom:var(--fold-heading-gap,12px)!important;
+ }
+ body.theme-dark .hero.ai-test-hero #opt-demo{
+  margin-top:var(--fold-demo-gap,8px)!important;
+ }
+}
