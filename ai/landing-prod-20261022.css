@@ -1,0 +1,1647 @@
+/* АУДИОЯКОРЯ — /ai/оптимайз/
+   Air and editorial rhythm pass, Oct 22 2026.
+   Scoped to the experimental URL only; /ai/ remains untouched.
+   Load after offer.css, all inline styles and pult.css. */
+
+:root{--air-text:#f4f8ef;--air-sub:#c8d7c2;--air-rule:#344332}
+html{scroll-padding-top:24px}
+body.theme-dark{overflow-wrap:break-word}
+body.theme-dark .section{scroll-margin-top:24px}
+body.theme-dark .wrap{max-width:1120px}
+
+/* 1 / HERO: deliberate sequence: promise → offer → demo → trust. */
+body.theme-dark.vision-mode .hero.ai-test-hero{
+ padding:clamp(43px,5vw,66px) 0 clamp(35px,4vw,54px)!important;
+}
+body.theme-dark .ai-test-hero .hero-copy{max-width:980px}
+body.theme-dark .ai-test-hero .ai-test-audience{
+ font-size:15px!important;line-height:1.4!important;
+ margin:0 0 17px!important;color:#d3e4c8!important;
+}
+body.theme-dark.vision-mode .hero.ai-test-hero h1{
+ max-width:990px!important;margin:0 0 18px!important;
+ line-height:1.1!important;
+}
+body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-main{
+ font-size:clamp(54px,6.2vw,87px)!important;line-height:1.05!important;
+}
+body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-rest{
+ font-size:clamp(35px,4.35vw,61px)!important;
+ line-height:1.13!important;margin-top:8px!important;
+}
+body.theme-dark .ai-test-hero .hero-priority{
+ margin:0!important;font-size:clamp(19px,2vw,23px)!important;
+ line-height:1.44!important;
+}
+body.theme-dark .ai-test-hero .ai-test-group--heading{
+ margin-bottom:clamp(28px,3vw,38px)!important;
+}
+body.theme-dark .ai-test-hero .ai-test-group--offer{
+ margin-bottom:clamp(24px,2.8vw,34px)!important;
+}
+body.theme-dark .ai-test-hero .ai-test-group--offer .ai-test-simple{
+ margin:0 0 15px!important;font-size:clamp(18px,2vw,21px)!important;
+ line-height:1.52!important;
+}
+body.theme-dark .ai-test-hero .ai-test-purchase-reassurance{gap:5px 13px!important}
+body.theme-dark .ai-test-hero .ai-test-contents{
+ font-size:18px!important;line-height:1.48!important;
+}
+body.theme-dark .ai-test-hero .ai-test-price strong{
+ font-size:clamp(36px,3.9vw,49px)!important;
+}
+body.theme-dark .ai-test-hero .ai-test-group--trust{
+ margin-top:clamp(23px,2.9vw,35px)!important;
+ max-width:790px;
+}
+body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-access,
+body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
+ font-size:17px!important;line-height:1.5!important;
+ margin-bottom:8px!important;color:#d7e5cf!important;
+}
+body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-look-at-tiers{
+ margin:20px 0 0!important;
+}
+body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-look-at-tiers a{
+ display:inline-flex;align-items:center;
+ font-size:19px!important;line-height:1.3!important;
+ min-height:44px;padding:5px 0!important;
+ text-underline-offset:5px!important;
+}
+
+/* Demo is a single unified instrument; controls still meet 44px targets. */
+body.theme-dark .opt-demo{
+ max-width:805px;margin:0!important;padding:21px 22px 16px!important;
+ border-radius:18px;
+ background:linear-gradient(140deg,#263529 0%,#1a271d 100%)!important;
+}
+body.theme-dark .opt-overline{margin-bottom:18px!important;gap:4px 14px}
+body.theme-dark .opt-overline strong{font-size:clamp(19px,2.15vw,24px)}
+body.theme-dark .opt-overline span{font-size:14px!important;line-height:1.4}
+body.theme-dark .opt-lines{gap:10px!important}
+body.theme-dark .opt-line{
+ padding:12px 15px 9px!important;column-gap:15px!important;
+ row-gap:8px!important;border-radius:13px!important;
+}
+body.theme-dark .opt-line-text strong{font-size:19px!important;line-height:1.3}
+body.theme-dark .opt-line-caption{font-size:14px!important;line-height:1.4!important;margin-top:4px!important}
+body.theme-dark .opt-like{gap:8px!important;padding:9px 11px!important}
+body.theme-dark .opt-tip{
+ margin:14px 0 0!important;font-size:14px!important;
+ line-height:1.46!important;color:#bfceb8!important;
+}
+
+/* 2 / PRODUCTS: allow the eye to rest between two large cover artworks. */
+body.theme-dark .album-showcase{
+ padding:clamp(60px,7vw,90px) 0 clamp(72px,7vw,95px)!important;
+ border-top:1px solid var(--air-rule)!important;
+ background:linear-gradient(180deg,#101713,#151d17 96%)!important;
+}
+body.theme-dark .album-collection-heading{
+ max-width:735px;margin:0 0 clamp(31px,4vw,48px);
+}
+body.theme-dark .album-collection-kicker{
+ margin:0 0 12px!important;font-size:15px!important;
+ font-weight:800!important;letter-spacing:.04em!important;
+ color:#dfff42!important;
+}
+body.theme-dark .album-collection-heading h2{
+ margin:0 0 17px!important;
+ font-size:clamp(36px,4.5vw,58px)!important;
+ letter-spacing:-.045em!important;
+ line-height:1.11!important;color:#f5f8ef!important;
+ font-weight:800!important;text-wrap:balance;
+}
+body.theme-dark .album-collection-heading>p:last-child{
+ max-width:650px;margin:0!important;
+ color:var(--air-sub)!important;font-size:clamp(18px,1.9vw,21px)!important;
+ line-height:1.58!important;
+}
+body.theme-dark .album-showcase-grid{
+ gap:clamp(42px,5.1vw,78px)!important;align-items:start!important;
+}
+body.theme-dark .album-display{min-width:0}
+body.theme-dark .album-showcase .album-art{
+ width:min(100%,460px)!important;max-width:460px!important;
+ margin:0 0 clamp(25px,3vw,35px)!important;
+}
+body.theme-dark .album-description{max-width:535px}
+body.theme-dark .album-description .album-phase{margin-bottom:12px!important;font-size:14px!important}
+body.theme-dark .album-description h3{
+ font-size:clamp(28px,3vw,37px)!important;
+ line-height:1.18!important;margin:0 0 15px!important;
+}
+body.theme-dark .album-description>p{
+ font-size:18px!important;line-height:1.6!important;
+ margin:0 0 25px!important;color:#cddaca!important;
+}
+body.theme-dark .album-tracklist{
+ border-top:1px solid #475846!important;
+ padding-top:18px!important;
+}
+body.theme-dark .album-tracklist-title{margin-bottom:16px!important}
+body.theme-dark .album-tracklist-preview li,
+body.theme-dark .album-tracklist-more li{
+ font-size:17px!important;line-height:1.48!important;
+ min-height:0!important;padding-top:9px!important;padding-bottom:9px!important;
+}
+body.theme-dark .album-tracklist-details summary{
+ min-height:46px!important;margin-top:11px!important;
+ font-size:16px!important;line-height:1.4!important;
+}
+
+/* 3 / PRICE: offer is encountered directly after the two album covers. */
+body.theme-dark .prefinal-pricing-section{
+ padding:clamp(70px,7vw,98px) 0 clamp(73px,8vw,106px)!important;
+ border-top:1px solid #465843!important;
+ background:linear-gradient(180deg,#172118,#111a14 94%)!important;
+}
+body.theme-dark .prefinal-pricing-section .pricing-head{margin:0 0 27px!important}
+body.theme-dark .prefinal-pricing-section .pricing-head h2{
+ font-size:clamp(39px,4.8vw,63px)!important;
+ line-height:1.14!important;letter-spacing:-.048em!important;
+ font-weight:800!important;max-width:830px;
+}
+body.theme-dark .prefinal-pricing-section .pricing{
+ gap:clamp(13px,1.6vw,23px)!important;margin-top:0!important;
+ align-items:stretch!important;
+}
+body.theme-dark .prefinal-pricing-section .price-card,
+body.theme-dark .prefinal-pricing-section .price-card.is-selected{
+ padding:clamp(22px,2.15vw,29px)!important;
+ display:flex;flex-direction:column;
+ border-radius:17px!important;
+}
+body.theme-dark .prefinal-pricing-section .price-card--featured{
+ padding:clamp(21px,2.1vw,28px)!important;
+}
+body.theme-dark .prefinal-pricing-section .price-card h3{
+ font-size:clamp(23px,2.25vw,28px)!important;
+ line-height:1.22!important;min-height:0!important;
+ margin:0 0 24px!important;letter-spacing:-.03em!important;
+}
+body.theme-dark .prefinal-pricing-section .price-top{
+ font-size:13px!important;line-height:1.3!important;
+}
+body.theme-dark .prefinal-pricing-section .price-features{
+ display:grid;gap:11px!important;
+ grid-template-rows:none!important;
+ margin:0 0 22px!important;flex:1!important;
+}
+body.theme-dark.vision-mode .prefinal-pricing-section .price-features li{
+ font-size:17px!important;line-height:1.5!important;padding-left:26px!important;
+}
+body.theme-dark .prefinal-pricing-section .price-featured-reason{
+ font-size:15px!important;line-height:1.5!important;
+ margin:0 0 22px!important;color:#d0dfc8!important;
+}
+body.theme-dark .prefinal-pricing-section .price-bottom{
+ min-height:0!important;margin-top:auto!important;
+ justify-content:flex-end!important;
+}
+body.theme-dark .prefinal-pricing-section .price-amount{
+ font-size:clamp(42px,4vw,54px)!important;
+ margin:0 0 16px!important;
+}
+body.theme-dark .prefinal-pricing-section .price-card[data-price-card=one] .price-amount{
+ margin:0 0 16px!important;
+}
+body.theme-dark .prefinal-pricing-section .price-compare{
+ margin-bottom:13px!important;gap:5px 12px!important;
+}
+body.theme-dark .prefinal-pricing-section .price-compare>span{
+ font-size:clamp(41px,4vw,50px)!important;
+}
+body.theme-dark .prefinal-pricing-section .price-saving{
+ margin:0 0 14px!important;
+}
+body.theme-dark .prefinal-pricing-section .tier-genre{
+ margin:0 0 17px!important;gap:8px!important;
+}
+body.theme-dark .prefinal-pricing-section .tier-smoking-equivalent{
+ line-height:1.48!important;margin:0 0 15px!important;
+}
+body.theme-dark .prefinal-pricing-section .price-bottom .btn{
+ min-height:58px!important;font-size:17px!important;
+ line-height:1.38!important;
+}
+/* Hero and guarantee already cover this promise; don't print it under every CTA. */
+body.theme-dark .prefinal-pricing-section .price-refund-note{display:none!important}
+body.theme-dark .prefinal-pricing-section .ai-refund-guarantee{
+ margin:37px 0 0!important;padding:24px 27px!important;
+ border-radius:16px!important;
+}
+body.theme-dark .prefinal-pricing-section .ai-refund-copy h3{
+ line-height:1.3!important;margin:0 0 8px!important;
+}
+body.theme-dark .prefinal-pricing-section .ai-refund-copy p{
+ line-height:1.55!important;
+}
+
+/* Separate calculator chapter below purchase; no form before the pricing cards. */
+body.theme-dark .prefinal-pricing-section .smoking-savings{
+ max-width:900px!important;
+ margin:clamp(52px,6vw,77px) 0 21px!important;
+ padding:clamp(24px,3vw,36px)!important;
+ border:1px solid #42583f!important;
+ border-radius:17px!important;background:#1b281d!important;
+}
+body.theme-dark .prefinal-pricing-section .smoking-savings h2{
+ max-width:680px;font-size:clamp(27px,3vw,38px)!important;
+ margin:0 0 23px!important;line-height:1.2!important;
+}
+body.theme-dark .prefinal-pricing-section .smoking-calc-fields{gap:13px 20px!important}
+body.theme-dark .prefinal-pricing-section .annual-savings-panel{
+ max-width:900px!important;margin:16px 0 0!important;
+ border-radius:16px!important;padding:26px 29px!important;
+}
+body.theme-dark .prefinal-pricing-section .predfinal-pricing-contact{
+ margin:32px 0 0!important;
+}
+body.theme-dark .prefinal-pricing-section .copyright-under-pricing{display:none!important}
+
+/* 4 / GUIDE: one restrained column, instead of four competing loud cards. */
+body.theme-dark .sound-showcase{
+ padding:clamp(62px,7vw,90px) 0!important;
+ border-top:1px solid var(--air-rule)!important;
+ background:#111913!important;
+}
+body.theme-dark .sound-showcase-instruction{
+ margin:0!important;max-width:970px!important;
+ padding:0!important;background:transparent!important;
+ border:0!important;border-radius:0!important;
+}
+body.theme-dark .listening-guide-heading{margin:0 0 31px!important}
+body.theme-dark .listening-guide-heading h2{
+ font-size:clamp(37px,4.7vw,58px)!important;
+ line-height:1.15!important;font-weight:800!important;
+}
+body.theme-dark .listening-guide-steps{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:16px!important;
+}
+body.theme-dark .listening-guide-steps>li{
+ padding:24px!important;border:1px solid #3d523b!important;
+ border-radius:14px!important;background:#1a261c!important;
+ display:flex;align-items:flex-start;gap:17px!important;
+}
+body.theme-dark .listening-guide-number{flex:none}
+body.theme-dark .listening-guide-steps h3{
+ font-size:19px!important;line-height:1.38!important;margin-bottom:9px!important;
+}
+body.theme-dark .listening-guide-steps p{
+ font-size:17px!important;line-height:1.55!important;color:#cbd9c7!important;
+}
+
+/* 5 / REVIEWS: one reading unit per testimonial. */
+body.theme-dark .review-section{
+ padding:clamp(67px,7vw,93px) 0!important;
+ background:#172019!important;border-top:1px solid var(--air-rule)!important;
+}
+body.theme-dark .review-section .section-head{margin-bottom:32px!important}
+body.theme-dark .review-section .section-head h2{font-size:clamp(38px,4.8vw,58px)!important}
+body.theme-dark .review-section .testimonials{gap:18px!important}
+body.theme-dark .review-section .review{
+ padding:clamp(21px,2.6vw,31px)!important;
+ border-radius:16px!important;
+}
+body.theme-dark.vision-mode .review-section .review-copy{
+ font-size:clamp(18px,1.8vw,20px)!important;line-height:1.62!important;
+}
+body.theme-dark .review-section .review-name{margin-top:22px!important}
+
+/* 6 / DEEPER READING: headings and content aligned to a calmer measure. */
+body.theme-dark .credibility-section{
+ padding:clamp(70px,7vw,102px) 0!important;
+ background:#121a14!important;
+}
+body.theme-dark .credibility-section .author-section-title{
+ max-width:900px;line-height:1.15!important;margin-bottom:33px!important;
+}
+body.theme-dark .credibility-section .credibility-header{gap:clamp(25px,4vw,57px)!important}
+body.theme-dark .credibility-section .credibility-intro p{
+ line-height:1.65!important;
+}
+body.theme-dark .credibility-section .credibility-stats{margin-top:35px!important;gap:15px!important}
+body.theme-dark .audio-loop-section{
+ padding:clamp(70px,7vw,96px) 0!important;
+ border-top:1px solid var(--air-rule)!important;
+}
+body.theme-dark .audio-loop-heading{max-width:800px!important;margin-bottom:34px!important}
+body.theme-dark .audio-loop-heading h2{line-height:1.16!important}
+body.theme-dark .audio-loop-heading>p:last-child{
+ max-width:700px;font-size:19px!important;line-height:1.58!important;
+}
+body.theme-dark .audio-loop-steps{gap:16px!important}
+body.theme-dark .audio-loop-step{min-height:0!important}
+body.theme-dark .audio-loop-step p{line-height:1.56!important}
+body.theme-dark .brain-explainer{
+ padding:clamp(68px,7vw,94px) 0!important;
+ border-top:1px solid var(--air-rule)!important;background:#111914!important;
+}
+body.theme-dark .brain-explainer-body{gap:19px!important}
+body.theme-dark .brain-explainer-body>article{padding:clamp(23px,3vw,35px)!important}
+body.theme-dark .brain-explainer p,
+body.theme-dark .brain-explainer li{line-height:1.6!important}
+body.theme-dark .freedom-vision{
+ padding:clamp(71px,7vw,103px) 0!important;
+}
+body.theme-dark .freedom-vision-panel{max-width:1000px!important}
+body.theme-dark .freedom-vision h2{line-height:1.14!important;text-wrap:balance}
+body.theme-dark .freedom-vision-prose{line-height:1.62!important}
+body.theme-dark .faq{
+ column-gap:clamp(38px,5vw,75px)!important;
+}
+body.theme-dark .faq details{padding:21px 0!important}
+body.theme-dark .faq summary{
+ font-size:clamp(18px,1.9vw,21px)!important;line-height:1.45!important;
+}
+body.theme-dark .faq details p{
+ font-size:17px!important;line-height:1.65!important;max-width:690px;
+}
+body.theme-dark .predfinal-final-invitation{
+ padding:clamp(68px,7vw,95px) 0!important;
+}
+body.theme-dark .predfinal-final-invitation h2{line-height:1.14!important}
+
+/* Tablet: keep structure generous while easing grid density. */
+@media(min-width:781px) and (max-width:1010px){
+ body.theme-dark .prefinal-pricing-section .pricing{gap:12px!important}
+ body.theme-dark .prefinal-pricing-section .price-card,
+ body.theme-dark .prefinal-pricing-section .price-card.is-selected{
+  padding:20px 17px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-features li{font-size:16px!important}
+ body.theme-dark .album-showcase-grid{gap:37px!important}
+}
+
+/* Mobile is the primary audience: controlled vertical rhythm and legible type. */
+@media(max-width:780px){
+ body.theme-dark .wrap{width:calc(100% - 36px)}
+ body.theme-dark.vision-mode .hero.ai-test-hero{
+  padding:30px 0 39px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-audience{
+  margin:0 0 11px!important;font-size:14px!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero h1{margin-bottom:13px!important}
+ body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-main{
+  font-size:clamp(37px,11.6vw,49px)!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-rest{
+  font-size:clamp(25px,7.5vw,34px)!important;margin-top:6px!important;
+ }
+ body.theme-dark .ai-test-hero .hero-priority{
+  font-size:18px!important;line-height:1.42!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--heading{
+  margin-bottom:26px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--offer{
+  margin-bottom:24px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--offer .ai-test-simple{
+  font-size:17px!important;line-height:1.48!important;margin-bottom:9px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-contents{font-size:16px!important}
+ body.theme-dark .ai-test-hero .ai-test-price strong{font-size:38px!important}
+ body.theme-dark .opt-demo{
+  padding:15px 13px 13px!important;border-radius:14px!important;
+ }
+ body.theme-dark .opt-overline{margin-bottom:13px!important}
+ body.theme-dark .opt-overline strong{font-size:18px!important}
+ body.theme-dark .opt-overline span{font-size:13px!important}
+ body.theme-dark .opt-lines{gap:7px!important}
+ body.theme-dark .opt-line{
+  grid-template-columns:46px minmax(0,1fr) 46px!important;
+  padding:9px 8px 7px!important;gap:6px 9px!important;
+ }
+ body.theme-dark .opt-round{width:46px!important;min-width:46px!important;height:46px!important;min-height:46px!important}
+ body.theme-dark .opt-line-text strong{font-size:16px!important;line-height:1.27!important}
+ body.theme-dark .opt-line-caption{font-size:12px!important;margin-top:3px!important}
+ body.theme-dark .opt-like{min-width:46px!important;height:46px!important;min-height:46px!important;padding:4px!important}
+ body.theme-dark .opt-like span:first-child{font-size:25px!important}
+ body.theme-dark .opt-like span+span{display:none!important}
+ body.theme-dark .opt-tip{font-size:12px!important;margin:11px 0 0!important}
+ body.theme-dark .ai-test-hero .ai-test-group--trust{
+  margin-top:23px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-access,
+ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
+  font-size:16px!important;line-height:1.45!important;margin:0 0 9px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-look-at-tiers{
+  margin:18px 0 0!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-look-at-tiers a{
+  min-height:45px!important;font-size:18px!important;
+ }
+ body.theme-dark .album-showcase{padding:59px 0 65px!important}
+ body.theme-dark .album-collection-heading{margin-bottom:29px}
+ body.theme-dark .album-collection-kicker{font-size:13px!important;margin-bottom:9px!important}
+ body.theme-dark .album-collection-heading h2{
+  font-size:clamp(32px,8.5vw,42px)!important;
+  line-height:1.17!important;margin-bottom:11px!important;
+ }
+ body.theme-dark .album-collection-heading>p:last-child{
+  font-size:17px!important;line-height:1.58!important;
+ }
+ body.theme-dark .album-showcase-grid{
+  grid-template-columns:minmax(0,1fr)!important;gap:57px!important;
+ }
+ body.theme-dark .album-showcase .album-art{margin:0 0 23px!important}
+ body.theme-dark .album-description h3{
+  font-size:clamp(28px,7.5vw,35px)!important;
+  margin-bottom:11px!important;
+ }
+ body.theme-dark .album-description>p{
+  font-size:17px!important;line-height:1.57!important;margin-bottom:21px!important;
+ }
+ body.theme-dark .album-tracklist-title{margin-bottom:13px!important}
+ body.theme-dark .album-tracklist-preview li,
+ body.theme-dark .album-tracklist-more li{
+  font-size:17px!important;line-height:1.5!important;
+  padding:9px 0!important;
+ }
+ body.theme-dark .prefinal-pricing-section{
+  padding:62px 0 72px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .pricing-head h2{
+  font-size:clamp(34px,8.5vw,43px)!important;
+ }
+ body.theme-dark .prefinal-pricing-section .pricing-head{margin-bottom:23px!important}
+ body.theme-dark .prefinal-pricing-section .pricing{
+  grid-template-columns:minmax(0,1fr)!important;gap:19px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-card,
+ body.theme-dark .prefinal-pricing-section .price-card.is-selected{
+  width:100%!important;max-width:650px!important;
+  padding:25px 22px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-card h3{
+  font-size:26px!important;margin:0 0 18px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-features{
+  gap:9px!important;margin-bottom:20px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-features li{
+  font-size:17px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-featured-reason{
+  font-size:16px!important;margin-bottom:19px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-bottom{
+  margin-top:0!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-amount{
+  font-size:49px!important;margin-bottom:15px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-compare>span{font-size:45px!important}
+ body.theme-dark .prefinal-pricing-section .ai-refund-guarantee{
+  padding:20px 18px!important;margin:28px 0 0!important;
+ }
+ body.theme-dark .prefinal-pricing-section .smoking-savings{
+  margin:54px 0 13px!important;padding:23px 17px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .smoking-savings h2{
+  font-size:29px!important;margin-bottom:17px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .annual-savings-panel{
+  padding:21px 18px!important;margin-top:14px!important;
+ }
+ body.theme-dark .sound-showcase{padding:63px 0 67px!important}
+ body.theme-dark .listening-guide-heading{margin-bottom:25px!important}
+ body.theme-dark .listening-guide-heading h2{font-size:39px!important}
+ body.theme-dark .listening-guide-steps{
+  grid-template-columns:minmax(0,1fr)!important;gap:13px!important;
+ }
+ body.theme-dark .listening-guide-steps>li{
+  padding:19px 16px!important;gap:13px!important;
+ }
+ body.theme-dark .listening-guide-steps h3{
+  font-size:19px!important;margin-bottom:6px!important;
+ }
+ body.theme-dark .listening-guide-steps p{font-size:17px!important}
+ body.theme-dark .review-section{padding:67px 0!important}
+ body.theme-dark .review-section .review{padding:24px 21px!important}
+ body.theme-dark .review-section .testimonials{gap:15px!important}
+ body.theme-dark .credibility-section{padding:70px 0!important}
+ body.theme-dark .credibility-section .credibility-stats{gap:11px!important;margin-top:27px!important}
+ body.theme-dark .audio-loop-section{padding:68px 0!important}
+ body.theme-dark .brain-explainer{padding:63px 0!important}
+ body.theme-dark .brain-explainer-body>article{padding:23px 18px!important}
+ body.theme-dark .freedom-vision{padding:67px 0!important}
+ body.theme-dark .faq{gap:22px!important}
+ body.theme-dark .faq details{padding:19px 0!important}
+ body.theme-dark .faq summary{font-size:19px!important}
+ body.theme-dark .faq details p{font-size:17px!important}
+ body.theme-dark .predfinal-final-invitation{padding:70px 0!important}
+}
+@media(max-width:375px){
+ body.theme-dark .wrap{width:calc(100% - 30px)}
+ body.theme-dark .opt-demo{padding:13px 10px!important}
+ body.theme-dark .opt-line{column-gap:7px!important}
+ body.theme-dark .opt-line-text strong{font-size:15px!important}
+ body.theme-dark .prefinal-pricing-section .price-card,
+ body.theme-dark .prefinal-pricing-section .price-card.is-selected{padding:21px 18px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ body.theme-dark .opt-demo button{transition:none!important}
+}
+
+
+/* 2026-10-22: WHOLE PLAYER / natural scrolling.
+   First mobile fold reaches only the first row, not a separate card.
+   The small CSS vars are set by the unified player using measured viewport
+   room, and distributed across the hero for balanced whitespace. */
+body.theme-dark .ai-test-hero #opt-demo{
+ overflow:visible!important;
+ height:auto!important;max-height:none!important;
+}
+body.theme-dark .ai-test-hero #opt-demo .opt-lines{
+ overflow:visible!important;
+ max-height:none!important;
+}
+@media(max-width:780px){
+ body.theme-dark.vision-mode .hero.ai-test-hero{
+  display:block!important;
+  box-sizing:border-box!important;
+  height:auto!important;min-height:0!important;
+  padding:clamp(19px,3svh,30px) 0 35px!important;
+ }
+ body.theme-dark .hero.ai-test-hero>.hero-copy{
+  display:flex!important;flex-direction:column!important;
+  flex:none!important;min-height:0!important;
+  width:100%!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--heading{
+  margin-bottom:var(--fold-heading-gap,26px)!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--offer{
+  margin-bottom:var(--fold-offer-gap,24px)!important;
+ }
+ body.theme-dark .hero.ai-test-hero #opt-demo{
+  margin-top:var(--fold-demo-gap,18px)!important;
+  margin-bottom:0!important;
+  flex:none!important;
+  overflow:visible!important;
+ }
+ body.theme-dark .hero.ai-test-hero .ai-test-group--trust{
+  margin-top:28px!important;
+  margin-bottom:0!important;
+  max-width:790px!important;
+ }
+ /* All three are inside the same border, so the user simply scrolls. */
+ body.theme-dark .hero.ai-test-hero .opt-demo{
+  border-radius:14px!important;
+  padding:15px 12px 13px!important;
+ }
+ body.theme-dark .hero.ai-test-hero .opt-lines{
+  gap:8px!important;
+ }
+ body.theme-dark .hero.ai-test-hero .opt-line{
+  padding:10px 9px 8px!important;
+ }
+}
+
+
+
+/* Hero conversion CTA, October 22: standalone purchase path before any audio. */
+body.theme-dark .ai-test-hero .hero-action{
+ max-width:805px;
+ display:flex;flex-direction:column;
+ align-items:flex-start;
+ gap:11px;
+ margin:0 0 7px!important;
+}
+body.theme-dark .ai-test-hero .hero-buy-cta{
+ width:min(100%,465px);
+ min-height:60px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ gap:12px;
+ padding:15px 20px!important;
+ border:1px solid #dfff29!important;
+ border-radius:12px!important;
+ background:#dfff29!important;
+ box-shadow:0 6px 22px rgba(196,255,28,.10)!important;
+ color:#19230e!important;
+ text-decoration:none!important;
+ text-align:center;
+ font:800 clamp(17px,1.9vw,20px)/1.3 Arial,Helvetica,sans-serif!important;
+ letter-spacing:-.014em!important;
+ transition:transform .15s ease,background .15s ease!important;
+}
+body.theme-dark .ai-test-hero .hero-buy-cta:focus-visible{
+ outline:3px solid #fff!important;outline-offset:4px!important;
+}
+body.theme-dark .ai-test-hero .hero-buy-cta:hover{
+ background:#ecff7e!important;border-color:#ecff7e!important;
+}
+body.theme-dark .ai-test-hero .hero-buy-cta span{
+ font-size:22px!important;line-height:1!important;font-weight:700!important;
+}
+body.theme-dark .ai-test-hero .hero-review-snippet{
+ display:flex;align-items:flex-start;
+ margin:0!important;padding:0 2px!important;
+ max-width:755px;
+ color:#d3ddce!important;
+ font-size:15px!important;
+ line-height:1.5!important;
+ font-weight:450!important;
+}
+body.theme-dark .ai-test-hero .hero-review-mark{
+ display:none!important;
+}
+body.theme-dark .ai-test-hero .hero-review-author{
+ color:#abbea2!important;
+ font-size:14px!important;
+}
+@media(max-width:780px){
+ body.theme-dark.vision-mode .hero.ai-test-hero{
+  padding-top:clamp(12px,2svh,22px)!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--heading{
+  margin-bottom:var(--fold-heading-gap,16px)!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--offer{
+  margin-bottom:var(--fold-offer-gap,13px)!important;
+ }
+ body.theme-dark .ai-test-hero .hero-action{
+  width:100%!important;
+  margin:0 0 0!important;
+  gap:9px!important;
+ }
+ body.theme-dark .ai-test-hero .hero-buy-cta{
+  width:100%!important;
+  max-width:470px!important;
+  min-height:54px!important;
+  padding:11px 9px!important;
+  border-radius:11px!important;
+  font-size:clamp(16px,4.5vw,18px)!important;
+  gap:7px!important;
+ }
+ body.theme-dark .ai-test-hero .hero-buy-cta span{
+  font-size:20px!important;
+ }
+ body.theme-dark .ai-test-hero .hero-review-snippet{
+  max-width:100%!important;
+  padding:0 2px!important;
+  font-size:13px!important;
+  line-height:1.36!important;
+  color:#ccd9c5!important;
+ }
+ body.theme-dark .ai-test-hero .hero-review-author{
+  font-size:12px!important;
+ }
+ body.theme-dark .hero.ai-test-hero #opt-demo{
+  margin-top:var(--fold-demo-gap,10px)!important;
+ }
+}
+
+@media(prefers-reduced-motion:reduce){
+ body.theme-dark .ai-test-hero .hero-buy-cta{
+  transition:none!important;
+ }
+}
+
+
+/* 2026-10-22 — New hero copy: two-line promise with "с помощью аудиоякорей"
+   on ONE line, and two deliberately separated explanatory paragraphs. */
+body.theme-dark.vision-mode .hero.ai-test-hero h1{
+  max-width:100%!important;
+  margin:0 0 0!important;
+  font-weight:700!important;
+  line-height:1.08!important;
+}
+body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-main,
+body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-rest{
+  display:block!important;
+  max-width:100%!important;
+  font-family:Arial,Helvetica,sans-serif!important;
+  font-style:normal!important;
+  line-height:1.12!important;
+  letter-spacing:-.047em!important;
+  white-space:nowrap!important;
+}
+body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-main{
+  color:#f6f9f4!important;
+  font-size:clamp(47px,5.9vw,81px)!important;
+}
+body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-rest{
+  color:#f6f9f4!important;
+  font-size:clamp(32px,3.9vw,54px)!important;
+  margin-top:4px!important;
+}
+body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-accent{
+  display:inline!important;
+  color:#dfff00!important;
+  font-size:inherit!important;
+  font-weight:inherit!important;
+  white-space:nowrap!important;
+}
+body.theme-dark .ai-test-hero .ai-test-explanation{
+  display:grid;
+  gap:17px;
+  max-width:760px;
+  margin:22px 0 0!important;
+}
+body.theme-dark .ai-test-hero .ai-test-explanation p{
+  margin:0!important;
+  max-width:760px!important;
+  color:#e5eee2!important;
+  font:400 clamp(17px,1.8vw,20px)/1.57 Arial,Helvetica,sans-serif!important;
+  text-wrap:pretty;
+}
+body.theme-dark .ai-test-hero .ai-test-group--heading{
+  margin-bottom:23px!important;
+}
+@media(max-width:780px){
+  body.theme-dark .ai-test-hero .ai-test-audience{
+    margin-bottom:11px!important;
+  }
+  body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-main{
+    font-size:clamp(33px,10.7vw,48px)!important;
+    letter-spacing:-.057em!important;
+    line-height:1.07!important;
+  }
+  body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-rest{
+    font-size:clamp(20px,6.2vw,30px)!important;
+    letter-spacing:-.049em!important;
+    line-height:1.16!important;
+    margin-top:4px!important;
+  }
+  body.theme-dark .ai-test-hero .ai-test-explanation{
+    gap:13px!important;
+    margin:17px 0 0!important;
+  }
+  body.theme-dark .ai-test-hero .ai-test-explanation p{
+    font-size:16px!important;
+    line-height:1.48!important;
+    letter-spacing:-.007em!important;
+  }
+  body.theme-dark .ai-test-hero .ai-test-group--heading{
+    margin-bottom:var(--fold-heading-gap,16px)!important;
+  }
+  body.theme-dark .ai-test-hero .ai-test-group--offer{
+    margin-bottom:var(--fold-offer-gap,13px)!important;
+  }
+  body.theme-dark .ai-test-hero .ai-test-group--offer .ai-test-simple{
+    margin-bottom:6px!important;
+    font-size:16px!important;
+    line-height:1.4!important;
+  }
+  body.theme-dark .ai-test-hero .ai-test-contents{
+    font-size:15px!important;
+    line-height:1.4!important;
+  }
+  body.theme-dark .ai-test-hero .hero-action{gap:8px!important}
+  body.theme-dark .hero.ai-test-hero #opt-demo{
+    margin-top:var(--fold-demo-gap,10px)!important;
+  }
+}
+@media(max-width:375px){
+  body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-main{
+    font-size:clamp(32px,10.5vw,40px)!important;
+  }
+  body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-rest{
+    font-size:clamp(19px,6.1vw,23px)!important;
+  }
+}
+
+
+
+/* 2026-10-22: Shift space released by removing the two offer lines
+   to the TOP of the first screen. Keep headline -> button close and clear. */
+body.theme-dark.vision-mode .hero.ai-test-hero{
+ padding-top:clamp(74px,8vw,116px)!important;
+}
+body.theme-dark .ai-test-hero .ai-test-group--heading{
+ margin-bottom:22px!important;
+}
+@media(max-width:780px){
+ body.theme-dark.vision-mode .hero.ai-test-hero{
+  padding-top:var(--fold-top-space,68px)!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--heading{
+  margin-bottom:var(--fold-heading-gap,17px)!important;
+ }
+ body.theme-dark .ai-test-hero .hero-action{
+  margin-top:0!important;
+ }
+ body.theme-dark .hero.ai-test-hero #opt-demo{
+  margin-top:var(--fold-demo-gap,12px)!important;
+ }
+}
+
+
+
+/* Direct transition: albums -> tariff cards, no separate pricing headline. */
+body.theme-dark .album-showcase{
+ padding-bottom:clamp(28px,3vw,44px)!important;
+}
+body.theme-dark .prefinal-pricing-section{
+ padding-top:clamp(25px,3vw,39px)!important;
+}
+body.theme-dark .prefinal-pricing-section .pricing{
+ margin-top:0!important;
+}
+@media(max-width:780px){
+ body.theme-dark .album-showcase{
+  padding-bottom:19px!important;
+ }
+ body.theme-dark .prefinal-pricing-section{
+  padding-top:17px!important;
+ }
+}
+
+
+/* 2026-10-22: swap verbose hero explanation for short 40-year reassurance.
+   The explanation now lives BELOW the intact three-track demo. */
+body.theme-dark .ai-test-hero .hero-priority--highlight{
+ display:block!important;
+ width:fit-content!important;
+ max-width:min(100%,660px)!important;
+ margin:clamp(21px,2.6vw,30px) 0 0!important;
+ padding:2px 0 2px 16px!important;
+ border-left:3px solid #dfff29!important;
+ color:#f7faf4!important;
+ font:700 clamp(19px,2.4vw,25px)/1.38 Arial,Helvetica,sans-serif!important;
+ letter-spacing:-.02em!important;
+ text-wrap:pretty;
+}
+body.theme-dark .ai-test-hero .hero-priority--highlight strong{
+ display:inline!important;
+ font:inherit!important;
+ font-weight:850!important;
+ color:#dfff29!important;
+}
+body.theme-dark .ai-test-hero .ai-test-explanation{
+ width:100%!important;
+ max-width:805px!important;
+ gap:clamp(15px,2vw,21px)!important;
+ margin:clamp(30px,4vw,44px) 0 0!important;
+ padding:0 2px!important;
+}
+body.theme-dark .ai-test-hero .ai-test-explanation p{
+ max-width:720px!important;
+ font-size:clamp(17px,1.8vw,20px)!important;
+ line-height:1.6!important;
+ color:#dce9d7!important;
+}
+@media(max-width:780px){
+ body.theme-dark .ai-test-hero .hero-priority--highlight{
+  margin:20px 0 0!important;
+  padding:1px 0 1px 13px!important;
+  border-left-width:3px!important;
+  font-size:19px!important;
+  line-height:1.36!important;
+  max-width:350px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--heading{
+  margin-bottom:var(--fold-heading-gap,17px)!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-explanation{
+  margin:32px 0 0!important;
+  padding:0 2px!important;
+  gap:15px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-explanation p{
+  font-size:17px!important;
+  line-height:1.57!important;
+ }
+}
+
+
+
+/* 2026-10-22: one complete 3-track mobile hero, balanced top whitespace.
+   Overrides the old "only first demo visible" layout rules. */
+body.theme-dark .ai-test-hero .opt-demo{
+ max-width:760px!important;
+ height:auto!important;
+ max-height:none!important;
+ overflow:visible!important;
+ border:1px solid #4d6549!important;
+ border-radius:14px!important;
+ background:linear-gradient(145deg,#203024,#1b2a20)!important;
+ box-shadow:0 7px 20px rgba(0,0,0,.13)!important;
+ padding:15px 16px 13px!important;
+}
+body.theme-dark .ai-test-hero .opt-overline{
+ display:flex!important;
+ align-items:baseline!important;
+ gap:3px 12px!important;
+ margin:0 0 13px!important;
+}
+body.theme-dark .ai-test-hero .opt-overline strong{
+ font-size:clamp(18px,1.9vw,21px)!important;
+ line-height:1.32!important;
+ font-weight:800!important;
+ letter-spacing:-.025em!important;
+}
+body.theme-dark .ai-test-hero .opt-overline span{
+ color:#bfd0b8!important;
+ font-size:13px!important;
+ line-height:1.35!important;
+}
+body.theme-dark .ai-test-hero .opt-lines{
+ display:grid!important;
+ gap:7px!important;
+ overflow:visible!important;
+}
+body.theme-dark .ai-test-hero .opt-line{
+ grid-template-columns:44px minmax(0,1fr) 44px!important;
+ column-gap:11px!important;
+ row-gap:5px!important;
+ align-items:center!important;
+ padding:8px 11px 6px!important;
+ background:#17271c!important;
+ border:1px solid #3c533e!important;
+ border-radius:11px!important;
+}
+body.theme-dark .ai-test-hero .opt-line.is-active{
+ background:#223827!important;
+ border-color:#6c955f!important;
+}
+body.theme-dark .ai-test-hero .opt-round,
+body.theme-dark .ai-test-hero .opt-like{
+ min-width:44px!important;
+ width:44px!important;
+ height:44px!important;
+ min-height:44px!important;
+ border-radius:10px!important;
+ padding:0!important;
+ flex-shrink:0!important;
+}
+body.theme-dark .ai-test-hero .opt-round{
+ font-size:20px!important;
+}
+body.theme-dark .ai-test-hero .opt-like{
+ gap:0!important;
+ border-color:#526b52!important;
+}
+body.theme-dark .ai-test-hero .opt-like span:first-child{
+ font-size:23px!important;
+}
+body.theme-dark .ai-test-hero .opt-like span+span{
+ display:none!important;
+}
+body.theme-dark .ai-test-hero .opt-line-text strong{
+ font-size:clamp(16px,1.55vw,18px)!important;
+ line-height:1.22!important;
+ font-weight:800!important;
+ letter-spacing:-.017em!important;
+}
+body.theme-dark .ai-test-hero .opt-line-caption{
+ display:block!important;
+ font-size:12px!important;
+ line-height:1.28!important;
+ color:#c9dec3!important;
+ margin-top:3px!important;
+}
+body.theme-dark .ai-test-hero .opt-trackbar{
+ height:3px!important;
+ border-radius:6px!important;
+ grid-column:1/-1!important;
+ margin:0!important;
+}
+body.theme-dark .ai-test-hero .opt-tip{display:none!important}
+@media(max-width:780px){
+ body.theme-dark.vision-mode .hero.ai-test-hero{
+  padding-top:var(--hero-fit-top,56px)!important;
+  padding-bottom:27px!important;
+  min-height:0!important;
+  height:auto!important;
+  display:block!important;
+ }
+ body.theme-dark .hero.ai-test-hero>.hero-copy{
+  min-height:0!important;
+  flex:none!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--heading{
+  margin-bottom:14px!important;
+ }
+ body.theme-dark .ai-test-hero .hero-priority--highlight{
+  margin:17px 0 0!important;
+  padding:2px 0 2px 12px!important;
+  font-size:18px!important;
+  line-height:1.32!important;
+ }
+ body.theme-dark .ai-test-hero .hero-action{
+  margin:0!important;
+  gap:7px!important;
+ }
+ body.theme-dark .ai-test-hero .hero-buy-cta{
+  min-height:50px!important;
+  padding:11px 9px!important;
+ }
+ body.theme-dark .ai-test-hero .hero-review-snippet{
+  line-height:1.3!important;
+  font-size:12px!important;
+ }
+ body.theme-dark .ai-test-hero .hero-review-author{
+  font-size:12px!important;
+ }
+ body.theme-dark .hero.ai-test-hero #opt-demo{
+  margin:13px 0 0!important;
+  padding:12px 11px 11px!important;
+ }
+ body.theme-dark .ai-test-hero .opt-overline{
+  display:block!important;
+  margin:0 0 9px!important;
+ }
+ body.theme-dark .ai-test-hero .opt-overline strong{
+  display:block!important;
+  font-size:18px!important;
+  line-height:1.23!important;
+ }
+ body.theme-dark .ai-test-hero .opt-overline span{
+  display:block!important;
+  margin-top:2px!important;
+  font-size:12px!important;
+  line-height:1.25!important;
+ }
+ body.theme-dark .ai-test-hero .opt-lines{
+  gap:6px!important;
+ }
+ body.theme-dark .ai-test-hero .opt-line{
+  grid-template-columns:44px minmax(0,1fr) 44px!important;
+  padding:7px 8px 5px!important;
+  gap:4px 8px!important;
+ }
+ body.theme-dark .ai-test-hero .opt-line-text strong{
+  font-size:16px!important;
+  line-height:1.17!important;
+ }
+ body.theme-dark .ai-test-hero .opt-line-caption{
+  margin-top:2px!important;
+  font-size:12px!important;
+  line-height:1.22!important;
+ }
+ body.theme-dark .ai-test-hero .opt-trackbar{
+  height:3px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-explanation{
+  margin-top:36px!important;
+ }
+
+}
+
+
+
+/* ===============================================================
+   2026-10-22 final: Instagram-like HEARTS + clean first-screen fold.
+   In the first viewport: promise, CTA, and the COMPLETE demo only.
+   The reading copy starts in the next real section, never peeks.
+   =============================================================== */
+
+/* Tappable area stays 44px, but the visual is a plain unboxed heart. */
+body.theme-dark .ai-test-hero .opt-line .opt-like,
+body.theme-dark .ai-test-hero .opt-line .opt-like:hover,
+body.theme-dark .ai-test-hero .opt-line .opt-like:active{
+ appearance:none!important;
+ width:44px!important;
+ height:44px!important;
+ min-width:44px!important;
+ min-height:44px!important;
+ display:inline-flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ border:0!important;
+ outline:0!important;
+ border-radius:50%!important;
+ background:transparent!important;
+ box-shadow:none!important;
+ color:#e8f3e5!important;
+ padding:8px!important;
+ line-height:1!important;
+}
+body.theme-dark .ai-test-hero .opt-line .opt-like:focus-visible{
+ outline:2px solid #e8f3e5!important;
+ outline-offset:2px!important;
+}
+body.theme-dark .ai-test-hero .opt-line .opt-like .opt-heart-icon{
+ flex:none!important;
+ display:block!important;
+ width:27px!important;
+ height:27px!important;
+ fill:transparent!important;
+ stroke:#e8f3e5!important;
+ stroke-width:2.05!important;
+ stroke-linecap:round!important;
+ stroke-linejoin:round!important;
+ transition:transform .18s ease,fill .18s ease,stroke .18s ease!important;
+}
+body.theme-dark .ai-test-hero .opt-line .opt-like.is-liked .opt-heart-icon{
+ fill:#ff466e!important;
+ stroke:#ff466e!important;
+ transform:scale(1.08)!important;
+}
+@media(hover:hover){
+ body.theme-dark .ai-test-hero .opt-line .opt-like:hover .opt-heart-icon{
+  transform:scale(1.12)!important;
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ body.theme-dark .ai-test-hero .opt-line .opt-like .opt-heart-icon{
+  transition:none!important;
+ }
+}
+
+/* Entire second chapter is outside the viewport-height first section. */
+body.theme-dark .ai-after-demo{
+ padding:clamp(50px,6vw,82px) 0 clamp(55px,6vw,84px)!important;
+ background:#101713;
+ border-top:1px solid #304131;
+}
+body.theme-dark .ai-after-demo>.wrap{
+ max-width:1120px;
+}
+body.theme-dark .ai-after-demo .ai-test-explanation{
+ display:grid!important;
+ gap:17px!important;
+ max-width:760px!important;
+ margin:0!important;
+ padding:0!important;
+}
+body.theme-dark .ai-after-demo .ai-test-explanation p{
+ max-width:730px!important;
+ color:#e5eee2!important;
+ font:400 clamp(17px,1.8vw,20px)/1.62 Arial,Helvetica,sans-serif!important;
+ margin:0!important;
+}
+body.theme-dark .ai-after-demo .ai-test-group--trust{
+ max-width:780px!important;
+ margin:clamp(27px,3vw,42px) 0 0!important;
+ padding:0!important;
+}
+body.theme-dark .ai-after-demo .ai-test-access,
+body.theme-dark .ai-after-demo .ai-test-guarantee{
+ margin:0 0 10px!important;
+ color:#d4e3cf!important;
+ font-size:17px!important;
+ line-height:1.5!important;
+}
+body.theme-dark .ai-after-demo .ai-test-check,
+body.theme-dark .ai-after-demo .ai-test-emphasis{
+ color:#dfff29!important;
+ font-weight:800!important;
+}
+body.theme-dark .ai-after-demo .ai-test-look-at-tiers{
+ margin:16px 0 0!important;
+}
+body.theme-dark .ai-after-demo .ai-test-look-at-tiers a{
+ color:#dfff29!important;
+ display:inline-flex!important;
+ min-height:44px!important;
+ align-items:center!important;
+ text-decoration:underline!important;
+ text-underline-offset:5px!important;
+ font-weight:800!important;
+ font-size:18px!important;
+}
+
+/* Mobile fold: the ONE card ends 14px above the viewport's lower edge.
+   Do not crop the card; stretch only the flexible space BEFORE it. */
+@media(max-width:780px){
+ body.theme-dark.vision-mode .hero.ai-test-hero{
+  box-sizing:border-box!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  min-height:100svh!important;
+  height:auto!important;
+  padding:clamp(36px,7svh,88px) 0 14px!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero>.hero-copy{
+  display:flex!important;
+  flex-direction:column!important;
+  flex:1 1 auto!important;
+  width:100%!important;
+  min-height:0!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero #opt-demo{
+  flex:none!important;
+  align-self:stretch!important;
+  width:100%!important;
+  max-height:none!important;
+  overflow:visible!important;
+  margin:auto 0 0!important;
+ }
+ body.theme-dark .ai-after-demo{
+  padding:50px 0 59px!important;
+ }
+ body.theme-dark .ai-after-demo .ai-test-explanation{
+  gap:14px!important;
+ }
+ body.theme-dark .ai-after-demo .ai-test-explanation p{
+  font-size:17px!important;
+  line-height:1.57!important;
+ }
+ body.theme-dark .ai-after-demo .ai-test-access,
+ body.theme-dark .ai-after-demo .ai-test-guarantee{
+  font-size:16px!important;
+ }
+}
+
+/* Short mobile screens: keep play and heart touch targets 44px. */
+
+
+
+
+/* 2026-10-22: Album area begins with the FIRST COVER, no intro block.
+   Avoid giant whitespace where the heading used to be. */
+body.theme-dark .album-showcase{
+ padding-top:clamp(22px,3vw,38px)!important;
+}
+body.theme-dark .album-showcase .album-showcase-grid{
+ margin-top:0!important;
+ padding-top:0!important;
+}
+body.theme-dark .album-showcase .album-display--one{
+ margin-top:0!important;
+ padding-top:0!important;
+}
+@media(max-width:780px){
+ body.theme-dark .album-showcase{
+  padding-top:16px!important;
+ }
+ body.theme-dark .album-showcase .album-showcase-grid{
+  gap:47px!important;
+ }
+}
+
+
+/* ================================================================
+   2026-10-22 — Balanced first fold with a tiny ALBUM COVER PEEK.
+   Readable large title, intentional rhythm among three hero groups.
+   The album section immediately follows the demo hero in the DOM.
+   ================================================================ */
+@media(max-width:780px){
+ /* 43px reserved below hero, minus the 16px album top inset:
+    first cover peeks out approximately 27px on normal phone screens. */
+ body.theme-dark.vision-mode .hero.ai-test-hero{
+  box-sizing:border-box!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  height:auto!important;
+  min-height:calc(100svh - 43px)!important;
+  padding:clamp(38px,7svh,79px) 0 13px!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero>.hero-copy{
+  display:flex!important;
+  flex:1 1 auto!important;
+  flex-direction:column!important;
+  justify-content:space-between!important;
+  align-items:stretch!important;
+  min-height:0!important;
+  width:100%!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero .ai-test-group--heading{
+  flex:0 0 auto!important;
+  margin:0!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero h1{
+  margin:0!important;
+  max-width:100%!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-main{
+  font-size:clamp(36px,11.65vw,48px)!important;
+  line-height:1.08!important;
+  letter-spacing:-.057em!important;
+  white-space:nowrap!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-rest{
+  font-size:clamp(21px,7vw,29px)!important;
+  line-height:1.17!important;
+  letter-spacing:-.05em!important;
+  margin-top:7px!important;
+  white-space:nowrap!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero .hero-priority--highlight{
+  margin:clamp(19px,3svh,27px) 0 0!important;
+  font-size:clamp(18px,5.1vw,21px)!important;
+  line-height:1.32!important;
+  padding:3px 0 3px 13px!important;
+  border-left:3px solid #dfff29!important;
+  max-width:100%!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero .hero-action{
+  flex:0 0 auto!important;
+  gap:9px!important;
+  margin:0!important;
+  width:100%!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero .hero-buy-cta{
+  min-height:56px!important;
+  padding:13px 12px!important;
+  font-size:clamp(16px,4.5vw,18px)!important;
+  border-radius:12px!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero .hero-review-snippet{
+  font-size:13px!important;
+  line-height:1.4!important;
+  letter-spacing:0!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero #opt-demo{
+  flex:0 0 auto!important;
+  margin:0!important;
+  width:100%!important;
+  max-width:none!important;
+  padding:13px 11px 12px!important;
+  border-radius:15px!important;
+ }
+ body.theme-dark .album-showcase{
+  padding-top:16px!important;
+ }
+ body.theme-dark .album-showcase .album-showcase-grid,
+ body.theme-dark .album-showcase .album-display--one,
+ body.theme-dark .album-showcase .album-art{
+  padding-top:0!important;
+  margin-top:0!important;
+ }
+}
+
+
+/* Desktop: modest separation; no enforced viewport height. */
+@media(min-width:781px){
+ body.theme-dark.vision-mode .hero.ai-test-hero .hero-copy{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  gap:clamp(26px,3.5vw,54px)!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero .ai-test-group--heading{
+  margin:0!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero #opt-demo{
+  margin:0!important;
+ }
+}
+
+/* 2026-10-22: instruction removed. Keep legacy demo/favorite nodes
+   in the DOM for compatibility with the unified first-screen player,
+   but remove their entire section from visual layout (no blank gap). */
+body.theme-dark #sounds{
+ display:none!important;
+}
+
+
+/* Safety net: eliminate obsolete 77% survey-stat block, including on cached markup. */
+body.theme-dark #first-listen,
+body.theme-dark .first-listen-section,
+body.theme-dark .first-listen-panel{
+ display:none!important;
+ margin:0!important;
+ padding:0!important;
+ height:0!important;
+ border:0!important;
+}
+
+
+/* ================================================================
+   2026-10-22 UX polish: reserve the demo's fold/cover peek unchanged,
+   use upper whitespace more intentionally; make testimonial legible.
+   No seeking by touching the purely informative progress bar.
+   ================================================================ */
+
+/* The album starts right after the demo, without a horizontal divider. */
+body.theme-dark .album-showcase,
+body.theme-dark .album-showcase.section{
+ border-top:0!important;
+ border-bottom:0!important;
+ border-image:none!important;
+ box-shadow:none!important;
+}
+body.theme-dark.vision-mode .hero.ai-test-hero{
+ border-bottom:0!important;
+}
+
+/* Progress is visual and screen-reader readable but never draggable/clickable. */
+body.theme-dark #opt-demo .opt-trackbar,
+body.theme-dark #opt-demo .opt-trackbar i{
+ pointer-events:none!important;
+ touch-action:none!important;
+ user-select:none!important;
+ -webkit-user-select:none!important;
+ cursor:default!important;
+}
+
+/* Review is no longer footnote-small. One comfortable typographic line on desktop. */
+body.theme-dark.vision-mode .hero.ai-test-hero .hero-review-snippet{
+ font-size:16px!important;
+ line-height:1.48!important;
+ font-weight:600!important;
+ color:#e9f4e4!important;
+ max-width:700px!important;
+}
+body.theme-dark.vision-mode .hero.ai-test-hero .hero-review-author{
+ font-size:15px!important;
+ font-weight:500!important;
+ color:#cbdac4!important;
+}
+
+@media(max-width:780px){
+ /* Keep the 100svh - 43px fold established earlier, so the bottom
+    of the demo and the thin album-cover peek remain at their positions. */
+ body.theme-dark.vision-mode .hero.ai-test-hero{
+  min-height:calc(100svh - 43px)!important;
+  padding:clamp(56px,9svh,89px) 0 13px!important;
+ }
+ /* Reallocate free space: more breathing room above the headline and
+    between reassurance and CTA, less dead space above the demo.
+    Margin-top:auto pushes CTA down; fixed bottom gap anchors the player. */
+ body.theme-dark.vision-mode .hero.ai-test-hero>.hero-copy{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+  align-items:stretch!important;
+  flex:1 1 auto!important;
+  min-height:0!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero .ai-test-group--heading{
+  margin:0!important;
+  flex:0 0 auto!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-main{
+  font-size:clamp(38px,11.55vw,48px)!important;
+  line-height:1.075!important;
+  letter-spacing:-.058em!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-rest{
+  font-size:clamp(21px,6.95vw,29px)!important;
+  margin-top:8px!important;
+  line-height:1.16!important;
+  letter-spacing:-.05em!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero .hero-priority--highlight{
+  margin:clamp(20px,3.1svh,30px) 0 0!important;
+  font-size:clamp(19px,5.1vw,21px)!important;
+  line-height:1.36!important;
+  max-width:100%!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero .hero-action{
+  flex:0 0 auto!important;
+  align-self:stretch!important;
+  margin:auto 0 32px!important;
+  padding:0!important;
+  gap:10px!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero .hero-buy-cta{
+  min-height:56px!important;
+  width:100%!important;
+  max-width:none!important;
+  font-size:clamp(16px,4.5vw,18px)!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero .hero-review-snippet{
+  font-size:15px!important;
+  font-weight:600!important;
+  line-height:1.5!important;
+  color:#e8f0e3!important;
+  letter-spacing:0!important;
+  max-width:100%!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero .hero-review-author{
+  font-size:14px!important;
+  font-weight:500!important;
+  color:#c5d4be!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero #opt-demo{
+  margin:0!important;
+  flex:0 0 auto!important;
+  align-self:stretch!important;
+  width:100%!important;
+ }
+ body.theme-dark .album-showcase{
+  padding-top:16px!important;
+ }
+}
+/* Tight screens: shorten spaces, not buttons or the 44px heart targets. */
+
+
+
+
+/* 2026-10-22 /ai/оптимайз/: a single START here in the audio previews.
+   Keep the first play button lime and every other play button dark with
+   a crisp lime outline, including when that sample is currently playing.
+   Hearts are entirely removed in pult.js; no dead third grid column.
+   The album cover peeks by ~9px instead of ~27px on typical mobile
+   viewports: 25px reserved below hero, less 16px album section inset. */
+body.theme-dark .ai-test-hero #opt-demo .opt-line{
+ grid-template-columns:44px minmax(0,1fr)!important;
+ column-gap:11px!important;
+}
+body.theme-dark .ai-test-hero #opt-demo .opt-line .opt-round{
+ box-sizing:border-box!important;
+ display:flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ width:44px!important;
+ height:44px!important;
+ min-width:44px!important;
+ min-height:44px!important;
+ padding:0!important;
+ border-radius:9px!important;
+ box-shadow:none!important;
+ transition:background-color .15s ease,border-color .15s ease!important;
+}
+body.theme-dark .ai-test-hero #opt-demo [data-demo-style="author"] .opt-round,
+body.theme-dark .ai-test-hero #opt-demo [data-demo-style="author"].is-active .opt-round{
+ background:#dfff29!important;
+ border:2px solid #dfff29!important;
+ color:#15200d!important;
+}
+body.theme-dark .ai-test-hero #opt-demo [data-demo-style="estrada"] .opt-round,
+body.theme-dark .ai-test-hero #opt-demo [data-demo-style="modern"] .opt-round,
+body.theme-dark .ai-test-hero #opt-demo [data-demo-style="estrada"].is-active .opt-round,
+body.theme-dark .ai-test-hero #opt-demo [data-demo-style="modern"].is-active .opt-round{
+ background:#17261c!important;
+ border:2px solid #dfff29!important;
+ color:#dfff29!important;
+}
+body.theme-dark .ai-test-hero #opt-demo .opt-trackbar{
+ grid-column:1/-1!important;
+ pointer-events:none!important;
+ touch-action:none!important;
+}
+@media(max-width:780px){
+ body.theme-dark.vision-mode .hero.ai-test-hero{
+  min-height:calc(100svh - 25px)!important;
+ }
+ body.theme-dark .album-showcase{
+  padding-top:16px!important;
+ }
+ body.theme-dark .ai-test-hero #opt-demo .opt-line{
+  grid-template-columns:44px minmax(0,1fr)!important;
+  column-gap:10px!important;
+ }
+}
+/* On shorter devices, never shrink play targets below 44px. The page
+   remains scrollable when content cannot physically fit on one screen. */
+@media(prefers-reduced-motion:reduce){
+ body.theme-dark .ai-test-hero #opt-demo .opt-round{
+  transition:none!important;
+ }
+}
+
+
+/* Directly below each cover: the tracklist. No redundant phase/title/copy. */
+body.theme-dark .album-showcase .album-art{
+ margin-bottom:14px!important;
+}
+body.theme-dark .album-showcase .album-description{
+ margin-top:0!important;
+ padding-top:0!important;
+}
+body.theme-dark .album-showcase .album-tracklist{
+ margin-top:0!important;
+ padding-top:14px!important;
+}
+@media(max-width:780px){
+ body.theme-dark .album-showcase .album-art{
+  margin-bottom:12px!important;
+ }
+ body.theme-dark .album-showcase .album-tracklist{
+  padding-top:13px!important;
+ }
+}
+
+
+/* 2026-10-22: Seamless hand-off from album 2 tracklist to tariff 1.
+   Old mobile 19px+17px = 36px. New 38px+34px = 72px.
+   No divider line; matching section edge colors avoid a false rule. */
+body.theme-dark .album-showcase{
+ border-bottom:0!important;
+ padding-bottom:clamp(56px,6vw,88px)!important;
+}
+body.theme-dark .prefinal-pricing-section{
+ border-top:0!important;
+ box-shadow:none!important;
+ padding-top:clamp(50px,6vw,78px)!important;
+ background:linear-gradient(180deg,#151d17 0%,#172118 30%,#111a14 94%)!important;
+}
+@media(max-width:780px){
+ body.theme-dark .album-showcase{
+  padding-bottom:38px!important;
+ }
+ body.theme-dark .prefinal-pricing-section{
+  padding-top:34px!important;
+ }
+}
+
+
+/* 2026-10-22: Move headline / reassurance closer to CTA, without moving CTA
+   or the demo. Shift flex free space from ABOVE the button to ABOVE the
+   heading, keeping the button-to-demo interval (32px) unchanged.
+   No JS measurements and no scroll-dependent layout transitions. */
+@media(max-width:780px){
+ body.theme-dark.vision-mode .hero.ai-test-hero .ai-test-group--heading{
+  margin:auto 0 0!important;
+  flex:0 0 auto!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero .hero-action{
+  margin:clamp(29px,4svh,39px) 0 32px!important;
+ }
+}
