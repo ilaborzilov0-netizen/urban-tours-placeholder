@@ -1686,20 +1686,29 @@ body.theme-dark .ai-after-demo.ai-core-message .ai-core-message-quote strong{
 }
 
 
-/* Double the whitespace above and below the key statement between album #2 and the calculator. */
+/* Visible, balanced breathing room around the statement between album #2 and calculator. */
 body.theme-dark .ai-after-demo.ai-core-message.ai-core-message--between{
- padding:24px 0 20px!important;
+ padding:48px 0 40px!important;
 }
 @media(max-width:780px){
  body.theme-dark .ai-after-demo.ai-core-message.ai-core-message--between{
-  padding:16px 0 14px!important;
+  padding:32px 0 28px!important;
  }
 }
 
 
+
+/* The relocated closing CTA follows the questions directly: no oversized blank band. */
+body.theme-dark .freedom-vision#freedom{
+ padding-top:clamp(28px,4vw,48px)!important;
+}
+@media(max-width:780px){
+ body.theme-dark .freedom-vision#freedom{padding-top:24px!important}
+}
+
 /* 2026-10-22: no motivational final CTA; a compact contact invitation only. */
 body.theme-dark .predfinal-final-invitation.prefinal-final-invitation--questions{
- padding:clamp(28px,4vw,42px) 0 clamp(40px,5vw,56px)!important;
+ padding:clamp(28px,4vw,42px) 0 clamp(20px,2.5vw,32px)!important;
  border:0!important;
 }
 body.theme-dark .predfinal-final-invitation--questions .predfinal-final-contact{
