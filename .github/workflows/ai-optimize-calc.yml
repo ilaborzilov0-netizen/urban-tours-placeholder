@@ -27,3 +27,40 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Test live calculator variants locally (no real analytics)
         run: node tests/ai-optimize-calc.mjs
+
+      - name: Verify calculator published on /ai/optimize without touching /ai/
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import urllib.request,time,sys
+          from urllib.parse import quote
+          root='https://marafon-metod.ru'
+          def fetch(path):
+              url=root+quote(path,safe='/?=&')
+              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0','Cache-Control':'no-cache'})
+              with urllib.request.urlopen(req,timeout=18) as res:
+                  return res.read().decode('utf-8','replace')
+          for attempt in range(1,16):
+              try:
+                  page=fetch('/ai/оптимайз/?calccheck=20261022&attempt='+str(attempt))
+                  scripts=fetch('/ai/оптимайз/calc-pult.js?v=20261022-v2')
+                  css=fetch('/ai/оптимайз/calc-pult.css?v=20261022-v2')
+                  production=fetch('/ai/?check=live-prod-safe')
+                  checks={
+                      'five_selector_buttons': all('data-calc-variant="'+str(i)+'"' in page for i in range(1,6)),
+                      'calculator_before_tariffs':0<page.find('id="calc-showcase"')<page.find('id="pricing"'),
+                      'old_blocks_gone':'class="annual-savings-panel"' not in page and 'id="smoking-savings"' not in page,
+                      'new_assets':'calc-pult.js?v=20261022-v2' in page and 'calc-pult.css?v=20261022-v2' in page,
+                      'working_calculator':"const layouts={" in scripts and "const annual=()" in scripts,
+                      'five_visual_variants':all('.cc-v'+str(i) in css for i in range(1,6)),
+                      'live_prod_unchanged':'id="calc-showcase"' not in production and 'audio-player-prod-20261022.js' in production
+                  }
+                  print('PUBLIC_PREVIEW',attempt,checks,flush=True)
+                  if all(checks.values()):
+                      print('LIVE_FIVE_VARIANTS_CONFIRMED',flush=True)
+                      sys.exit(0)
+              except Exception as e:
+                  print('RETRY',attempt,type(e).__name__,str(e)[:160],flush=True)
+              if attempt<15:time.sleep(5)
+          sys.exit('LIVE_CALCULATOR_NOT_VERIFIED')
+          PY
