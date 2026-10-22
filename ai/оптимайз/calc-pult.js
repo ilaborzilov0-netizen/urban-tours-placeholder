@@ -72,6 +72,7 @@
   function render(){
     stage.innerHTML=layouts[selected]();
     root.dataset.activeVariant=selected;
+    stage.setAttribute('aria-labelledby','calc-option-'+selected);
     tabs.forEach(tab=>{
       const isActive=tab.dataset.calcVariant===selected;
       tab.setAttribute('aria-selected',String(isActive));
