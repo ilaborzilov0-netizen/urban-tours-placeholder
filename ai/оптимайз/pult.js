@@ -153,7 +153,9 @@
   // The FIRST song must remain fully visible. Add only room actually available.
   const capacity=Math.max(0,viewport-firstBottom-9);
   const desired=Math.max(0,viewport+1-secondTop);
-  const extra=Math.floor(Math.min(capacity,desired,180));
+  // With the shorter first-screen copy, allow the freed height to become
+  // whitespace ABOVE the hero; keep only row 1 visible at the fold.
+  const extra=Math.floor(Math.min(capacity,desired,400));
   if(extra<3)return;
   // Most unused space goes ABOVE the heading, not between pitch and CTA.
   const topAdd=Math.round(extra*.73);
