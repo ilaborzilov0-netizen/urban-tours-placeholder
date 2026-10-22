@@ -1630,3 +1630,18 @@ body.theme-dark .prefinal-pricing-section{
   padding-top:34px!important;
  }
 }
+
+
+/* 2026-10-22: Move headline / reassurance closer to CTA, without moving CTA
+   or the demo. Shift flex free space from ABOVE the button to ABOVE the
+   heading, keeping the button-to-demo interval (32px) unchanged.
+   No JS measurements and no scroll-dependent layout transitions. */
+@media(max-width:780px){
+ body.theme-dark.vision-mode .hero.ai-test-hero .ai-test-group--heading{
+  margin:auto 0 0!important;
+  flex:0 0 auto!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero .hero-action{
+  margin:clamp(29px,4svh,39px) 0 32px!important;
+ }
+}
