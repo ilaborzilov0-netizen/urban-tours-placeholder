@@ -1744,4 +1744,7 @@ body.theme-dark .predfinal-final-invitation--questions .predfinal-final-contact 
 body.theme-dark .audio-loop-section#audio-path{
  background:linear-gradient(180deg,#1b291e 0%,#19251c 100%)!important;
  border-top:1px solid #485f45!important;
+ /* End the tinted second screen exactly at the bottom rule of the four-step list. */
+ padding-bottom:0!important;
+ border-bottom:0!important;
 }
