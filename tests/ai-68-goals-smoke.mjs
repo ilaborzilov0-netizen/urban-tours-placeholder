@@ -16,12 +16,14 @@ for(const id of [
  'ai_hero_tariffs_click','ai_checkout_open','ai_plan_2990_click',
  'ai_pay_click_2990','ai_order_created_2990','ai_bank_redirect_2990','ai_purchase_2990'
 ])assert.ok(goalIds.has(id),'Yandex goal missing from approved catalog: '+id);
-for(const name of ['ai/goal-tracking.js','ai/оптимайз/pult.js','predfinal/checkout.js','ai/player-progress.js','analytics.js',
+for(const name of ['ai/goal-tracking.js','ai/audio-player-prod-20261022.js','predfinal/checkout.js','ai/player-progress.js','analytics.js',
 'ai/journey-core.js','ai/journey-views.js','ai/journey-actions.js'])new Function(await readFile(name,'utf8'));
 const html=await readFile('ai/index.html','utf8');
 assert.ok(html.includes('110906734')&&html.includes('G-J076WS14NV'));
 assert.ok(html.includes('/ai/goal-tracking.js?v=20261022-new-player-v1'));
 assert.ok(html.includes('id="opt-demo"'));
+assert.ok(html.includes('/ai/audio-player-prod-20261022.js?v=1'));
+assert.ok(html.includes('/ai/landing-prod-20261022.css?v=1'));
 assert.ok(html.includes('href="#pricing"'));
 assert.ok(html.includes('data-price-card="all"'));
 
