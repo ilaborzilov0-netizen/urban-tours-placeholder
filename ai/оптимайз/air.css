@@ -1644,3 +1644,43 @@ body.theme-dark .prefinal-pricing-section{
   margin:clamp(29px,4svh,39px) 0 32px!important;
  }
 }
+
+
+/* 2026-10-22: One high-impact statement replaces redundant post-pricing text. */
+body.theme-dark .ai-after-demo.ai-core-message{
+ border:0!important;
+ background:#101713!important;
+ padding:clamp(42px,6vw,74px) 0!important;
+}
+body.theme-dark .ai-after-demo.ai-core-message>.wrap{
+ max-width:1000px!important;
+}
+body.theme-dark .ai-after-demo.ai-core-message .ai-core-message-quote{
+ box-sizing:border-box;
+ border:0!important;
+ border-left:4px solid #dfff29!important;
+ border-radius:0!important;
+ background:transparent!important;
+ color:#f4f8f1!important;
+ margin:0!important;
+ padding:0 0 0 clamp(17px,2.5vw,27px)!important;
+ max-width:850px!important;
+ font:800 clamp(27px,4.1vw,43px)/1.18 Arial,Helvetica,sans-serif!important;
+ letter-spacing:-.035em!important;
+ text-wrap:balance;
+}
+body.theme-dark .ai-after-demo.ai-core-message .ai-core-message-quote strong{
+ color:#dfff29!important;
+ font:inherit!important;
+ font-weight:850!important;
+}
+@media(max-width:780px){
+ body.theme-dark .ai-after-demo.ai-core-message{
+  padding:40px 0 46px!important;
+ }
+ body.theme-dark .ai-after-demo.ai-core-message .ai-core-message-quote{
+  padding-left:16px!important;
+  font-size:clamp(27px,7vw,33px)!important;
+  line-height:1.2!important;
+ }
+}
