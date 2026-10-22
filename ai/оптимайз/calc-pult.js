@@ -16,7 +16,7 @@
   let selected='1';
   const annual=()=>Math.round(values.cigarettes*values.pack/20*365);
   const clamp=(key,n)=>Math.max(settings[key].min,Math.min(settings[key].max,Math.round(n)));
-  const money=()=>numberFormat.format(annual())+' ₽ за год';
+  const money=()=>numberFormat.format(annual()).replace(/[\u00a0\u202f]/g,' ')+' ₽ за год';
   const stepper=(key)=>{
     const item=settings[key],v=values[key];
     return '<div class="cc-stepper" role="group" aria-label="'+item.label+'">'
