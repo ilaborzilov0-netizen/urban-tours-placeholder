@@ -1,6 +1,6 @@
 {
   "counter_id": 110906734,
-  "version": "2026-10-20",
+  "version": 2,
   "goals": [
     {
       "id": "ai_guitar_play",
@@ -313,6 +313,106 @@
     {
       "id": "ai_method_view",
       "name": "Механизм — увидел раздел"
+    },
+    {
+      "id": "ai_brain_view",
+      "name": "Физиология — увидел раздел"
+    },
+    {
+      "id": "ai_freedom_view",
+      "name": "Представьте — увидел блок"
+    },
+    {
+      "id": "ai_calculator_view",
+      "name": "Калькулятор — увидел"
+    },
+    {
+      "id": "ai_calculator_cigarettes_changed",
+      "name": "Калькулятор — изменил количество сигарет"
+    },
+    {
+      "id": "ai_calculator_pack_changed",
+      "name": "Калькулятор — изменил цену пачки"
+    },
+    {
+      "id": "ai_pricing_one_view",
+      "name": "Тариф 1990 — увидел карточку"
+    },
+    {
+      "id": "ai_pricing_all_view",
+      "name": "Тариф 2990 — увидел карточку"
+    },
+    {
+      "id": "ai_pricing_duo_view",
+      "name": "Тариф 4490 — увидел карточку"
+    },
+    {
+      "id": "ai_guarantee_view",
+      "name": "Гарантия — увидел блок"
+    },
+    {
+      "id": "ai_guarantee_details_click",
+      "name": "Гарантия — открыл подробности"
+    },
+    {
+      "id": "ai_faq_view",
+      "name": "FAQ — увидел раздел"
+    },
+    {
+      "id": "ai_faq_refund_open",
+      "name": "FAQ — открыл возврат денег"
+    },
+    {
+      "id": "ai_final_view",
+      "name": "Финал — увидел приглашение"
+    },
+    {
+      "id": "ai_final_tariffs_click",
+      "name": "Финал — нажал выбрать комплект"
+    },
+    {
+      "id": "ai_guitar_stop",
+      "name": "Гитара — остановил демо"
+    },
+    {
+      "id": "ai_estrada_stop",
+      "name": "Эстрада — остановил демо"
+    },
+    {
+      "id": "ai_modern_stop",
+      "name": "Современное — остановил демо"
+    },
+    {
+      "id": "ai_guitar_complete",
+      "name": "Гитара — завершил демо"
+    },
+    {
+      "id": "ai_estrada_complete",
+      "name": "Эстрада — завершил демо"
+    },
+    {
+      "id": "ai_modern_complete",
+      "name": "Современное — завершил демо"
+    },
+    {
+      "id": "ai_checkout_email_invalid",
+      "name": "Оплата — ошибочный email"
+    },
+    {
+      "id": "ai_checkout_validation_error",
+      "name": "Оплата — показана ошибка формы"
+    },
+    {
+      "id": "ai_pricing_return_view",
+      "name": "Тарифы — повторно вернулся"
+    },
+    {
+      "id": "ai_demos_return_view",
+      "name": "Демо — повторно вернулся"
+    },
+    {
+      "id": "ai_faq_refund_close",
+      "name": "FAQ — закрыл условия возврата"
     }
   ]
 }
