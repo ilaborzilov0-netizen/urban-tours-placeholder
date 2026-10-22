@@ -137,6 +137,8 @@
  }
  function fitViewport(){
   if(!hero)return;
+  // Don't shift the page while someone is scrolling or listening.
+  if(window.scrollY>8)return;
   hero.style.removeProperty('--hero-fit-top');
   hero.classList.remove('hero-compact-height');
   if(!matchMedia('(max-width:780px)').matches)return;
