@@ -200,6 +200,12 @@ demoAudio.addEventListener('error', showAudioError);
 
 'use strict';
 const ALBUM_PRICE = 990;
+ function albumAmountMinor(data) {
+   const raw=Number(data?.amount);
+   const minor=raw===ALBUM_PRICE ? raw*100 : raw===ALBUM_PRICE*100 ? raw : NaN;
+   if(data?.amountMinor!=null && Number(data.amountMinor)!==minor)return NaN;
+   return minor;
+ }
 const PAYMENT_API = 'https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/api/payment/create';
 const PAYMENT_STATUS_API = 'https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/api/payment/status';
 const LEADS_API = 'https://api.marafon-metod.ru/api/leads';
@@ -261,11 +267,11 @@ purchaseForm.addEventListener('submit', async event => {
   paymentPending = true;submit.disabled = true;submit.textContent = 'Открываем оплату…';albumGoal('ai_payment_create');
   try {
     const data = await albumRequest(PAYMENT_API,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({...customer,plan:'ai_album',flowId:'ai-anchor-album-990',source:'marafon_ai_audioanchors_990',returnUrl:location.origin + location.pathname})});
-    if(data.plan !== 'ai_album' || Number(data.amount) !== ALBUM_PRICE * 100) throw new Error('Сумма оплаты не совпала с 990 ₽. Оплата остановлена.');
+    if(data.plan !== 'ai_album' || albumAmountMinor(data) !== ALBUM_PRICE * 100) throw new Error('Сумма оплаты не совпала с 990 ₽. Оплата остановлена.');
     if(!data.paymentUrl) throw new Error('Не получена ссылка на оплату. Попробуйте ещё раз.');
     const paymentUrl = new URL(data.paymentUrl);
     if(paymentUrl.protocol !== 'https:' || (!/(^|\.)(tinkoff\.ru|tbank\.ru)$/.test(paymentUrl.hostname) && paymentUrl.hostname !== 'pay.tbank-online.com')) throw new Error('Не удалось подтвердить страницу Т-Банка. Оплата остановлена.');
-    try { sessionStorage.setItem('marafonAiLastPayment',JSON.stringify({orderId:data.orderId,paymentId:data.paymentId,amountRub:data.amount,amountMinor:data.amountMinor || 99000,createdAt:new Date().toISOString()})); } catch (_) {}
+    try { sessionStorage.setItem('marafonAiLastPayment',JSON.stringify({orderId:data.orderId,paymentId:data.paymentId,amountRub:ALBUM_PRICE,amountMinor:albumAmountMinor(data),createdAt:new Date().toISOString()})); } catch (_) {}
     albumGoal('ai_payment_created');location.assign(paymentUrl.href);
   } catch(error) {
     statusMessage(purchaseStatus,error.name === 'AbortError' ? 'Оплата открывается дольше обычного. Попробуйте ещё раз.' : error.message);
@@ -300,7 +306,7 @@ async function checkAlbumPaymentReturn() {
   for(let attempt = 0;attempt < 8;attempt++) {
     try {
       const data = await albumRequest(PAYMENT_STATUS_API+'?orderId='+encodeURIComponent(orderId),{headers:{'Accept':'application/json'},cache:'no-store'});
-      if(data.confirmed && data.plan === 'ai_album' && Number(data.amount) === 99000) {title.textContent = 'Оплата подтверждена.';description.textContent = 'Покупка альбома за 990 ₽ подтверждена. Ссылка на треки придёт на указанную почту сразу после оплаты.';clean();albumGoal('ai_payment_success');return;}
+      if(data.confirmed && data.plan === 'ai_album' && albumAmountMinor(data) === ALBUM_PRICE * 100) {title.textContent = 'Оплата подтверждена.';description.textContent = 'Покупка альбома за 990 ₽ подтверждена. Ссылка на треки придёт на указанную почту сразу после оплаты.';clean();albumGoal('ai_payment_success');return;}
       if(data.failed) {title.textContent = 'Оплата не завершена.';description.textContent = 'Можно повторить покупку или задать вопрос.';clean();return;}
     } catch(_) {if(attempt === 7) break;}
     await new Promise(resolve => setTimeout(resolve,1500));
