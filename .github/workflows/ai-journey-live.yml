@@ -24,10 +24,10 @@ jobs:
                   return f.read().decode('utf8','replace')
           for i in range(12):
               try:
-                  js=get('analytics.js?journey_v1='+str(i))
+                  js=get('analytics.js?v=20261020-clarity-ai1')
                   needed=['core','views','actions','calculator','checkout','audio']
                   assert all('journey-'+name for name in needed)
-                  assert 'journey-' in js and 'DOMContentLoaded' in js
+                  assert 'journey-core.js' in js and 'DOMContentLoaded' in js
                   for name in needed:
                       a=get('ai/journey-'+name+'.js?v=20261022-v1')
                       assert len(a)>300 and 'ai_' in a
