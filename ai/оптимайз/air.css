@@ -1742,9 +1742,12 @@ body.theme-dark .predfinal-final-invitation--questions .predfinal-final-contact 
    Its subtly greener surface should peek below the first mobile fold
    without changing hero sizing or the section's inner layout. */
 body.theme-dark .audio-loop-section#audio-path{
- background:linear-gradient(180deg,#1b291e 0%,#19251c 100%)!important;
- border-top:1px solid #485f45!important;
- /* End the tinted second screen exactly at the bottom rule of the four-step list. */
- padding-bottom:0!important;
+ /* Match the transparent hero's inherited page color; no visible section edges. */
+ background:var(--bg)!important;
+ background-image:none!important;
+ border-top:0!important;
  border-bottom:0!important;
+ box-shadow:none!important;
+ /* Preserve the compact bottom spacing and all four steps. */
+ padding-bottom:0!important;
 }
