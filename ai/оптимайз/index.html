@@ -1888,8 +1888,8 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
  body.theme-dark .ai-test-hero .ai-test-group--offer{margin-bottom:55px!important}
 }
 </style> <link rel="stylesheet" href="/ai/оптимайз/pult.css?v=20261022-final3">
- <script defer src="/ai/оптимайз/pult.js?v=20261022-final3"></script>
- <link rel="stylesheet" href="/ai/оптимайз/air.css?v=20261022-air1">
+ <script defer src="/ai/оптимайз/pult.js?v=20261022-fold1"></script>
+ <link rel="stylesheet" href="/ai/оптимайз/air.css?v=20261022-fold1">
 </head>
 <body class="theme-dark vision-mode">
  <main>
@@ -1907,10 +1907,18 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
       <p class="ai-test-price"><span class="ai-test-price-from">от</span> <strong>1 990 ₽</strong></p>
      </div>
     </div>
-    <!-- /ai/оптимайз/: chosen first-screen three-row player. -->
-    <section id="opt-demo" class="opt-demo" aria-label="Выберите звучание и послушайте аудиодемо">
-     <p>Загружаем аудиофрагменты…</p>
+    <!-- Above the fold: only the first demo. The shared audio controller fills both blocks. -->
+    <section id="opt-demo" class="opt-demo" aria-label="Прослушать первое звучание аудиоякорей">
+     <p>Загружаем первый аудиофрагмент…</p>
     </section>
+   </div>
+  </section>
+  <!-- Below the fold: remaining demos, likes and reassurance, without a second audio instance. -->
+  <section class="opt-demo-followup" aria-label="Другие звучания аудиоякорей">
+   <div class="wrap">
+    <div id="opt-demo-tail" class="opt-demo opt-demo-tail" aria-label="Прослушать ещё два музыкальных звучания">
+     <p>Загружаем другие звучания…</p>
+    </div>
     <div class="ai-test-group ai-test-group--trust">
      <p class="ai-test-access"><span class="ai-test-check" aria-hidden="true">✓</span> Доступ <span class="ai-test-emphasis">сразу</span> после оплаты</p>
      <p class="ai-test-guarantee"><span class="ai-test-check" aria-hidden="true">✓</span> Не подошло? Вернём 100% в течение <span class="ai-test-emphasis">30&nbsp;дней</span></p>
