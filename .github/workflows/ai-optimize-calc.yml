@@ -1,0 +1,29 @@
+name: AI optimize five calculator variants
+on:
+  push:
+    branches: [main]
+    paths:
+      - "ai/оптимайз/index.html"
+      - "ai/оптимайз/calc-pult.js"
+      - "ai/оптимайз/calc-pult.css"
+      - "tests/ai-optimize-calc.mjs"
+      - ".github/workflows/ai-optimize-calc.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  mobile:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install Chromium
+        run: |
+          npm init -y
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Test live calculator variants locally (no real analytics)
+        run: node tests/ai-optimize-calc.mjs
