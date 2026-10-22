@@ -728,3 +728,115 @@ body.theme-dark .ai-test-hero .hero-review-author{
   transition:none!important;
  }
 }
+
+
+/* 2026-10-22 — New hero copy: two-line promise with "с помощью аудиоякорей"
+   on ONE line, and two deliberately separated explanatory paragraphs. */
+body.theme-dark.vision-mode .hero.ai-test-hero h1{
+  max-width:100%!important;
+  margin:0 0 0!important;
+  font-weight:700!important;
+  line-height:1.08!important;
+}
+body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-main,
+body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-rest{
+  display:block!important;
+  max-width:100%!important;
+  font-family:Arial,Helvetica,sans-serif!important;
+  font-style:normal!important;
+  line-height:1.12!important;
+  letter-spacing:-.047em!important;
+  white-space:nowrap!important;
+}
+body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-main{
+  color:#f6f9f4!important;
+  font-size:clamp(47px,5.9vw,81px)!important;
+}
+body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-rest{
+  color:#f6f9f4!important;
+  font-size:clamp(32px,3.9vw,54px)!important;
+  margin-top:4px!important;
+}
+body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-accent{
+  display:inline!important;
+  color:#dfff00!important;
+  font-size:inherit!important;
+  font-weight:inherit!important;
+  white-space:nowrap!important;
+}
+body.theme-dark .ai-test-hero .ai-test-explanation{
+  display:grid;
+  gap:17px;
+  max-width:760px;
+  margin:22px 0 0!important;
+}
+body.theme-dark .ai-test-hero .ai-test-explanation p{
+  margin:0!important;
+  max-width:760px!important;
+  color:#e5eee2!important;
+  font:400 clamp(17px,1.8vw,20px)/1.57 Arial,Helvetica,sans-serif!important;
+  text-wrap:pretty;
+}
+body.theme-dark .ai-test-hero .ai-test-group--heading{
+  margin-bottom:23px!important;
+}
+@media(max-width:780px){
+  body.theme-dark .ai-test-hero .ai-test-audience{
+    margin-bottom:11px!important;
+  }
+  body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-main{
+    font-size:clamp(33px,10.7vw,48px)!important;
+    letter-spacing:-.057em!important;
+    line-height:1.07!important;
+  }
+  body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-rest{
+    font-size:clamp(20px,6.2vw,30px)!important;
+    letter-spacing:-.049em!important;
+    line-height:1.16!important;
+    margin-top:4px!important;
+  }
+  body.theme-dark .ai-test-hero .ai-test-explanation{
+    gap:13px!important;
+    margin:17px 0 0!important;
+  }
+  body.theme-dark .ai-test-hero .ai-test-explanation p{
+    font-size:16px!important;
+    line-height:1.48!important;
+    letter-spacing:-.007em!important;
+  }
+  body.theme-dark .ai-test-hero .ai-test-group--heading{
+    margin-bottom:var(--fold-heading-gap,16px)!important;
+  }
+  body.theme-dark .ai-test-hero .ai-test-group--offer{
+    margin-bottom:var(--fold-offer-gap,13px)!important;
+  }
+  body.theme-dark .ai-test-hero .ai-test-group--offer .ai-test-simple{
+    margin-bottom:6px!important;
+    font-size:16px!important;
+    line-height:1.4!important;
+  }
+  body.theme-dark .ai-test-hero .ai-test-contents{
+    font-size:15px!important;
+    line-height:1.4!important;
+  }
+  body.theme-dark .ai-test-hero .hero-action{gap:8px!important}
+  body.theme-dark .hero.ai-test-hero #opt-demo{
+    margin-top:var(--fold-demo-gap,10px)!important;
+  }
+}
+@media(max-width:375px){
+  body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-main{
+    font-size:clamp(32px,10.5vw,40px)!important;
+  }
+  body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-rest{
+    font-size:clamp(19px,6.1vw,23px)!important;
+  }
+}
+@media(max-width:780px) and (max-height:720px){
+  body.theme-dark .ai-test-hero .ai-test-explanation{
+    gap:9px!important;margin-top:12px!important;
+  }
+  body.theme-dark .ai-test-hero .ai-test-explanation p{
+    font-size:15px!important;line-height:1.43!important;
+  }
+}
