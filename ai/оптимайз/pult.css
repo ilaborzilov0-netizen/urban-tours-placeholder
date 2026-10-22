@@ -126,3 +126,15 @@ body.theme-dark .opt-error[hidden]{display:none!important}
 @media(prefers-reduced-motion:reduce){
  body.theme-dark .opt-demo button{transition:none}
 }
+
+/* Countdown typography: seconds change without jiggling labels or rows. */
+body.theme-dark #opt-demo .opt-overline{
+ margin-bottom:10px;
+}
+body.theme-dark #opt-demo .opt-line-caption{
+ display:inline-block;
+ min-width:6ch;
+ white-space:nowrap;
+ font-variant-numeric:tabular-nums;
+ font-feature-settings:"tnum" 1;
+}
