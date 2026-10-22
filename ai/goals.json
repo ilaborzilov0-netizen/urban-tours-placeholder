@@ -273,6 +273,46 @@
     {
       "id": "ai_author_telegram",
       "name": "АВТОР — нажал написать в Telegram"
+    },
+    {
+      "id": "ai_hero_view",
+      "name": "Первый экран — увидел заголовок"
+    },
+    {
+      "id": "ai_hero_price_view",
+      "name": "Первый экран — увидел цену"
+    },
+    {
+      "id": "ai_hero_guarantee_view",
+      "name": "Первый экран — увидел гарантию"
+    },
+    {
+      "id": "ai_hero_tariffs_click",
+      "name": "Первый экран — нажал тарифы"
+    },
+    {
+      "id": "ai_album1_view",
+      "name": "Альбом 1 — увидел обложку"
+    },
+    {
+      "id": "ai_album1_mechanism_view",
+      "name": "Альбом 1 — увидел описание"
+    },
+    {
+      "id": "ai_album2_view",
+      "name": "Альбом 2 — увидел обложку"
+    },
+    {
+      "id": "ai_proof77_view",
+      "name": "Блок 77% — увидел"
+    },
+    {
+      "id": "ai_author_view",
+      "name": "Автор — увидел раздел"
+    },
+    {
+      "id": "ai_method_view",
+      "name": "Механизм — увидел раздел"
     }
   ]
 }
