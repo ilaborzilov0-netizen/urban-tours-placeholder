@@ -1,4 +1,4 @@
-name: AI optimize five calculator variants
+name: AI optimize approved calculator 04
 on:
   push:
     branches: [main]
@@ -25,7 +25,7 @@ jobs:
           npm init -y
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
-      - name: Test live calculator variants locally (no real analytics)
+      - name: Test approved calculator and pricing flow locally (no real analytics)
         run: node tests/ai-optimize-calc.mjs
 
       - name: Verify calculator published on /ai/optimize without touching /ai/
@@ -43,21 +43,23 @@ jobs:
           for attempt in range(1,16):
               try:
                   page=fetch('/ai/оптимайз/?calccheck=20261022&attempt='+str(attempt))
-                  scripts=fetch('/ai/оптимайз/calc-pult.js?v=20261022-v3')
-                  css=fetch('/ai/оптимайз/calc-pult.css?v=20261022-v2')
+                  scripts=fetch('/ai/оптимайз/calc-pult.js?v=20261022-single-v1')
+                  css=fetch('/ai/оптимайз/calc-pult.css?v=20261022-single-v1')
                   production=fetch('/ai/?check=live-prod-safe')
                   checks={
-                      'five_selector_buttons': all('data-calc-variant="'+str(i)+'"' in page for i in range(1,6)),
+                      'single_calculator':page.count('class="cc-card cc-v4"')==1 and 'data-calc-variant' not in page,
                       'calculator_before_tariffs':0<page.find('id="calc-showcase"')<page.find('id="pricing"'),
                       'old_blocks_gone':'class="annual-savings-panel"' not in page and 'id="smoking-savings"' not in page,
-                      'new_assets':'calc-pult.js?v=20261022-v3' in page and 'calc-pult.css?v=20261022-v2' in page,
-                      'working_calculator':"const layouts={" in scripts and "const annual=()" in scripts,
-                      'five_visual_variants':all('.cc-v'+str(i) in css for i in range(1,6)),
+                      'new_assets':'calc-pult.js?v=20261022-single-v1' in page and 'calc-pult.css?v=20261022-single-v1' in page,
+                      'working_calculator':"const annual=()" in scripts and "data-calc-adjust" in scripts and 'selected=' not in scripts,
+                      'approved_visual_variant':'.cc-v4' in css and '.cc-v5' not in css,
+                      'pricing_footer_order':0<page.find('class="pricing"')<page.find('class="copyright-under-pricing"')<page.find('class="predfinal-pricing-contact"')<page.find('class="ai-refund-guarantee"'),
+                      'question_without_author':'Напишите — разберёмся.' in page and 'Напишите мне' not in page,
                       'live_prod_unchanged':'id="calc-showcase"' not in production and 'audio-player-prod-20261022.js' in production
                   }
                   print('PUBLIC_PREVIEW',attempt,checks,flush=True)
                   if all(checks.values()):
-                      print('LIVE_FIVE_VARIANTS_CONFIRMED',flush=True)
+                      print('LIVE_APPROVED_CALCULATOR_CONFIRMED',flush=True)
                       sys.exit(0)
               except Exception as e:
                   print('RETRY',attempt,type(e).__name__,str(e)[:160],flush=True)
