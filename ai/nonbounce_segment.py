@@ -46,9 +46,25 @@ if matched:
     campaign_segment=matched[0]
     print("CAMPAIGN_REUSED",campaign_segment.get("segment_id"),flush=True)
 else:
-    campaign_segment=req(path,body={"segment":{"name":campaign_name,"expression":campaign_expr}})["segment"]
-    print("CAMPAIGN_CREATED",campaign_segment.get("segment_id"),flush=True)
-assert any(x.get("segment_id")==campaign_segment.get("segment_id") for x in req(path).get("segments",[]))
+    same_name=[x for x in all_segments if x.get("name")==campaign_name and x.get("status")=="active"]
+    if same_name:
+        existing=same_name[0]
+        update_url=base+"/management/v1/counter/"+counter+"/apisegment/segment/"+str(existing["segment_id"])
+        payload=json.dumps({"segment":{"name":campaign_name,"expression":campaign_expr}},ensure_ascii=False).encode()
+        request=urllib.request.Request(update_url,data=payload,headers={
+            "Authorization":"OAuth "+token,"Accept":"application/json","Content-Type":"application/json"
+        },method="PUT")
+        try:
+            with urllib.request.urlopen(request,timeout=40) as response:
+                campaign_segment=json.load(response)["segment"]
+        except urllib.error.HTTPError as error:
+            print("CAMPAIGN_UPDATE_ERROR",error.code,error.read().decode("utf-8","replace")[:1400],flush=True)
+            raise
+        print("CAMPAIGN_UPDATED",campaign_segment.get("segment_id"),flush=True)
+    else:
+        campaign_segment=req(path,body={"segment":{"name":campaign_name,"expression":campaign_expr}})["segment"]
+        print("CAMPAIGN_CREATED",campaign_segment.get("segment_id"),flush=True)
+assert any(x.get("segment_id")==campaign_segment.get("segment_id") and x.get("expression")==campaign_expr for x in req(path).get("segments",[]))
 print("CAMPAIGN_SUCCESS_SEGMENT_ID",campaign_segment["segment_id"],flush=True)
 
 # Diagnostics: identify whether campaign matches any visits and which landing paths are used.
