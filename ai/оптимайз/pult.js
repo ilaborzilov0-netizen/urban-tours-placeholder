@@ -2,7 +2,6 @@
 (()=>{'use strict';
  const root=document.getElementById('opt-demo');
  if(!root)return;
- const hero=root.closest('.ai-test-hero');
  const tracks=[
   {id:'author',name:'Под гитару',duration:37.6,src:'https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/ed83f511-977e-4fe7-840c-e8ff1222c3a2.mp3'},
   {id:'estrada',name:'Душевная эстрада',duration:34.12,src:'https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/40afffa9-c314-45d7-9052-15ecd65cc48c.mp3'},
@@ -34,7 +33,6 @@
    +'<div class="opt-lines">'+tracks.map(item).join('')+'</div>'
    +'<p class="opt-error" role="status"'+(errorText?'':' hidden')+'>'+errorText+'</p>';
   progress();
-  scheduleFit();
  }
  function progress(){
   tracks.forEach(t=>{
@@ -108,25 +106,7 @@
  });
  window.addEventListener('pagehide',()=>{playing=false;audio.pause()});
 
- // The first-screen panel is a complete viewport-height layout.
- // On unusually short displays, soften nonessential gaps while preserving
- // 44px tap targets and scroll access.
- let fitFrame=0;
- function scheduleFit(){
-  if(fitFrame)cancelAnimationFrame(fitFrame);
-  fitFrame=requestAnimationFrame(()=>{
-   fitFrame=0;
-   if(!hero)return;
-   hero.classList.remove('hero-compact-height');
-   if(!matchMedia('(max-width:780px)').matches)return;
-   const viewport=window.visualViewport?.height||window.innerHeight;
-   if(hero.scrollHeight>viewport+3)hero.classList.add('hero-compact-height');
-  });
- }
- window.addEventListener('resize',scheduleFit,{passive:true});
- window.addEventListener('orientationchange',scheduleFit,{passive:true});
- window.visualViewport?.addEventListener('resize',scheduleFit,{passive:true});
- if(document.fonts?.ready)document.fonts.ready.then(scheduleFit);
- window.addEventListener('load',scheduleFit,{once:true});
+ // The hero size is fixed by CSS using the stable small viewport unit (svh).
+ // Never toggle layout classes on audio state changes or mobile chrome resize.
  render();
 })();
