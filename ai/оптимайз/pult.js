@@ -10,6 +10,34 @@
  const music=Object.fromEntries(tracks.map(t=>[t.id,t]));
  const audio=new Audio();
  audio.preload='none';
+ const metricGenres={author:'guitar',estrada:'estrada',modern:'modern'};
+ const listenedRanges=Object.fromEntries(tracks.map(t=>[t.id,[]]));
+ let lastAudioTime=null,lastWallTime=null;
+ const goal=(id,data={},once=false)=>{try{window.aiGoals?.emit?.(id,data,once)}catch(_){}};
+ const journey=(id,data={},goalFlag=false)=>{try{window.aiJourneyTrack?.(id,data,goalFlag)}catch(_){}};
+ function addCoveredSegment(id,from,to){
+  const duration=music[id]?.duration;
+  if(!duration||!(to>from))return;
+  let left=Math.max(0,from),right=Math.min(to,duration);
+  const merged=[];
+  let inserted=false;
+  for(const pair of listenedRanges[id]){
+   if(pair[1]<left-.03){merged.push(pair);continue;}
+   if(pair[0]>right+.03){if(!inserted){merged.push([left,right]);inserted=true;}merged.push(pair);continue;}
+   left=Math.min(left,pair[0]);right=Math.max(right,pair[1]);
+  }
+  if(!inserted)merged.push([left,right]);
+  listenedRanges[id]=merged;
+  const amount=merged.reduce((sum,pair)=>sum+pair[1]-pair[0],0);
+  const kind=metricGenres[id],ctx={genre:id};
+  if(amount>=duration*.5)goal('ai_'+kind+'_50',ctx,true);
+  if(amount>=duration*.9)goal('ai_'+kind+'_90',ctx,true);
+ }
+ function startCoverage(){
+  lastAudioTime=Number(audio.currentTime)||0;
+  lastWallTime=performance.now();
+ }
+
  let active=null,playing=false,finished=new Set(),request=0,errorText='';
  function listenedPercent(t){
   if(active===t.id){
@@ -70,6 +98,7 @@
   if(active!==id||audio.ended){
    audio.pause();
    finished.delete(id);
+   lastAudioTime=null;lastWallTime=null;
    active=id;
    audio.src=music[id].src;
    audio.load();
@@ -91,14 +120,41 @@
   if(!b)return;
   if(b.dataset.optPlay)toggle(b.dataset.optPlay);
  });
- audio.addEventListener('timeupdate',progress);
+ audio.addEventListener('play',()=>{
+  if(!active)return;
+  startCoverage();
+  const kind=metricGenres[active];
+  goal('ai_'+kind+'_play',{genre:active},true);
+  journey('ai_demo_play',{section:'demos',genre:active},false);
+ });
+ audio.addEventListener('timeupdate',()=>{
+  progress();
+  if(!active||audio.paused)return;
+  const now=performance.now(),time=Number(audio.currentTime);
+  if(!Number.isFinite(time))return;
+  if(lastAudioTime!==null&&lastWallTime!==null){
+   const step=time-lastAudioTime,wall=(now-lastWallTime)/1000;
+   if(step>0&&step<=Math.max(1.25,wall+.35)&&step<4)
+    addCoveredSegment(active,lastAudioTime,time);
+  }
+  lastAudioTime=time;lastWallTime=now;
+ });
+ audio.addEventListener('pause',()=>{lastAudioTime=null;lastWallTime=null;});
  audio.addEventListener('ended',()=>{
-  if(active)finished.add(active);
+  if(active){
+   finished.add(active);
+   const kind=metricGenres[active];
+   goal('ai_'+kind+'_50',{genre:active},true);
+   goal('ai_'+kind+'_90',{genre:active},true);
+   goal('ai_'+kind+'_complete',{genre:active},true);
+   journey('ai_demo_complete',{section:'demos',genre:active,percent:100},false);
+  }
   playing=false;render();
  });
  audio.addEventListener('error',()=>{
   if(!active)return;
   playing=false;errorText='Запись временно недоступна. Попробуйте ещё раз.';
+  goal('ai_'+metricGenres[active]+'_error',{genre:active});
   render();
  });
  document.addEventListener('visibilitychange',()=>{
