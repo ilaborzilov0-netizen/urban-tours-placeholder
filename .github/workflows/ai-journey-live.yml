@@ -34,7 +34,7 @@ jobs:
                   print('LIVE_JOURNEY_READY 6/6',flush=True)
                   sys.exit(0)
               except Exception as e:
-                  print('NOT_YET_READY',i,type(e).__name__,flush=True)
+                  print('NOT_YET_READY',i,type(e).__name__,str(e)[:100],flush=True)
                   time.sleep(10)
           sys.exit('LIVE_JOURNEY_INCOMPLETE')
           PY
