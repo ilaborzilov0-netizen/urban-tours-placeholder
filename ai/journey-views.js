@@ -5,12 +5,10 @@ const track=window.aiJourneyTrack;if(typeof track!=='function')return;
 const visible=new Set();
 const rows=[
  ['.ai-test-title-main','ai_hero_view','hero'],
- ['.ai-test-price','ai_hero_price_view','hero'],
- ['.ai-test-guarantee','ai_hero_guarantee_view','hero'],
+ ['#opt-demo','ai_demo_view_journey','demos'],
+ ['.hero-buy-cta','ai_hero_buy_cta_view','hero'],
  ['.album-display--one .album-cover','ai_album1_view','albums'],
- ['.album-display--one>.ai-test-mechanism','ai_album1_mechanism_view','albums'],
  ['.album-display--two .album-cover','ai_album2_view','albums'],
- ['#first-listen h2','ai_proof77_view','proof77'],
  ['#about h2','ai_author_view','author'],
  ['#audio-path h2','ai_method_view','method'],
  ['#brain h3','ai_brain_view','brain'],
@@ -52,6 +50,6 @@ function revisit(selector,id,section){
  },{threshold:[0,0.35,0.75]});
  ob.observe(el);
 }
-revisit('#sounds h2','ai_demos_return_view','demos');
-revisit('#pricing h2','ai_pricing_return_view','pricing');
+revisit('#opt-demo','ai_demos_return_view','demos');
+revisit('#pricing .pricing','ai_pricing_return_view','pricing');
 })();
