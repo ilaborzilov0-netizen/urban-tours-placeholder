@@ -38,7 +38,7 @@ try{
  await page.route('https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net/api/payment/create',async route=>{
   paymentRequest=route.request().postDataJSON();
   await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({
-   ok:true,plan:'ai_album',amount:99000,
+   ok:true,plan:'ai_album',amount:990,amountMinor:99000,
    paymentUrl:'https://pay.tbank-online.com/mock',orderId:'MBT-ai_album-MOCK',paymentId:'MOCK'
   })});
  });
@@ -91,9 +91,10 @@ try{
   for(let i=1;i<=60;i++){a.currentTime=i*.5;a.dispatchEvent(new Event('timeupdate'))}
   a.dispatchEvent(new Event('ended'));
   a.currentTime=0;a.dispatchEvent(new Event('play'));
-  window.scrollTo(0,document.documentElement.scrollHeight);
+  document.documentElement.style.scrollBehavior='auto';window.scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'});
  });
- await audioPage.waitForTimeout(300);
+ await audioPage.waitForFunction(()=>window.scrollY>document.documentElement.scrollHeight-innerHeight-5,{timeout:3000}).catch(()=>{});
+ await audioPage.waitForTimeout(450);
  for(const id of ['ai_classic_demo_play','ai_classic_demo_50','ai_classic_demo_90','ai_classic_demo_complete','ai_classic_scroll_25','ai_classic_scroll_50','ai_classic_scroll_75','ai_classic_scroll_90','ai_classic_scroll_100']){
   assert.ok(audioGoals.includes(id),'Missing playback or scroll goal: '+id);
  }
