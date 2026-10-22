@@ -5,156 +5,53 @@ on:
     paths:
       - ".github/workflows/ai-launch-live-audit.yml"
       - "ai/index.html"
-      - "yakorya-ai-archive-20261020/index.html"
-      - "ai/archive-20261021/**"
+      - "ai/archive-2026-10-22/**"
+      - "ai/оптимайз/pult.js"
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
   live-check:
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 6
     steps:
-      - name: Verify live /ai/ and archive before traffic
+      - name: Verify current optimized /ai/ and preserved archive through public domain
         shell: bash
         run: |
           python3 - <<'PY'
-          import urllib.request, urllib.error, time, re, sys, os
-          root='https://marafon-metod.ru'
+          import urllib.request,time,sys,os
+          base='https://marafon-metod.ru'
           def get(path):
-              url=root+path
-              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0','Cache-Control':'no-cache'})
-              with urllib.request.urlopen(req,timeout=18) as r:
-                  return r.status,r.read().decode('utf-8','replace')
-          for n in range(1,15):
+              req=urllib.request.Request(base+path,headers={'User-Agent':'Mozilla/5.0','Cache-Control':'no-cache'})
+              with urllib.request.urlopen(req,timeout=18) as res:
+                  return res.status,res.read().decode('utf-8','replace')
+          for attempt in range(1,19):
               try:
-                  livecode,live=get('/ai/?launch_audit=20261021&run='+os.getenv('GITHUB_RUN_ID','manual')+'&n='+str(n))
-                  oldcode,old=get('/yakorya-ai-archive-20261020/?launch_audit=20261020')
-                  backupcode,backup=get('/ai/archive-20261021/?backup_audit='+str(n))
-                  good=(
-                      livecode==200 and oldcode==200
-                      and 'class="hero-priority"' in live
-                      and '<p class="ai-test-contents">Два альбома · 20 аудиоякорей</p>' in live
-                      and '<span class="ai-test-title-main">Бросьте курить,</span><span class="ai-test-title-rest">просто слушая аудио.</span>' in live
-                      and live.count('class="ai-test-group ai-test-group--')==3
-                      and live.index('class="ai-test-look-at-tiers"') < live.index('class="album-showcase section"') < live.index('class="album-cover album-cover--one"') < live.index('class="ai-test-mechanism"')
-                      and 'data-source="ai-test-even-hero-spacing-20261021-v8"' in live
-                      and all(cta in live for cta in (
-                          '<a class="btn btn-primary album-showcase-cta" href="#pricing">Выбрать комплект →</a>',
-                          '<a class="freedom-vision-cta" href="#pricing">Выбрать комплект →</a>',
-                          '<a class="predfinal-final-invitation-cta" href="#pricing">Выбрать комплект →</a>'
-                      ))
-                      and 'data-select-plan="one"' in live
-                      and 'data-select-plan="all"' in live
-                      and 'data-select-plan="duo"' in live
-                      and 'id="smoking-savings"' in live
-                      and 'data-annual-savings' in live
-                      and 'Не подошло? Вернём 100% в течение <span class="ai-test-emphasis">30&nbsp;дней</span>' in live
-                      and live.count('class="price-refund-note"')==3
-                      and live.count('<span class="price-access-note">Доступ сразу после оплаты</span>')==3
-                      and live.count('<span class="price-return-note">Возврат 100% в течение 30 дней</span>')==3
-                      and 'id="guarantee"' in live
-                      and 'id="guarantee-faq"' in live
-                      and 'Как работает гарантия возврата денег?' in live
-                      and 'https://t.me/metodborzilova' in live
-                      and live.index('data-price-card="duo"') < live.index('id="guarantee"') < live.index('data-annual-savings')
-
-                      and live.count('class="ai-question-prompt"')==2
-                      and 'data-question-location="pricing">Напишите мне — разберёмся.</button>' in live
-                      and 'data-question-location="faq">Напишите мне — разберёмся.</button>' in live
-                      and 'class="predfinal-faq-contact"' not in live
-                      and 'class="author-contact-title">Есть вопрос? Напишите мне, разберёмся.</p>' in live
-                      and live.index('class="predfinal-final-invitation-cta"') < live.index('class="predfinal-final-contact"') < live.index('<footer class="wrap footer">')
-                      and 'value="200" aria-describedby="smoking-calc-note"' in live
-                      and live.count('<progress class="sound-progress"')==3
-                      and 'class="sound-seek"' not in live
-                      and '0:00 /' not in live
-                      and 'data-smoking-equivalent="one"' not in live
-                      and live.count('data-smoking-equivalent="all"')==1
-                      and '<p class="tier-smoking-equivalent" data-smoking-equivalent="all">Комплект окупится за ≈<strong data-smoking-days>15</strong>' in live
-                      and 'data-smoking-equivalent="duo"' not in live
-                      and '/ai/player-progress.js?v=20261021-percent-no-seek-v1' in live
-                      and '/predfinal/checkout.js?' in live
-                      and '110906734' in live
-                      and 'href="https://marafon-metod.ru/ai/"' in live
-                      and 'АРХИВ · 20 октября 2026' in old
-                      and 'Все 12 аудиоякорей' in old
-                      and backupcode==200
-                      and 'Научная логика подхода' in backup
-                      and '<h1>Бросьте курить<br>с помощью<br><span>аудиоякорей.</span></h1>' in backup
-                      and 'src="/ai/archive-20261021/player-progress.js?v=snapshot1"' in backup
-                  )
-                  flags={
-                    'priority': 'class="hero-priority"' in live,
-                    'starting_price_line': '<p class="ai-test-contents">Два альбома · 20 аудиоякорей</p>' in live and '<p class="ai-test-price">' in live,
-                    'promoted_hero': 'class="hero wrap ai-test-hero"' in live and live.count('class="ai-test-group ai-test-group--')==3,
-                    'below_cover_mechanism': 'class="album-cover album-cover--one"' in live and live.find('class="album-cover album-cover--one"') < live.find('class="ai-test-mechanism"'),
-                    'intermediate_ctas': all(cta in live for cta in (
-                      '<a class="btn btn-primary album-showcase-cta" href="#pricing">Выбрать комплект →</a>',
-                      '<a class="freedom-vision-cta" href="#pricing">Выбрать комплект →</a>',
-                      '<a class="predfinal-final-invitation-cta" href="#pricing">Выбрать комплект →</a>'
-                    )),
-                    'one':'data-select-plan="one"' in live,
-                    'all':'data-select-plan="all"' in live,
-                    'duo':'data-select-plan="duo"' in live,
-                    'savings':'id="smoking-savings"' in live,
-                    'read_only_percentage_demos': live.count('<progress class="sound-progress"')==3 and 'class="sound-seek"' not in live and '0:00 /' not in live,
-                    'payback_only_featured': 'data-smoking-equivalent="one"' not in live and live.count('data-smoking-equivalent="all"')==1 and 'data-smoking-equivalent="duo"' not in live,
-                    'concise_featured_payback': '<p class="tier-smoking-equivalent" data-smoking-equivalent="all">Комплект окупится за ≈<strong data-smoking-days>15</strong>' in live,
-                    'annual_panel': 'data-annual-savings' in live,
-                    'refund_hero': 'Не подошло? Вернём 100% в течение <span class="ai-test-emphasis">30&nbsp;дней</span>' in live,
-                    'refund_all_three': live.count('class="price-refund-note"')==3,
-                    'two_line_card_notes': live.count('<span class="price-access-note">Доступ сразу после оплаты</span>')==3 and live.count('<span class="price-return-note">Возврат 100% в течение 30 дней</span>')==3,
-                    'refund_below_tiers': 'id="guarantee"' in live and live.index('data-price-card="duo"') < live.index('id="guarantee"') < live.index('data-annual-savings'),
-                    'refund_faq': 'id="guarantee-faq"' in live and 'Как работает гарантия возврата денег?' in live,
-                    'question_prompts_two_lines': live.count('class="ai-question-prompt"')==2,
-                    'footer_question_below_cta': 'class="predfinal-final-contact"' in live and live.index('class="predfinal-final-invitation-cta"') < live.index('class="predfinal-final-contact"') < live.index('<footer class="wrap footer">'),
-                    'no_question_in_faq': 'class="predfinal-faq-contact"' not in live,
-                    'author_question_unchanged': 'class="author-contact-title">Есть вопрос? Напишите мне, разберёмся.</p>' in live,
-                    'default_pack_200':'value="200" aria-describedby="smoking-calc-note"' in live,
-                    'new_savings_script':'/ai/player-progress.js?v=20261021-percent-no-seek-v1' in live,
-                    'checkout_script':'/predfinal/checkout.js?' in live,
-                    'metrika':'110906734' in live,
-                    'canonical':'href="https://marafon-metod.ru/ai/"' in live,
-                    'archive_banner':'АРХИВ · 20 октября 2026' in old,
-                    'archive_copy':'Все 12 аудиоякорей' in old,
-                    'pre_promotion_snapshot': backupcode==200 and 'Научная логика подхода' in backup,
+                  status,html=get('/ai/?deploy_audit=20261022&run='+os.environ.get('GITHUB_RUN_ID','test')+'&attempt='+str(attempt))
+                  archived,old=get('/ai/archive-2026-10-22/?deploy_audit=20261022')
+                  jsstatus,js=get('/ai/оптимайз/pult.js?v=20261022-milestones-v1')
+                  checks={
+                    'http200':status==200 and archived==200 and jsstatus==200,
+                    'promoted_heading':'<span class="ai-test-title-main">Бросьте курить</span>' in html,
+                    'new_audio_panel':'id="opt-demo"' in html,
+                    'three_audio_sources':'Под гитару' in js and 'Душевная эстрада' in js and 'Современное звучание' in js,
+                    'milestone_events':"'_50'" in js and "'_90'" in js and 'aiGoals' in js,
+                    'metrika_one_bootstrap':html.count('mc.yandex.ru/metrika/tag.js?id=110906734')==1,
+                    'canonical':'rel="canonical" href="https://marafon-metod.ru/ai/"' in html,
+                    'goal_script':'/ai/goal-tracking.js?v=20261022-new-player-v1' in html,
+                    'journey_loader':'/analytics.js?v=20261022-new-views-v1' in html,
+                    'checkout':'/predfinal/checkout.js?v=20261020-errorcode-v11' in html,
+                    'cards':all('data-price-card="'+tier+'"' in html for tier in ('one','all','duo')),
+                    'backup_preserved':'<span class="ai-test-title-main">Бросьте курить,</span>' in old and 'id="opt-demo"' not in old,
                   }
-                  print('Attempt',n,'new AI live',livecode,'archive live',oldcode,'new page verified',good,'checks:',flags)
-                  print('CTA deployment diagnostic:', {
-                    'demo_to_pricing': '<a class="btn btn-primary album-showcase-cta" href="#pricing">Выбрать комплект →</a>' in live,
-                    'freedom_to_pricing': '<a class="freedom-vision-cta" href="#pricing">Выбрать комплект →</a>' in live,
-                    'final_to_pricing': '<a class="predfinal-final-invitation-cta" href="#pricing">Выбрать комплект →</a>' in live,
-                    'old_demo_price': 'Выбрать комплект · от 1 990 ₽ →' in live,
-                    'old_freedom_listen': 'Начните с прослушивания' in live,
-                    'old_final_listen': 'Послушать фрагменты <span aria-hidden="true">↗</span>' in live,
-                  })
-                  print('Offer placement diagnostic:',{
-                    'contents': '<p class="ai-test-contents">Два альбома · 20 аудиоякорей</p>' in live,
-                    'price': '<p class="ai-test-price"><span class="ai-test-price-from">от</span> <strong>1 990 ₽</strong></p>' in live,
-                    'priority_at':live.find('class="hero-priority"'),
-                    'offer_at':live.find('class="ai-test-contents"'),
-                    'lead_at':live.find('class="ai-test-group--trust"'),
-                    'old_one_line': 'Два альбома · 20 аудиоякорей · от 1 990 ₽' in live
-                  })
-                  if good:break
-              except Exception as e:print('Attempt',n,'error',repr(e))
-              time.sleep(4)
-          else:sys.exit('FAIL: live /ai or archive has not deployed')
-          for resource in [
-              '/predfinal/offer.css?v=20261020-pricing-minimal-v38',
-              '/ai/archive-20261021/offer.css?v=snapshot1',
-              '/ai/archive-20261021/player-progress.js?v=snapshot1',
-              '/ai/archive-20261021/checkout.js?v=snapshot1',
-              '/ai/archive-20261021/goal-tracking.js?v=snapshot1',
-              '/ai/player-progress.js?v=20261021-percent-no-seek-v1',
-              '/predfinal/checkout.js?v=20261020-errorcode-v11',
-              '/ai/offer-compact.css?v=20261018-author1',
-              '/ai/checkout.js?v=20261018-author1']:
-              status,body=get(resource)
-              print('Referenced resource',resource,'status',status,'bytes',len(body))
-              if status!=200 or not body:sys.exit('FAIL: missing '+resource)
-          print('PASS: new live /ai, old archived /ai, Yandex ID, three tiers, demo references and linked assets.')
+                  print('DEPLOY_AUDIT',attempt,checks,flush=True)
+                  if all(checks.values()):
+                      print('LIVE_NEW_AI_AND_ARCHIVE_CONFIRMED',flush=True)
+                      sys.exit(0)
+              except Exception as e:
+                  print('AUDIT_ATTEMPT',attempt,'EXCEPTION',type(e).__name__,str(e)[:150],flush=True)
+              if attempt<18:time.sleep(8)
+          sys.exit('LIVE_NEW_AI_NOT_VERIFIED')
           PY
       - name: Read-only payment backend readiness
         if: always()
