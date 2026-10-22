@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - name: Verify published /ai/test/ and that /ai/ stayed unchanged
+      - name: Verify /ai/test/ separately and current promoted /ai/
         shell: bash
         run: |
           python3 - <<'PY'
@@ -80,15 +80,17 @@ jobs:
                       and test.count('<article class="price-card')==3
                       and 'Научная логика подхода' not in test
                       and 'class="hero wrap ai-test-hero"' in original
-                      and 'Научная логика подхода' not in original
-                      and '<p class="ai-test-contents">Два альбома · 20 аудиоякорей</p>' in original
+                      and 'id="audio-path"' in original
+                      and 'id="calc-showcase"' in original
+                      and '/ai/live-20261022/air.css' in original
+                      and 'G-J076WS14NV' in original
                   )
                   print('Published variant attempt',i,'status',status,'original',original_status,'expected',expected,'bytes',len(test))
                   if expected:
                       for path in ['/ai/test/checkout.js?v=20261021-v1','/ai/test/offer.js?v=20261021-v1','/ai/test/goal-tracking.js?v=20261021-v1']:
                           script_status,script=fetch(path)
                           if script_status!=200 or len(script)<1000:raise RuntimeError('missing test script '+path)
-                      print('PASS: live /ai/test/ distinct, original /ai/ preserved, all variant JS present')
+                      print('PASS: live /ai/test/ distinct, optimized /ai/ published, all variant JS present')
                       sys.exit(0)
               except Exception as exc:
                   print('not ready:',str(exc)[:200])
