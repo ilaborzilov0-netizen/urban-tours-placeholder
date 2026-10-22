@@ -116,7 +116,7 @@
   });
   root.querySelector('[role="tablist"]')?.addEventListener('keydown',event=>{
     if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
-    const index=tabs.findIndex(t=>t.dataset.calcVariant===selected);
+    const index=Math.max(0,tabs.indexOf(event.target.closest('[data-calc-variant]')));
     let next=index;
     if(event.key==='ArrowLeft')next=(index+tabs.length-1)%tabs.length;
     if(event.key==='ArrowRight')next=(index+1)%tabs.length;
