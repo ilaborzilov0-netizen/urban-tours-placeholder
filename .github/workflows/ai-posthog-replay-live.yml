@@ -1,0 +1,44 @@
+name: AI PostHog replay live verification
+on:
+  push:
+    branches: [main]
+    paths:
+      - "ai/posthog-init.js"
+      - "ai/index.html"
+      - "ai/test/index.html"
+      - ".github/workflows/ai-posthog-replay-live.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  public:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Check live production and test page load replay-ready SDK
+        run: |
+          python3 - <<'PY'
+          import urllib.request,time,sys
+          base='https://marafon-metod.ru'
+          def get(path):
+              req=urllib.request.Request(base+path,headers={'Cache-Control':'no-cache','User-Agent':'AI-PostHog-Replay-Health/1'})
+              with urllib.request.urlopen(req,timeout=25) as response:
+                  return response.read().decode('utf-8','replace')
+          expected='/ai/posthog-init.js?v=20261022-replay-on1'
+          for attempt in range(1,15):
+              try:
+                  homepage=get('/ai/?check_replay='+str(attempt))
+                  test=get('/ai/test/?check_replay='+str(attempt))
+                  sdk=get(expected)
+                  assert expected in homepage,'PRODUCTION_HTML_STALE'
+                  assert expected in test,'TEST_HTML_STALE'
+                  assert 'disable_session_recording:false' in sdk,'SDK_RECORDING_DISABLED'
+                  assert 'maskAllInputs:true' in sdk,'INPUT_MASKING_MISSING'
+                  assert 'posthog.init' in sdk,'SDK_INIT_MISSING'
+                  print('PASS Replay enabled and masked on public production and test SDK',flush=True)
+                  sys.exit(0)
+              except Exception as exc:
+                  print('NOT_READY',attempt,str(exc)[:140],flush=True)
+                  time.sleep(10)
+          sys.exit('FAIL live replay deploy did not pass')
+          PY
