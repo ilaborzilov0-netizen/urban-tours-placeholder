@@ -50,3 +50,21 @@ else:
     print("CAMPAIGN_CREATED",campaign_segment.get("segment_id"),flush=True)
 assert any(x.get("segment_id")==campaign_segment.get("segment_id") for x in req(path).get("segments",[]))
 print("CAMPAIGN_SUCCESS_SEGMENT_ID",campaign_segment["segment_id"],flush=True)
+
+# Diagnostics: identify whether campaign matches any visits and which landing paths are used.
+checks=[
+ ("DIRECT_ID_ALL", "ym:s:directID=='715285670'", None),
+ ("DIRECT_ORDER_ALL", "ym:s:directClickOrder=='715285670'", None),
+ ("DIRECT_ID_NONBOUNCE", "ym:s:directID=='715285670' AND ym:s:bounce=='No'", "ym:s:startURLPath"),
+ ("DIRECT_ORDER_NONBOUNCE", "ym:s:directClickOrder=='715285670' AND ym:s:bounce=='No'", "ym:s:startURLPath"),
+ ("AI_NONBOUNCE_CAMPAIGNS", "ym:s:startURLPath=='/ai/' AND ym:s:bounce=='No'", "ym:s:directID"),
+]
+for label, f, dim in checks:
+ try:
+  params={"ids":counter,"date1":since,"date2":today_str,"metrics":"ym:s:users,ym:s:visits","accuracy":"1","filters":f,"limit":20}
+  if dim: params["dimensions"]=dim
+  raw=req("/stat/v1/data",params)
+  print("DIAG",label,"TOTALS",raw.get("totals"),"DATA",
+     [(str(x.get("dimensions",[]))[:220],x.get("metrics")) for x in raw.get("data",[])[:12]],flush=True)
+ except Exception as e:
+  print("DIAG_ERROR",label,str(e)[:400],flush=True)
