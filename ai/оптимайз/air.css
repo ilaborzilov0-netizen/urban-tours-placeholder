@@ -548,3 +548,117 @@ body.theme-dark .predfinal-final-invitation h2{line-height:1.14!important}
 @media(prefers-reduced-motion:reduce){
  body.theme-dark .opt-demo button{transition:none!important}
 }
+
+
+/* ============================================================
+   Fold experiment, 2026-10-22: exactly ONE demo on first
+   mobile viewport. Other two demos and trust are BELOW fold.
+   Avoid pixel heights; follow the actual browser viewport.
+   ============================================================ */
+body.theme-dark .opt-demo-followup{
+ background:#101713;
+ border:0;
+ padding:20px 0 clamp(48px,6vw,75px);
+}
+body.theme-dark .opt-demo-followup .opt-demo{
+ max-width:805px!important;
+ width:100%!important;
+ margin:0!important;
+ background:linear-gradient(140deg,#253328 0%,#19261c 100%)!important;
+}
+body.theme-dark .opt-demo-followup .opt-tail-heading{
+ font-size:clamp(18px,2.1vw,22px);
+ font-weight:800;line-height:1.35;
+ color:#f5f8f1;margin:0 0 14px;
+}
+body.theme-dark .opt-demo-followup .ai-test-group--trust{
+ max-width:790px;
+ margin:32px 0 0!important;
+ padding:0 3px;
+}
+body.theme-dark .opt-demo-followup .ai-test-access,
+body.theme-dark .opt-demo-followup .ai-test-guarantee{
+ display:block!important;
+ margin:0 0 9px!important;
+ font-size:17px!important;
+ line-height:1.5!important;
+ color:#d7e5cf!important;
+ font-weight:650!important;
+}
+body.theme-dark .opt-demo-followup .ai-test-check,
+body.theme-dark .opt-demo-followup .ai-test-emphasis{
+ color:#dfff42!important;font-weight:850!important;
+}
+body.theme-dark .opt-demo-followup .ai-test-check{margin-right:6px}
+body.theme-dark .opt-demo-followup .ai-test-look-at-tiers{
+ margin:20px 0 0!important;
+}
+body.theme-dark .opt-demo-followup .ai-test-look-at-tiers a{
+ display:inline-flex;align-items:center;
+ min-height:44px;padding:6px 0;
+ color:#dfff42!important;
+ font-size:19px!important;font-weight:750!important;
+ line-height:1.36!important;
+ text-underline-offset:5px!important;
+}
+@media(max-width:780px){
+ /* The first pult ends just above the mobile fold. */
+ body.theme-dark.vision-mode .hero.ai-test-hero{
+  box-sizing:border-box!important;
+  min-height:100svh!important;
+  display:flex!important;flex-direction:column!important;
+  padding-top:clamp(25px,4vh,38px)!important;
+  padding-bottom:18px!important;
+ }
+ body.theme-dark .hero.ai-test-hero>.hero-copy{
+  display:flex!important;flex:1 1 auto!important;
+  flex-direction:column!important;min-height:0;width:100%;
+ }
+ body.theme-dark .hero.ai-test-hero #opt-demo{
+  flex:none!important;
+  margin-top:auto!important;
+  margin-bottom:0!important;
+ }
+ body.theme-dark .hero.ai-test-hero .ai-test-group--offer{
+  margin-bottom:18px!important;
+ }
+ body.theme-dark .opt-demo-followup{
+  padding:20px 0 58px!important;
+ }
+ body.theme-dark .opt-demo-followup .opt-demo{
+  padding:13px 11px 11px!important;
+ }
+ body.theme-dark .opt-demo-followup .opt-tail-heading{
+  margin:0 0 11px!important;
+  font-size:18px!important;
+ }
+ body.theme-dark .opt-demo-followup .ai-test-group--trust{
+  margin:30px 0 0!important;padding:0 2px!important;
+ }
+ body.theme-dark .opt-demo-followup .ai-test-access,
+ body.theme-dark .opt-demo-followup .ai-test-guarantee{
+  font-size:16px!important;line-height:1.48!important;
+  margin-bottom:10px!important;
+ }
+ body.theme-dark .opt-demo-followup .ai-test-look-at-tiers{
+  margin:16px 0 0!important;
+ }
+ body.theme-dark .opt-demo-followup .ai-test-look-at-tiers a{
+  font-size:18px!important;
+ }
+}
+/* Compact the deliberate extra air on short devices, without shrinking taps. */
+@media(max-width:780px) and (max-height:680px){
+ body.theme-dark.vision-mode .hero.ai-test-hero{
+  padding-top:17px!important;padding-bottom:12px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--heading{
+  margin-bottom:15px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--offer{
+  margin-bottom:14px!important;
+ }
+ body.theme-dark .opt-overline{margin-bottom:8px!important}
+ body.theme-dark .ai-test-hero .ai-test-audience{margin-bottom:6px!important}
+}
+/* Tall viewports have no forced max-height: headline and controls never clip. */
