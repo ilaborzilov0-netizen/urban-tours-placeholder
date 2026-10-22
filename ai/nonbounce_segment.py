@@ -27,3 +27,26 @@ else:
  print("CREATED",segment.get("segment_id"),flush=True)
 assert any(x.get("segment_id")==segment.get("segment_id") for x in req(path).get("segments",[]))
 print("SUCCESS_SEGMENT_ID",segment["segment_id"],flush=True)
+
+# Dedicated campaign audience: only sessions from Oct 21 2026 onward.
+campaign_id="715285670"
+since="2026-10-21"
+campaign_expr=(f"ym:s:startURLPath=='/ai/' AND ym:s:bounce=='No' "
+               f"AND ym:s:directID=='{campaign_id}' AND ym:s:date>='{since}'")
+today_str=str(today)
+stats=req("/stat/v1/data",{"ids":counter,"date1":since,"date2":today_str,
+    "metrics":"ym:s:users,ym:s:visits","accuracy":"1","filters":campaign_expr})
+counts=stats.get("totals",[])
+print("CAMPAIGN_715285670_SINCE_OCT21_UNIQUE",counts[0] if counts else None,
+      "VISITS",counts[1] if len(counts)>1 else None,flush=True)
+campaign_name="AI /ai/ — неотказы 21.10+ — Директ 715285670"
+all_segments=req(path).get("segments",[])
+matched=[x for x in all_segments if x.get("expression")==campaign_expr and x.get("status")=="active"]
+if matched:
+    campaign_segment=matched[0]
+    print("CAMPAIGN_REUSED",campaign_segment.get("segment_id"),flush=True)
+else:
+    campaign_segment=req(path,body={"segment":{"name":campaign_name,"expression":campaign_expr}})["segment"]
+    print("CAMPAIGN_CREATED",campaign_segment.get("segment_id"),flush=True)
+assert any(x.get("segment_id")==campaign_segment.get("segment_id") for x in req(path).get("segments",[]))
+print("CAMPAIGN_SUCCESS_SEGMENT_ID",campaign_segment["segment_id"],flush=True)
