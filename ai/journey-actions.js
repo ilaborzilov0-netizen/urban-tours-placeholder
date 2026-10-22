@@ -28,4 +28,12 @@ document.addEventListener('click',event=>{
 });
 const faq=document.getElementById('guarantee-faq');
 faq?.addEventListener('toggle',()=>track(faq.open?'ai_faq_refund_open':'ai_faq_refund_close',{section:'faq'}));
+
+document.querySelectorAll('.album-tracklist-details').forEach(d=>{
+ d.addEventListener('toggle',()=>track('ai_ui_toggle',{section:'albums',element:'tracklist_'+d.dataset.album,action:d.open?'open':'close'},false));
+});
+document.querySelectorAll('.faq details').forEach((d,i)=>{
+ d.addEventListener('toggle',()=>track('ai_ui_toggle',{section:'faq',element:'question_'+(i+1),action:d.open?'open':'close'},false));
+});
+
 })();
