@@ -1,0 +1,29 @@
+name: AI 103 goals journey browser test
+on:
+  push:
+    branches: [main]
+    paths:
+      - "ai/journey-*.js"
+      - "ai/goals.json"
+      - "analytics.js"
+      - "tests/ai-journey-smoke.mjs"
+      - ".github/workflows/ai-journey-smoke.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install Playwright
+        run: |
+          npm init -y
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Check real UI emits new goals
+        run: node tests/ai-journey-smoke.mjs
