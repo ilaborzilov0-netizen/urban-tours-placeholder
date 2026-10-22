@@ -895,3 +895,69 @@ body.theme-dark .prefinal-pricing-section .pricing{
   padding-top:17px!important;
  }
 }
+
+
+/* 2026-10-22: swap verbose hero explanation for short 40-year reassurance.
+   The explanation now lives BELOW the intact three-track demo. */
+body.theme-dark .ai-test-hero .hero-priority--highlight{
+ display:block!important;
+ width:fit-content!important;
+ max-width:min(100%,660px)!important;
+ margin:clamp(21px,2.6vw,30px) 0 0!important;
+ padding:2px 0 2px 16px!important;
+ border-left:3px solid #dfff29!important;
+ color:#f7faf4!important;
+ font:700 clamp(19px,2.4vw,25px)/1.38 Arial,Helvetica,sans-serif!important;
+ letter-spacing:-.02em!important;
+ text-wrap:pretty;
+}
+body.theme-dark .ai-test-hero .hero-priority--highlight strong{
+ display:inline!important;
+ font:inherit!important;
+ font-weight:850!important;
+ color:#dfff29!important;
+}
+body.theme-dark .ai-test-hero .ai-test-explanation{
+ width:100%!important;
+ max-width:805px!important;
+ gap:clamp(15px,2vw,21px)!important;
+ margin:clamp(30px,4vw,44px) 0 0!important;
+ padding:0 2px!important;
+}
+body.theme-dark .ai-test-hero .ai-test-explanation p{
+ max-width:720px!important;
+ font-size:clamp(17px,1.8vw,20px)!important;
+ line-height:1.6!important;
+ color:#dce9d7!important;
+}
+@media(max-width:780px){
+ body.theme-dark .ai-test-hero .hero-priority--highlight{
+  margin:20px 0 0!important;
+  padding:1px 0 1px 13px!important;
+  border-left-width:3px!important;
+  font-size:19px!important;
+  line-height:1.36!important;
+  max-width:350px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--heading{
+  margin-bottom:var(--fold-heading-gap,17px)!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-explanation{
+  margin:32px 0 0!important;
+  padding:0 2px!important;
+  gap:15px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-explanation p{
+  font-size:17px!important;
+  line-height:1.57!important;
+ }
+}
+@media(max-width:780px) and (max-height:720px){
+ body.theme-dark .ai-test-hero .hero-priority--highlight{
+  margin-top:15px!important;
+  font-size:18px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-explanation{
+  margin-top:28px!important;
+ }
+}
