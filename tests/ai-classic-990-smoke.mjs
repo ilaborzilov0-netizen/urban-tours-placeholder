@@ -22,7 +22,7 @@ try{
  let ready=false;
  for(let i=0;i<50;i++){try{if((await fetch('http://127.0.0.1:18772/ai/')).ok){ready=true;break}}catch{}await new Promise(r=>setTimeout(r,100))}
  assert.ok(ready);
- browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+ browser=await chromium.launch({headless:true,channel:'chrome',args:['--no-sandbox']});
  const page=await browser.newPage({viewport:{width:390,height:844}});
  let captured=[],paymentRequest=null,questionRequest=null;
  const errors=[];
