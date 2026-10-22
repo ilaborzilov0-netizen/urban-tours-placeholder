@@ -96,7 +96,8 @@
  }
  audio.addEventListener('timeupdate',refresh);
  audio.addEventListener('ended',()=>{playing=false;ended=true;render();});
- audio.addEventListener('pause',()=>{if(!audio.ended&&playing){playing=false;render();}});
+ audio.addEventListener('pause',()=>{if(audio.paused&&!audio.ended&&playing){playing=false;render();}});
+ audio.addEventListener('play',()=>{if(!playing){playing=true;render();}});
  root.addEventListener('click',e=>{
   const button=e.target.closest('button');
   if(!button)return;
