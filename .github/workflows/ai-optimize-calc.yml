@@ -53,7 +53,8 @@ jobs:
                       'new_assets':'calc-pult.js?v=20261022-single-v1' in page and 'calc-pult.css?v=20261022-single-v2' in page,
                       'working_calculator':"const annual=()" in scripts and "data-calc-adjust" in scripts and 'selected=' not in scripts,
                       'approved_visual_variant':'.cc-v4' in css and '.cc-v5' not in css,
-                      'pricing_footer_order':0<page.find('class="pricing"')<page.find('class="copyright-under-pricing"')<page.find('class="predfinal-pricing-contact"')<page.find('class="ai-refund-guarantee"'),
+                      'pricing_footer_order':0<page.find('class="pricing"')<page.find('class="predfinal-pricing-contact"')<page.find('class="ai-refund-guarantee"')<page.find('<footer class="wrap footer">'),
+                      'copyright_in_footer':page.count('© Аудиоякоря')==1 and page.find('© Аудиоякоря')>page.find('<footer class="wrap footer">'),
                       'question_without_author':'Напишите — разберёмся.' in page and 'Напишите мне' not in page,
                       'live_prod_unchanged':'id="calc-showcase"' not in production and 'audio-player-prod-20261022.js' in production
                   }
