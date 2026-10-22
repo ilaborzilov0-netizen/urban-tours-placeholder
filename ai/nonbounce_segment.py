@@ -32,7 +32,7 @@ print("SUCCESS_SEGMENT_ID",segment["segment_id"],flush=True)
 campaign_id="715285670"
 since="2026-10-21"
 campaign_expr=(f"ym:s:startURLPath=='/ai/' AND ym:s:bounce=='No' "
-               f"AND ym:s:directID=='{campaign_id}' AND ym:s:date>='{since}'")
+               f"AND ym:s:directClickOrder=='{campaign_id}' AND ym:s:date>='{since}'")
 today_str=str(today)
 stats=req("/stat/v1/data",{"ids":counter,"date1":since,"date2":today_str,
     "metrics":"ym:s:users,ym:s:visits","accuracy":"1","filters":campaign_expr})
