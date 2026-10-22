@@ -1,0 +1,63 @@
+name: Classic email-only drawers smoke
+on:
+  push:
+    branches: [main]
+    paths:
+      - "14-classic-email-only/index.html"
+      - ".github/workflows/classic-email-only-smoke.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate client-side script and forms (no calls to payment server)
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib,re,subprocess,html,urllib.request,time
+          from pathlib import Path
+          original=Path('14-original-20261014/index.html').read_text()
+          updated=Path('14-classic-email-only/index.html').read_text()
+          assert updated!=original
+          assert 'Бросьте курить с помощью аудиоякорей' in updated
+          assert '<audio' in updated and '990 ₽' in updated
+          assert '<meta name="robots" content="noindex,nofollow">' in updated
+          for name in ['purchase-form','question-form']:
+              found=re.search(r'<form id="'+name+r'"[^>]*>(.*?)</form>',updated,re.S)
+              assert found,name
+              form=found.group(1)
+              assert 'name="email"' in form
+              assert 'name="phone"' not in form and 'name="name"' not in form
+              if name=='purchase-form':
+                  assert 'name="question"' not in form and 'delivery-note' not in form
+              else:
+                  assert 'name="question"' in form
+          purchase=re.search(r'<dialog[^>]*id="purchase-dialog".*?</dialog>',updated,re.S).group()
+          assert 'data-question' not in purchase
+          assert "ALBUM_PRICE * 100" in updated
+          assert "contactType:'email',contact:customer.email" in updated
+          assert 'customer.phone' not in updated and 'customer.name' not in updated
+          assert "Сейчас мы настраиваем техническую часть сайта" not in updated
+          for i,script in enumerate(re.findall(r'<script[^>]*>(.*?)</script>',updated,re.S)):
+              if not script.strip():continue
+              path=Path('/tmp/old-classic-script-%d.js'%i)
+              path.write_text(script)
+              subprocess.run(['node','--check',str(path)],check=True)
+          print('LOCAL_STATIC_AND_JS_PARSE_PASS',flush=True)
+          for attempt in range(1,13):
+              url='https://marafon-metod.ru/14-classic-email-only/?verify=20261022-'+str(attempt)
+              try:
+                  request=urllib.request.Request(url,headers={'Cache-Control':'no-cache','User-Agent':'Mozilla/5.0'})
+                  with urllib.request.urlopen(request,timeout=20) as response: live=response.read().decode()
+                  if live==updated:
+                      print('PUBLIC_HTML_EXACTLY_MATCHES_GITHUB',response.status,hashlib.sha256(live.encode()).hexdigest(),flush=True)
+                      break
+                  print('NOT_DEPLOYED_YET',attempt,len(live),flush=True)
+              except Exception as e:print('NOT_DEPLOYED_YET',attempt,type(e).__name__,str(e)[:140],flush=True)
+              time.sleep(8)
+          else:raise RuntimeError('Public HTML is not matching updated file')
+          PY
