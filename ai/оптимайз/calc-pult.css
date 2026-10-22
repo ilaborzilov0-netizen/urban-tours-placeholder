@@ -23,13 +23,6 @@ body.theme-dark .calc-showcase .cc-v4{
  padding:clamp(17px,4vw,28px);
  box-shadow:0 10px 26px #0002;
 }
-body.theme-dark .calc-showcase .cc-v4 h2{
- margin:0!important;
- font:800 clamp(21px,4vw,28px)/1.22 Arial,Helvetica,sans-serif!important;
- letter-spacing:-.028em;
- color:#f5f9f2!important;
- text-align:center;
-}
 body.theme-dark .calc-showcase .cc-v4 .cc-result{
  display:flex;
  flex-direction:column;
@@ -49,6 +42,14 @@ body.theme-dark .calc-showcase .cc-v4 .cc-result strong{
  font-variant-numeric:tabular-nums;
  text-align:center;
  white-space:nowrap;
+}
+body.theme-dark .calc-showcase .cc-v4 .cc-result .cc-result-caption{
+ display:block;
+ margin-top:8px;
+ color:#d9e8d3!important;
+ font:500 15px/1.3 Arial,Helvetica,sans-serif!important;
+ letter-spacing:0!important;
+ text-align:center;
 }
 body.theme-dark .calc-showcase .cc-v4 .cc-controls{
  display:grid;
@@ -134,9 +135,6 @@ body.theme-dark .prefinal-pricing-section .ai-refund-guarantee{
 }
 @media(max-width:620px){
  body.theme-dark .calc-showcase .cc-v4{padding:17px;gap:18px}
- body.theme-dark .calc-showcase .cc-v4 h2{
-  font-size:clamp(20px,5.6vw,25px)!important;
- }
  body.theme-dark .calc-showcase .cc-v4 .cc-result strong{
   font-size:clamp(24px,7.3vw,35px)!important;
  }
