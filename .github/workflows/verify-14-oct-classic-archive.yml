@@ -1,0 +1,36 @@
+name: Verify Oct 14 original archive
+on:
+  push:
+    branches: [main]
+    paths: [".github/workflows/verify-14-oct-classic-archive.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check original archive on public domain
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib,urllib.request,time
+          with open("14-original-20261014/index.html","rb") as f:expected=f.read()
+          sha=hashlib.sha256(expected).hexdigest()
+          print("REPO_ARCHIVE_BYTES",len(expected),"SHA256",sha,flush=True)
+          for p in ["/14-original-20261014/","/14-original-20261014/index.html"]:
+              url="https://marafon-metod.ru"+p
+              try:
+                  request=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0","Cache-Control":"no-cache"})
+                  with urllib.request.urlopen(request,timeout=18) as response:
+                      raw=response.read()
+                      print("ARCHIVE_URL",p,"STATUS",response.status,"BYTES",len(raw),"SHA_MATCH",hashlib.sha256(raw).hexdigest()==sha,"FINAL_URL",response.geturl(),flush=True)
+                      if response.status==200 and hashlib.sha256(raw).hexdigest()==sha:
+                          print("EXACT_14OCT_ARCHIVE_PUBLIC_CONFIRMED",flush=True)
+                          break
+              except Exception as e:
+                  print("ARCHIVE_URL",p,"ERROR",type(e).__name__,str(e)[:180],flush=True)
+          else:raise SystemExit("PUBLIC_ARCHIVE_NOT_CONFIRMED")
+          PY
