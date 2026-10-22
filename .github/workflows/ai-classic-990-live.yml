@@ -1,0 +1,67 @@
+name: AI classic 990 live and mocked browser smoke
+on:
+  push:
+    branches: [main]
+    paths:
+      - "ai/index.html"
+      - "ai/classic-goals.js"
+      - "ai/archive-two-albums-before-990-classic-20261022/**"
+      - "tests/ai-classic-990-smoke.mjs"
+      - ".github/workflows/ai-classic-990-live.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  published:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify old and new public pages and analytics assets
+        run: |
+          python3 - <<'PY'
+          import urllib.request,time,hashlib
+          from pathlib import Path
+          base='https://marafon-metod.ru'
+          paths=['/ai/','/ai/classic-goals.js','/ai/archive-two-albums-before-990-classic-20261022/']
+          expected=Path('ai/index.html').read_bytes()
+          for attempt in range(1,20):
+            try:
+              bodies={}
+              for path in paths:
+                req=urllib.request.Request(base+path+'?classic_deploy_verify='+str(attempt),headers={'Cache-Control':'no-cache','User-Agent':'Mozilla/5.0'})
+                with urllib.request.urlopen(req,timeout=18) as res:
+                  assert res.status==200
+                  bodies[path]=res.read()
+              page=bodies['/ai/'].decode()
+              checks={
+                'new_prod_sha_exact':hashlib.sha256(bodies['/ai/']).digest()==hashlib.sha256(expected).digest(),
+                'variant':'classic-990-20261022' in page,
+                'api_hooks':'aiClassicTracker.legacy(name)' in page,
+                'analytics':all(x in page for x in ['G-J076WS14NV','posthog-init.js','analytics.js','tag.js?id=110906734']),
+                'scripts_loaded':'ai_classic_demo_play' in bodies['/ai/classic-goals.js'].decode() or "track('demo_play'" in bodies['/ai/classic-goals.js'].decode(),
+                'archive':'id="opt-demo"' in bodies['/ai/archive-two-albums-before-990-classic-20261022/'].decode(),
+                'checkout':'plan:\'ai_album\'' in page,
+              }
+              print('PUBLIC_CHECK',attempt,checks,flush=True)
+              if all(checks.values()):
+                print('CLASSIC_NEW_AI_AND_TWO_ALBUM_ARCHIVE_PUBLISHED',flush=True);break
+            except Exception as exc:print('RETRY',attempt,type(exc).__name__,str(exc)[:180],flush=True)
+            time.sleep(6)
+          else:raise RuntimeError('classic new live release not verified')
+          PY
+  browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install Chromium with Playwright
+        run: |
+          npm init -y
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Verify event goals and mocked payment/question flows
+        run: node tests/ai-classic-990-smoke.mjs
