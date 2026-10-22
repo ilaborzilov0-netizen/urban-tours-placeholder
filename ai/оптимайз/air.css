@@ -1169,3 +1169,194 @@ body.theme-dark .ai-test-hero .opt-tip{display:none!important}
   min-height:48px!important;
  }
 }
+
+
+/* ===============================================================
+   2026-10-22 final: Instagram-like HEARTS + clean first-screen fold.
+   In the first viewport: promise, CTA, and the COMPLETE demo only.
+   The reading copy starts in the next real section, never peeks.
+   =============================================================== */
+
+/* Tappable area stays 44px, but the visual is a plain unboxed heart. */
+body.theme-dark .ai-test-hero .opt-line .opt-like,
+body.theme-dark .ai-test-hero .opt-line .opt-like:hover,
+body.theme-dark .ai-test-hero .opt-line .opt-like:active{
+ appearance:none!important;
+ width:44px!important;
+ height:44px!important;
+ min-width:44px!important;
+ min-height:44px!important;
+ display:inline-flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ border:0!important;
+ outline:0!important;
+ border-radius:50%!important;
+ background:transparent!important;
+ box-shadow:none!important;
+ color:#e8f3e5!important;
+ padding:8px!important;
+ line-height:1!important;
+}
+body.theme-dark .ai-test-hero .opt-line .opt-like:focus-visible{
+ outline:2px solid #e8f3e5!important;
+ outline-offset:2px!important;
+}
+body.theme-dark .ai-test-hero .opt-line .opt-like .opt-heart-icon{
+ flex:none!important;
+ display:block!important;
+ width:27px!important;
+ height:27px!important;
+ fill:transparent!important;
+ stroke:#e8f3e5!important;
+ stroke-width:2.05!important;
+ stroke-linecap:round!important;
+ stroke-linejoin:round!important;
+ transition:transform .18s ease,fill .18s ease,stroke .18s ease!important;
+}
+body.theme-dark .ai-test-hero .opt-line .opt-like.is-liked .opt-heart-icon{
+ fill:#ff466e!important;
+ stroke:#ff466e!important;
+ transform:scale(1.08)!important;
+}
+@media(hover:hover){
+ body.theme-dark .ai-test-hero .opt-line .opt-like:hover .opt-heart-icon{
+  transform:scale(1.12)!important;
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ body.theme-dark .ai-test-hero .opt-line .opt-like .opt-heart-icon{
+  transition:none!important;
+ }
+}
+
+/* Entire second chapter is outside the viewport-height first section. */
+body.theme-dark .ai-after-demo{
+ padding:clamp(50px,6vw,82px) 0 clamp(55px,6vw,84px)!important;
+ background:#101713;
+ border-top:1px solid #304131;
+}
+body.theme-dark .ai-after-demo>.wrap{
+ max-width:1120px;
+}
+body.theme-dark .ai-after-demo .ai-test-explanation{
+ display:grid!important;
+ gap:17px!important;
+ max-width:760px!important;
+ margin:0!important;
+ padding:0!important;
+}
+body.theme-dark .ai-after-demo .ai-test-explanation p{
+ max-width:730px!important;
+ color:#e5eee2!important;
+ font:400 clamp(17px,1.8vw,20px)/1.62 Arial,Helvetica,sans-serif!important;
+ margin:0!important;
+}
+body.theme-dark .ai-after-demo .ai-test-group--trust{
+ max-width:780px!important;
+ margin:clamp(27px,3vw,42px) 0 0!important;
+ padding:0!important;
+}
+body.theme-dark .ai-after-demo .ai-test-access,
+body.theme-dark .ai-after-demo .ai-test-guarantee{
+ margin:0 0 10px!important;
+ color:#d4e3cf!important;
+ font-size:17px!important;
+ line-height:1.5!important;
+}
+body.theme-dark .ai-after-demo .ai-test-check,
+body.theme-dark .ai-after-demo .ai-test-emphasis{
+ color:#dfff29!important;
+ font-weight:800!important;
+}
+body.theme-dark .ai-after-demo .ai-test-look-at-tiers{
+ margin:16px 0 0!important;
+}
+body.theme-dark .ai-after-demo .ai-test-look-at-tiers a{
+ color:#dfff29!important;
+ display:inline-flex!important;
+ min-height:44px!important;
+ align-items:center!important;
+ text-decoration:underline!important;
+ text-underline-offset:5px!important;
+ font-weight:800!important;
+ font-size:18px!important;
+}
+
+/* Mobile fold: the ONE card ends 14px above the viewport's lower edge.
+   Do not crop the card; stretch only the flexible space BEFORE it. */
+@media(max-width:780px){
+ body.theme-dark.vision-mode .hero.ai-test-hero{
+  box-sizing:border-box!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  min-height:100svh!important;
+  min-height:100dvh!important;
+  height:auto!important;
+  padding:clamp(36px,7svh,88px) 0 14px!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero>.hero-copy{
+  display:flex!important;
+  flex-direction:column!important;
+  flex:1 1 auto!important;
+  width:100%!important;
+  min-height:0!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero #opt-demo{
+  flex:none!important;
+  align-self:stretch!important;
+  width:100%!important;
+  max-height:none!important;
+  overflow:visible!important;
+  margin:auto 0 0!important;
+ }
+ body.theme-dark .ai-after-demo{
+  padding:50px 0 59px!important;
+ }
+ body.theme-dark .ai-after-demo .ai-test-explanation{
+  gap:14px!important;
+ }
+ body.theme-dark .ai-after-demo .ai-test-explanation p{
+  font-size:17px!important;
+  line-height:1.57!important;
+ }
+ body.theme-dark .ai-after-demo .ai-test-access,
+ body.theme-dark .ai-after-demo .ai-test-guarantee{
+  font-size:16px!important;
+ }
+}
+
+/* Short mobile screens: keep play and heart touch targets 44px. */
+@media(max-width:780px) and (max-height:720px){
+ body.theme-dark.vision-mode .hero.ai-test-hero{
+  padding-top:clamp(13px,4svh,28px)!important;
+  padding-bottom:9px!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero .ai-test-group--heading{
+  margin-bottom:8px!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero .hero-priority--highlight{
+  margin-top:11px!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero #opt-demo{
+  margin-top:auto!important;
+ }
+}
+@media(max-width:780px) and (max-height:610px){
+ body.theme-dark.vision-mode .hero.ai-test-hero{
+  padding-top:12px!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero .hero-buy-cta{
+  min-height:44px!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero .opt-overline{
+  margin-bottom:5px!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero .opt-lines{
+  gap:3px!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero .opt-line{
+  padding:4px 6px!important;
+ }
+}
