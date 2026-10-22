@@ -15,7 +15,7 @@
  function next(index){
   if(index>=files.length)return;
   const node=document.createElement('script');
-  node.src='/ai/journey-'+files[index]+'.js?v=20261022-v1';
+  node.src='/ai/journey-'+files[index]+'.js?v=20261022-v2';
   node.async=false;
   node.onload=()=>next(index+1);
   node.onerror=()=>{console.warn('AI analytics module unavailable:',files[index]);next(index+1)};
