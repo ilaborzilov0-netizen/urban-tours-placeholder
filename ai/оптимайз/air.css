@@ -1689,11 +1689,11 @@ body.theme-dark .ai-after-demo.ai-core-message .ai-core-message-quote strong{
 /* The quote is now before the albums. Double ONLY the quote-to-first-cover gap.
    Desktop: old gap = 40px + album top inset; mobile: 28px + 16px. */
 body.theme-dark .ai-after-demo.ai-core-message.ai-core-message--between{
- padding:48px 0 calc(80px + clamp(22px,3vw,38px))!important;
+ padding:144px 0 calc(80px + clamp(22px,3vw,38px))!important;
 }
 @media(max-width:780px){
  body.theme-dark .ai-after-demo.ai-core-message.ai-core-message--between{
-  padding:32px 0 72px!important;
+  padding:96px 0 72px!important;
  }
 }
 
