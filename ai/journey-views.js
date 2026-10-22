@@ -49,5 +49,5 @@ function revisit(selector,id,section){
  ob.observe(el);
 }
 revisit('#opt-demo','ai_demos_return_view','demos');
-revisit('#pricing .pricing','ai_pricing_return_view','pricing');
+revisit('#pricing [data-price-card="one"]','ai_pricing_return_view','pricing');
 })();
