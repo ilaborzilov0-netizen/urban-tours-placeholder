@@ -10,6 +10,8 @@
  };
  const ids=Object.keys(tracks);
  const concepts=['Три строки','Один плеер','Три кнопки','Радиопульт','Мини-плейлист'];
+ const uiVotesKey='opt_ui_votes';
+ function uiVotes(){try{const x=JSON.parse(sessionStorage.getItem(uiVotesKey)||'[]');return new Set(Array.isArray(x)?x:[]);}catch(_){return new Set();}}
  const urlMode=Number(new URLSearchParams(location.search).get('v'));
  let mode=urlMode>=1&&urlMode<=5?urlMode:1;
  let current='author',playing=false,ended=false;
@@ -63,7 +65,8 @@
   root.innerHTML='<div class="opt-overline"><strong>Послушайте, как звучат аудиоякоря</strong><span>3 фрагмента по 30–40 сек.</span></div>'
   +'<div class="opt-concept"><span>Вариант пульта: <b>'+concepts[mode-1]+'</b></span><div class="opt-switch" aria-label="Пять вариантов оформления">'+buttons+'</div></div>'
   +'<div class="opt-content">'+content+'</div>'
-  +'<p class="opt-tip">Нажмите ▶, чтобы послушать. ♥ — если понравилось.</p>';
+  +'<div class="opt-footer"><p class="opt-tip">▶ Послушать · ♥ Отметить любимое звучание</p>'
+  +'<button type="button" class="opt-vote'+(uiVotes().has(mode)?' is-voted':'')+'" data-opt-vote="'+mode+'" aria-pressed="'+uiVotes().has(mode)+'">'+(uiVotes().has(mode)?'♥ Пульт понравился':'♡ Нравится этот пульт')+'</button></div>';
   refresh();
  }
  function refresh(){
@@ -105,6 +108,12 @@
   }
   if(button.dataset.optChoose){choose(button.dataset.optChoose);return;}
   if(button.dataset.optPlay){play(button.dataset.optPlay);return;}
+  if(button.dataset.optVote){
+   const n=Number(button.dataset.optVote), votes=uiVotes();
+   if(votes.has(n))votes.delete(n);else votes.add(n);
+   try{sessionStorage.setItem(uiVotesKey,JSON.stringify([...votes]));}catch(_){}
+   render();return;
+  }
   if(button.dataset.optLike){
    const id=button.dataset.optLike;
    const real=document.querySelector('#sounds .sound-favorite[data-favorite-genre="'+id+'"]');
