@@ -80,7 +80,7 @@
    const status=root.querySelector('[data-status="'+t.id+'"]');
    if(status){
     status.textContent=remainingLabel(t);
-    status.setAttribute('aria-label','Осталось '+remainingSeconds(t)+' секунд');
+    status.setAttribute('aria-label','Осталось '+remainingSeconds(t)+' сек.');
    }
   });
  }
