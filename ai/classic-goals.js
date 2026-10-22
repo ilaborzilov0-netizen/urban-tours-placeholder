@@ -94,7 +94,7 @@ function onScroll(){
    directionChangeAt=performance.now();scrollCount++;track('scroll_reverse',{depth,count:scrollCount,action:direction},false);
  }
  if(direction){lastScrollDir=direction;recentScroll=scrollY}
- if(depth>=50&&prevDepth<50)track('scroll_pass_half',{depth,count:++counts.scroll_pass_half},false);
+ if(depth>=50&&prevDepth<50)track('scroll_pass_half',{depth,count:(counts.scroll_pass_half||0)+1},false);
  prevDepth=depth;
 }
 addEventListener('scroll',()=>{
