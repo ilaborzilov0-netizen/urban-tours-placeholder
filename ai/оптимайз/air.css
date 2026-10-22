@@ -1766,3 +1766,25 @@ body.theme-dark .ai-test-hero #opt-demo .opt-trackbar{
   transition:none!important;
  }
 }
+
+
+/* Directly below each cover: the tracklist. No redundant phase/title/copy. */
+body.theme-dark .album-showcase .album-art{
+ margin-bottom:14px!important;
+}
+body.theme-dark .album-showcase .album-description{
+ margin-top:0!important;
+ padding-top:0!important;
+}
+body.theme-dark .album-showcase .album-tracklist{
+ margin-top:0!important;
+ padding-top:14px!important;
+}
+@media(max-width:780px){
+ body.theme-dark .album-showcase .album-art{
+  margin-bottom:12px!important;
+ }
+ body.theme-dark .album-showcase .album-tracklist{
+  padding-top:13px!important;
+ }
+}
