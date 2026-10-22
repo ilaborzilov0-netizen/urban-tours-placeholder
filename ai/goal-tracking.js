@@ -130,6 +130,9 @@
  visibleOnce('#reviews h2','ai_reviews_view');
  visibleOnce('#pricing [data-price-card="one"]','ai_pricing_view');
 
+ // Purchase CTA is available on the very first screen; count it immediately.
+ // Do not depend on journey modules loaded after DOMContentLoaded.
+ document.querySelector('.hero-buy-cta')?.addEventListener('click',()=>emit('ai_hero_tariffs_click',{origin:'hero'}));
  // Albums & FAQs. Reading them is an explicit click, not just page scroll.
  document.querySelectorAll('.album-tracklist-details[data-album]').forEach(el=>{
   el.addEventListener('toggle',()=>{
