@@ -1,0 +1,550 @@
+/* АУДИОЯКОРЯ — /ai/оптимайз/
+   Air and editorial rhythm pass, Oct 22 2026.
+   Scoped to the experimental URL only; /ai/ remains untouched.
+   Load after offer.css, all inline styles and pult.css. */
+
+:root{--air-text:#f4f8ef;--air-sub:#c8d7c2;--air-rule:#344332}
+html{scroll-padding-top:24px}
+body.theme-dark{overflow-wrap:break-word}
+body.theme-dark .section{scroll-margin-top:24px}
+body.theme-dark .wrap{max-width:1120px}
+
+/* 1 / HERO: deliberate sequence: promise → offer → demo → trust. */
+body.theme-dark.vision-mode .hero.ai-test-hero{
+ padding:clamp(43px,5vw,66px) 0 clamp(35px,4vw,54px)!important;
+}
+body.theme-dark .ai-test-hero .hero-copy{max-width:980px}
+body.theme-dark .ai-test-hero .ai-test-audience{
+ font-size:15px!important;line-height:1.4!important;
+ margin:0 0 17px!important;color:#d3e4c8!important;
+}
+body.theme-dark.vision-mode .hero.ai-test-hero h1{
+ max-width:990px!important;margin:0 0 18px!important;
+ line-height:1.1!important;
+}
+body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-main{
+ font-size:clamp(54px,6.2vw,87px)!important;line-height:1.05!important;
+}
+body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-rest{
+ font-size:clamp(35px,4.35vw,61px)!important;
+ line-height:1.13!important;margin-top:8px!important;
+}
+body.theme-dark .ai-test-hero .hero-priority{
+ margin:0!important;font-size:clamp(19px,2vw,23px)!important;
+ line-height:1.44!important;
+}
+body.theme-dark .ai-test-hero .ai-test-group--heading{
+ margin-bottom:clamp(28px,3vw,38px)!important;
+}
+body.theme-dark .ai-test-hero .ai-test-group--offer{
+ margin-bottom:clamp(24px,2.8vw,34px)!important;
+}
+body.theme-dark .ai-test-hero .ai-test-group--offer .ai-test-simple{
+ margin:0 0 15px!important;font-size:clamp(18px,2vw,21px)!important;
+ line-height:1.52!important;
+}
+body.theme-dark .ai-test-hero .ai-test-purchase-reassurance{gap:5px 13px!important}
+body.theme-dark .ai-test-hero .ai-test-contents{
+ font-size:18px!important;line-height:1.48!important;
+}
+body.theme-dark .ai-test-hero .ai-test-price strong{
+ font-size:clamp(36px,3.9vw,49px)!important;
+}
+body.theme-dark .ai-test-hero .ai-test-group--trust{
+ margin-top:clamp(23px,2.9vw,35px)!important;
+ max-width:790px;
+}
+body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-access,
+body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
+ font-size:17px!important;line-height:1.5!important;
+ margin-bottom:8px!important;color:#d7e5cf!important;
+}
+body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-look-at-tiers{
+ margin:20px 0 0!important;
+}
+body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-look-at-tiers a{
+ display:inline-flex;align-items:center;
+ font-size:19px!important;line-height:1.3!important;
+ min-height:44px;padding:5px 0!important;
+ text-underline-offset:5px!important;
+}
+
+/* Demo is a single unified instrument; controls still meet 44px targets. */
+body.theme-dark .opt-demo{
+ max-width:805px;margin:0!important;padding:21px 22px 16px!important;
+ border-radius:18px;
+ background:linear-gradient(140deg,#263529 0%,#1a271d 100%)!important;
+}
+body.theme-dark .opt-overline{margin-bottom:18px!important;gap:4px 14px}
+body.theme-dark .opt-overline strong{font-size:clamp(19px,2.15vw,24px)}
+body.theme-dark .opt-overline span{font-size:14px!important;line-height:1.4}
+body.theme-dark .opt-lines{gap:10px!important}
+body.theme-dark .opt-line{
+ padding:12px 15px 9px!important;column-gap:15px!important;
+ row-gap:8px!important;border-radius:13px!important;
+}
+body.theme-dark .opt-line-text strong{font-size:19px!important;line-height:1.3}
+body.theme-dark .opt-line-caption{font-size:14px!important;line-height:1.4!important;margin-top:4px!important}
+body.theme-dark .opt-like{gap:8px!important;padding:9px 11px!important}
+body.theme-dark .opt-tip{
+ margin:14px 0 0!important;font-size:14px!important;
+ line-height:1.46!important;color:#bfceb8!important;
+}
+
+/* 2 / PRODUCTS: allow the eye to rest between two large cover artworks. */
+body.theme-dark .album-showcase{
+ padding:clamp(60px,7vw,90px) 0 clamp(72px,7vw,95px)!important;
+ border-top:1px solid var(--air-rule)!important;
+ background:linear-gradient(180deg,#101713,#151d17 96%)!important;
+}
+body.theme-dark .album-collection-heading{
+ max-width:735px;margin:0 0 clamp(31px,4vw,48px);
+}
+body.theme-dark .album-collection-kicker{
+ margin:0 0 12px!important;font-size:15px!important;
+ font-weight:800!important;letter-spacing:.04em!important;
+ color:#dfff42!important;
+}
+body.theme-dark .album-collection-heading h2{
+ margin:0 0 17px!important;
+ font-size:clamp(36px,4.5vw,58px)!important;
+ letter-spacing:-.045em!important;
+ line-height:1.11!important;color:#f5f8ef!important;
+ font-weight:800!important;text-wrap:balance;
+}
+body.theme-dark .album-collection-heading>p:last-child{
+ max-width:650px;margin:0!important;
+ color:var(--air-sub)!important;font-size:clamp(18px,1.9vw,21px)!important;
+ line-height:1.58!important;
+}
+body.theme-dark .album-showcase-grid{
+ gap:clamp(42px,5.1vw,78px)!important;align-items:start!important;
+}
+body.theme-dark .album-display{min-width:0}
+body.theme-dark .album-showcase .album-art{
+ width:min(100%,460px)!important;max-width:460px!important;
+ margin:0 0 clamp(25px,3vw,35px)!important;
+}
+body.theme-dark .album-description{max-width:535px}
+body.theme-dark .album-description .album-phase{margin-bottom:12px!important;font-size:14px!important}
+body.theme-dark .album-description h3{
+ font-size:clamp(28px,3vw,37px)!important;
+ line-height:1.18!important;margin:0 0 15px!important;
+}
+body.theme-dark .album-description>p{
+ font-size:18px!important;line-height:1.6!important;
+ margin:0 0 25px!important;color:#cddaca!important;
+}
+body.theme-dark .album-tracklist{
+ border-top:1px solid #475846!important;
+ padding-top:18px!important;
+}
+body.theme-dark .album-tracklist-title{margin-bottom:16px!important}
+body.theme-dark .album-tracklist-preview li,
+body.theme-dark .album-tracklist-more li{
+ font-size:17px!important;line-height:1.48!important;
+ min-height:0!important;padding-top:9px!important;padding-bottom:9px!important;
+}
+body.theme-dark .album-tracklist-details summary{
+ min-height:46px!important;margin-top:11px!important;
+ font-size:16px!important;line-height:1.4!important;
+}
+
+/* 3 / PRICE: offer is encountered directly after the two album covers. */
+body.theme-dark .prefinal-pricing-section{
+ padding:clamp(70px,7vw,98px) 0 clamp(73px,8vw,106px)!important;
+ border-top:1px solid #465843!important;
+ background:linear-gradient(180deg,#172118,#111a14 94%)!important;
+}
+body.theme-dark .prefinal-pricing-section .pricing-head{margin:0 0 27px!important}
+body.theme-dark .prefinal-pricing-section .pricing-head h2{
+ font-size:clamp(39px,4.8vw,63px)!important;
+ line-height:1.14!important;letter-spacing:-.048em!important;
+ font-weight:800!important;max-width:830px;
+}
+body.theme-dark .prefinal-pricing-section .pricing{
+ gap:clamp(13px,1.6vw,23px)!important;margin-top:0!important;
+ align-items:stretch!important;
+}
+body.theme-dark .prefinal-pricing-section .price-card,
+body.theme-dark .prefinal-pricing-section .price-card.is-selected{
+ padding:clamp(22px,2.15vw,29px)!important;
+ display:flex;flex-direction:column;
+ border-radius:17px!important;
+}
+body.theme-dark .prefinal-pricing-section .price-card--featured{
+ padding:clamp(21px,2.1vw,28px)!important;
+}
+body.theme-dark .prefinal-pricing-section .price-card h3{
+ font-size:clamp(23px,2.25vw,28px)!important;
+ line-height:1.22!important;min-height:0!important;
+ margin:0 0 24px!important;letter-spacing:-.03em!important;
+}
+body.theme-dark .prefinal-pricing-section .price-top{
+ font-size:13px!important;line-height:1.3!important;
+}
+body.theme-dark .prefinal-pricing-section .price-features{
+ display:grid;gap:11px!important;
+ grid-template-rows:none!important;
+ margin:0 0 22px!important;flex:1!important;
+}
+body.theme-dark.vision-mode .prefinal-pricing-section .price-features li{
+ font-size:17px!important;line-height:1.5!important;padding-left:26px!important;
+}
+body.theme-dark .prefinal-pricing-section .price-featured-reason{
+ font-size:15px!important;line-height:1.5!important;
+ margin:0 0 22px!important;color:#d0dfc8!important;
+}
+body.theme-dark .prefinal-pricing-section .price-bottom{
+ min-height:0!important;margin-top:auto!important;
+ justify-content:flex-end!important;
+}
+body.theme-dark .prefinal-pricing-section .price-amount{
+ font-size:clamp(42px,4vw,54px)!important;
+ margin:0 0 16px!important;
+}
+body.theme-dark .prefinal-pricing-section .price-card[data-price-card=one] .price-amount{
+ margin:0 0 16px!important;
+}
+body.theme-dark .prefinal-pricing-section .price-compare{
+ margin-bottom:13px!important;gap:5px 12px!important;
+}
+body.theme-dark .prefinal-pricing-section .price-compare>span{
+ font-size:clamp(41px,4vw,50px)!important;
+}
+body.theme-dark .prefinal-pricing-section .price-saving{
+ margin:0 0 14px!important;
+}
+body.theme-dark .prefinal-pricing-section .tier-genre{
+ margin:0 0 17px!important;gap:8px!important;
+}
+body.theme-dark .prefinal-pricing-section .tier-smoking-equivalent{
+ line-height:1.48!important;margin:0 0 15px!important;
+}
+body.theme-dark .prefinal-pricing-section .price-bottom .btn{
+ min-height:58px!important;font-size:17px!important;
+ line-height:1.38!important;
+}
+/* Hero and guarantee already cover this promise; don't print it under every CTA. */
+body.theme-dark .prefinal-pricing-section .price-refund-note{display:none!important}
+body.theme-dark .prefinal-pricing-section .ai-refund-guarantee{
+ margin:37px 0 0!important;padding:24px 27px!important;
+ border-radius:16px!important;
+}
+body.theme-dark .prefinal-pricing-section .ai-refund-copy h3{
+ line-height:1.3!important;margin:0 0 8px!important;
+}
+body.theme-dark .prefinal-pricing-section .ai-refund-copy p{
+ line-height:1.55!important;
+}
+
+/* Separate calculator chapter below purchase; no form before the pricing cards. */
+body.theme-dark .prefinal-pricing-section .smoking-savings{
+ max-width:900px!important;
+ margin:clamp(52px,6vw,77px) 0 21px!important;
+ padding:clamp(24px,3vw,36px)!important;
+ border:1px solid #42583f!important;
+ border-radius:17px!important;background:#1b281d!important;
+}
+body.theme-dark .prefinal-pricing-section .smoking-savings h2{
+ max-width:680px;font-size:clamp(27px,3vw,38px)!important;
+ margin:0 0 23px!important;line-height:1.2!important;
+}
+body.theme-dark .prefinal-pricing-section .smoking-calc-fields{gap:13px 20px!important}
+body.theme-dark .prefinal-pricing-section .annual-savings-panel{
+ max-width:900px!important;margin:16px 0 0!important;
+ border-radius:16px!important;padding:26px 29px!important;
+}
+body.theme-dark .prefinal-pricing-section .predfinal-pricing-contact{
+ margin:32px 0 0!important;
+}
+body.theme-dark .prefinal-pricing-section .copyright-under-pricing{display:none!important}
+
+/* 4 / GUIDE: one restrained column, instead of four competing loud cards. */
+body.theme-dark .sound-showcase{
+ padding:clamp(62px,7vw,90px) 0!important;
+ border-top:1px solid var(--air-rule)!important;
+ background:#111913!important;
+}
+body.theme-dark .sound-showcase-instruction{
+ margin:0!important;max-width:970px!important;
+ padding:0!important;background:transparent!important;
+ border:0!important;border-radius:0!important;
+}
+body.theme-dark .listening-guide-heading{margin:0 0 31px!important}
+body.theme-dark .listening-guide-heading h2{
+ font-size:clamp(37px,4.7vw,58px)!important;
+ line-height:1.15!important;font-weight:800!important;
+}
+body.theme-dark .listening-guide-steps{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:16px!important;
+}
+body.theme-dark .listening-guide-steps>li{
+ padding:24px!important;border:1px solid #3d523b!important;
+ border-radius:14px!important;background:#1a261c!important;
+ display:flex;align-items:flex-start;gap:17px!important;
+}
+body.theme-dark .listening-guide-number{flex:none}
+body.theme-dark .listening-guide-steps h3{
+ font-size:19px!important;line-height:1.38!important;margin-bottom:9px!important;
+}
+body.theme-dark .listening-guide-steps p{
+ font-size:17px!important;line-height:1.55!important;color:#cbd9c7!important;
+}
+
+/* 5 / REVIEWS: one reading unit per testimonial. */
+body.theme-dark .review-section{
+ padding:clamp(67px,7vw,93px) 0!important;
+ background:#172019!important;border-top:1px solid var(--air-rule)!important;
+}
+body.theme-dark .review-section .section-head{margin-bottom:32px!important}
+body.theme-dark .review-section .section-head h2{font-size:clamp(38px,4.8vw,58px)!important}
+body.theme-dark .review-section .testimonials{gap:18px!important}
+body.theme-dark .review-section .review{
+ padding:clamp(21px,2.6vw,31px)!important;
+ border-radius:16px!important;
+}
+body.theme-dark.vision-mode .review-section .review-copy{
+ font-size:clamp(18px,1.8vw,20px)!important;line-height:1.62!important;
+}
+body.theme-dark .review-section .review-name{margin-top:22px!important}
+
+/* 6 / DEEPER READING: headings and content aligned to a calmer measure. */
+body.theme-dark .credibility-section{
+ padding:clamp(70px,7vw,102px) 0!important;
+ background:#121a14!important;
+}
+body.theme-dark .credibility-section .author-section-title{
+ max-width:900px;line-height:1.15!important;margin-bottom:33px!important;
+}
+body.theme-dark .credibility-section .credibility-header{gap:clamp(25px,4vw,57px)!important}
+body.theme-dark .credibility-section .credibility-intro p{
+ line-height:1.65!important;
+}
+body.theme-dark .credibility-section .credibility-stats{margin-top:35px!important;gap:15px!important}
+body.theme-dark .audio-loop-section{
+ padding:clamp(70px,7vw,96px) 0!important;
+ border-top:1px solid var(--air-rule)!important;
+}
+body.theme-dark .audio-loop-heading{max-width:800px!important;margin-bottom:34px!important}
+body.theme-dark .audio-loop-heading h2{line-height:1.16!important}
+body.theme-dark .audio-loop-heading>p:last-child{
+ max-width:700px;font-size:19px!important;line-height:1.58!important;
+}
+body.theme-dark .audio-loop-steps{gap:16px!important}
+body.theme-dark .audio-loop-step{min-height:0!important}
+body.theme-dark .audio-loop-step p{line-height:1.56!important}
+body.theme-dark .brain-explainer{
+ padding:clamp(68px,7vw,94px) 0!important;
+ border-top:1px solid var(--air-rule)!important;background:#111914!important;
+}
+body.theme-dark .brain-explainer-body{gap:19px!important}
+body.theme-dark .brain-explainer-body>article{padding:clamp(23px,3vw,35px)!important}
+body.theme-dark .brain-explainer p,
+body.theme-dark .brain-explainer li{line-height:1.6!important}
+body.theme-dark .freedom-vision{
+ padding:clamp(71px,7vw,103px) 0!important;
+}
+body.theme-dark .freedom-vision-panel{max-width:1000px!important}
+body.theme-dark .freedom-vision h2{line-height:1.14!important;text-wrap:balance}
+body.theme-dark .freedom-vision-prose{line-height:1.62!important}
+body.theme-dark .faq{
+ column-gap:clamp(38px,5vw,75px)!important;
+}
+body.theme-dark .faq details{padding:21px 0!important}
+body.theme-dark .faq summary{
+ font-size:clamp(18px,1.9vw,21px)!important;line-height:1.45!important;
+}
+body.theme-dark .faq details p{
+ font-size:17px!important;line-height:1.65!important;max-width:690px;
+}
+body.theme-dark .predfinal-final-invitation{
+ padding:clamp(68px,7vw,95px) 0!important;
+}
+body.theme-dark .predfinal-final-invitation h2{line-height:1.14!important}
+
+/* Tablet: keep structure generous while easing grid density. */
+@media(min-width:781px) and (max-width:1010px){
+ body.theme-dark .prefinal-pricing-section .pricing{gap:12px!important}
+ body.theme-dark .prefinal-pricing-section .price-card,
+ body.theme-dark .prefinal-pricing-section .price-card.is-selected{
+  padding:20px 17px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-features li{font-size:16px!important}
+ body.theme-dark .album-showcase-grid{gap:37px!important}
+}
+
+/* Mobile is the primary audience: controlled vertical rhythm and legible type. */
+@media(max-width:780px){
+ body.theme-dark .wrap{width:calc(100% - 36px)}
+ body.theme-dark.vision-mode .hero.ai-test-hero{
+  padding:30px 0 39px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-audience{
+  margin:0 0 11px!important;font-size:14px!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero h1{margin-bottom:13px!important}
+ body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-main{
+  font-size:clamp(37px,11.6vw,49px)!important;
+ }
+ body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-rest{
+  font-size:clamp(25px,7.5vw,34px)!important;margin-top:6px!important;
+ }
+ body.theme-dark .ai-test-hero .hero-priority{
+  font-size:18px!important;line-height:1.42!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--heading{
+  margin-bottom:26px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--offer{
+  margin-bottom:24px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--offer .ai-test-simple{
+  font-size:17px!important;line-height:1.48!important;margin-bottom:9px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-contents{font-size:16px!important}
+ body.theme-dark .ai-test-hero .ai-test-price strong{font-size:38px!important}
+ body.theme-dark .opt-demo{
+  padding:15px 13px 13px!important;border-radius:14px!important;
+ }
+ body.theme-dark .opt-overline{margin-bottom:13px!important}
+ body.theme-dark .opt-overline strong{font-size:18px!important}
+ body.theme-dark .opt-overline span{font-size:13px!important}
+ body.theme-dark .opt-lines{gap:7px!important}
+ body.theme-dark .opt-line{
+  grid-template-columns:46px minmax(0,1fr) 46px!important;
+  padding:9px 8px 7px!important;gap:6px 9px!important;
+ }
+ body.theme-dark .opt-round{width:46px!important;min-width:46px!important;height:46px!important;min-height:46px!important}
+ body.theme-dark .opt-line-text strong{font-size:16px!important;line-height:1.27!important}
+ body.theme-dark .opt-line-caption{font-size:12px!important;margin-top:3px!important}
+ body.theme-dark .opt-like{min-width:46px!important;height:46px!important;min-height:46px!important;padding:4px!important}
+ body.theme-dark .opt-like span:first-child{font-size:25px!important}
+ body.theme-dark .opt-like span+span{display:none!important}
+ body.theme-dark .opt-tip{font-size:12px!important;margin:11px 0 0!important}
+ body.theme-dark .ai-test-hero .ai-test-group--trust{
+  margin-top:23px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-access,
+ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
+  font-size:16px!important;line-height:1.45!important;margin:0 0 9px!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-look-at-tiers{
+  margin:18px 0 0!important;
+ }
+ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-look-at-tiers a{
+  min-height:45px!important;font-size:18px!important;
+ }
+ body.theme-dark .album-showcase{padding:59px 0 65px!important}
+ body.theme-dark .album-collection-heading{margin-bottom:29px}
+ body.theme-dark .album-collection-kicker{font-size:13px!important;margin-bottom:9px!important}
+ body.theme-dark .album-collection-heading h2{
+  font-size:clamp(32px,8.5vw,42px)!important;
+  line-height:1.17!important;margin-bottom:11px!important;
+ }
+ body.theme-dark .album-collection-heading>p:last-child{
+  font-size:17px!important;line-height:1.58!important;
+ }
+ body.theme-dark .album-showcase-grid{
+  grid-template-columns:minmax(0,1fr)!important;gap:57px!important;
+ }
+ body.theme-dark .album-showcase .album-art{margin:0 0 23px!important}
+ body.theme-dark .album-description h3{
+  font-size:clamp(28px,7.5vw,35px)!important;
+  margin-bottom:11px!important;
+ }
+ body.theme-dark .album-description>p{
+  font-size:17px!important;line-height:1.57!important;margin-bottom:21px!important;
+ }
+ body.theme-dark .album-tracklist-title{margin-bottom:13px!important}
+ body.theme-dark .album-tracklist-preview li,
+ body.theme-dark .album-tracklist-more li{
+  font-size:17px!important;line-height:1.5!important;
+  padding:9px 0!important;
+ }
+ body.theme-dark .prefinal-pricing-section{
+  padding:62px 0 72px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .pricing-head h2{
+  font-size:clamp(34px,8.5vw,43px)!important;
+ }
+ body.theme-dark .prefinal-pricing-section .pricing-head{margin-bottom:23px!important}
+ body.theme-dark .prefinal-pricing-section .pricing{
+  grid-template-columns:minmax(0,1fr)!important;gap:19px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-card,
+ body.theme-dark .prefinal-pricing-section .price-card.is-selected{
+  width:100%!important;max-width:650px!important;
+  padding:25px 22px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-card h3{
+  font-size:26px!important;margin:0 0 18px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-features{
+  gap:9px!important;margin-bottom:20px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-features li{
+  font-size:17px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-featured-reason{
+  font-size:16px!important;margin-bottom:19px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-bottom{
+  margin-top:0!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-amount{
+  font-size:49px!important;margin-bottom:15px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .price-compare>span{font-size:45px!important}
+ body.theme-dark .prefinal-pricing-section .ai-refund-guarantee{
+  padding:20px 18px!important;margin:28px 0 0!important;
+ }
+ body.theme-dark .prefinal-pricing-section .smoking-savings{
+  margin:54px 0 13px!important;padding:23px 17px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .smoking-savings h2{
+  font-size:29px!important;margin-bottom:17px!important;
+ }
+ body.theme-dark .prefinal-pricing-section .annual-savings-panel{
+  padding:21px 18px!important;margin-top:14px!important;
+ }
+ body.theme-dark .sound-showcase{padding:63px 0 67px!important}
+ body.theme-dark .listening-guide-heading{margin-bottom:25px!important}
+ body.theme-dark .listening-guide-heading h2{font-size:39px!important}
+ body.theme-dark .listening-guide-steps{
+  grid-template-columns:minmax(0,1fr)!important;gap:13px!important;
+ }
+ body.theme-dark .listening-guide-steps>li{
+  padding:19px 16px!important;gap:13px!important;
+ }
+ body.theme-dark .listening-guide-steps h3{
+  font-size:19px!important;margin-bottom:6px!important;
+ }
+ body.theme-dark .listening-guide-steps p{font-size:17px!important}
+ body.theme-dark .review-section{padding:67px 0!important}
+ body.theme-dark .review-section .review{padding:24px 21px!important}
+ body.theme-dark .review-section .testimonials{gap:15px!important}
+ body.theme-dark .credibility-section{padding:70px 0!important}
+ body.theme-dark .credibility-section .credibility-stats{gap:11px!important;margin-top:27px!important}
+ body.theme-dark .audio-loop-section{padding:68px 0!important}
+ body.theme-dark .brain-explainer{padding:63px 0!important}
+ body.theme-dark .brain-explainer-body>article{padding:23px 18px!important}
+ body.theme-dark .freedom-vision{padding:67px 0!important}
+ body.theme-dark .faq{gap:22px!important}
+ body.theme-dark .faq details{padding:19px 0!important}
+ body.theme-dark .faq summary{font-size:19px!important}
+ body.theme-dark .faq details p{font-size:17px!important}
+ body.theme-dark .predfinal-final-invitation{padding:70px 0!important}
+}
+@media(max-width:375px){
+ body.theme-dark .wrap{width:calc(100% - 30px)}
+ body.theme-dark .opt-demo{padding:13px 10px!important}
+ body.theme-dark .opt-line{column-gap:7px!important}
+ body.theme-dark .opt-line-text strong{font-size:15px!important}
+ body.theme-dark .prefinal-pricing-section .price-card,
+ body.theme-dark .prefinal-pricing-section .price-card.is-selected{padding:21px 18px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ body.theme-dark .opt-demo button{transition:none!important}
+}
