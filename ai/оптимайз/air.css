@@ -1607,3 +1607,26 @@ body.theme-dark .album-showcase .album-tracklist{
   padding-top:13px!important;
  }
 }
+
+
+/* 2026-10-22: Seamless hand-off from album 2 tracklist to tariff 1.
+   Old mobile 19px+17px = 36px. New 38px+34px = 72px.
+   No divider line; matching section edge colors avoid a false rule. */
+body.theme-dark .album-showcase{
+ border-bottom:0!important;
+ padding-bottom:clamp(56px,6vw,88px)!important;
+}
+body.theme-dark .prefinal-pricing-section{
+ border-top:0!important;
+ box-shadow:none!important;
+ padding-top:clamp(50px,6vw,78px)!important;
+ background:linear-gradient(180deg,#151d17 0%,#172118 30%,#111a14 94%)!important;
+}
+@media(max-width:780px){
+ body.theme-dark .album-showcase{
+  padding-bottom:38px!important;
+ }
+ body.theme-dark .prefinal-pricing-section{
+  padding-top:34px!important;
+ }
+}
