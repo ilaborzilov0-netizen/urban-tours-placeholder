@@ -1,10 +1,12 @@
-name: AI 68 goals browser test
+name: AI 103 goals browser test
 on:
   push:
     branches: [main]
     paths:
       - "ai/goals.json"
       - "ai/goal-tracking.js"
+      - "ai/journey-*.js"
+      - "analytics.js"
       - "ai/index.html"
       - "predfinal/offer.js"
       - "predfinal/checkout.js"
