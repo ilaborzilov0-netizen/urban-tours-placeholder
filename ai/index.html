@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- LIVE /ai/ promoted from optimized prototype 2026-10-22. Previous production HTML archived at /ai/archive-2026-10-22/. -->
+<!-- LIVE /ai/: promoted from /ai/оптимайз/ on 2026-10-22 18:00 MSK. Previous version: /ai/archive-pre-optimize-20261022-1800/. -->
 <html lang="ru">
 <head>
  <meta charset="utf-8">
@@ -1832,9 +1832,24 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
  body.theme-dark .ai-test-hero .ai-test-group--heading,
  body.theme-dark .ai-test-hero .ai-test-group--offer{margin-bottom:55px!important}
 }
-</style> <link rel="stylesheet" href="/ai/оптимайз/pult.css?v=20261022-final3">
- <script defer src="/ai/audio-player-prod-20261022.js?v=1"></script>
- <link rel="stylesheet" href="/ai/landing-prod-20261022.css?v=1">
+</style> <link rel="stylesheet" href="/ai/live-20261022/pult.css?v=20261022-countdown-v1">
+ <script defer src="/ai/live-20261022/pult.js?v=20261022-remaining-seconds-v1"></script>
+ <link rel="stylesheet" href="/ai/live-20261022/air.css?v=20261022-essence-seamless-test-v1">
+ <link rel="stylesheet" href="/ai/live-20261022/calc-pult.css?v=20261022-seamless-background-v5">
+ <script defer src="/ai/live-20261022/calc-pult.js?v=20261022-single-v1"></script>
+ <!-- Critical fallback: the section must match the hero even if the external CSS is cached. -->
+ <style data-source="opt-essence-seamless-critical-20261022">
+ body.theme-dark.vision-mode #audio-path.audio-loop-section{
+   background:var(--bg,#111412)!important;
+   background-image:none!important;
+   border:0!important;
+   box-shadow:none!important;
+   padding-bottom:0!important;
+ }
+ body.theme-dark.vision-mode #top.hero.ai-test-hero{
+   border-bottom:0!important;
+ }
+ </style>
 </head>
 <body class="theme-dark vision-mode">
  <main>
@@ -1855,7 +1870,52 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
    </div>
   </section>
 
-    <section class="album-showcase section" id="albums" aria-label="Два альбома аудиоякорей">
+    <section class="audio-loop-section section typographic-chain" id="audio-path" aria-labelledby="audio-path-title">
+   <div class="wrap">
+    <div class="audio-loop-heading">
+     <h2 id="audio-path-title">Суть аудиоякорей</h2>
+    </div>
+    <ol class="audio-loop-steps" aria-label="Четыре этапа действия аудиоякорей">
+     <li class="audio-loop-step">
+      <span class="audio-loop-index" aria-hidden="true">01</span>
+      <div class="audio-loop-content">
+       <h3>Концентрат опыта</h3>
+       <p>Главные выводы многолетней практики — коротко и по существу.</p>
+      </div>
+     </li>
+     <li class="audio-loop-step">
+      <span class="audio-loop-index" aria-hidden="true">02</span>
+      <div class="audio-loop-content">
+       <h3>Приятное прослушивание</h3>
+       <p>Не лекция, которую нужно заставлять себя слушать, а музыка по душе.</p>
+      </div>
+     </li>
+     <li class="audio-loop-step">
+      <span class="audio-loop-index" aria-hidden="true">03</span>
+      <div class="audio-loop-content">
+       <h3>Многократное возвращение к содержанию</h3>
+       <p>Знакомые куплеты и припевы снова возвращают к важным мыслям.</p>
+      </div>
+     </li>
+     <li class="audio-loop-step audio-loop-step--result">
+      <span class="audio-loop-index" aria-hidden="true">04</span>
+      <div class="audio-loop-content">
+       <h3>Желаемое ослабление тяги</h3>
+       <p>Чтобы сигарета постепенно теряла прежнюю ценность и переставала казаться необходимой.</p>
+      </div>
+     </li>
+    </ol>
+   </div>
+  </section>
+
+    <!-- Core statement immediately after the four-step audio-anchor explanation, before the albums. -->
+  <section class="ai-after-demo ai-core-message ai-core-message--between" aria-label="Главная мысль об аудиоякорях">
+   <div class="wrap">
+    <blockquote class="ai-core-message-quote">Аудиоякоря работают не с силой воли — <strong>с самим желанием закурить.</strong></blockquote>
+   </div>
+  </section>
+
+  <section class="album-showcase section" id="albums" aria-label="Два альбома аудиоякорей">
    <div class="wrap">
     <div class="album-showcase-grid">
      <article class="album-display album-display--one">
@@ -1920,6 +1980,38 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
    </div>
   </section>
 
+
+
+  <!-- Approved option 04: single, working savings calculator before tariffs. -->
+  <section class="calc-showcase" id="calc-showcase" aria-label="Калькулятор экономии на сигаретах">
+   <div class="wrap calc-showcase-wrap">
+    <article class="cc-card cc-v4" aria-label="Калькулятор экономии без сигарет">
+     <div class="cc-result">
+      <strong data-calc-result aria-live="polite">73 000 ₽ за год</strong>
+      <span class="cc-result-caption">Экономия без сигарет</span>
+     </div>
+     <div class="cc-controls cc-rows">
+      <div class="cc-pill">
+       <label for="cc-cigarettes">Сигарет в день</label>
+       <div class="cc-stepper" role="group" aria-label="Сигарет в день">
+        <button type="button" data-calc-adjust="cigarettes" data-dir="-1" aria-label="Уменьшить количество сигарет">−</button>
+        <input id="cc-cigarettes" type="number" inputmode="numeric" data-calc-input="cigarettes" min="1" max="100" step="1" value="20" aria-label="Сигарет в день">
+        <button type="button" data-calc-adjust="cigarettes" data-dir="1" aria-label="Увеличить количество сигарет">+</button>
+       </div>
+      </div>
+      <div class="cc-pill">
+       <label for="cc-pack">Цена пачки, ₽</label>
+       <div class="cc-stepper" role="group" aria-label="Цена пачки, ₽">
+        <button type="button" data-calc-adjust="pack" data-dir="-1" aria-label="Уменьшить цену пачки">−</button>
+        <input id="cc-pack" type="number" inputmode="numeric" data-calc-input="pack" min="1" max="10000" step="1" value="200" aria-label="Цена пачки, ₽">
+        <button type="button" data-calc-adjust="pack" data-dir="1" aria-label="Увеличить цену пачки">+</button>
+       </div>
+      </div>
+     </div>
+    </article>
+   </div>
+  </section>
+
   <section class="section prefinal-pricing-section" id="pricing" aria-label="Комплекты и цены"><div class="wrap">
    <div class="pricing">
     <article class="price-card" data-price-card="one" aria-label="Комплект: один стиль, 1990 рублей">
@@ -1965,6 +2057,10 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
      </div>
     </article>
    </div>
+   <div class="predfinal-pricing-contact">
+    <p class="ai-question-prompt">Есть вопросы?</p>
+    <button type="button" class="predfinal-question-cta" data-open-question data-question-location="pricing">Напишите — разберёмся.</button>
+   </div>
    <section class="ai-refund-guarantee" id="guarantee" aria-labelledby="ai-guarantee-title">
     <svg class="ai-refund-icon" width="37" height="43" viewBox="0 0 24 28" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 21 6v7.3c0 6.2-4.3 10.6-9 12.7-4.7-2.1-9-6.5-9-12.7V6L12 2Z"/><path d="m7.7 13.6 2.9 2.9 5.8-6.1"/></svg>
     <div class="ai-refund-copy">
@@ -1973,55 +2069,7 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
      <a class="ai-refund-more" href="#guarantee-faq">Как вернуть деньги →</a>
     </div>
    </section>
-   <section class="smoking-savings smoking-savings--compact" id="smoking-savings" aria-labelledby="smoking-savings-heading">
-    <h2 id="smoking-savings-heading">Расчётный пример расходов на сигареты</h2>
-    <div class="smoking-calc-fields">
-     <div class="smoking-calc-field">
-      <label for="smoking-calc-cigarettes">Сигарет в день</label>
-      <div class="smoking-calc-stepper">
-       <button type="button" data-calc-adjust="cigarettes" data-step="-1" aria-label="Уменьшить количество сигарет на одну">−</button>
-       <input id="smoking-calc-cigarettes" data-calc-input="cigarettes" type="number" inputmode="numeric" min="1" max="100" step="1" value="20" aria-describedby="smoking-calc-note">
-       <button type="button" data-calc-adjust="cigarettes" data-step="1" aria-label="Увеличить количество сигарет на одну">+</button>
-      </div>
-     </div>
-     <div class="smoking-calc-field">
-      <label for="smoking-calc-pack">Цена пачки, ₽</label>
-      <div class="smoking-calc-stepper">
-       <button type="button" data-calc-adjust="pack" data-step="-1" aria-label="Уменьшить стоимость пачки на 10 рублей">−</button>
-       <input id="smoking-calc-pack" data-calc-input="pack" type="number" inputmode="numeric" min="1" max="10000" step="1" value="200" aria-describedby="smoking-calc-note">
-       <button type="button" data-calc-adjust="pack" data-step="1" aria-label="Увеличить стоимость пачки на 10 рублей">+</button>
-      </div>
-     </div>
-    </div>
-    <p class="smoking-calc-error" role="status" aria-live="polite"></p>
-    <p class="smoking-calc-note" id="smoking-calc-note">Расчётный ориентир: 20 сигарет в день, пачка 200 ₽ (20 сигарет).</p>
-   </section>
-   <section class="annual-savings-panel" data-annual-savings aria-labelledby="annual-savings-heading">
-    <p class="annual-savings-eyebrow" id="annual-savings-heading" data-annual-savings-title>В среднем при расчётном расходе за первый год без сигарет</p>
-    <p class="annual-savings-amount" data-annual-savings-amount aria-live="polite">73 000 ₽</p>
-    <p class="annual-savings-detail" data-annual-savings-detail>Столько можно сэкономить на сигаретах при 20 сигаретах в день и пачке за 200 ₽. Если расход выше — экономия больше.</p>
-   </section>
-   <div class="predfinal-pricing-contact">
-    <p class="ai-question-prompt">Есть вопрос?</p>
-    <button type="button" class="predfinal-question-cta" data-open-question data-question-location="pricing">Напишите мне — разберёмся.</button>
-   </div>
    </div></section>
-  <!-- Deeper explanation follows album artwork and pricing, not the first-screen preview. -->
-  <section class="ai-after-demo" aria-label="Как работают аудиоякоря и гарантия покупки">
-   <div class="wrap">
-    <div class="ai-test-explanation" aria-label="О том, как работают аудиоякоря">
-      <p>Слушайте посылы, которые меняют мозг на физиологическом уровне, влияя на ваш взгляд на курение.</p>
-      <p>Они запоминаются, как припев песни, услышанной в магазине, и продолжают работать на вас фоном — даже когда музыка уже выключена.</p>
-     </div>
-    <div class="ai-test-group ai-test-group--trust">
-     <p class="ai-test-access"><span class="ai-test-check" aria-hidden="true">✓</span> Доступ <span class="ai-test-emphasis">сразу</span> после оплаты</p>
-     <p class="ai-test-guarantee"><span class="ai-test-check" aria-hidden="true">✓</span> Не подошло? Вернём 100% в течение <span class="ai-test-emphasis">30&nbsp;дней</span></p>
-     <div class="ai-test-look-at-tiers"><a href="#pricing">Смотреть тарифы →</a></div>
-    </div>
-   </div>
-  </section>
-
-
   <section class="section sound-showcase" id="sounds" aria-labelledby="sounds-heading"><div class="wrap">
  <div class="sound-showcase-head">
   <p class="kicker">Одна программа — разные музыкальные стили</p>
@@ -2113,14 +2161,12 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
      <h3 class="author-name">Илья Борзилов</h3>
      <p class="author-subtitle">Автор программы · Более 10 лет работы с курящими людьми</p>
     <div class="author-contact" aria-label="Связаться с автором">
-    <p class="author-contact-title">Есть вопрос? Напишите мне, разберёмся.</p>
+    <p class="author-contact-title">Есть вопросы? Напишите — разберёмся.</p>
     <div class="contacts">
     <a data-direct-contact="max" href="https://max.ru/u/f9LHodD0cOLpevOEzdPM7DBn_9wNoZiKdBMryxkSM2b4SpNmf4xagvVkl8g" target="_blank" rel="noopener noreferrer" aria-label="Написать Илье Борзилову в MAX">MAX <span aria-hidden="true">↗</span></a>
     <a data-direct-contact="telegram" href="https://t.me/metodborzilova" target="_blank" rel="noopener noreferrer" aria-label="Написать Илье Борзилову в Telegram">Telegram <span aria-hidden="true">↗</span></a>
     </div>
     </div>
-     <p>Я больше десяти лет помогаю людям разбираться с курением. Четыре года искал способ превратить важные ответы на привычные мысли о сигарете в музыку, которую хочется слушать снова.</p>
-
     </div>
    </div>
    <div class="credibility-stats" aria-label="Опыт работы и вложения автора в проект">
@@ -2131,83 +2177,9 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
 
 
   </div></section>
-  <section class="audio-loop-section section typographic-chain" id="audio-path" aria-labelledby="audio-path-title">
-   <div class="wrap">
-    <div class="audio-loop-heading">
-     <p class="kicker">Суть аудиоякорей</p>
-     <h2 id="audio-path-title">От концентрата опыта —<br><em>к новому отношению к курению.</em></h2>
-     <p>Всё главное — в понятных музыкальных фразах. К ним легче возвращаться, чем к длинной лекции.</p>
-    </div>
-    <ol class="audio-loop-steps" aria-label="Четыре этапа действия аудиоякорей">
-     <li class="audio-loop-step">
-      <span class="audio-loop-index" aria-hidden="true">01</span>
-      <div class="audio-loop-content">
-       <h3>Концентрат опыта</h3>
-       <p>Главные выводы многолетней практики — коротко и по существу.</p>
-      </div>
-     </li>
-     <li class="audio-loop-step">
-      <span class="audio-loop-index" aria-hidden="true">02</span>
-      <div class="audio-loop-content">
-       <h3>Приятное прослушивание</h3>
-       <p>Не лекция, которую нужно заставлять себя слушать, а музыка по душе.</p>
-      </div>
-     </li>
-     <li class="audio-loop-step">
-      <span class="audio-loop-index" aria-hidden="true">03</span>
-      <div class="audio-loop-content">
-       <h3>Многократное возвращение к содержанию</h3>
-       <p>Знакомые куплеты и припевы снова возвращают к важным мыслям.</p>
-      </div>
-     </li>
-     <li class="audio-loop-step audio-loop-step--result">
-      <span class="audio-loop-index" aria-hidden="true">04</span>
-      <div class="audio-loop-content">
-       <h3>Желаемое ослабление тяги</h3>
-       <p>Чтобы сигарета постепенно теряла прежнюю ценность и переставала казаться необходимой.</p>
-      </div>
-     </li>
-    </ol>
-   </div>
-  </section>
-  <section class="brain-explainer section typographic-chain" id="brain" aria-labelledby="brain-physiology-heading">
-   <div class="wrap">
-    <div class="brain-explainer-body">
-     <article class="brain-process brain-physiology" aria-labelledby="brain-physiology-heading">
-      <div class="brain-block-heading">
-       <h3 id="brain-physiology-heading">Что происходит физиологически</h3>
-      </div>
-      <ul class="brain-physiology-points">
-       <li><strong>Нейроны, которые часто работают вместе,</strong> начинают лучше «проводить» сигнал друг к другу.</li>
-       <li><strong>Связи между ними укрепляются</strong> (это называется синаптическая пластичность).</li>
-       <li><strong>Старые ненужные связи</strong> (например, «захотелось → достал сигарету») используются всё реже и постепенно слабеют. Мозг просто экономит энергию и «убирает» то, чем редко пользуются.</li>
-      </ul>
-     </article>
-     <article class="brain-process brain-background" aria-labelledby="brain-background-focus-title">
-      <div class="brain-block-heading">
-       <h3 id="brain-background-focus-title">Почему это работает даже в фоне</h3>
-      </div>
-      <p class="brain-background-lead">Мозг не всегда требует вашего полного внимания.</p>
-      <div class="brain-background-contexts" aria-label="Ситуации из текста"><span>Работа</span><span>Телевизор</span><span>Дорога</span></div>
-      <p>Если одни и те же звуки и фразы повторяются много раз, нейроны всё равно начинают связываться сильнее.</p>
-      <p>Сознание может быть занято другим (работа, телевизор, дорога), а подсознание уже прокладывает новую дорогу.</p>
-      <p>Именно поэтому мягкая мелодия + спокойные повторы работают особенно хорошо: они не раздражают и позволяют мозгу спокойно «перестраивать провода».</p>
-     </article>
-    </div>
-   </div>
-  </section>
-  <section class="freedom-vision section typographic-chain" id="freedom" aria-labelledby="freedom-title">
-   <div class="wrap">
-    <div class="freedom-vision-panel">
-     <p class="freedom-vision-kicker">Ради чего всё это</p>
-     <h2 id="freedom-title">Представьте: вы больше не бросаете курить.<br><em>Вам просто больше не хочется.</em></h2>
-     <p class="freedom-vision-scenes"><span>Кофе без перекура.</span> <span>Спокойный вечер без сигареты.</span> <span>Пачка, о которой вы забыли.</span></p>
-     <p class="freedom-vision-prose">Вы не отсчитываете минуты и не уговариваете себя потерпеть. Курение просто перестало занимать прежнее место в вашей жизни.</p>
-     <p class="freedom-vision-conclusion">Именно к такой свободе направлена программа «Аудиоякоря».</p>
-     <a class="freedom-vision-cta" href="#pricing">Выбрать комплект →</a>
-    </div>
-   </div>
-  </section>
+  
+
+
   
 
 <section class="section"><div class="wrap faq">
@@ -2256,16 +2228,20 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
     </details>
    </div>
   </div></section>
-  <section class="section predfinal-final-invitation" id="start-today" aria-labelledby="start-today-heading">
+  <section class="section predfinal-final-invitation predfinal-final-invitation--questions" id="start-today" aria-labelledby="start-today-heading">
    <div class="wrap">
-    <h2 id="start-today-heading">Ещё десять лет с сигаретой начинаются с <em>«брошу потом».</em></h2>
-    <p>Начните с прослушивания сегодня.</p>
-    <div class="predfinal-final-actions">
-     <a class="predfinal-final-invitation-cta" href="#pricing">Выбрать комплект →</a>
-     <div class="predfinal-final-contact">
-      <p class="ai-question-prompt">Есть вопрос?</p>
-      <button type="button" class="predfinal-question-cta" data-open-question data-question-location="faq">Напишите мне — разберёмся.</button>
-     </div>
+    <div class="predfinal-final-contact">
+     <h2 class="ai-question-prompt" id="start-today-heading">Остались вопросы?</h2>
+     <button type="button" class="predfinal-question-cta" data-open-question data-question-location="faq">Напишите нам — разберёмся.</button>
+    </div>
+   </div>
+  </section>
+  <section class="freedom-vision section typographic-chain" id="freedom" aria-labelledby="freedom-title">
+   <div class="wrap">
+    <div class="freedom-vision-panel">
+     <p class="freedom-vision-kicker">Ради чего всё это</p>
+     <h2 id="freedom-title">Представьте: вы больше не бросаете курить.<br><em>Вам просто больше не хочется.</em></h2>
+     <a class="freedom-vision-cta" href="#pricing">Выбрать комплект →</a>
     </div>
    </div>
   </section>
@@ -2305,7 +2281,7 @@ body.theme-dark .ai-test-hero .ai-test-group--trust .ai-test-guarantee{
   <div class="predfinal-sheet-content">
    <button type="button" class="predfinal-sheet-close" data-sheet-close aria-label="Закрыть окно">×</button>
    <p class="predfinal-sheet-eyebrow">Вопрос об аудиоякорях</p>
-   <h2 id="predfinal-question-heading">Напишите мне, разберёмся.</h2>
+   <h2 id="predfinal-question-heading">Напишите нам — разберёмся.</h2>
    <p class="predfinal-sheet-caption">Оставьте вопрос и контакт, по которому вам удобно получить ответ.</p>
    <form id="predfinal-question-form" novalidate>
     <label class="predfinal-sheet-field" for="predfinal-question-contact">Телефон или электронная почта</label>
