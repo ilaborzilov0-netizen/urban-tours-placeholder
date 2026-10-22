@@ -143,20 +143,23 @@
   const first=root.querySelector('.opt-line:nth-child(1)');
   const second=root.querySelector('.opt-line:nth-child(2)');
   if(!first||!second)return;
+  // Measure AFTER applying CSS minima (including hero CTA and review).
   const viewport=Math.max(1,window.visualViewport?.height||window.innerHeight);
-  const firstBottom=first.getBoundingClientRect().bottom+window.scrollY;
-  const secondTop=second.getBoundingClientRect().top+window.scrollY;
-  // Do not push the first track below the fold on short devices.
-  const room=Math.max(0,viewport-firstBottom-8);
-  const desired=Math.max(0,viewport+8-secondTop);
-  const extra=Math.floor(Math.min(room,desired,290));
-  if(extra<5)return;
-  const heading=26+Math.round(extra*.32);
-  const offer=24+Math.round(extra*.35);
-  const demo=18+extra-(heading-26)-(offer-24);
-  hero.style.setProperty('--fold-heading-gap',heading+'px');
-  hero.style.setProperty('--fold-offer-gap',offer+'px');
-  hero.style.setProperty('--fold-demo-gap',demo+'px');
+  const firstBottom=first.getBoundingClientRect().bottom;
+  const secondTop=second.getBoundingClientRect().top;
+  // Never let the first sample disappear below the fold.
+  const capacity=Math.max(0,viewport-firstBottom-9);
+  // The next row should start immediately below the fold, without splitting the card.
+  const required=Math.max(0,viewport+1-secondTop);
+  const extra=Math.floor(Math.min(capacity,required,290));
+  if(extra<3)return;
+  const baseHeading=16,baseOffer=13,baseDemo=10;
+  const headingAdd=Math.round(extra*.32);
+  const offerAdd=Math.round(extra*.33);
+  const demoAdd=extra-headingAdd-offerAdd;
+  hero.style.setProperty('--fold-heading-gap',baseHeading+headingAdd+'px');
+  hero.style.setProperty('--fold-offer-gap',baseOffer+offerAdd+'px');
+  hero.style.setProperty('--fold-demo-gap',baseDemo+demoAdd+'px');
  }
  window.addEventListener('resize',scheduleFoldAlignment,{passive:true});
  window.addEventListener('orientationchange',scheduleFoldAlignment,{passive:true});
