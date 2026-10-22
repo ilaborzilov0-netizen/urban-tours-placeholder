@@ -1,7 +1,8 @@
 /* /ai/оптимайз/: production candidate — compact three-row demo player. */
 (()=>{'use strict';
  const root=document.getElementById('opt-demo');
- if(!root)return;
+ const tail=document.getElementById('opt-demo-tail');
+ if(!root||!tail)return;
  const tracks=[
   {id:'author',name:'Под гитару',duration:37.6,src:'https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/ed83f511-977e-4fe7-840c-e8ff1222c3a2.mp3'},
   {id:'estrada',name:'Душевная эстрада',duration:34.12,src:'https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/40afffa9-c314-45d7-9052-15ecd65cc48c.mp3'},
@@ -30,7 +31,10 @@
  }
  function render(){
   root.innerHTML='<div class="opt-overline"><strong>Послушайте, как звучат аудиоякоря</strong><span>3 коротких фрагмента на выбор</span></div>'
-   +'<div class="opt-lines">'+tracks.map(item).join('')+'</div>'
+   +'<div class="opt-lines">'+item(tracks[0])+'</div>'
+   +'<p class="opt-error" role="status"'+(errorText?'':' hidden')+'>'+errorText+'</p>';
+  tail.innerHTML='<div class="opt-tail-heading">Послушайте ещё два звучания</div>'
+   +'<div class="opt-lines">'+tracks.slice(1).map(item).join('')+'</div>'
    +'<p class="opt-tip">Нажмите ▶ для прослушивания. Отметьте ♥ то, что понравилось.</p>'
    +'<p class="opt-error" role="status"'+(errorText?'':' hidden')+'>'+errorText+'</p>';
   progress();
@@ -38,9 +42,9 @@
  function progress(){
   tracks.forEach(t=>{
    const value=active===t.id?Math.min(100,100*(audio.currentTime||0)/t.duration):finished.has(t.id)?100:0;
-   const bar=root.querySelector('[data-progress="'+t.id+'"]');
+   const bar=document.querySelector('[data-progress="'+t.id+'"]');
    if(bar){bar.setAttribute('aria-valuenow',String(Math.round(value)));bar.querySelector('i').style.width=value.toFixed(1)+'%'}
-   const status=root.querySelector('[data-status="'+t.id+'"]');
+   const status=document.querySelector('[data-status="'+t.id+'"]');
    if(status&&active===t.id){
     status.textContent=playing?'Играет · '+fmt(audio.currentTime)+' / '+fmt(t.duration)
       :audio.currentTime>0&&!audio.ended?'Пауза · '+fmt(audio.currentTime)+' / '+fmt(t.duration)
@@ -49,21 +53,20 @@
   });
  }
  function updatePlayState(){
-  root.querySelectorAll('[data-opt-play]').forEach(b=>{
+  document.querySelectorAll('[data-opt-play]').forEach(b=>{
    const id=b.dataset.optPlay,on=playing&&active===id;
    b.querySelector('span').textContent=on?'Ⅱ':'▶';
    b.setAttribute('aria-label',(on?'Пауза: ':'Слушать: ')+music[id].name);
    b.setAttribute('aria-pressed',String(on));
   });
-  root.querySelectorAll('.opt-line').forEach(r=>r.classList.toggle('is-active',r.dataset.demoStyle===active));
+  document.querySelectorAll('.opt-line').forEach(r=>r.classList.toggle('is-active',r.dataset.demoStyle===active));
   progress();
  }
  function toggle(id){
   if(!music[id])return;
   const thisRequest=++request;
   errorText='';
-  const error=root.querySelector('.opt-error');
-  if(error){error.hidden=true;error.textContent=''}
+  document.querySelectorAll('.opt-error').forEach(error=>{error.hidden=true;error.textContent=''});
   if(active===id&&playing){
    playing=false;
    audio.pause();
@@ -98,7 +101,7 @@
    if(saved.has(id))saved.delete(id);else saved.add(id);
    try{sessionStorage.setItem(likedKey,JSON.stringify([...saved]))}catch(_){}
   }
-  const b=root.querySelector('[data-opt-like="'+id+'"]'),yes=likes().has(id);
+  const b=document.querySelector('[data-opt-like="'+id+'"]'),yes=likes().has(id);
   if(b){
    b.classList.toggle('is-liked',yes);
    b.setAttribute('aria-pressed',String(yes));
@@ -106,12 +109,12 @@
    b.querySelector('span').textContent=yes?'♥':'♡';
   }
  }
- root.addEventListener('click',e=>{
+ [root,tail].forEach(surface=>surface.addEventListener('click',e=>{
   const b=e.target.closest('button');
   if(!b)return;
   if(b.dataset.optPlay)toggle(b.dataset.optPlay);
   else if(b.dataset.optLike)toggleLike(b.dataset.optLike);
- });
+ }));
  audio.addEventListener('timeupdate',progress);
  audio.addEventListener('ended',()=>{
   if(active)finished.add(active);
