@@ -603,17 +603,7 @@ body.theme-dark .ai-test-hero #opt-demo .opt-lines{
   padding:10px 9px 8px!important;
  }
 }
-@media(max-width:780px) and (max-height:680px){
- body.theme-dark.vision-mode .hero.ai-test-hero{
-  padding-top:12px!important;
- }
- body.theme-dark .ai-test-hero .ai-test-audience{
-  margin-bottom:6px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero h1{
-  margin-bottom:9px!important;
- }
-}
+
 
 
 /* Hero conversion CTA, October 22: standalone purchase path before any audio. */
@@ -709,20 +699,7 @@ body.theme-dark .ai-test-hero .hero-review-author{
   margin-top:var(--fold-demo-gap,10px)!important;
  }
 }
-@media(max-width:780px) and (max-height:700px){
- body.theme-dark .ai-test-hero .ai-test-audience{
-  margin-bottom:6px!important;
- }
- body.theme-dark .ai-test-hero .hero-action{
-  gap:5px!important;
- }
- body.theme-dark .ai-test-hero .hero-buy-cta{
-  min-height:49px!important;
- }
- body.theme-dark .ai-test-hero .hero-review-snippet{
-  font-size:12px!important;
- }
-}
+
 @media(prefers-reduced-motion:reduce){
  body.theme-dark .ai-test-hero .hero-buy-cta{
   transition:none!important;
@@ -832,14 +809,7 @@ body.theme-dark .ai-test-hero .ai-test-group--heading{
     font-size:clamp(19px,6.1vw,23px)!important;
   }
 }
-@media(max-width:780px) and (max-height:720px){
-  body.theme-dark .ai-test-hero .ai-test-explanation{
-    gap:9px!important;margin-top:12px!important;
-  }
-  body.theme-dark .ai-test-hero .ai-test-explanation p{
-    font-size:15px!important;line-height:1.43!important;
-  }
-}
+
 
 
 /* 2026-10-22: Shift space released by removing the two offer lines
@@ -864,17 +834,7 @@ body.theme-dark .ai-test-hero .ai-test-group--heading{
   margin-top:var(--fold-demo-gap,12px)!important;
  }
 }
-@media(max-width:780px) and (max-height:720px){
- body.theme-dark.vision-mode .hero.ai-test-hero{
-  padding-top:var(--fold-top-space,33px)!important;
- }
- body.theme-dark .ai-test-hero .ai-test-group--heading{
-  margin-bottom:var(--fold-heading-gap,12px)!important;
- }
- body.theme-dark .hero.ai-test-hero #opt-demo{
-  margin-top:var(--fold-demo-gap,8px)!important;
- }
-}
+
 
 
 /* Direct transition: albums -> tariff cards, no separate pricing headline. */
@@ -952,15 +912,7 @@ body.theme-dark .ai-test-hero .ai-test-explanation p{
   line-height:1.57!important;
  }
 }
-@media(max-width:780px) and (max-height:720px){
- body.theme-dark .ai-test-hero .hero-priority--highlight{
-  margin-top:15px!important;
-  font-size:18px!important;
- }
- body.theme-dark .ai-test-hero .ai-test-explanation{
-  margin-top:28px!important;
- }
-}
+
 
 
 /* 2026-10-22: one complete 3-track mobile hero, balanced top whitespace.
@@ -1133,42 +1085,9 @@ body.theme-dark .ai-test-hero .opt-tip{display:none!important}
  body.theme-dark .ai-test-hero .ai-test-explanation{
   margin-top:36px!important;
  }
- /* JS uses this only when viewport is unusually short. */
- body.theme-dark.vision-mode .hero.ai-test-hero.hero-compact-height
- .ai-test-group--heading{
-  margin-bottom:9px!important;
- }
- body.theme-dark .hero.ai-test-hero.hero-compact-height
- .hero-priority--highlight{
-  margin-top:10px!important;
- }
- body.theme-dark .hero.ai-test-hero.hero-compact-height
- .opt-demo{
-  padding:9px 9px 9px!important;
-  margin-top:8px!important;
- }
- body.theme-dark .hero.ai-test-hero.hero-compact-height
- .opt-overline{
-  margin-bottom:6px!important;
- }
- body.theme-dark .hero.ai-test-hero.hero-compact-height
- .opt-line{
-  padding-top:5px!important;
-  padding-bottom:4px!important;
- }
- body.theme-dark .hero.ai-test-hero.hero-compact-height
- .opt-lines{
-  gap:4px!important;
- }
+
 }
-@media(max-width:780px) and (max-height:680px){
- body.theme-dark.vision-mode .hero.ai-test-hero{
-  padding-top:var(--hero-fit-top,26px)!important;
- }
- body.theme-dark .ai-test-hero .hero-buy-cta{
-  min-height:48px!important;
- }
-}
+
 
 
 /* ===============================================================
@@ -1292,7 +1211,6 @@ body.theme-dark .ai-after-demo .ai-test-look-at-tiers a{
   flex-direction:column!important;
   align-items:stretch!important;
   min-height:100svh!important;
-  min-height:100dvh!important;
   height:auto!important;
   padding:clamp(36px,7svh,88px) 0 14px!important;
  }
@@ -1328,38 +1246,8 @@ body.theme-dark .ai-after-demo .ai-test-look-at-tiers a{
 }
 
 /* Short mobile screens: keep play and heart touch targets 44px. */
-@media(max-width:780px) and (max-height:720px){
- body.theme-dark.vision-mode .hero.ai-test-hero{
-  padding-top:clamp(13px,4svh,28px)!important;
-  padding-bottom:9px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero .ai-test-group--heading{
-  margin-bottom:8px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero .hero-priority--highlight{
-  margin-top:11px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero #opt-demo{
-  margin-top:auto!important;
- }
-}
-@media(max-width:780px) and (max-height:610px){
- body.theme-dark.vision-mode .hero.ai-test-hero{
-  padding-top:12px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero .hero-buy-cta{
-  min-height:44px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero .opt-overline{
-  margin-bottom:5px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero .opt-lines{
-  gap:3px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero .opt-line{
-  padding:4px 6px!important;
- }
-}
+
+
 
 
 /* 2026-10-22: Album area begins with the FIRST COVER, no intro block.
@@ -1400,7 +1288,6 @@ body.theme-dark .album-showcase .album-display--one{
   align-items:stretch!important;
   height:auto!important;
   min-height:calc(100svh - 43px)!important;
-  min-height:calc(100dvh - 43px)!important;
   padding:clamp(38px,7svh,79px) 0 13px!important;
  }
  body.theme-dark.vision-mode .hero.ai-test-hero>.hero-copy{
@@ -1476,44 +1363,8 @@ body.theme-dark .album-showcase .album-display--one{
   margin-top:0!important;
  }
 }
-@media(max-width:780px) and (max-height:720px){
- body.theme-dark.vision-mode .hero.ai-test-hero{
-  padding:clamp(12px,3svh,27px) 0 9px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero .hero-priority--highlight{
-  margin-top:12px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-main{
-  font-size:clamp(35px,11vw,45px)!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero h1 .ai-test-title-rest{
-  font-size:clamp(21px,6.7vw,27px)!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero .hero-buy-cta{
-  min-height:49px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero #opt-demo{
-  padding:10px 10px 9px!important;
- }
-}
-@media(max-width:780px) and (max-height:620px){
- body.theme-dark.vision-mode .hero.ai-test-hero{
-  padding-top:10px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero .hero-priority--highlight{
-  margin-top:7px!important;
-  font-size:17px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero .hero-action{
-  gap:5px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero .hero-buy-cta{
-  min-height:44px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero .opt-overline{
-  margin-bottom:4px!important;
- }
-}
+
+
 /* Desktop: modest separation; no enforced viewport height. */
 @media(min-width:781px){
  body.theme-dark.vision-mode .hero.ai-test-hero .hero-copy{
@@ -1593,11 +1444,10 @@ body.theme-dark.vision-mode .hero.ai-test-hero .hero-review-author{
 }
 
 @media(max-width:780px){
- /* Keep the 100dvh - 43px fold established earlier, so the bottom
+ /* Keep the 100svh - 43px fold established earlier, so the bottom
     of the demo and the thin album-cover peek remain at their positions. */
  body.theme-dark.vision-mode .hero.ai-test-hero{
   min-height:calc(100svh - 43px)!important;
-  min-height:calc(100dvh - 43px)!important;
   padding:clamp(56px,9svh,89px) 0 13px!important;
  }
  /* Reallocate free space: more breathing room above the headline and
@@ -1669,38 +1519,8 @@ body.theme-dark.vision-mode .hero.ai-test-hero .hero-review-author{
  }
 }
 /* Tight screens: shorten spaces, not buttons or the 44px heart targets. */
-@media(max-width:780px) and (max-height:720px){
- body.theme-dark.vision-mode .hero.ai-test-hero{
-  padding:clamp(20px,4.5svh,40px) 0 9px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero .hero-action{
-  margin:auto 0 19px!important;
-  gap:7px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero .hero-priority--highlight{
-  margin-top:13px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero .hero-buy-cta{
-  min-height:49px!important;
- }
-}
-@media(max-width:780px) and (max-height:610px){
- body.theme-dark.vision-mode .hero.ai-test-hero{
-  padding-top:11px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero .hero-action{
-  margin:auto 0 10px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero .hero-priority--highlight{
-  margin-top:7px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero .hero-review-snippet{
-  font-size:14px!important;
- }
- body.theme-dark.vision-mode .hero.ai-test-hero .hero-buy-cta{
-  min-height:44px!important;
- }
-}
+
+
 
 
 /* 2026-10-22 /ai/оптимайз/: a single START here in the audio previews.
@@ -1749,7 +1569,6 @@ body.theme-dark .ai-test-hero #opt-demo .opt-trackbar{
 @media(max-width:780px){
  body.theme-dark.vision-mode .hero.ai-test-hero{
   min-height:calc(100svh - 25px)!important;
-  min-height:calc(100dvh - 25px)!important;
  }
  body.theme-dark .album-showcase{
   padding-top:16px!important;
