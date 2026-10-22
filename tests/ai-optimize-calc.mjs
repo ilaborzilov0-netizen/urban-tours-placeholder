@@ -23,12 +23,12 @@ try {
   assert.equal(await page.locator('#calc-showcase .calc-tabs').count(),0);
   assert.equal(await page.locator('[data-calc-result]').innerText(),'73 000 ₽ за год');
   const positions=await page.evaluate(()=>{
-   const nodes=['.pricing','.copyright-under-pricing','.predfinal-pricing-contact','.ai-refund-guarantee'];
+   const nodes=['.pricing','.predfinal-pricing-contact','.ai-refund-guarantee','footer'];
    return nodes.map(s=>document.querySelector(s)?.getBoundingClientRect().top+window.scrollY??-1);
   });
   assert.ok(positions.every((x,i)=>x>=0&&(i===0||x>positions[i-1])),'Incorrect section order: '+positions);
-  assert.equal(await page.locator('.copyright-under-pricing').count(),1);
-  assert.equal(await page.locator('footer:has-text("© Аудиоякоря")').count(),0);
+  assert.equal(await page.locator('.copyright-under-pricing').count(),0);
+  assert.equal(await page.locator('footer:has-text("© Аудиоякоря")').count(),1);
   assert.equal(await page.locator('.predfinal-pricing-contact .ai-question-prompt').innerText(),'Есть вопросы?');
   assert.equal(await page.locator('.predfinal-pricing-contact button').innerText(),'Напишите — разберёмся.');
   assert.equal(await page.locator('#calc-showcase [data-calc-input]').count(),2);
@@ -54,7 +54,7 @@ try {
   assert.deepEqual(errors,[],'JavaScript errors: '+errors);
   await page.close();
  }
- console.log('PASS: approved calculator 04 only; working savings, controls, tariff order -> copyright -> questions -> guarantee, contact dialog, mobile 320/375/390, no real payment.');
+ console.log('PASS: approved calculator 04 only; working savings, controls, tariffs -> questions -> guarantee -> copyright in footer, contact dialog, mobile 320/375/390, no real payment.');
 } finally {
  await browser?.close();
  server.kill('SIGTERM');
