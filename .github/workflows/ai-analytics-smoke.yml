@@ -47,23 +47,23 @@ jobs:
           for attempt in range(1,9):
               try:
                   s,html=get('/ai/?check=ai-analytics-20261020')
-                  a=html.count('/ai/posthog-init.js?v=20261020-prod1')==1
-                  b=html.count('/analytics.js?v=20261020-clarity-ai1')==1
+                  a=html.count('/ai/posthog-init.js?v=20261022-replay-on1')==1
+                  b=html.count('/analytics.js?v=20261022-new-views-v1')==1
                   c='player-progress.js?v=20261021-percent-no-seek-v1' in html and 'checkout.js?v=20261020-errorcode-v11' in html
                   d='https://www.googletagmanager.com/gtag/js?id=G-J076WS14NV' in html
                   e="gtag('config','G-J076WS14NV'" in html
-                  f='/ai/goal-tracking.js?v=20261020-semantic-v2' in html
+                  f='/ai/goal-tracking.js?v=20261022-new-player-v1' in html
                   if a and b and c and d and e and f:
-                      _,goals=get('/ai/goal-tracking.js?v=20261020-semantic-v2')
-                      _,posthog=get('/ai/posthog-init.js?v=20261020-prod1')
-                      _,clarity=get('/analytics.js?v=20261020-clarity-ai1')
+                      _,goals=get('/ai/goal-tracking.js?v=20261022-new-player-v1')
+                      _,posthog=get('/ai/posthog-init.js?v=20261022-replay-on1')
+                      _,clarity=get('/analytics.js?v=20261022-new-views-v1')
                       _,offer=get('/ai/player-progress.js?v=20261021-percent-no-seek-v1')
                       _,checkout=get('/predfinal/checkout.js?v=20261020-errorcode-v11')
                       if all([
                           'https://eu.i.posthog.com' in posthog,
                           'ai_checkout_genre_' in goals,
                           'ai_guitar_50' in goals,
-                          'disable_session_recording:true' in posthog,
+                          'disable_session_recording:false' in posthog,
                           'xpsxeyxojq' in clarity,
                           'posthog?.capture?' in offer,
                           'posthog?.capture?' in checkout,
