@@ -1736,3 +1736,11 @@ body.theme-dark .predfinal-final-invitation--questions .predfinal-final-contact 
  font-weight:700!important;
  line-height:1.3!important;
 }
+
+/* 2026-10-22: The four-step overview is screen two, immediately after hero.
+   Its subtly greener surface should peek below the first mobile fold
+   without changing hero sizing or the section's inner layout. */
+body.theme-dark .audio-loop-section#audio-path{
+ background:linear-gradient(180deg,#1b291e 0%,#19251c 100%)!important;
+ border-top:1px solid #485f45!important;
+}
