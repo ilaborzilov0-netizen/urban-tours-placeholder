@@ -50,6 +50,31 @@ jobs:
             time.sleep(6)
           else:raise RuntimeError('classic new live release not verified')
           PY
+      - name: Read-only live payment health and safe invalid-email plan validation
+        run: |
+          python3 - <<'PY'
+          import urllib.request,urllib.error,json
+          base='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net'
+          with urllib.request.urlopen(base+'/health',timeout=22) as response:
+            body=json.load(response)
+            assert response.status==200
+          assert body.get('ok') is True
+          assert body.get('tariffs',{}).get('ai_album')==99000
+          assert body.get('terminalConfigured') is True
+          assert body.get('testMode') is False
+          assert any('marafon-metod.ru' in x for x in body.get('corsAllowedOrigins',[]))
+          print('LIVE_PAYMENT_PLAN_READONLY_PASS','ai_album=99000','testMode=false','terminalReady=true',flush=True)
+          payload={'plan':'ai_album','email':'','source':'classic-990-safe-check'}
+          req=urllib.request.Request(base+'/api/payment/create',data=json.dumps(payload).encode(),
+            method='POST',headers={'Content-Type':'application/json','Origin':'https://marafon-metod.ru'})
+          try:
+            urllib.request.urlopen(req,timeout=22)
+            raise RuntimeError('Invalid input unexpectedly created an order')
+          except urllib.error.HTTPError as error:
+            response=json.load(error)
+            assert error.code==400 and response.get('code')=='INVALID_CUSTOMER',response.get('code')
+            print('LIVE_AI_ALBUM_ROUTE_ACCEPTS_TARIFF','rejected empty email before order creation',flush=True)
+          PY
   browser:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
