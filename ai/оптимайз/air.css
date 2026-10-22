@@ -875,3 +875,23 @@ body.theme-dark .ai-test-hero .ai-test-group--heading{
   margin-top:var(--fold-demo-gap,8px)!important;
  }
 }
+
+
+/* Direct transition: albums -> tariff cards, no separate pricing headline. */
+body.theme-dark .album-showcase{
+ padding-bottom:clamp(28px,3vw,44px)!important;
+}
+body.theme-dark .prefinal-pricing-section{
+ padding-top:clamp(25px,3vw,39px)!important;
+}
+body.theme-dark .prefinal-pricing-section .pricing{
+ margin-top:0!important;
+}
+@media(max-width:780px){
+ body.theme-dark .album-showcase{
+  padding-bottom:19px!important;
+ }
+ body.theme-dark .prefinal-pricing-section{
+  padding-top:17px!important;
+ }
+}
