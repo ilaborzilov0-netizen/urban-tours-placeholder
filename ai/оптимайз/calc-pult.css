@@ -2,7 +2,7 @@
 body.theme-dark .calc-showcase,
 body.theme-dark .calc-showcase *{box-sizing:border-box}
 body.theme-dark .calc-showcase{
- background:#101713;
+ background:#121b15;
  border:0;
  padding:clamp(35px,5vw,60px) 0 clamp(42px,6vw,68px);
  color:#eef6e9;
