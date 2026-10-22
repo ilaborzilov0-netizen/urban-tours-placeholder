@@ -72,7 +72,14 @@ try {
   await contact.click();
   await page.waitForTimeout(80);
   assert.equal(await page.locator('#predfinal-question-dialog').evaluate(el=>el.open),true,'Question dialog should open');
-  assert.equal(await page.locator('#predfinal-question-heading').innerText(),'Напишите — разберёмся.');
+  assert.equal(await page.locator('#predfinal-question-heading').innerText(),'Напишите нам — разберёмся.');
+  assert.equal(await page.locator('#start-today .predfinal-final-invitation-cta').count(),0,'Old CTA should be gone');
+  assert.equal(await page.locator('#start-today h2').innerText(),'Остались вопросы?');
+  assert.equal(await page.locator('#start-today [data-open-question]').innerText(),'Напишите нам — разберёмся.');
+  assert.ok(!(await page.locator('#start-today').innerText()).includes('Ещё десять лет'),'Old motivational block still visible');
+  await page.locator('#predfinal-question-dialog [data-sheet-close]').click();
+  await page.locator('#start-today [data-open-question]').click();
+  assert.equal(await page.locator('#predfinal-question-dialog').evaluate(el=>el.open),true,'Final question button must open the question form');
   assert.deepEqual(errors,[],'JavaScript errors: '+errors);
   await page.close();
  }
