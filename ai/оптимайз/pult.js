@@ -16,7 +16,13 @@
  function likes(){
   try{const v=JSON.parse(sessionStorage.getItem(likedKey)||'[]');return new Set(Array.isArray(v)?v:[])}catch(_){return new Set()}
  }
- function fmt(n){const t=Math.max(0,Math.floor(n));return Math.floor(t/60)+':'+String(t%60).padStart(2,'0')}
+ function listenedPercent(t){
+  if(active===t.id){
+   const value=Math.round(100*Math.max(0,Math.min(audio.currentTime||0,t.duration))/t.duration);
+   return audio.ended?100:value;
+  }
+  return finished.has(t.id)?100:0;
+ }
  function playLabel(t){return active===t.id&&playing?'Пауза: '+t.name:'Слушать: '+t.name}
  function item(t){
   const isActive=active===t.id;
@@ -24,7 +30,7 @@
   return '<div class="opt-line'+(isActive?' is-active':'')+'" data-demo-style="'+t.id+'">'
    +'<button class="opt-round" type="button" data-opt-play="'+t.id+'" aria-label="'+playLabel(t)+'" aria-pressed="'+(isActive&&playing)+'"><span aria-hidden="true">'+(isActive&&playing?'Ⅱ':'▶')+'</span></button>'
    +'<div class="opt-line-text"><strong>'+t.name+'</strong>'
-   +'<span class="opt-line-caption" data-status="'+t.id+'">'+(isActive&&playing?'Сейчас играет':finished.has(t.id)?'Прослушано · '+Math.round(t.duration)+' сек.': 'Фрагмент · '+Math.round(t.duration)+' сек.')+'</span></div>'
+   +'<span class="opt-line-caption" data-status="'+t.id+'">'+(finished.has(t.id)?'Прослушано · 100%':'Прослушано · '+listenedPercent(t)+'%')+'</span></div>'
    +'<button class="opt-like'+(isLiked?' is-liked':'')+'" type="button" data-opt-like="'+t.id+'" aria-pressed="'+isLiked+'" aria-label="'+(isLiked?'Убрать отметку «Нравится»: ':'Нравится звучание: ')+t.name+'"><svg class="opt-heart-icon" xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"/></svg></button>'
    +'<div class="opt-trackbar" role="progressbar" aria-label="Прослушано: '+t.name+'" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-progress="'+t.id+'"><i></i></div>'
    +'</div>';
@@ -38,14 +44,13 @@
  }
  function progress(){
   tracks.forEach(t=>{
-   const value=active===t.id?Math.min(100,100*(audio.currentTime||0)/t.duration):finished.has(t.id)?100:0;
+   const value=listenedPercent(t);
    const bar=root.querySelector('[data-progress="'+t.id+'"]');
    if(bar){bar.setAttribute('aria-valuenow',String(Math.round(value)));bar.querySelector('i').style.width=value.toFixed(1)+'%'}
    const status=root.querySelector('[data-status="'+t.id+'"]');
-   if(status&&active===t.id){
-    status.textContent=playing?'Играет · '+fmt(audio.currentTime)+' / '+fmt(t.duration)
-      :audio.currentTime>0&&!audio.ended?'Пауза · '+fmt(audio.currentTime)+' / '+fmt(t.duration)
-      :finished.has(t.id)?'Прослушано · '+Math.round(t.duration)+' сек.':'Фрагмент · '+Math.round(t.duration)+' сек.';
+   if(status){
+    const prefix=active===t.id&&playing?'Играет':active===t.id&&audio.currentTime>0&&!audio.ended?'Пауза':'Прослушано';
+    status.textContent=prefix+' · '+value+'%';
    }
   });
  }
@@ -72,6 +77,7 @@
   }
   if(active!==id||audio.ended){
    audio.pause();
+   finished.delete(id);
    active=id;
    audio.src=music[id].src;
    audio.load();
