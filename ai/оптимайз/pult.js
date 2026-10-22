@@ -1,132 +1,130 @@
-/* Five first-screen demo-player concepts for /ai/оптимайз/ only. */
-(function () {
- 'use strict';
+/* /ai/оптимайз/: production candidate — compact three-row demo player. */
+(()=>{'use strict';
  const root=document.getElementById('opt-demo');
  if(!root)return;
- const tracks={
-  author:{name:'Под гитару',short:'Гитара',duration:38,src:'https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/ed83f511-977e-4fe7-840c-e8ff1222c3a2.mp3'},
-  estrada:{name:'Душевная эстрада',short:'Эстрада',duration:34,src:'https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/40afffa9-c314-45d7-9052-15ecd65cc48c.mp3'},
-  modern:{name:'Современное звучание',short:'Современное',duration:33,src:'https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/2c4c9344-789f-442a-9311-ad9daf6211a2.mp3'}
- };
- const ids=Object.keys(tracks);
- const concepts=['Три строки','Один плеер','Три кнопки','Радиопульт','Мини-плейлист'];
- const uiVotesKey='opt_ui_votes';
- function uiVotes(){try{const x=JSON.parse(sessionStorage.getItem(uiVotesKey)||'[]');return new Set(Array.isArray(x)?x:[]);}catch(_){return new Set();}}
- const urlMode=Number(new URLSearchParams(location.search).get('v'));
- let mode=urlMode>=1&&urlMode<=5?urlMode:1;
- let current='author',playing=false,ended=false;
+ const tracks=[
+  {id:'author',name:'Под гитару',duration:37.6,src:'https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/ed83f511-977e-4fe7-840c-e8ff1222c3a2.mp3'},
+  {id:'estrada',name:'Душевная эстрада',duration:34.12,src:'https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/40afffa9-c314-45d7-9052-15ecd65cc48c.mp3'},
+  {id:'modern',name:'Современное звучание',duration:32.94,src:'https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/2c4c9344-789f-442a-9311-ad9daf6211a2.mp3'}
+ ];
+ const music=Object.fromEntries(tracks.map(t=>[t.id,t]));
  const audio=new Audio();
  audio.preload='none';
- const storageKey='predfinal_liked_genres';
- function favorites(){
-  try{const a=JSON.parse(sessionStorage.getItem(storageKey)||'[]');return new Set(Array.isArray(a)?a:[]);}catch(_){return new Set();}
+ let active=null,playing=false,finished=new Set(),request=0,errorText='';
+ const likedKey='predfinal_liked_genres';
+ function likes(){
+  try{const v=JSON.parse(sessionStorage.getItem(likedKey)||'[]');return new Set(Array.isArray(v)?v:[])}catch(_){return new Set()}
  }
- function liked(id){return favorites().has(id);}
- function likeButton(id,compact){
-  return '<button type="button" class="opt-like'+(liked(id)?' is-liked':'')+'" data-opt-like="'+id+'" aria-pressed="'+liked(id)+'" aria-label="'+(liked(id)?'Убрать отметку «Нравится»: ':'Мне нравится: ')+tracks[id].name+'" title="Мне нравится">'+(compact?'♥':('<span aria-hidden="true">♥</span><span>Нравится</span>'))+'</button>';
- }
- function playButton(id,cls,label){
-  return '<button type="button" class="'+cls+'" data-opt-play="'+id+'" aria-label="'+(playing&&current===id?'Пауза':'Воспроизвести')+': '+tracks[id].name+'"><span aria-hidden="true">'+(playing&&current===id?'Ⅱ':'▶')+'</span>'+(label?'<span>'+label+'</span>':'')+'</button>';
- }
- function line(id,i){
-  return '<div class="opt-line'+(current===id?' is-active':'')+'">'
-   +playButton(id,'opt-round','')
-   +'<div class="opt-line-text"><strong>'+tracks[id].name+'</strong><small>'+tracks[id].duration+' сек. · демо</small></div>'
-   +likeButton(id,true)
-   +'<div class="opt-trackbar"><i data-opt-bar="'+id+'"></i></div>'
+ function fmt(n){const t=Math.max(0,Math.floor(n));return Math.floor(t/60)+':'+String(t%60).padStart(2,'0')}
+ function playLabel(t){return active===t.id&&playing?'Пауза: '+t.name:'Слушать: '+t.name}
+ function item(t){
+  const isActive=active===t.id;
+  const isLiked=likes().has(t.id);
+  return '<div class="opt-line'+(isActive?' is-active':'')+'" data-demo-style="'+t.id+'">'
+   +'<button class="opt-round" type="button" data-opt-play="'+t.id+'" aria-label="'+playLabel(t)+'" aria-pressed="'+(isActive&&playing)+'"><span aria-hidden="true">'+(isActive&&playing?'Ⅱ':'▶')+'</span></button>'
+   +'<div class="opt-line-text"><strong>'+t.name+'</strong>'
+   +'<span class="opt-line-caption" data-status="'+t.id+'">'+(isActive&&playing?'Сейчас играет':finished.has(t.id)?'Прослушано · '+Math.round(t.duration)+' сек.': 'Фрагмент · '+Math.round(t.duration)+' сек.')+'</span></div>'
+   +'<button class="opt-like'+(isLiked?' is-liked':'')+'" type="button" data-opt-like="'+t.id+'" aria-pressed="'+isLiked+'" aria-label="'+(isLiked?'Убрать отметку «Нравится»: ':'Нравится звучание: ')+t.name+'"><span aria-hidden="true">'+(isLiked?'♥':'♡')+'</span><span>Нравится</span></button>'
+   +'<div class="opt-trackbar" role="progressbar" aria-label="Прослушано: '+t.name+'" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-progress="'+t.id+'"><i></i></div>'
    +'</div>';
  }
- function tab(id){return '<button type="button" data-opt-choose="'+id+'" class="opt-tab'+(current===id?' is-active':'')+'" aria-pressed="'+(current===id)+'">'+tracks[id].short+'</button>';}
- function transport(){
-  return '<div class="opt-transport">'+playButton(current,'opt-primary',(playing?'Пауза':'Слушать · '+tracks[current].duration+' сек.'))
-   +likeButton(current,false)+'</div><div class="opt-time"><span data-opt-status>Демо без перемотки</span><span data-opt-clock>0:'+String(tracks[current].duration).padStart(2,'0')+'</span></div>'
-   +'<div class="opt-mainbar"><i data-opt-bar="'+current+'"></i></div>';
- }
  function render(){
-  root.dataset.mode=String(mode);
-  const buttons=concepts.map((c,i)=>'<button type="button" data-opt-mode="'+(i+1)+'" aria-pressed="'+(mode===i+1)+'" aria-label="Вариант '+(i+1)+': '+c+'">'+(i+1)+'</button>').join('');
-  let content='';
-  if(mode===1){
-   content='<div class="opt-lines">'+ids.map(line).join('')+'</div>';
-  }else if(mode===2){
-   content='<div class="opt-tabs">'+ids.map(tab).join('')+'</div>'+transport();
-  }else if(mode===3){
-   content='<div class="opt-tiles">'+ids.map(id=>'<div class="opt-tile'+(current===id?' is-active':'')+'">'
-    +playButton(id,'opt-round','')+'<strong>'+tracks[id].short+'</strong>'+likeButton(id,true)
-    +'<div class="opt-trackbar"><i data-opt-bar="'+id+'"></i></div></div>').join('')+'</div>';
-  }else if(mode===4){
-   content='<div class="opt-radio">'+ids.map((id,i)=>'<button type="button" data-opt-choose="'+id+'" class="opt-radio-choice'+(current===id?' is-active':'')+'" aria-pressed="'+(current===id)+'"><span class="opt-dial">'+(i+1)+'</span><span>'+tracks[id].name+'</span><span class="opt-choice-arrow">›</span></button>').join('')+'</div>'+transport();
-  }else{
-   content='<div class="opt-playlist">'+ids.map((id,i)=>'<div class="opt-playitem'+(current===id?' is-active':'')+'"><span class="opt-playitem-n">'+(i+1)+'.</span>'+playButton(id,'opt-tiny-play','')
-    +'<strong>'+tracks[id].name+'</strong>'+likeButton(id,true)+'</div>').join('')+'</div>'
-    +'<div class="opt-dock"><div><span>Сейчас выбрано</span><strong>'+tracks[current].name+'</strong></div>'+playButton(current,'opt-dock-play','')+'</div>'
-    +'<div class="opt-mainbar"><i data-opt-bar="'+current+'"></i></div>';
-  }
-  root.innerHTML='<div class="opt-overline"><strong>Послушайте, как звучат аудиоякоря</strong><span>3 фрагмента по 30–40 сек.</span></div>'
-  +'<div class="opt-concept"><span>Вариант пульта: <b>'+concepts[mode-1]+'</b></span><div class="opt-switch" aria-label="Пять вариантов оформления">'+buttons+'</div></div>'
-  +'<div class="opt-content">'+content+'</div>'
-  +'<div class="opt-footer"><p class="opt-tip">▶ Послушать · ♥ Отметить любимое звучание</p>'
-  +'<button type="button" class="opt-vote'+(uiVotes().has(mode)?' is-voted':'')+'" data-opt-vote="'+mode+'" aria-pressed="'+uiVotes().has(mode)+'">'+(uiVotes().has(mode)?'♥ Пульт понравился':'♡ Нравится этот пульт')+'</button></div>';
-  refresh();
+  root.innerHTML='<div class="opt-overline"><strong>Послушайте, как звучат аудиоякоря</strong><span>3 коротких фрагмента на выбор</span></div>'
+   +'<div class="opt-lines">'+tracks.map(item).join('')+'</div>'
+   +'<p class="opt-tip">Нажмите ▶ для прослушивания. Отметьте ♥ то, что понравилось.</p>'
+   +'<p class="opt-error" role="status"'+(errorText?'':' hidden')+'>'+errorText+'</p>';
+  progress();
  }
- function refresh(){
-  const elapsed=current?Math.max(0,audio.currentTime||0):0;
-  root.querySelectorAll('[data-opt-bar]').forEach(e=>{
-   const id=e.dataset.optBar;
-   const value=id===current?Math.max(0,Math.min(100,elapsed/tracks[id].duration*100)):0;
-   e.style.width=value.toFixed(1)+'%';
-  });
-  root.querySelectorAll('[data-opt-clock]').forEach(e=>{const rest=Math.max(0,Math.ceil(tracks[current].duration-elapsed));e.textContent='Осталось 0:'+String(rest).padStart(2,'0');});
-  root.querySelectorAll('[data-opt-status]').forEach(e=>{e.textContent=playing?'Сейчас играет':ended?'Фрагмент прослушан':'Без перемотки';});
- }
- function choose(id){
-  if(!tracks[id])return;
-  audio.pause(); playing=false;ended=false;current=id;
-  audio.src=tracks[id].src;audio.load();render();
- }
- function play(id){
-  if(!tracks[id])return;
-  if(id===current&&playing){audio.pause();playing=false;render();return;}
-  if(id!==current || !audio.src || ended){
-   audio.pause();current=id;audio.src=tracks[id].src;audio.load();ended=false;
-  }
-  playing=true;render();
-  const promise=audio.play();
-  if(promise&&promise.catch)promise.catch(()=>{playing=false;render();});
- }
- audio.addEventListener('timeupdate',refresh);
- audio.addEventListener('ended',()=>{playing=false;ended=true;render();});
- audio.addEventListener('pause',()=>{if(audio.paused&&!audio.ended&&playing){playing=false;render();}});
- audio.addEventListener('play',()=>{if(!playing){playing=true;render();}});
- root.addEventListener('click',e=>{
-  const button=e.target.closest('button');
-  if(!button)return;
-  if(button.dataset.optMode){
-   mode=Number(button.dataset.optMode);
-   const u=new URL(location.href);u.searchParams.set('v',String(mode));
-   history.replaceState(null,'',u.pathname+u.search+u.hash);
-   render();return;
-  }
-  if(button.dataset.optChoose){choose(button.dataset.optChoose);return;}
-  if(button.dataset.optPlay){play(button.dataset.optPlay);return;}
-  if(button.dataset.optVote){
-   const n=Number(button.dataset.optVote), votes=uiVotes();
-   if(votes.has(n))votes.delete(n);else votes.add(n);
-   try{sessionStorage.setItem(uiVotesKey,JSON.stringify([...votes]));}catch(_){}
-   render();return;
-  }
-  if(button.dataset.optLike){
-   const id=button.dataset.optLike;
-   const real=document.querySelector('#sounds .sound-favorite[data-favorite-genre="'+id+'"]');
-   if(real) real.click();
-   else{
-    const likes=favorites();
-    if(likes.has(id))likes.delete(id);else likes.add(id);
-    try{sessionStorage.setItem(storageKey,JSON.stringify([...likes]));}catch(_){}
+ function progress(){
+  tracks.forEach(t=>{
+   const value=active===t.id?Math.min(100,100*(audio.currentTime||0)/t.duration):finished.has(t.id)?100:0;
+   const bar=root.querySelector('[data-progress="'+t.id+'"]');
+   if(bar){bar.setAttribute('aria-valuenow',String(Math.round(value)));bar.querySelector('i').style.width=value.toFixed(1)+'%'}
+   const status=root.querySelector('[data-status="'+t.id+'"]');
+   if(status&&active===t.id){
+    status.textContent=playing?'Играет · '+fmt(audio.currentTime)+' / '+fmt(t.duration)
+      :audio.currentTime>0&&!audio.ended?'Пауза · '+fmt(audio.currentTime)+' / '+fmt(t.duration)
+      :finished.has(t.id)?'Прослушано · '+Math.round(t.duration)+' сек.':'Фрагмент · '+Math.round(t.duration)+' сек.';
    }
-   render();
+  });
+ }
+ function updatePlayState(){
+  root.querySelectorAll('[data-opt-play]').forEach(b=>{
+   const id=b.dataset.optPlay,on=playing&&active===id;
+   b.querySelector('span').textContent=on?'Ⅱ':'▶';
+   b.setAttribute('aria-label',(on?'Пауза: ':'Слушать: ')+music[id].name);
+   b.setAttribute('aria-pressed',String(on));
+  });
+  root.querySelectorAll('.opt-line').forEach(r=>r.classList.toggle('is-active',r.dataset.demoStyle===active));
+  progress();
+ }
+ function toggle(id){
+  if(!music[id])return;
+  const thisRequest=++request;
+  errorText='';
+  const error=root.querySelector('.opt-error');
+  if(error){error.hidden=true;error.textContent=''}
+  if(active===id&&playing){
+   playing=false;
+   audio.pause();
+   updatePlayState();
+   return;
   }
+  if(active!==id||audio.ended){
+   audio.pause();
+   active=id;
+   audio.src=music[id].src;
+   audio.load();
+  }
+  playing=true;
+  updatePlayState();
+  const promise=audio.play();
+  if(promise&&typeof promise.catch==='function'){
+   promise.catch(()=>{
+    if(thisRequest!==request)return;
+    playing=false;
+    errorText='Не удалось запустить фрагмент. Нажмите ▶ ещё раз.';
+    render();
+   });
+  }
+ }
+ function toggleLike(id){
+  if(!music[id])return;
+  const nativeButton=document.querySelector('#sounds [data-favorite-genre="'+id+'"]');
+  if(nativeButton){
+   nativeButton.click(); // Keep the original page's favorite storage and logic.
+  }else{
+   const saved=likes();
+   if(saved.has(id))saved.delete(id);else saved.add(id);
+   try{sessionStorage.setItem(likedKey,JSON.stringify([...saved]))}catch(_){}
+  }
+  const b=root.querySelector('[data-opt-like="'+id+'"]'),yes=likes().has(id);
+  if(b){
+   b.classList.toggle('is-liked',yes);
+   b.setAttribute('aria-pressed',String(yes));
+   b.setAttribute('aria-label',(yes?'Убрать отметку «Нравится»: ':'Нравится звучание: ')+music[id].name);
+   b.querySelector('span').textContent=yes?'♥':'♡';
+  }
+ }
+ root.addEventListener('click',e=>{
+  const b=e.target.closest('button');
+  if(!b)return;
+  if(b.dataset.optPlay)toggle(b.dataset.optPlay);
+  else if(b.dataset.optLike)toggleLike(b.dataset.optLike);
  });
- window.addEventListener('pagehide',()=>audio.pause());
+ audio.addEventListener('timeupdate',progress);
+ audio.addEventListener('ended',()=>{
+  if(active)finished.add(active);
+  playing=false;render();
+ });
+ audio.addEventListener('error',()=>{
+  if(!active)return;
+  playing=false;errorText='Запись временно недоступна. Попробуйте ещё раз.';
+  render();
+ });
+ document.addEventListener('visibilitychange',()=>{
+  if(document.hidden&&playing){playing=false;audio.pause();updatePlayState()}
+ });
+ window.addEventListener('pagehide',()=>{playing=false;audio.pause()});
  render();
 })();
