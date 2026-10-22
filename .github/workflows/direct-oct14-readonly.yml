@@ -1,0 +1,20 @@
+name: Direct October 14 read-only audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - "ai/read_direct_oct14_2026.py"
+      - ".github/workflows/direct-oct14-readonly.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    env:
+      YANDEX_METRIKA_OAUTH: ${{ secrets.YANDEX_METRIKA_OAUTH }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read Yandex Direct campaigns and October 13–16 aggregate stats
+        run: python3 ai/read_direct_oct14_2026.py
