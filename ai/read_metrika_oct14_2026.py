@@ -37,6 +37,10 @@ report("CAMPAIGN_14_PLACEMENTS","ym:s:lastDirectClickOrder,ym:s:lastDirectPlatfo
        "ym:s:visits,ym:s:users","ym:s:date=='2026-10-14' AND ym:s:startURLPath=='/ai/'")
 report("SUCCESS_GOAL_14","ym:s:lastDirectClickOrder",
        "ym:s:visits,ym:s:goal671017826reaches","ym:s:date=='2026-10-14' AND ym:s:startURLPath=='/ai/'")
+report("SUCCESS_GOAL_14_BY_AD","ym:s:lastDirectClickOrder,ym:s:lastDirectClickBanner",
+       "ym:s:visits,ym:s:goal671017826reaches","ym:s:date=='2026-10-14' AND ym:s:startURLPath=='/ai/'")
+report("SUCCESS_GOAL_14_BY_DEMOGRAPHICS","ym:s:lastDirectClickOrder,ym:s:deviceCategory,ym:s:ageInterval,ym:s:gender",
+       "ym:s:visits,ym:s:goal671017826reaches","ym:s:date=='2026-10-14' AND ym:s:startURLPath=='/ai/'")
 goals=request("management/v1/counter/110906734/goals")
 if "error" in goals:print("METRIKA_GOALS_ERROR",goals["error"])
 else:
