@@ -120,6 +120,7 @@ body.theme-dark .calc-showcase .cc-v4 input:focus-visible{
 }
 /* Tariffs -> © -> question -> warranty, with quiet visual transitions. */
 body.theme-dark .prefinal-pricing-section .copyright-under-pricing{
+ display:block!important;
  margin:clamp(27px,4vw,42px) 0 0!important;
  padding:0 2px;
  font:400 clamp(12px,1.6vw,14px)/1.55 Arial,Helvetica,sans-serif!important;
