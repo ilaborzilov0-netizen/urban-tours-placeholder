@@ -1,0 +1,60 @@
+name: Read-only audit offline purchase uploads Oct 24 2026
+on:
+  push:
+    branches: [audit/20261024-yandex-readonly]
+    paths: [.github/workflows/check-offline-payment-20261024.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    env:
+      YANDEX_METRIKA_OAUTH: ${{ secrets.YANDEX_METRIKA_OAUTH }}
+    steps:
+      - name: Read API offline uploading metadata and paid goal
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import urllib.parse,urllib.request,urllib.error,os,json
+          token=os.getenv('YANDEX_METRIKA_OAUTH','')
+          counter='110906734'
+          head={'Authorization':'OAuth '+token,'Accept':'application/json'}
+          def read(path,params=None):
+              url='https://api-metrika.yandex.net/'+path
+              if params:url+='?'+urllib.parse.urlencode(params)
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(url,headers=head),timeout=20) as resp:return json.load(resp)
+              except urllib.error.HTTPError as e:
+                  return {'error':{'http':e.code,'response':e.read().decode('utf8','replace')[:300]}}
+              except Exception as e:return {'error':str(type(e).__name__)}
+          print('AUDIT_COUNTER',counter)
+          g=read('management/v1/counter/'+counter+'/goals')
+          ids=[]
+          for x in g.get('goals',[]):
+              if any(c.get('url') in ('ai_classic_paid','ai_payment_success') for c in x.get('conditions',[])):
+                  ids.append({'id':x.get('id'),'name':x.get('name'),'conditions':x.get('conditions')})
+          print('PAYMENT_GOALS',json.dumps(ids,ensure_ascii=False))
+          for typ in ('BASIC',):
+              uploads=read('management/v1/counter/'+counter+'/offline_conversions/uploadings',
+                  {'limit':'100','type':typ})
+              if 'error' in uploads:print('UPLOADINGS_ERROR',json.dumps(uploads['error'],ensure_ascii=False));continue
+              arr=uploads.get('uploadings',[])
+              print('UPLOADINGS_COUNT',len(arr))
+              for item in arr[:100]:
+                  # Metadata only; no conversion records or personal identifiers.
+                  print('UPLOAD',json.dumps({k:item.get(k) for k in
+                     ('id','create_time','create_date','date','comment','status','upload_status','total_rows','success_rows','error_rows')
+                     if k in item},ensure_ascii=False))
+          if ids:
+              metrics=','.join('ym:s:goal'+str(x['id'])+'reaches' for x in ids)
+              data=read('stat/v1/data',{'ids':counter,'date1':'2026-10-24','date2':'2026-10-24',
+                 'dimensions':'ym:s:date','metrics':metrics,'accuracy':'full'})
+              print('TODAY_PAID_GOAL',json.dumps({
+                'error':data.get('error'),
+                'metrics':metrics,
+                'data':[{'metrics':x.get('metrics')} for x in data.get('data',[])]
+              },ensure_ascii=False))
+          print('READ_ONLY_AUDIT_FINISHED')
+          PY
