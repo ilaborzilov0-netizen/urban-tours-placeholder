@@ -44,7 +44,7 @@ jobs:
               rows=[]
               for item in data.get("data",[]):
                   rows.append({"dimensions":[{"name":d.get("name"),"id":d.get("id")} for d in item.get("dimensions",[])],
-                    "metrics":dict(zip(metrics,item.get("metrics",[])))})
+                    "metrics":dict(zip(metrics.split(","),item.get("metrics",[])))})
               print("REPORT",tag,json.dumps({"total_rows":data.get("total_rows"),"sampled":data.get("sampled"),
                 "contains_sensitive_data":data.get("contains_sensitive_data"),
                 "rows":rows[:100]},ensure_ascii=False))
@@ -58,7 +58,7 @@ jobs:
               if isinstance(records,dict):records=list(records.values())
               for item in records:
                   if isinstance(item,dict):
-                      login=item.get("login") or item.get("id")
+                      login=item.get("chief_login")
                       if isinstance(login,str) and login: logins.append(login)
                   elif isinstance(item,str):logins.append(item)
               print("CLIENTS_PRESENT",len(records),"LOGIN_COUNT",len(logins),
