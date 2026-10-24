@@ -1,0 +1,27 @@
+name: Read-only live offline payment pipeline readiness
+on:
+  push:
+    branches: [audit/20261024-yandex-readonly]
+    paths: [.github/workflows/paid-offline-readiness-20261024.yml]
+permissions: {contents: read}
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - name: Read public backend health and tracking configuration
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          const url='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net';
+          for(const path of ['/max/health','/health']){
+            try{
+              const resp=await fetch(url+path,{signal:AbortSignal.timeout(14000)});
+              const obj=await resp.json();
+              const keys=path==='/max/health'
+                ? ['enabled','s3Configured','yandexOfflineConfigured','botConfigured','channelConfigured']
+                : ['ok','build','testMode','albumApplicationEmailConfigured'];
+              console.log('BACKEND',path,resp.status,JSON.stringify(Object.fromEntries(keys.map(x=>[x,obj[x]]))));
+            }catch(e){console.log('BACKEND_ERROR',path,String(e.name))}
+          }
+          JS
