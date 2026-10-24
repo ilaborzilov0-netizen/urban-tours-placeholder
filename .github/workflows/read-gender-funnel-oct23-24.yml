@@ -1,0 +1,81 @@
+name: Gender funnel read-only 36 goals Oct 23-24
+on:
+  push:
+    branches: [audit/20261024-yandex-readonly]
+    paths: [.github/workflows/read-gender-funnel-oct23-24.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  report:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    env:
+      YANDEX_METRIKA_OAUTH: ${{ secrets.YANDEX_METRIKA_OAUTH }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read 36 goal metrics by gender and age (no changes)
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import os, json, urllib.parse, urllib.request, urllib.error, time
+          from pathlib import Path
+          token=os.environ.get('YANDEX_METRIKA_OAUTH','').strip()
+          if not token: raise SystemExit('MISSING_TOKEN')
+          goal_catalog=json.loads(Path('ai/classic-goals.json').read_text('utf8'))['goals']
+          counter='110906734'
+          headers={'Authorization':'OAuth '+token,'Accept':'application/json'}
+          def request(path,params=None):
+              url='https://api-metrika.yandex.net/'+path
+              if params: url+='?'+urllib.parse.urlencode(params)
+              for attempt in range(3):
+                  try:
+                      with urllib.request.urlopen(urllib.request.Request(url,headers=headers),timeout=45) as r: return json.load(r)
+                  except urllib.error.HTTPError as e:
+                      if e.code in (429,502,503,504) and attempt<2:
+                          time.sleep(2*(attempt+1));continue
+                      return {'error':{'http':e.code,'body':e.read().decode('utf8','replace')[:500]}}
+                  except Exception as e: return {'error':{'type':type(e).__name__}}
+          existing=request('management/v1/counter/'+counter+'/goals')
+          if 'error' in existing:
+              print('GOAL_LOOKUP_ERROR',json.dumps(existing['error'],ensure_ascii=False));raise SystemExit(1)
+          mapped={}
+          for x in existing['goals']:
+              for c in x.get('conditions',[]):
+                  if c.get('type')=='exact':mapped[c.get('url')]=x.get('id')
+          all_ids=[(x['id'],x['name'],mapped.get(x['id'])) for x in goal_catalog]
+          print('CATALOG',json.dumps(all_ids,ensure_ascii=False))
+          if any(x[2] is None for x in all_ids):raise SystemExit('GOALS_NOT_ALL_INSTALLED')
+          base={'ids':counter,'date1':'2026-10-23','date2':'2026-10-24','accuracy':'1','limit':'1000','lang':'ru',
+                'filters':"ym:s:startURLPath=='/ai/'"}
+          def report(name,dimensions,metrics,filters=None):
+              p={**base,'dimensions':dimensions,'metrics':','.join(metrics)}
+              if filters:p['filters']=filters
+              d=request('stat/v1/data',p)
+              if 'error' in d:
+                  print('ERROR_REPORT',name,json.dumps(d['error'],ensure_ascii=False));return
+              rows=[]
+              for x in d.get('data',[]):
+                  rows.append({'dimensions':[{'id':q.get('id'),'name':q.get('name')} for q in x['dimensions']],
+                               'values':dict(zip(metrics,x['metrics']))})
+              print('REPORT',name,json.dumps({'row_count':d.get('total_rows'),'sampled':d.get('sampled'),
+                  'rows':rows},ensure_ascii=False))
+          report('VISITS_GENDER',['ym:s:gender'][0],['ym:s:visits','ym:s:users','ym:s:bounceRate','ym:s:avgVisitDurationSeconds'])
+          report('VISITS_DAY_GENDER','ym:s:date,ym:s:gender',['ym:s:visits','ym:s:users'])
+          report('VISITS_AGE_GENDER','ym:s:gender,ym:s:ageInterval,ym:s:deviceCategory',['ym:s:visits','ym:s:users'])
+          report('VISITS_CAMPAIGN_GENDER','ym:s:gender,ym:s:lastDirectClickOrder',['ym:s:visits','ym:s:users'])
+          for k in range(0,len(all_ids),4):
+              subset=all_ids[k:k+4]
+              m=['ym:s:visits','ym:s:users']
+              for code,name,id in subset:
+                  m.extend([f'ym:s:goal{id}users',f'ym:s:goal{id}reaches'])
+              report('GOALS_GENDER_'+str(k//4+1),'ym:s:gender',m)
+          key=['ai_classic_hero_view','ai_classic_demo_play','ai_classic_demo_50',
+               'ai_classic_order_view','ai_classic_checkout_open','ai_classic_order_created','ai_classic_bank_redirect']
+          m=['ym:s:visits']+[f'ym:s:goal{mapped[x]}reaches' for x in key]
+          report('KEY_DAY_GENDER','ym:s:date,ym:s:gender',m)
+          report('KEY_AGE_GENDER','ym:s:gender,ym:s:ageInterval,ym:s:deviceCategory',m)
+          report('BANK_CAMPAIGN_GENDER','ym:s:gender,ym:s:lastDirectClickOrder',
+              ['ym:s:visits',f"ym:s:goal{mapped['ai_classic_bank_redirect']}reaches"])
+          print('DONE_ALL_36_GOALS')
+          PY
