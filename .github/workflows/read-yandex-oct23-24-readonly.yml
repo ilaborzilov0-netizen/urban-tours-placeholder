@@ -84,6 +84,12 @@ jobs:
               mets=["ym:s:goal"+str(mapped[x])+"reaches" for x in part]
               report("GOALS_"+str(j), "ym:s:date",",".join(["ym:s:visits"]+mets),
                      "ym:s:startURLPath=='/ai/'")
+          report("BANK_REDIRECT_BY_CAMPAIGN","ym:s:date,ym:s:lastDirectClickOrder",
+                 "ym:s:visits,ym:s:goal673561244reaches",
+                 "ym:s:startURLPath=='/ai/'")
+          report("BANK_REDIRECT_BY_DEMOGRAPHIC","ym:s:date,ym:s:ageInterval,ym:s:gender,ym:s:deviceCategory",
+                 "ym:s:goal673561244reaches",
+                 "ym:s:startURLPath=='/ai/'")
           # Cost report from Metrika's advertising namespace; click date, RUB excluding VAT.
           report("DIRECT_COSTS_ALL_CAMPAIGNS","ym:ad:date,ym:ad:directOrder",
                  "ym:ad:clicks,ym:ad:RUBConvertedAdCost,ym:ad:visits",
