@@ -213,6 +213,34 @@ demoAudio.addEventListener('error', showAudioError);
 
 'use strict';
 const ALBUM_PRICE = 1990;
+// Match confirmed T-Bank purchases to the visitor who placed the order.
+// A missing tracker must never block or misprice a real checkout.
+function getAlbumClientId() {
+ return new Promise(resolve => {
+  let finished=false;
+  const done=value=>{
+   if(finished)return;
+   finished=true;clearTimeout(timer);
+   const id=String(value??'').trim();
+   resolve(/^\d{6,32}$/.test(id)?id:'');
+  };
+  const cookieId=(document.cookie.match(/(?:^|;\s*)_ym_uid=(\d{6,32})(?:;|$)/)||[])[1]||'';
+  const timer=setTimeout(()=>done(cookieId),1600);
+  try{
+   if(typeof window.ym==='function')window.ym(110906734,'getClientID',value=>done(value||cookieId));
+   else done(cookieId);
+  }catch(_){done(cookieId)}
+ });
+}
+function albumYclid() {
+ try {
+  const fromUrl=new URLSearchParams(location.search).get('yclid');
+  if(fromUrl && /^[a-zA-Z0-9_-]{6,200}$/.test(fromUrl))sessionStorage.setItem('ai_album_yclid',fromUrl);
+  const id=sessionStorage.getItem('ai_album_yclid')||'';
+  return /^[a-zA-Z0-9_-]{6,200}$/.test(id)?id:'';
+ }catch(_){return ''}
+}
+albumYclid();
  // Backend responses may expose the amount in rubles (1990) or minor units (199000).
  // Validate both explicitly; never redirect to a bank for a different amount.
  function albumAmountMinor(data) {
@@ -285,7 +313,9 @@ purchaseForm.addEventListener('submit', async event => {
   const submit = purchaseForm.querySelector('[type=submit]');
   paymentPending = true;submit.disabled = true;submit.textContent = 'Открываем оплату…';albumGoal('ai_payment_create');
   try {
-    const data = await albumRequest(PAYMENT_API,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({...customer,plan:'ai_album_1990',flowId:'ai-anchor-album-1990',source:'marafon_ai_audioanchors_1990',returnUrl:location.origin + location.pathname})});
+    const metrikaClientId = await getAlbumClientId();
+    const yclid = albumYclid();
+    const data = await albumRequest(PAYMENT_API,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({...customer,metrikaClientId,yclid,plan:'ai_album_1990',flowId:'ai-anchor-album-1990',source:'marafon_ai_audioanchors_1990',returnUrl:location.origin + location.pathname})});
     if(data.plan !== 'ai_album_1990' || albumAmountMinor(data) !== ALBUM_PRICE * 100) throw new Error('Сумма оплаты не совпала с 1 990 ₽. Оплата остановлена.');
     if(!data.paymentUrl) throw new Error('Не получена ссылка на оплату. Попробуйте ещё раз.');
     const paymentUrl = new URL(data.paymentUrl);
