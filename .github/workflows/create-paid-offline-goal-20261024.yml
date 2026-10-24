@@ -1,0 +1,38 @@
+name: Create one dedicated paid album offline goal (idempotent)
+on:
+  push:
+    branches: [audit/20261024-yandex-readonly]
+    paths: [.github/workflows/create-paid-offline-goal-20261024.yml]
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  create:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    env:
+      TOKEN: ${{ secrets.YANDEX_METRIKA_OAUTH }}
+    steps:
+      - name: Create event goal only if absent, validate unique
+        run: |
+          python3 - <<'PY'
+          import urllib.request,urllib.error,os,json
+          base='https://api-metrika.yandex.net/management/v1/counter/110906734/goals'
+          headers={'Authorization':'OAuth '+os.environ['TOKEN'],'Content-Type':'application/json','Accept':'application/json'}
+          target='ai_album_paid_offline'
+          def call(method,payload=None):
+            req=urllib.request.Request(base,
+              data=json.dumps(payload,ensure_ascii=False).encode('utf8') if payload else None,
+              method=method,headers=headers)
+            with urllib.request.urlopen(req,timeout=25) as r:return json.load(r)
+          goals=call('GET')['goals']
+          matching=[g for g in goals if g.get('type')=='action' and any(x.get('type')=='exact' and x.get('url')==target for x in g.get('conditions',[]))]
+          if len(matching)>1:raise RuntimeError('DUPLICATE_GOAL')
+          if not matching:
+             matching=[call('POST',{'goal':{'name':'Аудиоякоря — оплачен альбом (сервер, офлайн)','type':'action','conditions':[{'type':'exact','url':target}]}})['goal']]
+             print('CREATED',matching[0]['id'],target)
+          else:print('EXISTS',matching[0]['id'],target)
+          check=call('GET')['goals']
+          ok=[g for g in check if any(x.get('type')=='exact' and x.get('url')==target for x in g.get('conditions',[]))]
+          assert len(ok)==1
+          print('PAID_OFFLINE_GOAL_READY',ok[0]['id'],target)
+          PY
