@@ -1,0 +1,33 @@
+name: Read-only paid goal referrer 2026-10-24
+on:
+  push:
+    branches: [audit/20261024-yandex-readonly]
+    paths: [.github/workflows/paid-goal-referrer-20261024.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    env:
+      TOKEN: ${{ secrets.YANDEX_METRIKA_OAUTH }}
+    steps:
+      - name: Check referrer domain and attribution for completed online purchase
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json,os,urllib.parse,urllib.request,urllib.error
+          for attr in ['last','lastsign','last_yandex_direct_click','automatic']:
+            q={'ids':'110906734','date1':'2026-10-24','date2':'2026-10-24',
+                'dimensions':'ym:s:refererDomain,ym:s:lastTrafficSource',
+                'metrics':'ym:s:goal673561250reaches','accuracy':'full','limit':'100','attribution':attr}
+            uri='https://api-metrika.yandex.net/stat/v1/data?'+urllib.parse.urlencode(q)
+            try:
+                req=urllib.request.Request(uri,headers={'Authorization':'OAuth '+os.environ['TOKEN']})
+                with urllib.request.urlopen(req,timeout=18) as r:data=json.load(r)
+                rows=[{'dims':[x.get('name') for x in y['dimensions']],'goals':y['metrics']} for y in data.get('data',[])]
+                print('ATTR',attr,json.dumps({'totals':data.get('totals'),'rows':rows},ensure_ascii=False))
+            except urllib.error.HTTPError as e:print('ERROR',attr,e.code,e.read().decode('utf8','replace')[:200])
+          print('DONE')
+          PY
