@@ -19,7 +19,7 @@ jobs:
               const resp=await fetch(url+path,{signal:AbortSignal.timeout(14000)});
               const obj=await resp.json();
               const keys=path==='/max/health'
-                ? ['enabled','s3Configured','yandexOfflineConfigured','botConfigured','channelConfigured']
+                ? ['enabled','s3Configured','yandexOfflineConfigured','paidAlbumOfflineConfigured','botConfigured','channelConfigured']
                 : ['ok','build','testMode','albumApplicationEmailConfigured'];
               console.log('BACKEND',path,resp.status,JSON.stringify(Object.fromEntries(keys.map(x=>[x,obj[x]]))));
             }catch(e){console.log('BACKEND_ERROR',path,String(e.name))}
