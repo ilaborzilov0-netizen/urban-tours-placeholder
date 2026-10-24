@@ -77,5 +77,7 @@ jobs:
           report('KEY_AGE_GENDER','ym:s:gender,ym:s:ageInterval,ym:s:deviceCategory',m)
           report('BANK_CAMPAIGN_GENDER','ym:s:gender,ym:s:lastDirectClickOrder',
               ['ym:s:visits',f"ym:s:goal{mapped['ai_classic_bank_redirect']}reaches"])
+          for code,name,id in all_ids:
+              report('SINGLE_'+code,'ym:s:gender',['ym:s:visits',f'ym:s:goal{id}reaches'])
           print('DONE_ALL_36_GOALS')
           PY
