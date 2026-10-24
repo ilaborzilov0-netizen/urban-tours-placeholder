@@ -1,0 +1,59 @@
+name: Verify published AI price 1990 and real unpaid T-Bank order (read-only)
+on:
+  push:
+    branches: [price/ai-1990-ready-20261024]
+    paths: [.github/workflows/verify-published-ai-1990-20261024.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Read live HTML, checkout configuration, payment amount and existing order
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const site='https://marafon-metod.ru/ai/';
+          const api='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net';
+          const orderId='MBT-ai_album_1990-20261024172507-863a126a';
+          let siteReady=false;
+          for(let attempt=1;attempt<=18;attempt++){
+            const response=await fetch(site+'?price_check=20261024-'+attempt,{
+              cache:'no-store',headers:{'Cache-Control':'no-cache'},
+              signal:AbortSignal.timeout(12000)});
+            const html=await response.text();
+            const price=html.includes('const ALBUM_PRICE = 1990;');
+            const plan=html.includes("plan:'ai_album_1990'");
+            const card=html.includes('>1 990 <span>₽</span>');
+            siteReady=response.ok&&price&&plan&&card;
+            console.log('LIVE_SITE',JSON.stringify({attempt,http:response.status,price1990:price,plan1990:plan,card1990:card,ready:siteReady}));
+            if(siteReady)break;
+            if(attempt<18)await new Promise(resolve=>setTimeout(resolve,7000));
+          }
+          assert.ok(siteReady,'Public /ai/ is still showing old price or checkout plan');
+          const healthResponse=await fetch(api+'/health',{headers:{Origin:'https://marafon-metod.ru'},signal:AbortSignal.timeout(14000)});
+          const health=await healthResponse.json();
+          console.log('LIVE_PAYMENT_HEALTH',JSON.stringify({
+            http:healthResponse.status,album990:health.tariffs?.ai_album,
+            album1990:health.tariffs?.ai_album_1990,
+            build:health.build,terminalConfigured:health.terminalConfigured,testMode:health.testMode}));
+          assert.equal(healthResponse.status,200);
+          assert.equal(health.tariffs?.ai_album_1990,199000);
+          assert.equal(health.terminalConfigured,true);
+          assert.equal(health.testMode,false);
+          const statusResponse=await fetch(api+'/api/payment/status?orderId='+encodeURIComponent(orderId),{
+            headers:{Origin:'https://marafon-metod.ru'},signal:AbortSignal.timeout(20000)});
+          const status=await statusResponse.json().catch(()=>({}));
+          console.log('EXISTING_TEST_ORDER',JSON.stringify({
+             http:statusResponse.status,plan:status.plan,amount:status.amount,
+             confirmed:status.confirmed,pending:status.pending,failed:status.failed,
+             status:status.status,error:status.code||null}));
+          assert.equal(statusResponse.status,200);
+          assert.equal(status.plan,'ai_album_1990');
+          assert.equal(status.amount,199000);
+          assert.equal(status.confirmed,false);
+          console.log('PASS: real /ai/ published 1990, backend 199000 kopeks, existing unpaid T-Bank order 199000 kopeks. No new order created and no payment made.');
+          JS
