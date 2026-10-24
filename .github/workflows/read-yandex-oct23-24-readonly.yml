@@ -1,0 +1,114 @@
+name: Read-only Yandex Metrika / Direct Oct 23-24 comparison
+on:
+  push:
+    branches: [audit/20261024-yandex-readonly]
+    paths: [.github/workflows/read-yandex-oct23-24-readonly.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    env:
+      YANDEX_METRIKA_OAUTH: ${{ secrets.YANDEX_METRIKA_OAUTH }}
+    steps:
+      - name: Query only aggregate Yandex API statistics without making changes
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import os,json,urllib.parse,urllib.request,urllib.error
+          token=os.environ.get("YANDEX_METRIKA_OAUTH","").strip()
+          if not token:
+              print("ERROR missing Yandex Metrika OAuth secret")
+              raise SystemExit(1)
+          root="https://api-metrika.yandex.net/"
+          headers={"Authorization":"OAuth "+token,"Accept":"application/json"}
+          def get(path, params=None):
+              url=root+path
+              if params: url+="?"+urllib.parse.urlencode(params)
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(url,headers=headers),timeout=35) as r: return json.load(r)
+              except urllib.error.HTTPError as e:
+                  raw=e.read().decode("utf8","replace")
+                  return {"error":{"http":e.code,"message":raw[:320]}}
+              except Exception as e: return {"error":{"type":type(e).__name__}}
+          def report(tag, dimensions, metrics, filters=None, ad=False, logins=None):
+              opts={"ids":"110906734","date1":"2026-10-23","date2":"2026-10-24",
+                "dimensions":dimensions,"metrics":metrics,"accuracy":"full","limit":"100","lang":"ru"}
+              if filters:opts["filters"]=filters
+              if ad and logins:opts["direct_client_logins"]=",".join(logins)
+              data=get("stat/v1/data",opts)
+              if "error" in data:
+                  print("REPORT_ERROR",tag,json.dumps(data["error"],ensure_ascii=False));return
+              rows=[]
+              for item in data.get("data",[]):
+                  rows.append({"dimensions":[{"name":d.get("name"),"id":d.get("id")} for d in item.get("dimensions",[])],
+                    "metrics":dict(zip(metrics,item.get("metrics",[])))})
+              print("REPORT",tag,json.dumps({"total_rows":data.get("total_rows"),"sampled":data.get("sampled"),
+                "contains_sensitive_data":data.get("contains_sensitive_data"),
+                "rows":rows[:100]},ensure_ascii=False))
+          print("AUDIT_DATES 2026-10-23 through 2026-10-24 inclusive Moscow time; counter 110906734")
+          clients=get("management/v1/clients",{"counters":"110906734"})
+          logins=[]
+          if "error" in clients:
+              print("CLIENT_ACCESS_ERROR",json.dumps(clients["error"],ensure_ascii=False))
+          else:
+              records=clients.get("clients",[])
+              if isinstance(records,dict):records=list(records.values())
+              for item in records:
+                  if isinstance(item,dict):
+                      login=item.get("login") or item.get("id")
+                      if isinstance(login,str) and login: logins.append(login)
+                  elif isinstance(item,str):logins.append(item)
+              print("CLIENTS_PRESENT",len(records),"LOGIN_COUNT",len(logins),
+                "CLIENT_SHAPE",list(records[0].keys()) if records and isinstance(records[0],dict) else [])
+          goals=get("management/v1/counter/110906734/goals")
+          names=["ai_classic_hero_view","ai_classic_demo_play","ai_classic_demo_50",
+                 "ai_classic_order_view","ai_classic_checkout_open","ai_classic_pay_click",
+                 "ai_classic_order_created","ai_classic_bank_redirect","ai_classic_paid"]
+          mapped={}
+          for g in goals.get("goals",[]):
+              for cond in g.get("conditions",[]):
+                  if cond.get("type")=="exact" and cond.get("url") in names:
+                      mapped[cond["url"]]=g["id"]
+          print("CLASSIC_GOALS_MAPPED",json.dumps(mapped,ensure_ascii=False))
+          report("VISITS_ALL_AI","ym:s:date,ym:s:lastDirectClickOrder",
+                 "ym:s:visits,ym:s:users,ym:s:bounceRate",
+                 "ym:s:startURLPath=='/ai/'")
+          report("VISITS_55_MALE_MOBILE","ym:s:date,ym:s:ageInterval,ym:s:gender,ym:s:deviceCategory",
+                 "ym:s:visits,ym:s:users","ym:s:startURLPath=='/ai/'")
+          for j in range(0,len(names),4):
+              part=[x for x in names[j:j+4] if x in mapped]
+              if not part:continue
+              mets=["ym:s:goal"+str(mapped[x])+"reaches" for x in part]
+              report("GOALS_"+str(j), "ym:s:date",",".join(["ym:s:visits"]+mets),
+                     "ym:s:startURLPath=='/ai/'")
+          # Cost report from Metrika's advertising namespace; click date, RUB excluding VAT.
+          report("DIRECT_COSTS_ALL_CAMPAIGNS","ym:ad:date,ym:ad:directOrder",
+                 "ym:ad:clicks,ym:ad:RUBConvertedAdCost,ym:ad:visits",
+                 ad=True,logins=logins)
+          # Also try the most common alternative cost metric if the main one is unavailable.
+          # Direct Reports may need a separate OAuth scope, so record auth failure.
+          body={"params":{"SelectionCriteria":{
+                 "DateFrom":"2026-10-23","DateTo":"2026-10-24",
+                 "Filter":[{"Field":"CampaignId","Operator":"IN",
+                   "Values":["715203461","715285670"]}]},
+              "FieldNames":["Date","CampaignId","CampaignName","Impressions","Clicks","Cost"],
+              "ReportName":"AudioAnchorsReadOnlyOct23Oct24","ReportType":"CUSTOM_REPORT",
+              "DateRangeType":"CUSTOM_DATE","Format":"TSV",
+              "IncludeVAT":"YES","IncludeDiscount":"YES"}}
+          h={"Authorization":"Bearer "+token,"Content-Type":"application/json; charset=utf-8",
+             "Accept-Language":"ru","returnMoneyInMicros":"false",
+             "skipReportHeader":"true","skipReportSummary":"true","processingMode":"online"}
+          try:
+              req=urllib.request.Request("https://api.direct.yandex.com/json/v501/reports",
+                 data=json.dumps(body).encode(),headers=h,method="POST")
+              with urllib.request.urlopen(req,timeout=35) as res:
+                  print("DIRECT_REPORT",res.status,res.read().decode("utf8","replace")[:8000])
+          except urllib.error.HTTPError as e:
+              print("DIRECT_ERROR",e.code,e.read().decode("utf8","replace")[:450])
+          except Exception as e:
+              print("DIRECT_ERROR_TYPE",type(e).__name__)
+          print("AUDIT_COMPLETE")
+          PY
