@@ -1,0 +1,55 @@
+name: Final live checkout and paid conversion readiness (GET only)
+on:
+  push:
+    branches: [audit/20261024-yandex-readonly]
+    paths: [.github/workflows/verify-paid-offline-live-20261024.yml]
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    env:
+      YANDEX_METRIKA_OAUTH: ${{ secrets.YANDEX_METRIKA_OAUTH }}
+    steps:
+      - name: Verify published form captures client ID and production backend uploader readiness
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const origin='https://marafon-metod.ru';
+          const api='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net';
+          const htmlResponse=await fetch(origin+'/ai/?offline_paid_check=20261024',{
+            headers:{'Cache-Control':'no-cache'},cache:'no-store',signal:AbortSignal.timeout(15000)});
+          const html=await htmlResponse.text();
+          const site={
+            http:htmlResponse.status,
+            price1990:html.includes('const ALBUM_PRICE = 1990;'),
+            plan1990:html.includes("plan:'ai_album_1990'"),
+            metrikaGetClientID:html.includes("'getClientID'"),
+            paymentCarriesClientID:html.includes('...customer,metrikaClientId,yclid,plan:'),
+            clientIDNotBlocking:html.includes('setTimeout(()=>done(cookieId),1600)')
+          };
+          console.log('SITE_CHECK',JSON.stringify(site));
+          assert.ok(Object.values(site).every((v)=>v===true||v===200),'Site checkout has not published ClientID capture');
+          const healthResp=await fetch(api+'/max/health',{signal:AbortSignal.timeout(15000)});
+          const max=await healthResp.json();
+          const backend={http:healthResp.status,yandexOfflineConfigured:max.yandexOfflineConfigured,
+            paidAlbumOfflineConfigured:max.paidAlbumOfflineConfigured,s3Configured:max.s3Configured};
+          console.log('PAYMENT_BACKEND_OFFLINE_CHECK',JSON.stringify(backend));
+          assert.ok(Object.values(backend).every(v=>v===true||v===200),'Live payment uploader not ready');
+          console.log('PASS: published 1990 checkout captures ClientID and backend can queue offline goal for purchases');
+          JS
+      - name: Check new offline goal exists in the correct Yandex counter
+        env:
+          TOKEN: ${{ secrets.YANDEX_METRIKA_OAUTH }}
+        run: |
+          python3 - <<'PY'
+          import json,os,urllib.request
+          u='https://api-metrika.yandex.net/management/v1/counter/110906734/goals'
+          req=urllib.request.Request(u,headers={'Authorization':'OAuth '+os.environ['TOKEN']})
+          with urllib.request.urlopen(req,timeout=25) as r:d=json.load(r)
+          g=[x for x in d['goals'] if any(z.get('type')=='exact' and z.get('url')=='ai_album_paid_offline' for z in x.get('conditions',[]))]
+          assert len(g)==1
+          print('PASS_OFFLINE_GOAL',g[0]['id'],'ai_album_paid_offline')
+          PY
