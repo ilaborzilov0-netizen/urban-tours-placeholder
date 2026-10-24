@@ -1,0 +1,47 @@
+name: Read-only attribution of paid goal Oct 24
+on:
+  push:
+    branches: [audit/20261024-yandex-readonly]
+    paths: [.github/workflows/paid-goal-attribution-20261024.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      YANDEX_METRIKA_OAUTH: ${{ secrets.YANDEX_METRIKA_OAUTH }}
+    steps:
+      - name: Read paid goal against campaign and demographic segments
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json,os,urllib.parse,urllib.request,urllib.error
+          token=os.getenv('YANDEX_METRIKA_OAUTH','')
+          count='110906734'
+          def report(tag, dims, metrics='ym:s:visits,ym:s:goal673561250reaches', filters=None):
+              args={'ids':count,'date1':'2026-10-24','date2':'2026-10-24','dimensions':dims,
+                'metrics':metrics,'accuracy':'full','limit':'500','lang':'ru'}
+              if filters:args['filters']=filters
+              url='https://api-metrika.yandex.net/stat/v1/data?'+urllib.parse.urlencode(args)
+              req=urllib.request.Request(url,headers={'Authorization':'OAuth '+token,'Accept':'application/json'})
+              try:
+                  with urllib.request.urlopen(req,timeout=30) as r:o=json.load(r)
+              except urllib.error.HTTPError as e:
+                  print('ERROR',tag,e.code,e.read().decode('utf8','replace')[:300]);return
+              rows=[{'dims':[{'name':z.get('name'),'id':z.get('id')} for z in x['dimensions']],
+                'data':dict(zip(metrics.split(','),x['metrics']))} for x in o.get('data',[])]
+              print('REPORT',tag,json.dumps({'total':o.get('totals'),'rows':rows,'sampled':o.get('sampled')},ensure_ascii=False))
+          report('BY_CAMPAIGN','ym:s:lastDirectClickOrder')
+          report('BY_CAMPAIGN_AND_SOURCE','ym:s:lastDirectClickOrder,ym:s:lastTrafficSource')
+          report('BY_GENDER','ym:s:gender')
+          report('BY_AGE','ym:s:ageInterval')
+          report('BY_DEVICE','ym:s:deviceCategory')
+          report('BY_LANDING','ym:s:startURLPath')
+          report('AI_ONLY_CAMPAIGN','ym:s:lastDirectClickOrder',"ym:s:goal673561250reaches",
+              "ym:s:startURLPath=='/ai/'")
+          report('AI_ONLY_SOURCE','ym:s:lastTrafficSource',"ym:s:goal673561250reaches",
+              "ym:s:startURLPath=='/ai/'")
+          print('DONE_READ_ONLY')
+          PY
