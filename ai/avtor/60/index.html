@@ -197,6 +197,47 @@
  .audience60-author-story>p:not(.kicker){font-size:13px}
  .audience60-mobile{margin-top:16px}
 }
+
+/* 25 Oct: faithful design with the EXACT blue-sweater man requested, shared visually, no artificial witness story */
+.hero.wrap.audience60-hero{display:block;max-width:940px;width:calc(100% - 36px);margin-inline:auto;padding-top:45px;padding-bottom:35px}
+.audience60-hero .hero-copy{width:100%;max-width:none;min-width:0}
+.audience60-hero .audience60-kicker{font-size:12px!important;letter-spacing:.095em;color:var(--yellow)}
+.audience60-hero h1{max-width:880px;font-size:clamp(40px,5.3vw,72px);line-height:1.045;letter-spacing:-.05em;margin-top:24px}
+.audience60-hero .hero-lead{max-width:850px;font-size:clamp(18px,2vw,23px);line-height:1.52;margin-top:22px;color:#e1e1df}
+.audience60-hero .audience60-photo{display:block!important;width:100%;max-width:none;margin:24px 0 0;padding:0}
+.audience60-hero .audience60-photo .author-photo-frame{display:block;width:100%;height:auto;aspect-ratio:auto;border:1px solid #4a4a44;border-radius:15px;overflow:hidden;background:#1d1d1b;box-shadow:none}
+.audience60-hero .audience60-photo .author-photo{display:block!important;width:100%;height:auto!important;aspect-ratio:836/471;max-width:none;min-height:0;object-fit:cover!important;object-position:center!important;opacity:1!important;visibility:visible!important;border:0}
+.audience60-hero .audience60-image-note{display:block!important;text-align:left;color:#98988e;font-size:11px;line-height:1.5;margin:8px 0 0}
+.audience60-hero .audience60-album-caption{font-size:18px;line-height:1.4;font-weight:600;letter-spacing:-.01em;color:#f3f3ee;margin:18px 0 15px}
+.audience60-hero .hero-actions{display:grid!important;grid-template-columns:1fr;gap:11px;margin-top:14px;max-width:none;width:100%}
+.audience60-hero .hero-actions .button{display:flex;align-items:center;justify-content:center;width:100%!important;max-width:none!important;min-height:60px;min-width:0!important;border-radius:9px;font-size:18px;text-align:center;line-height:1.25;padding:14px 15px}
+.audience60-hero .hero-actions .audience60-demo{background:var(--yellow);color:#111!important;border-color:var(--yellow)}
+.audience60-hero .hero-actions .audience60-demo svg{color:#111!important}
+.audience60-hero .hero-actions .audience60-buy{background:transparent;color:#f5f5ef;border:1px solid #8c8c85}
+.audience60-hero .hero-actions .audience60-buy:hover{border-color:var(--yellow);color:var(--yellow)}
+.audience60-hero .hero-actions .hero-demo-error{width:100%;grid-column:1}
+.audience60-hero .audience60-author-line{color:#bfbfb9;font-size:13px;line-height:1.55;margin-top:19px}
+.audience60-hero .audience60-author-line strong{color:#f4f4ed}
+@media(max-width:800px){
+ .hero.wrap.audience60-hero{display:block;max-width:880px;padding-top:29px;padding-bottom:23px}
+ .audience60-hero h1{font-size:clamp(31px,6.4vw,52px);line-height:1.08;letter-spacing:-.035em;margin-top:17px}
+ .audience60-hero .hero-lead{font-size:18px;line-height:1.53;margin-top:17px}
+ .audience60-hero .audience60-photo{margin-top:20px}
+ .audience60-hero .audience60-album-caption{font-size:16px;margin:14px 0}
+ .audience60-hero .hero-actions .button{font-size:16px;min-height:56px}
+}
+@media(max-width:520px){
+ .hero.wrap.audience60-hero{width:calc(100% - 28px);padding-top:25px}
+ .audience60-hero h1{font-size:clamp(30px,8.2vw,41px);line-height:1.12;letter-spacing:-.038em}
+ .audience60-hero .hero-lead{font-size:16px;line-height:1.5}
+ .audience60-hero .audience60-photo .author-photo-frame{aspect-ratio:auto!important}
+ .audience60-hero .audience60-photo .author-photo{aspect-ratio:836/471!important}
+ .audience60-hero .audience60-album-caption{font-size:15px}
+ .audience60-hero .hero-actions{margin-top:13px;gap:10px}
+ .audience60-hero .hero-actions .button{min-height:54px;font-size:15px}
+ .audience60-hero .audience60-author-line{font-size:12px}
+ .audience60-hero .audience60-image-note{font-size:10px}
+}
 </style>
   
 <!-- Production analytics: GA4 / PostHog session recordings / Clarity / Yandex Webvisor -->
@@ -237,28 +278,21 @@ gtag('config','G-J076WS14NV',{send_page_view:true,allow_google_signals:false,all
     <div class="hero-copy">
       <p class="kicker audience60-kicker"><span class="little-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span> ДЛЯ ТЕХ, КТО КУРИТ 30–40 ЛЕТ И ДОЛЬШЕ</p>
       <h1>Курили всю жизнь?<br>Попробуйте услышать<br><span>себя по-новому.</span></h1>
-      <div class="author-mobile-identity audience60-mobile">
-        <img src="/ai/avtor/60/assets/listener60.webp" width="266" height="417" alt="" aria-hidden="true">
-        <span><strong>Ваш стаж — не приговор</strong><small>Знакомые мысли можно услышать иначе</small></span>
-      </div>
-      <p class="hero-lead">Привычка убеждает вас закурить одними и теми же словами: «Мне нужен отдых», «Одна ничего не изменит», «Без сигареты кофе уже не тот».</p>
-      <p class="hero-description"><strong>Мы превратили психологические ответы на эти мысли в музыку.</strong> Так появился «Без торга» — 12 песен, к которым можно возвращаться в привычные моменты тяги.</p>
-      <p class="hero-formula"><strong>Психология отказа от курения, превращённая в музыкальный альбом.</strong><span>Не гипноз и не волшебная кнопка, а новые смыслы в запоминающейся форме.</span></p>
+      <p class="hero-lead">Привычка убеждает вас закурить одними и теми же словами. Мы превратили психологические ответы на эти мысли в музыку, которую легко вспоминать.</p>
+      <figure class="release audience60-photo">
+        <div class="author-photo-frame">
+          <img class="author-photo" src="/ai/avtor/60/assets/listener60-blue-20261025.webp" width="836" height="471" fetchpriority="high" decoding="async" alt="Мужчина старше 60 лет в синем свитере сидит за деревянным столом">
+        </div>
+        <figcaption class="audience60-image-note">Иллюстрация целевой аудитории, созданная с помощью ИИ. Это не отзыв покупателя.</figcaption>
+      </figure>
+      <p class="audience60-album-caption">«Без торга» — 12 музыкальных аудиоякорей для нового взгляда на курение.</p>
       <div class="hero-actions">
         <button type="button" class="button yellow hero-play author-demo-cta audience60-demo" data-demo-hero aria-label="Послушать 30 секунд трека Жизнь станет лучше" aria-pressed="false" aria-controls="demo-audio"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg><span>Послушать бесплатно · 30 секунд</span></button>
         <button type="button" class="button outline audience60-buy" data-buy>Получить альбом · 1 990 ₽</button>
         <p class="hero-demo-error" id="hero-demo-error" role="status" hidden>Не удалось запустить фрагмент. Нажмите «Послушать» ещё раз.</p>
       </div>
-      <div class="hero-meta"><span>12 песен</span><span>Разовая покупка</span><span>Сразу после оплаты</span></div>
+      <p class="audience60-author-line">Автор смысловой программы — <strong>Илья Борзилов</strong>, бывший курильщик, работал в клинике Аллена Карра.</p>
     </div>
-    <figure class="release audience60-photo">
-      <div class="author-photo-frame">
-        <img class="author-photo" src="/ai/avtor/60/assets/listener60.webp" width="266" height="417" fetchpriority="high" decoding="async" alt="Художественный образ мужчины старше 60 лет в наушниках">
-        <div class="author-photo-shade" aria-hidden="true"></div>
-        <div class="author-album-inset"><img src="/ai/assets/anchor-release-20261008.webp" width="1254" height="1254" alt="Обложка музыкального альбома «Без торга»"><span>«БЕЗ ТОРГА» · 12 ПЕСЕН</span></div>
-      </div>
-      <figcaption class="audience60-caption"><span>Узнаёте себя в этом возрасте?</span><span>Собирательный образ, создан с помощью ИИ. Не отзыв покупателя.</span></figcaption>
-    </figure>
   </section>
   <section class="audience60-author-strip wrap" aria-labelledby="audience60-author-title">
     <img src="/ai/avtor/assets/author-portrait-20261025.jpg" width="2048" height="1365" loading="lazy" alt="Илья Борзилов — создатель альбома">
