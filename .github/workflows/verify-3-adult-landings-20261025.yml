@@ -50,7 +50,7 @@ jobs:
           }
           assert.equal(new Set(headlines).size,3,'Headlines should be different');
           const pult=pages[3].text;
-          assert.ok(pult.includes('data-view="phone"')&&pult.includes('data-view="compare"')&&pult.includes('data-pick="3"'));
+          assert.ok(pult.includes('data-view="phone"')&&pult.includes('data-view="compare"')&&pult.includes('data-pick="3"')&&pages[2].text.includes('ensure the playlist purchase button cannot expand the viewport'));
           const shared=await Promise.all([get(root+'design-assets/base.css'),get(root+'design-assets/experience.js')]);
           assert.ok(shared[0].text.includes('.song-row')&&shared[1].text.includes('ALBUM_TRACKS'));
           console.log('LIVE_PASS',headlines);
