@@ -20,7 +20,7 @@ jobs:
           for(let i=0;i<18;i++){
             const response=await fetch(host+'/ai/avtor/60/test/?updated_pass='+i,{headers:{'Cache-Control':'no-cache'},cache:'no-store',signal:AbortSignal.timeout(17000)});
             html=await response.text();status=response.status;
-            if(status===200&&html.includes('id="example"')&&html.includes('faq-refined-list')&&html.includes('Photo-story final compaction'))break;
+            if(status===200&&html.includes('id="example"')&&html.includes('faq-refined-list')&&html.includes('Tablet: three cramped narrow columns'))break;
             if(i<17)await new Promise(resolve=>setTimeout(resolve,4500));
           }
           const positions=['id="main-title"','id="listen"','id="story"','id="example"','id="tracks"','id="how-title"','id="faq"','id="offer"'].map(x=>html.indexOf(x));
