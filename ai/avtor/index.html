@@ -48,6 +48,31 @@
 .author-ai-credit{max-width:190px;font-size:11px;line-height:1.55;text-align:right;color:#9a9a92}
 @media(max-width:800px){.author-hero-portrait{max-width:540px}.author-photo-caption{flex-direction:row!important}}
 @media(max-width:520px){.hero .hero-description{margin-top:15px}.author-hero-portrait{width:calc(100% - 12px)}.author-photo-frame{aspect-ratio:1/1.05}.author-photo{object-position:48% 22%}.author-album-inset{right:-10px;bottom:12px;width:112px;padding:6px 6px 8px}.author-album-inset span{font-size:8px}.author-photo-caption{flex-direction:column!important;gap:7px;margin-top:14px}.author-ai-credit{text-align:left;max-width:none}.author-photo-caption strong{font-size:17px}}
+
+/* Author-led hero refinement 2026-10-25: no original /ai/ changes. */
+.author-mobile-identity{display:none}
+.hero .author-demo-cta{min-width:292px;min-height:58px;padding-inline:22px;border-color:var(--yellow);background:rgba(223,255,0,.075);color:var(--paper);box-shadow:inset 0 0 0 1px rgba(223,255,0,.10);transition:background .2s,border-color .2s,color .2s}
+.hero .author-demo-cta:hover,.hero .author-demo-cta:focus-visible{background:var(--yellow);color:#121212}
+.hero .author-demo-cta svg{color:var(--yellow)}
+.hero .author-demo-cta:hover svg,.hero .author-demo-cta:focus-visible svg{color:#121212}
+.hero .author-demo-cta[aria-pressed="true"]{background:rgba(223,255,0,.15);border-color:var(--yellow);color:var(--yellow)}
+.hero .author-demo-cta[aria-pressed="true"] svg{color:var(--yellow)}
+@media(max-width:800px){
+ .author-mobile-identity{display:flex;align-items:center;gap:12px;margin-top:21px;max-width:440px}
+ .author-mobile-identity img{width:55px;height:55px;flex:none;object-fit:cover;object-position:52% 28%;border:1px solid #6d705a;border-radius:50%}
+ .author-mobile-identity span{display:grid;gap:1px}
+ .author-mobile-identity strong{font-size:15px;line-height:1.3;font-weight:600;color:var(--paper)}
+ .author-mobile-identity small{font-size:12px;line-height:1.4;color:#aaa9a1}
+ .hero .hero-lead{margin-top:24px}
+}
+@media(max-width:520px){
+ .author-mobile-identity{margin-top:19px}
+ .author-mobile-identity img{width:50px;height:50px}
+ .hero .author-demo-cta{min-width:0;width:100%;min-height:58px;font-size:15px}
+ .hero .hero-actions{gap:12px}
+ .hero .hero-description{margin-top:13px}
+ .hero .hero-lead{margin-top:23px}
+}
 </style>
   
 <!-- Production analytics: GA4 / PostHog session recordings / Clarity / Yandex Webvisor -->
@@ -88,9 +113,10 @@ gtag('config','G-J076WS14NV',{send_page_view:true,allow_google_signals:false,all
     <div class="hero-copy">
       <p class="kicker"><span class="little-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span> Авторский подход · Илья Борзилов</p>
       <h1>Бросьте курить<br>с помощью<br><span>аудиоякорей.</span></h1>
-      <p class="hero-lead">Я больше десяти лет не курю. Знаю, как сигарета убеждает человека закурить снова. И придумал, как передать через музыку мысли, которые помогают выйти из этого круга.</p>
-      <p class="hero-description">Так появился <strong>«Без торга» — альбом из 12 песен</strong> о привычных мыслях курильщика и новых ответах на них.</p>
-      <div class="hero-actions"><button type="button" class="button yellow" data-buy>Получить альбом · 1 990 ₽</button><button type="button" class="button outline hero-play" data-demo-hero aria-label="Послушать 30 секунд трека Жизнь станет лучше" aria-pressed="false" aria-controls="demo-audio"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg><span>Послушать 30 секунд</span></button><p class="hero-demo-error" id="hero-demo-error" role="status" hidden>Не удалось запустить фрагмент. Нажмите «Послушать» ещё раз.</p></div>
+      <div class="author-mobile-identity"><img src="/ai/avtor/assets/author-portrait-20261025.jpg" width="64" height="64" alt="" aria-hidden="true"><span><strong>Илья Борзилов</strong><small>Работал в клинике Аллена Карра</small></span></div>
+      <p class="hero-lead">Я больше десяти лет не курю. Работал в клинике Аллена Карра и знаю, как сигарета умеет убеждать человека закурить снова.</p>
+      <p class="hero-description"><strong>Я соединил психологию отказа от курения с музыкой.</strong> Так появился «Без торга» — 12 песен, к которым можно возвращаться в привычные моменты тяги.</p>
+      <div class="hero-actions"><button type="button" class="button yellow" data-buy>Получить альбом · 1 990 ₽</button><button type="button" class="button outline hero-play author-demo-cta" data-demo-hero aria-label="Послушать 30 секунд трека Жизнь станет лучше" aria-pressed="false" aria-controls="demo-audio"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg><span>Послушать бесплатно · 30 секунд</span></button><p class="hero-demo-error" id="hero-demo-error" role="status" hidden>Не удалось запустить фрагмент. Нажмите «Послушать» ещё раз.</p></div>
       <div class="hero-meta"><span>12 треков</span><span>Разовая покупка</span><span>Без расписания</span></div>
     </div>
     <figure class="release author-hero-portrait">
@@ -104,7 +130,6 @@ gtag('config','G-J076WS14NV',{send_page_view:true,allow_google_signals:false,all
       </div>
       <figcaption class="author-photo-caption">
         <span><strong>Илья Борзилов</strong><small>Автор идеи и смысловой программы</small></span>
-        <span class="author-ai-credit">Музыка и вокал созданы с помощью ИИ</span>
       </figcaption>
     </figure>
   </section>
@@ -217,7 +242,7 @@ function updatePlayback() {
   demoButtons.forEach(button => {
     button.setAttribute('aria-pressed', String(playing));
     button.setAttribute('aria-label', playing ? 'Пауза: Жизнь станет лучше' : 'Послушать 30 секунд трека Жизнь станет лучше');
-    button.innerHTML = icon + (button.hasAttribute('data-demo-hero') ? '<span>' + (playing ? 'Пауза' : 'Послушать 30 секунд') + '</span>' : '');
+    button.innerHTML = icon + (button.hasAttribute('data-demo-hero') ? '<span>' + (playing ? 'Пауза' : 'Послушать бесплатно · 30 секунд') + '</span>' : '');
   });
 }
 function showAudioError() {
