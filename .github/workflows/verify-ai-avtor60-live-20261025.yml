@@ -1,0 +1,119 @@
+name: Verify audience 60 landing and unchanged parent landings
+on:
+  push:
+    branches: [audit/20261024-yandex-readonly]
+    paths: [.github/workflows/verify-ai-avtor60-live-20261025.yml]
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 9
+    steps:
+      - name: Verify all live page variants, photo, goals and payment wiring
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const origin='https://marafon-metod.ru';
+          const read=async path=>{
+            const r=await fetch(origin+path,{cache:'no-store',headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(18000)});
+            return {status:r.status,body:await r.text()};
+          };
+          let a,m,b;
+          for(let n=1;n<=20;n++){
+            [a,m,b]=await Promise.all([
+              read('/ai/avtor/60/?audit_60='+n),
+              read('/ai/avtor/?audit_60='+n),
+              read('/ai/?audit_60='+n)
+            ]);
+            if(a.status===200&&a.body.includes('audience60-author-strip'))break;
+            if(n<20)await new Promise(resolve=>setTimeout(resolve,6000));
+          }
+          const c={
+            site200:a.status===200,
+            portrait:a.body.includes('/ai/avtor/60/assets/listener60.webp'),
+            audience:a.body.includes('ДЛЯ ТЕХ, КТО КУРИТ 30–40 ЛЕТ И ДОЛЬШЕ'),
+            title:a.body.includes('Курили всю жизнь?'),
+            lead:a.body.includes('Привычка убеждает вас закурить'),
+            realAuthor:a.body.includes('audience60-author-strip')&&a.body.includes('Илья Борзилов'),
+            generatedDisclosure:a.body.includes('Собирательный образ, создан с помощью ИИ. Не отзыв покупателя.'),
+            oneAlbum:a.body.includes('«Без торга» — 12 песен'),
+            price1990:a.body.includes('const ALBUM_PRICE = 1990;'),
+            plan1990:a.body.includes("plan:'ai_album_1990'"),
+            checkoutClientId:a.body.includes('metrikaClientId,yclid'),
+            separateSource:a.body.includes("source:'marafon_ai_audioanchors_1990_author60'"),
+            separateGoals:a.body.includes('/ai/avtor/60/classic-goals.js'),
+            noindex:a.body.includes('content="noindex,nofollow"'),
+            unchangedParent:m.status===200&&m.body.includes('Работал в клинике Аллена Карра и знаю')&&!m.body.includes('audience60-author-strip'),
+            unchangedMain:b.status===200&&b.body.includes('Слушайте посылы, которые меняют мозг')
+          };
+          console.log('LIVE_SITE_CHECK',JSON.stringify(c));
+          assert.ok(Object.values(c).every(Boolean));
+          const img=await fetch(origin+'/ai/avtor/60/assets/listener60.webp',{method:'HEAD',signal:AbortSignal.timeout(18000)});
+          const goals=await read('/ai/avtor/60/classic-goals.js');
+          const scripts={
+            photoStatus:img.status,photoType:img.headers.get('content-type'),photoBytes:img.headers.get('content-length'),
+            goalsStatus:goals.status,goalsIsolated:goals.body.includes('if(!/^\\/ai\\/avtor\\/60\\/?$/.test(location.pathname))return;'),
+            variant:goals.body.includes("variant:'classic_author60_1990'"),
+          };
+          console.log('PHOTO_AND_GOALS',JSON.stringify(scripts));
+          assert.ok(img.ok);
+          assert.ok((img.headers.get('content-type')||'').includes('image/webp'));
+          assert.ok(Number(img.headers.get('content-length'))>4000);
+          assert.equal(goals.status,200);
+          assert.ok(scripts.goalsIsolated&&scripts.variant);
+          console.log('PUBLICATION_PASS senior 60 generated image, checkout, tracking and parent pages');
+          JS
+      - name: Test desktop and mobile layouts and buttons in Chromium
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --no-audit --no-fund playwright@1.56.0
+          npx playwright install chromium
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import { chromium } from 'playwright';
+          const browser=await chromium.launch({headless:true});
+          try{
+            for(const width of [1440,390,320]){
+              const page=await browser.newPage({viewport:{width,height:850},deviceScaleFactor:1});
+              await page.goto('https://marafon-metod.ru/ai/avtor/60/?browser_audit=20261025',{waitUntil:'domcontentloaded',timeout:35000});
+              await page.locator('.audience60-hero h1').waitFor({state:'visible'});
+              const values=await page.evaluate(async()=>{
+                const img=document.querySelector('.audience60-photo .author-photo');
+                await img.decode();
+                const mob=document.querySelector('.audience60-mobile');
+                return {
+                  inner:innerWidth,scrollWidth:document.documentElement.scrollWidth,
+                  photoNaturalWidth:img.naturalWidth,
+                  avatarVisible:getComputedStyle(mob).display!=='none',
+                  avatarTop:mob.getBoundingClientRect().top,
+                  authorBlock:!!document.querySelector('.audience60-author-strip'),
+                  story:!!document.querySelector('#story'),
+                  price:document.body.innerText.includes('1 990 ₽'),
+                  firstDemo:document.querySelector('.audience60-demo')?.innerText
+                };
+              });
+              console.log('BROWSER',width,JSON.stringify(values));
+              assert.ok(values.scrollWidth<=values.inner+4,'Horizontal overflow');
+              assert.ok(values.photoNaturalWidth>200&&values.authorBlock&&values.story&&values.price);
+              assert.equal(values.avatarVisible,width<=800);
+              if(width<=800)assert.ok(values.avatarTop>=0&&values.avatarTop<850,'Senior portrait avatar should appear above fold');
+              await page.locator('.audience60-demo').click();
+              await page.locator('#audio-dialog').waitFor({state:'visible'});
+              await page.locator('#audio-dialog [data-modal-close]').first().click();
+              await page.locator('.audience60-buy').click();
+              await page.locator('#purchase-dialog').waitFor({state:'visible'});
+              assert.ok((await page.locator('#purchase-dialog').innerText()).includes('1 990 ₽'));
+              await page.screenshot({path:'/tmp/senior-'+width+'.png',fullPage:false});
+              await page.close();
+            }
+            console.log('CHROMIUM_PASS: responsive 1440/390/320, play and purchase UI, one album 1990 RUB');
+          }finally {await browser.close()}
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: senior60-responsive-shots
+          path: /tmp/senior-*.png
+          retention-days: 2
