@@ -1,0 +1,118 @@
+name: Verify final photo story and origin narrative for author60 test
+on:
+  push:
+    branches: [audit/20261024-yandex-readonly]
+    paths: [.github/workflows/verify-author60-final-story-20261025.yml]
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 9
+    steps:
+      - name: Verify published HTML, local photo assets and isolation
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const root='https://marafon-metod.ru';
+          let html='',status=0;
+          for(let n=1;n<=18;n++){
+            const r=await fetch(root+'/ai/avtor/60/test/?finalstory='+n,{cache:'no-store',headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(17000)});
+            status=r.status;html=await r.text();
+            if(status===200&&html.includes('scene-studio-final.webp')&&html.includes('story-turn'))break;
+            if(n<18)await new Promise(r=>setTimeout(r,4500));
+          }
+          const checks={
+            status,
+            storyHook:html.includes('Я не мог быть рядом каждый раз'),
+            firstHand:html.includes('знакомые оправдания'),
+            songReason:html.includes('припев помнишь годами'),
+            finalTurn:html.includes('class="story-turn"'),
+            seminar:html.includes('scene-seminar-final.webp'),
+            handshake:html.includes('scene-handshake-final.webp'),
+            studio:html.includes('scene-studio-final.webp'),
+            noDataImages:!html.includes('src="data:image/webp;base64,'),
+            fiction:html.includes('вымышленной истории')&&html.includes('ИИ-реконструкции'),
+            realTracks:(html.match(/class="meaning-track"/g)||[]).length===12,
+            price:html.includes('1 990 ₽'),
+            noCheckout:!html.includes('/api/payment/create')&&!html.includes('api/leads'),
+            noindex:html.includes('noindex,nofollow')
+          };
+          console.log('LIVE_SITE',JSON.stringify(checks));
+          assert.ok(Object.entries(checks).every(([k,v])=>k==='status'?v===200:v===true));
+          const names=['seminar','handshake','studio'];
+          for(const name of names){
+            const u=root+'/ai/avtor/60/test/assets/scene-'+name+'-final.webp';
+            const img=await fetch(u,{method:'HEAD',signal:AbortSignal.timeout(12000)});
+            const b=Number(img.headers.get('content-length'));
+            console.log('ASSET',name,img.status,b,img.headers.get('content-type'));
+            assert.equal(img.status,200);
+            assert.ok(b>25000&&b<250000);
+            assert.ok((img.headers.get('content-type')||'').includes('image/webp'));
+          }
+          for(const path of ['/ai/','/ai/avtor/','/ai/avtor/60/']){
+            const r=await fetch(root+path,{signal:AbortSignal.timeout(16000)});
+            const body=await r.text();
+            assert.equal(r.status,200);
+            assert.ok(!body.includes('scene-seminar-final.webp'),'Original page modified');
+          }
+          console.log('PUBLICATION_PASS narrative, original photo assets and isolation verified');
+          JS
+      - name: Test layout, images, demo and concept checkout on desktop and phones
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --no-audit --no-fund playwright@1.56.0
+          npx playwright install chromium
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import { chromium } from 'playwright';
+          const browser=await chromium.launch({headless:true});
+          try{
+            for(const width of [1440,768,390,320]){
+              const page=await browser.newPage({viewport:{width,height:850},deviceScaleFactor:1});
+              await page.goto('https://marafon-metod.ru/ai/avtor/60/test/?verify_final=20261025',{waitUntil:'domcontentloaded',timeout:35000});
+              await page.locator('.story-photogallery').scrollIntoViewIfNeeded();
+              const photos=await page.locator('.scene-image').evaluateAll(async imgs=>await Promise.all(imgs.map(async img=>{
+                try {await img.decode();return {width:img.naturalWidth,height:img.naturalHeight,url:img.currentSrc.split('/').pop()};}
+                catch(error){return {error:String(error)};}
+              })));
+              assert.equal(photos.length,3);
+              console.log('PHOTOS',width,JSON.stringify(photos));
+              assert.ok(photos.every(p=>p.width===1050&&p.height===788),'Missing or corrupted image');
+              const metrics=await page.evaluate(()=>{
+                const q=s=>{const r=document.querySelector(s).getBoundingClientRect();return {w:Math.round(r.width),h:Math.round(r.height)}};
+                const imageCards=[...document.querySelectorAll('.scene-frame')].map(x=>{const r=x.getBoundingClientRect();return {w:Math.round(r.width),h:Math.round(r.height)}});
+                return {view:innerWidth,scroll:document.documentElement.scrollWidth,photoGallery:q('.photo-story-grid'),
+                  story:q('.story-turn'),result:q('.result'),imageCards};
+              });
+              console.log('GEOMETRY',width,JSON.stringify(metrics));
+              assert.ok(metrics.scroll<=width+5,'Horizontal overflow');
+              assert.ok(metrics.imageCards.every(p=>p.h<450&&p.h>100&&p.w>100),'Gallery card unexpectedly distorted');
+              assert.ok(metrics.story.h<500,'New narrative is oversize');
+              assert.ok(metrics.result.h<450,'Album result card unexpectedly tall');
+              assert.equal(await page.locator('.meaning-track').count(),12);
+              await page.locator('.meaning-track').nth(2).locator('summary').click();
+              await page.waitForTimeout(170);
+              assert.equal(await page.locator('.meaning-track[open]').count(),1);
+              assert.equal(await page.locator('.meaning-track[open]').getAttribute('data-track-no'),'3');
+              await page.locator('.hero .js-demo').click();
+              await page.waitForTimeout(900);
+              const audio=await page.locator('#demo-audio').evaluate(a=>({position:a.currentTime,paused:a.paused,ready:a.readyState}));
+              console.log('AUDIO',width,JSON.stringify(audio));
+              assert.ok(audio.position>0||!audio.paused);
+              await page.locator('.hero .js-buy').click();
+              await page.locator('#concept-dialog').waitFor({state:'visible'});
+              await page.screenshot({path:'/tmp/author60-final-'+width+'.png',fullPage:true});
+              await page.close();
+            }
+            console.log('BROWSER_PASS all scenes, final narrative, responsiveness, tracklist, audio, mock checkout');
+          }finally{await browser.close()}
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: author60-final-story-screenshots
+          path: /tmp/author60-final-*.png
+          retention-days: 3
