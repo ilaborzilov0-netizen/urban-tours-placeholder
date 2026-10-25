@@ -1,0 +1,52 @@
+name: Import user's album portrait into phonoteka
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/import-phono-album-portrait-20261025.yml]
+  workflow_dispatch:
+permissions: {contents: write}
+jobs:
+  import:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - name: Import and optimize exact supplied photograph
+        shell: bash
+        env:
+          INPUT_URL: https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/1c206a38-5ff2-4696-bf2d-e84cb83eacd7.png
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 4 --max-time 55 "$INPUT_URL" -o /tmp/phonoteka-user-photo.png
+          python3 -m pip install --quiet Pillow
+          python3 - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          source=Image.open('/tmp/phonoteka-user-photo.png')
+          assert source.size == (1536,1024), f"Unexpected photo dimensions: {source.size}"
+          target=Path('ai/avtor/60/test/1/assets/hero-with-album-20261025.webp')
+          target.parent.mkdir(parents=True,exist_ok=True)
+          photo=source.convert("RGB")
+          photo.save(target,"WEBP",quality=90,method=6)
+          inspect=Image.open(target)
+          assert inspect.size==(1536,1024)
+          assert target.stat().st_size>50000
+          print("PHOTO_READY",str(target),inspect.size,target.stat().st_size)
+          PY
+      - name: Commit only photo to GitHub
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- ai/avtor/60/test/1/assets/hero-with-album-20261025.webp
+          if git diff --cached --quiet; then
+            echo PHOTO_ALREADY_PRESENT
+          else
+            git commit -m "Add provided man-with-album photo for phonoteka"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
