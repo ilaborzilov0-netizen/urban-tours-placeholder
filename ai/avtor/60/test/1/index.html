@@ -116,6 +116,33 @@ footer a{text-decoration:underline}
  .edition-title{font-size:25px}
  .edition-price{font-size:42px}
 }
+
+/* Short character story: positioned between the first demo and the two formats. */
+.origin-intro{padding:41px 0 48px;background:#20251E;border-top:1px solid #4B5744;border-bottom:1px solid #4B5744}
+.origin-intro-layout{display:grid;grid-template-columns:minmax(0,1fr) 252px;align-items:center;gap:clamp(25px,4.2vw,67px)}
+.origin-intro .eyebrow{font-size:11px;letter-spacing:.1em}
+.origin-intro h2{font-size:clamp(30px,3.5vw,46px);line-height:1.13;letter-spacing:-.048em;font-weight:500;margin:11px 0 17px;max-width:820px}
+.origin-intro h2 em{font-style:normal;color:var(--accent)}
+.origin-intro-body{font-size:17px;line-height:1.62;max-width:760px;color:#EBEEE4}
+.origin-intro-body p+p{margin-top:10px}
+.origin-intro-photo{margin:0;justify-self:end;width:100%;max-width:252px}
+.origin-intro-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:44% center;filter:saturate(.82);border:1px solid #68765A;border-radius:3px}
+.origin-intro-photo figcaption{font-size:12px;color:#C1C8B6;line-height:1.4;margin-top:8px}
+@media(max-width:760px){
+ .origin-intro{padding:35px 0 40px}
+ .origin-intro-layout{grid-template-columns:minmax(0,1fr) 152px;gap:16px}
+ .origin-intro h2{font-size:clamp(29px,5.1vw,39px)}
+ .origin-intro-body{font-size:16px;line-height:1.56}
+ .origin-intro-photo img{aspect-ratio:4/5}
+}
+@media(max-width:600px){
+ .origin-intro-layout{display:flex;flex-direction:column;align-items:stretch;gap:19px}
+ .origin-intro h2{font-size:clamp(31px,8.3vw,40px);margin:10px 0 14px}
+ .origin-intro-photo{max-width:none;display:grid;grid-template-columns:112px minmax(0,1fr);gap:14px;align-items:center;justify-self:auto}
+ .origin-intro-photo img{height:115px;aspect-ratio:auto;object-position:50% 50%}
+ .origin-intro-photo figcaption{margin-top:0;font-size:13px}
+}
+
 </style></head>
 <body class="design-one">
 <header class="top"><div class="top-inner wrap"><a href="#top" class="wordmark"><i>И</i><span>АУДИОЯКОРЯ<small style="display:block;font-size:11px;font-weight:400;color:var(--muted);letter-spacing:0">Авторская музыкальная программа</small></span></a><nav class="top-links" aria-label="Разделы"><a href="#listen">Послушать</a><a href="#editions">Форматы и цены</a><a href="#songs">Все песни</a><a href="#people">Фото</a></nav></div></header>
@@ -123,6 +150,23 @@ footer a{text-decoration:underline}
 <section class="hero wrap"><div><div class="eyebrow">Мужчинам с большим стажем курения · 55+</div><h1>Бросьте курить с помощью <em>аудиоякорей.</em></h1><p class="hero-description">12 песен с психологическими ответами на знакомое желание закурить. Слова, которые легче вспомнить, когда снова потянет к сигарете.</p><div class="hero-badges"><span>Музыкальный альбом «Без торга»</span><span>Без подписки</span></div><div class="hero-buy"><span class="price">1 990 ₽</span><span class="smallprint">Разовая покупка<br>12 треков</span></div><div class="hero-actions"><button class="btn primary js-buy" type="button">Получить альбом · 1 990 ₽</button><button class="btn ghost js-play" type="button"><span class="play-label">▶ Послушать 30 секунд</span></button></div></div><figure class="hero-photo"><img src="/ai/avtor/60/test/1/assets/hero-with-album-20261025.webp" width="1536" height="1024" alt="Мужчина в синем свитере держит перед собой альбом «Без торга»" fetchpriority="high"><figcaption>«Без торга» — альбом из 12 музыкальных аудиоякорей.</figcaption></figure></section>
 <div class="motto">НЕ ПРИКАЗ СЕБЕ · А ДРУГОЙ РАЗГОВОР С СОБОЙ</div>
 <section class="section wrap" id="listen"><div class="intro-grid"><div><div class="eyebrow">01 / Начните со звучания</div><h2 class="intro-big">Не нужно сначала верить. <em>Сначала послушайте.</em></h2></div><p>Как старый припев возвращается в памяти сам собой, так и полезная фраза иногда вспоминается именно в нужный момент. На этом наблюдении основана идея аудиоякорей.</p></div><div class="record-player"><img src="/ai/assets/anchor-release-20261008.webp" width="1254" height="1254" alt="Обложка «Без торга»"><div><div class="eyebrow">Демо · 30 секунд</div><h3>Жизнь станет лучше</h3><p>Первый трек альбома. Фрагмент можно остановить.</p></div><button class="btn primary js-play" type="button"><span class="play-label">▶ Послушать 30 секунд</span></button></div></section>
+<section class="origin-intro" id="origin" aria-labelledby="origin-title">
+  <div class="wrap origin-intro-layout">
+    <div>
+      <div class="eyebrow">ИСТОРИЯ ГЕРОЯ · ХУДОЖЕСТВЕННЫЙ ОБРАЗ</div>
+      <h2 id="origin-title">30 лет курил. 10 лет помогал другим. <em>А потом появился альбом.</em></h2>
+      <div class="origin-intro-body">
+        <p>В истории нашего героя — 30 лет с сигаретой, собственный отказ от курения и ещё десять лет работы с людьми, которые курили по 30–40 лет и дольше.</p>
+        <p>На встречах люди понимали, почему сигарета кажется необходимой. Но стоило вернуться к кофе, работе или стрессу — старые мысли снова брали верх. А наставника рядом уже не было.</p>
+        <p>Так родилась идея: превратить самые важные психологические ответы в песни. Ведь совет можно забыть, а знакомый припев вспоминается сам собой. <strong>«Без торга» — 12 таких музыкальных тем.</strong></p>
+      </div>
+    </div>
+    <figure class="origin-intro-photo">
+      <img loading="lazy" src="/ai/avtor/60/test/1/assets/hero-with-album-20261025.webp" width="1536" height="1024" alt="Герой держит музыкальный альбом «Без торга»">
+      <figcaption>Один разговор о курении — в двенадцати песнях.</figcaption>
+    </figure>
+  </div>
+</section>
 <section class="editions" id="editions" aria-labelledby="edition-heading">
   <div class="wrap">
     <div class="editions-top">
