@@ -1,0 +1,155 @@
+name: Verify three adult album designs and interactive pult
+on:
+  push:
+    branches: [audit/20261024-yandex-readonly]
+    paths: [.github/workflows/verify-3-adult-landings-20261025.yml]
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 13
+    steps:
+      - name: Confirm public pages, independent designs, scripts and assets
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const root='https://marafon-metod.ru/ai/avtor/60/test/';
+          async function get(url){
+            for(let attempt=1;attempt<=15;attempt++){
+              try{
+                const r=await fetch(url+'?fresh='+attempt,{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(18000)});
+                const text=await r.text();
+                if(r.status===200&&text.length>1000)return {status:r.status,text};
+              }catch(e){if(attempt===15)throw e}
+              await new Promise(resolve=>setTimeout(resolve,3500));
+            }
+            throw Error('Not published '+url);
+          }
+          const pages=await Promise.all([get(root+'1/'),get(root+'2/'),get(root+'3/'),get(root+'pult/')]);
+          const headlines=[];
+          for(let i=0;i<3;i++){
+            const t=pages[i].text;const p='design-'+['one','two','three'][i];
+            headlines.push([...t.matchAll(/<h1[^>]*>([\s\S]*?)<\/h1>/g)][0]?.[1].replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim());
+            const flags={
+              page:pages[i].status===200,
+              uniqueTemplate:t.includes('class="'+p+'"'),
+              containsPrice:t.includes('1 990 ₽'),
+              supportsPreviewAudio:t.includes('id="sample-audio"')&&t.includes('js-play'),
+              hasThreeBuyButtons:(t.match(/\bjs-buy\b/g)||[]).length===3,
+              hasFaq:t.includes('faq-list'),
+              rendersRealTracks:t.includes('data-tracks'),
+              loadsCommonJS:t.includes('/ai/avtor/60/test/design-assets/experience.js'),
+              separatePortraitOrCover:t.includes('listener60-blue-20261025.webp')||t.includes('anchor-release-20261008.webp'),
+              noRealCheckout:!t.includes('/api/payment/create'),
+              noindex:t.includes('noindex,nofollow'),
+            };
+            console.log('PAGE_STATIC',i+1,JSON.stringify(flags));
+            assert.ok(Object.values(flags).every(Boolean),'Static missing fields');
+          }
+          assert.equal(new Set(headlines).size,3,'Headlines should be different');
+          const pult=pages[3].text;
+          assert.ok(pult.includes('data-view="phone"')&&pult.includes('data-view="compare"')&&pult.includes('data-pick="3"'));
+          const shared=await Promise.all([get(root+'design-assets/base.css'),get(root+'design-assets/experience.js')]);
+          assert.ok(shared[0].text.includes('.song-row')&&shared[1].text.includes('ALBUM_TRACKS'));
+          console.log('LIVE_PASS',headlines);
+          JS
+      - name: Chromium responsive, playback, purchase mock and live pult tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --no-audit --no-fund playwright@1.56.0
+          npx playwright install chromium
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {chromium} from 'playwright';
+          const browser=await chromium.launch({headless:true});
+          const root='https://marafon-metod.ru/ai/avtor/60/test/';
+          try{
+            for(let version=1;version<=3;version++){
+              for(const width of [1440,390,320]){
+                const page=await browser.newPage({viewport:{width,height:860},deviceScaleFactor:1});
+                const errors=[],payments=[];
+                page.on('pageerror',e=>errors.push(e.message));
+                page.on('request',r=>{if(/api\/payment\/create|api\/leads/.test(r.url()))payments.push(r.url())});
+                await page.goto(root+version+'/?browser=20261025',{waitUntil:'domcontentloaded',timeout:35000});
+                await page.locator('.song-row').first().waitFor({state:'visible',timeout:18000});
+                assert.equal(await page.locator('.song-row').count(),12);
+                assert.equal(await page.locator('.chapter').count(),3);
+                assert.equal(await page.locator('.js-buy').count(),3);
+                const summary=await page.evaluate(()=>{
+                  const r=(selector)=>{const a=document.querySelector(selector).getBoundingClientRect();return {width:Math.round(a.width),height:Math.round(a.height)}};
+                  const content=document.body.innerText;
+                  const left=document.documentElement.scrollWidth;
+                  return {view:innerWidth,documentWidth:left,htmlHeight:document.documentElement.scrollHeight,
+                    hero:r('main>section:first-child'),chapter:r('.chapter-grid'),
+                    btns:[...document.querySelectorAll('.btn')].map(x=>Math.round(x.getBoundingClientRect().width)),
+                    has12:content.includes('12'),containsProduct:content.includes('Без торга'),font:getComputedStyle(document.querySelector('.song-title')).fontSize,
+                    theme:getComputedStyle(document.body).backgroundColor,
+                    panel:getComputedStyle(document.querySelector('.chapter')).backgroundColor
+                  };
+                });
+                console.log('PAGE_LAYOUT',version,width,JSON.stringify(summary));
+                assert.ok(summary.documentWidth<=width+4,'Horizontal overflow in version '+version+' @ '+width);
+                assert.ok(parseFloat(summary.font)>=17,'Song title too small');
+                assert.ok(summary.has12&&summary.containsProduct);
+                await page.locator('.song-row').nth(8).locator('summary').click();
+                await page.waitForTimeout(100);
+                assert.equal(await page.locator('.song-row[open]').count(),1);
+                assert.ok((await page.locator('.song-row[open] .song-title').innerText()).includes('Я не с нуля'));
+                const buttons=page.locator('.js-play');
+                await buttons.first().click();
+                await page.waitForTimeout(900);
+                const audio=await page.locator('#sample-audio').evaluate(a=>({current:a.currentTime,paused:a.paused,ready:a.readyState}));
+                console.log('AUDIO',version,width,JSON.stringify(audio));
+                assert.ok(audio.current>0||!audio.paused,'Demo not playing');
+                await buttons.first().click();
+                for(const btn of await page.locator('.js-buy').all()){
+                  await btn.click();
+                  await page.locator('#order-modal').waitFor({state:'visible'});
+                  await page.locator('.js-modal-close').click();
+                }
+                assert.deepEqual(payments,[]);
+                assert.deepEqual(errors,[]);
+                const imgs=await page.locator('main img').all();
+                for(const img of imgs.slice(0,3)){
+                  const photo=await img.evaluate(async el=>{try{await el.decode();return el.naturalWidth}catch(e){return 0}});
+                  assert.ok(photo>200,'Broken hero/story image');
+                }
+                await page.screenshot({path:'/tmp/adult-'+version+'-'+width+'.png',fullPage:width!==1440});
+                await page.close();
+              }
+            }
+            const pult=await browser.newPage({viewport:{width:1440,height:900}});
+            await pult.goto(root+'pult/?pultcheck=20261025',{waitUntil:'domcontentloaded',timeout:35000});
+            const frame=pult.locator('#preview');
+            await frame.contentFrame().locator('h1').first().waitFor();
+            assert.equal(await pult.locator('.choice[aria-pressed="true"]').count(),1);
+            await pult.locator('[data-pick="2"]').click();
+            assert.ok((await frame.getAttribute('src')).endsWith('/2/'));
+            await frame.contentFrame().locator('h1').first().waitFor();
+            await pult.locator('[data-view="phone"]').click();
+            assert.ok(await pult.locator('#device').evaluate(n=>n.classList.contains('phone')));
+            await pult.locator('[data-pick="3"]').click();
+            assert.ok((await frame.getAttribute('src')).endsWith('/3/'));
+            await pult.locator('[data-view="compare"]').click();
+            assert.ok(await pult.locator('.compare-grid').isVisible());
+            assert.equal(await pult.locator('.compare-grid iframe').count(),3);
+            await pult.screenshot({path:'/tmp/pult-1440.png',fullPage:false});
+            await pult.close();
+            console.log('BROWSER_PASS nine responsive views + working audio, accordions and pult');
+          }finally{await browser.close()}
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: three-adult-designs-and-pult
+          path: /tmp/adult-*.png
+          retention-days: 4
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: design-pult-preview
+          path: /tmp/pult-*.png
+          retention-days: 4
