@@ -251,6 +251,54 @@ img{max-width:100%}
 @media(max-width:920px){.track-layout{grid-template-columns:minmax(200px,.65fr) minmax(0,1.4fr)}.track-side{padding:15px}.track-side h3{font-size:22px}.meaning-track summary{padding:10px 12px;gap:10px}.meaning-description{margin-left:45px}}
 @media(max-width:760px){.photo-story-grid{grid-template-columns:1fr;gap:12px}.photo-story-card{display:grid;grid-template-columns:140px minmax(0,1fr)}.scene-frame{aspect-ratio:auto;min-height:155px}.photo-story-copy{padding:19px}.photo-story-copy h4{font-size:20px}.track-layout{grid-template-columns:1fr}.track-side{position:static;display:grid;grid-template-columns:130px minmax(0,1fr);gap:15px}.track-side>img{width:130px;height:130px}.track-side-body{padding:0}.track-side h3{font-size:22px;margin:8px 0}.track-side p{font-size:13px}.track-chapters{gap:22px}.track-cta{flex-wrap:wrap}.track-cta .button{width:100%}}
 @media(max-width:430px){.story-photogallery{margin-top:32px}.photo-story-card{grid-template-columns:110px minmax(0,1fr)}.scene-frame{min-height:180px}.photo-story-copy{padding:14px}.photo-story-copy h4{font-size:17px;margin:7px 0}.photo-story-copy p{font-size:12px;line-height:1.5}.track-side{grid-template-columns:92px minmax(0,1fr);padding:11px;gap:10px}.track-side>img{width:92px;height:92px}.track-side h3{font-size:19px}.track-side p{font-size:12px}.track-chapter-header{display:block}.track-chapter-header>span{display:block;margin-bottom:6px}.track-chapter-header h3{font-size:21px}.meaning-track summary{gap:9px;padding:11px 9px;min-height:58px}.meaning-name{font-size:15px}.meaning-demo{font-size:8px}.meaning-number{width:22px;font-size:12px}.meaning-description{margin:0 12px 14px 40px;padding:12px 5px 0}.meaning-description p{font-size:14px}.photo-story-disclosure{font-size:11px}}
+
+/* Story conversion narrative and three full-resolution photographs, isolated to 60/test */
+.story-heading-final{align-items:start;margin-bottom:27px}
+.story-heading-final h2{font-size:clamp(39px,4.3vw,60px);max-width:850px;line-height:1.08}
+.story-heading-final .story-subline{color:var(--lime);font-size:clamp(19px,2.1vw,25px);font-weight:500;line-height:1.4;letter-spacing:-.025em;margin-top:20px;max-width:760px}
+.story-heading-final>p{font-size:16px;line-height:1.6;max-width:310px;padding-top:25px}
+.story-intro{grid-template-columns:145px minmax(0,1fr);align-items:center}
+.story-intro>img{width:145px!important;height:170px!important;max-height:170px!important;object-fit:cover;object-position:55% 31%}
+.story-intro h3{max-width:800px;font-size:clamp(24px,2.7vw,33px)}
+.story-intro p{font-size:15px;line-height:1.65}
+.story-photogallery{margin-top:38px}
+.story-visual-header h3{font-size:clamp(29px,3vw,42px)}
+.photo-story-grid{gap:17px;margin-top:22px}
+.scene-frame{aspect-ratio:4/3;background:#222820}
+.scene-frame .scene-image{width:100%!important;height:100%!important;object-fit:cover!important;object-position:50% 45%;display:block;aspect-ratio:4/3}
+.photo-story-copy{padding:22px 21px 25px}
+.photo-story-copy h4{font-size:20px;line-height:1.2}
+.photo-story-copy p{font-size:14px;line-height:1.6}
+.story-turn{margin-top:27px;padding:27px 31px 30px;background:#262a23;border-left:4px solid var(--lime)}
+.story-turn-label{font-size:11px;letter-spacing:.12em;font-weight:800;color:var(--lime)}
+.story-turn h3{font-weight:500;font-size:clamp(25px,3.1vw,39px);line-height:1.2;margin:15px 0 16px;letter-spacing:-.04em}
+.story-turn h3 em{font-style:normal;color:var(--lime)}
+.story-turn p{font-size:16px;line-height:1.65;color:#cdd1c6;max-width:980px}
+@media(max-width:760px){
+.story-heading-final>p{max-width:650px;padding-top:0;margin-top:13px}
+.story-heading-final h2{font-size:clamp(36px,6vw,49px)}
+.story-intro{grid-template-columns:112px minmax(0,1fr);gap:17px;padding:19px}
+.story-intro>img{width:112px!important;height:150px!important;max-height:150px!important}
+.photo-story-card{display:block}
+.scene-frame{aspect-ratio:4/3;min-height:0}
+.photo-story-copy{padding:18px 20px 22px}
+.story-turn{padding:22px}
+.story-turn p{font-size:15px}
+}
+@media(max-width:430px){
+.story-heading-final h2{font-size:clamp(32px,8.5vw,41px)}
+.story-heading-final .story-subline{font-size:18px}
+.story-intro{display:block}
+.story-intro>img{width:100%!important;height:160px!important;max-height:160px!important;margin-bottom:14px}
+.photo-story-card{display:block}
+.scene-frame{aspect-ratio:4/3;min-height:0}
+.photo-story-copy{padding:17px 17px 21px}
+.photo-story-copy h4{font-size:19px}
+.story-turn{padding:18px 17px}
+.story-turn h3{font-size:24px}
+.story-turn p{font-size:14px}
+}
+
 </style>
 </head>
 <body>
@@ -285,50 +333,58 @@ img{max-width:100%}
   <div class="ticker">ПРИВЫЧНАЯ МЫСЛЬ <span>✳</span> НОВЫЙ ОТВЕТ <span>✳</span> ЗНАКОМЫЙ ПРИПЕВ <span>✳</span> ДРУГОЙ ВЗГЛЯД НА КУРЕНИЕ</div>
 
   <section class="section wrap" id="story" aria-labelledby="story-title">
-    <div class="section-heading">
-      <div><div class="label">01 / ИСТОРИЯ, КОТОРАЯ МОЖЕТ ЗАЦЕПИТЬ</div><h2 id="story-title">40 лет с сигаретой.<br><em>Один неожиданный поворот.</em></h2></div>
-      <p>Проверяем формат личной истории человека с большим стажем и опытом работы с курильщиками. Персонаж и его биография придуманы для этого макета.</p>
+    <div class="section-heading story-heading-final">
+      <div><div class="label">01 / КАК РОДИЛАСЬ ИДЕЯ АЛЬБОМА</div>
+        <h2 id="story-title">Я не мог быть рядом каждый раз, <em>когда человеку хотелось закурить.</em></h2>
+        <p class="story-subline">Поэтому решил превратить психологические объяснения в музыку.</p>
+      </div>
+      <p>Одна проблема, знакомая после многих лет работы с курильщиками, подсказала необычную форму для 12 аудиоякорей.</p>
     </div>
     <div class="story-intro">
-      <img src="/ai/avtor/60/assets/listener60-blue-20261025.webp" width="836" height="471" alt="Вымышленный герой истории">
-      <div><div class="label">ВОЗМОЖНАЯ ПОДАЧА ОТ ПЕРВОГО ЛИЦА · ВЫМЫСЕЛ</div><h3>«Я сам был там, где вы сейчас».</h3>
-      <p>«Я курил 40 лет. Знаю, что такое обещать себе бросить после праздников, после стресса, после ещё одной пачки. Потом я отказался от сигарет и много лет помогал другим людям, которые тоже курили десятилетиями».</p></div>
+      <img src="/ai/avtor/60/assets/listener60-blue-20261025.webp" width="836" height="471" loading="lazy" alt="Вымышленный герой концептуальной истории">
+      <div><div class="label">РАССКАЗ ОТ ЛИЦА ВЫМЫШЛЕННОГО ГЕРОЯ</div>
+        <h3>«На занятиях люди всё понимали. А потом снова хотелось курить».</h3>
+        <p>«Я сам курил 40 лет. Потом отказался от сигарет и больше десяти лет помогал людям с большим стажем. Мы разбирали одни и те же оправдания: кофе, стресс, отдых, “одна ничего не изменит”. Но после разговора человек возвращался в обычную жизнь — туда, где эти мысли возникали снова».</p>
+      </div>
     </div>
     <div class="story-numbers">
       <div><strong>40 лет</strong><span>курил герой вымышленной истории</span></div>
-      <div><strong>10+ лет</strong><span>помогал другим — по сценарию</span></div>
-      <div><strong>12 треков</strong><span>состав реального альбома «Без торга»</span></div>
+      <div><strong>10+ лет</strong><span>работы с курильщиками — по сценарию</span></div>
+      <div><strong>12 треков</strong><span>реальный объём альбома «Без торга»</span></div>
     </div>
-<section class="story-photogallery" aria-labelledby="photo-story-title">
+    <section class="story-photogallery" aria-labelledby="photo-story-title">
       <div class="story-visual-header">
         <div class="label">ТРИ ЭПИЗОДА ОДНОЙ ИСТОРИИ</div>
-        <h3 id="photo-story-title">От разговоров с людьми — <em>к альбому.</em></h3>
-        <p>Как могла бы выглядеть история героя: работа в группе, личная беседа и создание музыкальных смыслов.</p>
+        <h3 id="photo-story-title">От работы с людьми — <em>к музыкальному альбому.</em></h3>
+        <p>Один и тот же герой, три ситуации: практика, живые разговоры и поиск нового способа передать важные мысли.</p>
       </div>
       <div class="photo-story-grid">
         <article class="photo-story-card">
-          <div class="scene-frame scene-group" aria-label="Постановочная иллюстрация: пожилой мужчина ведёт небольшую группу"><img class="scene-image" data-scene="group" loading="lazy" src="data:image/webp;base64,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" alt="Иллюстрация: мужчина беседует с группой людей своего возраста" width="184" height="153"></div>
-          <div class="photo-story-copy"><span class="scene-no">01 / ГРУППЫ</span><h4>Помогал людям со стажем</h4><p>В историях курильщиков повторяются знакомые сомнения, страхи и внутренние уговоры.</p></div>
+          <div class="scene-frame scene-group"><img class="scene-image" data-scene="group" loading="lazy" src="/ai/avtor/60/test/assets/scene-seminar-final.webp" alt="Художественная реконструкция: пожилой ведущий проводит занятие у флипчарта для группы слушателей в конференц-зале" width="1050" height="788"></div>
+          <div class="photo-story-copy"><span class="scene-no">01 / ПРАКТИКА</span><h4>«На занятиях всё было понятно»</h4><p>Люди узнавали собственные оправдания и соглашались: сигарета не решает проблемы. Но оставался вопрос — как вспомнить об этом позже?</p></div>
         </article>
         <article class="photo-story-card">
-          <div class="scene-frame scene-consult"><img class="scene-image" data-scene="consult" loading="lazy" src="data:image/webp;base64,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" alt="Иллюстрация: индивидуальная беседа двух мужчин" width="178" height="153"></div>
-          <div class="photo-story-copy"><span class="scene-no">02 / БЕСЕДЫ</span><h4>Разбирал конкретные ситуации</h4><p>Кофе, стресс, пауза на работе, мысль «сегодня можно одну» — у привычки есть свой текст.</p></div>
+          <div class="scene-frame scene-consult"><img class="scene-image" data-scene="consult" loading="lazy" src="/ai/avtor/60/test/assets/scene-handshake-final.webp" alt="Художественная реконструкция: ведущий пожимает руку другому мужчине после беседы в холле обычного отеля" width="1050" height="788"></div>
+          <div class="photo-story-copy"><span class="scene-no">02 / ЛИЧНЫЕ ВСТРЕЧИ</span><h4>«А потом человек оставался один»</h4><p>Разговор заканчивался. Начинались кофе, работа, стресс — и старое «сейчас бы закурить». Я не мог быть рядом в каждую такую минуту.</p></div>
         </article>
         <article class="photo-story-card">
-          <div class="scene-frame scene-music"><img class="scene-image" data-scene="music" loading="lazy" src="data:image/webp;base64,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" alt="Иллюстрация: мужчина в наушниках записывает музыкальные мысли" width="176" height="153"></div>
-          <div class="photo-story-copy"><span class="scene-no">03 / АЛЬБОМ</span><h4>Перевёл смыслы в музыку</h4><p>Так появился формат коротких песен, к словам которых можно возвращаться в нужный момент.</p></div>
+          <div class="scene-frame scene-music"><img class="scene-image" data-scene="music" loading="lazy" src="/ai/avtor/60/test/assets/scene-studio-final.webp" alt="Художественная реконструкция: тот же мужчина в наушниках у окна, с ручкой, блокнотом и ноутбуком" width="1050" height="788"></div>
+          <div class="photo-story-copy"><span class="scene-no">03 / ИДЕЯ</span><h4>«А если сделать из мыслей песни?»</h4><p>Я давно замечал в собственной жизни: припев помнишь годами, а полезную фразу иногда забываешь на следующий день. Музыка подсказала форму.</p></div>
         </article>
       </div>
-      <p class="photo-story-disclosure">Постановочные ИИ-иллюстрации к вымышленному сценарию. Не фотографии реальных занятий, клиентов или автора.</p>
+      <p class="photo-story-disclosure">Все три фотографии — ИИ-реконструкции вымышленной истории. Они не документируют реальные тренинги, консультации или результаты отказа от курения.</p>
     </section>
-    <div class="timeline">
-      <article><div class="number">01</div><h3>Сначала я искал способ для себя</h3><p>«Я давно заметил: можно прекрасно понимать правильную мысль, а в следующий трудный момент просто о ней забыть. Мне хотелось, чтобы важные убеждения возвращались сами, без постоянного самоконтроля».</p></article>
+    <div class="story-turn">
+      <span class="story-turn-label">ГЛАВНЫЙ ПОВОРОТ</span>
+      <h3>«Я не мог постоянно напоминать человеку нужные слова. Но <em>музыка могла помочь ему вспоминать их самому.</em>»</h3>
+      <p>Так возникла идея: взять знакомые мысли, которыми курильщик оправдывает очередную сигарету, и дать им другие ответы в музыкальной форме. Не повторять лекцию снова и снова, а записать то, к чему можно возвращаться как к знакомому припеву.</p>
+    </div><h3>Сначала я искал способ для себя</h3><p>«Я давно заметил: можно прекрасно понимать правильную мысль, а в следующий трудный момент просто о ней забыть. Мне хотелось, чтобы важные убеждения возвращались сами, без постоянного самоконтроля».</p></article>
       <article><div class="number">02</div><h3>А потом заметил силу музыки</h3><p>«Мы помним припевы песен годами. Даже когда музыка выключена, слова могут всплыть в голове. И я подумал: почему бы не дать этой форме полезное психологическое содержание?»</p></article>
       <article><div class="number">03</div><h3>И перенёс идею на курение</h3><p>«Когда я услышал в очередной раз слова “одна сигарета ничего не изменит”, я понял: для каждого привычного оправдания можно записать новый ответ. Так постепенно родился альбом».</p></article>
     </div>
     <div class="result">
       <img src="/ai/assets/anchor-release-20261008.webp" width="1254" height="1254" alt="Обложка «Без торга»">
-      <div><div class="label" style="color:#292c05">РЕЗУЛЬТАТ · «БЕЗ ТОРГА»</div><h3>Не просто музыка.<br>Опыт, выраженный в песнях.</h3><p>12 аудиоякорей о внутренних оправданиях курения. Смыслы можно слушать, запоминать и вспоминать, когда снова возникает желание закурить.</p></div>
+      <div><div class="label" style="color:#292c05">РЕЗУЛЬТАТ · «БЕЗ ТОРГА»</div><h3>Двенадцать психологических ответов.<br>В форме музыки.</h3><p>Альбом «Без торга» собрал знакомые оправдания курения и другие ответы на них в 12 песнях. Чтобы важная мысль могла легче всплывать в памяти не только во время разговора, но и в обычной жизни.</p></div>
     </div>
   </section>
 
