@@ -479,6 +479,18 @@ html{scroll-padding-top:18px}
 @media(min-width:1051px){.photo-story-card .scene-frame{height:190px!important;aspect-ratio:auto!important;overflow:hidden}.photo-story-card .scene-image{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 38%}}
 @media(min-width:761px) and (max-width:1050px){.photo-story-card .scene-frame{height:160px!important;aspect-ratio:auto!important;overflow:hidden}.photo-story-card .scene-image{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 36%}}
 @media(max-width:760px){.photo-story-card .scene-frame{height:100%!important;aspect-ratio:auto!important;min-height:0!important;overflow:hidden}.photo-story-card .scene-image{width:100%!important;height:100%!important;object-fit:cover!important}}
+
+/* Tablet: three cramped narrow columns make captions excessively tall.
+   Use readable horizontal story rows like mobile, while retaining all three photos. */
+@media(min-width:761px) and (max-width:1050px){
+ .photo-story-grid{grid-template-columns:1fr!important;gap:12px}
+ .photo-story-card{display:grid!important;grid-template-columns:235px minmax(0,1fr)!important;min-height:0}
+ .photo-story-card .scene-frame{height:100%!important;min-height:145px;aspect-ratio:auto!important}
+ .photo-story-card .scene-image{height:100%!important;object-fit:cover!important;object-position:center 36%}
+ .photo-story-copy{padding:16px 21px}
+ .photo-story-copy h4{font-size:20px;margin:6px 0 6px}
+ .photo-story-copy p{font-size:16px;line-height:1.45}
+}
 </style>
 </head>
 <body>
