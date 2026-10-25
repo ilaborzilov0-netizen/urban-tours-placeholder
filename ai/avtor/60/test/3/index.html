@@ -28,6 +28,16 @@ h1,h2,h3{font-weight:500} .eyebrow{color:var(--accent);font-family:Arial,Helveti
  .playlist-header>*{min-width:0}
  .playlist-header .btn{width:100%!important;max-width:100%;white-space:normal!important;overflow-wrap:anywhere;min-width:0!important;font-size:14px;padding:12px 9px}
 }
+
+/* Mobile tape layout: prevent long captions and audio controls from setting grid min-content width. */
+@media(max-width:390px){
+ .playroom-inner{grid-template-columns:minmax(0,1fr)!important;min-width:0}
+ .playroom-inner>div{min-width:0;max-width:100%}
+ .tape{min-width:0;width:100%;padding:13px}
+ .tape-top{flex-wrap:wrap;gap:5px;min-width:0}
+ .tape-window,.wave,.tape-controls{min-width:0;max-width:100%}
+ .tape-controls .btn{min-width:0!important;width:100%!important;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+}
 </style></head>
 <body class="design-three"><header class="station-header"><div class="wrap station-inner"><a href="#top" class="station-logo"><b aria-hidden="true"><i></i><i></i><i></i><i></i></b>АУДИОЯКОРЯ</a><nav class="station-nav"><a href="#listen">Демо</a><a href="#songs">Треклист</a><a href="/ai/avtor/60/test/pult/">3 версии ↗</a></nav></div></header>
 <main id="top"><section class="wrap dash-hero"><div class="disc-panel"><div class="disc-glow" aria-hidden="true"></div><img class="disc-art" src="/ai/assets/anchor-release-20261008.webp" width="1254" height="1254" alt="Обложка «Без торга»" fetchpriority="high"><span class="disc-label">AUDIO / VOL. 01</span></div><div class="dash-copy"><div class="eyebrow">Авторский музыкальный альбом · для мужчин 55+</div><h1>Сигарета снова убеждает?<br><em>Пусть ответ звучит иначе.</em></h1><p>Бросьте курить с помощью аудиоякорей: 12 музыкальных композиций о знакомых оправданиях сигареты и других ответах на них.</p><div class="dashboard-points"><span><strong>12</strong> треков</span><span><strong>03</strong> главы</span><span>Разовая покупка</span></div><div class="dash-pricebar"><span class="price">1 990 ₽</span><span class="smallprint">«Без торга» — полный цифровой альбом</span></div><div class="dash-buttons"><button class="btn primary js-buy" type="button">Получить альбом · 1 990 ₽</button><a href="#listen" class="btn ghost">Послушать фрагмент ↓</a></div></div></section>
