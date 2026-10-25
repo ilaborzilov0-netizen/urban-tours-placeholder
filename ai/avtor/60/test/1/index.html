@@ -19,13 +19,130 @@ footer a{text-decoration:underline}
 @media(max-width:1020px){.hero{grid-template-columns:1.05fr .95fr;gap:22px}.hero h1{font-size:clamp(41px,5.2vw,60px)}.hero-description{font-size:18px}.hero-actions{grid-template-columns:1fr}.record-player{grid-template-columns:120px 1fr}.record-player img{width:120px}.record-player .btn{grid-column:2}}
 @media(max-width:700px){.top-inner{height:62px}.top-links a:first-child{display:none}.hero{display:flex;flex-direction:column;align-items:stretch;padding:29px 0 43px;gap:24px}.hero h1{font-size:clamp(40px,10.5vw,60px);margin:15px 0 16px}.hero-description{font-size:18px}.hero-buy{margin-top:17px}.hero-actions{grid-template-columns:1fr 1fr;gap:9px}.hero-actions .btn{font-size:14px;padding:10px}.hero-photo{width:100%}.hero-photo>img{height:auto;aspect-ratio:16/10;object-position:center 36%}.album-mini{width:104px;right:4px;bottom:35px;padding:6px}.intro-grid{grid-template-columns:1fr;gap:14px}.record-player{grid-template-columns:105px 1fr;gap:15px;padding:16px}.record-player img{width:105px}.record-player h3{font-size:23px}.record-player .btn{grid-column:1/-1;width:100%}.editorial-note{padding:25px}.principle{grid-template-columns:1fr;gap:0}.principle article{padding:17px 0}.album-note{grid-template-columns:75px 1fr;padding:15px;gap:13px}.album-note img{width:75px}.album-note h3{font-size:21px}.track-heading{display:block}.track-heading .btn{width:100%;margin-top:18px}}
 @media(max-width:390px){.top-links{gap:10px}.top-links a{font-size:12px}.wordmark{font-size:13px}.hero h1{font-size:40px}.hero-description{font-size:17px}.hero-actions{grid-template-columns:1fr}.hero-buy .price{font-size:37px}.record-player{grid-template-columns:78px 1fr}.record-player img{width:78px}.record-player h3{font-size:19px}.album-mini{width:90px}}
+
+/* Digital versus collectors edition — isolated from gallery, audio and checkout. */
+.editions{padding:79px 0 81px;background:#191d17;border-top:1px solid #465143;border-bottom:1px solid #465143}
+.editions-top{display:flex;justify-content:space-between;align-items:end;gap:35px;margin-bottom:30px}
+.editions-top h2{font-size:clamp(38px,4.1vw,57px);line-height:1.09;letter-spacing:-.05em;margin-top:12px;font-weight:500}
+.editions-top h2 em{font-style:normal;color:var(--accent)}
+.editions-top>p{color:#CBD1C2;max-width:360px;font-size:17px;line-height:1.58}
+.edition-cards{display:grid;grid-template-columns:1fr 1fr;gap:17px;align-items:stretch}
+.edition-card{border:1px solid #596451;background:#252a23;display:grid;grid-template-rows:auto 1fr auto;padding:25px 26px 24px;min-width:0;position:relative}
+.edition-card.digital{border-color:#8C9A55;background:#283025}
+.edition-card.collectors{border-color:#A28A65;background:#292922}
+.edition-tag{font-size:12px;letter-spacing:.12em;font-weight:800;color:#D4DBBE}
+.collectors .edition-tag{color:#E5C8A0}
+.edition-title{font-size:clamp(27px,2.5vw,35px);line-height:1.18;letter-spacing:-.035em;font-weight:500;margin:10px 0 4px}
+.edition-price{font-size:clamp(44px,4.1vw,61px);font-weight:700;letter-spacing:-.065em;line-height:1.03;margin:7px 0 12px;color:var(--accent);font-variant-numeric:tabular-nums}
+.collectors .edition-price{color:#F3D19D}
+.edition-desc{font-size:16px;line-height:1.57;color:#DFE4D6;max-width:450px}
+.edition-content{display:flex;flex-direction:column}
+.edition-art-digital{min-height:230px;position:relative;display:flex;align-items:center;justify-content:center;margin:20px 0 10px;isolation:isolate}
+.edition-phone{width:132px;height:222px;border:6px solid #0A0B0B;border-radius:21px;background:#101312;box-shadow:0 14px 35px #0009,inset 0 0 0 1px #8D9089;overflow:hidden;position:relative;padding:10px 8px;transform:rotate(-5deg)}
+.edition-phone:before{content:"";position:absolute;top:5px;left:35%;width:30%;height:7px;background:#050606;border-radius:8px;z-index:2}
+.edition-phone img{width:100%;aspect-ratio:1;object-fit:cover;margin-top:16px}
+.edition-phone .phone-sound{font-size:9px;color:#E2E8D3;margin-top:9px;line-height:1.3;text-align:center}
+.edition-phone .phone-progress{background:#3C4638;height:3px;overflow:hidden;border-radius:7px;margin-top:15px}
+.edition-phone .phone-progress:before{content:"";display:block;width:63%;height:3px;background:var(--accent)}
+.edition-phone .phone-controls{font-size:21px;text-align:center;color:var(--accent);letter-spacing:10px;margin-top:4px;padding-left:10px}
+.edition-digital-list{position:absolute;left:5%;top:50%;z-index:-1;transform:translateY(-50%) rotate(5deg);background:#19211B;box-shadow:0 15px 28px #0007;border:1px solid #67765C;padding:17px;min-width:195px;max-width:56%}
+.edition-digital-list strong{display:block;font-size:12px;color:#ECF2E2;margin-bottom:6px}.edition-digital-list span{display:block;font-size:11px;color:#B8C5B5;margin-top:8px}
+.edition-art-physical{height:252px;margin:20px 0 11px;background:radial-gradient(ellipse at 50% 90%,#766A50 0%,#403D34 45%,#262920 100%);border:1px solid #5C5645;position:relative;overflow:hidden;isolation:isolate}
+.edition-art-physical:before{content:"";position:absolute;left:-20%;bottom:17px;width:150%;height:3px;background:#A59677;opacity:.35;transform:rotate(-8deg)}
+.cd-box{position:absolute;width:158px;height:159px;left:24%;top:36px;transform:perspective(700px) rotateY(-14deg) rotate(-7deg);box-shadow:7px 16px 20px #0008;border:3px solid #C2BDB2;background:#161813;z-index:3}
+.cd-box img{width:100%;height:100%;object-fit:cover}
+.cd-box:after{content:"";position:absolute;inset:0;border:1px solid #FFF8;background:linear-gradient(115deg,#FFF3 0 7%,transparent 27% 80%,#FFF2 89%);pointer-events:none}
+.cd-disc{position:absolute;width:150px;height:150px;border-radius:100%;right:10%;bottom:25px;transform:rotate(-17deg);background:repeating-radial-gradient(circle at center,#242924 0px,#242924 11px,#5D6260 12px,#1A1B19 13px,#131612 15px,#131612 18px);box-shadow:5px 13px 19px #0009;z-index:2;border:2px solid #B2B7A4;display:grid;place-items:center}
+.cd-disc:before{content:"";position:absolute;inset:30px;border-radius:100%;background:conic-gradient(#252820,#9BB351,#31382D,#93A35B,#1D251F,#AAC663,#252820);opacity:.8}
+.cd-disc:after{content:"";width:27px;height:27px;background:#262824;border-radius:50%;border:7px solid #BBC4AD;box-shadow:inset 0 0 0 2px #111;z-index:2}
+.cd-booklet{position:absolute;width:146px;height:155px;right:25%;top:18px;transform:rotate(14deg);z-index:1;box-shadow:4px 12px 17px #0007;background:#E5E0D1;border:1px solid #ABAD98;padding:20px 13px}
+.cd-booklet b{font-size:12px;display:block;line-height:1.23;color:#282F22;font-weight:800}.cd-booklet small{display:block;margin-top:13px;padding-top:7px;border-top:1px solid #858E78;color:#525B4C;font-size:9px;line-height:1.8}
+.edition-art-label{display:block;position:absolute;bottom:12px;left:12px;z-index:5;color:#F0E1C9;background:#1B1E18DA;padding:5px 8px;font-size:11px;letter-spacing:.04em}
+.edition-features{list-style:none;padding:0;margin:18px 0 24px;display:grid;gap:10px}
+.edition-features li{padding-left:24px;position:relative;font-size:15px;line-height:1.45;color:#E3E8DC}
+.edition-features li:before{content:"✓";position:absolute;left:0;top:0;color:var(--accent);font-weight:800}
+.collectors .edition-features li:before{color:#E8BE84}
+.edition-card-bottom{margin-top:auto}
+.edition-card-bottom .btn{width:100%;font-size:17px;min-height:55px}
+.collectors .btn{border-color:#BBA57C;background:#E5C292;color:#211F18}
+.collectors .btn:hover{background:#F3D5A9}
+.edition-fine{margin-top:10px;font-size:12px;line-height:1.48;color:#BCC2B2}
+.edition-disclaimer{font-size:14px;line-height:1.65;color:#CED2C4;margin-top:19px;padding:14px 20px;border-left:3px solid #A6936E;background:#252820}
+.edition-gift-note{display:flex;align-items:center;gap:13px;margin-top:20px;padding:20px;background:#252920;border:1px solid #525E4C}
+.edition-gift-note strong{font-size:16px;line-height:1.5;color:#F0F1E7}.edition-gift-note span{color:#C3CAAE;font-size:13px;line-height:1.6}
+.edition-gift-icon{display:grid;place-items:center;width:52px;height:52px;border:1px solid #B9C47A;color:#D7E58E;flex:none;font-size:26px}
+@media(max-width:960px){.editions-top{display:block}.editions-top>p{max-width:750px;margin-top:13px}.edition-card{padding:20px}.edition-art-physical{height:230px}.cd-box{left:15%}.cd-booklet{right:20%}}
+@media(max-width:700px){.editions{padding:53px 0 57px}.editions-top{margin-bottom:21px}.editions-top h2{font-size:clamp(34px,9vw,45px)}.editions-top>p{font-size:16px}.edition-cards{grid-template-columns:1fr;gap:13px}.edition-card{padding:21px}.edition-title{font-size:29px}.edition-price{font-size:48px}.edition-art-physical{height:244px}.cd-box{left:23%}.cd-booklet{right:25%}.edition-gift-note{align-items:flex-start;padding:16px}}
+@media(max-width:390px){.edition-card{padding:17px}.edition-art-physical{height:217px}.cd-box{left:12%;width:144px;height:145px}.cd-disc{width:135px;height:135px;right:3%;bottom:19px}.cd-booklet{right:15%;width:130px;height:135px}.edition-digital-list{left:0;min-width:170px}.edition-price{font-size:45px}}
+
 </style></head>
 <body class="design-one">
-<header class="top"><div class="top-inner wrap"><a href="#top" class="wordmark"><i>И</i><span>АУДИОЯКОРЯ<small style="display:block;font-size:11px;font-weight:400;color:var(--muted);letter-spacing:0">Авторская музыкальная программа</small></span></a><nav class="top-links" aria-label="Разделы"><a href="#listen">Послушать</a><a href="#songs">Все песни</a><a href="#people">Фото</a><a href="/ai/avtor/60/test/1/people/pult/" title="Сравнить варианты фотоблока">Пульт ↗</a></nav></div></header>
+<header class="top"><div class="top-inner wrap"><a href="#top" class="wordmark"><i>И</i><span>АУДИОЯКОРЯ<small style="display:block;font-size:11px;font-weight:400;color:var(--muted);letter-spacing:0">Авторская музыкальная программа</small></span></a><nav class="top-links" aria-label="Разделы"><a href="#listen">Послушать</a><a href="#editions">Форматы и цены</a><a href="#songs">Все песни</a><a href="#people">Фото</a></nav></div></header>
 <main id="top">
 <section class="hero wrap"><div><div class="eyebrow">Мужчинам с большим стажем курения · 55+</div><h1>Бросьте курить с помощью <em>аудиоякорей.</em></h1><p class="hero-description">12 песен с психологическими ответами на знакомое желание закурить. Слова, которые легче вспомнить, когда снова потянет к сигарете.</p><div class="hero-badges"><span>Музыкальный альбом «Без торга»</span><span>Без подписки</span></div><div class="hero-buy"><span class="price">1 990 ₽</span><span class="smallprint">Разовая покупка<br>12 треков</span></div><div class="hero-actions"><button class="btn primary js-buy" type="button">Получить альбом · 1 990 ₽</button><button class="btn ghost js-play" type="button"><span class="play-label">▶ Послушать 30 секунд</span></button></div></div><figure class="hero-photo"><img src="/ai/avtor/60/test/1/assets/hero-with-album-20261025.webp" width="1536" height="1024" alt="Мужчина в синем свитере держит перед собой альбом «Без торга»" fetchpriority="high"><figcaption>«Без торга» — альбом из 12 музыкальных аудиоякорей.</figcaption></figure></section>
 <div class="motto">НЕ ПРИКАЗ СЕБЕ · А ДРУГОЙ РАЗГОВОР С СОБОЙ</div>
 <section class="section wrap" id="listen"><div class="intro-grid"><div><div class="eyebrow">01 / Начните со звучания</div><h2 class="intro-big">Не нужно сначала верить. <em>Сначала послушайте.</em></h2></div><p>Как старый припев возвращается в памяти сам собой, так и полезная фраза иногда вспоминается именно в нужный момент. На этом наблюдении основана идея аудиоякорей.</p></div><div class="record-player"><img src="/ai/assets/anchor-release-20261008.webp" width="1254" height="1254" alt="Обложка «Без торга»"><div><div class="eyebrow">Демо · 30 секунд</div><h3>Жизнь станет лучше</h3><p>Первый трек альбома. Фрагмент можно остановить.</p></div><button class="btn primary js-play" type="button"><span class="play-label">▶ Послушать 30 секунд</span></button></div></section>
+<section class="editions" id="editions" aria-labelledby="edition-heading">
+  <div class="wrap">
+    <div class="editions-top">
+      <div><div class="eyebrow">02 / ВЫБЕРИТЕ ФОРМАТ</div><h2 id="edition-heading">Один альбом.<br><em>Два способа получить.</em></h2></div>
+      <p>Хотите слушать уже сейчас или предпочитаете красивое издание, которое можно держать в руках и подарить близкому?</p>
+    </div>
+    <div class="edition-cards">
+      <article class="edition-card digital">
+        <div class="edition-content">
+          <div class="edition-tag">ЦИФРОВОЙ АЛЬБОМ</div>
+          <h3 class="edition-title">«Без торга» в телефоне</h3>
+          <div class="edition-price">1 990 ₽</div>
+          <p class="edition-desc">Все 12 песен в цифровом формате. Слушайте на телефоне, компьютере или другом удобном устройстве.</p>
+          <div class="edition-art-digital" aria-label="Визуализация альбома на экране смартфона" role="img">
+            <div class="edition-digital-list" aria-hidden="true"><strong>БЕЗ ТОРГА · АЛЬБОМ</strong><span>01 · Жизнь станет лучше</span><span>02 · Знакомая мысль</span><span>03 · Разговор с собой</span><span>12 композиций</span></div>
+            <div class="edition-phone" aria-hidden="true">
+              <img src="/ai/assets/anchor-release-20261008.webp" width="1254" height="1254" alt="">
+              <div class="phone-sound">БЕЗ ТОРГА<br>12 ПЕСЕН</div><div class="phone-progress"></div><div class="phone-controls">◂ ▶ ▸</div>
+            </div>
+          </div>
+          <ul class="edition-features">
+            <li>Полный цифровой альбом из 12 треков</li>
+            <li>Прослушивание на телефоне и компьютере</li>
+            <li>Разовая покупка, без подписки</li>
+            <li>В рабочем варианте — цифровая выдача после оплаты</li>
+          </ul>
+        </div>
+        <div class="edition-card-bottom">
+          <button class="btn primary js-buy" type="button">Получить цифровой альбом</button>
+          <p class="edition-fine">Цифровой формат · 1 990 ₽</p>
+        </div>
+      </article>
+      <article class="edition-card collectors">
+        <div class="edition-content">
+          <div class="edition-tag">КОЛЛЕКЦИОННОЕ ИЗДАНИЕ · КОНЦЕПЦИЯ</div>
+          <h3 class="edition-title">«Без торга» в коробке</h3>
+          <div class="edition-price">4 990 ₽</div>
+          <p class="edition-desc">Для тех, кому хочется получить не только музыку, но и настоящий предмет: диск, печатный буклет и красивую упаковку.</p>
+          <div class="edition-art-physical" role="img" aria-label="Предварительная визуализация коробки музыкального CD, диска и печатного буклета">
+            <div class="cd-booklet" aria-hidden="true"><b>БЕЗ ТОРГА<br>12 МЫСЛЕЙ О КУРЕНИИ</b><small>01 / ПАУЗА И КОФЕ<br>02 / ВНУТРЕННИЙ ТОРГ<br>03 / РАЗГОВОР С СОБОЙ</small></div>
+            <div class="cd-disc" aria-hidden="true"></div>
+            <div class="cd-box" aria-hidden="true"><img src="/ai/assets/anchor-release-20261008.webp" width="1254" height="1254" alt=""></div>
+            <span class="edition-art-label">Визуализация будущего комплекта</span>
+          </div>
+          <ul class="edition-features">
+            <li>Те же 12 треков — цифровой доступ в комплекте</li>
+            <li>Физический музыкальный CD с оформлением</li>
+            <li>Печатный буклет с разборами 12 психологических тем</li>
+            <li>Коробка, подходящая для подарка или домашней фонотеки</li>
+          </ul>
+        </div>
+        <div class="edition-card-bottom">
+          <button class="btn js-collector-interest" type="button" aria-haspopup="dialog">Подробнее об издании</button>
+          <p class="edition-fine">Пока проектируется · оформить заказ нельзя</p>
+        </div>
+      </article>
+    </div>
+    <p class="edition-disclaimer">Коллекционное издание за 4 990 ₽ пока является концепцией: тираж, окончательный состав, стоимость и сроки доставки не утверждены. Предзаказы и оплата физического комплекта не принимаются.</p>
+    <div class="edition-gift-note"><div class="edition-gift-icon" aria-hidden="true">♫</div><div><strong>Не только для себя: физический альбом можно будет подарить близкому человеку.</strong><br><span>Нужная музыка и двенадцать смысловых тем — в формате, который можно поставить на полку.</span></div></div>
+  </div>
+</section>
 <section class="section olive" id="story"><div class="wrap"><div class="editorial-note"><div class="eyebrow">02 / История появления идеи</div><blockquote>«Я не мог быть рядом каждый раз, когда человеку хотелось закурить. <em>Но музыка могла помочь ему вспомнить мои слова.</em>»</blockquote><p>Так появилась идея превратить знакомые оправдания курения и психологические ответы на них в музыкальный альбом. Взрослая, простая мысль: мало однажды понять — важно вспомнить вовремя.</p></div><div class="photo-row"><article class="photo-card"><img loading="lazy" src="/ai/avtor/60/test/assets/scene-seminar-final.webp" width="1050" height="788" alt="На встрече мысли становятся яснее"><div class="photo-card-content"><span class="cap">01 / ОПЫТ</span><h3>На встрече мысли становятся яснее</h3><p>Человек понимает, почему привычные оправдания сигареты не дают ему свободы.</p></div></article>
 <article class="photo-card"><img loading="lazy" src="/ai/avtor/60/test/assets/scene-handshake-final.webp" width="1050" height="788" alt="Но дальше он остаётся один"><div class="photo-card-content"><span class="cap">02 / ЖИЗНЬ</span><h3>Но дальше он остаётся один</h3><p>Кофе, стресс, работа — старые слова снова возвращаются в голову.</p></div></article>
 <article class="photo-card"><img loading="lazy" src="/ai/avtor/60/test/assets/scene-studio-final.webp" width="1050" height="788" alt="Вспоминается сила музыки"><div class="photo-card-content"><span class="cap">03 / ИДЕЯ</span><h3>Вспоминается сила музыки</h3><p>Любимый припев может жить в памяти годами. Что, если такой же формой передавать новые ответы?</p></div></article></div><p class="mini-disclosure">Сцены иллюстрируют вымышленную историю, а не реальные занятия или отзывы.</p></div></section>
@@ -46,7 +163,7 @@ footer a{text-decoration:underline}
   </div>
 </section>
 <section class="section wrap"><div class="eyebrow">05 / Как использовать</div><h2>Слушайте. Замечайте. Вспоминайте.</h2><div class="principle"><article><b>01 / ПОЗНАКОМЬТЕСЬ</b><h3>Послушайте альбом</h3><p>Узнайте привычные оправдания курения в текстах песен.</p></article><article><b>02 / ВОЗВРАЩАЙТЕСЬ</b><h3>Повторяйте по желанию</h3><p>Песни помогают возвращаться к выбранным мыслям.</p></article><article><b>03 / ПРИМЕНЯЙТЕ</b><h3>В момент тяги</h3><p>Попробуйте вспомнить другую мысль вместо привычного внутреннего торга.</p></article></div></section>
-<section class="section olive" id="questions"><div class="wrap"><div class="eyebrow">06 / Без лишних слов</div><h2>Вопросы и ответы.</h2><div class="faq-list"><details><summary>Что входит в альбом?</summary><p>12 музыкальных аудиоякорей «Без торга». Разовая покупка, без подписки.</p></details><details><summary>Подойдёт, если я курю 30–40 лет?</summary><p>Темы песен знакомы людям с разным стажем: кофе, стресс, внутренний торг и привычные ритуалы. Сам альбом не гарантирует отказ от курения.</p></details><details><summary>Это гипноз или лечение?</summary><p>Нет. Это музыкальные психологические смыслы — дополнение, а не замена помощи специалиста и проверенным методам отказа.</p></details><details><summary>Когда начинать слушать?</summary><p>Можно до выбранного дня отказа и после него, возвращаясь к трекам в моменты привычной тяги.</p></details><details><summary>Когда я получу файлы?</summary><p>В действующей версии условия цифровой выдачи показываются при оформлении заказа. Здесь дизайн-концепция: оплата и отправка заказа не подключены.</p></details></div></div></section>
+<section class="section olive" id="questions"><div class="wrap"><div class="eyebrow">06 / Без лишних слов</div><h2>Вопросы и ответы.</h2><div class="faq-list"><details><summary>Что входит в альбом?</summary><p>12 музыкальных аудиоякорей «Без торга». Разовая покупка, без подписки.</p></details><details><summary>Подойдёт, если я курю 30–40 лет?</summary><p>Темы песен знакомы людям с разным стажем: кофе, стресс, внутренний торг и привычные ритуалы. Сам альбом не гарантирует отказ от курения.</p></details><details><summary>Это гипноз или лечение?</summary><p>Нет. Это музыкальные психологические смыслы — дополнение, а не замена помощи специалиста и проверенным методам отказа.</p></details><details><summary>Когда начинать слушать?</summary><p>Можно до выбранного дня отказа и после него, возвращаясь к трекам в моменты привычной тяги.</p></details><details><summary>Когда я получу файлы?</summary><p>В действующей версии условия цифровой выдачи показываются при оформлении заказа. Здесь дизайн-концепция: оплата и отправка заказа не подключены.</p></details><details><summary>Можно ли уже заказать CD и печатный буклет?</summary><p>Пока нет. Физическое коллекционное издание находится на стадии концепции. До открытия заказов нужно подготовить образец, тираж, условия доставки и определить окончательный состав комплекта.</p></details></div></div></section>
 <section class="section wrap purchase-foot" id="offer"><div><div class="eyebrow">Ваш следующий шаг</div><h2>Не откладывайте новый разговор с собой.</h2><p>«Без торга» — 12 аудиоякорей в одном цифровом альбоме. Послушайте фрагмент и решите, подходит ли вам эта форма.</p></div><div class="purchase-panel"><span class="eyebrow">Без торга · полный альбом</span><span class="price">1 990 ₽</span><div class="smallprint">12 музыкальных треков · разовая покупка</div><button class="btn primary js-buy" type="button">Получить альбом</button></div></section></main>
 <footer class="wrap minor-footer"><span>Аудиоякоря · «Без торга»</span></footer>
-<audio id="sample-audio" preload="none" src="/ai/assets/life-gets-better-demo-20261008.mp3"></audio><dialog class="order-modal" id="order-modal"><div class="eyebrow">Просмотр дизайна</div><h3>Оформление в этой версии не подключено</h3><p>Это отдельная дизайн-версия. Рабочий лендинг и платёжный сервер не изменялись.</p><button class="btn primary js-modal-close" type="button">Закрыть</button></dialog><script defer src="/ai/avtor/60/test/1/people/gallery.js"></script><script type="module" src="/ai/avtor/60/test/design-assets/experience.js"></script></body></html>
+<audio id="sample-audio" preload="none" src="/ai/assets/life-gets-better-demo-20261008.mp3"></audio><dialog class="order-modal" id="collector-modal"><div class="eyebrow">Коллекционное издание · Концепция</div><h3>CD, буклет и цифровой альбом</h3><p>Планируемое издание за 4 990 ₽: 12 композиций на диске, цифровые файлы и печатный буклет по всем 12 психологическим темам. Это предварительный макет, не готовый товар. Заказ и оплата пока недоступны, сроки поставки не определены.</p><button type="button" class="btn primary js-collector-close">Понятно</button></dialog><dialog class="order-modal" id="order-modal"><div class="eyebrow">Просмотр дизайна</div><h3>Оформление в этой версии не подключено</h3><p>Это отдельная дизайн-версия. Рабочий лендинг и платёжный сервер не изменялись.</p><button class="btn primary js-modal-close" type="button">Закрыть</button></dialog><script>document.addEventListener("click",function(e){const interest=e.target.closest(".js-collector-interest"),close=e.target.closest(".js-collector-close"),modal=document.getElementById("collector-modal");if(interest){modal.showModal()}if(close){modal.close()}if(e.target===modal){modal.close()}})</script><script defer src="/ai/avtor/60/test/1/people/gallery.js"></script><script type="module" src="/ai/avtor/60/test/design-assets/experience.js"></script></body></html>
