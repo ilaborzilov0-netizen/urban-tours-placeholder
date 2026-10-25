@@ -83,6 +83,37 @@ jobs:
                   buyBottom:Math.round(buy.getBoundingClientRect().bottom),
                   titleText:h1.innerText,photoTop:Math.round(img.getBoundingClientRect().top)};
               });
+              const artwork=await page.evaluate(()=>{
+                const rules=[
+                  ['hero inset','.hero-photo .photo-cover img',0.78,1.24],
+                  ['story artwork','.result>img',0.78,1.24],
+                  ['demo artwork','.demo-card>img',0.78,1.24]
+                ];
+                return {
+                  art:rules.map(([name,selector,min,max])=>{
+                    const el=document.querySelector(selector),rect=el.getBoundingClientRect();
+                    return {name,width:Math.round(rect.width),height:Math.round(rect.height),
+                      ratio:Math.round(rect.width/rect.height*100)/100,min,max,
+                      natural:el.naturalWidth,cssHeight:getComputedStyle(el).height};
+                  }),
+                  sections:['.result','.demo-card','.story-intro','.hero','.story-numbers'].map(selector=>{
+                    const rect=document.querySelector(selector).getBoundingClientRect();
+                    return {selector,height:Math.round(rect.height),width:Math.round(rect.width)}
+                  }),
+                  artContentWidth:Math.round(document.querySelector('.result>div').getBoundingClientRect().width)
+                };
+              });
+              console.log('ARTWORK_GEOMETRY',width,JSON.stringify(artwork));
+              for(const im of artwork.art){
+                assert.ok(im.natural>0,im.name+' not loaded');
+                assert.ok(im.width>=65&&im.height>=65,im.name+' hidden or tiny');
+                assert.ok(im.ratio>=im.min&&im.ratio<=im.max,im.name+' is stretched instead of square');
+              }
+              const resultBlock=artwork.sections.find(x=>x.selector==='.result');
+              const demoBlock=artwork.sections.find(x=>x.selector==='.demo-card');
+              assert.ok(resultBlock.height<=410,'Yellow result section unexpectedly tall');
+              assert.ok(demoBlock.height<=400,'Audio demo card unexpectedly tall');
+              assert.ok(artwork.artContentWidth>=140,'Text column squeezed');
               console.log('LAYOUT',JSON.stringify(layout));
               assert.ok(layout.scrollWidth<=width+4,'Horizontal scroll');
               assert.ok(layout.imageNaturalWidth>=800&&layout.pixelColors>12,'Portrait is missing/blank');
@@ -98,10 +129,10 @@ jobs:
               console.log('DEMO',width,JSON.stringify(audio));
               assert.ok(audio.ready>=2 || audio.currentTime>0 || !audio.paused,'Audio did not load');
               assert.equal(bad.length,0,'Preview attempted payment/lead analytics request');
-              await page.screenshot({path:'/tmp/story-preview-'+width+'.png',fullPage:false});
+              await page.screenshot({path:'/tmp/story-preview-'+width+'.png',fullPage:true});
               await page.close();
             }
-            console.log('CHROMIUM_PASS portrait, CTA, demo, no checkout on 1440, 390, 320');
+            console.log('CHROMIUM_PASS images true 1:1, no giant cards, portrait, CTA, demo, no checkout on 1440, 390, 320');
           }finally{await browser.close()}
           JS
       - uses: actions/upload-artifact@v4
