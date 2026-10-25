@@ -26,7 +26,7 @@ jobs:
           const flags={
             http:status,
             hero:text.includes('Бросьте курить<br>с помощью'),
-            55plus:text.includes('ДЛЯ МУЖЧИН 55+'),
+            '55plus':text.includes('ДЛЯ МУЖЧИН 55+'),
             price:text.includes('1 990 ₽'),
             story:text.includes('40 лет с сигаретой.'),
             tenYears:text.includes('10+ лет'),
