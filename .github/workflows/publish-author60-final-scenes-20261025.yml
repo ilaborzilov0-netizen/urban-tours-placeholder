@@ -1,0 +1,57 @@
+name: Publish exact author60 final photo story assets
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/publish-author60-final-scenes-20261025.yml]
+  workflow_dispatch:
+permissions: {contents: write}
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - name: Import three exact generated photos and optimize for landing
+        shell: bash
+        env:
+          PHOTO_SEMINAR: https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/0995ddf3-cf5e-4226-84d1-0d692ed82aef.png
+          PHOTO_HANDSHAKE: https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/4d6f7299-2b69-4bec-9b36-867704b980be.png
+          PHOTO_STUDIO: https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/a20ae246-a2e6-4816-8cf2-ebaaafe8c321.png
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location --retry 3 --max-time 35 "$PHOTO_SEMINAR" -o /tmp/photo-seminar.png
+          curl --fail --silent --show-error --location --retry 3 --max-time 35 "$PHOTO_HANDSHAKE" -o /tmp/photo-handshake.png
+          curl --fail --silent --show-error --location --retry 3 --max-time 35 "$PHOTO_STUDIO" -o /tmp/photo-studio.png
+          python3 -m pip install --quiet Pillow
+          python3 - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          dst=Path('ai/avtor/60/test/assets')
+          dst.mkdir(parents=True,exist_ok=True)
+          for name in ('seminar','handshake','studio'):
+              src=Path('/tmp/photo-'+name+'.png')
+              im=Image.open(src).convert('RGB')
+              assert im.width>=1200 and im.height>=850, f'Unexpected source size for {name}: {im.size}'
+              im.thumbnail((1050,850),Image.Resampling.LANCZOS)
+              target=dst/('scene-'+name+'-final.webp')
+              im.save(target,'WEBP',quality=84,method=6)
+              check=Image.open(target)
+              assert check.width>=990 and check.height>=650 and target.stat().st_size>25000
+              print('ASSET_OK',name,check.size,target.stat().st_size)
+          PY
+      - name: Publish only three selected scene assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- ai/avtor/60/test/assets/scene-seminar-final.webp ai/avtor/60/test/assets/scene-handshake-final.webp ai/avtor/60/test/assets/scene-studio-final.webp
+          if git diff --cached --quiet; then
+            echo SCENE_ASSETS_ALREADY_PUBLISHED
+          else
+            git commit -m "Publish exact final 60+ fictional photo story scenes as optimized local WebP"
+            git push origin HEAD:main
+          fi
