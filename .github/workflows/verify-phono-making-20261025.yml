@@ -1,0 +1,71 @@
+name: Verify phonoteka making-of block and image
+on:
+  push:
+    branches: [audit/20261024-yandex-readonly]
+    paths: [.github/workflows/verify-phono-making-20261025.yml]
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: Confirm new section on published page and its optimized picture
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const u="https://marafon-metod.ru/ai/avtor/60/test/1/";
+          let html="",status=0;
+          for(let n=0;n<22;n++){
+            try{
+              const r=await fetch(u+"?check_making="+n,{headers:{"Cache-Control":"no-cache"},signal:AbortSignal.timeout(14000)});
+              status=r.status;html=await r.text();
+              if(status===200&&html.includes('id="making"'))break;
+            }catch(e){console.log("Fetch retry",n,e.message)}
+            await new Promise(f=>setTimeout(f,4500));
+          }
+          const markers=['id="origin"','id="editions"','id="story"','id="making"','id="example"'];
+          const indices=markers.map(x=>html.indexOf(x));
+          const flags={status,order:indices.every((v,i)=>v>=0&&(i===0||v>indices[i-1])),photo:html.includes('making-of-studio-20261025.webp'),metrics:html.includes('10 лет')&&html.includes('12')&&html.includes('1 год'),tracks:html.includes('data-tracks'),gallery:html.includes('data-people-gallery="1"'),digital:html.includes('1 990 ₽'),physical:html.includes('4 990 ₽'),noMillion:!html.includes('1 млн ₽')};
+          console.log("LIVE_RESULT",JSON.stringify(flags));
+          assert.ok(Object.values(flags).every(Boolean)&&status===200,"Live publish validation failed");
+          const im=await fetch(u+"assets/making-of-studio-20261025.webp",{signal:AbortSignal.timeout(20000)});
+          const bytes=await im.arrayBuffer();
+          console.log("IMAGE_RESULT",im.status,im.headers.get("content-type"),bytes.byteLength);
+          assert.equal(im.status,200);
+          assert.ok(bytes.byteLength>50000);
+          JS
+      - name: Check mobile viewport and image visibility in Chromium
+        run: |
+          set -euo pipefail
+          npm install --no-save --no-audit --no-fund playwright@1.56.0
+          npx playwright install chromium
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {chromium} from 'playwright';
+          const b=await chromium.launch({headless:true});
+          try{
+            for(const w of [1440,390,320]){
+              const p=await b.newPage({viewport:{width:w,height:900}});
+              await p.goto('https://marafon-metod.ru/ai/avtor/60/test/1/',{waitUntil:'domcontentloaded',timeout:35000});
+              await p.locator('#making').waitFor();
+              const result=await p.evaluate(()=>{
+                const img=document.querySelector('.making-photo img');
+                return {vw:innerWidth,scroll:document.documentElement.scrollWidth,
+                  imageWidth:img.naturalWidth,stats:document.querySelectorAll('.making-stat').length,
+                  cards:document.querySelectorAll('.edition-card').length,
+                  tracks:document.querySelectorAll('.song-row').length,
+                  gallery:document.querySelectorAll('.pg-one .pg-item').length};
+              });
+              console.log("LAYOUT",w,JSON.stringify(result));
+              assert.ok(result.scroll<=w+4);
+              assert.ok(result.imageWidth>=1400);
+              assert.equal(result.stats,4);
+              assert.equal(result.cards,2);
+              assert.equal(result.tracks,12);
+              assert.equal(result.gallery,10);
+              await p.close();
+            }
+          }finally{await b.close()}
+          console.log("ALL_PASS");
+          JS
