@@ -49,6 +49,8 @@ jobs:
               const p=await b.newPage({viewport:{width:w,height:900}});
               await p.goto('https://marafon-metod.ru/ai/avtor/60/test/1/',{waitUntil:'domcontentloaded',timeout:35000});
               await p.locator('#making').waitFor();
+              await p.locator('.making-photo img').scrollIntoViewIfNeeded();
+              await p.locator('.making-photo img').evaluate(async img=>await img.decode());
               const result=await p.evaluate(()=>{
                 const img=document.querySelector('.making-photo img');
                 return {vw:innerWidth,scroll:document.documentElement.scrollWidth,
