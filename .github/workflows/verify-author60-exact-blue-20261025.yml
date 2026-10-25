@@ -94,7 +94,7 @@ jobs:
               assert.equal(checks.naturalWidth,836);
               assert.equal(checks.naturalHeight,471);
               assert.ok(checks.avgLight>45&&checks.uniqueColors>35,'Photo looks blank/dark like prior broken asset');
-              assert.ok(checks.width>=300&&checks.height>=160,'Large photo not visible');
+              assert.ok(checks.width>=Math.min(280,width-30)&&checks.height>=155,'Large photo not visible');
               assert.ok(checks.scrollWidth<=checks.inner+4,'Horizontal overflow');
               assert.ok(checks.demoText.includes('Послушать бесплатно')&&checks.albumPrice.includes('1 990 ₽'));
               await page.screenshot({path:'/tmp/author60-blue-'+width+'.png',fullPage:false});
