@@ -1,0 +1,132 @@
+name: Verify redesigned author60 conversion concept and responsive behavior
+on:
+  push:
+    branches: [audit/20261024-yandex-readonly]
+    paths: [.github/workflows/verify-ai-author60-refined-20261025.yml]
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: Verify live publish and isolated no-payment variant
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const host='https://marafon-metod.ru';
+          let html='',status=0;
+          for(let i=0;i<18;i++){
+            const response=await fetch(host+'/ai/avtor/60/test/?updated_pass='+i,{headers:{'Cache-Control':'no-cache'},cache:'no-store',signal:AbortSignal.timeout(17000)});
+            html=await response.text();status=response.status;
+            if(status===200&&html.includes('id="example"')&&html.includes('faq-refined-list'))break;
+            if(i<17)await new Promise(resolve=>setTimeout(resolve,4500));
+          }
+          const positions=['id="main-title"','id="listen"','id="story"','id="example"','id="tracks"','id="how-title"','id="faq"','id="offer"'].map(x=>html.indexOf(x));
+          const s={
+            http:status,
+            positions,
+            correctOrder:positions.every((x,i)=>x>0&&(i===0||x>positions[i-1])),
+            malformedStoryGone:!html.includes('Сначала я искал способ для себя'),
+            storyHook:html.includes('Я не мог быть рядом'),
+            photos:['scene-seminar-final.webp','scene-handshake-final.webp','scene-studio-final.webp'].every(x=>html.includes(x)),
+            exact12:(html.match(/class="meaning-track"/g)||[]).length===12,
+            chapters:(html.match(/class="track-chapter"/g)||[]).length===3,
+            faq:(html.match(/<details><summary>/g)||[]).length===5,
+            heroBuy:html.includes('Получить альбом за 1 990 ₽'),
+            threeCtas:(html.match(/class="[^"]*js-buy[^"]*"/g)||[]).length===3,
+            twoDemos:(html.match(/class="[^"]*js-demo[^"]*"/g)||[]).length===2,
+            copyPrice:html.includes('1 990 ₽'),
+            fictional:html.includes('История героя вымышленная'),
+            noCheckout:!html.includes('/api/payment/create')&&!html.includes('/api/leads')&&!html.includes('api-metrika'),
+            noindex:html.includes('noindex,nofollow,noarchive')
+          };
+          console.log('LIVE',JSON.stringify(s));
+          assert.equal(status,200);
+          assert.ok(Object.entries(s).every(([k,v])=>['http','positions'].includes(k)||v===true));
+          for(const path of ['/ai/','/ai/avtor/','/ai/avtor/60/']){
+            const response=await fetch(host+path,{signal:AbortSignal.timeout(18000)});
+            const text=await response.text();
+            assert.equal(response.status,200);
+            assert.ok(!text.includes('faq-refined-list')&&!text.includes('contrast-grid'),'The main site should remain unchanged');
+          }
+          console.log('PUBLISH_PASS live, content order, mock-only and unchanged parents');
+          JS
+      - name: Inspect screenshots, text, all photos, accordions, demo and buttons in Chromium
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --no-audit --no-fund playwright@1.56.0
+          npx playwright install chromium
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {chromium} from 'playwright';
+          const browser=await chromium.launch({headless:true});
+          try{
+            for(const width of [1440,768,390,320]){
+              const page=await browser.newPage({viewport:{width,height:860},deviceScaleFactor:1});
+              const errors=[],forbidden=[];
+              page.on('pageerror',error=>errors.push(error.message));
+              page.on('request',req=>{if(/\/api\/payment\/create|\/api\/leads/.test(req.url()))forbidden.push(req.url())});
+              await page.goto('https://marafon-metod.ru/ai/avtor/60/test/?browser_pass=20261025',{waitUntil:'domcontentloaded',timeout:34000});
+              await page.locator('.scene-image').first().scrollIntoViewIfNeeded();
+              const photos=await page.locator('.scene-image').evaluateAll(async images=>Promise.all(images.map(async i=>{
+                try{await i.decode();return {w:i.naturalWidth,h:i.naturalHeight};}
+                catch(e){return {error:String(e)}}
+              })));
+              assert.equal(photos.length,3);
+              assert.ok(photos.every(x=>x.w>=1000&&x.h>=760),'Broken photos');
+              const geom=await page.evaluate(()=>{
+                const get=(sel)=>{const el=document.querySelector(sel),r=el.getBoundingClientRect();return {w:Math.round(r.width),h:Math.round(r.height),top:Math.round(r.top)}};
+                const photos=[...document.querySelectorAll('.photo-story-card')].map(el=>{const r=el.getBoundingClientRect();return {w:Math.round(r.width),h:Math.round(r.height)}});
+                const attrs=[...document.querySelectorAll('.story-section-refined')].map(x=>x.outerHTML.slice(-100));
+                return {view:innerWidth,scroll:document.documentElement.scrollWidth,
+                  height:document.documentElement.scrollHeight,hero:get('.hero'),demo:get('.demo-card'),
+                  gallery:get('.photo-story-grid'),cards:photos,
+                  result:get('.result'),contrast:get('.contrast-grid'),
+                  tracks:get('.track-layout'),trackSide:get('.track-side'),faq:get('.faq-refined-list'),badStory:document.body.innerText.includes('Сначала я искал способ для себя'),
+                  demoIsEarly:document.querySelector('#listen').compareDocumentPosition(document.querySelector('#story'))&Node.DOCUMENT_POSITION_FOLLOWING,
+                  minMeaningFont:Math.round(parseFloat(getComputedStyle(document.querySelector('.meaning-name')).fontSize)),
+                  minFaqFont:Math.round(parseFloat(getComputedStyle(document.querySelector('.faq-refined-list summary')).fontSize)),
+                };
+              });
+              console.log('LAYOUT',width,JSON.stringify(geom));
+              assert.ok(geom.scroll<=width+5,'Horizontal overflow');
+              assert.ok(!geom.badStory&&geom.demoIsEarly);
+              assert.ok(geom.result.h<320,'Giant yellow card');
+              assert.ok(geom.demo.h<300,'Giant demo card');
+              assert.ok(geom.cards.length===3&&geom.cards.every(x=>x.h<360),'Photo cards are too tall');
+              assert.ok(geom.minMeaningFont>=16&&geom.minFaqFont>=17,'Too small content for 55+');
+              assert.equal(await page.locator('.meaning-track').count(),12);
+              await page.locator('.meaning-track').nth(6).locator('summary').click();
+              await page.waitForTimeout(170);
+              assert.equal(await page.locator('.meaning-track[open]').count(),1);
+              assert.equal(await page.locator('.meaning-track[open]').getAttribute('data-track-no'),'7');
+              await page.locator('.faq-refined-list details').first().locator('summary').click();
+              await page.locator('.faq-refined-list details').first().locator('p').waitFor({state:'visible'});
+              await page.locator('.hero .js-demo').click();
+              await page.waitForTimeout(850);
+              const audio=await page.locator('#demo-audio').evaluate(a=>({time:a.currentTime,paused:a.paused,ready:a.readyState}));
+              console.log('AUDIO',width,JSON.stringify(audio));
+              assert.ok(audio.time>0||!audio.paused,'Demo playback failed');
+              await page.locator('.hero .js-demo').click();
+              for(const button of await page.locator('.js-buy').all()){
+                await button.click();
+                await page.locator('#concept-dialog').waitFor({state:'visible'});
+                await page.locator('#close-modal').click();
+              }
+              assert.equal(errors.length,0,JSON.stringify(errors));
+              assert.equal(forbidden.length,0,'Attempted live checkout');
+              await page.screenshot({path:'/tmp/ai60-refined-'+width+'.png',fullPage:true});
+              await page.close();
+            }
+            console.log('BROWSER_PASS 1440,768,390,320 - photos, size, audio, accordions, all three CTAs');
+          }finally{await browser.close()}
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ai60-refined-fullpage
+          path: /tmp/ai60-refined-*.png
+          retention-days: 4
