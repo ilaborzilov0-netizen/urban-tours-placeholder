@@ -1,0 +1,112 @@
+name: Read-only verify fictional author60 concept preview
+on:
+  push:
+    branches: [audit/20261024-yandex-readonly]
+    paths: [.github/workflows/verify-author60-story-preview-20261025.yml]
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - name: Verify public page, assets and safe separation from original
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const root='https://marafon-metod.ru';
+          let text='',status=0;
+          for(let i=0;i<16;i++){
+            const response=await fetch(root+'/ai/avtor/60/test/?preview_ready='+i,{cache:'no-store',headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(20000)});
+            status=response.status;text=await response.text();
+            if(status===200&&text.includes('История героя вымышленная'))break;
+            if(i<15)await new Promise(resolve=>setTimeout(resolve,5000));
+          }
+          const flags={
+            http:status,
+            hero:text.includes('Бросьте курить<br>с помощью'),
+            55plus:text.includes('ДЛЯ МУЖЧИН 55+'),
+            price:text.includes('1 990 ₽'),
+            story:text.includes('40 лет с сигаретой.'),
+            tenYears:text.includes('10+ лет'),
+            selectedMan:text.includes('listener60-blue-20261025.webp'),
+            demo:text.includes('life-gets-better-demo-20261008.mp3'),
+            fakeNotice:text.includes('История героя вымышленная'),
+            noindex:text.includes('noindex,nofollow,noarchive'),
+            noBackend:!text.includes('api/payment/create')&&!text.includes('api/leads')&&!text.includes('mc.yandex.ru/metrika')&&!text.includes('posthog-init.js'),
+            noForm:!text.includes('<form'),
+            modal:text.includes('Это закрытый от индексации прототип'),
+          };
+          console.log('PUBLISHED_PREVIEW',JSON.stringify(flags));
+          assert.ok(Object.entries(flags).every(([name,v])=>name==='http'?v===200:v===true));
+          const im=await fetch(root+'/ai/avtor/60/assets/listener60-blue-20261025.webp',{method:'HEAD',signal:AbortSignal.timeout(15000)});
+          const audio=await fetch(root+'/ai/assets/life-gets-better-demo-20261008.mp3',{method:'HEAD',signal:AbortSignal.timeout(15000)});
+          console.log('ASSETS',JSON.stringify({photo:im.status,photoBytes:im.headers.get('content-length'),audio:audio.status}));
+          assert.ok(im.ok&&Number(im.headers.get('content-length'))>35000);
+          assert.ok(audio.ok);
+          for(const path of ['/ai/','/ai/avtor/','/ai/avtor/60/']){
+            const v=await fetch(root+path,{signal:AbortSignal.timeout(15000)}),html=await v.text();
+            console.log('ORIGINAL',path,v.status,html.includes('ТЕСТОВЫЙ МАКЕТ'));
+            assert.equal(v.status,200);
+            assert.ok(!html.includes('История героя вымышленная · настоящий Илья'));
+          }
+          console.log('PUBLISH_PASS preview exists, noindex, mock-only, parents unchanged');
+          JS
+      - name: Render desktop and mobile; inspect buttons and real pixels
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --no-audit --no-fund playwright@1.56.0
+          npx playwright install chromium
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {chromium} from 'playwright';
+          const browser=await chromium.launch({headless:true});
+          try{
+            for(const width of [1440,390,320]){
+              const page=await browser.newPage({viewport:{width,height:850}});
+              const bad=[];
+              page.on('request',r=>{if(/api\/payment\/create|api\/leads|api-metrika/.test(r.url()))bad.push(r.url())});
+              await page.goto('https://marafon-metod.ru/ai/avtor/60/test/?visual_check=20261025',{waitUntil:'domcontentloaded',timeout:35000});
+              await page.locator('.hero-photo img').first().evaluate(img=>img.decode());
+              const layout=await page.evaluate(()=>{
+                const hero=document.querySelector('.hero'),img=document.querySelector('.hero-photo>img'),buy=document.querySelector('.hero .js-buy'),h1=document.querySelector('.hero h1');
+                const canvas=document.createElement('canvas');canvas.width=12;canvas.height=8;
+                const context=canvas.getContext('2d');context.drawImage(img,0,0,12,8);
+                const bytes=context.getImageData(0,0,12,8).data;
+                const unique=new Set();
+                for(let i=0;i<bytes.length;i+=4)unique.add([bytes[i]>>4,bytes[i+1]>>4,bytes[i+2]>>4].join(','));
+                return {width:innerWidth,scrollWidth:document.documentElement.scrollWidth,
+                  imageNaturalWidth:img.naturalWidth,imageHeight:img.naturalHeight,
+                  pixelColors:unique.size,heroHeight:Math.round(hero.getBoundingClientRect().height),
+                  buyBottom:Math.round(buy.getBoundingClientRect().bottom),
+                  titleText:h1.innerText,photoTop:Math.round(img.getBoundingClientRect().top)};
+              });
+              console.log('LAYOUT',JSON.stringify(layout));
+              assert.ok(layout.scrollWidth<=width+4,'Horizontal scroll');
+              assert.ok(layout.imageNaturalWidth>=800&&layout.pixelColors>12,'Portrait is missing/blank');
+              assert.ok(layout.titleText.includes('аудиоякорей.'));
+              if(width<=390)assert.ok(layout.buyBottom<=850,'Primary purchase CTA should be visible within first viewport');
+              await page.locator('.hero .js-buy').click();
+              await page.locator('#concept-dialog').waitFor({state:'visible'});
+              assert.ok((await page.locator('#concept-dialog').innerText()).includes('нельзя оформить или оплатить'));
+              await page.locator('#close-modal').click();
+              await page.locator('.hero .js-demo').click();
+              await page.waitForTimeout(1100);
+              const audio=await page.locator('#demo-audio').evaluate(a=>({ready:a.readyState,paused:a.paused,currentTime:a.currentTime,error:a.error?.code||null}));
+              console.log('DEMO',width,JSON.stringify(audio));
+              assert.ok(audio.ready>=2 || audio.currentTime>0 || !audio.paused,'Audio did not load');
+              assert.equal(bad.length,0,'Preview attempted payment/lead analytics request');
+              await page.screenshot({path:'/tmp/story-preview-'+width+'.png',fullPage:false});
+              await page.close();
+            }
+            console.log('CHROMIUM_PASS portrait, CTA, demo, no checkout on 1440, 390, 320');
+          }finally{await browser.close()}
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: author60-fictional-concept-responsive
+          path: /tmp/story-preview-*.png
+          retention-days: 3
