@@ -8,7 +8,7 @@ permissions: {contents: read}
 jobs:
   verify:
     runs-on: ubuntu-24.04
-    timeout-minutes: 4
+    timeout-minutes: 10
     steps:
       - name: Inspect both public landings, assets, and backend
         run: |
@@ -28,7 +28,13 @@ jobs:
           const checks={
             '200_clone':author.status===200,
             'copy_author_kicker':author.body.includes('Авторский подход · Илья Борзилов'),
-            'copy_author_lead':author.body.includes('Знаю, как сигарета убеждает человека закурить снова'),
+            'copy_author_lead':author.body.includes('Работал в клинике Аллена Карра и знаю'),
+            'copy_music_approach':author.body.includes('Я соединил психологию отказа от курения с музыкой.'),
+            'copy_demo_visible':author.body.includes('author-demo-cta'),
+            'copy_demo_text':author.body.includes('Послушать бесплатно · 30 секунд'),
+            'copy_mobile_identity':author.body.includes('class="author-mobile-identity"'),
+            'copy_ai_credit_below':author.body.includes('ИИ помогает создать музыку и вокал.'),
+            'copy_no_ai_credit_in_photo':!author.body.includes('class="author-ai-credit"'),
             'copy_portrait_tag':author.body.includes('/ai/avtor/assets/author-portrait-20261025.jpg'),
             'copy_album_inset':author.body.includes('class="author-album-inset"'),
             'copy_author_caption':author.body.includes('Автор идеи и смысловой программы'),
@@ -61,5 +67,5 @@ jobs:
           assert.ok(audio.ok&&image.ok&&portrait.ok);
           assert.ok((portrait.headers.get('content-type')||'').includes('image/jpeg'));
           assert.ok(Number(portrait.headers.get('content-length'))>60000);
-          console.log('PASS: /ai/avtor/ publicly served, tracker isolated, assets load, original /ai/ untouched');
+          console.log('PASS: /ai/avtor/ publicly served with revised author story/demo/mobile chip, tracker isolated, assets load, original /ai/ untouched');
           JS
