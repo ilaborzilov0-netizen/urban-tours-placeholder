@@ -69,3 +69,58 @@ jobs:
           assert.ok(Number(portrait.headers.get('content-length'))>60000);
           console.log('PASS: /ai/avtor/ publicly served with revised author story/demo/mobile chip, tracker isolated, assets load, original /ai/ untouched');
           JS
+      - name: Chromium mobile and desktop clickthrough test
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --no-audit --no-fund playwright@1.56.0
+          npx playwright install chromium
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import { chromium } from 'playwright';
+          const browser=await chromium.launch({headless:true});
+          try{
+            for(const vp of [{width:1440,height:900,label:'desktop'},{width:390,height:844,label:'mobile'},{width:320,height:720,label:'small-mobile'}]){
+              const page=await browser.newPage({viewport:{width:vp.width,height:vp.height},deviceScaleFactor:1});
+              await page.goto('https://marafon-metod.ru/ai/avtor/?responsive_check=20261025',{waitUntil:'domcontentloaded',timeout:35000});
+              await page.locator('.hero h1').waitFor({state:'visible'});
+              await page.locator('.author-photo').evaluate(img=>img.decode());
+              const visual=await page.evaluate(()=>{
+                const identity=document.querySelector('.author-mobile-identity');
+                const demo=document.querySelector('.hero .author-demo-cta');
+                const photo=document.querySelector('.hero .author-photo');
+                return {
+                  inner:window.innerWidth,
+                  scrollWidth:document.documentElement.scrollWidth,
+                  identityVisible:identity && getComputedStyle(identity).display!=='none',
+                  identityTop:identity?.getBoundingClientRect().top,
+                  demoVisible:demo && getComputedStyle(demo).display!=='none',
+                  photoLoaded:!!(photo?.complete&&photo.naturalWidth>0),
+                  price:document.body.textContent.includes('1 990 ₽'),
+                  lead:document.querySelector('.hero-lead')?.textContent||''
+                };
+              });
+              console.log('BROWSER_CHECK',vp.label,JSON.stringify(visual));
+              assert.ok(visual.scrollWidth<=visual.inner+4,'Unexpected horizontal scrollbar');
+              assert.ok(visual.demoVisible&&visual.photoLoaded&&visual.price);
+              assert.ok(visual.lead.includes('клинике Аллена Карра'));
+              assert.equal(visual.identityVisible,vp.width<=800);
+              if(vp.width<=800)assert.ok(visual.identityTop>=0&&visual.identityTop<vp.height,'Author identity must appear above mobile fold');
+              await page.locator('.hero .author-demo-cta').click();
+              await page.locator('#audio-dialog').waitFor({state:'visible'});
+              await page.locator('#audio-dialog [data-modal-close]').first().click();
+              await page.locator('.hero button[data-buy]').click();
+              await page.locator('#purchase-dialog').waitFor({state:'visible'});
+              assert.ok((await page.locator('#purchase-dialog').innerText()).includes('1 990 ₽'));
+              await page.screenshot({path:'/tmp/avtor-'+vp.label+'.png',fullPage:false});
+              await page.close();
+            }
+            console.log('BROWSER_PASS: desktop/mobile no overflow, identity above fold, image loaded, demo and checkout dialogs work');
+          }finally{await browser.close()}
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: avtor-hero-responsive-20261025
+          path: /tmp/avtor-*.png
+          retention-days: 2
