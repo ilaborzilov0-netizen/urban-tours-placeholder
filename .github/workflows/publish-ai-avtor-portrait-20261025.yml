@@ -1,0 +1,44 @@
+name: Publish uploaded author portrait into site assets
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/publish-ai-avtor-portrait-20261025.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import-photo:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - name: Download exact user-supplied author photograph
+        env:
+          PHOTO_URL: https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/76c6c796-602c-49a9-b18c-1736e30b853f.jpg
+        run: |
+          set -euo pipefail
+          mkdir -p ai/avtor/assets
+          curl --fail --silent --show-error --location --retry 3 --max-time 45 "$PHOTO_URL" -o ai/avtor/assets/author-portrait-20261025.jpg
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('ai/avtor/assets/author-portrait-20261025.jpg')
+          data=p.read_bytes()
+          assert data[:2]==b'\xff\xd8' and data[-2:]==b'\xff\xd9', 'Not a valid complete JPEG'
+          assert 60000<len(data)<1000000, 'Unexpected photograph size'
+          print('PHOTO_BYTES',len(data),'JPEG_SIGNATURE_VALID')
+          PY
+      - name: Commit only the photograph
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- ai/avtor/assets/author-portrait-20261025.jpg
+          if git diff --cached --quiet; then
+            echo "PHOTO_ALREADY_PRESENT"
+          else
+            git commit -m "Add actual author portrait for /ai/avtor/ hero"
+            git push origin HEAD:main
+          fi
