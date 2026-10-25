@@ -198,6 +198,59 @@ img{max-width:100%}
  .footer{line-height:1.65}
 }
 
+
+/* Conceptual actor photo story (explicitly labelled fiction) */
+.story-photogallery{margin-top:45px;margin-bottom:6px}
+.story-visual-header{max-width:820px}
+.story-visual-header h3{font-size:clamp(30px,3.2vw,42px);line-height:1.15;margin-top:13px;font-weight:500}
+.story-visual-header h3 em{font-style:normal;color:var(--lime)}
+.story-visual-header>p{color:#b9bcb1;margin-top:10px;font-size:15px}
+.photo-story-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-top:25px}
+.photo-story-card{min-width:0;background:#20221f;border:1px solid #44483f;overflow:hidden}
+.scene-frame{aspect-ratio:4/3;background:#32372f;overflow:hidden}
+.scene-frame .scene-image{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.photo-story-copy{padding:21px 21px 25px}
+.scene-no{color:var(--lime);font-size:10px;font-weight:700;letter-spacing:.12em}
+.photo-story-copy h4{font-size:22px;line-height:1.17;letter-spacing:-.035em;margin:11px 0}
+.photo-story-copy p{font-size:14px;line-height:1.62;color:#bfc1b6}
+.photo-story-disclosure{font-size:12px;color:#b5b8ae;line-height:1.5;margin-top:14px}
+.track-explainer-section{background:#181a17;border-top:1px solid #30342b;border-bottom:1px solid #30342b}
+.track-explainer-heading{margin-bottom:32px}
+.track-layout{display:grid;grid-template-columns:minmax(250px,.68fr) minmax(0,1.4fr);gap:20px;align-items:start}
+.track-side{background:#22241f;border:1px solid #45483f;padding:22px;position:sticky;top:22px}
+.track-side>img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;border:1px solid #34372e;display:block}
+.track-side-body{padding:21px 3px 5px}
+.track-side h3{font-size:26px;line-height:1.2;margin:13px 0}
+.track-side p{font-size:14px;line-height:1.6;color:#bcbeb4}
+.track-side a{display:inline-block;color:var(--lime);font-size:13px;margin-top:17px;font-weight:700}
+.track-chapters{display:grid;gap:24px;min-width:0}
+.track-chapter-header{display:flex;gap:18px;align-items:start;padding:0 5px 15px;border-bottom:1px solid #51564a}
+.track-chapter-header>span{color:var(--lime);font-size:11px;white-space:nowrap;letter-spacing:.1em;font-weight:700;padding-top:5px}
+.track-chapter-header h3{font-size:23px;font-weight:500;line-height:1.2}
+.track-chapter-header p{font-size:13px;color:#aeb1a5;line-height:1.5;margin-top:6px}
+.track-chapter-list{display:grid;gap:6px;margin-top:9px}
+.meaning-track{border:1px solid #41463e;background:#21231f;min-width:0}
+.meaning-track[open]{border-color:#75833b;background:#282d22}
+.meaning-track summary{list-style:none;display:flex;align-items:center;gap:14px;min-height:65px;padding:11px 17px;cursor:pointer}
+.meaning-track summary::-webkit-details-marker{display:none}
+.meaning-number{flex:none;color:#a7ae95;font-size:13px;font-variant-numeric:tabular-nums;width:25px}
+.meaning-track[open] .meaning-number,.meaning-track[open] .meaning-name{color:var(--lime)}
+.meaning-name{font-size:17px;line-height:1.35;flex:1;font-weight:600}
+.meaning-demo{font-size:10px;letter-spacing:.04em;white-space:nowrap;color:var(--lime)}
+.meaning-plus{height:20px;width:20px;position:relative;flex:none;border:1px solid #777f69;border-radius:50%}
+.meaning-plus:before,.meaning-plus:after{content:"";position:absolute;background:#d1d5c8;top:50%;left:50%;transform:translate(-50%,-50%)}
+.meaning-plus:before{width:8px;height:1.5px}
+.meaning-plus:after{width:1.5px;height:8px}
+.meaning-track[open] .meaning-plus:after{display:none}
+.meaning-description{margin:0 16px 16px 56px;padding:14px 15px 16px;border-top:1px solid #495042}
+.meaning-label{font-size:10px;font-weight:700;letter-spacing:.09em;color:#c0ce82}
+.meaning-description p{font-size:15px;line-height:1.65;color:#dde0d6;margin-top:7px;max-width:670px}
+.meaning-play{margin-top:15px;padding:10px 14px;border:1px solid var(--lime);background:var(--lime);color:#171814;font-size:13px;font-weight:700;border-radius:4px}
+.track-cta{display:flex;align-items:center;justify-content:space-between;gap:20px;border-top:1px solid #484d42;margin-top:30px;padding-top:24px;color:#c5c9be;font-size:14px}
+.track-cta .button{white-space:nowrap;min-height:49px;padding:12px 21px}
+@media(max-width:920px){.track-layout{grid-template-columns:minmax(200px,.65fr) minmax(0,1.4fr)}.track-side{padding:15px}.track-side h3{font-size:22px}.meaning-track summary{padding:10px 12px;gap:10px}.meaning-description{margin-left:45px}}
+@media(max-width:760px){.photo-story-grid{grid-template-columns:1fr;gap:12px}.photo-story-card{display:grid;grid-template-columns:140px minmax(0,1fr)}.scene-frame{aspect-ratio:auto;min-height:155px}.photo-story-copy{padding:19px}.photo-story-copy h4{font-size:20px}.track-layout{grid-template-columns:1fr}.track-side{position:static;display:grid;grid-template-columns:130px minmax(0,1fr);gap:15px}.track-side>img{width:130px;height:130px}.track-side-body{padding:0}.track-side h3{font-size:22px;margin:8px 0}.track-side p{font-size:13px}.track-chapters{gap:22px}.track-cta{flex-wrap:wrap}.track-cta .button{width:100%}}
+@media(max-width:430px){.story-photogallery{margin-top:32px}.photo-story-card{grid-template-columns:110px minmax(0,1fr)}.scene-frame{min-height:180px}.photo-story-copy{padding:14px}.photo-story-copy h4{font-size:17px;margin:7px 0}.photo-story-copy p{font-size:12px;line-height:1.5}.track-side{grid-template-columns:92px minmax(0,1fr);padding:11px;gap:10px}.track-side>img{width:92px;height:92px}.track-side h3{font-size:19px}.track-side p{font-size:12px}.track-chapter-header{display:block}.track-chapter-header>span{display:block;margin-bottom:6px}.track-chapter-header h3{font-size:21px}.meaning-track summary{gap:9px;padding:11px 9px;min-height:58px}.meaning-name{font-size:15px}.meaning-demo{font-size:8px}.meaning-number{width:22px;font-size:12px}.meaning-description{margin:0 12px 14px 40px;padding:12px 5px 0}.meaning-description p{font-size:14px}.photo-story-disclosure{font-size:11px}}
 </style>
 </head>
 <body>
@@ -246,6 +299,28 @@ img{max-width:100%}
       <div><strong>10+ лет</strong><span>помогал другим — по сценарию</span></div>
       <div><strong>12 треков</strong><span>состав реального альбома «Без торга»</span></div>
     </div>
+<section class="story-photogallery" aria-labelledby="photo-story-title">
+      <div class="story-visual-header">
+        <div class="label">ТРИ ЭПИЗОДА ОДНОЙ ИСТОРИИ</div>
+        <h3 id="photo-story-title">От разговоров с людьми — <em>к альбому.</em></h3>
+        <p>Как могла бы выглядеть история героя: работа в группе, личная беседа и создание музыкальных смыслов.</p>
+      </div>
+      <div class="photo-story-grid">
+        <article class="photo-story-card">
+          <div class="scene-frame scene-group" aria-label="Постановочная иллюстрация: пожилой мужчина ведёт небольшую группу"><img class="scene-image" data-scene="group" loading="lazy" src="/ai/avtor/60/assets/listener60-blue-20261025.webp" alt="Иллюстрация: мужчина беседует с группой людей своего возраста" width="184" height="153"></div>
+          <div class="photo-story-copy"><span class="scene-no">01 / ГРУППЫ</span><h4>Помогал людям со стажем</h4><p>В историях курильщиков повторяются знакомые сомнения, страхи и внутренние уговоры.</p></div>
+        </article>
+        <article class="photo-story-card">
+          <div class="scene-frame scene-consult"><img class="scene-image" data-scene="consult" loading="lazy" src="/ai/avtor/60/assets/listener60-blue-20261025.webp" alt="Иллюстрация: индивидуальная беседа двух мужчин" width="178" height="153"></div>
+          <div class="photo-story-copy"><span class="scene-no">02 / БЕСЕДЫ</span><h4>Разбирал конкретные ситуации</h4><p>Кофе, стресс, пауза на работе, мысль «сегодня можно одну» — у привычки есть свой текст.</p></div>
+        </article>
+        <article class="photo-story-card">
+          <div class="scene-frame scene-music"><img class="scene-image" data-scene="music" loading="lazy" src="/ai/avtor/60/assets/listener60-blue-20261025.webp" alt="Иллюстрация: мужчина в наушниках записывает музыкальные мысли" width="176" height="153"></div>
+          <div class="photo-story-copy"><span class="scene-no">03 / АЛЬБОМ</span><h4>Перевёл смыслы в музыку</h4><p>Так появился формат коротких песен, к словам которых можно возвращаться в нужный момент.</p></div>
+        </article>
+      </div>
+      <p class="photo-story-disclosure">Постановочные ИИ-иллюстрации к вымышленному сценарию. Не фотографии реальных занятий, клиентов или автора.</p>
+    </section>
     <div class="timeline">
       <article><div class="number">01</div><h3>Сначала я искал способ для себя</h3><p>«Я давно заметил: можно прекрасно понимать правильную мысль, а в следующий трудный момент просто о ней забыть. Мне хотелось, чтобы важные убеждения возвращались сами, без постоянного самоконтроля».</p></article>
       <article><div class="number">02</div><h3>А потом заметил силу музыки</h3><p>«Мы помним припевы песен годами. Даже когда музыка выключена, слова могут всплыть в голове. И я подумал: почему бы не дать этой форме полезное психологическое содержание?»</p></article>
@@ -257,9 +332,22 @@ img{max-width:100%}
     </div>
   </section>
 
+  <section class="section track-explainer-section" id="tracks" aria-labelledby="tracks-title">
+  <div class="wrap">
+    <div class="section-heading track-explainer-heading"><div><div class="label">02 / ПСИХОЛОГИЧЕСКИЙ СМЫСЛ КАЖДОГО ТРЕКА</div><h2 id="tracks-title">12 песен.<br><em>12 знакомых ловушек курения.</em></h2></div><p>Это не песни «просто о сигаретах». Раскройте любой трек и посмотрите, с какой привычной мыслью он работает.</p></div>
+    <div class="track-layout"><aside class="track-side"><img src="/ai/assets/anchor-release-20261008.webp" width="1254" height="1254" loading="lazy" alt="Обложка альбома «Без торга»"><div class="track-side-body"><div class="label">«БЕЗ ТОРГА» / VOL. 01</div><h3>Психология отказа — в музыкальном альбоме.</h3><p>Три главы. Двенадцать психологических тем. Названия треков соответствуют текущему альбому, а пояснения — интерпретация их задач для этого концепта.</p><a href="#listen">Послушать бесплатный фрагмент <span aria-hidden="true">↗</span></a></div></aside><div class="track-chapters"><div class="track-chapter">
+    <div class="track-chapter-header"><span>ГЛАВА 01</span><div><h3>Разобраться с привычными иллюзиями</h3><p>Почему кажется, что сигарета помогает и без неё чего-то не хватает.</p></div></div>
+    <div class="track-chapter-list"><details class="meaning-track" open data-track-no="1"><summary><span class="meaning-number">01</span><span class="meaning-name">Жизнь станет лучше</span><span class="meaning-demo">ДЕМО 0:30</span><span class="meaning-plus" aria-hidden="true"></span></summary><div class="meaning-description"><span class="meaning-label">О ЧЁМ ЭТА ПЕСНЯ</span><p>О том, что отказ — не наказание и не потеря любимой части жизни. Как представить обычный день, в котором сигарета больше не занимает центральное место.</p><button class="meaning-play js-demo" type="button"><span aria-hidden="true">▶</span><span class="js-play-label">Послушать 30 секунд</span></button></div></details><details class="meaning-track" data-track-no="2"><summary><span class="meaning-number">02</span><span class="meaning-name">Кофе остаётся</span><span class="meaning-plus" aria-hidden="true"></span></summary><div class="meaning-description"><span class="meaning-label">О ЧЁМ ЭТА ПЕСНЯ</span><p>Сигарета часто кажется частью удовольствия от кофе. Песня предлагает отделить удовольствие от напитка и самой паузы от привычки закурить.</p></div></details><details class="meaning-track" data-track-no="3"><summary><span class="meaning-number">03</span><span class="meaning-name">Не с понедельника</span><span class="meaning-plus" aria-hidden="true"></span></summary><div class="meaning-description"><span class="meaning-label">О ЧЁМ ЭТА ПЕСНЯ</span><p>О бесконечном откладывании решения: «после выходных», «после праздников», «когда станет спокойнее». Что происходит в этом внутреннем торге.</p></div></details><details class="meaning-track" data-track-no="4"><summary><span class="meaning-number">04</span><span class="meaning-name">Мне нужна пауза</span><span class="meaning-plus" aria-hidden="true"></span></summary><div class="meaning-description"><span class="meaning-label">О ЧЁМ ЭТА ПЕСНЯ</span><p>Про ощущение, что сигарета даёт отдых. Потребность в паузе реальна — но сам перекур не единственный способ её получить.</p></div></details></div></div><div class="track-chapter">
+    <div class="track-chapter-header"><span>ГЛАВА 02</span><div><h3>Понять зависимость и внутренний торг</h3><p>Страх, автоматические реакции и уговоры, которые поддерживают курение.</p></div></div>
+    <div class="track-chapter-list"><details class="meaning-track" data-track-no="5"><summary><span class="meaning-number">05</span><span class="meaning-name">Тише внутри</span><span class="meaning-plus" aria-hidden="true"></span></summary><div class="meaning-description"><span class="meaning-label">О ЧЁМ ЭТА ПЕСНЯ</span><p>О том, как напряжение и ожидание сигареты могут восприниматься как одна и та же потребность. Песня про поиск спокойствия без автоматического перекура.</p></div></details><details class="meaning-track" data-track-no="6"><summary><span class="meaning-number">06</span><span class="meaning-name">Компания остаётся</span><span class="meaning-plus" aria-hidden="true"></span></summary><div class="meaning-description"><span class="meaning-label">О ЧЁМ ЭТА ПЕСНЯ</span><p>Как не привязывать общение, встречи и отдых с друзьями к обязательной сигарете. Люди и разговоры остаются, даже если ритуал меняется.</p></div></details><details class="meaning-track" data-track-no="7"><summary><span class="meaning-number">07</span><span class="meaning-name">Не проверять</span><span class="meaning-plus" aria-hidden="true"></span></summary><div class="meaning-description"><span class="meaning-label">О ЧЁМ ЭТА ПЕСНЯ</span><p>Про опасную мысль: «Одну выкурю и проверю, зависим ли я ещё». Зачем замечать такой торг и не превращать проверку в новую привычку.</p></div></details><details class="meaning-track" data-track-no="8"><summary><span class="meaning-number">08</span><span class="meaning-name">Скука пройдёт</span><span class="meaning-plus" aria-hidden="true"></span></summary><div class="meaning-description"><span class="meaning-label">О ЧЁМ ЭТА ПЕСНЯ</span><p>Почему пустая минута кажется поводом закурить. О возможности прожить скуку и заполнить паузу не только сигаретой.</p></div></details></div></div><div class="track-chapter">
+    <div class="track-chapter-header"><span>ГЛАВА 03</span><div><h3>Осваиваться в жизни без сигареты</h3><p>Привычные ситуации остаются — меняются ответы на них.</p></div></div>
+    <div class="track-chapter-list"><details class="meaning-track" data-track-no="9"><summary><span class="meaning-number">09</span><span class="meaning-name">Я не с нуля</span><span class="meaning-plus" aria-hidden="true"></span></summary><div class="meaning-description"><span class="meaning-label">О ЧЁМ ЭТА ПЕСНЯ</span><p>О личном опыте и прежних попытках бросить. Даже если получилось не сразу, человек уже многое узнал о своей привычке.</p></div></details><details class="meaning-track" data-track-no="10"><summary><span class="meaning-number">10</span><span class="meaning-name">Своим голосом</span><span class="meaning-plus" aria-hidden="true"></span></summary><div class="meaning-description"><span class="meaning-label">О ЧЁМ ЭТА ПЕСНЯ</span><p>Как перестать повторять внутренние оправдания сигареты и начать замечать собственное решение, потребности и причины отказаться.</p></div></details><details class="meaning-track" data-track-no="11"><summary><span class="meaning-number">11</span><span class="meaning-name">Обычный день</span><span class="meaning-plus" aria-hidden="true"></span></summary><div class="meaning-description"><span class="meaning-label">О ЧЁМ ЭТА ПЕСНЯ</span><p>Кофе, дорога, работа, обед и отдых без привычного перекура. Песня о том, как новым может стать самый обыкновенный день.</p></div></details><details class="meaning-track" data-track-no="12"><summary><span class="meaning-number">12</span><span class="meaning-name">Дальше</span><span class="meaning-plus" aria-hidden="true"></span></summary><div class="meaning-description"><span class="meaning-label">О ЧЁМ ЭТА ПЕСНЯ</span><p>О будущем после последней сигареты: не героическая борьба каждый день, а постепенное возвращение к другим интересам и обычной жизни.</p></div></details></div></div></div></div>
+    <div class="track-cta"><span>12 треков · 3 смысловые главы · один альбом</span><button class="button secondary js-buy" type="button">Получить альбом · 1 990 ₽</button></div>
+  </div>
+</section>
   <section class="section demo-section" id="listen" aria-labelledby="listen-title">
     <div class="wrap">
-      <div class="section-heading"><div><div class="label">02 / ПРОВЕРЬТЕ СВОИМИ УШАМИ</div><h2 id="listen-title">Послушайте,<br><em>как звучит идея.</em></h2></div><p>Не нужно верить одной только истории. Включите бесплатный фрагмент и оцените сам музыкальный формат.</p></div>
+      <div class="section-heading"><div><div class="label">03 / ПРОВЕРЬТЕ СВОИМИ УШАМИ</div><h2 id="listen-title">Послушайте,<br><em>как звучит идея.</em></h2></div><p>Не нужно верить одной только истории. Включите бесплатный фрагмент и оцените сам музыкальный формат.</p></div>
       <div class="demo-card">
         <img src="/ai/assets/anchor-release-20261008.webp" width="1254" height="1254" alt="Обложка «Без торга»">
         <div><div class="label">БЕСПЛАТНЫЙ ФРАГМЕНТ · 30 СЕКУНД</div><h3>«Жизнь станет лучше»</h3><p>Один из треков музыкального альбома «Без торга».</p>
@@ -270,7 +358,7 @@ img{max-width:100%}
   </section>
 
   <section class="section wrap" aria-labelledby="how-title">
-    <div class="section-heading"><div><div class="label">03 / КАК ЭТО ПРИМЕНЯТЬ</div><h2 id="how-title">Три простых<br><em>шага.</em></h2></div><p>Альбом — это набор музыкальных смысловых подсказок, а не замена медицинской помощи или психотерапии.</p></div>
+    <div class="section-heading"><div><div class="label">04 / КАК ЭТО ПРИМЕНЯТЬ</div><h2 id="how-title">Три простых<br><em>шага.</em></h2></div><p>Альбом — это набор музыкальных смысловых подсказок, а не замена медицинской помощи или психотерапии.</p></div>
     <div class="how-grid">
       <article><strong>01 / СЛУШАЙТЕ</strong><h3>Включите трек</h3><p>Выберите знакомую ситуацию и послушайте песню с другим взглядом на неё.</p></article>
       <article><strong>02 / ЗАПОМИНАЙТЕ</strong><h3>Возвращайтесь к словам</h3><p>Как припев знакомой песни, отдельные фразы могут оставаться в памяти.</p></article>
@@ -311,6 +399,13 @@ img{max-width:100%}
   }));
   audio.addEventListener('timeupdate',()=>{if(audio.currentTime>=30)audio.pause();});
   ['play','pause','ended'].forEach(e=>audio.addEventListener(e,update));
+
+  document.querySelectorAll('.meaning-track').forEach(track=>{
+    track.addEventListener('toggle',()=>{
+      if(!track.open)return;
+      document.querySelectorAll('.meaning-track[open]').forEach(other=>{if(other!==track)other.open=false;});
+    });
+  });
   const dialog=document.getElementById('concept-dialog');
   document.querySelectorAll('.js-buy').forEach(b=>b.addEventListener('click',()=>dialog.showModal()));
   document.getElementById('close-modal').addEventListener('click',()=>dialog.close());
