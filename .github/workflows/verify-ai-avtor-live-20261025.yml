@@ -28,7 +28,11 @@ jobs:
           const checks={
             '200_clone':author.status===200,
             'copy_author_kicker':author.body.includes('Авторский подход · Илья Борзилов'),
-            'copy_author_lead':author.body.includes('В собственной жизни я использую музыку'),
+            'copy_author_lead':author.body.includes('Знаю, как сигарета убеждает человека закурить снова'),
+            'copy_portrait_tag':author.body.includes('/ai/avtor/assets/author-portrait-20261025.jpg'),
+            'copy_album_inset':author.body.includes('class="author-album-inset"'),
+            'copy_author_caption':author.body.includes('Автор идеи и смысловой программы'),
+            'copy_mobile_portrait_css':author.body.includes('aspect-ratio:1/1.05'),
             'copy_price_1990':author.body.includes('const ALBUM_PRICE = 1990;'),
             'copy_payment_sku':author.body.includes("plan:'ai_album_1990'"),
             'copy_track_clientid':author.body.includes("'getClientID'"),
@@ -52,7 +56,10 @@ jobs:
           assert.ok(tr.pathIsolated&&tr.correctVariant);
           const audio=await fetch(origin+'/ai/assets/life-gets-better-demo-20261008.mp3',{method:'HEAD',signal:AbortSignal.timeout(14000)});
           const image=await fetch(origin+'/ai/assets/anchor-release-20261008.webp',{method:'HEAD',signal:AbortSignal.timeout(14000)});
-          console.log('ASSETS',JSON.stringify({audio:audio.status,image:image.status}));
-          assert.ok(audio.ok&&image.ok);
+          const portrait=await fetch(origin+'/ai/avtor/assets/author-portrait-20261025.jpg',{method:'HEAD',signal:AbortSignal.timeout(14000)});
+          console.log('ASSETS',JSON.stringify({audio:audio.status,image:image.status,portrait:portrait.status,portraitType:portrait.headers.get('content-type')}));
+          assert.ok(audio.ok&&image.ok&&portrait.ok);
+          assert.ok((portrait.headers.get('content-type')||'').includes('image/jpeg'));
+          assert.ok(Number(portrait.headers.get('content-length'))>60000);
           console.log('PASS: /ai/avtor/ publicly served, tracker isolated, assets load, original /ai/ untouched');
           JS
