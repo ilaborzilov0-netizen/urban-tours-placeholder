@@ -1,0 +1,52 @@
+name: Safe unpaid 1990 checkout for author60 landing
+on:
+  push:
+    branches: [audit/20261024-yandex-readonly]
+    paths: [.github/workflows/verify-author60-unpaid-checkout-20261025.yml]
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: Create one NEW unpaid T-Bank order for isolated senior page and confirm amount
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const url='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net';
+          const origin='https://marafon-metod.ru';
+          const body={
+            email:'author60-unpaid-audit-'+process.env.GITHUB_RUN_ID+'@example.org',
+            plan:'ai_album_1990',
+            flowId:'ai-anchor-album-1990-author60',
+            source:'marafon_ai_audioanchors_1990_author60',
+            returnUrl:origin+'/ai/avtor/60/'
+          };
+          const response=await fetch(url+'/api/payment/create',{
+            method:'POST',headers:{Origin:origin,'Content-Type':'application/json','Accept':'application/json'},
+            body:JSON.stringify(body),signal:AbortSignal.timeout(23000)
+          });
+          const data=await response.json().catch(()=>({}));
+          console.log('CREATE',JSON.stringify({http:response.status,ok:data.ok,plan:data.plan,
+            amount:data.amount,amountMinor:data.amountMinor,
+            bankUrlProvided:/^https:\/\//.test(data.paymentUrl||''),
+            error:data.code||data.error||null}));
+          assert.equal(response.status,200,'Live backend rejected new landing / return URL');
+          assert.equal(data.plan,'ai_album_1990');
+          assert.equal(data.amountMinor,199000);
+          assert.equal(data.amount,1990);
+          assert.ok(/^https:\/\/(?:securepay\.tinkoff\.ru|pay\.tbank-online\.com)/.test(data.paymentUrl||''));
+          const statusResponse=await fetch(url+'/api/payment/status?orderId='+encodeURIComponent(data.orderId),{
+            headers:{Origin:origin,Accept:'application/json'},signal:AbortSignal.timeout(25000)
+          });
+          const status=await statusResponse.json().catch(()=>({}));
+          console.log('ORDER',JSON.stringify({http:statusResponse.status,
+            orderId:data.orderId,plan:status.plan,amount:status.amount,
+            confirmed:status.confirmed,status:status.status||null}));
+          assert.equal(statusResponse.status,200);
+          assert.equal(status.plan,'ai_album_1990');
+          assert.equal(status.amount,199000);
+          assert.notEqual(status.confirmed,true);
+          console.log('PASS: bank initialized unpaid author60 1990 RUB order, no card charge or payment performed');
+          JS
