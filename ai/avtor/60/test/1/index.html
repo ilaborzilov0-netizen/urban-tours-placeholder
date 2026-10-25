@@ -143,6 +143,25 @@ footer a{text-decoration:underline}
  .origin-intro-photo figcaption{margin-top:0;font-size:13px}
 }
 
+
+/* Behind the music — attached studio visual and compact creation snapshots. */
+.making-section{padding:78px 0 80px;background:#171B16;border-top:1px solid #454F42;border-bottom:1px solid #454F42}
+.making-head{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);align-items:end;gap:clamp(26px,5vw,74px);margin-bottom:28px}
+.making-head h2{font-size:clamp(34px,4.1vw,57px);font-weight:500;line-height:1.13;letter-spacing:-.049em;margin:12px 0 0}
+.making-head h2 em{font-style:normal;color:var(--accent)}
+.making-head p{font-size:18px;line-height:1.62;color:#D5DCCB;max-width:430px}
+.making-photo{margin:0;position:relative;background:#262C24;border:1px solid #5A6751;overflow:hidden}
+.making-photo img{width:100%;height:auto;aspect-ratio:1448/1086;object-fit:cover;object-position:center;display:block}
+.making-photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:35px 19px 14px;background:linear-gradient(transparent,#0D120ECB);font-size:13px;color:#F0EFE6}
+.making-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:17px}
+.making-stat{min-width:0;background:#252A22;border:1px solid #515D49;padding:18px 19px 20px}
+.making-stat strong{display:block;font-size:clamp(32px,3.2vw,45px);letter-spacing:-.06em;line-height:1.08;color:var(--accent);font-weight:650;white-space:nowrap}
+.making-stat span{display:block;margin-top:10px;font-size:15px;line-height:1.46;color:#DCE0D5}
+.making-footnote{margin-top:15px;font-size:15px;line-height:1.55;color:#C8D0BE;max-width:1040px}
+@media(max-width:800px){.making-head{grid-template-columns:1fr;gap:14px}.making-head p{max-width:850px}.making-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.making-stat strong{font-size:38px}}
+@media(max-width:600px){.making-section{padding:50px 0 56px}.making-head{margin-bottom:17px}.making-head h2{font-size:clamp(32px,8.6vw,43px)}.making-head p{font-size:17px;line-height:1.53}.making-photo figcaption{font-size:12px;padding:25px 12px 10px}.making-stats{gap:9px;margin-top:11px}.making-stat{padding:15px 12px 16px;min-height:115px}.making-stat strong{font-size:34px;white-space:normal}.making-stat span{font-size:14px;margin-top:8px}.making-footnote{font-size:14px;margin-top:12px}}
+@media(max-width:350px){.making-stat strong{font-size:31px}.making-stat span{font-size:13px}.making-stat{min-height:113px}}
+
 </style></head>
 <body class="design-one">
 <header class="top"><div class="top-inner wrap"><a href="#top" class="wordmark"><i>И</i><span>АУДИОЯКОРЯ<small style="display:block;font-size:11px;font-weight:400;color:var(--muted);letter-spacing:0">Авторская музыкальная программа</small></span></a><nav class="top-links" aria-label="Разделы"><a href="#listen">Послушать</a><a href="#editions">Форматы и цены</a><a href="#songs">Все песни</a><a href="#people">Фото</a></nav></div></header>
@@ -231,6 +250,25 @@ footer a{text-decoration:underline}
 <section class="section olive" id="story"><div class="wrap"><div class="editorial-note"><div class="eyebrow">03 / История появления идеи</div><blockquote>«Я не мог быть рядом каждый раз, когда человеку хотелось закурить. <em>Но музыка могла помочь ему вспомнить мои слова.</em>»</blockquote><p>Так появилась идея превратить знакомые оправдания курения и психологические ответы на них в музыкальный альбом. Взрослая, простая мысль: мало однажды понять — важно вспомнить вовремя.</p></div><div class="photo-row"><article class="photo-card"><img loading="lazy" src="/ai/avtor/60/test/assets/scene-seminar-final.webp" width="1050" height="788" alt="На встрече мысли становятся яснее"><div class="photo-card-content"><span class="cap">01 / ОПЫТ</span><h3>На встрече мысли становятся яснее</h3><p>Человек понимает, почему привычные оправдания сигареты не дают ему свободы.</p></div></article>
 <article class="photo-card"><img loading="lazy" src="/ai/avtor/60/test/assets/scene-handshake-final.webp" width="1050" height="788" alt="Но дальше он остаётся один"><div class="photo-card-content"><span class="cap">02 / ЖИЗНЬ</span><h3>Но дальше он остаётся один</h3><p>Кофе, стресс, работа — старые слова снова возвращаются в голову.</p></div></article>
 <article class="photo-card"><img loading="lazy" src="/ai/avtor/60/test/assets/scene-studio-final.webp" width="1050" height="788" alt="Вспоминается сила музыки"><div class="photo-card-content"><span class="cap">03 / ИДЕЯ</span><h3>Вспоминается сила музыки</h3><p>Любимый припев может жить в памяти годами. Что, если такой же формой передавать новые ответы?</p></div></article></div><p class="mini-disclosure">Сцены иллюстрируют вымышленную историю, а не реальные занятия или отзывы.</p></div></section>
+<section class="making-section" id="making" aria-labelledby="making-title">
+<div class="wrap">
+  <header class="making-head">
+    <div><div class="eyebrow">ЗА КАДРОМ «БЕЗ ТОРГА»</div><h2 id="making-title">Целый год мы превращали <em>важные мысли в музыку.</em></h2></div>
+    <p>Сначала — двенадцать знакомых курильщику ситуаций. Затем работа над текстами, голосами и аранжировками. Мы искали форму, в которой смысл не просто понятен, а может запомниться, как припев любимой песни.</p>
+  </header>
+  <figure class="making-photo">
+    <img src="/ai/avtor/60/test/1/assets/making-of-studio-20261025.webp" width="1448" height="1086" loading="lazy" alt="Иллюстрация работы над музыкальным альбомом: трое мужчин в студии держат обложку «Без торга»">
+    <figcaption>Иллюстрация студийной работы над альбомом «Без торга»</figcaption>
+  </figure>
+  <div class="making-stats" aria-label="Альбом в цифрах">
+    <div class="making-stat"><strong>1 год</strong><span>работы над музыкальной формой</span></div>
+    <div class="making-stat"><strong>12</strong><span>композиций о привычных мыслях курильщика</span></div>
+    <div class="making-stat"><strong>3</strong><span>смысловые главы внутри альбома</span></div>
+    <div class="making-stat"><strong>10 лет</strong><span>практики героя художественной истории</span></div>
+  </div>
+  <p class="making-footnote">Результат — не сборник песен о вреде сигарет, а альбом, в котором у знакомых оправданий появляются другие ответы.</p>
+</div>
+</section>
 <section class="section wrap" id="example"><div class="eyebrow">04 / Из чего состоит смысл</div><h2>Один привычный вопрос.<br>Другой ответ.</h2><div class="refrain"><div><small class="muted">ЧТО ГОВОРИТ ПРИВЫЧКА</small><strong>«Без сигареты кофе уже не тот».</strong><p class="muted">Будто сама сигарета делает перерыв приятным.</p></div><span class="refrain-arrow">→</span><div class="after"><small>ЧТО ЗАЛОЖЕНО В ТРЕК</small><strong>«Кофе остаётся. Пауза — моя».</strong><p>Никто не забирает у вас удовольствие от кофе и минуты покоя.</p></div></div></section>
 <section class="section olive" id="songs"><div class="wrap"><div class="eyebrow">05 / Содержание альбома</div><div class="track-heading"><div><h2>12 песен.<br>12 знакомых ловушек.</h2><p class="track-info">В каждой композиции — одна психологическая тема. Нажмите на название и посмотрите, какую мысль она разбирает.</p></div><button class="btn primary js-buy" type="button">Получить альбом · 1 990 ₽</button></div><div class="chapter-grid" data-tracks></div><div class="album-note"><img src="/ai/assets/anchor-release-20261008.webp" width="1254" height="1254" alt="Альбом"><div><h3>Музыка, к которой возвращаются.</h3><p>Не просто песни о сигаретах. Содержательные мысли, собранные в музыкальную форму.</p></div></div></div></section>
 <section class="pg-root pg-one" data-people-gallery="1" id="people" aria-label="Фотогалерея с альбомом">
