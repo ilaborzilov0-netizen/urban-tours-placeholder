@@ -1,0 +1,58 @@
+name: Verify published author landing without changing production
+on:
+  push:
+    branches: [audit/20261024-yandex-readonly]
+    paths: [.github/workflows/verify-ai-avtor-live-20261025.yml]
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - name: Inspect both public landings, assets, and backend
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const origin='https://marafon-metod.ru';
+          async function read(path){
+            const r=await fetch(origin+path,{cache:'no-store',headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(16000)});
+            return {status:r.status,url:r.url,body:await r.text(),headers:r.headers};
+          }
+          let author,base;
+          for(let attempt=1;attempt<=15;attempt++){
+            [author,base]=await Promise.all([read('/ai/avtor/?audit='+attempt),read('/ai/?audit='+attempt)]);
+            if(author.status===200&&author.body.includes('Авторский подход · Илья Борзилов'))break;
+            if(attempt<15)await new Promise(resolve=>setTimeout(resolve,5000));
+          }
+          const checks={
+            '200_clone':author.status===200,
+            'copy_author_kicker':author.body.includes('Авторский подход · Илья Борзилов'),
+            'copy_author_lead':author.body.includes('В собственной жизни я использую музыку'),
+            'copy_price_1990':author.body.includes('const ALBUM_PRICE = 1990;'),
+            'copy_payment_sku':author.body.includes("plan:'ai_album_1990'"),
+            'copy_track_clientid':author.body.includes("'getClientID'"),
+            'copy_tracker_separate':author.body.includes('/ai/avtor/classic-goals.js'),
+            'copy_source_tag':author.body.includes("source:'marafon_ai_audioanchors_1990_author'"),
+            'copy_noindex':author.body.includes('content="noindex,nofollow"'),
+            'base_200':base.status===200,
+            'base_not_edited':base.body.includes('Слушайте посылы, которые меняют мозг на физиологическом уровне'),
+            'base_checkout_original':base.body.includes("source:'marafon_ai_audioanchors_1990'"),
+          };
+          console.log('SITE_CHECKS',JSON.stringify(checks));
+          assert.ok(Object.values(checks).every(Boolean),'Published site mismatch');
+          const tracker=await read('/ai/avtor/classic-goals.js');
+          const tr={
+            http:tracker.status,
+            pathIsolated:tracker.body.includes("if(!/^\\/ai\\/avtor\\/?$/.test(location.pathname))return;"),
+            correctVariant:tracker.body.includes("variant:'classic_author_1990'"),
+          };
+          console.log('TRACKER_CHECKS',JSON.stringify(tr));
+          assert.equal(tracker.status,200);
+          assert.ok(tr.pathIsolated&&tr.correctVariant);
+          const audio=await fetch(origin+'/ai/assets/life-gets-better-demo-20261008.mp3',{method:'HEAD',signal:AbortSignal.timeout(14000)});
+          const image=await fetch(origin+'/ai/assets/anchor-release-20261008.webp',{method:'HEAD',signal:AbortSignal.timeout(14000)});
+          console.log('ASSETS',JSON.stringify({audio:audio.status,image:image.status}));
+          assert.ok(audio.ok&&image.ok);
+          console.log('PASS: /ai/avtor/ publicly served, tracker isolated, assets load, original /ai/ untouched');
+          JS
