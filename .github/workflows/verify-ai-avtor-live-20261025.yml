@@ -29,7 +29,13 @@ jobs:
             '200_clone':author.status===200,
             'copy_author_kicker':author.body.includes('Авторский подход · Илья Борзилов'),
             'copy_author_lead':author.body.includes('Работал в клинике Аллена Карра и знаю'),
-            'copy_music_approach':author.body.includes('Я соединил психологию отказа от курения с музыкой.'),
+            'copy_music_approach':author.body.includes('Психология отказа от курения, превращённая в музыку.'),
+            'copy_smoked_10':author.body.includes('Я курил больше десяти лет. И уже больше десяти лет живу без сигарет.'),
+            'story_after_demo':author.body.indexOf('id="inside"')<author.body.indexOf('id="story"') && author.body.indexOf('id="story"')<author.body.indexOf('class="daily wrap"'),
+            'story_two_discoveries':author.body.includes('ПЕРВОЕ ОТКРЫТИЕ')&&author.body.includes('ВТОРОЕ ОТКРЫТИЕ'),
+            'story_real_product':author.body.includes('Не просто песни'),
+            'long_smoking_stay':author.body.includes('30–40 лет'),
+            'following_section_renumbered':author.body.includes('05 / В СВОЁМ РИТМЕ'),
             'copy_demo_visible':author.body.includes('author-demo-cta'),
             'copy_demo_text':author.body.includes('Послушать бесплатно · 30 секунд'),
             'copy_mobile_identity':author.body.includes('class="author-mobile-identity"'),
@@ -104,6 +110,21 @@ jobs:
               assert.ok(visual.scrollWidth<=visual.inner+4,'Unexpected horizontal scrollbar');
               assert.ok(visual.demoVisible&&visual.photoLoaded&&visual.price);
               assert.ok(visual.lead.includes('клинике Аллена Карра'));
+              const story=page.locator('#story');
+              await story.scrollIntoViewIfNeeded();
+              assert.ok(await story.locator('.discovery-card').count()===2,'Two discovery story cards absent');
+              assert.ok(await story.locator('.discovery-result').count()===1,'Product conclusion absent');
+              const storyLayout=await page.evaluate(()=>{
+                const story=document.querySelector('#story');
+                const cards=[...document.querySelectorAll('.discovery-card')].map(el=>({width:Math.round(el.getBoundingClientRect().width),scroll:el.scrollWidth}));
+                const audience=document.querySelector('.discovery-audience');
+                return {sectionWidth:Math.round(story.getBoundingClientRect().width),
+                  scrollWidth:document.documentElement.scrollWidth,
+                  cards,audienceHeight:Math.round(audience.getBoundingClientRect().height)};
+              });
+              console.log('STORY_LAYOUT',vp.label,JSON.stringify(storyLayout));
+              assert.ok(storyLayout.scrollWidth<=vp.width+4,'Story horizontal overflow');
+              assert.ok(storyLayout.cards.every(x=>x.scroll<=x.width+3),'Card overflow');
               assert.equal(visual.identityVisible,vp.width<=800);
               if(vp.width<=800)assert.ok(visual.identityTop>=0&&visual.identityTop<vp.height,'Author identity must appear above mobile fold');
               await page.locator('.hero .author-demo-cta').click();
@@ -121,6 +142,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: avtor-hero-responsive-20261025
+          name: avtor-two-discoveries-responsive-20261025
           path: /tmp/avtor-*.png
           retention-days: 2
