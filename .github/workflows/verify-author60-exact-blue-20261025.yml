@@ -1,0 +1,117 @@
+name: Verify exact blue-sweater man on author60 live landing
+on:
+  push:
+    branches: [audit/20261024-yandex-readonly]
+    paths: [.github/workflows/verify-author60-exact-blue-20261025.yml]
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 9
+    steps:
+      - name: Check production HTML and full-size photo
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const origin='https://marafon-metod.ru';
+          let html='',code=0;
+          for(let i=0;i<17;i++){
+            const r=await fetch(origin+'/ai/avtor/60/?blue_fix='+i,{cache:'no-store',headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(14000)});
+            code=r.status; html=await r.text();
+            if(code===200&&html.includes('listener60-blue-20261025.webp'))break;
+            if(i<16)await new Promise(f=>setTimeout(f,6000));
+          }
+          const checks={
+            http:code,
+            photo:html.includes('src="/ai/avtor/60/assets/listener60-blue-20261025.webp"'),
+            rightMan:html.includes('Мужчина старше 60 лет в синем свитере'),
+            singleColumn:html.includes('display:block;max-width:940px'),
+            photoBeforeDemo:html.indexOf('listener60-blue-20261025.webp')<html.indexOf('class="hero-actions"',html.indexOf('class="hero wrap audience60-hero"')),
+            price:html.includes('const ALBUM_PRICE = 1990;'),
+            paymentPlan:html.includes("plan:'ai_album_1990'"),
+            clickAttribution:html.includes('metrikaClientId,yclid'),
+            pathTag:html.includes("source:'marafon_ai_audioanchors_1990_author60'"),
+            disclosure:html.includes('Это не отзыв покупателя.'),
+            tracking:html.includes('/ai/avtor/60/classic-goals.js')
+          };
+          console.log('PAGE_CHECK',JSON.stringify(checks));
+          assert.ok(Object.entries(checks).every(([key,v])=>key==='http'?v===200:v===true),'Published page is not as expected');
+          const img=await fetch(origin+'/ai/avtor/60/assets/listener60-blue-20261025.webp',{method:'HEAD',signal:AbortSignal.timeout(14000)});
+          console.log('PHOTO_HTTP',JSON.stringify({status:img.status,type:img.headers.get('content-type'),length:img.headers.get('content-length')}));
+          assert.equal(img.status,200);
+          assert.ok((img.headers.get('content-type')||'').includes('image/webp'));
+          assert.ok(Number(img.headers.get('content-length'))>35000,'Still old broken 5KB portrait');
+          const parent=await fetch(origin+'/ai/avtor/',{signal:AbortSignal.timeout(14000)});
+          const p=await parent.text();
+          assert.ok(p.includes('Илья Борзилов')&&!p.includes('listener60-blue-20261025.webp'));
+          const root=await fetch(origin+'/ai/',{signal:AbortSignal.timeout(14000)});
+          const r=await root.text();
+          assert.ok(r.includes('Слушайте посылы, которые меняют мозг')&&!r.includes('listener60-blue-20261025.webp'));
+          console.log('PUBLICATION_PASS photo uploaded, page updated, two other landings unchanged');
+          JS
+      - name: Render and inspect photo pixels + buttons in real Chromium
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --no-audit --no-fund playwright@1.56.0
+          npx playwright install chromium
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import { chromium } from 'playwright';
+          const browser=await chromium.launch({headless:true});
+          try{
+            for(const width of [1440,390,320]){
+              const page=await browser.newPage({viewport:{width,height:850},deviceScaleFactor:1});
+              await page.goto('https://marafon-metod.ru/ai/avtor/60/?pixel_check=20261025',{waitUntil:'domcontentloaded',timeout:33000});
+              const photo=page.locator('.audience60-photo .author-photo');
+              await photo.waitFor({state:'visible'});
+              await photo.evaluate(img=>img.decode());
+              const checks=await page.evaluate(()=>{
+                const img=document.querySelector('.audience60-photo .author-photo');
+                const canvas=document.createElement('canvas');canvas.width=15;canvas.height=10;
+                const ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(img,0,0,15,10);
+                const pixels=ctx.getImageData(0,0,15,10).data;
+                let light=0,variation=0; const unique=new Set();
+                for(let i=0;i<pixels.length;i+=4){
+                  const r=pixels[i],g=pixels[i+1],b=pixels[i+2];
+                  light+=(r+g+b)/3;unique.add([r>>3,g>>3,b>>3].join(':'));
+                  if(Math.max(r,g,b)-Math.min(r,g,b)>20)variation++;
+                }
+                const bounds=img.getBoundingClientRect();
+                return {
+                  scrollWidth:document.documentElement.scrollWidth,
+                  inner:innerWidth,
+                  naturalWidth:img.naturalWidth,naturalHeight:img.naturalHeight,
+                  width:Math.round(bounds.width),height:Math.round(bounds.height),
+                  avgLight:Math.round(light/150),uniqueColors:unique.size,distinctColors:variation,
+                  demoText:document.querySelector('.audience60-demo')?.innerText,
+                  albumPrice:document.querySelector('.audience60-buy')?.innerText
+                };
+              });
+              console.log('PIXEL_AND_LAYOUT',width,JSON.stringify(checks));
+              assert.equal(checks.naturalWidth,836);
+              assert.equal(checks.naturalHeight,471);
+              assert.ok(checks.avgLight>45&&checks.uniqueColors>35,'Photo looks blank/dark like prior broken asset');
+              assert.ok(checks.width>=300&&checks.height>=160,'Large photo not visible');
+              assert.ok(checks.scrollWidth<=checks.inner+4,'Horizontal overflow');
+              assert.ok(checks.demoText.includes('Послушать бесплатно')&&checks.albumPrice.includes('1 990 ₽'));
+              await page.screenshot({path:'/tmp/author60-blue-'+width+'.png',fullPage:false});
+              await page.locator('.audience60-demo').click();
+              await page.locator('#audio-dialog').waitFor({state:'visible'});
+              await page.locator('#audio-dialog [data-modal-close]').first().click();
+              await page.locator('.audience60-buy').click();
+              await page.locator('#purchase-dialog').waitFor({state:'visible'});
+              assert.ok((await page.locator('#purchase-dialog').innerText()).includes('1 990 ₽'));
+              await page.close();
+            }
+            console.log('CHROMIUM_PASS exact requested portrait visible at 1440/390/320, checkout and demo work');
+          }finally{await browser.close()}
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: author60-exact-man-desktop-mobile
+          path: /tmp/author60-blue-*.png
+          retention-days: 3
