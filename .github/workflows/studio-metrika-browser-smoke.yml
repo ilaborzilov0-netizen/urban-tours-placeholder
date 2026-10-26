@@ -1,0 +1,93 @@
+name: Studio Metrika browser journey smoke (no bank charge)
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ai/avtor/60/test/1/studio-goals.js'
+      - 'ai/avtor/60/test/1/checkout-live.js'
+      - 'ai/avtor/60/test/1/index.html'
+      - '.github/workflows/studio-metrika-browser-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  studio:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Playwright using runner Chrome
+        run: npm install --no-save playwright@1.56.1
+      - name: Validate scripts and all registered Studio identifiers
+        run: |
+          node --check ai/avtor/60/test/1/studio-goals.js
+          node --check ai/avtor/60/test/1/checkout-live.js
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {readFileSync} from 'node:fs';
+          const list=JSON.parse(readFileSync('ai/studio-goals.json','utf8')).goals;
+          const src=readFileSync('ai/avtor/60/test/1/studio-goals.js','utf8');
+          const checkout=readFileSync('ai/avtor/60/test/1/checkout-live.js','utf8');
+          assert.equal(list.length,33);
+          for(const g of list){
+            assert.ok(g.name.startsWith('СТУДИЯ — '));
+            assert.ok(src.includes("'"+g.id.slice(7)+"'"),'missing client goal '+g.id);
+          }
+          for(const g of ['pay_click','order_created','bank_redirect','payment_error','paid','payment_failed'])
+            assert.ok(checkout.includes("goal('"+g+"')"),'missing bank-stage goal '+g);
+          console.log('PASS all 33 Studio goals mapped to live scripts');
+          JS
+      - name: Verify events in mobile Chrome and verified paid return with mocked bank
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {chromium} from 'playwright';
+          const browser=await chromium.launch({channel:'chrome',headless:true});
+          const base='https://marafon-metod.ru/ai/avtor/60/test/1/';
+          try{
+            const page=await browser.newPage({viewport:{width:360,height:780}});
+            await page.addInitScript(()=>{
+              window.__goals=[];
+              window.ym=(...args)=>{window.__goals.push(args);if(args[1]==='getClientID'&&typeof args[2]==='function')args[2]('test-client')};
+            });
+            await page.route(/mc\.yandex\.(ru|com)/,route=>route.abort());
+            await page.goto(base,{waitUntil:'domcontentloaded',timeout:35000});
+            await page.waitForTimeout(1300);
+            const ids=()=>page.evaluate(()=>window.__goals.filter(x=>x[1]==='reachGoal').map(x=>x[2]));
+            assert.ok((await ids()).includes('studio_hero_view'),'hero view');
+            await page.locator('#editions').scrollIntoViewIfNeeded();
+            await page.waitForTimeout(900);
+            assert.ok((await ids()).includes('studio_tariffs_view'),'tariff view');
+            await page.locator('.edition-card.digital .js-buy').click();
+            await page.waitForTimeout(200);
+            assert.ok((await ids()).includes('studio_buy_tariff'),'tariff button');
+            assert.ok((await ids()).includes('studio_checkout_open'),'checkout open');
+            await page.locator('#author-checkout-email').fill('customer@example.com');
+            await page.locator('#author-checkout-email').blur();
+            assert.ok((await ids()).includes('studio_email_valid'),'email validity');
+            await page.route('**/api/payment/create',route=>route.fulfill({
+              status:200,contentType:'application/json',
+              body:JSON.stringify({ok:true,plan:'ai_album_1990',amount:990,orderId:'MBT-ai_album_1990-TEST',
+                paymentId:'123',paymentUrl:'https://securepay.tinkoff.ru/mock'})
+            }));
+            await page.locator('#author-checkout-form [type=submit]').click();
+            await page.locator('#author-checkout-status').filter({hasText:/Цена или реквизиты заказа/}).waitFor();
+            assert.ok((await ids()).includes('studio_pay_click'),'pay intent');
+            assert.ok((await ids()).includes('studio_payment_error'),'amount guard');
+            assert.ok(!(await ids()).some(x=>x.startsWith('ai_classic_')),'no Classic pollution');
+            console.log('PASS Studio goal sequence in real 360 px browser with mocked bank');
+            const receipt=await browser.newPage();
+            await receipt.addInitScript(()=>{window.__goals=[];window.ym=(...args)=>window.__goals.push(args)});
+            await receipt.route(/mc\.yandex\.(ru|com)/,route=>route.abort());
+            await receipt.route('**/api/payment/status?orderId=*',route=>route.fulfill({
+              status:200,contentType:'application/json',
+              body:JSON.stringify({ok:true,confirmed:true,plan:'ai_album_1990',amount:199000})
+            }));
+            await receipt.goto(base+'?payment_result=success&orderId=MBT-ai_album_1990-TEST',{waitUntil:'domcontentloaded'});
+            await receipt.locator('#author-payment-return').filter({hasText:/подтверждена Т-Банком/}).waitFor({timeout:20000});
+            assert.ok((await receipt.evaluate(()=>window.__goals)).some(x=>x[1]==='reachGoal'&&x[2]==='studio_paid'));
+            console.log('PASS Studio payment success goal only after backend confirmation');
+            await receipt.close();await page.close();
+          }finally{await browser.close()}
+          JS
