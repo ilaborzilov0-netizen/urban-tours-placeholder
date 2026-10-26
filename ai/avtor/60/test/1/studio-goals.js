@@ -1,8 +1,8 @@
-/* Studio (/ai/avtor/60/test/1/) behavioral funnel for Yandex Metrika 110906734.
+/* Studio (/ai/ and /ai/avtor/60/test/1/) behavioral funnel for Yandex Metrika 110906734.
    No personally identifiable data, email contents, order IDs, or bank links are logged. */
 (()=>{
 'use strict';
-if(!/^\/ai\/avtor\/60\/test\/1\/?$/.test(location.pathname))return;
+if(!/^\/ai(?:\/|\/avtor\/60\/test\/1\/?)$/.test(location.pathname))return;
 const counter=110906734;
 const sessionOnce=new Set();
 const safe=(s)=>String(s??'').replace(/[^a-z0-9_\-]/gi,'').slice(0,45);
