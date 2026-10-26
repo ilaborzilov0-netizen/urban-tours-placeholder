@@ -236,6 +236,17 @@ footer a{text-decoration:underline}
 @media(max-width:960px){.edition-card.digital{padding:19px}.edition-label-row{gap:5px}.edition-popular,.edition-preorder-tag{font-size:9px;padding:5px 7px}}
 @media(max-width:700px){.edition-card.digital{padding:19px}.edition-card.digital .edition-price{font-size:clamp(49px,12vw,61px)}.edition-card.collectors .edition-price{font-size:clamp(44px,11vw,55px)}.edition-tier-note{font-size:13px;padding:13px 14px}.edition-card.digital .edition-features{padding-top:12px}}
 @media(max-width:390px){.edition-card.digital{padding:13px}.edition-card.digital .edition-price{font-size:49px}.edition-card.collectors .edition-price{font-size:44px}.edition-label-row{gap:5px}.edition-tag{letter-spacing:.05em}.edition-popular,.edition-preorder-tag{letter-spacing:.035em}}
+
+/* Product photos in the two price cards: real-world visualizations replacing CSS mockups. */
+.edition-product-photo{position:relative;margin:19px 0 11px;width:100%;height:286px;overflow:hidden;border:1px solid #687261;border-radius:4px;background:#20251F}
+.edition-product-photo>img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 49%}
+.edition-product-photo--digital{border-color:#6D8D50;background:#2B3228}
+.edition-product-photo--collectors{border-color:#887858;background:#332C25}
+.edition-product-photo--collectors>img{object-position:center 51%}
+.edition-product-photo-note{position:absolute;left:10px;bottom:10px;z-index:1;padding:7px 10px;border:1px solid #D5BE9850;background:#191B16DE;color:#F5E7CE;font-size:12px;line-height:1.25;letter-spacing:0;max-width:calc(100% - 20px)}
+@media(max-width:960px){.edition-product-photo{height:246px}}
+@media(max-width:700px){.edition-product-photo{height:219px;margin:12px 0 8px}.edition-product-photo-note{font-size:11px;bottom:8px;left:8px;padding:6px 8px}}
+@media(max-width:390px){.edition-product-photo{height:192px}.edition-product-photo-note{font-size:10.5px}}
 </style></head>
 <body class="design-one">
 <header class="top"><div class="top-inner wrap"><a href="#top" class="wordmark"><i>И</i><span>АУДИОЯКОРЯ<small style="display:block;font-size:11px;font-weight:400;color:var(--muted);letter-spacing:0">Авторская музыкальная программа</small></span></a><nav class="top-links" aria-label="Разделы"><a href="#listen">Послушать</a><a href="#editions">Форматы и цены</a><a href="#songs">Все песни</a><a href="#people">Фото</a></nav></div></header>
@@ -301,13 +312,9 @@ footer a{text-decoration:underline}
           <h3 class="edition-title">«Без торга» в телефоне</h3>
           <div class="edition-price">1 990 ₽</div>
           <p class="edition-desc">Все 12 песен всегда под рукой. Нажмите «слушать» — дома, в дороге или в момент, когда снова хочется закурить.</p>
-          <div class="edition-art-digital" aria-label="Визуализация альбома на экране смартфона" role="img">
-            <div class="edition-digital-list" aria-hidden="true"><strong>БЕЗ ТОРГА · АЛЬБОМ</strong><span>01 · Жизнь станет лучше</span><span>02 · Знакомая мысль</span><span>03 · Разговор с собой</span><span>12 композиций</span></div>
-            <div class="edition-phone" aria-hidden="true">
-              <img src="/ai/assets/anchor-release-20261008.webp" width="1254" height="1254" alt="">
-              <div class="phone-sound">БЕЗ ТОРГА<br>12 ПЕСЕН</div><div class="phone-progress"></div><div class="phone-controls">◂ ▶ ▸</div>
-            </div>
-          </div>
+          <figure class="edition-product-photo edition-product-photo--digital">
+            <img src="/ai/avtor/60/test/1/assets/edition-digital-phone-20261026.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="Фотореалистичная иллюстрация смартфона: на экране открыт музыкальный альбом «Без торга»">
+          </figure>
           <ul class="edition-features">
             <li><strong>Мгновенный доступ после оплаты</strong></li>
             <li>Можно слушать сразу на телефоне</li>
@@ -326,12 +333,10 @@ footer a{text-decoration:underline}
           <h3 class="edition-title">«Без торга» в коробке</h3>
           <div class="edition-price">4 990 ₽</div>
           <p class="edition-desc">Для тех, кто хочет не только музыку, но и настоящий предмет — диск, буклет и красивую упаковку. Для себя или в подарок.</p>
-          <div class="edition-art-physical" role="img" aria-label="Как будет выглядеть коллекционное издание: коробка CD, диск и печатный буклет">
-            <div class="cd-booklet" aria-hidden="true"><b>БЕЗ ТОРГА<br>12 МЫСЛЕЙ О КУРЕНИИ</b><small>01 / ПАУЗА И КОФЕ<br>02 / ВНУТРЕННИЙ ТОРГ<br>03 / РАЗГОВОР С СОБОЙ</small></div>
-            <div class="cd-disc" aria-hidden="true"></div>
-            <div class="cd-box" aria-hidden="true"><img src="/ai/assets/anchor-release-20261008.webp" width="1254" height="1254" alt=""></div>
-            <span class="edition-art-label">Как будет выглядеть издание</span>
-          </div>
+          <figure class="edition-product-photo edition-product-photo--collectors">
+            <img src="/ai/avtor/60/test/1/assets/edition-collectors-box-20261026.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="Визуализация планируемого коллекционного набора «Без торга»: коробка, музыкальный CD и печатный буклет">
+            <figcaption class="edition-product-photo-note">Как будет выглядеть издание · визуализация</figcaption>
+          </figure>
           <ul class="edition-features">
             <li><strong>Все 12 треков в цифровом виде</strong> — после оплаты</li>
             <li>Физический CD в авторском оформлении</li>
