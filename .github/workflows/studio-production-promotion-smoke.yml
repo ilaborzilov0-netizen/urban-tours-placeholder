@@ -1,0 +1,103 @@
+name: Production /ai/ Studio promotion and classic backup audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ai/index.html'
+      - 'ai/avtor/60/test/1/checkout-live.js'
+      - 'ai/avtor/60/test/1/studio-goals.js'
+      - '.github/workflows/studio-production-promotion-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install browser driver
+        run: npm install --no-save playwright@1.56.1
+      - name: Check live site, archive, responsive CTA and bank status
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {readFileSync} from 'node:fs';
+          import {chromium} from 'playwright';
+          const site='https://marafon-metod.ru', archive='/ai/archive-classic-1990-before-studio-20261026/';
+          const latest=readFileSync('ai/index.html','utf8'), archived=readFileSync('ai/'+archive.split('/ai/')[1]+'index.html','utf8');
+          assert.ok(latest.includes('ai-landing-variant" content="studio-20261026"'));
+          assert.ok(latest.includes('studio-goals.js')&&latest.includes('checkout-live.js'));
+          assert.ok(archived.includes('LIVE /ai/ CLASSIC 1990 RUB'));
+          console.log('PASS repo promotion and backup preserved');
+          const assets=['/ai/','/ai/avtor/60/test/1/studio-goals.js',
+           '/ai/avtor/60/test/1/checkout-live.js',
+           '/ai/avtor/60/test/design-assets/base.css',archive];
+          for(const path of assets){
+            let r,body;
+            for(let retry=0;retry<4;retry++){
+              r=await fetch(site+path,{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(16000)});
+              body=await r.text();
+              if(r.ok&&(path!='/ai/'||body.includes('studio-20261026')))break;
+              await new Promise(resolve=>setTimeout(resolve,2000));
+            }
+            console.log('PUBLIC',path,r.status,'bytes',body.length);
+            assert.equal(r.status,200,'live asset '+path);
+            if(path==='/ai/'){
+              assert.ok(body.includes('studio-20261026'),'old classic still served on /ai/');
+              assert.ok(body.includes('author-checkout-form')&&body.includes('studio-goals.js'));
+            }
+            if(path===archive)assert.ok(body.includes('LIVE /ai/ CLASSIC 1990 RUB'));
+          }
+          const browser=await chromium.launch({channel:'chrome',headless:true});
+          try{
+            for(const width of [360,1360]){
+              const page=await browser.newPage({viewport:{width,height:800}});
+              await page.addInitScript(()=>{
+                window.__events=[];
+                window.ym=(...args)=>{window.__events.push(args);if(args[1]==='getClientID')args[2]?.('synthetic-test')};
+              });
+              await page.route(/mc\.yandex\.(ru|com)/,route=>route.abort());
+              await page.goto(site+'/ai/',{waitUntil:'domcontentloaded',timeout:35000});
+              await page.waitForTimeout(800);
+              await page.locator('.js-buy').first().click({timeout:10000});
+              assert.equal(await page.locator('#order-modal').evaluate(el=>el.open),true);
+              await page.locator('#author-checkout-email').fill('not-an-email');
+              await page.locator('#author-checkout-form button[type=submit]').click();
+              assert.match(await page.locator('#author-checkout-status').innerText(),/почту/);
+              const calls=[];
+              await page.route('**/api/payment/create',route=>{
+                calls.push(JSON.parse(route.request().postData()||'{}'));
+                return route.fulfill({status:200,contentType:'application/json',
+                  body:JSON.stringify({ok:true,plan:'ai_album_1990',amount:990,
+                    orderId:'UNPAID-TEST',paymentId:'12345',
+                    paymentUrl:'https://securepay.tinkoff.ru/mock'})});
+              });
+              await page.locator('#author-checkout-email').fill('test@example.com');
+              await page.locator('#author-checkout-form button[type=submit]').click();
+              await page.locator('#author-checkout-status').filter({hasText:/Цена или реквизиты заказа/}).waitFor({timeout:12000});
+              assert.equal(calls.length,1);
+              assert.equal(calls[0].plan,'ai_album_1990');
+              assert.equal(calls[0].source,'marafon_ai_studio');
+              assert.equal(calls[0].returnUrl,site+'/ai/');
+              const goals=await page.evaluate(()=>window.__events.filter(e=>e[1]==='reachGoal').map(e=>e[2]));
+              for(const id of ['studio_buy_hero','studio_checkout_open','studio_pay_click','studio_payment_error'])
+                assert.ok(goals.includes(id),width+' goal '+id);
+              assert.ok(!goals.some(x=>x.startsWith('ai_classic_')));
+              console.log('PASS live responsive Studio CTA + bank amount safety + events at',width);
+              await page.close();
+            }
+            const receipt=await browser.newPage();
+            await receipt.addInitScript(()=>{window.__events=[];window.ym=(...args)=>window.__events.push(args)});
+            await receipt.route(/mc\.yandex\.(ru|com)/,route=>route.abort());
+            await receipt.route('**/api/payment/status?orderId=*',route=>route.fulfill({status:200,contentType:'application/json',
+              body:JSON.stringify({ok:true,confirmed:true,plan:'ai_album_1990',amount:199000})}));
+            await receipt.goto(site+'/ai/?payment_result=success&orderId=MOCK-TEST',{waitUntil:'domcontentloaded'});
+            await receipt.locator('#author-payment-return').filter({hasText:/подтверждена Т-Банком/}).waitFor({timeout:12000});
+            assert.ok((await receipt.evaluate(()=>window.__events)).some(e=>e[1]==='reachGoal'&&e[2]==='studio_paid'));
+            console.log('PASS live /ai/ verified-backend bank return and Studio paid goal (mock response, no charge)');
+            await receipt.close();
+          }finally{await browser.close()}
+          console.log('PROMOTION_AUDIT_SUCCESS');
+          JS
