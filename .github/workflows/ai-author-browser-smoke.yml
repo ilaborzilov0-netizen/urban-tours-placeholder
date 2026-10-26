@@ -1,0 +1,72 @@
+name: Browser check author album checkout (mocked bank, no charge)
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/ai-author-browser-smoke.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ui:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install headless browser
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium --with-deps
+      - name: Test live mobile and desktop CTA to checkout and status
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {chromium} from 'playwright';
+          const browser=await chromium.launch({headless:true});
+          const URL='https://marafon-metod.ru/ai/avtor/60/test/1/';
+          try{
+            for(const width of [360,1360]){
+              const page=await browser.newPage({viewport:{width,height:800},locale:'ru-RU'});
+              await page.route(/mc\.yandex\.ru|mc\.yandex\.com/,route=>route.abort());
+              const errors=[];
+              page.on('pageerror',error=>errors.push(error.message));
+              await page.goto(URL,{waitUntil:'domcontentloaded',timeout:35000});
+              await page.locator('.js-buy').first().click({timeout:15000});
+              assert.equal(await page.locator('#order-modal').evaluate(el=>el.open),true);
+              const email=page.locator('#author-checkout-email');
+              await email.fill('not-an-email');
+              await page.locator('#author-checkout-form [type="submit"]').click();
+              assert.match(await page.locator('#author-checkout-status').innerText(),/почту/);
+              const intercept=[];
+              await page.route('**/api/payment/create',async route=>{
+                intercept.push(JSON.parse(route.request().postData()||'{}'));
+                await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({
+                  ok:true,plan:'ai_album_1990',amount:990,orderId:'MBT-ai_album_1990-TEST',
+                  paymentId:'123',paymentUrl:'https://securepay.tinkoff.ru/mock'
+                })});
+              });
+              await email.fill('buyer@example.com');
+              await page.locator('#author-checkout-form [type="submit"]').click();
+              await page.locator('#author-checkout-status').filter({hasText:/Цена или реквизиты заказа/}).waitFor({timeout:20000});
+              assert.equal(intercept.length,1,'one bank init request expected');
+              assert.equal(intercept[0].plan,'ai_album_1990');
+              assert.equal(intercept[0].email,'buyer@example.com');
+              assert.equal(intercept[0].returnUrl,'https://marafon-metod.ru/ai/');
+              assert.ok(errors.length===0,'JS errors: '+errors.join('; '));
+              console.log('PASS CTA + email validation + incorrect bank amount blocked at viewport',width);
+              await page.close();
+            }
+            const page=await browser.newPage();
+            await page.route('**/api/payment/status?orderId=*',route=>route.fulfill({
+              status:200,contentType:'application/json',body:JSON.stringify({
+                ok:true,confirmed:true,plan:'ai_album_1990',amount:199000
+              })
+            }));
+            await page.goto(URL+'?payment_result=success&orderId=MBT-ai_album_1990-TEST',
+              {waitUntil:'domcontentloaded',timeout:35000});
+            await page.locator('#author-payment-return').filter({hasText:/подтверждена Т-Банком/}).waitFor({timeout:20000});
+            assert.ok(!(new URL(page.url())).searchParams.has('payment_result'));
+            console.log('PASS verified payment return dialog and query cleanup');
+            await page.close();
+          } finally{await browser.close()}
+          JS
