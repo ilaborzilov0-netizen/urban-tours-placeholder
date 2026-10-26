@@ -1,0 +1,48 @@
+name: Verify published author checkout page
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/ai-author-public-site-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Verify public landing, JavaScript, bank return page and privacy policy
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const origin='https://marafon-metod.ru';
+          const page='/ai/avtor/60/test/1/';
+          const paths=[page,page+'checkout-live.js','/ai/','/consultation-privacy/'];
+          for(const path of paths){
+            let response=null,body='';
+            for(let attempt=0;attempt<4;attempt++){
+              response=await fetch(origin+path,{redirect:'follow',signal:AbortSignal.timeout(18000),
+                headers:{'User-Agent':'AuthorPaymentSmoke/1.0','Cache-Control':'no-cache'}});
+              body=await response.text();
+              if(response.ok&&(path!==page||body.includes('author-checkout-form'))) break;
+              await new Promise(r=>setTimeout(r,2500));
+            }
+            console.log('public',path,response.status,body.length,response.url);
+            assert.equal(response.status,200,'Published HTTP success is required');
+            if(path===page){
+              assert.ok(body.includes('id="author-checkout-form"'),'Live checkout form is not deployed');
+              assert.ok(body.includes('checkout-live.js'),'Checkout script link is absent');
+              assert.ok(body.includes('id="order-modal"'),'Live checkout dialog absent');
+              assert.ok(body.includes('Получить цифровой альбом'),'Digital CTA absent');
+            }else if(path.endsWith('checkout-live.js')){
+              assert.ok(body.includes("const PLAN='ai_album_1990'"),'Wrong plan');
+              assert.ok(body.includes('raw===1990 ? 199000'),'Deployed JS still has incorrect amount validation');
+            }else if(path==='/ai/'){
+              assert.ok(body.includes('payment_result'),'Return handler missing from live /ai/');
+              assert.ok(body.includes('ai_album_1990'),'Return plan missing from live /ai/');
+            }
+          }
+          console.log('PASS public checkout page deployed with live bank integration and verified return target.');
+          JS
