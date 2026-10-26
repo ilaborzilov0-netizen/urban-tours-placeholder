@@ -1,0 +1,138 @@
+{
+  "counter_id": 110906734,
+  "version": "2026-10-26-studio-1",
+  "goals": [
+    {
+      "id": "studio_hero_view",
+      "name": "СТУДИЯ — увидел первый экран"
+    },
+    {
+      "id": "studio_how_view",
+      "name": "СТУДИЯ — увидел объяснение механизма"
+    },
+    {
+      "id": "studio_author_view",
+      "name": "СТУДИЯ — дошёл до истории автора"
+    },
+    {
+      "id": "studio_making_view",
+      "name": "СТУДИЯ — увидел студию записи"
+    },
+    {
+      "id": "studio_tariffs_view",
+      "name": "СТУДИЯ — увидел два формата"
+    },
+    {
+      "id": "studio_tracks_view",
+      "name": "СТУДИЯ — дошёл до треклиста"
+    },
+    {
+      "id": "studio_people_view",
+      "name": "СТУДИЯ — увидел истории людей"
+    },
+    {
+      "id": "studio_voices_view",
+      "name": "СТУДИЯ — дошёл до голосовых примеров"
+    },
+    {
+      "id": "studio_faq_view",
+      "name": "СТУДИЯ — увидел вопросы"
+    },
+    {
+      "id": "studio_final_view",
+      "name": "СТУДИЯ — увидел финальное предложение"
+    },
+    {
+      "id": "studio_scroll_50",
+      "name": "СТУДИЯ — прокрутил 50%"
+    },
+    {
+      "id": "studio_scroll_90",
+      "name": "СТУДИЯ — прокрутил 90%"
+    },
+    {
+      "id": "studio_demo_play",
+      "name": "СТУДИЯ — запустил демо"
+    },
+    {
+      "id": "studio_demo_50",
+      "name": "СТУДИЯ — реально прослушал половину демо"
+    },
+    {
+      "id": "studio_demo_90",
+      "name": "СТУДИЯ — реально прослушал 90% демо"
+    },
+    {
+      "id": "studio_demo_error",
+      "name": "СТУДИЯ — ошибка воспроизведения демо"
+    },
+    {
+      "id": "studio_voice_play",
+      "name": "СТУДИЯ — включил голосовой пример"
+    },
+    {
+      "id": "studio_song_open",
+      "name": "СТУДИЯ — раскрыл описание песни"
+    },
+    {
+      "id": "studio_faq_open",
+      "name": "СТУДИЯ — раскрыл вопрос FAQ"
+    },
+    {
+      "id": "studio_buy_hero",
+      "name": "СТУДИЯ — нажал купить в первом экране"
+    },
+    {
+      "id": "studio_buy_tariff",
+      "name": "СТУДИЯ — нажал купить в тарифе"
+    },
+    {
+      "id": "studio_buy_tracks",
+      "name": "СТУДИЯ — нажал купить в треклисте"
+    },
+    {
+      "id": "studio_buy_final",
+      "name": "СТУДИЯ — нажал купить в конце"
+    },
+    {
+      "id": "studio_checkout_open",
+      "name": "СТУДИЯ — открыл форму оплаты"
+    },
+    {
+      "id": "studio_checkout_close",
+      "name": "СТУДИЯ — закрыл форму оплаты"
+    },
+    {
+      "id": "studio_email_valid",
+      "name": "СТУДИЯ — ввёл корректный email"
+    },
+    {
+      "id": "studio_pay_click",
+      "name": "СТУДИЯ — нажал перейти в Т-Банк"
+    },
+    {
+      "id": "studio_order_created",
+      "name": "СТУДИЯ — заказ 1 990 ₽ создан"
+    },
+    {
+      "id": "studio_bank_redirect",
+      "name": "СТУДИЯ — переход на страницу Т-Банка"
+    },
+    {
+      "id": "studio_payment_error",
+      "name": "СТУДИЯ — ошибка создания платежа"
+    },
+    {
+      "id": "studio_paid",
+      "name": "СТУДИЯ — оплата 1 990 ₽ подтверждена сервером"
+    },
+    {
+      "id": "studio_payment_failed",
+      "name": "СТУДИЯ — оплата не состоялась"
+    },
+    {
+      "id": "studio_collector_interest",
+      "name": "СТУДИЯ — нажал предзаказ CD (без оплаты)"
+    }
+  ]
+}
