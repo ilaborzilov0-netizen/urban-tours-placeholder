@@ -1,0 +1,20 @@
+name: Studio Metrika counter and goals inventory (read-only)
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ai/studio_metrika_inventory.py'
+      - '.github/workflows/studio-metrika-inventory.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    env:
+      YANDEX_METRIKA_OAUTH: ${{ secrets.YANDEX_METRIKA_OAUTH }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read current goals, capacity, and Webvisor setting; make no changes
+        run: python3 ai/studio_metrika_inventory.py
