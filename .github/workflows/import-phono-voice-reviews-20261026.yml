@@ -29,7 +29,6 @@ jobs:
           for code in 02 03 04 05; do
             key="VOICE_${code}"
             curl --fail --show-error --silent -L --retry 4 --max-time 40 "${!key}" -o "ai/avtor/60/test/1/assets/voices/voice-${code}.mp3"
-            ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1 "ai/avtor/60/test/1/assets/voices/voice-${code}.mp3"
           done
           python3 - <<'PY'
           from pathlib import Path
