@@ -162,6 +162,28 @@ footer a{text-decoration:underline}
 @media(max-width:600px){.making-section{padding:50px 0 56px}.making-head{margin-bottom:17px}.making-head h2{font-size:clamp(32px,8.6vw,43px)}.making-head p{font-size:17px;line-height:1.53}.making-photo figcaption{font-size:12px;padding:25px 12px 10px}.making-stats{gap:9px;margin-top:11px}.making-stat{padding:15px 12px 16px;min-height:115px}.making-stat strong{font-size:34px;white-space:normal}.making-stat span{font-size:14px;margin-top:8px}.making-footnote{font-size:14px;margin-top:12px}}
 @media(max-width:350px){.making-stat strong{font-size:31px}.making-stat span{font-size:13px}.making-stat{min-height:113px}}
 
+
+/* Four supplied audio impressions: scoped, responsive, with native accessible playback. */
+.voice-feedback{background:#1C211C;border-top:1px solid #455140;border-bottom:1px solid #455140;padding:72px 0 75px}
+.voice-feedback-heading{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:24px}
+.voice-feedback h2{font-size:clamp(34px,4vw,55px);line-height:1.11;letter-spacing:-.052em;font-weight:500;margin:10px 0 0}
+.voice-feedback h2 em{font-style:normal;color:var(--accent)}
+.voice-feedback-heading>p{max-width:335px;color:#C5CEBE;font-size:17px;line-height:1.6}
+.voice-feedback-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.voice-feedback-card{display:flex;flex-direction:column;gap:14px;min-width:0;background:#292F27;border:1px solid #56634F;padding:23px 24px 20px}
+.voice-feedback-card-head{display:flex;align-items:center;gap:13px}
+.voice-feedback-wave{width:43px;height:43px;border:1px solid #75875A;border-radius:50%;display:flex;align-items:center;justify-content:center;gap:3px;flex:none}
+.voice-feedback-wave i{display:block;width:3px;border-radius:3px;background:#CDDF58;height:12px}
+.voice-feedback-wave i:nth-child(2),.voice-feedback-wave i:nth-child(4){height:20px}.voice-feedback-wave i:nth-child(3){height:26px}
+.voice-feedback-card-head div:last-child{min-width:0}
+.voice-feedback-card .voice-category{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:750}
+.voice-feedback-card .voice-id{font-size:13px;color:#ADB9A9;margin-top:4px}
+.voice-feedback-card blockquote{margin:0;font-size:19px;font-weight:500;letter-spacing:-.018em;line-height:1.42;color:#EFF2E8;flex:1;min-height:57px}
+.voice-feedback-card audio{display:block!important;width:100%;height:49px;max-width:100%;border-radius:25px;background:#EDF0E7;accent-color:#82974E;color-scheme:light}
+.voice-feedback-disclosure{margin-top:16px;font-size:13px;color:#C0C9B9;line-height:1.55}
+@media(max-width:780px){.voice-feedback-heading{display:block}.voice-feedback-heading>p{margin-top:13px;max-width:700px}.voice-feedback-grid{grid-template-columns:1fr}.voice-feedback-card{padding:20px}.voice-feedback-card blockquote{min-height:0}}
+@media(max-width:600px){.voice-feedback{padding:49px 0 53px}.voice-feedback h2{font-size:clamp(32px,8.5vw,42px)}.voice-feedback-heading{margin-bottom:18px}.voice-feedback-heading>p{font-size:16px}.voice-feedback-grid{gap:10px}.voice-feedback-card{padding:17px;gap:11px}.voice-feedback-card blockquote{font-size:18px;line-height:1.43}.voice-feedback-card audio{height:47px}.voice-feedback-disclosure{font-size:12px}}
+
 </style></head>
 <body class="design-one">
 <header class="top"><div class="top-inner wrap"><a href="#top" class="wordmark"><i>И</i><span>АУДИОЯКОРЯ<small style="display:block;font-size:11px;font-weight:400;color:var(--muted);letter-spacing:0">Авторская музыкальная программа</small></span></a><nav class="top-links" aria-label="Разделы"><a href="#listen">Послушать</a><a href="#editions">Форматы и цены</a><a href="#songs">Все песни</a><a href="#people">Фото</a></nav></div></header>
@@ -282,8 +304,42 @@ footer a{text-decoration:underline}
     <p class="pg-note">Снимки иллюстрируют оформление альбома. Они не являются подтверждёнными отзывами покупателей.</p>
   </div>
 </section>
+<section class="voice-feedback" id="voices" aria-labelledby="voices-heading">
+  <div class="wrap">
+    <header class="voice-feedback-heading">
+      <div>
+        <div class="eyebrow">ЧЕТЫРЕ КОРОТКИЕ АУДИОЗАПИСИ</div>
+        <h2 id="voices-heading">Лучше один раз <em>услышать.</em></h2>
+      </div>
+      <p>Про первые дни, привычные моменты тяги и то, как люди описывают прослушивание альбома.</p>
+    </header>
+    <div class="voice-feedback-grid">
+      <article class="voice-feedback-card">
+        <div class="voice-feedback-card-head"><span class="voice-feedback-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><div><div class="voice-category">Когда снова хочется курить</div><div class="voice-id">Запись 01 · 0:05</div></div></div>
+        <blockquote>«Третий день без сигарет. Когда накрывает, включаю трек — работает».</blockquote>
+        <audio controls preload="metadata" aria-label="Прослушать запись 1 о первых днях без сигарет" src="/ai/avtor/60/test/1/assets/voices/voice-02.mp3"></audio>
+      </article>
+      <article class="voice-feedback-card">
+        <div class="voice-feedback-card-head"><span class="voice-feedback-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><div><div class="voice-category">Первые дни без сигарет</div><div class="voice-id">Запись 02 · 0:06</div></div></div>
+        <blockquote>«Курил 20 лет. Первые дни было тяжело, но песни помогают не срываться».</blockquote>
+        <audio controls preload="metadata" aria-label="Прослушать запись 2 о первых днях отказа" src="/ai/avtor/60/test/1/assets/voices/voice-03.mp3"></audio>
+      </article>
+      <article class="voice-feedback-card">
+        <div class="voice-feedback-card-head"><span class="voice-feedback-wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span><div><div class="voice-category">Без ожидания чуда</div><div class="voice-id">Запись 03 · 0:05</div></div></div>
+        <blockquote>«Не ждал чуда, просто взял попробовать. Через пять дней тянет уже не так».</blockquote>
+        <audio controls preload="metadata" aria-label="Прослушать запись 3 о впечатлении после пяти дней" src="/ai/avtor/60/test/1/assets/voices/voice-04.mp3"></audio>
+      </article>
+      <article class="voice-feedback-card">
+        <div class="voice-feedback-card-head"><span class="voice-feedback-wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span><div><div class="voice-category">В дороге и дома</div><div class="voice-id">Запись 04 · 0:05</div></div></div>
+        <blockquote>«Слушаю в машине и вечером дома. Стало проще в моменты, когда раньше закуривал».</blockquote>
+        <audio controls preload="metadata" aria-label="Прослушать запись 4 о прослушивании в машине и дома" src="/ai/avtor/60/test/1/assets/voices/voice-05.mp3"></audio>
+      </article>
+    </div>
+    <p class="voice-feedback-disclosure">Аудиозаписи предоставлены для демонстрации. Их авторство и статус как отзывов реальных покупателей не подтверждены.</p>
+  </div>
+</section>
 <section class="section wrap"><div class="eyebrow">06 / Как использовать</div><h2>Слушайте. Замечайте. Вспоминайте.</h2><div class="principle"><article><b>01 / ПОЗНАКОМЬТЕСЬ</b><h3>Послушайте альбом</h3><p>Узнайте привычные оправдания курения в текстах песен.</p></article><article><b>02 / ВОЗВРАЩАЙТЕСЬ</b><h3>Повторяйте по желанию</h3><p>Песни помогают возвращаться к выбранным мыслям.</p></article><article><b>03 / ПРИМЕНЯЙТЕ</b><h3>В момент тяги</h3><p>Попробуйте вспомнить другую мысль вместо привычного внутреннего торга.</p></article></div></section>
 <section class="section olive" id="questions"><div class="wrap"><div class="eyebrow">07 / Без лишних слов</div><h2>Вопросы и ответы.</h2><div class="faq-list"><details><summary>Что входит в альбом?</summary><p>12 музыкальных аудиоякорей «Без торга». Разовая покупка, без подписки.</p></details><details><summary>Подойдёт, если я курю 30–40 лет?</summary><p>Темы песен знакомы людям с разным стажем: кофе, стресс, внутренний торг и привычные ритуалы. Сам альбом не гарантирует отказ от курения.</p></details><details><summary>Это гипноз или лечение?</summary><p>Нет. Это музыкальные психологические смыслы — дополнение, а не замена помощи специалиста и проверенным методам отказа.</p></details><details><summary>Когда начинать слушать?</summary><p>Можно до выбранного дня отказа и после него, возвращаясь к трекам в моменты привычной тяги.</p></details><details><summary>Когда я получу файлы?</summary><p>В действующей версии условия цифровой выдачи показываются при оформлении заказа. Здесь дизайн-концепция: оплата и отправка заказа не подключены.</p></details><details><summary>Можно ли уже заказать CD и печатный буклет?</summary><p>Пока нет. Физическое коллекционное издание находится на стадии концепции. До открытия заказов нужно подготовить образец, тираж, условия доставки и определить окончательный состав комплекта.</p></details></div></div></section>
 <section class="section wrap purchase-foot" id="offer"><div><div class="eyebrow">Ваш следующий шаг</div><h2>Не откладывайте новый разговор с собой.</h2><p>«Без торга» — 12 аудиоякорей в одном цифровом альбоме. Послушайте фрагмент и решите, подходит ли вам эта форма.</p></div><div class="purchase-panel"><span class="eyebrow">Без торга · полный альбом</span><span class="price">1 990 ₽</span><div class="smallprint">12 музыкальных треков · разовая покупка</div><button class="btn primary js-buy" type="button">Получить альбом</button></div></section></main>
 <footer class="wrap minor-footer"><span>Аудиоякоря · «Без торга»</span></footer>
-<audio id="sample-audio" preload="none" src="/ai/assets/life-gets-better-demo-20261008.mp3"></audio><dialog class="order-modal" id="collector-modal"><div class="eyebrow">Коллекционное издание · Концепция</div><h3>CD, буклет и цифровой альбом</h3><p>Планируемое издание за 4 990 ₽: 12 композиций на диске, цифровые файлы и печатный буклет по всем 12 психологическим темам. Это предварительный макет, не готовый товар. Заказ и оплата пока недоступны, сроки поставки не определены.</p><button type="button" class="btn primary js-collector-close">Понятно</button></dialog><dialog class="order-modal" id="order-modal"><div class="eyebrow">Просмотр дизайна</div><h3>Оформление в этой версии не подключено</h3><p>Это отдельная дизайн-версия. Рабочий лендинг и платёжный сервер не изменялись.</p><button class="btn primary js-modal-close" type="button">Закрыть</button></dialog><script>document.addEventListener("click",function(e){const interest=e.target.closest(".js-collector-interest"),close=e.target.closest(".js-collector-close"),modal=document.getElementById("collector-modal");if(interest){modal.showModal()}if(close){modal.close()}if(e.target===modal){modal.close()}})</script><script defer src="/ai/avtor/60/test/1/people/gallery.js"></script><script type="module" src="/ai/avtor/60/test/design-assets/experience.js"></script></body></html>
+<audio id="sample-audio" preload="none" src="/ai/assets/life-gets-better-demo-20261008.mp3"></audio><dialog class="order-modal" id="collector-modal"><div class="eyebrow">Коллекционное издание · Концепция</div><h3>CD, буклет и цифровой альбом</h3><p>Планируемое издание за 4 990 ₽: 12 композиций на диске, цифровые файлы и печатный буклет по всем 12 психологическим темам. Это предварительный макет, не готовый товар. Заказ и оплата пока недоступны, сроки поставки не определены.</p><button type="button" class="btn primary js-collector-close">Понятно</button></dialog><dialog class="order-modal" id="order-modal"><div class="eyebrow">Просмотр дизайна</div><h3>Оформление в этой версии не подключено</h3><p>Это отдельная дизайн-версия. Рабочий лендинг и платёжный сервер не изменялись.</p><button class="btn primary js-modal-close" type="button">Закрыть</button></dialog><script>document.addEventListener("click",function(e){const interest=e.target.closest(".js-collector-interest"),close=e.target.closest(".js-collector-close"),modal=document.getElementById("collector-modal");if(interest){modal.showModal()}if(close){modal.close()}if(e.target===modal){modal.close()}})</script><script>document.addEventListener("play",function(event){if(event.target instanceof HTMLMediaElement){document.querySelectorAll("audio").forEach(function(a){if(a!==event.target&&!a.paused)a.pause()})}},true)</script><script defer src="/ai/avtor/60/test/1/people/gallery.js"></script><script type="module" src="/ai/avtor/60/test/design-assets/experience.js"></script></body></html>
