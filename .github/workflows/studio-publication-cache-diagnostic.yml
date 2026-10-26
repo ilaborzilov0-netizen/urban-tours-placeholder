@@ -1,0 +1,42 @@
+name: Diagnose Timeweb Studio publication and cache
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/studio-publication-cache-diagnostic.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: Read public versions through alternate urls and cache keys
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          const root='https://marafon-metod.ru';
+          const paths=[
+            '/ai/',
+            '/ai/?studio_production_verification=20261026b',
+            '/ai/index.html?studio_production_verification=20261026b',
+            '/ai/archive-classic-1990-before-studio-20261026/',
+            '/ai/avtor/60/test/1/'
+          ];
+          for(const path of paths){
+            try{
+              const r=await fetch(root+path,{signal:AbortSignal.timeout(15000),headers:{'Cache-Control':'no-cache, no-store','Pragma':'no-cache','User-Agent':'StudioPublicationAudit/1.0'}});
+              const body=await r.text();
+              console.log('PUBLICATION',JSON.stringify({
+                path,status:r.status,bytes:body.length,
+                studio:body.includes('studio-20261026'),
+                classic:body.includes('LIVE /ai/ CLASSIC 1990 RUB'),
+                author:body.includes('author-checkout-form'),
+                cacheControl:r.headers.get('cache-control'),etag:r.headers.get('etag'),
+                lastModified:r.headers.get('last-modified'),age:r.headers.get('age'),
+                server:r.headers.get('server'),via:r.headers.get('via')
+              }));
+            }catch(e){console.log('PUBLICATION_ERROR',path,String(e).slice(0,140))}
+          }
+          JS
