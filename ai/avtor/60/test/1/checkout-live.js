@@ -20,8 +20,11 @@
   };
   const showError=(msg)=>{status.textContent=msg;status.hidden=false;status.setAttribute('role','alert')};
   const safeAmount=(data)=>{
-    if(Number.isSafeInteger(data?.amount)) return data.amount;
-    return null;
+    // Compatible with both deployed backend formats: rubles (1990) and kopecks (199000).
+    const raw=Number(data?.amount);
+    const minor=raw===1990 ? 199000 : raw===AMOUNT ? AMOUNT : NaN;
+    if(data?.amountMinor!=null && Number(data.amountMinor)!==minor)return NaN;
+    return minor;
   };
   const safePaymentUrl=(raw)=>{
     const value=new URL(raw);
