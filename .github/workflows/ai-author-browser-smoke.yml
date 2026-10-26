@@ -65,7 +65,7 @@ jobs:
             await page.goto(URL+'?payment_result=success&orderId=MBT-ai_album_1990-TEST',
               {waitUntil:'domcontentloaded',timeout:35000});
             await page.locator('#author-payment-return').filter({hasText:/подтверждена Т-Банком/}).waitFor({timeout:20000});
-            assert.ok(!(new URL(page.url())).searchParams.has('payment_result'));
+            assert.ok(!page.url().includes('payment_result='),'confirmed result query must be cleared');
             console.log('PASS verified payment return dialog and query cleanup');
             await page.close();
           } finally{await browser.close()}
