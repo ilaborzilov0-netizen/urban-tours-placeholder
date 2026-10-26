@@ -1,0 +1,92 @@
+name: Check AI author checkout integration (no charge)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/ai-author-live-payment-smoke.yml'
+      - 'ai/avtor/60/test/1/index.html'
+      - 'ai/avtor/60/test/1/checkout-live.js'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Static checkout contract
+        shell: bash
+        run: |
+          node --check ai/avtor/60/test/1/checkout-live.js
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {readFileSync} from 'node:fs';
+          const html=readFileSync('ai/avtor/60/test/1/index.html','utf8');
+          const js=readFileSync('ai/avtor/60/test/1/checkout-live.js','utf8');
+          assert.ok(html.includes('id="author-checkout-form"'));
+          assert.ok(html.includes('name="email"'));
+          assert.ok(html.includes('checkout-live.js'));
+          assert.ok(html.includes('id="order-modal"'));
+          assert.ok(html.includes('class="btn primary js-buy"'));
+          assert.ok(js.includes("const PLAN='ai_album_1990'"));
+          assert.ok(js.includes('const AMOUNT=199000'));
+          assert.ok(js.includes("location.origin+'/ai/'"));
+          assert.ok(!html.includes('Оформление в этой версии не подключено'));
+          console.log('PASS static: HTML wiring, bank domain, plan, email, return route');
+          JS
+      - name: Verify live server, CORS, initialize one unpaid order
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const api='https://ilaborzilov0-netizen-metod-payment-test-0305.twc1.net';
+          const origin='https://marafon-metod.ru';
+          const check=async (path, opts={})=>{
+            const response=await fetch(api+path,{...opts,signal:AbortSignal.timeout(16000)});
+            const data=await response.json().catch(()=>null);
+            return {response,data};
+          };
+          const {response:hRes,data:h}=await check('/health');
+          console.log('health',JSON.stringify({http:hRes.status,build:h?.build,testMode:h?.testMode,
+            terminalConfigured:h?.terminalConfigured,price:h?.tariffs?.ai_album_1990}));
+          assert.equal(hRes.status,200);
+          assert.equal(h.testMode,false);
+          assert.equal(h.terminalConfigured,true);
+          assert.equal(h.tariffs?.ai_album_1990,199000);
+          const options=await fetch(api+'/api/payment/create',{method:'OPTIONS',
+            headers:{Origin:origin,'Access-Control-Request-Method':'POST','Access-Control-Request-Headers':'content-type'},
+            signal:AbortSignal.timeout(16000)});
+          assert.equal(options.status,204);
+          assert.equal(options.headers.get('access-control-allow-origin'),origin);
+          const request={
+            email:'ai-author-unpaid-'+process.env.GITHUB_RUN_ID+'@example.com',
+            plan:'ai_album_1990',
+            source:'marafon_ai_avtor_60_test_1',
+            flowId:'ai-author-album-1990',
+            returnUrl:origin+'/ai/'
+          };
+          const {response:create,data:payment}=await check('/api/payment/create',{
+            method:'POST',headers:{Origin:origin,'Content-Type':'application/json','Accept':'application/json'},
+            body:JSON.stringify(request)
+          });
+          console.log('unpaid_init',JSON.stringify({http:create.status,ok:payment?.ok,plan:payment?.plan,
+            amount:payment?.amount,hasBankUrl:typeof payment?.paymentUrl==='string',error:payment?.code||null}));
+          assert.equal(create.status,200);
+          assert.equal(payment?.ok,true);
+          assert.equal(payment.plan,'ai_album_1990');
+          assert.equal(payment.amount,199000);
+          assert.ok(payment.orderId);
+          const bank=new URL(payment.paymentUrl);
+          assert.equal(bank.protocol,'https:');
+          assert.ok(/(^|\.)(tinkoff\.ru|tbank\.ru)$/.test(bank.hostname)||bank.hostname==='pay.tbank-online.com');
+          const {response:statusRes,data:status}=await check('/api/payment/status?orderId='+encodeURIComponent(payment.orderId),
+            {headers:{Origin:origin,'Accept':'application/json'}});
+          console.log('unpaid_status',JSON.stringify({http:statusRes.status,plan:status?.plan,
+            amount:status?.amount,confirmed:status?.confirmed,pending:status?.pending}));
+          assert.equal(statusRes.status,200);
+          assert.equal(status.plan,'ai_album_1990');
+          assert.equal(status.amount,199000);
+          assert.equal(status.confirmed,false);
+          console.log('PASS live API: valid bank URL, 1990 RUB, real unpaid order, verified non-payment. No card used.');
+          JS
