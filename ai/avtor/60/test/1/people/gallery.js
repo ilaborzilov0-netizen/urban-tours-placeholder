@@ -15,10 +15,22 @@ const people=[
  ["После работы","Без лишних слов"],
  ["За чашкой чая","Новый взгляд"]
 ];
+const galleryStories=[
+ {name:"Сергей, 54",detail:"Курил 31 год · Бросал 4 раза",quote:"Слушаю по утрам за чаем. На 9-й день впервые не потянулся за сигаретой после завтрака."},
+ {name:"Андрей, 39",detail:"Курю только в стрессе",quote:"Брал скептически. Через неделю заметил, что в напряжённые моменты уже не тянусь автоматически."},
+ {name:"Виктор, 61",detail:"Курил с 17 лет",quote:"Думал, в моём возрасте уже поздно. Слушаю вечером. Стало спокойнее, тяга слабее."},
+ {name:"Максим, 34",detail:"Бросал 6 раз",quote:"Каждый раз срывался через 2–3 недели. Сейчас слушаю уже 18 дней. Пока держусь."},
+ {name:"Игорь, 47",detail:"Курю больше 20 лет",quote:"Раньше после еды — сразу на балкон. Теперь включаю трек. Уже две недели без автоматизма."},
+ {name:"Артём, 28",detail:"Курю 9 лет · Хочу бросить до 30",quote:"Молодой, но уже тяжело. Слушаю в наушниках. Пока помогает не срываться по вечерам."},
+ {name:"Дмитрий, 42",detail:"Скептик",quote:"Не верил в песни. Взял из интереса. На 11-й день понял, что после обеда уже не тянет."},
+ {name:"Роман, 45",detail:"Курю в машине и на работе",quote:"Самое сложное было — дорога. Теперь вместо сигареты включаю альбом. Стало заметно легче."},
+ {name:"Алексей, 51",detail:"Курил 27 лет",quote:"После смены всегда сразу курил. Сейчас слушаю в гараже. Уже 14 дней без сигарет."},
+ {name:"Николай, 58",detail:"Бросал 3 раза",quote:"Последний раз сорвался два года назад. Решил попробовать по-другому. Слушаю утром. Пока идёт ровнее."}
+];
 const photo=(i)=>assetRoot+"person-"+String(i+1).padStart(2,"0")+".webp";
 const safe=(str)=>str.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const config={
-  1:{kicker:"ГАЛЕРЕЯ · АЛЬБОМ В ПОВСЕДНЕВНОЙ ЖИЗНИ",headline:"Разные люди.<br><em>Один знакомый разговор.</em>",intro:"Курение бывает частью очень разной жизни. А привычные мысли о сигарете часто удивительно похожи.",className:"pg-one"},
+  1:{kicker:"ДЕСЯТЬ ИСТОРИЙ О ЗНАКОМЫХ ПРИВЫЧКАХ",headline:"У каждого своя история.<br><em>Знакомые моменты.</em>",intro:"Кофе утром, стресс, дорога, вечер дома — ситуации, в которых каждый может узнать себя. Имена, фотографии и реплики здесь собирательные, а не подтверждённые отзывы покупателей.",className:"pg-one"},
   2:{kicker:"ЛИСТАЙТЕ ФОТОГРАФИИ",headline:"Музыка рядом.<br><em>В любом возрасте.</em>",intro:"Посмотрите, как можно подать один и тот же альбом в жизни разных поколений.",className:"pg-two"},
   3:{kicker:"ФОТОАЛЬБОМ · РЕДАКЦИОННАЯ ПОДАЧА",headline:"Обычные люди.<br><em>Необычный альбом.</em>",intro:"Никакой сцены и глянцевых героев: знакомые комнаты, рабочие дни и музыкальная идея.",className:"pg-three"}
 };
@@ -34,14 +46,14 @@ function note(){
  return '<p class="pg-note pg-inner">Фотографии иллюстрируют оформление альбома. Это не отзывы и не подтверждение покупок.</p>';
 }
 function renderOne(root){
- const cards=people.map((_,i)=>'<figure class="pg-item" '+(i>2?'hidden':'')+'><div class="pg-photo">'+image(i,i>2)+'</div><figcaption class="pg-caption">'+caption(i,1)+'</figcaption></figure>').join("");
- root.innerHTML=heading(1)+'<div class="pg-inner"><div class="pg-grid">'+cards+'</div><div class="pg-expand-wrap"><button class="pg-action pg-expand" type="button" aria-expanded="false">Показать ещё 7 фотографий <span aria-hidden="true">↓</span></button></div></div>'+note();
+ const cards=galleryStories.map((story,i)=>'<figure class="pg-item" '+(i>2?'hidden':'')+'><div class="pg-photo">'+image(i,i>2)+'</div><figcaption class="pg-caption pg-profile"><strong class="pg-person">'+safe(story.name)+'</strong><span class="pg-detail">'+safe(story.detail)+'</span><blockquote class="pg-quote">«'+safe(story.quote)+'»</blockquote></figcaption></figure>').join("");
+ root.innerHTML=heading(1)+'<div class="pg-inner"><div class="pg-grid">'+cards+'</div><div class="pg-expand-wrap"><button class="pg-action pg-expand" type="button" aria-expanded="false">Показать ещё 7 историй <span aria-hidden="true">↓</span></button></div></div>';
  const button=root.querySelector(".pg-expand"),extra=[...root.querySelectorAll(".pg-item")].slice(3);
  button.addEventListener("click",()=>{
   const open=button.getAttribute("aria-expanded")!=="true";
   extra.forEach(el=>el.hidden=!open);
   button.setAttribute("aria-expanded",String(open));
-  button.innerHTML=open?'Свернуть галерею <span aria-hidden="true">↑</span>':'Показать ещё 7 фотографий <span aria-hidden="true">↓</span>';
+  button.innerHTML=open?'Свернуть истории <span aria-hidden="true">↑</span>':'Показать ещё 7 историй <span aria-hidden="true">↓</span>';
  });
 }
 function renderTwo(root){
