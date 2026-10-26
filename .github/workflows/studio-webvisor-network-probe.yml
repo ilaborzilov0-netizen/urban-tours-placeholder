@@ -1,0 +1,39 @@
+name: Studio Webvisor live network diagnostic
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/studio-webvisor-network-probe.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Install Playwright and use installed Chrome
+        run: npm install --no-save playwright@1.56.1
+      - name: Observe real public counter load without mocking analytics
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import {chromium} from 'playwright';
+          const browser=await chromium.launch({channel:'chrome',headless:true});
+          try{
+            const page=await browser.newPage({viewport:{width:360,height:780}});
+            const hits=[],responses=[],failures=[];
+            page.on('request',req=>{if(/yandex\.(ru|com)|metrika|mc\.yandex/.test(req.url()))hits.push(new URL(req.url()).hostname)});
+            page.on('response',res=>{if(/mc\.yandex|metrika/.test(res.url()))responses.push({host:new URL(res.url()).hostname,status:res.status()})});
+            page.on('requestfailed',req=>{if(/mc\.yandex|metrika/.test(req.url()))failures.push({host:new URL(req.url()).hostname,error:req.failure()?.errorText})});
+            await page.goto('https://marafon-metod.ru/ai/avtor/60/test/1/',{waitUntil:'domcontentloaded',timeout:40000});
+            await page.waitForTimeout(5500);
+            console.log('STUDIO_METRIKA_TAG_PRESENT',await page.evaluate(()=>!!document.querySelector('script[src*="mc.yandex.ru/metrika/tag.js"]')));
+            console.log('STUDIO_WEBVISOR_SETTING_IN_PAGE',await page.evaluate(()=>document.documentElement.outerHTML.includes('webvisor:true')));
+            console.log('STUDIO_METRIKA_NET_REQUEST_COUNT',hits.length,'HOSTS',[...new Set(hits)]);
+            console.log('STUDIO_METRIKA_RESPONSES',JSON.stringify(responses.slice(0,12)));
+            console.log('STUDIO_METRIKA_NETWORK_ERRORS',JSON.stringify(failures.slice(0,12)));
+            console.log('STUDIO_METRIKA_FUNCTION',await page.evaluate(()=>typeof window.ym));
+            console.log('PROBE_COMPLETE (presence of requests does not guarantee a saved Webvisor recording)');
+          }finally{await browser.close()}
+          JS
