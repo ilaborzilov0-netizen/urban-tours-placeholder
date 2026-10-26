@@ -27,7 +27,7 @@
     const value=new URL(raw);
     if(value.protocol!=='https:')throw new Error('Банковская ссылка недействительна.');
     const host=value.hostname.toLowerCase();
-    if(!(/(^|\\.)(tinkoff\\.ru|tbank\\.ru)$/.test(host)||host==='pay.tbank-online.com')){
+    if(!(/(^|\.)(tinkoff\.ru|tbank\.ru)$/.test(host)||host==='pay.tbank-online.com')){
       throw new Error('Адрес страницы оплаты не принадлежит Т-Банку.');
     }
     return value.href;
@@ -59,7 +59,7 @@
     status.hidden=true;
     const emailInput=form.elements.namedItem('email');
     const email=String(emailInput?.value||'').trim();
-    if(email.length>64||! /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)){
+    if(email.length>64||! /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
       emailInput?.setAttribute('aria-invalid','true');
       showError('Укажите корректную почту для подтверждения заказа.');
       emailInput?.focus();
