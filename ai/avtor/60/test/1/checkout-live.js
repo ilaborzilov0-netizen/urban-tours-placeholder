@@ -80,7 +80,7 @@
         headers:{'Content-Type':'application/json','Accept':'application/json'},
         body:JSON.stringify({
           email,plan:PLAN,flowId:'ai-author-album-1990',
-          source:'marafon_ai_avtor_60_test_1',
+          source:location.pathname==='/ai/'?'marafon_ai_studio':'marafon_ai_avtor_60_test_1',
           returnUrl:RETURN_URL,
           metrikaClientId,
           yclid:(params.get('yclid')||'').slice(0,80)
