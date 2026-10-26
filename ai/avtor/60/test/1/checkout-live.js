@@ -14,9 +14,10 @@
   const submit=form?.querySelector('[type="submit"]');
   if(!dialog||!form||!status||!submit) return;
   let pending=false;
-  const goal=(name)=>{
-    try{window.ym?.(110906734,'reachGoal',name)}catch(_){}
-    try{window.posthog?.capture?.(name,{page:'ai_author_60_test_1',plan:PLAN})}catch(_){}
+  const goal=(event)=>{
+    const id='studio_'+event;
+    if(typeof window.studioTrack==='function')window.studioTrack(event,{section:'checkout'});
+    else try{window.ym?.(110906734,'reachGoal',id,{variant:'studio',section:'checkout'})}catch(_){}
   };
   const showError=(msg)=>{status.textContent=msg;status.hidden=false;status.setAttribute('role','alert')};
   const safeAmount=(data)=>{
@@ -70,7 +71,7 @@
     }
     emailInput.removeAttribute('aria-invalid');
     pending=true;submit.disabled=true;submit.textContent='Открываем Т-Банк…';
-    goal('ai_payment_create');
+    goal('pay_click');
     try{
       const params=new URLSearchParams(location.search);
       const metrikaClientId=await getMetrikaClientId();
@@ -93,14 +94,15 @@
         orderId:data.orderId,paymentId:data.paymentId,amountRub:1990,amountMinor:AMOUNT,
         createdAt:new Date().toISOString(),source:'ai_author_60_test_1'
       }))}catch(_){}
-      goal('ai_payment_created');
+      goal('order_created');
+      goal('bank_redirect');
       location.assign(url);
     }catch(error){
       const message=error?.name==='AbortError'
         ?'Сервис оплаты отвечает слишком долго. Попробуйте ещё раз.'
         :(error?.message||'Не удалось открыть оплату.');
       showError(message);
-      goal('ai_payment_error');
+      goal('payment_error');
       pending=false;submit.disabled=false;submit.textContent='Перейти к оплате · 1 990 ₽';
     }
   });
@@ -116,6 +118,7 @@
     const clean=()=>{const url=new URL(location.href);url.searchParams.delete('payment_result');url.searchParams.delete('orderId');history.replaceState(null,'',url.pathname+url.search+url.hash)};
     if(result==='fail'){
       resultBox.textContent='Оплата не завершена. Можете повторить покупку.';
+      goal('payment_failed');
       clean();return;
     }
     for(let i=0;i<8;i++){
@@ -123,9 +126,9 @@
         const info=await requestJson('/api/payment/status?orderId='+encodeURIComponent(orderId),{headers:{Accept:'application/json'}},10000);
         if(info.confirmed&&info.plan===PLAN&&safeAmount(info)===AMOUNT){
           resultBox.textContent='Оплата 1 990 ₽ подтверждена Т-Банком. Подтверждение придёт на указанную почту. Информация о получении аудиозаписей направляется отдельно.';
-          goal('ai_payment_success');clean();return;
+          goal('paid');clean();return;
         }
-        if(info.failed){resultBox.textContent='Оплата не завершена. Попробуйте ещё раз.';clean();return}
+        if(info.failed){resultBox.textContent='Оплата не завершена. Попробуйте ещё раз.';goal('payment_failed');clean();return}
       }catch(_){}
       await new Promise(resolve=>setTimeout(resolve,1500));
     }
