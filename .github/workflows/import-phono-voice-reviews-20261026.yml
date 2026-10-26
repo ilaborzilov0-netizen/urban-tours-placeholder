@@ -1,0 +1,54 @@
+name: Import four voice recordings for phonoteka
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/import-phono-voice-reviews-20261026.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  voice:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - name: Fetch exact four user attachments
+        shell: bash
+        env:
+          VOICE_02: https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/a78198e1-5a46-44d1-9b72-3b3632b9028a.mp3
+          VOICE_03: https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/c73b93e5-834a-42b8-82cd-1892ee4ae81f.mp3
+          VOICE_04: https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/8fd05cf7-10c7-46b0-a5db-4c5dd3e61749.mp3
+          VOICE_05: https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/8625a4ad-40d2-4574-8e59-4fae4cb49468.mp3
+        run: |
+          set -euo pipefail
+          mkdir -p ai/avtor/60/test/1/assets/voices
+          for code in 02 03 04 05; do
+            key="VOICE_${code}"
+            curl --fail --show-error --silent -L --retry 4 --max-time 40 "${!key}" -o "ai/avtor/60/test/1/assets/voices/voice-${code}.mp3"
+            ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1 "ai/avtor/60/test/1/assets/voices/voice-${code}.mp3"
+          done
+          python3 - <<'PY'
+          from pathlib import Path
+          expected={'02':87936,'03':97920,'04':87936,'05':82560}
+          for key,size in expected.items():
+              p=Path(f'ai/avtor/60/test/1/assets/voices/voice-{key}.mp3')
+              assert p.stat().st_size==size,(p,p.stat().st_size,size)
+              print("VOICE_OK",key,p.stat().st_size)
+          PY
+      - name: Commit only these four audio files
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- ai/avtor/60/test/1/assets/voices/voice-02.mp3 ai/avtor/60/test/1/assets/voices/voice-03.mp3 ai/avtor/60/test/1/assets/voices/voice-04.mp3 ai/avtor/60/test/1/assets/voices/voice-05.mp3
+          if git diff --cached --quiet; then
+            echo "VOICE_ASSETS_ALREADY_PUBLISHED"
+          else
+            git commit -m "Add four attached voice recordings for album-audio feedback cards"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
