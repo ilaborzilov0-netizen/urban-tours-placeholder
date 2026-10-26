@@ -1,0 +1,44 @@
+name: Verify live Studio tariff, tracks, making section order
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ai/index.html'
+      - '.github/workflows/studio-section-order-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  order:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify exact GitHub and published mobile/desktop DOM order
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {readFileSync} from 'node:fs';
+          const markers=['id="origin"','id="editions"','id="songs"','id="making"','id="people"'];
+          const check=(body,where)=>{
+            const i=markers.map(x=>body.indexOf(x));
+            assert.ok(i.every(v=>v>=0),where+' missing sections '+JSON.stringify(i));
+            assert.ok(i.every((v,n)=>n===0||v>i[n-1]),where+' wrong order '+JSON.stringify(i));
+            assert.ok(body.includes('id="author-checkout-form"'),where+' lost checkout');
+            assert.ok(body.includes('studio-goals.js'),where+' lost analytics');
+            console.log('PASS SECTION ORDER',where,'origin → tariffs → songs → studio → people');
+          };
+          check(readFileSync('ai/index.html','utf8'),'GitHub');
+          for(let i=0;i<12;i++){
+            const response=await fetch('https://marafon-metod.ru/ai/?studio_order_check=20261026-'+i,{
+              headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(18000)});
+            const body=await response.text();
+            if(response.ok){
+              try{check(body,'published /ai/');console.log('PASS LIVE',response.status,'bytes',body.length);process.exit(0)}
+              catch(e){console.log('NOT DEPLOYED YET',i,String(e.message))}
+            }else console.log('PUBLIC STATUS',response.status);
+            await new Promise(resolve=>setTimeout(resolve,3500));
+          }
+          throw Error('Section reorder not confirmed live after verification window');
+          JS
