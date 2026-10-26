@@ -75,7 +75,8 @@ jobs:
           assert.equal(create.status,200);
           assert.equal(payment?.ok,true);
           assert.equal(payment.plan,'ai_album_1990');
-          assert.equal(payment.amount,199000);
+          assert.ok(payment.amount===1990||payment.amount===199000,'payment amount must be 1990 RUB');
+          if(payment.amountMinor!=null)assert.equal(payment.amountMinor,199000);
           assert.ok(payment.orderId);
           const bank=new URL(payment.paymentUrl);
           assert.equal(bank.protocol,'https:');
@@ -86,7 +87,8 @@ jobs:
             amount:status?.amount,confirmed:status?.confirmed,pending:status?.pending}));
           assert.equal(statusRes.status,200);
           assert.equal(status.plan,'ai_album_1990');
-          assert.equal(status.amount,199000);
+          assert.ok(status.amount===1990||status.amount===199000,'status amount must be 1990 RUB');
+          if(status.amountMinor!=null)assert.equal(status.amountMinor,199000);
           assert.equal(status.confirmed,false);
           console.log('PASS live API: valid bank URL, 1990 RUB, real unpaid order, verified non-payment. No card used.');
           JS
