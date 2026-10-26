@@ -15,14 +15,14 @@ jobs:
       - name: Install headless browser
         run: |
           npm install --no-save playwright@1.56.1
-          npx playwright install chromium --with-deps
+          google-chrome --version
       - name: Test live mobile and desktop CTA to checkout and status
         shell: bash
         run: |
           node --input-type=module <<'JS'
           import assert from 'node:assert/strict';
           import {chromium} from 'playwright';
-          const browser=await chromium.launch({headless:true});
+          const browser=await chromium.launch({channel:'chrome',headless:true});
           const URL='https://marafon-metod.ru/ai/avtor/60/test/1/';
           try{
             for(const width of [360,1360]){
