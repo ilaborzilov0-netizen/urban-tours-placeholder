@@ -184,6 +184,9 @@ footer a{text-decoration:underline}
 @media(max-width:780px){.voice-feedback-heading{display:block}.voice-feedback-heading>p{margin-top:13px;max-width:700px}.voice-feedback-grid{grid-template-columns:1fr}.voice-feedback-card{padding:20px}.voice-feedback-card blockquote{min-height:0}}
 @media(max-width:600px){.voice-feedback{padding:49px 0 53px}.voice-feedback h2{font-size:clamp(32px,8.5vw,42px)}.voice-feedback-heading{margin-bottom:18px}.voice-feedback-heading>p{font-size:16px}.voice-feedback-grid{gap:10px}.voice-feedback-card{padding:17px;gap:11px}.voice-feedback-card blockquote{font-size:18px;line-height:1.43}.voice-feedback-card audio{height:47px}.voice-feedback-disclosure{font-size:12px}}
 
+
+/* Extra fifth recording gets the full final row on desktop. */
+@media(min-width:781px){.voice-feedback-card--extended{grid-column:1/-1;display:grid;grid-template-columns:minmax(260px,.82fr) minmax(0,1.18fr);gap:18px 28px;align-items:center}.voice-feedback-card--extended .voice-feedback-card-head{grid-row:1/3;align-self:center}.voice-feedback-card--extended blockquote{grid-column:2;grid-row:1;margin:0;min-height:0}.voice-feedback-card--extended audio{grid-column:2;grid-row:2}}
 </style></head>
 <body class="design-one">
 <header class="top"><div class="top-inner wrap"><a href="#top" class="wordmark"><i>И</i><span>АУДИОЯКОРЯ<small style="display:block;font-size:11px;font-weight:400;color:var(--muted);letter-spacing:0">Авторская музыкальная программа</small></span></a><nav class="top-links" aria-label="Разделы"><a href="#listen">Послушать</a><a href="#editions">Форматы и цены</a><a href="#songs">Все песни</a><a href="#people">Фото</a></nav></div></header>
@@ -308,7 +311,7 @@ footer a{text-decoration:underline}
   <div class="wrap">
     <header class="voice-feedback-heading">
       <div>
-        <div class="eyebrow">ЧЕТЫРЕ КОРОТКИЕ АУДИОЗАПИСИ</div>
+        <div class="eyebrow">ПЯТЬ ГОЛОСОВЫХ ЗАПИСЕЙ</div>
         <h2 id="voices-heading">Лучше один раз <em>услышать.</em></h2>
       </div>
       <p>Про первые дни, привычные моменты тяги и то, как люди описывают прослушивание альбома.</p>
@@ -333,6 +336,11 @@ footer a{text-decoration:underline}
         <div class="voice-feedback-card-head"><span class="voice-feedback-wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span><div><div class="voice-category">В дороге и дома</div><div class="voice-id">Запись 04 · 0:05</div></div></div>
         <blockquote>«Слушаю в машине и вечером дома. Стало проще в моменты, когда раньше закуривал».</blockquote>
         <audio controls preload="metadata" aria-label="Прослушать запись 4 о прослушивании в машине и дома" src="/ai/avtor/60/test/1/assets/voices/voice-05.mp3"></audio>
+      </article>
+      <article class="voice-feedback-card voice-feedback-card--extended">
+        <div class="voice-feedback-card-head"><span class="voice-feedback-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><div><div class="voice-category">30 лет стажа — пятый месяц без сигарет</div><div class="voice-id">Запись 05 · 0:12</div></div></div>
+        <blockquote>«Курил 30 лет по пачке в день… Сейчас не курю. Пятый месяц — невероятно, но не курю».</blockquote>
+        <audio controls preload="metadata" aria-label="Прослушать запись 5 о тридцатилетнем стаже и пятом месяце без сигарет" src="/ai/avtor/60/test/1/assets/voices/voice-06.mp3"></audio>
       </article>
     </div>
     <p class="voice-feedback-disclosure">Аудиозаписи предоставлены для демонстрации. Их авторство и статус как отзывов реальных покупателей не подтверждены.</p>
