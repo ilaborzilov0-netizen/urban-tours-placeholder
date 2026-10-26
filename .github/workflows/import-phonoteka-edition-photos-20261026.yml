@@ -1,0 +1,59 @@
+name: Import two updated phonoteka tariff photographs
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/import-phonoteka-edition-photos-20261026.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import-photos:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - name: Download and optimize the two generated pictures
+        shell: bash
+        env:
+          DIGITAL_IMG_URL: https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/db89a65e-1e63-41fe-9581-79c90bd8dccc.png
+          COLLECTORS_IMG_URL: https://d2ol7oe51mr4n9.cloudfront.net/user_3KrouuquIhgLmM3Dgm3GoNReITb/1ff42452-93b6-4355-92d1-83132861ba9f.png
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow==11.3.0
+          curl -fLsS --retry 5 --retry-delay 2 --max-time 70 "$DIGITAL_IMG_URL" -o /tmp/digital.png
+          curl -fLsS --retry 5 --retry-delay 2 --max-time 70 "$COLLECTORS_IMG_URL" -o /tmp/collectors.png
+          echo 'e4b3770d074de4cfcf669ebbb1566580d28a05db703ec19567fd703cac43700b  /tmp/digital.png' | sha256sum --check
+          echo 'de97fe43b16b7d003f6286e50b2e5c77a040f85fd2e63eb94e362e542985c095  /tmp/collectors.png' | sha256sum --check
+          python3 - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          target=Path('ai/avtor/60/test/1/assets')
+          target.mkdir(parents=True,exist_ok=True)
+          for source,output in [
+              ('/tmp/digital.png','edition-digital-phone-20261026.webp'),
+              ('/tmp/collectors.png','edition-collectors-box-20261026.webp'),
+          ]:
+              with Image.open(source) as raw:
+                  img=raw.convert('RGB')
+                  assert img.size==(1448,1086),img.size
+                  img.save(target/output,format='WEBP',quality=83,method=6)
+                  print(output,img.size,(target/output).stat().st_size,flush=True)
+          PY
+      - name: Commit only the two optimized tariff photos
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- ai/avtor/60/test/1/assets/edition-digital-phone-20261026.webp ai/avtor/60/test/1/assets/edition-collectors-box-20261026.webp
+          if git diff --cached --quiet; then
+            echo "Edition photos already present"
+          else
+            git commit -m "Add optimized digital phone and collectible box tariff images"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
