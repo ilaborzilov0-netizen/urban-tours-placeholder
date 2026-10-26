@@ -314,6 +314,22 @@ footer a{text-decoration:underline}
  .hero-author-caption small{font-size:13px;margin-top:9px}
  .hero-copy .hero-stories-link{margin-top:13px}
 }
+
+/* Live digital album checkout; existing CTA and audio handlers are preserved. */
+.author-live-checkout{position:relative;max-height:min(90dvh,800px);overflow-y:auto}
+.author-checkout-close{position:absolute;right:13px;top:8px;background:none;border:0;color:#f2f4e9;font-size:30px;line-height:1;padding:7px;cursor:pointer}
+.author-checkout-price{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-block:1px solid #46533f;padding:15px 0;margin-top:18px;color:#d1d9c7}
+.author-checkout-price strong{font-size:32px;color:var(--accent);white-space:nowrap}
+#author-checkout-form{margin-top:18px}
+#author-checkout-form label{display:block;font-size:15px;font-weight:700;margin-bottom:7px}
+#author-checkout-form input{display:block;width:100%;min-height:54px;font:inherit;color:#152014;background:#f9fbf3;border:2px solid #8b9877;border-radius:5px;padding:12px 13px}
+#author-checkout-form input[aria-invalid="true"]{border-color:#ea8571}
+#author-checkout-form .btn{margin-top:15px}
+#author-checkout-form .btn:disabled{cursor:wait;opacity:.7}
+#author-checkout-status:not([hidden]){margin-top:11px;color:#ffbdaf;font-size:14px;line-height:1.45}
+.author-live-checkout .author-checkout-legal{margin-top:13px;font-size:12px;line-height:1.55;color:#ccd3c4}
+.author-checkout-legal a{text-decoration:underline}
+.author-payment-return:not([hidden]){margin-top:18px;padding:15px;border:1px solid #899c67;background:#252e23;color:#f0f6dc;font-size:16px;line-height:1.55}
 </style></head>
 <body class="design-one">
 <main id="top">
@@ -442,8 +458,8 @@ footer a{text-decoration:underline}
             <img src="/ai/avtor/60/test/1/assets/edition-digital-phone-20261026.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="Фотореалистичная иллюстрация смартфона: на экране открыт музыкальный альбом «Без торга»">
           </figure>
           <ul class="edition-features">
-            <li><strong>Мгновенный доступ после оплаты</strong></li>
-            <li>Можно слушать сразу на телефоне</li>
+            <li><strong>Подтверждение заказа после оплаты</strong></li>
+            <li>Файлы для прослушивания на телефоне</li>
             <li>Все 12 аудиоякорей — полный альбом</li>
             <li>Прослушивание на телефоне и компьютере</li>
           </ul>
@@ -527,7 +543,21 @@ footer a{text-decoration:underline}
   </div>
 </section>
 <section class="section wrap"><div class="eyebrow">05 / Как использовать</div><h2>Слушайте. Замечайте. Вспоминайте.</h2><div class="principle"><article><b>01 / ПОЗНАКОМЬТЕСЬ</b><h3>Послушайте альбом</h3><p>Узнайте привычные оправдания курения в текстах песен.</p></article><article><b>02 / ВОЗВРАЩАЙТЕСЬ</b><h3>Повторяйте по желанию</h3><p>Песни помогают возвращаться к выбранным мыслям.</p></article><article><b>03 / ПРИМЕНЯЙТЕ</b><h3>В момент тяги</h3><p>Попробуйте вспомнить другую мысль вместо привычного внутреннего торга.</p></article></div></section>
-<section class="section olive" id="questions"><div class="wrap"><div class="eyebrow">06 / Без лишних слов</div><h2>Вопросы и ответы.</h2><div class="faq-list"><details><summary>Что входит в альбом?</summary><p>12 музыкальных аудиоякорей «Без торга». Разовая покупка, без подписки.</p></details><details><summary>Подойдёт, если я курю 30–40 лет?</summary><p>Темы песен знакомы людям с разным стажем: кофе, стресс, внутренний торг и привычные ритуалы. Сам альбом не гарантирует отказ от курения.</p></details><details><summary>Это гипноз или лечение?</summary><p>Нет. Это музыкальные психологические смыслы — дополнение, а не замена помощи специалиста и проверенным методам отказа.</p></details><details><summary>Когда начинать слушать?</summary><p>Можно до выбранного дня отказа и после него, возвращаясь к трекам в моменты привычной тяги.</p></details><details><summary>Когда я получу файлы?</summary><p>В действующей версии условия цифровой выдачи показываются при оформлении заказа. Здесь дизайн-концепция: оплата и отправка заказа не подключены.</p></details><details><summary>Как работает предзаказ коллекционного издания?</summary><p>Планируемая схема: цифровой альбом после подтверждения оплаты, CD и печатный буклет — после изготовления тиража. Старт приёма оплачиваемых предзаказов и сроки отправки объявим отдельно.</p></details></div></div></section>
+<section class="section olive" id="questions"><div class="wrap"><div class="eyebrow">06 / Без лишних слов</div><h2>Вопросы и ответы.</h2><div class="faq-list"><details><summary>Что входит в альбом?</summary><p>12 музыкальных аудиоякорей «Без торга». Разовая покупка, без подписки.</p></details><details><summary>Подойдёт, если я курю 30–40 лет?</summary><p>Темы песен знакомы людям с разным стажем: кофе, стресс, внутренний торг и привычные ритуалы. Сам альбом не гарантирует отказ от курения.</p></details><details><summary>Это гипноз или лечение?</summary><p>Нет. Это музыкальные психологические смыслы — дополнение, а не замена помощи специалиста и проверенным методам отказа.</p></details><details><summary>Когда начинать слушать?</summary><p>Можно до выбранного дня отказа и после него, возвращаясь к трекам в моменты привычной тяги.</p></details><details><summary>Когда я получу файлы?</summary><p>После подтверждения платежа Т-Банк отправляет статус нашему серверу. Подтверждение покупки приходит на вашу почту; информация о получении аудиозаписей направляется отдельно.</p></details><details><summary>Как работает предзаказ коллекционного издания?</summary><p>Планируемая схема: цифровой альбом после подтверждения оплаты, CD и печатный буклет — после изготовления тиража. Старт приёма оплачиваемых предзаказов и сроки отправки объявим отдельно.</p></details></div></div></section>
+<div id="author-payment-return" class="wrap author-payment-return" role="status" aria-live="polite" hidden></div>
 <section class="section wrap purchase-foot" id="offer"><div><div class="eyebrow">Ваш следующий шаг</div><h2>Не откладывайте новый разговор с собой.</h2><p>«Без торга» — 12 аудиоякорей в одном цифровом альбоме. Послушайте фрагмент и решите, подходит ли вам эта форма.</p></div><div class="purchase-panel"><span class="eyebrow">Без торга · полный альбом</span><span class="price">1 990 ₽</span><div class="smallprint">12 музыкальных треков · разовая покупка</div><button class="btn primary js-buy" type="button">Получить альбом</button></div></section></main>
 <footer class="wrap minor-footer"><span>Аудиоякоря · «Без торга»</span></footer>
-<audio id="sample-audio" preload="none" src="/ai/assets/life-gets-better-demo-20261008.mp3"></audio><dialog class="order-modal" id="collector-modal"><div class="eyebrow">Коллекционное издание · Предзаказ</div><h3>«Без торга» в коробке — 4 990 ₽</h3><p>В комплект планируются 12 треков в цифровом формате, музыкальный CD, печатный буклет по 12 психологическим темам и подарочная упаковка.</p><p>Здесь показаны условия планируемого предзаказа. <strong>Заявка и оплата пока не отправляются:</strong> начало приёма и сроки изготовления будут объявлены отдельно. После запуска оплаченный комплект будет включать цифровую версию, а физическое издание отправим после производства.</p><button type="button" class="btn primary js-collector-close">Закрыть</button></dialog><dialog class="order-modal" id="order-modal"><div class="eyebrow">Просмотр дизайна</div><h3>Оформление в этой версии не подключено</h3><p>Это отдельная дизайн-версия. Рабочий лендинг и платёжный сервер не изменялись.</p><button class="btn primary js-modal-close" type="button">Закрыть</button></dialog><script>document.addEventListener("click",function(e){const interest=e.target.closest(".js-collector-interest"),close=e.target.closest(".js-collector-close"),modal=document.getElementById("collector-modal");if(interest){modal.showModal()}if(close){modal.close()}if(e.target===modal){modal.close()}})</script><script>document.addEventListener("play",function(event){if(event.target instanceof HTMLMediaElement){document.querySelectorAll("audio").forEach(function(a){if(a!==event.target&&!a.paused)a.pause()})}},true)</script><script defer src="/ai/avtor/60/test/1/people/gallery.js?v=stories-20261026-desktop2"></script><script type="module" src="/ai/avtor/60/test/design-assets/experience.js"></script></body></html>
+<audio id="sample-audio" preload="none" src="/ai/assets/life-gets-better-demo-20261008.mp3"></audio><dialog class="order-modal" id="collector-modal"><div class="eyebrow">Коллекционное издание · Предзаказ</div><h3>«Без торга» в коробке — 4 990 ₽</h3><p>В комплект планируются 12 треков в цифровом формате, музыкальный CD, печатный буклет по 12 психологическим темам и подарочная упаковка.</p><p>Здесь показаны условия планируемого предзаказа. <strong>Заявка и оплата пока не отправляются:</strong> начало приёма и сроки изготовления будут объявлены отдельно. После запуска оплаченный комплект будет включать цифровую версию, а физическое издание отправим после производства.</p><button type="button" class="btn primary js-collector-close">Закрыть</button></dialog><dialog class="order-modal author-live-checkout" id="order-modal" aria-labelledby="author-checkout-title">
+  <button class="author-checkout-close js-modal-close" type="button" aria-label="Закрыть оплату">×</button>
+  <div class="eyebrow">ЦИФРОВОЙ АЛЬБОМ · БЕЗ ТОРГА</div>
+  <h3 id="author-checkout-title">Получить 12 аудиоякорей</h3>
+  <p>Одна покупка, без подписки. Для подтверждения заказа укажите электронную почту.</p>
+  <div class="author-checkout-price"><span>Стоимость</span><strong>1 990 ₽</strong></div>
+  <form id="author-checkout-form" novalidate>
+    <label for="author-checkout-email">Ваша почта</label>
+    <input id="author-checkout-email" class="ym-disable-keys" type="email" name="email" autocomplete="email" inputmode="email" placeholder="name@mail.ru" maxlength="64" required>
+    <button class="btn primary" type="submit">Перейти к оплате · 1 990 ₽</button>
+    <p id="author-checkout-status" role="status" hidden></p>
+  </form>
+  <p class="author-checkout-legal">Оплата на защищённой странице Т-Банка. Продолжая, вы соглашаетесь с <a href="/consultation-privacy/" target="_blank" rel="noopener noreferrer">обработкой контактных данных</a>. После подтверждения оплаты информация о получении записей придёт отдельно.</p>
+</dialog><script>document.addEventListener("click",function(e){const interest=e.target.closest(".js-collector-interest"),close=e.target.closest(".js-collector-close"),modal=document.getElementById("collector-modal");if(interest){modal.showModal()}if(close){modal.close()}if(e.target===modal){modal.close()}})</script><script>document.addEventListener("play",function(event){if(event.target instanceof HTMLMediaElement){document.querySelectorAll("audio").forEach(function(a){if(a!==event.target&&!a.paused)a.pause()})}},true)</script><script defer src="/ai/avtor/60/test/1/checkout-live.js?v=1990-bank-v1"></script><script defer src="/ai/avtor/60/test/1/people/gallery.js?v=stories-20261026-desktop2"></script><script type="module" src="/ai/avtor/60/test/design-assets/experience.js"></script></body></html>
