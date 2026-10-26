@@ -2,7 +2,7 @@ name: Browser check author album checkout (mocked bank, no charge)
 on:
   push:
     branches: [main]
-    paths: ['.github/workflows/ai-author-browser-smoke.yml']
+    paths: ['.github/workflows/ai-author-browser-smoke.yml', 'ai/avtor/60/test/1/index.html', 'ai/avtor/60/test/1/checkout-live.js']
   workflow_dispatch:
 permissions:
   contents: read
