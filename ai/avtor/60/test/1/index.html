@@ -187,11 +187,33 @@ footer a{text-decoration:underline}
 
 /* Extra fifth recording gets the full final row on desktop. */
 @media(min-width:781px){.voice-feedback-card--extended{grid-column:1/-1;display:grid;grid-template-columns:minmax(260px,.82fr) minmax(0,1.18fr);gap:18px 28px;align-items:center}.voice-feedback-card--extended .voice-feedback-card-head{grid-row:1/3;align-self:center}.voice-feedback-card--extended blockquote{grid-column:2;grid-row:1;margin:0;min-height:0}.voice-feedback-card--extended audio{grid-column:2;grid-row:2}}
+
+/* Hero preview of the existing illustrative photo stories; links to the existing gallery. */
+.hero-stories-link{display:inline-flex;gap:13px;align-items:center;max-width:100%;margin-top:20px;padding:5px 1px;color:#E9EFE1;text-decoration:none;min-height:51px;border-radius:4px;transition:opacity .16s ease}
+.hero-stories-link:hover{opacity:.83}
+.hero-stories-link:focus-visible{outline:3px solid var(--accent);outline-offset:5px}
+.hero-stories-avatars{display:flex;align-items:center;flex:none;padding-left:0}
+.hero-stories-avatars img{width:34px;height:34px;display:block;border-radius:50%;border:2px solid #171816;object-fit:cover;object-position:50% 22%;background:#45503F;box-shadow:0 0 0 1px #647754}
+.hero-stories-avatars img+img{margin-left:-11px}
+.hero-stories-label{min-width:0;display:flex;flex-direction:column;gap:2px;line-height:1.38}
+.hero-stories-label strong{font-size:15px;line-height:1.3;font-weight:700}
+.hero-stories-label>span{font-size:13px;color:#BAC9AE}
+.hero-stories-link:hover .hero-stories-label>span{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:700px){.hero-stories-link{margin-top:13px;min-height:45px;gap:12px}.hero-stories-avatars img{height:33px;width:33px}.hero-stories-label strong{font-size:14px}.hero-stories-label>span{font-size:12px}}
 </style></head>
 <body class="design-one">
 <header class="top"><div class="top-inner wrap"><a href="#top" class="wordmark"><i>И</i><span>АУДИОЯКОРЯ<small style="display:block;font-size:11px;font-weight:400;color:var(--muted);letter-spacing:0">Авторская музыкальная программа</small></span></a><nav class="top-links" aria-label="Разделы"><a href="#listen">Послушать</a><a href="#editions">Форматы и цены</a><a href="#songs">Все песни</a><a href="#people">Фото</a></nav></div></header>
 <main id="top">
-<section class="hero wrap"><div><div class="eyebrow">Мужчинам с большим стажем курения · 55+</div><h1>Бросьте курить с помощью <em>аудиоякорей.</em></h1><p class="hero-description">12 песен с психологическими ответами на знакомое желание закурить. Слова, которые легче вспомнить, когда снова потянет к сигарете.</p><div class="hero-badges"><span>Музыкальный альбом «Без торга»</span><span>Без подписки</span></div><div class="hero-buy"><span class="price">1 990 ₽</span><span class="smallprint">Разовая покупка<br>12 треков</span></div><div class="hero-actions"><button class="btn primary js-buy" type="button">Получить альбом · 1 990 ₽</button><button class="btn ghost js-play" type="button"><span class="play-label">▶ Послушать 30 секунд</span></button></div></div><figure class="hero-photo"><img src="/ai/avtor/60/test/1/assets/hero-with-album-20261025.webp" width="1536" height="1024" alt="Мужчина в синем свитере держит перед собой альбом «Без торга»" fetchpriority="high"><figcaption>«Без торга» — альбом из 12 музыкальных аудиоякорей.</figcaption></figure></section>
+<section class="hero wrap"><div><div class="eyebrow">Мужчинам с большим стажем курения · 55+</div><h1>Бросьте курить с помощью <em>аудиоякорей.</em></h1><p class="hero-description">12 песен с психологическими ответами на знакомое желание закурить. Слова, которые легче вспомнить, когда снова потянет к сигарете.</p><div class="hero-badges"><span>Музыкальный альбом «Без торга»</span><span>Без подписки</span></div><div class="hero-buy"><span class="price">1 990 ₽</span><span class="smallprint">Разовая покупка<br>12 треков</span></div><div class="hero-actions"><button class="btn primary js-buy" type="button">Получить альбом · 1 990 ₽</button><button class="btn ghost js-play" type="button"><span class="play-label">▶ Послушать 30 секунд</span></button></div>
+<a class="hero-stories-link" href="#people" aria-label="Перейти к десяти иллюстрированным историям о курении и альбоме">
+ <span class="hero-stories-avatars" aria-hidden="true">
+  <img src="/ai/avtor/60/test/1/assets/people/person-01.webp" width="52" height="52" alt="" loading="eager">
+  <img src="/ai/avtor/60/test/1/assets/people/person-03.webp" width="52" height="52" alt="" loading="eager">
+  <img src="/ai/avtor/60/test/1/assets/people/person-07.webp" width="52" height="52" alt="" loading="eager">
+  <img src="/ai/avtor/60/test/1/assets/people/person-10.webp" width="52" height="52" alt="" loading="eager">
+ </span>
+ <span class="hero-stories-label"><strong>10 историй в фотографиях</strong><span>Посмотреть иллюстрации и реплики <span aria-hidden="true">↗</span></span></span>
+</a></div><figure class="hero-photo"><img src="/ai/avtor/60/test/1/assets/hero-with-album-20261025.webp" width="1536" height="1024" alt="Мужчина в синем свитере держит перед собой альбом «Без торга»" fetchpriority="high"><figcaption>«Без торга» — альбом из 12 музыкальных аудиоякорей.</figcaption></figure></section>
 <div class="motto">НЕ ПРИКАЗ СЕБЕ · А ДРУГОЙ РАЗГОВОР С СОБОЙ</div>
 <section class="section wrap" id="listen"><div class="intro-grid"><div><div class="eyebrow">01 / Начните со звучания</div><h2 class="intro-big">Не нужно сначала верить. <em>Сначала послушайте.</em></h2></div><p>Как старый припев возвращается в памяти сам собой, так и полезная фраза иногда вспоминается именно в нужный момент. На этом наблюдении основана идея аудиоякорей.</p></div><div class="record-player"><img src="/ai/assets/anchor-release-20261008.webp" width="1254" height="1254" alt="Обложка «Без торга»"><div><div class="eyebrow">Демо · 30 секунд</div><h3>Жизнь станет лучше</h3><p>Первый трек альбома. Фрагмент можно остановить.</p></div><button class="btn primary js-play" type="button"><span class="play-label">▶ Послушать 30 секунд</span></button></div></section>
 <section class="origin-intro" id="origin" aria-labelledby="origin-title">
