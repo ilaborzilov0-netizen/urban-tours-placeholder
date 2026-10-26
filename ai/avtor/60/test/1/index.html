@@ -294,10 +294,37 @@ footer a{text-decoration:underline}
 .anchor-how-foot{margin-top:10px}
 }
 @media(max-width:360px){.anchor-how-step{padding:12px}.anchor-how-example{padding:11px}}
+
+/* Hero photo with the author's introduction: desktop right column, mobile after CTA. */
+.hero{grid-template-rows:auto auto;row-gap:0}
+.hero-copy{grid-column:1;grid-row:1;align-self:center;min-width:0}
+.hero .hero-photo{grid-column:2;grid-row:1 / span 2;align-self:center;min-width:0}
+.hero .hero-stories-link{grid-column:1;grid-row:2;justify-self:start;align-self:start;margin-top:11px}
+.hero-photo .hero-author-caption{margin:13px 0 0;font-size:15px;line-height:1.47;color:#E8EBDF}
+.hero-author-caption strong{display:block;font-size:20px;line-height:1.26;color:#F5F6EE;font-weight:750;margin-bottom:5px}
+.hero-author-caption span{display:block}
+.hero-author-caption small{display:block;font-size:14px;line-height:1.55;color:#BAC3B5;margin-top:10px}
+@media(max-width:700px){
+ .hero{display:flex;flex-direction:column;align-items:stretch;gap:0}
+ .hero-copy{order:1;align-self:stretch}
+ .hero .hero-photo{order:2;align-self:stretch;width:100%;margin-top:19px}
+ .hero-photo>img{aspect-ratio:5/4;object-position:center 41%}
+ .hero-photo .hero-author-caption{margin-top:11px;font-size:14px;line-height:1.48}
+ .hero-author-caption strong{font-size:18px;margin-bottom:5px}
+ .hero-author-caption small{font-size:13px;margin-top:9px}
+ .hero .hero-stories-link{order:3;margin-top:17px;align-self:flex-start}
+}
 </style></head>
 <body class="design-one">
 <main id="top">
-<section class="hero wrap"><div><div class="eyebrow">Мужчинам с большим стажем курения · 55+</div><h1>Бросьте курить с помощью <em>аудиоякорей.</em></h1><p class="hero-description">12 песен с психологическими ответами на знакомое желание закурить. Слова, которые легче вспомнить, когда снова потянет к сигарете.</p><div class="hero-badges"><span>Музыкальный альбом «Без торга»</span><span>Без подписки</span></div><div class="hero-buy"><span class="price">1 990 ₽</span><span class="smallprint">Разовая покупка<br>12 треков</span></div><div class="hero-actions"><button class="btn primary js-buy" type="button">Получить альбом · 1 990 ₽</button><button class="btn ghost js-play" type="button"><span class="play-label">▶ Послушать 30 секунд</span></button></div>
+<section class="hero wrap"><div class="hero-copy"><div class="eyebrow">Мужчинам с большим стажем курения · 55+</div><h1>Бросьте курить с помощью <em>аудиоякорей.</em></h1><p class="hero-description">12 песен с психологическими ответами на знакомое желание закурить. Слова, которые легче вспомнить, когда снова потянет к сигарете.</p><div class="hero-badges"><span>Музыкальный альбом «Без торга»</span><span>Без подписки</span></div><div class="hero-buy"><span class="price">1 990 ₽</span><span class="smallprint">Разовая покупка<br>12 треков</span></div><div class="hero-actions"><button class="btn primary js-buy" type="button">Получить альбом · 1 990 ₽</button><button class="btn ghost js-play" type="button"><span class="play-label">▶ Послушать 30 секунд</span></button></div>
+</div>
+<figure class="hero-photo"><img src="/ai/avtor/60/test/1/assets/hero-with-album-20261025.webp" width="1536" height="1024" alt="Мужчина в синем свитере держит перед собой альбом «Без торга»" fetchpriority="high"><figcaption class="hero-author-caption">
+<strong>Илья Борзилов</strong>
+<span>30 лет курил сам. Бросил.</span>
+<span>10 лет помогаю бросить тем, кто курит более 30–40 лет.</span>
+<small>Теперь весь мой опыт — в 12 песнях.<br>Поддержка, которая всегда рядом.</small>
+</figcaption></figure>
 <a class="hero-stories-link" href="#people" aria-label="Рейтинг 4,7 из 5; 2 643 слушателя. Перейти к историям">
  <span class="hero-stories-avatars" aria-hidden="true">
   <img src="/ai/avtor/60/test/1/assets/people/person-01.webp" width="52" height="52" alt="" loading="eager">
@@ -306,7 +333,8 @@ footer a{text-decoration:underline}
   <img src="/ai/avtor/60/test/1/assets/people/person-10.webp" width="52" height="52" alt="" loading="eager">
  </span>
  <span class="hero-stories-label"><strong class="hero-social-score"><span class="hero-score-number">4,7</span> <span class="hero-stars" aria-hidden="true">★★★★★</span></strong><span class="hero-social-detail"><b>2 643 слушателя</b> · Смотреть истории <span aria-hidden="true">↗</span></span></span>
-</a></div><figure class="hero-photo"><img src="/ai/avtor/60/test/1/assets/hero-with-album-20261025.webp" width="1536" height="1024" alt="Мужчина в синем свитере держит перед собой альбом «Без торга»" fetchpriority="high"><figcaption>«Без торга» — альбом из 12 музыкальных аудиоякорей.</figcaption></figure></section>
+</a>
+</section>
 <div class="motto">НЕ ПРИКАЗ СЕБЕ · А ДРУГОЙ РАЗГОВОР С СОБОЙ</div>
 <section class="section wrap" id="listen"><div class="intro-grid"><div><div class="eyebrow">01 / Начните со звучания</div><h2 class="intro-big">Не нужно сначала верить. <em>Сначала послушайте.</em></h2></div><p>Как старый припев возвращается в памяти сам собой, так и полезная фраза иногда вспоминается именно в нужный момент. На этом наблюдении основана идея аудиоякорей.</p></div><div class="record-player"><img src="/ai/assets/anchor-release-20261008.webp" width="1254" height="1254" alt="Обложка «Без торга»"><div><div class="eyebrow">Демо · 30 секунд</div><h3>Жизнь станет лучше</h3><p>Первый трек альбома. Фрагмент можно остановить.</p></div><button class="btn primary js-play" type="button"><span class="play-label">▶ Послушать 30 секунд</span></button></div></section>
 
