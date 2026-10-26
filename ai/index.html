@@ -62,6 +62,21 @@ gtag('config','G-J076WS14NV',{send_page_view:true,allow_google_signals:false,all
 .release-art .release-wave{z-index:1}
 .release-art .release-network{z-index:2}
 </style>
+<script id="author-1990-bank-return-router">
+/* Only new author-landing purchases return to the author page.
+   Other /ai/ checkouts keep their original bank-return behavior. */
+(()=>{try{
+  const params=new URLSearchParams(location.search);
+  const result=params.get('payment_result'),orderId=params.get('orderId');
+  if(!orderId||!['success','fail'].includes(result))return;
+  const last=JSON.parse(sessionStorage.getItem('marafonAiLastPayment')||'null');
+  if(!last||last.source!=='ai_author_60_test_1'||last.orderId!==orderId)return;
+  const target=new URL('/ai/avtor/60/test/1/',location.origin);
+  target.searchParams.set('payment_result',result);
+  target.searchParams.set('orderId',orderId);
+  location.replace(target.href);
+}catch(_){} })();
+</script>
 </head>
 <body>
 <noscript><div><img src="https://mc.yandex.ru/watch/110906734" style="position:absolute;left:-9999px" alt=""></div></noscript>
