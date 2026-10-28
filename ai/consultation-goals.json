@@ -1,0 +1,80 @@
+{
+  "counter_id": 110906734,
+  "goals": [
+    {
+      "id": "consultation_how_view",
+      "name": "КОНСУЛЬТАЦИЯ — Увидел план работы",
+      "mode": "online"
+    },
+    {
+      "id": "consultation_price_view",
+      "name": "КОНСУЛЬТАЦИЯ — Увидел цену",
+      "mode": "online"
+    },
+    {
+      "id": "consultation_faq_view",
+      "name": "КОНСУЛЬТАЦИЯ — Увидел FAQ",
+      "mode": "online"
+    },
+    {
+      "id": "consultation_cta_click",
+      "name": "КОНСУЛЬТАЦИЯ — Клик Записаться",
+      "mode": "online"
+    },
+    {
+      "id": "consultation_form_open",
+      "name": "КОНСУЛЬТАЦИЯ — Открыл форму",
+      "mode": "online"
+    },
+    {
+      "id": "consultation_form_start",
+      "name": "КОНСУЛЬТАЦИЯ — Начал форму",
+      "mode": "online"
+    },
+    {
+      "id": "consultation_contact_method",
+      "name": "КОНСУЛЬТАЦИЯ — Выбрал способ связи",
+      "mode": "online"
+    },
+    {
+      "id": "consultation_form_submit",
+      "name": "КОНСУЛЬТАЦИЯ — Отправил форму",
+      "mode": "online"
+    },
+    {
+      "id": "consultation_lead_error",
+      "name": "КОНСУЛЬТАЦИЯ — Ошибка заявки",
+      "mode": "online"
+    },
+    {
+      "id": "consultation_lead_success",
+      "name": "КОНСУЛЬТАЦИЯ — Заявка подтверждена сервером",
+      "mode": "online"
+    },
+    {
+      "id": "consultation_contacted",
+      "name": "КОНСУЛЬТАЦИЯ — Контакт состоялся",
+      "mode": "offline"
+    },
+    {
+      "id": "consultation_call_scheduled",
+      "name": "КОНСУЛЬТАЦИЯ — Разбор назначен",
+      "mode": "offline"
+    },
+    {
+      "id": "consultation_call_attended",
+      "name": "КОНСУЛЬТАЦИЯ — Разбор состоялся",
+      "mode": "offline"
+    },
+    {
+      "id": "consultation_package_accepted",
+      "name": "КОНСУЛЬТАЦИЯ — Пакет согласован",
+      "mode": "offline"
+    },
+    {
+      "id": "consultation_package_paid",
+      "name": "КОНСУЛЬТАЦИЯ — Пакет оплачен",
+      "mode": "offline"
+    }
+  ]
+}
