@@ -1,0 +1,34 @@
+name: Consultation Metrika migration
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/consultation-metrika-migration.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: yandex-metrika-goals-110906734
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      YANDEX_METRIKA_OAUTH: ${{ secrets.YANDEX_METRIKA_OAUTH }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 ai/consultation_metrika_migration.py check
+      - uses: actions/upload-artifact@v4
+        with:
+          name: goals-before-cleanup
+          path: metrika-goals-before-consultation-cleanup.json
+          if-no-files-found: error
+      - run: python3 ai/consultation_metrika_migration.py apply
+        env:
+          BACKUP_ARTIFACT_UPLOADED: "yes"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: goals-after-cleanup
+          path: metrika-goals-after-consultation-cleanup.json
+          if-no-files-found: error
