@@ -38,7 +38,8 @@ def request(method, path="", payload=None):
     if raw is not None:
         headers["Content-Type"] = "application/json; charset=utf-8"
     for attempt in range(8):
-        req = urllib.request.Request(BASE + path, headers=headers, data=raw, method=method)
+        req_url = BASE.replace('/goals', '/goal') + path if method == 'DELETE' else BASE + path
+        req = urllib.request.Request(req_url, headers=headers, data=raw, method=method)
         try:
             with urllib.request.urlopen(req, timeout=40) as rsp:
                 data = rsp.read()
