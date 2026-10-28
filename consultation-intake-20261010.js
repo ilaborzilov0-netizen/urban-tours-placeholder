@@ -26,7 +26,10 @@
  form.querySelectorAll('input[name=contactType]').forEach(input=>input.addEventListener('change',()=>{updateChannel();status.hidden=true;}));
  form.addEventListener('input',()=>{status.hidden=true;});
  updateChannel();
- let sending=false,succeeded=false,openedAt=0,lastTrigger=null;
+ let sending=false,succeeded=false,openedAt=0,lastTrigger=null,metrikaClientId='';
+ try{if(typeof window.ym==='function')window.ym(COUNTER,'getClientID',id=>{
+  const value=String(id||'');if(/^\\d{1,40}$/.test(value))metrikaClientId=value;
+ });}catch(_){};
  function goal(name,params){try{if(typeof window.ym==='function')window.ym(COUNTER,'reachGoal',name,params||{});}catch(_){}}
  function bonusActive(time){return time>=BONUS_START&&time<BONUS_END;}
  function updateOffer(){if(!bonusActive(Date.now())){document.querySelectorAll('.calls-bonus-teaser,.calls-bonus-package,[data-support-offer]').forEach(el=>el.hidden=true);document.querySelectorAll('details').forEach(el=>{if(el.querySelector('summary')?.textContent.includes('Что за поддержка между сессиями'))el.hidden=true;});}}
@@ -57,7 +60,7 @@
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),30000);
   try{
    const params=new URLSearchParams(location.search);
-   const payload={formType:'personal_contact',name,contactType:channel,contact,phone:username?'':contact,plan:'Бесплатный индивидуальный разбор · 20 минут',price:'Бесплатно; продолжение: 4 × 50 минут — 14 900 ₽',source:'marafon_home_free_consultation',sourceUrl:location.origin+location.pathname,referrer:document.referrer.slice(0,500),utm:attribution(),openedAt:openedAt,website:'',message:'Контакт: '+contact+'. Удобный способ связи: '+channelLabels[channel]+'. '+'Запись на бесплатный личный разбор. Согласовать время через выбранный канал. Покупка пакета необязательна. Заявки с 8 по 11 октября включительно по Москве сохраняют при последующей покупке пакета четыре недели переписки в MAX или Telegram: один ответ в рабочий день, с первой платной сессии. Согласие на обработку контакта подтверждено нажатием кнопки; условия /consultation-privacy/.',yclid:(params.get('yclid')||'').slice(0,180)};
+   const payload={formType:'personal_contact',name,contactType:channel,contact,phone:username?'':contact,plan:'Бесплатный индивидуальный разбор · 20 минут',price:'Бесплатно; продолжение: 4 × 50 минут — 19 900 ₽',source:'marafon_home_free_consultation',sourceUrl:location.origin+location.pathname,referrer:document.referrer.slice(0,500),utm:attribution(),openedAt:openedAt,website:'',message:'Контакт: '+contact+'. Удобный способ связи: '+channelLabels[channel]+'. '+'Запись на бесплатный личный разбор. Согласовать время через выбранный канал. Покупка пакета необязательна. Указанная стоимость пакета — 19 900 ₽. Согласие на обработку контакта подтверждено нажатием кнопки; условия /consultation-privacy/.',yclid:(params.get('yclid')||'').slice(0,180),metrikaClientId:metrikaClientId};
    const response=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:controller.signal});
    const result=await response.json().catch(()=>null);if(!response.ok||!result||result.ok!==true||result.received!==true)throw new Error(result?.error||'Не удалось подтвердить сохранение заявки. Попробуйте ещё раз.');
    successDescription.textContent=channel==='phone'?'Илья позвонит вам, чтобы согласовать время бесплатного разбора.':'Илья напишет вам в '+channelLabels[channel]+', чтобы согласовать время бесплатного разбора.';
