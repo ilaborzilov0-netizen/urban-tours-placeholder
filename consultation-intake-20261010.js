@@ -28,7 +28,7 @@
  updateChannel();
  let sending=false,succeeded=false,openedAt=0,lastTrigger=null,metrikaClientId='';
  try{if(typeof window.ym==='function')window.ym(COUNTER,'getClientID',id=>{
-  const value=String(id||'');if(/^\\d{1,40}$/.test(value))metrikaClientId=value;
+  const value=String(id||'');if(/^[0-9]{1,40}$/.test(value))metrikaClientId=value;
  });}catch(_){};
  function goal(name,params){try{if(typeof window.ym==='function')window.ym(COUNTER,'reachGoal',name,params||{});}catch(_){}}
  function bonusActive(time){return time>=BONUS_START&&time<BONUS_END;}
@@ -70,6 +70,7 @@
   }catch(error){showError(error.name==='AbortError'?'Ответ занял больше времени. Ваши данные остались в форме. Если Илья уже связался с вами, повторная заявка не нужна.':error.message||'Не удалось отправить заявку. Попробуйте ещё раз.');goal('consultation_lead_error');}
   finally{clearTimeout(timer);sending=false;submit.disabled=false;controls.forEach(input=>input.disabled=false);updateChannel();submit.textContent='Записаться на бесплатный разбор';}
  });
+ const trackingScript=document.createElement('script');trackingScript.src='/consultation-goals-20261028.js?v=1';trackingScript.async=true;document.head.appendChild(trackingScript);
  updateOffer();document.addEventListener('visibilitychange',()=>{if(!document.hidden)updateOffer();});
 })();
 
