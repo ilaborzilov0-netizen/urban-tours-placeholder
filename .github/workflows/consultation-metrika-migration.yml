@@ -3,6 +3,7 @@ on:
   push:
     branches: [main]
     paths:
+      - 'ai/consultation_metrika_migration.py'
       - '.github/workflows/consultation-metrika-migration.yml'
   workflow_dispatch:
 permissions:
