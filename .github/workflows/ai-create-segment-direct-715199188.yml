@@ -29,7 +29,7 @@ jobs:
           COUNTERS = ["109705214", "110906734"]
           CAMPAIGN = "715199188"
           NAME = "Все неотказы — кампания 715199188"
-          EXPR = "ym:s:directID=='715199188' AND ym:s:bounce=='No'"
+          EXPR = "ym:s:lastDirectClickOrder=='715199188' AND ym:s:bounce=='No'"
           TOKEN = os.environ.get("YANDEX_METRIKA_OAUTH", "").strip()
           if not TOKEN:
               sys.exit("BLOCKED: YANDEX_METRIKA_OAUTH secret unavailable; nothing created")
