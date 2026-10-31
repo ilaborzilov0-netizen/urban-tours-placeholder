@@ -67,6 +67,17 @@ jobs:
                   visits = int(totals[0]) if len(totals) > 0 and totals[0] else 0
                   users = int(totals[1]) if len(totals) > 1 and totals[1] else 0
                   print("AUDIENCE_CHECK", counter, "VISITS", visits, "USERS", users, flush=True)
+                  # Compare canonical campaign identifiers and attribution fields.
+                  # Diagnostics remain aggregate only; no visitor-level data.
+                  for alternative in ("ym:s:lastDirectClickOrder", "ym:s:directClickOrder"):
+                      alt_q = dict(q, filters=alternative + "=='715199188' AND ym:s:bounce=='No'")
+                      try:
+                          alt_report = call("GET", "/stat/v1/data", query=alt_q)
+                          alt_totals = alt_report.get("totals") or []
+                          print("ALTERNATIVE_CAMPAIGN_MATCH", counter, alternative,
+                                "VISITS", alt_totals[0] if alt_totals else 0, flush=True)
+                      except Exception as alt_err:
+                          print("ALTERNATIVE_CHECK_ERROR", counter, alternative, str(alt_err)[:150], flush=True)
                   if visits > 0:
                       eligible.append((counter, visits, users))
               except Exception as err:
