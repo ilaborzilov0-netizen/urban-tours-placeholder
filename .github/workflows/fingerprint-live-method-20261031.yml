@@ -1,0 +1,55 @@
+name: Identify GitHub source for live metodborzilova.ru (read-only)
+on:
+  push:
+    branches: [codex/check-method-domain-hosting-20261031]
+    paths: ['.github/workflows/fingerprint-live-method-20261031.yml']
+permissions: {contents: read}
+jobs:
+  fingerprint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare exact assets and HTML across candidate folders
+        run: |
+          python3 - <<'PY'
+          import urllib.request,urllib.parse,hashlib,difflib,pathlib,json,re
+          root=pathlib.Path(".")
+          paths=["index.html","metodold/index.html","marafonmetod/index.html"]
+          url="https://metodborzilova.ru/"
+          def get(url):
+            try:
+              req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"})
+              with urllib.request.urlopen(req,timeout=20) as r:
+                return r.read(3000000)
+            except Exception as e:
+              print("GET_ERROR",url,type(e).__name__,str(e)[:90]);return b""
+          live=get(url)
+          print("HTML_LIVE",len(live),hashlib.sha256(live).hexdigest())
+          def sim(a,b):
+            # compare text snippets reliably without diffing 1MB
+            A=a.decode("utf8","ignore");B=b.decode("utf8","ignore")
+            return round(difflib.SequenceMatcher(None,A[:15000],B[:15000],autojunk=False).ratio(),4)
+          for p in paths:
+            f=root/p
+            if f.is_file():
+              b=f.read_bytes()
+              print("HTML_SOURCE",p,len(b),hashlib.sha256(b).hexdigest(),"FIRST15K_SIM",sim(live,b))
+          assets=[
+             "analytics-events.js","critical-desktop.css","critical-mobile.css",
+             "site.css","first-frame-final-0738.css","author-method-photo-end.webp",
+             "commercial-config.js","spine-compact.css","pricing-final-price-0733.css",
+             "priority-island-mobile.css"
+          ]
+          for a in assets:
+            b=get(url+a)
+            if not b:continue
+            h=hashlib.sha256(b).hexdigest()
+            found=[]
+            for folder in ("metodold","", "marafonmetod"):
+              path=root/folder/a
+              if path.is_file():
+                c=path.read_bytes()
+                found.append({"path":str(path),"exact":c==b,"local_size":len(c),"local_sha":hashlib.sha256(c).hexdigest()[:16]})
+            print("ASSET_MATCH",a,"live_size",len(b),"live_sha",h[:16],json.dumps(found))
+          PY
