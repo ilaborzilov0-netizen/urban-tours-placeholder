@@ -1,0 +1,63 @@
+name: Build isolated metodborzilova.ru home deployment package
+on:
+  push:
+    branches: [codex/check-method-domain-hosting-20261031]
+    paths: ['.github/workflows/build-metodborzilova-home-package-20261031.yml']
+permissions: {contents: read}
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Copy homepage with all dependencies for independent domain
+        run: |
+          set -euo pipefail
+          mkdir -p output/site/consultation-privacy
+          cp index.html output/site/index.html
+          cp consultation-portrait-20261008.webp output/site/
+          cp consultation-hello-20261008.webp output/site/
+          cp consultation-intake-20261010.js output/site/
+          cp consultation-goals-20261028.js output/site/
+          cp consultation-privacy/index.html output/site/consultation-privacy/index.html
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+          root=Path("output/site")
+          index=root/"index.html"
+          source=index.read_text(encoding="utf-8")
+          if "https://marafon-metod.ru/" not in source or "110906734" not in source:
+              raise RuntimeError("Source contract changed; no package created")
+          source=source.replace('href="https://marafon-metod.ru/"','href="https://metodborzilova.ru/"')
+          source=source.replace("110906734","112375829")
+          index.write_text(source,encoding="utf-8")
+          for filename in ("consultation-intake-20261010.js","consultation-goals-20261028.js"):
+              p=root/filename
+              s=p.read_text(encoding="utf-8").replace("110906734","112375829")
+              if filename=="consultation-intake-20261010.js":
+                  s=s.replace("marafon_home_free_consultation", "metodborzilova_home_free_consultation")
+              p.write_text(s,encoding="utf-8")
+          if 'https://api.marafon-metod.ru/api/leads' not in (root/"consultation-intake-20261010.js").read_text():
+              raise RuntimeError("Lead backend destination missing")
+          readme=Path("output/README-DEPLOY.txt")
+          readme.write_text(
+              "Deploy only the files inside site/ into the document root of metodborzilova.ru.\n"
+              "Do not deploy to marafon-metod.ru or change the payment backend.\n"
+              "Do not replace other website files/routes on the target; upload these explicit files only.\n"
+              "Backup: see separate private GitHub archive and live-site-snapshots.\n"
+              "Changes from source: canonical domain, isolated Metrika counter 112375829, and distinct lead source.\n"
+              "Existing lead API URL remains https://api.marafon-metod.ru/api/leads; CORS code includes metodborzilova.ru.\n"
+              "The recipient privacy document is copied as a local route.\n"
+              "You MUST verify hosting root and check live lead form after deployment.\n"
+          ,encoding="utf-8")
+          for f in sorted(root.rglob("*")):
+              if f.is_file(): print("FILE",f.relative_to(root),f.stat().st_size)
+          print("NEW_HTML_SHA256",hashlib.sha256(index.read_bytes()).hexdigest())
+          PY
+          cd output && zip -qr metodborzilova-home-package.zip site README-DEPLOY.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: metodborzilova-home-package-20261031
+          path: output/metodborzilova-home-package.zip
+          retention-days: 90
+          if-no-files-found: error
