@@ -1,0 +1,66 @@
+name: QA - staged metodborzilova.ru homepage copy
+on:
+  push:
+    branches: [codex/metodold-home-copy-20261031]
+    paths:
+      - 'metodold/index.html'
+      - 'metodold/consultation-*'
+      - '.github/workflows/qa-method-home-copy-20261031.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate local assets, form and counter
+        run: |
+          python3 - <<'PY'
+          import re,json,pathlib,urllib.parse,html.parser,hashlib
+          root=pathlib.Path("metodold")
+          html=(root/"index.html").read_text("utf-8")
+          assert '<html' in html.lower()
+          assert '<link rel="canonical" href="https://metodborzilova.ru/">' in html
+          assert "110906734" not in html
+          assert "112375829" in html
+          assert "consultation-form" in html and "booking-dialog" in html
+          class Refs(html.parser.HTMLParser):
+            def __init__(self): super().__init__(); self.refs=[]
+            def handle_starttag(self,tag,attrs):
+              for k,v in attrs:
+                if k in ("src","href","poster") and v:self.refs.append(v)
+          r=Refs();r.feed(html)
+          missing=[]
+          for v in r.refs:
+            u=urllib.parse.urlparse(v)
+            if u.scheme or u.netloc or v.startswith("#") or v.startswith("data:"):continue
+            p=u.path.lstrip("/")
+            if p and not (root/p).is_file() and not (root/p/"index.html").is_file():
+              missing.append(v)
+          print("HTML_ASSETS",len(r.refs),"MISSING",missing)
+          assert not missing, "Missing local assets: "+repr(missing)
+          for p in ("consultation-intake-20261010.js","consultation-goals-20261028.js"):
+            s=(root/p).read_text("utf-8")
+            assert "112375829" in s and "110906734" not in s
+          backend=(root/"consultation-intake-20261010.js").read_text("utf-8")
+          assert "https://api.marafon-metod.ru/api/leads" in backend
+          assert "metodborzilova_home_free_consultation" in backend
+          assert "https://metodborzilova.ru" in (root/"consultation-privacy/index.html").read_text("utf-8")
+          print("ALL_STATIC_ASSERTIONS_PASSED")
+          PY
+          node --check metodold/consultation-intake-20261010.js
+          node --check metodold/consultation-goals-20261028.js
+      - name: Check page served under intended web root
+        run: |
+          python3 - <<'PY'
+          import http.server,threading,functools,urllib.request
+          handler=functools.partial(http.server.SimpleHTTPRequestHandler,directory="metodold")
+          server=http.server.ThreadingHTTPServer(("127.0.0.1",0),handler)
+          thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
+          for path in ("/","/consultation-privacy/","/consultation-intake-20261010.js","/consultation-goals-20261028.js","/consultation-portrait-20261008.webp","/consultation-hello-20261008.webp"):
+            with urllib.request.urlopen("http://127.0.0.1:"+str(server.server_port)+path,timeout=10) as r:
+              print("LOCAL_HTTP",path,r.status,len(r.read()))
+              assert r.status==200
+          server.shutdown()
+          PY
