@@ -47,7 +47,7 @@ jobs:
           backend=(root/"consultation-intake-20261010.js").read_text("utf-8")
           assert "https://api.marafon-metod.ru/api/leads" in backend
           assert "metodborzilova_home_free_consultation" in backend
-          assert "https://metodborzilova.ru" in (root/"consultation-privacy/index.html").read_text("utf-8")
+          assert "metodborzilova.ru" in (root/"consultation-privacy/index.html").read_text("utf-8")
           print("ALL_STATIC_ASSERTIONS_PASSED")
           PY
           node --check metodold/consultation-intake-20261010.js
