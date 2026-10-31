@@ -25,7 +25,8 @@ jobs:
           assert "110906734" not in html
           assert "112375829" in html
           assert "consultation-form" in html and "booking-dialog" in html
-          class Refs(html.parser.HTMLParser):
+          from html.parser import HTMLParser
+          class Refs(HTMLParser):
             def __init__(self): super().__init__(); self.refs=[]
             def handle_starttag(self,tag,attrs):
               for k,v in attrs:
