@@ -1,0 +1,35 @@
+name: Check form CORS for second domain without submitting data
+on:
+  push:
+    branches: [codex/check-method-domain-hosting-20261031]
+    paths: ['.github/workflows/audit-lead-cors-method-20261031.yml']
+permissions: {contents: read}
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Verify safe preflight for method domain
+        run: |
+          python3 - <<'PY'
+          import urllib.request,urllib.error
+          url="https://api.marafon-metod.ru/api/leads"
+          for origin in ("https://metodborzilova.ru","https://marafon-metod.ru"):
+              req=urllib.request.Request(url,method="OPTIONS",headers={
+                  "Origin":origin,
+                  "Access-Control-Request-Method":"POST",
+                  "Access-Control-Request-Headers":"content-type",
+              })
+              try:
+                  with urllib.request.urlopen(req,timeout=25) as r:
+                      code=r.status
+                      allowed=r.headers.get("Access-Control-Allow-Origin")
+                      methods=r.headers.get("Access-Control-Allow-Methods")
+                      print("CORS_PREFLIGHT",origin,"STATUS",code,"ALLOWED",allowed,"METHODS",methods)
+                      if allowed!=origin:
+                          print("CORS_MISMATCH",origin)
+              except urllib.error.HTTPError as e:
+                  print("CORS_HTTP",origin,e.code)
+              except Exception as e:
+                  print("CORS_ERROR",origin,type(e).__name__,str(e)[:200])
+          PY
