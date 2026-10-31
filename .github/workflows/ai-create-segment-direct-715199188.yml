@@ -1,0 +1,105 @@
+name: Create campaign 715199188 non-bounce audience in Yandex Metrika
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/ai-create-segment-direct-715199188.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: yandex-metrika-segment-715199188
+  cancel-in-progress: false
+
+jobs:
+  create_campaign_nonbounce_segment:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    env:
+      YANDEX_METRIKA_OAUTH: ${{ secrets.YANDEX_METRIKA_OAUTH }}
+    steps:
+      - name: Locate campaign visits and create exactly matching Metrika segments
+        run: |
+          python3 - <<'PY'
+          import datetime, json, os, sys, urllib.error, urllib.parse, urllib.request
+
+          BASE = "https://api-metrika.yandex.net"
+          COUNTERS = ["109705214", "110906734"]
+          CAMPAIGN = "715199188"
+          NAME = "Все неотказы — кампания 715199188"
+          EXPR = "ym:s:directID=='715199188' AND ym:s:bounce=='No'"
+          TOKEN = os.environ.get("YANDEX_METRIKA_OAUTH", "").strip()
+          if not TOKEN:
+              sys.exit("BLOCKED: YANDEX_METRIKA_OAUTH secret unavailable; nothing created")
+
+          def call(method, route, payload=None, query=None):
+              url = BASE + route
+              if query:
+                  url += "?" + urllib.parse.urlencode(query)
+              body = (json.dumps(payload, ensure_ascii=False).encode("utf-8")
+                      if payload is not None else None)
+              headers = {"Authorization": "OAuth " + TOKEN, "Accept": "application/json"}
+              if body is not None:
+                  headers["Content-Type"] = "application/json; charset=utf-8"
+              req = urllib.request.Request(url, headers=headers, data=body, method=method)
+              try:
+                  with urllib.request.urlopen(req, timeout=42) as resp:
+                      return json.load(resp)
+              except urllib.error.HTTPError as err:
+                  # Do not print response body: it may include data sensitive to the account.
+                  raise RuntimeError(f"API_HTTP_{err.code}_{method}_{route}") from None
+
+          eligible = []
+          for counter in COUNTERS:
+              try:
+                  info = call("GET", f"/management/v1/counter/{counter}").get("counter", {})
+                  if not info:
+                      print("COUNTER_UNAVAILABLE", counter, flush=True)
+                      continue
+                  print("CHECK_COUNTER", counter, "SITE", info.get("site"), flush=True)
+                  q = {"ids": counter, "date1": "2026-08-01",
+                       "date2": "2026-10-31", "metrics": "ym:s:visits,ym:s:users",
+                       "accuracy": "1", "filters": EXPR}
+                  report = call("GET", "/stat/v1/data", query=q)
+                  totals = report.get("totals") or []
+                  visits = int(totals[0]) if len(totals) > 0 and totals[0] else 0
+                  users = int(totals[1]) if len(totals) > 1 and totals[1] else 0
+                  print("AUDIENCE_CHECK", counter, "VISITS", visits, "USERS", users, flush=True)
+                  if visits > 0:
+                      eligible.append((counter, visits, users))
+              except Exception as err:
+                  print("COUNTER_CHECK_ERROR", counter, str(err)[:180], flush=True)
+
+          if not eligible:
+              sys.exit("NOT_CREATED: No verified non-bounce sessions from campaign on accessible counters; check mapping")
+          print("CONFIRMED_COUNTERS", json.dumps(eligible), flush=True)
+
+          # When campaign traffic is recorded on both counters, create one segment per
+          # counter. Yandex Metrika segments cannot combine separate counter histories.
+          for counter, visits, users in eligible:
+              route = f"/management/v1/counter/{counter}/apisegment/segments"
+              current = call("GET", route).get("segments", [])
+              by_name = [s for s in current if s.get("name") == NAME and s.get("status") != "deleted"]
+              by_expr = [s for s in current if s.get("expression") == EXPR and s.get("status") != "deleted"]
+              if by_name and any(s.get("expression") != EXPR for s in by_name):
+                  sys.exit(f"CONFLICT for counter {counter}: same name different expression; refusing to overwrite")
+              if by_name or by_expr:
+                  seg = (by_name or by_expr)[0]
+                  print("SEGMENT_REUSED", counter, seg.get("segment_id"), seg.get("name"), flush=True)
+              else:
+                  result = call("POST", route, payload={"segment": {"name": NAME, "expression": EXPR}})
+                  seg = result.get("segment") or {}
+                  if not seg.get("segment_id"):
+                      sys.exit(f"CREATION_UNCONFIRMED for counter {counter}")
+                  print("SEGMENT_API_CREATE_RETURNED", counter, seg["segment_id"], flush=True)
+
+              fresh = call("GET", route).get("segments", [])
+              verified = [s for s in fresh if str(s.get("segment_id")) == str(seg.get("segment_id"))
+                          and s.get("expression") == EXPR]
+              if not verified:
+                  sys.exit(f"FINAL_VERIFICATION_FAILED for counter {counter}")
+              print("SUCCESS_SEGMENT_ID", verified[0]["segment_id"], "COUNTER", counter,
+                    "NAME", verified[0].get("name"), "STATUS", verified[0].get("status"), flush=True)
+          PY
