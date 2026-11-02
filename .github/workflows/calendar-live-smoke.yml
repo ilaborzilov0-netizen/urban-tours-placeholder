@@ -45,7 +45,7 @@ jobs:
             try{
               const r=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(15000)});
               const body=await r.text();
-              const checks={widget:body.includes('id="calendar"'),title:body.includes('Выберите удобное время.'),fallbackHint:body.includes('calendar-fallback-hint'),progressive:body.includes('id="calendar-time-stage" class="cal-time-stage" hidden'),dateStage:body.includes('id="calendar-date-stage"'),successTitle:body.includes('calendar-success-title'),script:body.includes('/календарь/calendar.js')};
+              const checks={widget:body.includes('id="calendar"'),title:body.includes('Выберите удобное время.'),fallbackHint:body.includes('calendar-fallback-hint'),progressive:body.includes('id="calendar-time-stage" class="cal-time-stage" hidden'),dateStage:body.includes('id="calendar-date-stage"'),staticDates:body.includes('class="cal-date" aria-pressed="false"'),successTitle:body.includes('calendar-success-title'),script:body.includes('/календарь/calendar.js')};
               const live=r.status===200&&Object.values(checks).every(Boolean);
               console.log('PUBLIC_CALENDAR',JSON.stringify({status:r.status,finalUrl:r.url,live,checks,contentLength:body.length}));
               if(!live)process.exitCode=1;
