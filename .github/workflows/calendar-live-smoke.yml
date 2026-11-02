@@ -1,0 +1,48 @@
+name: Calendar landing smoke
+on:
+  push:
+    branches: [main]
+    paths:
+      - "календарь/**"
+      - ".github/workflows/calendar-live-smoke.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate calendar JavaScript and HTML contract
+        run: |
+          node --check "календарь/calendar.js"
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const html=fs.readFileSync('календарь/index.html','utf8');
+          const js=fs.readFileSync('календарь/calendar.js','utf8');
+          for(const required of ['id="calendar"','id="calendar-form"','id="calendar-success"','calendar-fallback-hint','/календарь/calendar.js','consultation-portrait-20261008.webp','МСК · UTC+3']) {
+            if(!html.includes(required))throw Error('Missing '+required);
+          }
+          for(const required of ['/api/consultation/slots','/api/consultation/book','/api/leads','SLOT_UNAVAILABLE','await refresh()']) {
+            if(!js.includes(required))throw Error('Missing '+required);
+          }
+          console.log('PASS calendar page contract');
+          NODE
+      - name: Check public Timeweb page when deployed (read only)
+        run: |
+          node - <<'NODE'
+          (async()=>{
+            const url='https://marafon-metod.ru/%D0%BA%D0%B0%D0%BB%D0%B5%D0%BD%D0%B4%D0%B0%D1%80%D1%8C/';
+            try{
+              const r=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(15000)});
+              const body=await r.text();
+              const live=r.status===200&&body.includes('calendar-success-title')&&body.includes('Выберите удобное время.');
+              console.log('PUBLIC_CALENDAR',JSON.stringify({status:r.status,finalUrl:r.url,live,contentLength:body.length}));
+              if(!live)process.exitCode=1;
+            }catch(e){console.log('PUBLIC_CALENDAR_UNVERIFIED',e.message);process.exitCode=1;}
+          })();
+          NODE
