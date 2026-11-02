@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - "календарь/**"
+      - "tests/calendar-interaction.mjs"
       - ".github/workflows/calendar-live-smoke.yml"
   workflow_dispatch:
 permissions:
@@ -17,6 +18,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - name: Install browser-DOM simulator for interactive verification
+        run: npm install --no-save --package-lock=false --ignore-scripts jsdom@26.1.0
+      - name: Test click flows, time reveal and booking confirmation
+        run: node tests/calendar-interaction.mjs
       - name: Validate calendar JavaScript and HTML contract
         run: |
           node --check "календарь/calendar.js"
