@@ -27,7 +27,7 @@ jobs:
           for(const required of ['id="calendar"','id="calendar-form"','id="calendar-success"','calendar-fallback-hint','/календарь/calendar.js','consultation-portrait-20261008.webp','МСК · UTC+3']) {
             if(!html.includes(required))throw Error('Missing '+required);
           }
-          for(const required of ['/api/consultation/slots','/api/consultation/book','/api/leads','SLOT_UNAVAILABLE','await refresh()']) {
+          for(const required of ['/api/consultation/slots','/api/consultation/book','/api/leads','response.status===409','await refresh()']) {
             if(!js.includes(required))throw Error('Missing '+required);
           }
           console.log('PASS calendar page contract');
