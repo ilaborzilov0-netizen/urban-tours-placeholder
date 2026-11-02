@@ -40,8 +40,9 @@ jobs:
             try{
               const r=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(15000)});
               const body=await r.text();
-              const live=r.status===200&&body.includes('calendar-success-title')&&body.includes('Выберите удобное время.');
-              console.log('PUBLIC_CALENDAR',JSON.stringify({status:r.status,finalUrl:r.url,live,contentLength:body.length}));
+              const checks={widget:body.includes('id="calendar"'),title:body.includes('Выберите удобное время.'),fallbackHint:body.includes('calendar-fallback-hint'),successTitle:body.includes('calendar-success-title'),script:body.includes('/календарь/calendar.js')};
+              const live=r.status===200&&Object.values(checks).every(Boolean);
+              console.log('PUBLIC_CALENDAR',JSON.stringify({status:r.status,finalUrl:r.url,live,checks,contentLength:body.length}));
               if(!live)process.exitCode=1;
             }catch(e){console.log('PUBLIC_CALENDAR_UNVERIFIED',e.message);process.exitCode=1;}
           })();
