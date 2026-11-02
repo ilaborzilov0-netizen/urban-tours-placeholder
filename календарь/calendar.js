@@ -20,7 +20,16 @@
     {date:'2026-11-05',label:'Четверг',day:'5 ноября'},
     {date:'2026-11-06',label:'Пятница',day:'6 ноября'}
   ];
-  let slots=[],selectedDay='',selectedSlot='',busy=false,isFallback=false;
+  let slots=[],selectedDay='',selectedSlot='',busy=false,isFallback=true;
+  const FALLBACK_TIMES=['11:00','16:30','19:30'];
+  function fallbackSlots(){
+    const now=Date.now();
+    return days.flatMap(d=>FALLBACK_TIMES.map(time=>{
+      const id=d.date+'T'+time+':00+03:00';
+      return {id,date:d.date,time,available:Date.parse(id)>now+60*60_000};
+    }));
+  }
+  slots=fallbackSlots();
   const channelLabel={max:'MAX',telegram:'Telegram',phone:'телефон'};
   const friendly=(slot)=>{const day=days.find(d=>d.date===slot.date);return (day?day.label+', '+day.day:slot.date)+' · '+slot.time+' МСК';};
   const clear=(el)=>{while(el.firstChild)el.removeChild(el.firstChild)};
@@ -55,7 +64,7 @@
       btn.setAttribute('aria-pressed',String(d.date===selectedDay));
       btn.append(make('span','cal-day-name',d.label),make('strong','cal-date-label',d.day),
         make('small','cal-date-count',todaySlots.length?(isFallback?'Время подтвердим лично':todaySlots.length+' '+(todaySlots.length===1?'свободное окно':todaySlots.length<5?'свободных окна':'свободных окон')):'Нет доступного времени'));
-      if(d.date===selectedDay)btn.append(make('span','cal-date-check','✓')).lastChild.setAttribute('aria-hidden','true');
+      if(d.date===selectedDay){const check=make('span','cal-date-check','✓');check.setAttribute('aria-hidden','true');btn.append(check);}
       btn.addEventListener('click',()=>{
         if(selectedDay!==d.date){selectedDay=d.date;selectedSlot='';form.hidden=true;showError('');}
         renderDates();renderTimes(true);
@@ -87,8 +96,8 @@
     }
   }
   async function refresh(preserveSelection=false){
-    setInfo('Проверяем свободное время…');
-    if(!preserveSelection){datesEl.textContent='';timesEl.textContent='';}
+    // Keep date cards visible while availability loads or fails.
+    setInfo('');
     try{
       const response=await fetch(API+'/api/consultation/slots',{cache:'no-store',headers:{Accept:'application/json'},signal:AbortSignal.timeout(12000)});
       const json=await response.json();
@@ -106,16 +115,12 @@
       isFallback=true; selectedSlot='';form.hidden=true;
       // Fallback uses the existing lead API. It MUST NOT claim a hard reservation.
       // Only future owner-approved windows are offered; final availability is confirmed personally.
-      const now=Date.now();
-      slots=days.flatMap(d=>['11:00','16:30','19:30'].map(time=>({
-        id:d.date+'T'+time+':00+03:00',date:d.date,time,
-        available:Date.parse(d.date+'T'+time+':00+03:00')>now+60*60_000
-      })));
+      slots=fallbackSlots();
       if(selectedDay&&!slots.some(x=>x.date===selectedDay&&x.available)){
         selectedDay='';selectedSlot='';form.hidden=true;
       }
       renderDates();renderTimes();fallbackHint.hidden=false;submit.textContent='Отправить запрос на это время';
-      setInfo('Пока нельзя автоматически проверить занятость. Выберите предпочтительное время — я напишу и подтвержу, свободно ли оно.');
+      setInfo('Выберите день и время. Я лично подтвержу запись перед созвоном.');
     }
   }
   const normalizePhone=(value)=>{
@@ -180,5 +185,9 @@
     }catch(e){showError(e.name==='TimeoutError'?'Сервер долго отвечает. Не отправляйте повторную заявку вслепую: проверьте позже или напишите мне в MAX.':e.message);}
     finally{busy=false;submit.disabled=false;submit.textContent=isFallback?'Отправить запрос на это время':'Занять это время бесплатно';}
   });
+  // Render usable days immediately, regardless of network status.
+  renderDates();
+  renderTimes();
+  fallbackHint.hidden=false;
   refresh();
 })();
