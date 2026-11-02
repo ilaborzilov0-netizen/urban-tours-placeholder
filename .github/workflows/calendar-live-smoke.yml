@@ -24,10 +24,10 @@ jobs:
           const fs=require('node:fs');
           const html=fs.readFileSync('календарь/index.html','utf8');
           const js=fs.readFileSync('календарь/calendar.js','utf8');
-          for(const required of ['id="calendar"','id="calendar-form"','id="calendar-success"','calendar-fallback-hint','/календарь/calendar.js','consultation-portrait-20261008.webp','МСК · UTC+3']) {
+          for(const required of ['id="calendar"','id="calendar-form"','id="calendar-success"','calendar-fallback-hint','id="calendar-time-stage"','id="calendar-date-stage"','cal-date-check','/календарь/calendar.js','consultation-portrait-20261008.webp','МСК · UTC+3']) {
             if(!html.includes(required))throw Error('Missing '+required);
           }
-          for(const required of ['/api/consultation/slots','/api/consultation/book','/api/leads','response.status===409','await refresh()']) {
+          for(const required of ['/api/consultation/slots','/api/consultation/book','/api/leads','response.status===409','await refresh()','selectedDay=\'\'','renderTimes(true)']) {
             if(!js.includes(required))throw Error('Missing '+required);
           }
           console.log('PASS calendar page contract');
@@ -40,7 +40,7 @@ jobs:
             try{
               const r=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(15000)});
               const body=await r.text();
-              const checks={widget:body.includes('id="calendar"'),title:body.includes('Выберите удобное время.'),fallbackHint:body.includes('calendar-fallback-hint'),successTitle:body.includes('calendar-success-title'),script:body.includes('/календарь/calendar.js')};
+              const checks={widget:body.includes('id="calendar"'),title:body.includes('Выберите удобное время.'),fallbackHint:body.includes('calendar-fallback-hint'),progressive:body.includes('id="calendar-time-stage" class="cal-time-stage" hidden'),dateStage:body.includes('id="calendar-date-stage"'),successTitle:body.includes('calendar-success-title'),script:body.includes('/календарь/calendar.js')};
               const live=r.status===200&&Object.values(checks).every(Boolean);
               console.log('PUBLIC_CALENDAR',JSON.stringify({status:r.status,finalUrl:r.url,live,checks,contentLength:body.length}));
               if(!live)process.exitCode=1;
@@ -59,7 +59,7 @@ jobs:
               try{
                 const r=await fetch(url,{signal:AbortSignal.timeout(12000)});
                 const text=await r.text();
-                console.log(name,JSON.stringify({http:r.status,jsReady:name==='CALENDAR_SCRIPT'?text.includes('isFallback'):undefined,apiReady:name==='BOOKING_SLOTS'?text.includes('"timezone":"Europe/Moscow"'):undefined,bytes:text.length}));
+                console.log(name,JSON.stringify({http:r.status,jsReady:name==='CALENDAR_SCRIPT'?(text.includes('isFallback')&&text.includes("selectedDay=''")):undefined,apiReady:name==='BOOKING_SLOTS'?text.includes('"timezone":"Europe/Moscow"'):undefined,bytes:text.length}));
               }catch(e){console.log(name,'UNAVAILABLE',e.message)}
             }
           })();
