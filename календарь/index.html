@@ -116,6 +116,7 @@
 #calendar .cal-time.is-selected{background:#143d33;color:white;border-color:#143d33}
 #calendar .cal-time:disabled{color:#a6afa6;background:#f1f3f0;border-color:#e6ebe3;cursor:not-allowed;text-decoration:line-through}
 #calendar .cal-loading,#calendar .cal-info,#calendar .cal-note{font-size:13px;color:#758678;line-height:1.5}
+#calendar .cal-fallback-hint{font-size:12px;line-height:1.55;color:#7d6148;background:#fff9eb;border:1px solid #edd9b7;border-radius:8px;padding:10px 12px;margin:0 0 14px}
 #calendar .cal-error{font-size:13px;color:#993b31;margin:14px 0;padding:10px 12px;border:1px solid #f1cac1;border-radius:8px;background:#fff4f2}
 #calendar .cal-form{border-top:1px solid #dbe6da;margin-top:23px;padding-top:18px}
 #calendar .cal-choice{background:#e7f3e8;border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:1px}
@@ -166,7 +167,7 @@
  <div id="calendar-times" class="cal-times" role="group" aria-label="Свободные часы"></div>
  <p id="calendar-info" class="cal-info" aria-live="polite">Проверяем свободное время…</p>
  <p id="calendar-error" class="cal-error" role="alert" hidden></p>
- <form id="calendar-form" class="cal-form" hidden>
+ <form id="calendar-form" class="cal-form" hidden><p id="calendar-fallback-hint" class="cal-fallback-hint" hidden>Это запрос на время, не окончательное бронирование: подтвержу доступность лично в сообщении.</p>
   <div class="cal-choice"><span>Вы выбрали</span><strong id="calendar-selected"></strong></div>
   <div class="cal-step cal-third"><span class="cal-step-count">03</span><strong>Оставьте контакт — и время будет за вами</strong></div>
   <label class="cal-label" for="calendar-name">Как к вам обращаться?</label>
@@ -185,7 +186,7 @@
  </form>
  <div id="calendar-success" class="cal-success" aria-live="polite" hidden>
   <span class="cal-success-icon" aria-hidden="true">✓</span>
-  <h3>Время закреплено за вами.</h3>
+  <h3 id="calendar-success-title">Время закреплено за вами.</h3>
   <div class="cal-success-time" id="calendar-success-time"></div>
   <div class="cal-profile"><img src="/consultation-portrait-20261008.webp" alt="Илья Борзилов" width="64" height="64"><div><strong>Илья Борзилов</strong><span>Личный разбор по отказу от курения</span></div></div>
   <p id="calendar-success-message">Я напишу вам до встречи, чтобы подтвердить время и согласовать формат.</p>
