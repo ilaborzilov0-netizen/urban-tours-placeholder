@@ -11,13 +11,14 @@
   const infoEl=document.getElementById('calendar-info');
   const successEl=document.getElementById('calendar-success');
   const submit=document.getElementById('calendar-submit');
+  const fallbackHint=document.getElementById('calendar-fallback-hint');
   const contact=document.getElementById('calendar-contact');
   const contactLabel=document.getElementById('calendar-contact-label');
   const days=[
     {date:'2026-11-05',label:'Четверг',day:'5 ноября'},
     {date:'2026-11-06',label:'Пятница',day:'6 ноября'}
   ];
-  let slots=[],selectedDay='2026-11-05',selectedSlot='',busy=false;
+  let slots=[],selectedDay='2026-11-05',selectedSlot='',busy=false,isFallback=false;
   const channelLabel={max:'MAX',telegram:'Telegram',phone:'телефон'};
   const friendly=(slot)=>{const day=days.find(d=>d.date===slot.date);return (day?day.label+', '+day.day:slot.date)+' · '+slot.time+' МСК';};
   const clear=(el)=>{while(el.firstChild)el.removeChild(el.firstChild)};
@@ -51,7 +52,7 @@
       btn.type='button';btn.disabled=todaySlots.length===0;
       btn.setAttribute('aria-pressed',String(d.date===selectedDay));
       btn.append(make('span','cal-day-name',d.label),make('strong','cal-date-label',d.day),
-        make('small','cal-date-count',todaySlots.length?todaySlots.length+' времени на выбор':'Нет свободных окон'));
+        make('small','cal-date-count',todaySlots.length?(isFallback?'Предпочтительные окна':todaySlots.length+' времени на выбор'):'Нет свободных окон'));
       btn.addEventListener('click',()=>{
         selectedDay=d.date;selectedSlot='';form.hidden=true;showError('');renderDates();renderTimes();
       });
@@ -84,18 +85,28 @@
       const response=await fetch(API+'/api/consultation/slots',{cache:'no-store',headers:{Accept:'application/json'},signal:AbortSignal.timeout(12000)});
       const json=await response.json();
       if(!response.ok||json?.ok!==true||!Array.isArray(json.slots))throw Error('Не удалось проверить расписание');
+      isFallback=false;
       slots=json.slots.filter(x=>x&&typeof x.id==='string'&&typeof x.date==='string'&&typeof x.time==='string');
       if(!slots.some(x=>x.date===selectedDay&&x.available)){
         selectedDay=days.find(d=>slots.some(x=>x.date===d.date&&x.available))?.date||days[0].date;
       }
       if(!slots.some(x=>x.id===selectedSlot&&x.available)){selectedSlot='';form.hidden=true;}
-      setInfo('');
+      setInfo('');fallbackHint.hidden=true;submit.textContent='Занять это время бесплатно';
       renderDates();renderTimes();
       if(!slots.some(x=>x.available))setInfo('Все опубликованные окна заняты или прошли. Напишите мне в MAX — подберём другое время.');
     }catch(e){
-      slots=[];selectedSlot='';form.hidden=true;
-      clear(datesEl);clear(timesEl);
-      setInfo('Сейчас не получается загрузить свободное время. Запись не отправлена. Напишите мне в MAX — подберём время лично.');
+      isFallback=true; selectedSlot='';form.hidden=true;
+      // Fallback uses the existing lead API. It MUST NOT claim a hard reservation.
+      // Only future owner-approved windows are offered; final availability is confirmed personally.
+      const now=Date.now();
+      slots=days.flatMap(d=>['11:00','16:30','19:30'].map(time=>({
+        id:d.date+'T'+time+':00+03:00',date:d.date,time,
+        available:Date.parse(d.date+'T'+time+':00+03:00')>now+60*60_000
+      })));
+      if(!slots.some(x=>x.date===selectedDay&&x.available))
+        selectedDay=days.find(d=>slots.some(x=>x.date===d.date&&x.available))?.date||days[0].date;
+      renderDates();renderTimes();fallbackHint.hidden=false;submit.textContent='Отправить запрос на это время';
+      setInfo('Пока нельзя автоматически проверить занятость. Выберите предпочтительное время — я напишу и подтвержу, свободно ли оно.');
     }
   }
   const normalizePhone=(value)=>{
@@ -125,19 +136,29 @@
     if(!form.elements.consent.checked){showError('Подтвердите согласие на обработку контакта.');return;}
     const slot=slots.find(x=>x.id===selectedSlot);
     if(!slot||!slot.available){showError('Это время уже недоступно. Выберите другое.');await refresh();return;}
-    busy=true;submit.disabled=true;submit.textContent='Закрепляем время…';
+    busy=true;submit.disabled=true;submit.textContent=isFallback?'Отправляем запрос…':'Закрепляем время…';
     try{
-      const payload={name,contact:contactValue,channel:chosen,slot:selectedSlot,consent:true,
+      const payload=isFallback?{
+        formType:'personal_contact',name,contactType:chosen,contact:contactValue,
+        startDate:slot.date,preferredTime:slot.time+' МСК',
+        plan:'Бесплатный индивидуальный разбор · 20 минут',
+        price:'Бесплатно; продолжение: 4 × 50 минут — 19 900 ₽',
+        source:'marafon_calendar_time_request',sourceUrl:location.origin+location.pathname,
+        message:'Запрос времени '+friendly(slot)+'. Внимание: автоматическая бронь не подтверждена! Согласовать с клиентом и вручную проверить доступность.',
+        referrer:document.referrer,utm:attribution(),website:form.elements.website.value
+      }:{name,contact:contactValue,channel:chosen,slot:selectedSlot,consent:true,
         referrer:document.referrer,utm:attribution(),website:form.elements.website.value};
-      const response=await fetch(API+'/api/consultation/book',{method:'POST',cache:'no-store',
+      const response=await fetch(API+(isFallback?'/api/leads':'/api/consultation/book'),{method:'POST',cache:'no-store',
         headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(payload),signal:AbortSignal.timeout(18000)});
       const result=await response.json().catch(()=>({}));
       if(response.status===409){await refresh();throw Error('Это время только что заняли. Выберите другое из свободных.');}
-      if(!response.ok||result.ok!==true||result.booked!==true||result.slot!==selectedSlot)
+      if(!response.ok||result.ok!==true||(isFallback?result.received!==true:(result.booked!==true||result.slot!==selectedSlot)))
         throw Error(result.error||'Не удалось закрепить время. Попробуйте ещё раз.');
       document.getElementById('calendar-success-time').textContent=friendly(slot);
-      const c=chosen==='phone'?'Я свяжусь с вами перед встречей, чтобы подтвердить время и договориться о звонке.':
-        'Я напишу вам в '+channelLabel[chosen]+' до встречи, чтобы подтвердить время и согласовать формат созвона.';
+      document.getElementById('calendar-success-title').textContent=isFallback?'Запрос времени отправлен.':'Время закреплено за вами.';
+      const c=isFallback?('Я свяжусь с вами через '+channelLabel[chosen]+', чтобы подтвердить, свободно ли выбранное время, и согласовать созвон.'):
+        (chosen==='phone'?'Я свяжусь с вами перед встречей, чтобы подтвердить время и договориться о звонке.':
+        'Я напишу вам в '+channelLabel[chosen]+' до встречи, чтобы подтвердить время и согласовать формат созвона.');
       document.getElementById('calendar-success-message').textContent=c;
       document.getElementById('calendar-success-max').href=DIRECT_MAX;
       form.hidden=true;datesEl.hidden=true;timesEl.hidden=true;
@@ -147,7 +168,7 @@
       successEl.hidden=false;setInfo('');showError('');
       successEl.scrollIntoView({behavior:'smooth',block:'center'});
     }catch(e){showError(e.name==='TimeoutError'?'Сервер долго отвечает. Не отправляйте повторную заявку вслепую: проверьте позже или напишите мне в MAX.':e.message);}
-    finally{busy=false;submit.disabled=false;submit.textContent='Занять это время бесплатно';}
+    finally{busy=false;submit.disabled=false;submit.textContent=isFallback?'Отправить запрос на это время':'Занять это время бесплатно';}
   });
   refresh();
 })();
