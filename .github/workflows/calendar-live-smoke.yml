@@ -53,6 +53,21 @@ jobs:
           })();
           NODE
 
+      - name: Compare canonical route and explicit index.html (read only)
+        run: |
+          node - <<'NODE'
+          (async()=>{
+            const base='https://marafon-metod.ru/%D0%BA%D0%B0%D0%BB%D0%B5%D0%BD%D0%B4%D0%B0%D1%80%D1%8C/';
+            for(const path of ['','index.html']){
+              const url=base+path+'?probe=20261102-fc9398';
+              try{
+                const r=await fetch(url,{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(10000)});
+                const t=await r.text();
+                console.log('HTML_VARIANT',JSON.stringify({path:path||'directory',status:r.status,size:t.length,staticCards:t.includes('class="cal-date" aria-pressed="false"'),lastModified:r.headers.get('last-modified'),etag:r.headers.get('etag')}));
+              }catch(e){console.log('HTML_VARIANT_ERROR',path,e.message)}
+            }
+          })();
+          NODE
       - name: Inspect public booking API and calendar JavaScript without writing leads
         run: |
           node - <<'NODE'
