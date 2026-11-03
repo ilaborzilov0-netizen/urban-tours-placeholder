@@ -1,0 +1,76 @@
+name: Smoke test offer landing forms and responsive layout
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/three-offers-browser-smoke.yml'
+      - 'offers.css'
+      - 'offers.js'
+      - 'odin-vecher-online/index.html'
+      - 'vecher-moskva/index.html'
+      - '4-sessii/index.html'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Playwright
+        run: npm install --no-save playwright@1.56.1
+      - name: Check three live offers and mock lead submit without creating a real lead
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {chromium} from 'playwright';
+          const browser=await chromium.launch({channel:'chrome',headless:true});
+          const host='https://marafon-metod.ru';
+          const pages=[
+            {path:'/odin-vecher-online/',source:'online_evening',price:'14 900 ₽'},
+            {path:'/vecher-moskva/',source:'moscow_evening',price:'9 900 ₽'},
+            {path:'/4-sessii/',source:'four_sessions',price:'19 900 ₽'}
+          ];
+          try{
+            for(const width of [360,1366]){
+              for(const item of pages){
+                const page=await browser.newPage({viewport:{width,height:820}});
+                const exceptions=[];page.on('pageerror',e=>exceptions.push(String(e)));
+                await page.route(/mc\.yandex\.(ru|com)/,r=>r.abort());
+                await page.goto(host+item.path,{waitUntil:'domcontentloaded',timeout:30000});
+                await page.locator('main h1').waitFor();
+                assert.equal(await page.locator('body').getAttribute('data-source'),item.source);
+                assert.ok((await page.locator('body').innerText()).includes(item.price));
+                const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2);
+                assert.equal(overflow,false,item.path+' horizontal overflow at '+width);
+                assert.deepEqual(exceptions,[],item.path+' console exceptions');
+                const form=page.locator('[data-offer-form]');
+                assert.ok(await form.isVisible());
+                const requests=[];
+                await page.route('https://api.marafon-metod.ru/api/leads',async route=>{
+                  const method=route.request().method();
+                  if(method==='OPTIONS')return route.fulfill({status:204,headers:{
+                    'access-control-allow-origin':'*','access-control-allow-methods':'POST, OPTIONS','access-control-allow-headers':'content-type'}});
+                  requests.push(JSON.parse(route.request().postData()||'{}'));
+                  return route.fulfill({status:200,contentType:'application/json',headers:{'access-control-allow-origin':'*'},
+                    body:JSON.stringify({ok:true,received:true,leadId:'TEST-ONLY'})});
+                });
+                await form.locator('input[name=name]').fill('Тестовый пользователь');
+                await form.locator('input[name=contact]').fill('+7 999 123-45-67');
+                await form.locator('input[name=agree]').check();
+                await form.locator('button[type=submit]').click();
+                await page.locator('[data-offer-success]').waitFor({state:'visible',timeout:10000});
+                assert.equal(requests.length,1,item.path+' should submit once');
+                assert.equal(requests[0].source,item.source);
+                assert.equal(requests[0].price,item.price);
+                assert.equal(requests[0].formType,'personal_contact');
+                assert.deepEqual(exceptions,[],item.path+' post-submit exceptions');
+                console.log('PASS_BROWSER',item.path,width,requests[0].source,requests[0].price);
+                await page.close();
+              }
+            }
+          }finally{await browser.close()}
+          console.log('ALL_THREE_OFFERS_BROWSER_PASS');
+          JS
