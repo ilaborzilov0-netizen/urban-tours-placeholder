@@ -1,0 +1,73 @@
+name: Verify three offer landings in production
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'odin-vecher-online/index.html'
+      - 'vecher-moskva/index.html'
+      - '4-sessii/index.html'
+      - 'offers.css'
+      - 'offers.js'
+      - '.github/workflows/three-offers-live-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate source content
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {readFileSync} from 'node:fs';
+          const pages=[
+            ['odin-vecher-online/index.html','14 900 ₽','online_evening'],
+            ['vecher-moskva/index.html','9 900 ₽','moscow_evening'],
+            ['4-sessii/index.html','19 900 ₽','four_sessions']
+          ];
+          for(const [path,price,source] of pages){
+            const body=readFileSync(path,'utf8');
+            assert.ok(body.includes(price),path+': price missing');
+            assert.ok(body.includes('data-source="'+source+'"'),path+': source missing');
+            assert.ok(body.includes('data-offer-form'),path+': form missing');
+            assert.ok(body.includes('/offers.css')&&body.includes('/offers.js'),path+': shared assets missing');
+          }
+          const script=readFileSync('offers.js','utf8');
+          assert.ok(script.includes("result.received!==true"),'Missing server acknowledgement guard');
+          assert.ok(script.includes('api.marafon-metod.ru/api/leads'),'Incorrect API endpoint');
+          console.log('SOURCE_CHECK_PASS');
+          JS
+          node --check offers.js
+      - name: Check actual public deployment with retries
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const origin='https://marafon-metod.ru';
+          const pages=[
+            ['/odin-vecher-online/','14 900 ₽','online_evening'],
+            ['/vecher-moskva/','9 900 ₽','moscow_evening'],
+            ['/4-sessii/','19 900 ₽','four_sessions'],
+            ['/offers.css','--green',null],
+            ['/offers.js','result.received!==true',null]
+          ];
+          let fail=false;
+          for(const [path,token,source] of pages){
+            let success=false,last='';
+            for(let i=0;i<9;i++){
+              try{
+                const u=origin+path+'?offers_verify_20261103='+i;
+                const r=await fetch(u,{signal:AbortSignal.timeout(18000),headers:{'Cache-Control':'no-cache','User-Agent':'OffersLiveSmoke/1.0'}});
+                const html=await r.text();last=r.status+' / '+html.length;
+                if(r.status===200&&html.includes(token)&&(!source||html.includes('data-source="'+source+'"'))){success=true;break;}
+              }catch(e){last=String(e)}
+              await new Promise(resolve=>setTimeout(resolve,6000));
+            }
+            console.log('LIVE',path,success?'PASS':'FAIL',last);
+            if(!success)fail=true;
+          }
+          assert.ok(!fail,'At least one new public path is unavailable or stale. Check Timeweb deployment mapping.');
+          console.log('LIVE_DEPLOYMENT_PASS');
+          JS
