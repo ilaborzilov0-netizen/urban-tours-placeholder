@@ -1,0 +1,95 @@
+name: Apply and verify sitewide noindex for marafon-metod.ru
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/marafon-noindex.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: marafon-noindex-main
+  cancel-in-progress: false
+jobs:
+  noindex:
+    if: github.repository == 'ilaborzilov0-netizen/urban-tours-placeholder' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Add noindex to every tracked HTML document, preserving unrelated bytes
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import re, subprocess
+          from pathlib import Path
+          paths = [Path(p.decode()) for p in subprocess.check_output(['git','ls-files','-z']).split(b'\0') if p and p.lower().endswith((b'.html',b'.htm'))]
+          tag = b'<meta name="robots" content="noindex, nofollow">'
+          robot = re.compile(rb'<meta\b(?=[^>]*\bname\s*=\s*(?:"(?:robots|googlebot|yandex|yandexbot|bingbot)"|\x27(?:robots|googlebot|yandex|yandexbot|bingbot)\x27|(?:robots|googlebot|yandex|yandexbot|bingbot)(?=\s|/?>)))[^>]*>', re.I)
+          head = re.compile(rb'<head(?:\s[^>]*)?>', re.I)
+          changed=0
+          for p in paths:
+              original=p.read_bytes()
+              data=robot.sub(b'',original)
+              match=head.search(data)
+              if match:
+                  data=data[:match.end()]+b'\n'+tag+data[match.end():]
+              else:
+                  m=re.search(rb'<html(?:\s[^>]*)?>',data,re.I)
+                  if m:
+                      data=data[:m.end()]+b'<head>'+tag+b'</head>'+data[m.end():]
+                  else:
+                      m=re.search(rb'<!doctype[^>]*>',data,re.I)
+                      i=m.end() if m else 0
+                      data=data[:i]+tag+b'\n'+data[i:]
+              if data!=original:
+                  p.write_bytes(data)
+                  changed+=1
+              assert tag in p.read_bytes(), str(p)
+          print(f'NOINDEX VERIFIED: {len(paths)} tracked HTML documents; changed {changed}')
+          PY
+          git diff --stat
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- '*.html' '*.htm'
+          if ! git diff --cached --quiet; then
+            git commit -m 'Apply noindex to all Marafon HTML pages'
+            git push origin HEAD:main
+          fi
+      - name: Audit deployed domain and protected Method domain
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import urllib.request, urllib.parse, re, time, subprocess, concurrent.futures
+          origin='https://marafon-metod.ru'
+          paths=[p.decode() for p in subprocess.check_output(['git','ls-files','-z']).split(b'\0') if p and p.lower().endswith((b'.html',b'.htm'))]
+          def get(url):
+              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 (compatible; SiteIndexAudit/1.0)','Cache-Control':'no-cache'})
+              with urllib.request.urlopen(req,timeout=12) as r:
+                  return r.status,r.headers.get('X-Robots-Tag',''),r.read(),r.geturl()
+          def check(p):
+              u=origin+'/'+urllib.parse.quote(p)
+              try:
+                  status,h,b,final=get(u+'?noindex_audit=20261127')
+                  ok='noindex' in h.lower() or bool(re.search(rb'<meta\b[^>]*name=["\x27]robots["\x27][^>]*content=["\x27][^"\x27]*noindex',b,re.I))
+                  return p,status,ok,final
+              except Exception as e: return p,0,False,str(e)
+          for attempt in range(4):
+              try:
+                  a=check('index.html')
+                  print('ROOT',a,flush=True)
+                  if a[2]: break
+              except Exception as e: print(e)
+              time.sleep(15)
+          with concurrent.futures.ThreadPoolExecutor(max_workers=12) as pool: results=list(pool.map(check,paths))
+          for item in results:
+              if not item[2]: print('UNVERIFIED',item,flush=True)
+          print('LIVE NOINDEX',sum(x[2] for x in results),'of',len(results),flush=True)
+          for host in ['https://marafon-metod.ru','https://metodborzilova.ru']:
+              try:
+                  s,h,b,u=get(host+'/robots.txt')
+                  print('ROBOTS',host,s,h,b.decode(errors='replace')[:400],flush=True)
+              except Exception as e: print('ROBOTS ERROR',host,e,flush=True)
+          if not all(x[2] for x in results): raise SystemExit('Not every deployed HTML URL was verified')
+          PY
