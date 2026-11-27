@@ -1,0 +1,62 @@
+name: Read-only public indexing audit
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/public-indexing-audit.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify public robots directives for every known HTML route
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import urllib.request, urllib.parse, re, concurrent.futures, json, time
+          from html.parser import HTMLParser
+          pages=json.loads(r'''{"https://marafon-metod.ru":["0/index.html","01/index.html","14-classic-email-only/index.html","14-original-20261014/index.html","14/14/explainer/index.html","14/14/index.html","14/index.html","4-sessii/index.html","55/index.html","777/123/index.html","777/777/777/index.html","777/777/index.html","777/index.html","Reveri/index.html","Reveri/shpigel/index.html","Reveri/shpigel/maksimalka/index.html","Reveri/shpigel/maksimalka/malahov/index.html","admin/index.html","ai/archive-2026-10-22/index.html","ai/archive-20261021/index.html","ai/archive-classic-1990-before-studio-20261026/index.html","ai/archive-pre-optimize-20261022-1800/index.html","ai/archive-two-albums-before-990-classic-20261022/index.html","ai/archive-two-albums-before-990-classic-20261022/original-ai-20261022.html","ai/avtor/60/index.html","ai/avtor/60/test/1/index.html","ai/avtor/60/test/1/people/1/index.html","ai/avtor/60/test/index.html","ai/avtor/index.html","ai/bez-formy-test/index.html","ai/bez-formy-test/oplata/index.html","ai/bez-formy-test/spasibo/index.html","ai/bez-shtorki/index.html","ai/index.html","ai/test/index.html","ai/оптимайз/index.html","alfa/990/index.html","alfa/index.html","allen-carr/index.html","allen/index.html","arhiv1/index.html","arhiv1/privacy/index.html","audioyakorya/gemini/index.html","audioyakorya/index.html","audioyakorya/pult/1/index.html","audioyakorya/pult/2/index.html","audioyakorya/pult/3/index.html","audioyakorya/pult/index.html","audioyakorya/turbo/index.html","audioyakorya/work/pult/index.html","audioyakoryaznak/index.html","barber/index.html","barber/privacy/index.html","bpm/index.html","bpm/privacy/index.html","bpm2/index.html","bpm2/privacy/index.html","claude/1/index.html","claude/2/index.html","claude/3/index.html","claude/index.html","commercial-layer.html","consultation-privacy/index.html","dorogo/dorogo/1/1/index.html","dorogo/dorogo/1/2/index.html","dorogo/dorogo/1/3/index.html","dorogo/dorogo/1/index.html","dorogo/dorogo/1/privacy/index.html","dorogo/dorogo/2/index.html","dorogo/dorogo/2/privacy/index.html","dorogo/dorogo/3/index.html","dorogo/dorogo/3/privacy/index.html","dorogo/dorogo/design-assets/review.html","dorogo/dorogo/index.html","dorogo/dorogo/privacy/index.html","dorogo/index.html","dorogo/privacy/index.html","dorogoydizayn/index.html","dvoinie-vyhodnye/alfa/index.html","dvoinie-vyhodnye/brutal/index.html","dvoinie-vyhodnye/index.html","dvoinie-vyhodnye/kurs/index.html","gemini/1/index.html","gemini/2/index.html","gemini/3/index.html","gemini/index.html","gipnoz/1/index.html","gipnoz/2/index.html","gipnoz/3/index.html","gipnoz/dorogoy/index.html","gipnoz/index.html","gipnoz/original/index.html","grok/1/index.html","grok/2/index.html","grok/3/index.html","grok/4/index.html","grok/index.html","index (1).html","index.html","marafonmetod/index.html","max-exact/index.html","max-exact1/index.html","max/index.html","mesto-byt/index.html","metodold/commercial-layer.html","metodold/index.html","naladka/codex-clean/index.html","naladka/codex-old/commercial-layer.html","naladka/codex-old/index.html","naladka/codex/index.html","naladka/index.html","naladka/privacy/index.html","naladka/terms/index.html","odin-vecher-online/index.html","pobarahtaemsya-vmeste/index.html","pobarahtaemsya/club/delo/index.html","pobarahtaemsya/club/golos/index.html","pobarahtaemsya/club/ii/index.html","pobarahtaemsya/club/index.html","pobarahtaemsya/club/ludi/index.html","pobarahtaemsya/club/mysli/index.html","pobarahtaemsya/club/privacy/index.html","pobarahtaemsya/club/zhizn/index.html","pobarahtaemsya/index.html","pobarahtaemsya/kurenie/index.html","pobarahtaemsya/real/index.html","pobarahtaemsya/vecher/index.html","potencia/index.html","potencia/privacy/index.html","predfinal/index.html","predfinal/pult/index.html","roditeli/index.html","roditeli/privacy/index.html","ryadom/index.html","tochno/1/index.html","tochno/2/index.html","tochno/3/index.html","turbo/index.html","varianty/1/index.html","varianty/2/index.html","varianty/3/1/index.html","varianty/3/2/index.html","varianty/3/3/index.html","varianty/3/4/index.html","varianty/3/5/index.html","varianty/3/index.html","varianty/index.html","vecher-moskva/index.html","yakorya-ai-archive-20261020/index.html","zoomer/index.html","zoomer/privacy/index.html","аллен/index.html","гипно/01/index.html","гипно/02/index.html","гипно/03/index.html","гипно/04/index.html","гипно/05/index.html","гипно/06/index.html","гипно/06/max/index.html","гипно/06/max/new/index.html","гипноз-архив/index.html","главная/index.html","дубль/index.html","инструкция/index.html","календарь/index.html","отладка/index.html","последняя/index.html","родители/index.html","часы/index.html"],"https://ne-sila-voli.online":["00/commercial-layer.html","00/index.html","001/index.html","1/commercial-layer.html","1/deferred-content.html","1/index.html","12/commercial-layer.html","12/index.html","21/commercial-layer.html","21/index.html","66/commercial-layer.html","66/index.html","_codex_sources/01_hero_mobile_buttons_reference.html","_codex_sources/02_intermediate_mobile_cta_reference.html","_codex_sources/03_tariff_mobile_buttons_reference.html","_codex_sources/mobile_buttons_FULL_TRANSPLANT_MODULE.html","belgorod/chisto/consent.html","belgorod/chisto/index.html","belgorod/chisto/privacy.html","commercial-layer.html","cruise/index.html","deferred-content.html","index.html","index_metrics.html","index_metrics2.html","linea/belgorod/index.html","max-exact/index.html","max/index.html","payment-fail.html","payment-success.html","potolki/index.html","r01/00/commercial-layer.html","r01/00/index.html","r01/001/index.html","r01/1/commercial-layer.html","r01/1/deferred-content.html","r01/1/index.html","r01/12/commercial-layer.html","r01/12/index.html","r01/21/commercial-layer.html","r01/21/index.html","r01/66/commercial-layer.html","r01/66/index.html","r01/_codex_sources/01_hero_mobile_buttons_reference.html","r01/_codex_sources/02_intermediate_mobile_cta_reference.html","r01/_codex_sources/03_tariff_mobile_buttons_reference.html","r01/_codex_sources/mobile_buttons_FULL_TRANSPLANT_MODULE.html","r01/commercial-layer.html","r01/deferred-content.html","r01/index.html","r01/index_metrics.html","r01/index_metrics2.html","r01/payment-fail.html","r01/payment-success.html","r01/r01/index.html","r01/zip/commercial-layer.html","r01/zip/index.html","r02/commercial-layer.html","r02/index.html","sigareta/guf/index.html","sigareta/index.html","sposob/index.html","tabletka/2/index.html","tabletka/index.html","test/index.html","vecher/index.html","voli/index.html","zip/commercial-layer.html","zip/index.html","запасная/index.html"]}''')
+          class Meta(HTMLParser):
+              def __init__(self): super().__init__(); self.robots=[]
+              def handle_starttag(self,tag,attrs):
+                  a=dict(attrs)
+                  if tag=='meta' and (a.get('name') or '').lower() in ('robots','googlebot','yandex','yandexbot','bingbot'):
+                      self.robots.append((a.get('name'),a.get('content') or ''))
+          def request(url):
+              q=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 SiteIndexAudit/1.0','Cache-Control':'no-cache'})
+              with urllib.request.urlopen(q,timeout=10) as r:
+                  return r.status,r.geturl(),r.headers.get('X-Robots-Tag',''),r.read()
+          def check(item):
+              host,p=item
+              try:
+                  path='/' + urllib.parse.quote(p)
+                  if path.endswith('/index.html'): path=path[:-10]
+                  status,final,h,body=request(host+path)
+                  if urllib.parse.urlsplit(host).netloc!=urllib.parse.urlsplit(final).netloc:
+                      return host,p,'REDIRECT',final
+                  parser=Meta(); parser.feed(body.decode('utf-8',errors='replace'))
+                  allowed=('noindex' in h.lower() or any(n.lower()=='robots' and 'noindex' in v.lower() for n,v in parser.robots))
+                  return host,p,'PASS' if allowed else 'FAIL',str(status)+' '+h+' '+str(parser.robots)[:150]
+              except Exception as e: return host,p,'ERROR',str(e)
+          for host in [*pages,'https://metodborzilova.ru']:
+              try:
+                  status,final,h,body=request(host+'/robots.txt')
+                  print('ROBOTS',host,status,h,body.decode(errors='replace')[:500],flush=True)
+              except Exception as e: print('ROBOTS ERROR',host,e,flush=True)
+          try:
+              status,final,h,body=request('https://metodborzilova.ru/')
+              parser=Meta(); parser.feed(body.decode(errors='replace'))
+              print('PROTECTED METHOD HOME',status,h,parser.robots,flush=True)
+          except Exception as e: print('METHOD ERROR',e,flush=True)
+          items=[(h,p) for h,ps in pages.items() for p in ps]
+          with concurrent.futures.ThreadPoolExecutor(max_workers=16) as pool:
+              results=list(pool.map(check,items))
+          for row in results:
+              if row[2]!='PASS': print('EXCEPTION',*row,flush=True)
+          for host in pages:
+              rows=[r for r in results if r[0]==host]
+              print('RESULT',host,len(rows),{s:sum(r[2]==s for r in rows) for s in ('PASS','FAIL','ERROR','REDIRECT')},flush=True)
+          if any(row[2]!='PASS' for row in results): raise SystemExit(1)
+          PY
