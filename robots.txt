@@ -1,3 +1,2 @@
-# Crawling is allowed so search engines can read the noindex directives in HTML.
 User-agent: *
 Allow: /
